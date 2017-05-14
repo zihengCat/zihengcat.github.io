@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -240,7 +240,10 @@
 <p>由于GitHub Pages不支持动态网站，我们需要先生成静态网站再托管到GitHub上。使用Hexo的命令可以轻松完成。<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo <span class="keyword">generate</span></div></pre></td></tr></table></figure></p>
 <p>以上命令生成了静态网页文件，放置在<code>public</code>目录下。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git remote add yourwebsiteRepo origin</span></div><div class="line"><span class="meta">$</span><span class="bash"> git add -A</span></div><div class="line"><span class="meta">$</span><span class="bash"> git commit</span></div><div class="line"><span class="meta">$</span><span class="bash"> git push origin master</span></div></pre></td></tr></table></figure>
-<p>将<code>public</code>下的静态网页文件移置GitHub Pages的仓库中，提交推送就OK啦。<br>稍等片刻，访问<code>https://yourname.github.io</code>，我们的个人博客搭建完成啦。</p>
+<p>将<code>public</code>下的静态网页文件移置GitHub Pages的仓库中，提交推送就OK啦。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo <span class="keyword">generate</span> --deploy</div></pre></td></tr></table></figure>
+<p>使用这个命令就可以将生成静态网页文件与提交到GitHub这两步结合起来，比较方便。</p>
+<p>稍等片刻，访问<code>https://yourname.github.io</code>，我们的个人博客搭建完成啦。</p>
 <h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><ol>
 <li>Git官方网站:      <a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a>    </li>
 <li>Node.js 官方网站: <a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a></li>
