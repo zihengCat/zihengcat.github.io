@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword"  content="blog">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          利用GitHub Pages与Hexo搭建个人小站 - zihengCat
+        
+    </title>
+
+    <link rel="canonical" href="http://zihengcat.github.io/2017/05/14/利用GitHub-Pages与Hexo搭建个人小站/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">ziheng&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://zihengcat.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
+                        
+                    </div>
+                    <h1>利用GitHub Pages与Hexo搭建个人小站</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-05-14
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>此篇教程介绍如何利用GitHub Pages 与 Hexo 搭建个人独立博客。<br><img src="https://steftbsteduau-my.sharepoint.com/personal/ziheng_ntua_edu_gr/Documents/Blogs/%E5%88%A9%E7%94%A8GitHub-Pages%E4%B8%8EHexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%B0%8F%E7%AB%99/blog-hexo.png" alt="blog-hexo"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>子恒喵并不是一只擅长写东西的喵，一直也没有写博客的习惯。不是大牛，没有啥有用的干货可以输出，建立这个个人小站也只是因为想在学习代码的路上记录一些个人学习心得。<br>这是子恒喵博客的第一篇, Hello, World.</p>
+<h2 id="为什么选择GitHub-Pages-与-Hexo"><a href="#为什么选择GitHub-Pages-与-Hexo" class="headerlink" title="为什么选择GitHub Pages 与 Hexo"></a>为什么选择GitHub Pages 与 Hexo</h2><p>现如今自媒体那么发达，能写东西的地方多了去啦, 为什么子恒喵要选择Giuhub Pages 与 Hexo 呢？       </p>
+<ul>
+<li>简单可控</li>
+<li>支持Markdown书写</li>
+<li>Git WorkFlow 比较熟悉, GitHub 用的比较多</li>
+<li>Node.js 懂一点，Ruby不熟</li>
+</ul>
+<p>这是子恒喵个人的情况啦，您当然可以有您自己的理由。</p>
+<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>既然选择了 GitHub Pages 与 Hexo，那我们需要搭建起相关的环境啦。不然它们可是跑不起来的哦。</p>
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><p><a href="https://git-scm.com/" target="_blank" rel="external"><strong>Git官网</strong></a>     </p>
+<p>前往Git官方网站, 根据您的架构，系统下载安装最新版本Git。如果进不去，开启科学上网嘛~<br>大家养成下载软件去官网的好习惯哦。<br>子恒喵用的是CentOS Linux系统，一条<code>yum</code>命令就装好啦。</p>
+<h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><p><a href="https://nodejs.org/" target="_blank" rel="external"><strong>Node.js官网</strong></a>   </p>
+<p>前往Node.js官网, 根据您的架构，系统下载安装Node.js。<br>子恒喵选择的是LTS版本，手动编译安装的。</p>
+<h2 id="检验安装"><a href="#检验安装" class="headerlink" title="检验安装"></a>检验安装</h2><p>打开Terminal(Windows下的CMD)，执行以下命令。</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git --<span class="keyword">version</span></div><div class="line">$ <span class="keyword">node</span> <span class="title">--version</span></div></pre></td></tr></table></figure>
+<p>如果正确打印出软件版本号，则环境安装成功。</p>
+<h1 id="Hexo安装"><a href="#Hexo安装" class="headerlink" title="Hexo安装"></a>Hexo安装</h1><blockquote>
+<p>A fast, simple &amp; powerful blog framework, powered by Node.js.</p>
+</blockquote>
+<p>Hexo是一个快速、简洁且高效的博客框架，使用Node.js写成，支持Markdown格式。    </p>
+<p>Hexo的安装非常简单。一条命令即可。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm install hexo-cli -g</span></div></pre></td></tr></table></figure></p>
+<p>这条命令就是使用NPM(Node.js默认包管理器) 安装上Hexo, 安装的是命令行版本的Hexo，-g 参数表示全局安装。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> hexo --version</span></div></pre></td></tr></table></figure>
+<p>安装完成后，执行以上命令，如果正确打印出Hexo及其相关软件的版本号，则安装成功。</p>
+<h1 id="Hexo使用"><a href="#Hexo使用" class="headerlink" title="Hexo使用"></a>Hexo使用</h1><p>安装完成之后，我们终于可以上手用用这个Hexo啦～<br>执行以下命令Hexo将会在指定文件夹中新建所需要的文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> hexo init &lt;folder&gt;</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> &lt;folder&gt;</span></div><div class="line"><span class="meta">$</span><span class="bash"> npm install</span></div></pre></td></tr></table></figure>
+<p>新建完成后，指定文件夹的目录如下：</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── <span class="variable">_config</span>.yml</div><div class="line">├── package.json</div><div class="line">├── scaffolds</div><div class="line">├── source</div><div class="line">|   ├── <span class="variable">_drafts</span></div><div class="line">|   └── <span class="variable">_posts</span></div><div class="line">└── themes</div></pre></td></tr></table></figure>
+<p>执行以下命令启动服务器。<br>默认情况下，访问网址为：<code>http://localhost:4000/</code>。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> hexo server</span></div></pre></td></tr></table></figure></p>
+<p>打开浏览器，键入<code>http://localhost:4000/</code>，我们的博客出现啦～</p>
+<h1 id="Hexo更多"><a href="#Hexo更多" class="headerlink" title="Hexo更多"></a>Hexo更多</h1><p>更多有关Hexo的信息，大家可以去查阅官方文档。</p>
+<p><a href="https://hexo.io/docs/" target="_blank" rel="external"><strong>Hexo Docs</strong></a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external"><strong>Hexo 中文文档</strong></a></p>
+<h1 id="GitHub-Pages"><a href="#GitHub-Pages" class="headerlink" title="GitHub Pages"></a>GitHub Pages</h1><blockquote>
+<p>Websites for you and your projects.    </p>
+</blockquote>
+<p>GitHub Pages 是GitHub 为广大开发者们提供的一个<code>静态站点托管服务</code>。</p>
+<ul>
+<li>GitHub提供1GB仓库容量, 超过会有限制</li>
+<li>每月100GB的带宽和10万次请求</li>
+<li>开发者项目与站点紧密相关</li>
+</ul>
+<p>注意注意，只托管静态网站哦。<br>如果博客配有大量高清图片, 请用图床吧。</p>
+<p><a href="https://pages.github.com/" target="_blank" rel="external"><strong>GitHub Pages 官方教程</strong></a><br>官方教程写得简洁明了，熟悉Git的你一定能轻松上手。</p>
+<h1 id="发布网站"><a href="#发布网站" class="headerlink" title="发布网站"></a>发布网站</h1><p>现在，我们已经在GitHub上建立了自己的GitHub Pages：<code>yourname.github.io</code>。<br>也在本地跑起来了我们的Hexo博客小站：<code>http://localhost:4000</code>。<br>最后一步，也是最重要的一步，我们要把本地的站点托管到GitHub Pages上。</p>
+<p>由于GitHub Pages不支持动态网站，我们需要先生成静态网站再托管到GitHub上。使用Hexo的命令可以轻松完成。<br><figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo <span class="keyword">generate</span></div></pre></td></tr></table></figure></p>
+<p>以上命令生成了静态网页文件，放置在<code>public</code>目录下。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git remote add yourwebsiteRepo origin</span></div><div class="line"><span class="meta">$</span><span class="bash"> git add -A</span></div><div class="line"><span class="meta">$</span><span class="bash"> git commit</span></div><div class="line"><span class="meta">$</span><span class="bash"> git push origin master</span></div></pre></td></tr></table></figure>
+<p>将<code>public</code>下的静态网页文件移置GitHub Pages的仓库中，提交推送就OK啦。<br>稍等片刻，访问<code>https://yourname.github.io</code>，我们的个人博客搭建完成啦。</p>
+<h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><ol>
+<li>Git官方网站:      <a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a>    </li>
+<li>Node.js 官方网站: <a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a></li>
+<li>Hexo官方网站:     <a href="https://hexo.io/" target="_blank" rel="external">https://hexo.io/</a></li>
+<li>GitHub-Pages介绍: <a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="external">https://help.github.com/articles/what-is-github-pages/</a></li>
+</ol>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; ziheng&#39;s Blog 2017 
+                    <br>
+                    Theme by Hux 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by Kaijun | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://zihengcat.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<!-- <img src="http://zihengcat.github.io/img/icon_wechat.png" width="0" height="0" /> -->
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
