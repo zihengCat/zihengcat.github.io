@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -192,7 +192,7 @@
                 post-container">
 
                 <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>此篇教程介绍如何使用GitHub Pages 与 Hexo 搭建个人独立博客。<br><img src="./blog-hexo.png" alt="blog-hexo"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>子恒喵并不是一只擅长写东西的喵，一直也没有写博客的习惯。不是大牛，没有啥有用的干货可以输出，建立这个个人小站也只是因为想在学习代码的路上记录一些个人学习心得。<br>这是子恒喵博客的第一篇, Hello, World.</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>子恒喵并不是一只擅长写东西的喵，一直也没有写博客的习惯。不是大牛，没有啥有用的干货可以输出，建立这个个人小站也只是因为想在学习代码的路上记录一些个人学习心得。<br>这是子恒喵博客的第一篇, <em>Hello, World</em>.</p>
 <h2 id="为什么选择GitHub-Pages-与-Hexo"><a href="#为什么选择GitHub-Pages-与-Hexo" class="headerlink" title="为什么选择GitHub Pages 与 Hexo"></a>为什么选择GitHub Pages 与 Hexo</h2><p>现如今自媒体那么发达，能写东西的地方多了去啦, 为什么子恒喵选择Giuhub Pages 与 Hexo 呢？       </p>
 <ul>
 <li>简单可控</li>
@@ -245,7 +245,7 @@
 <p>使用这个命令就可以将生成静态网页文件与提交到GitHub这两步结合起来，比较方便。</p>
 <p>稍等片刻，访问<code>https://yourname.github.io</code>，我们的个人博客搭建完成啦。</p>
 <h1 id="备份建议"><a href="#备份建议" class="headerlink" title="备份建议"></a>备份建议</h1><p>毫无疑问，博客的博文资料是最珍贵的，框架可以换，但博文资料我们需要采用某些措施妥善的备份起来。<br>子恒喵给大家的建议是，使用<strong>GitHub备份博文资料</strong>。<br>由于我们上传到GitHub Pages 仓库上的是借助Hexo生成器生成的静态网页文件，我们不希望备份它们，这对日后博客内容的移植，修改造成不便。<br>我们需要将本地的Markdown文件备份下来，这才是我们需要做的。<br>Hexo本地目录下<code>source</code>文件夹存放着我们写的博文内容，我们只需要使用GitHub将这些内容备份起来。<br>这里子恒喵使用了Git分支功能来保存博文资料，没有新建出一个仓库。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> &lt;<span class="built_in">source</span>&gt;</span></div><div class="line"><span class="meta">$</span><span class="bash"> git init</span></div><div class="line"><span class="meta">$</span><span class="bash"> git remote add &lt;yourremote-source-branch.git&gt; <span class="built_in">source</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git add --all</span></div><div class="line"><span class="meta">$</span><span class="bash"> git commit</span></div><div class="line"><span class="meta">$</span><span class="bash"> git push <span class="built_in">source</span> master</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> &lt;hexo/<span class="built_in">source</span>&gt;</span></div><div class="line"><span class="meta">$</span><span class="bash"> git init</span></div><div class="line"><span class="meta">$</span><span class="bash"> git remote add origin &lt;yourremote-github-repo.git&gt;</span></div><div class="line"><span class="meta">$</span><span class="bash"> git branch <span class="built_in">source</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git checkout <span class="built_in">source</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git add --all</span></div><div class="line"><span class="meta">$</span><span class="bash"> git commit</span></div><div class="line"><span class="meta">$</span><span class="bash"> git push origin master</span></div></pre></td></tr></table></figure>
 <p>虽然Git branch分支功能并不是为备份数据而生的，但是在这个特殊场景下，利用分支功能却非常合适。<code>master</code>分支存放静态网页文件，<code>source</code>分支存放Markdown文件。备份工作完满完成。</p>
 <h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
 <li>Git官方网站:      <a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a>    </li>
