@@ -13,11 +13,11 @@
 
     <title>
         
-          About - zihengCat
+          苹果系统.DS_Store文件的产生与清理 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="http://zihengcat.github.io/about/">
+    <link rel="canonical" href="http://zihengcat.github.io/2017/05/20/苹果系统.DS_Store文件的产生与清理/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -147,135 +147,151 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/tag-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://zihengcat.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is zihengCat.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Macintosh" title="Macintosh">Macintosh</a>
+                        
+                    </div>
+                    <h1>苹果系统.DS_Store文件的产生与清理</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-05-20
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用苹果系统的同学都大都认识这个<em>.DS_Store</em>文件, 这个文件是苹果桌面程序<em>Finder</em>产生，纪录了当前目录的一些显示信息,比如Finder以何种形式显示目录, 目录文件图标大小, 背景图, 目录元数据等等。该文件的全称是<em>Desktop Services Store</em>,由Finder产生，为Finder所用。有点类似与Windows系统下的<em>desktop.ini</em>文件。<br>该文件默认是隐藏的，Unix Like系统，文件or目录名带点号<code>.</code>的，会被认为是隐藏文件。<br>其实普通用户不需要在意这个文件，默认就是隐藏的，Finder也不会让你看到。但是啊，子恒喵是有点精神洁癖的,很不喜欢在目录下出现多余的东西…而且在<strong>归档压缩</strong>，<strong>挂载共享文件系统</strong>时，这个文件总是会跑出来，让人很不爽。所以子恒喵决定干掉它。</p>
+<h1 id="Finder隐藏文件的显示-关闭"><a href="#Finder隐藏文件的显示-关闭" class="headerlink" title="Finder隐藏文件的显示/关闭"></a>Finder隐藏文件的显示/关闭</h1><p>Finder默认是不显示隐藏文件的，我们可以输入如下命令显示隐藏文件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">true</span></span></div></pre></td></tr></table></figure></p>
+<p>当然我们也可以关闭显示隐藏文件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">false</span></span></div></pre></td></tr></table></figure></p>
+<p>执行完命令后，让Finder退出重启就可以啦。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> killall Finder</span></div></pre></td></tr></table></figure></p>
+<h1 id="DS-Store文件的生成-关闭"><a href="#DS-Store文件的生成-关闭" class="headerlink" title=".DS_Store文件的生成/关闭"></a>.DS_Store文件的生成/关闭</h1><p>命令行下输入以下命令可以禁止系统创建<em>.DS_Store</em>文件。注意，命令是区分用户的，以哪个用户的身份执行，系统就不生成该用户的.DS_Store文件。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ defaults write com<span class="selector-class">.apple</span><span class="selector-class">.desktopservices</span> DSDontWriteStores true</div><div class="line">$ defaults write com<span class="selector-class">.apple</span><span class="selector-class">.desktopservices</span> DSDontWriteNetworkStores true</div><div class="line">$ chmod <span class="number">777</span> ~/Library/Preferences/com<span class="selector-class">.apple</span><span class="selector-class">.desktopservices</span><span class="selector-class">.plist</span></div></pre></td></tr></table></figure></p>
+<p>输入反向命令可以恢复。<br>执行完命令后，让Finder退出重启使生效。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> killall Finder</span></div></pre></td></tr></table></figure></p>
+<h1 id="删除本机-DS-Store文件"><a href="#删除本机-DS-Store文件" class="headerlink" title="删除本机.DS_Store文件"></a>删除本机.DS_Store文件</h1><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo <span class="built_in">find</span> / -<span class="built_in">name</span> <span class="string">".DS_Store"</span> -depth -<span class="built_in">exec</span> rm &#123;&#125; \;</div></pre></td></tr></table></figure>
+<p>使用find查找目标文件，清除掉就可以啦。<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">find</span> ./ -<span class="built_in">name</span> <span class="string">".DS_Store"</span> -depth -<span class="built_in">exec</span> rm &#123;&#125; \;</div></pre></td></tr></table></figure></p>
+<p>删除当前目录下所有<em>.DS_Store</em>文件。</p>
+<h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><p><strong>上述方法在OSX10.7后已经失效，写脚本定时find查找删除文件好了…</strong></p>
+
+
+                <hr>
+
                 
 
-<!-- Chinese Version -->
-<div class="zh post-container">
-    
-</div>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/05/19/C学习笔记-编译预处理指令/" data-toggle="tooltip" data-placement="top" title="C学习笔记-编译预处理指令">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-
-
-
-
-
-
-
-
-
-
-                <!-- 如果开启评论功能 -->
                 
-                    <hr>
-
-                    
-
-                    
-
-
-                    
-
-                    
-
-
 
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#Macintosh" title="Macintosh">Macintosh</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.png" />
-                        
-
-                        
-                            <p>I&#39;m zihengCat. A student in Hangzhou, learning Coding now.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
