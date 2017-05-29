@@ -13,11 +13,11 @@
 
     <title>
         
-          About - zihengCat
+          Shell学习笔记-Shell简介 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="http://zihengcat.github.io/about/">
+    <link rel="canonical" href="http://zihengcat.github.io/2017/05/29/Shell学习笔记-Shell简介/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -147,137 +147,149 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/tag-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://zihengcat.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is zihengCat.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#shell" title="shell">shell</a>
+                        
+                    </div>
+                    <h1>Shell学习笔记-Shell简介</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-05-29
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文简要介绍shell。    </p>
+<p><img src="./shellpic.png" alt="shellpic"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>创世纪（1970 年 1 月 1 日）起经过数年后被目击到的妖精。会寄宿在家中，有着类似于棕精灵（Brownie）的生活方式，向她们拜托家务事或者杂活的时候，会回答两次并接受的温顺孩子。<br>她们不常出现在人类存在的地方，因为言语不通，会用信件交流。如果拜托的事情说得比较含糊的话，有可能会造成误解而发生不得了的事情。对此的技巧是明确地像“做那个做这个&gt;放在这里”这样有顺序地将要拜托她们做的事写好。如果对拜托的事理解得很好的话，她们会在夜里将事情都处理好。如果很好地完成了工作的话，请别忘了在第二天的晚上放上作为谢礼的方糖。<br>Shell 中有各种各样的种族。现在已确认的种族中比较有名的有：“ba”、“c“、”k”、”tc”、“z”等等。其服装根据种族不同而不同，我所目击到的是一只身高60cm左右、穿着巴宝莉的儿童服装的个体。恐怕人们目击到最多的是”ba”种。个人而言我也想遇到身高更高一些、尖耳朵的“z”种，现在虽然知道如何写信，却从未见过实物。<br>尽管她们会在同一个屋子里居住，却很少有人有机会见到，也不如何才能遇到她们。<br>有一种说法是，每天都把写程序这一仪式进行到午夜、勉强靠咖啡因支撑着抬起头的状态下突然向屏幕看去，能够看到她的身影。确实我遭遇她，也是在公司里熬夜写程序的时候。<br>Shell 的个体非常多，据说每家每户都会有一只。在大家的家里，实际上有着许多的她们居住着、等着来信也说不定。<br>—— 文／渡辺将人</p>
+</blockquote>
+<p>子恒喵很喜欢渡辺将人先生写的这段描述shell的话，俏皮又可爱。子恒喵刚接触Linux的时候，整天面对着黑乎乎的终端窗口，努力适应着命令行操作。现在想来，Shell小精灵对子恒喵的帮助真是非常大，哈哈。<br>每当子恒喵打开Terminal，第一个见到的总是Shell小精灵，她尽职尽责的将喵的指令传达给内核，让喵可以舒舒服服地使用计算机。</p>
+<h1 id="Shell是什么"><a href="#Shell是什么" class="headerlink" title="Shell是什么"></a>Shell是什么</h1><p><img src="./shelllayers.jpg" alt="shelllayers"></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="code">--------------------------</span></div><div class="line">      User Requests      </div><div class="line">--------------------------</div><div class="line"><span class="code">++                   +</span>+</div><div class="line">||                   ||</div><div class="line"><span class="code">++                   +</span>+</div><div class="line"><span class="bullet">---------- </span>| ----------------</div><div class="line"><span class="code">   Shell   |   Applacations  </span></div><div class="line"><span class="bullet">---------- </span>| ----------------</div><div class="line"><span class="code">++                   +</span>+</div><div class="line">||                   ||</div><div class="line"><span class="section">++                   ++</span></div><div class="line">-----------------------</div><div class="line"><span class="section">      Linux Kernel </span></div><div class="line">-----------------------</div><div class="line"><span class="code">++        +</span><span class="code">+         +</span>+</div><div class="line">||        ||         ||</div><div class="line"><span class="section">++        ++         ++</span></div><div class="line">-----------------------</div><div class="line"><span class="section">   Computer Hardware </span></div><div class="line">-----------------------</div></pre></td></tr></table></figure>
+
+
+                <hr>
+
                 
 
-<!-- Chinese Version -->
-<div class="zh post-container">
-    
-</div>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/05/20/苹果系统.DS_Store文件的产生与清理/" data-toggle="tooltip" data-placement="top" title="苹果系统.DS_Store文件的产生与清理">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-
-
-
-
-
-
-
-
-
-
-                <!-- 如果开启评论功能 -->
                 
-                    <hr>
-
-                    
-
-                    
-
-
-                    
-
-                    
-
-
 
                 
 
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#shell" title="shell">shell</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.png" />
-                        
-
-                        
-                            <p>I&#39;m zihengCat. A student in Hangzhou, learning Coding now.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
