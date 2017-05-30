@@ -247,13 +247,13 @@
 <h1 id="备份建议"><a href="#备份建议" class="headerlink" title="备份建议"></a>备份建议</h1><p>毫无疑问，博客的博文资料是最珍贵的，框架可以换，但博文资料我们需要采用某些措施妥善的备份起来。<br>子恒喵给大家的建议是，使用<strong>GitHub备份博文资料</strong>。<br>由于我们上传到GitHub Pages 仓库上的是借助Hexo生成器生成的静态网页文件，我们不希望备份它们，这对日后博客内容的移植，修改造成不便。<br>我们需要将本地的Markdown文件备份下来，这才是我们需要做的。<br>Hexo本地目录下<code>source</code>文件夹存放着我们写的博文内容，我们只需要使用GitHub将这些内容备份起来。<br>这里子恒喵使用了<code>Git branch</code>分支功能来保存博文资料，没有新建出一个仓库。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> &lt;your-remote-github-repo.git&gt;</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> &lt;folder&gt;</span></div><div class="line"><span class="meta">$</span><span class="bash"> git branch <span class="built_in">source</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git checkout <span class="built_in">source</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> rm -rf ./[^.]*</span></div><div class="line"><span class="meta">$</span><span class="bash"> cp -r -v &lt;hexo/<span class="built_in">source</span>&gt; ./</span></div><div class="line"><span class="meta">$</span><span class="bash"> git add --all</span></div><div class="line"><span class="meta">$</span><span class="bash"> git commit</span></div><div class="line"><span class="meta">$</span><span class="bash"> git push origin <span class="built_in">source</span></span></div></pre></td></tr></table></figure>
 <p>虽然Git branch分支功能并不是为备份数据而生的，但是在这个特殊场景下，利用分支功能却非常合适。<code>master</code>分支存放静态网页文件，<code>source</code>分支存放Markdown文件。备份工作完满完成。</p>
-<h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
 <li>Git官方网站:      <a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a>    </li>
 <li>Node.js 官方网站: <a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a></li>
 <li>Hexo官方网站:     <a href="https://hexo.io/" target="_blank" rel="external">https://hexo.io/</a></li>
 <li>GitHub-Pages介绍: <a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="external">https://help.github.com/articles/what-is-github-pages/</a></li>
 </ol>
-<h2 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h2><ul>
+<h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><ul>
 <li>2017-05-14 –&gt; 完成[初稿]</li>
 <li>2017-05-15 –&gt; 添加[备份建议]</li>
 </ul>
