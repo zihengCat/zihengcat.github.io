@@ -191,7 +191,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="当前Shell状态"><a href="#当前Shell状态" class="headerlink" title="当前Shell状态"></a>当前Shell状态</h1><p>有个有意思的bash环境变量<code>SHELLOPTS</code>，还有一个bash特殊字符<code>$-</code>。它们揭示出当前shell的状态。</p>
+                <h1 id="Shell状态"><a href="#Shell状态" class="headerlink" title="Shell状态"></a>Shell状态</h1><p>有个有意思的bash环境变量<code>SHELLOPTS</code>，还有一个bash特殊字符<code>$-</code>。它们揭示出当前shell的状态。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"$-"</span></span></div><div class="line">himBH</div></pre></td></tr></table></figure>
 <p>显示出来的<code>himBH</code>是什么意思？它表示当前shell的什么状态呢？</p>
 <p>查阅man文档，只有这段话</p>
@@ -210,13 +210,13 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> bash ./test.sh</span></div><div class="line">hB</div></pre></td></tr></table></figure>
 <p>只有<code>hB</code>哦，在shell script中，<strong>默认不启用可交互性，历史纪录，工作控制的</strong>。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>Stack Overflow 问答 –&gt; <a href="https://stackoverflow.com/questions/18146443/what-do-the-characters-in-the-bash-environment-variable-mean" target="_blank" rel="external">https://stackoverflow.com/questions/18146443/what-do-the-characters-in-the-bash-environment-variable-mean</a></p>
+<li><p>Stack Overflow 问答: <a href="https://stackoverflow.com/questions/18146443/what-do-the-characters-in-the-bash-environment-variable-mean" target="_blank" rel="external">https://stackoverflow.com/questions/18146443/what-do-the-characters-in-the-bash-environment-variable-mean</a></p>
 </li>
-<li><p>Job control 详解 –&gt; <a href="https://www.gnu.org/software/bash/manual/html_node/Job-Control.html#Job-Control" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html_node/Job-Control.html#Job-Control</a></p>
+<li><p>Job control 详解: <a href="https://www.gnu.org/software/bash/manual/html_node/Job-Control.html#Job-Control" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html_node/Job-Control.html#Job-Control</a></p>
 </li>
-<li><p>Brace Expansion 详解 –&gt; <a href="https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html#Brace-Expansion" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html#Brace-Expansion</a></p>
+<li><p>Brace Expansion 详解: <a href="https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html#Brace-Expansion" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html#Brace-Expansion</a></p>
 </li>
-<li><p>History Expansion 详解 –&gt; <a href="https://www.gnu.org/software/bash/manual/html_node/History-Interaction.html#History-Interaction" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html_node/History-Interaction.html#History-Interaction</a></p>
+<li><p>History Expansion 详解: <a href="https://www.gnu.org/software/bash/manual/html_node/History-Interaction.html#History-Interaction" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html_node/History-Interaction.html#History-Interaction</a></p>
 </li>
 </ul>
 
