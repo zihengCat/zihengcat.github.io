@@ -12,11 +12,11 @@
 
     <title>
         
-          C学习笔记-理解size_t - zihengCat
+          Linux命令学习-cd - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/06/02/C学习笔记-理解size_t/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/06/03/Linux命令学习-cd/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -164,14 +164,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#C" title="C">C</a>
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Shell" title="Shell">Shell</a>
                         
                     </div>
-                    <h1>C学习笔记-理解size_t</h1>
+                    <h1>Linux命令学习-cd</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-06-02
+                        2017-06-03
                     </span>
                 </div>
             </div>
@@ -190,25 +192,10 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文讲解C语言中<code>size_t</code>类型及其应用。</p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在C语言的标准库头文件中和很多开源项目中，我们都能发现<code>size_t</code>这个”数据类型”的身影。函数参数，函数返回值，循环控制变量，似乎<code>size_t</code>无处不在，可是我们又不太了解这个”数据类型”。</p>
-<h1 id="size-t"><a href="#size-t" class="headerlink" title="size_t"></a>size_t</h1><p><code>size_t</code>实际上是<strong>无符号整型</strong>，它并不是一个全新的数据类型，更不是一个关键字。<code>size_t</code>是由<code>typedef</code>定义而来的，我们在很多标准库头文件中都能发现它的身影。</p>
-<p>子恒喵在<code>&lt;stddef.h&gt;</code>中找到了<code>size_t</code>的定义。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __SIZE_TYPE__ long unsigned int</span></div><div class="line"><span class="keyword">typedef</span> __SIZE_TYPE__ <span class="keyword">size_t</span>;</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>在子恒喵的机器上，<code>size_t</code>的真面目就是<code>long unsigned int</code>。</p>
-<h1 id="使用size-t的原因"><a href="#使用size-t的原因" class="headerlink" title="使用size_t的原因"></a>使用size_t的原因</h1><p>子恒喵查阅相关文档后了解到，<code>size_t</code>是<em>size type</em>的意思，它是一种<strong>计数类型</strong>。取值范围与机器和操作系统相关。32位机器一般是<code>unsigned int</code>，占4字节；64位机器一般是<code>unsigned long</code>，占8字节。</p>
-<p><code>size_t</code>常被用作计数，例如，<code>sizeof</code>运算符的结果就是对象所占的字节数，<code>strlen</code>返回字符串的长度等等。</p>
-<p><code>size_t</code>类型<strong>理论上能容纳此机器中所能建立的最大对象的字节大小</strong>。常被应用在数组索引，内存管理函数中。<br>最初设计<code>size_t</code>类型是为了程序的跨平台兼容。</p>
-<h1 id="size-t小陷阱"><a href="#size-t小陷阱" class="headerlink" title="size_t小陷阱"></a>size_t小陷阱</h1><p>子恒喵在搜索的时候，发现了这个有趣的小陷阱。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">if</span>(i &lt; <span class="built_in">strlen</span>(<span class="string">"hello"</span>))&#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Hello, World\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Hello, ziheng\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ gcc test<span class="selector-class">.c</span> &amp;&amp; ./<span class="selector-tag">a</span><span class="selector-class">.out</span></div><div class="line">Hello, World</div></pre></td></tr></table></figure>
-<p>上述代码编译执行后，会打印出<code>Hello, World</code>，似乎与我们预想的有些不同啊。<br>实际上，这里触发了C的自动类型转换，<code>size_t</code>的类型是<code>unsigned long int</code>，带符号整型变量<code>i</code>会被自动转换成<code>unsigned int</code>，即无符号的整型，-1会被转化成无符号数4294967295，远大于5。</p>
-<p><strong>有符号数和无符号数之间的运算，千万小心。</strong></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>官方文档解释: <a href="http://en.cppreference.com/w/c/types/size_t" target="_blank" rel="external">http://en.cppreference.com/w/c/types/size_t</a></p>
-</li>
-<li><p>小陷阱例子: <a href="http://demon.tw/programming/c-size_t-pitfall.html" target="_blank" rel="external">http://demon.tw/programming/c-size_t-pitfall.html</a></p>
-</li>
-</ul>
+                <h1 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h1><p><code>cd</code>命令可以说是广大Linux用户最常使用的命令啦，它的作用是改变shell当前工作目录。<br><code>cd</code>是<em>Change directory</em>的意思。<br><code>cd</code>是一个shell内置指令(shell builtin)。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">type</span> <span class="keyword">cd</span></div><div class="line"><span class="keyword">cd</span> <span class="keyword">is</span> <span class="keyword">a</span> <span class="keyword">shell</span> builtin</div></pre></td></tr></table></figure>
+<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">$ help cd</div><div class="line">cd: cd [-L|[-P [-e]]] [dir]</div><div class="line">    Change the shell working directory.</div><div class="line">    </div><div class="line">    Change the current directory <span class="keyword">to</span> DIR.  The <span class="keyword">default</span> DIR <span class="keyword">is</span> the value <span class="keyword">of</span> the</div><div class="line">    HOME shell variable.</div><div class="line">    </div><div class="line">    The variable CDPATH defines the search path <span class="keyword">for</span> the directory containing</div><div class="line">    DIR.  Alternative directory names <span class="keyword">in</span> CDPATH are separated <span class="keyword">by</span> a colon (:).</div><div class="line">    A null directory name <span class="keyword">is</span> the same <span class="keyword">as</span> the current directory.  <span class="keyword">If</span> DIR begins</div><div class="line">    <span class="keyword">with</span> a slash (/), <span class="keyword">then</span> CDPATH <span class="keyword">is</span> <span class="keyword">not</span> used.</div><div class="line">    </div><div class="line">    <span class="keyword">If</span> the directory <span class="keyword">is</span> <span class="keyword">not</span> found, <span class="keyword">and</span> the shell <span class="keyword">option</span> `cdable_vars<span class="comment">' is set,</span></div><div class="line">    the word <span class="keyword">is</span> assumed <span class="keyword">to</span> be  a variable name.  <span class="keyword">If</span> that variable has a value,</div><div class="line">    its value <span class="keyword">is</span> used <span class="keyword">for</span> DIR.</div><div class="line">    </div><div class="line">    Options:</div><div class="line">        -L	force symbolic links <span class="keyword">to</span> be followed</div><div class="line">        -P	use the physical directory <span class="keyword">structure</span> without following symbolic</div><div class="line">    	links</div><div class="line">        -e	<span class="keyword">if</span> the -P <span class="keyword">option</span> <span class="keyword">is</span> supplied, <span class="keyword">and</span> the current working directory</div><div class="line">    	cannot be determined successfully, <span class="keyword">exit</span> <span class="keyword">with</span> a non-zero status</div><div class="line">    </div><div class="line">    The <span class="keyword">default</span> <span class="keyword">is</span> <span class="keyword">to</span> follow symbolic links, <span class="keyword">as</span> <span class="keyword">if</span> `-L<span class="comment">' were specified.</span></div><div class="line">    </div><div class="line">    <span class="keyword">Exit</span> Status:</div><div class="line">    Returns <span class="number">0</span> <span class="keyword">if</span> the directory <span class="keyword">is</span> changed, <span class="keyword">and</span> <span class="keyword">if</span> $PWD <span class="keyword">is</span> <span class="keyword">set</span> successfully <span class="keyword">when</span></div><div class="line">    -P <span class="keyword">is</span> used; non-zero otherwise.</div></pre></td></tr></table></figure>
+<p>可以看到，<code>cd</code>命令帮我们改变了当前shell的工作目录，并设置<code>$PWD</code>环境变量的值。<br>如果不加任何参数，<code>cd</code>命令将使用环境变量<code>$HOME</code>（返回当前用户的家目录)。<br><code>-P</code>选项表示使用实际的路径名，而非符号链接(symbolic links)。</p>
 
 
                 <hr>
@@ -217,13 +204,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/06/03/Linux命令学习-cd/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-cd">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/06/01/Linux命令学习-pwd/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-pwd">Next Post &rarr;</a>
+                            <a href="/2017/06/02/C学习笔记-理解size_t/" data-toggle="tooltip" data-placement="top" title="C学习笔记-理解size_t">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -267,8 +250,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "zihengcat";
-    var disqus_identifier = "https://zihengcat.github.io/2017/06/02/C学习笔记-理解size_t/";
-    var disqus_url = "https://zihengcat.github.io/2017/06/02/C学习笔记-理解size_t/";
+    var disqus_identifier = "https://zihengcat.github.io/2017/06/03/Linux命令学习-cd/";
+    var disqus_url = "https://zihengcat.github.io/2017/06/03/Linux命令学习-cd/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
