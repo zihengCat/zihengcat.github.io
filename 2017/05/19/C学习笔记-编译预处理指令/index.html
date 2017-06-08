@@ -191,7 +191,8 @@
                 post-container">
 
                 <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本篇讲解C语言中的编译预处理指令。</p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>C代码的编译过程大致需要经过如下几个阶段:<br><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">源代码</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">编译预处理</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">编译</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">汇编</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">链接</span><span class="literal">-</span><span class="literal">-</span>&gt;<span class="comment">可执行文件</span></div></pre></td></tr></table></figure></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>C代码的编译过程大致需要经过如下几个阶段:</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">源代码</span> <span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">编译预处理</span> <span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">编译</span> <span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">汇编</span> <span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">链接</span> <span class="literal">-</span><span class="literal">-</span>&gt; <span class="comment">可执行文件</span></div></pre></td></tr></table></figure>
 <p>其中，编译预处理是第一阶段，由编译预处理器完成。<br>C语言在设计之初，并没有考虑设计机制满足如下需求:</p>
 <ul>
 <li>包含外部文件至源代码</li>
@@ -267,14 +268,48 @@
 # 字符串转换指令(#)
 
 # 标记粘贴指令(##)
-
-# 预定义宏
 -->
+<h1 id="预定义宏"><a href="#预定义宏" class="headerlink" title="预定义宏"></a>预定义宏</h1><p>ANSI C标准定义了许多预定义宏。我们可以在编程中使用这些宏，但是不应该修改这些预定义宏。</p>
+<table>
+<thead>
+<tr>
+<th>预定义宏</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DATE</strong></td>
+<td>当前日期，一个以 “MMM DD YYYY” 格式表示的字符常量。</td>
+</tr>
+<tr>
+<td><strong>TIME</strong></td>
+<td>当前时间，一个以 “HH:MM:SS” 格式表示的字符常量。</td>
+</tr>
+<tr>
+<td><strong>FILE</strong></td>
+<td>当前文件名，一个字符串常量。</td>
+</tr>
+<tr>
+<td><strong>LINE</strong></td>
+<td>当前代码行号，一个十进制常量。</td>
+</tr>
+<tr>
+<td><strong>STDC</strong></td>
+<td>当前编译器以ANSI C标准编译时，整型值为1</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> main(void)&#123;</div><div class="line"></div><div class="line">    <span class="keyword">printf</span>(<span class="string">"File :%s\n"</span>, __FILE_<span class="number">_</span> );</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"Date :%s\n"</span>, __DATE_<span class="number">_</span> );</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"Time :%s\n"</span>, __TIME_<span class="number">_</span> );</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"Line :%d\n"</span>, __LINE_<span class="number">_</span> );</div><div class="line">    <span class="keyword">printf</span>(<span class="string">"ANSI :%d\n"</span>, __STDC_<span class="number">_</span> );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编译执行，结果为:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">File</span> <span class="selector-pseudo">:test.c</span></div><div class="line"><span class="selector-tag">Date</span> <span class="selector-pseudo">:Jun</span>  9 2017</div><div class="line"><span class="selector-tag">Time</span> <span class="selector-pseudo">:20</span><span class="selector-pseudo">:53</span><span class="selector-pseudo">:42</span></div><div class="line"><span class="selector-tag">Line</span> <span class="selector-pseudo">:8</span></div><div class="line"><span class="selector-tag">ANSI</span> <span class="selector-pseudo">:1</span></div></pre></td></tr></table></figure>
 <h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
 <li>C标准文档: <a href="http://en.cppreference.com/w/c/preprocessor" target="_blank" rel="external">http://en.cppreference.com/w/c/preprocessor</a></li>
+<li>MSDN编译预处理: <a href="https://msdn.microsoft.com/en-us/library/79yewefw.aspx" target="_blank" rel="external">https://msdn.microsoft.com/en-us/library/79yewefw.aspx</a></li>
 </ul>
 <h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><ul>
 <li>2017-05-19 –&gt; 完成[初稿]</li>
+<li>2017-06-09 –&gt; 增添[预定义宏]</li>
 </ul>
 
 
