@@ -190,9 +190,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="Shell状态"><a href="#Shell状态" class="headerlink" title="Shell状态"></a>Shell状态</h1><p>有个有意思的bash环境变量<code>SHELLOPTS</code>，还有一个bash特殊字符<code>$-</code>。它们揭示出当前shell的状态。</p>
+                <h1 id="Shell状态"><a href="#Shell状态" class="headerlink" title="Shell状态"></a>Shell状态</h1><p>有个有意思的bash环境变量<code>SHELLOPTS</code>，还有一个bash特殊变量<code>$-</code>。它们揭示出当前shell的状态。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"$-"</span></span></div><div class="line">himBH</div></pre></td></tr></table></figure>
-<p>显示出来的<code>himBH</code>是什么意思？它表示当前shell的什么状态呢？</p>
+<p><code>himBH</code>是什么意思？它表示当前shell的什么状态呢？</p>
 <p>搜索Stack Overflow的问答后，子恒喵才大概明白了<code>himBH</code>是啥意思。</p>
 <ul>
 <li><code>h</code>: 以<em>Hash</em>方式缓存环境变量<code>$PATH</code>中的可执行文件，用来加速命令执行。如果在已经缓存的情况下移动了可执行文件，shell就不一定找不到命令啦。使用<code>type</code>检查命令时，出现的Hashed，就是这个选项启用的。</li>
@@ -201,7 +201,7 @@
 <li><code>B</code>: 启用<em>Brace expansion</em>，使得shell可以展开<code>*</code>，<code>?</code>这些形式的命令。</li>
 <li><code>H</code>: 启用<em>History substitution</em>，bash的历史机制啦，<code>history</code>，<code>!</code>这些。 </li>
 </ul>
-<p>在shell script中：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"$-"</span></div></pre></td></tr></table></figure></p>
+<p>在shell script中：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="built_in">echo</span> $-</div></pre></td></tr></table></figure></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> bash ./test.sh</span></div><div class="line">hB</div></pre></td></tr></table></figure>
 <p>只有<code>hB</code>哦，说明在shell script中，<strong>默认是不启用可交互性，历史纪录，工作控制的</strong>。</p>
 <h1 id="set命令"><a href="#set命令" class="headerlink" title="set命令"></a>set命令</h1><p>子恒喵查阅man文档，发现了这段话:</p>
@@ -210,15 +210,19 @@
 </blockquote>
 <p>在bash中，<code>set</code>命令可以显示出当前shell环境下的所有变量。其实，<code>set</code>命令还可以加参数，改变当前shell的状态。</p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">help</span> <span class="keyword">set</span></div><div class="line"><span class="string">...</span></div><div class="line"><span class="keyword">set</span> [-abefhkmnptuvxBCHP] [-o option-name] [--] [arg <span class="string">...</span>]</div><div class="line"><span class="string">...</span></div></pre></td></tr></table></figure>
-<p>具体可以用help或者man查看，有好多的shell状态flag呢。</p>
+<p>具体可以用help或者man查看，有很多的shell状态flag。</p>
+<p>其中，子恒喵用的比较多的是<code>set -u</code>。<code>-u</code>标志会对shell的变量替换作更加严格的限制，使用未定义的变量会直接提示错误。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> $- &amp;&amp; <span class="built_in">echo</span> <span class="variable">$&#123;unset_var&#125;</span></span></div><div class="line">himBH</div></pre></td></tr></table></figure>
+<p>未定义变量的值为null。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">set</span> -u &amp;&amp; <span class="built_in">echo</span> $- &amp;&amp; <span class="built_in">echo</span> <span class="variable">$&#123;unset_var&#125;</span></span></div><div class="line">himuBH</div><div class="line">-bash: unset_var: unbound variable</div></pre></td></tr></table></figure></p>
+<p>在<code>-u</code>模式下，取用一个未定义的变量，bash会报错。<br>这在命令行操作或shell脚本撰写时很有用。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Stack Overflow 问答: <a href="https://stackoverflow.com/questions/18146443/what-do-the-characters-in-the-bash-environment-variable-mean" target="_blank" rel="external">https://stackoverflow.com/questions/18146443/what-do-the-characters-in-the-bash-environment-variable-mean</a></p>
 </li>
-<li><p>Job control 详解: <a href="https://www.gnu.org/software/bash/manual/html_node/Job-Control.html#Job-Control" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html_node/Job-Control.html#Job-Control</a></p>
+<li><p>Job control 详解: <a href="https://www.gnu.org/software/bash/manual/html\_node/Job-Control.html#Job-Control" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html\_node/Job-Control.html#Job-Control</a></p>
 </li>
-<li><p>Brace Expansion 详解: <a href="https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html#Brace-Expansion" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html#Brace-Expansion</a></p>
+<li><p>Brace Expansion 详解: <a href="https://www.gnu.org/software/bash/manual/html\_node/Brace-Expansion.html#Brace-Expansion" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html\_node/Brace-Expansion.html#Brace-Expansion</a></p>
 </li>
-<li><p>History Expansion 详解: <a href="https://www.gnu.org/software/bash/manual/html_node/History-Interaction.html#History-Interaction" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html_node/History-Interaction.html#History-Interaction</a></p>
+<li><p>History Expansion 详解: <a href="https://www.gnu.org/software/bash/manual/html\_node/History-Interaction.html#History-Interaction" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html\_node/History-Interaction.html#History-Interaction</a></p>
 </li>
 </ul>
 
