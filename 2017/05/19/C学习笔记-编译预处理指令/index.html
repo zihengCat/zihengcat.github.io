@@ -214,7 +214,7 @@
 <h2 id="标准头文件结构"><a href="#标准头文件结构" class="headerlink" title="标准头文件结构"></a>标准头文件结构</h2><p>由于<code>#include</code> 包含替换不检查在被包含文件中是否已经包含了某个文件，不阻止对某文件的多次包含。重复包含头文件，在编译阶段有可能出现重复定义<code>type redefination</code>的错误。<br>所以，我们需要有某种机制来避免文件重复包含的问题: <strong>标准头文件结构</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _HEADER_H_</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> _HEADER_H_</span></div><div class="line"><span class="comment">/* ... */</span>  <span class="comment">//头文件内容</span></div><div class="line"><span class="meta">#end <span class="meta-keyword">if</span></span></div></pre></td></tr></table></figure></p>
 <p>上述代码表示，如果没有定义<em>_HEADER_H_</em>这个宏的话，就定义这个宏，并包含相应头文件内容。如果已经定义了(说明已经包含过了)，就不会包含头文件内容啦。<br>宏名前后加下划线，并带上H，是为了避免重复。<br>使用标准头文件结构可以避免文件重复包含的问题，我们在写代码时要注意使用它。</p>
 <h1 id="宏定义"><a href="#宏定义" class="headerlink" title="宏定义"></a>宏定义</h1><blockquote>
-<p>宏macro: 根据一系列预定义的规则替换文本    </p>
+<p>宏<code>macro</code>: 根据一系列预定义的规则替换文本    </p>
 </blockquote>
 <p>通俗的讲，宏就是一段简单的文本可以扩展出大量的代码。<br>宏名的定义规则与C标识符的定义规则是相同的。一般我们习惯将宏名<strong>全部大写</strong>，这样可以醒目的辨识出这是一个宏。</p>
 <h2 id="宏定义指令-define"><a href="#宏定义指令-define" class="headerlink" title="宏定义指令(#define)"></a>宏定义指令(#define)</h2><p>使用宏定义指令<code>#define</code>可以定义一个宏:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MACRO   <span class="comment">/* 定义宏MACRO */</span></span></div></pre></td></tr></table></figure></p>
@@ -239,6 +239,12 @@
 </ul>
 <p>为了避免参数宏展开后出现各种奇葩的问题，前辈们建议我们: <strong>如果要使用宏函数，请把函数参数，还有整个函数体，都用括号括起。</strong><br>但是啊，即使是这样，宏函数还是很不安全的…<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> SQUARE(x)   ((x)*(x))</span></div><div class="line">...</div><div class="line"><span class="keyword">int</span> num = <span class="number">10</span>;</div><div class="line"><span class="keyword">int</span> sq_num = SQUARE(num++);    <span class="comment">/* undefined */</span></div><div class="line"></div><div class="line"><span class="keyword">char</span> *s = SQUARE(<span class="string">"hello"</span>);     <span class="comment">/* error */</span></div><div class="line">...</div></pre></td></tr></table></figure></p>
 <p>上面的代码，宏展开之后，编译就过不了啦。<br>还有一点需要注意的地方，宏替换文本的末尾，不应该加分号<code>;</code>。这并不是说不能加个分号，只是,每条C语句的结束要以分号标识, 如果在宏定义末尾加分号，宏展开之后就会有两个分号，编译会报错…所以我们习惯不在宏定义中加分号，这样宏展开后可以构成符合标准的C语句。</p>
+<h2 id="字符串化操作符"><a href="#字符串化操作符" class="headerlink" title="字符串化操作符(#)"></a>字符串化操作符(#)</h2><p>在带参数的宏中，使用<code>#</code>符号可以字符串化宏参数。<br>例如，如果我们想打印出<strong>变量名</strong>，可以怎么做？似乎不容易做到吧。<br>使用字符串化操作符就可以很方便的做到。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> PRT(x)  \</span></div><div class="line">        printf(#x)  <span class="comment">/* 将参数x字符串化 */</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> var_name = <span class="number">0</span>;</div><div class="line">    PRT(var_name);  <span class="comment">/* 宏展开后变成 printf("var_name"); */</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果参数本身带有双引号<code>&quot;</code>，宏替换过程中会自动转义引号。<br>如果参数带空白符，宏替换会忽略掉空白符。</p>
+<h1 id="标记粘连操作符"><a href="#标记粘连操作符" class="headerlink" title="标记粘连操作符(##)"></a>标记粘连操作符(##)</h1><p>标记粘连操作符<code>##</code>可以将两个宏标记粘连成一个。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> FUNC_STR(name, str)\</span></div><div class="line">        func##name(str)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">func1</span><span class="params">(<span class="keyword">char</span>* s)</span></span>;    <span class="comment">/* do some things */</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">(<span class="keyword">char</span>* s)</span></span>;    <span class="comment">/* do other things */</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="keyword">char</span> *s = <span class="string">"hello"</span>;</div><div class="line">    FUNC_STR(<span class="number">1</span>, s);     <span class="comment">/* 宏展开后变成 func1(s); */</span></div><div class="line">    FUNC_STR(<span class="number">2</span>, s);     <span class="comment">/* 宏展开后变成 func2(s); */</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>##</code>操作符还可以用来生成函数，非常强大哦。</p>
 <h1 id="条件编译-if"><a href="#条件编译-if" class="headerlink" title="条件编译(#if)"></a>条件编译(#if)</h1><p>条件编译宏指令的产生主要是为了解决根据条件编译代码的问题。程序员可以通过定义宏来决定在编译过程中对源代码有选择的进行处理。通俗的说，就是编译器能不能看到某些代码。条件编译指令将决定那些代码会被编译，而哪些不会被编译的。编译条件就是宏表达式的值。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">if</span> <span class="meta-string">&lt;expression&gt;</span></span></div><div class="line"><span class="comment">/* ... */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">elif</span> <span class="meta-string">&lt;expression&gt;</span></span></div><div class="line"><span class="comment">/* ... */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span> </span></div><div class="line"><span class="comment">/* ... */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
 <p>其中，<code>&lt;expression&gt;</code>是可以一个<strong>常量表达式</strong>或是一个<strong>标识符</strong>。根据表达式的值true, flase, 预处理器保留相应的代码段，清除其他代码段，最终编译器看到的代码文件不会被删除掉的代码段。</p>
@@ -264,39 +270,34 @@
 <li>#endif</li>
 </ul>
 <p>需要注意的是，条件编译<code>#if</code>指令结束不要忘记加上<code>#endif</code>哦。</p>
-<!--
-# 字符串转换指令(#)
-
-# 标记粘贴指令(##)
--->
 <h1 id="预定义宏"><a href="#预定义宏" class="headerlink" title="预定义宏"></a>预定义宏</h1><p>ANSI C标准定义了许多预定义宏。我们可以在编程中使用这些宏，但是不应该修改这些预定义宏。</p>
 <table>
 <thead>
 <tr>
 <th style="text-align:center">预定义宏</th>
-<th style="text-align:center">功能描述</th>
+<th style="text-align:left">功能描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center">__DATE__</td>
-<td style="text-align:center">当前日期，一个以 “MMM DD YYYY” 格式表示的字符常量。</td>
+<td style="text-align:left">当前日期，一个以 “MMM DD YYYY” 格式表示的字符常量。</td>
 </tr>
 <tr>
 <td style="text-align:center">__TIME__</td>
-<td style="text-align:center">当前时间，一个以 “HH:MM:SS” 格式表示的字符常量。</td>
+<td style="text-align:left">当前时间，一个以 “HH:MM:SS” 格式表示的字符常量。</td>
 </tr>
 <tr>
 <td style="text-align:center">__FILE__</td>
-<td style="text-align:center">当前文件名，一个字符串常量。</td>
+<td style="text-align:left">当前文件名，一个字符串常量。</td>
 </tr>
 <tr>
 <td style="text-align:center">__LINE__</td>
-<td style="text-align:center">当前代码行号，一个十进制常量。</td>
+<td style="text-align:left">当前代码行号，一个十进制常量。</td>
 </tr>
 <tr>
 <td style="text-align:center">__STDC__</td>
-<td style="text-align:center">当前编译器以ANSI C标准编译时，整型值为1</td>
+<td style="text-align:left">当前编译器以ANSI C标准编译时，整型值为1</td>
 </tr>
 </tbody>
 </table>
@@ -310,6 +311,7 @@
 <h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><ul>
 <li>2017-05-19 –&gt; 完成[初稿]</li>
 <li>2017-06-09 –&gt; 增添[预定义宏]</li>
+<li>2017-06-13 –&gt; 增添[#, ##内容]</li>
 </ul>
 
 
