@@ -12,11 +12,11 @@
 
     <title>
         
-          Linux命令学习-sleep - zihengCat
+          Linux命令学习-uname - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/06/15/Linux命令学习-sleep/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/06/17/Linux命令学习-uname/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -167,11 +167,11 @@
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
                     </div>
-                    <h1>Linux命令学习-sleep</h1>
+                    <h1>Linux命令学习-uname</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-06-15
+                        2017-06-17
                     </span>
                 </div>
             </div>
@@ -190,19 +190,20 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="sleep"><a href="#sleep" class="headerlink" title="sleep"></a>sleep</h1><p><code>sleep</code>命令的作用非常简单，就是使系统<strong>暂停</strong>一段时间。<br><code>sleep</code>是<em>GNU coreutils</em>工具之一。</p>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ sleep <span class="comment">--help</span></div><div class="line">Usage: sleep NUMBER[SUFFIX]...</div><div class="line">  <span class="keyword">or</span>:  sleep OPTION</div><div class="line">Pause <span class="keyword">for</span> NUMBER <span class="built_in">seconds</span>.  SUFFIX may be <span class="string">'s'</span> <span class="keyword">for</span> <span class="built_in">seconds</span> (<span class="keyword">the</span> default),</div><div class="line"><span class="string">'m'</span> <span class="keyword">for</span> minutes, <span class="string">'h'</span> <span class="keyword">for</span> hours <span class="keyword">or</span> <span class="string">'d'</span> <span class="keyword">for</span> days.  Unlike most implementations</div><div class="line">that <span class="built_in">require</span> NUMBER be <span class="keyword">an</span> <span class="keyword">integer</span>, here NUMBER may be <span class="keyword">an</span> arbitrary floating</div><div class="line">point <span class="built_in">number</span>.  Given <span class="literal">two</span> <span class="keyword">or</span> more arguments, pause <span class="keyword">for</span> <span class="keyword">the</span> amount <span class="keyword">of</span> <span class="built_in">time</span></div><div class="line">specified <span class="keyword">by</span> <span class="keyword">the</span> <span class="built_in">sum</span> <span class="keyword">of</span> their values.</div><div class="line"></div><div class="line">      <span class="comment">--help     display this help and exit</span></div><div class="line">      <span class="comment">--version  output version information and exit</span></div><div class="line"></div><div class="line">GNU coreutils online help: &lt;<span class="keyword">http</span>://www.gnu.org/software/coreutils/&gt;</div><div class="line">For complete documentation, run: info coreutils <span class="string">'sleep invocation'</span></div></pre></td></tr></table></figure>
-<p>命令没有特殊的选项，就是<em>help</em>与<em>version</em>两个常规的选项啦。</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sleep</span> <span class="built_in">number</span>[smhd]…</div></pre></td></tr></table></figure>
-<p>用法是，sleep后接一个数字(可以是整数，也可以是浮点数)，再接一个后缀：</p>
+                <h1 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h1><p><code>uname</code>命令可以打印当前系统信息。<br><code>uname</code>是<em>GNU coreutils</em>工具之一，遵循<em>IEEE POSIX</em>规范。</p>
+<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ uname --<span class="keyword">help</span></div><div class="line">Usage: uname [OPTION]...</div><div class="line"><span class="keyword">Print</span> certain <span class="built_in">system</span> information.  With <span class="keyword">no</span> OPTION, same <span class="keyword">as</span> -s.</div><div class="line"></div><div class="line">  -<span class="keyword">a</span>, --<span class="keyword">all</span>                <span class="keyword">print</span> <span class="keyword">all</span> information, in the following order,</div><div class="line">                             except omit -<span class="keyword">p</span> <span class="built_in">and</span> -i <span class="keyword">if</span> unknown:</div><div class="line">  -s, --kernel-name        <span class="keyword">print</span> the kernel name</div><div class="line">  -n, --nodename           <span class="keyword">print</span> the network node <span class="built_in">hostname</span></div><div class="line">  -r, --kernel-release     <span class="keyword">print</span> the kernel release</div><div class="line">  -v, --kernel-<span class="keyword">version</span>     <span class="keyword">print</span> the kernel <span class="keyword">version</span></div><div class="line">  -<span class="keyword">m</span>, --machine            <span class="keyword">print</span> the machine hardware name</div><div class="line">  -<span class="keyword">p</span>, --processor          <span class="keyword">print</span> the processor <span class="built_in">type</span> <span class="built_in">or</span> <span class="string">"unknown"</span></div><div class="line">  -i, --hardware-platform  <span class="keyword">print</span> the hardware platform <span class="built_in">or</span> <span class="string">"unknown"</span></div><div class="line">  -<span class="keyword">o</span>, --operating-<span class="built_in">system</span>   <span class="keyword">print</span> the operating <span class="built_in">system</span></div><div class="line">      --<span class="keyword">help</span>     <span class="keyword">display</span> this <span class="keyword">help</span> <span class="built_in">and</span> <span class="keyword">exit</span></div><div class="line">      --<span class="keyword">version</span>  output <span class="keyword">version</span> information <span class="built_in">and</span> <span class="keyword">exit</span></div><div class="line"></div><div class="line">GNU coreutils online <span class="keyword">help</span>: &lt;http://www.gnu.org/software/coreutils/&gt;</div><div class="line">For <span class="built_in">complete</span> documentation, run: info coreutils <span class="string">'uname invocation'</span></div></pre></td></tr></table></figure>
 <ul>
-<li>s: 秒</li>
-<li>m: 分</li>
-<li>h: 时</li>
-<li>d: 日</li>
+<li>s: 核心名</li>
+<li>o: 操作系统名</li>
+<li>n: 网络用户名</li>
+<li>r: 内核发行版</li>
+<li>v: 内核版本号</li>
+<li>m: 硬件名</li>
+<li>p: 处理器架构</li>
+<li>i: 硬件架构</li>
+<li>a: 打印以上所有信息</li>
 </ul>
-<p>默认是秒。<br>另外，接上多个数字的话，会计算时间的总和，比如: <code>sleep 10 20</code> 暂停30秒。</p>
-<p>字恒喵会在写脚本的时候使用<code>sleep</code>命令。</p>
+<p>我们可以在shell脚本中使用<code>uname</code>检测当前系统环境。</p>
 
 
                 <hr>
@@ -211,13 +212,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/06/17/Linux命令学习-uname/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-uname">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/06/14/Linux命令学习-cat/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-cat">Next Post &rarr;</a>
+                            <a href="/2017/06/15/Linux命令学习-sleep/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-sleep">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -261,8 +258,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "zihengcat";
-    var disqus_identifier = "https://zihengcat.github.io/2017/06/15/Linux命令学习-sleep/";
-    var disqus_url = "https://zihengcat.github.io/2017/06/15/Linux命令学习-sleep/";
+    var disqus_identifier = "https://zihengcat.github.io/2017/06/17/Linux命令学习-uname/";
+    var disqus_url = "https://zihengcat.github.io/2017/06/17/Linux命令学习-uname/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
