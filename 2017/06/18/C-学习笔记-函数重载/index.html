@@ -12,11 +12,11 @@
 
     <title>
         
-          Linux命令学习-uname - zihengCat
+          C++学习笔记-函数重载 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/06/17/Linux命令学习-uname/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/06/18/C-学习笔记-函数重载/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -164,14 +164,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
                         
                     </div>
-                    <h1>Linux命令学习-uname</h1>
+                    <h1>C++学习笔记-函数重载</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-06-17
+                        2017-06-18
                     </span>
                 </div>
             </div>
@@ -190,20 +190,24 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h1><p><code>uname</code>命令可以打印当前系统信息。<br><code>uname</code>是<em>GNU coreutils</em>工具之一，遵循<em>IEEE POSIX</em>规范。</p>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ uname --<span class="keyword">help</span></div><div class="line">Usage: uname [OPTION]...</div><div class="line"><span class="keyword">Print</span> certain <span class="built_in">system</span> information.  With <span class="keyword">no</span> OPTION, same <span class="keyword">as</span> -s.</div><div class="line"></div><div class="line">  -<span class="keyword">a</span>, --<span class="keyword">all</span>                <span class="keyword">print</span> <span class="keyword">all</span> information, in the following order,</div><div class="line">                             except omit -<span class="keyword">p</span> <span class="built_in">and</span> -i <span class="keyword">if</span> unknown:</div><div class="line">  -s, --kernel-name        <span class="keyword">print</span> the kernel name</div><div class="line">  -n, --nodename           <span class="keyword">print</span> the network node <span class="built_in">hostname</span></div><div class="line">  -r, --kernel-release     <span class="keyword">print</span> the kernel release</div><div class="line">  -v, --kernel-<span class="keyword">version</span>     <span class="keyword">print</span> the kernel <span class="keyword">version</span></div><div class="line">  -<span class="keyword">m</span>, --machine            <span class="keyword">print</span> the machine hardware name</div><div class="line">  -<span class="keyword">p</span>, --processor          <span class="keyword">print</span> the processor <span class="built_in">type</span> <span class="built_in">or</span> <span class="string">"unknown"</span></div><div class="line">  -i, --hardware-platform  <span class="keyword">print</span> the hardware platform <span class="built_in">or</span> <span class="string">"unknown"</span></div><div class="line">  -<span class="keyword">o</span>, --operating-<span class="built_in">system</span>   <span class="keyword">print</span> the operating <span class="built_in">system</span></div><div class="line">      --<span class="keyword">help</span>     <span class="keyword">display</span> this <span class="keyword">help</span> <span class="built_in">and</span> <span class="keyword">exit</span></div><div class="line">      --<span class="keyword">version</span>  output <span class="keyword">version</span> information <span class="built_in">and</span> <span class="keyword">exit</span></div><div class="line"></div><div class="line">GNU coreutils online <span class="keyword">help</span>: &lt;http://www.gnu.org/software/coreutils/&gt;</div><div class="line">For <span class="built_in">complete</span> documentation, run: info coreutils <span class="string">'uname invocation'</span></div></pre></td></tr></table></figure>
-<ul>
-<li>s: 核心名</li>
-<li>o: 操作系统名</li>
-<li>n: 网络用户名</li>
-<li>r: 内核发行版</li>
-<li>v: 内核版本号</li>
-<li>m: 硬件名</li>
-<li>p: 处理器架构</li>
-<li>i: 硬件架构</li>
-<li>a: 打印以上所有信息</li>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲述C++中的函数重载机制。</p>
+<h1 id="函数重载-Function-Overloading"><a href="#函数重载-Function-Overloading" class="headerlink" title="函数重载(Function Overloading)"></a>函数重载(Function Overloading)</h1><p>在C++中，如果函数的函数名相同，返回类型相同，参数表不同，那么这些函数就构成重载关系，这被称为函数重载(Function Overloading)。</p>
+<p>例如:</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">void <span class="function"><span class="keyword">func</span><span class="params">(int)</span>;</span></div><div class="line">void <span class="function"><span class="keyword">func</span><span class="params">(double)</span>;</span></div><div class="line">...</div><div class="line"><span class="function"><span class="keyword">func</span><span class="params">(<span class="number">3</span>)</span>     /* 调用<span class="title">void</span> <span class="title">func</span><span class="params">(int)</span>    函数 */</span></div><div class="line"><span class="function"><span class="keyword">func</span><span class="params">(<span class="number">3.14</span>)</span>  /* 调用<span class="title">void</span> <span class="title">func</span><span class="params">(double)</span> 函数 */</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<p>相同函数名，根据不同参数列表，选择调用不同的函数。</p>
+<h1 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h1><p>如果函数的名称相同，参数表相同，返回类型不同，那么函数不构成重载关系…而且会报二义性错误。</p>
+<p>这是因为，编译器在处理时必须明确的区分到底调用了哪个函数，仅根据函数返回类型是无法做到这一点的。</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">void <span class="function"><span class="keyword">func</span><span class="params">(void)</span>;</span></div><div class="line"><span class="built_in">int</span>  <span class="function"><span class="keyword">func</span><span class="params">(void)</span>;</span></div><div class="line">...</div><div class="line"><span class="function"><span class="keyword">func</span><span class="params">()</span>;     /* 编译器无法区分到底调用了哪个函数 */</span></div><div class="line"><span class="function"><span class="keyword">func</span><span class="params">()</span>;</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<p>我们知道，在C中，是没有函数重载这一机制的。如果想实现类似的效果，我们只能这么做:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">func_i</span><span class="params">(<span class="keyword">int</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">func_d</span><span class="params">(<span class="keyword">double</span>)</span></span>;</div><div class="line">...</div><div class="line">func_i(<span class="number">3</span>)     <span class="comment">/* 调用void func_i(int)    函数 */</span></div><div class="line">func_d(<span class="number">3.14</span>)  <span class="comment">/* 调用void func_d(double) 函数 */</span></div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>没错，只能根据不同的参数表，取不同的函数名称…</p>
+<p>实际上，C++的编译器就是这么干的!<br>C++的编译器会根据函数的参数表，改动函数名。在C中，我们需要手动完成，C++中，编译器帮我们自动完成了这件事。</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ g++ -S functionOverloading.cc</div><div class="line">$ cat functionOverloading.s</div><div class="line">...</div><div class="line">_Z4funci:</div><div class="line">    ...</div><div class="line">_Z4funcd:</div><div class="line">    ...</div><div class="line">_main:</div><div class="line">    ...</div><div class="line">    call _Z4funci</div><div class="line">    ...</div><div class="line">    call _Z4funcd</div><div class="line">    ...</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>可以看到，在生成的汇编代码中，重载的<code>func函数</code>已经根据参数表，改变了名字；而我们对重载函数的调用也根据提供参数的不同而对应到相应的函数上去啦。</p>
+<p>函数重载在类，模版，类型转换中有更加复杂的应用。但是，其机制是简单明了的，根据参数表调用不同的函数。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>cpp官方教程: <a href="http://en.cppreference.com/book/intro/function\_overloading" target="_blank" rel="external">http://en.cppreference.com/book/intro/function\_overloading</a></li>
+<li>cpp官方文档: <a href="http://en.cppreference.com/w/cpp/language/overload\_resolution" target="_blank" rel="external">http://en.cppreference.com/w/cpp/language/overload\_resolution</a></li>
 </ul>
-<p>我们可以在shell脚本中使用<code>uname</code>检测当前系统环境。</p>
 
 
                 <hr>
@@ -212,13 +216,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/06/18/C-学习笔记-函数重载/" data-toggle="tooltip" data-placement="top" title="C++学习笔记-函数重载">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/06/15/Linux命令学习-sleep/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-sleep">Next Post &rarr;</a>
+                            <a href="/2017/06/17/Linux命令学习-uname/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-uname">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -262,8 +262,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "zihengcat";
-    var disqus_identifier = "https://zihengcat.github.io/2017/06/17/Linux命令学习-uname/";
-    var disqus_url = "https://zihengcat.github.io/2017/06/17/Linux命令学习-uname/";
+    var disqus_identifier = "https://zihengcat.github.io/2017/06/18/C-学习笔记-函数重载/";
+    var disqus_url = "https://zihengcat.github.io/2017/06/18/C-学习笔记-函数重载/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
