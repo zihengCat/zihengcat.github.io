@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -200,9 +200,9 @@
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> size, <span class="keyword">int</span> init = <span class="number">0</span>)</span></span>;   <span class="comment">/* 函数默认参数 */</span></div><div class="line">...</div><div class="line">    f(<span class="number">10</span>);      <span class="comment">/* 实际上是 f(10, 0) */</span></div><div class="line">    f(<span class="number">10</span>, <span class="number">10</span>); </div><div class="line">...</div></pre></td></tr></table></figure>
 <h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
-<li>函数默认参数是写在<strong>函数原型声明(declaration)</strong>中的，不能写在函数定义(defination)之中。(编译器是通过函数原型补上默认参数)</li>
-<li>函数默认参数是编译器在编译时(compile-time)做的事情，而非运行时(run-time)机制。</li>
-<li>函数默认参数必须从右往左写，因为编译器是从左往右匹配参数的。</li>
+<li>函数默认参数是写在<strong>函数原型声明declaration</strong>中的，不能写在<strong>函数定义definition</strong>之中。(编译器是通过函数原型补上默认参数)</li>
+<li>函数默认参数是编译器在编译时<em>compile-time</em>做的事情，而非运行时<em>run-time</em>机制。</li>
+<li>函数默认参数必须<strong>从右往左</strong>写，因为编译器是从左往右匹配参数的。</li>
 <li>函数默认参数并不安全，因为可以很容易地修改函数原型。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f1</span><span class="params">(<span class="keyword">int</span> i = <span class="number">0</span>, <span class="keyword">int</span> j, <span class="keyword">int</span> k)</span></span>;    <span class="comment">/* 非法 */</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f2</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j = <span class="number">0</span>, <span class="keyword">int</span> k)</span></span>;    <span class="comment">/* 非法 */</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f3</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j = <span class="number">0</span>, <span class="keyword">int</span> k = <span class="number">0</span>)</span></span>;<span class="comment">/* 合法 */</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
