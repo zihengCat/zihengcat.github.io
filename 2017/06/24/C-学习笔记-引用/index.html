@@ -12,11 +12,11 @@
 
     <title>
         
-          Linux命令学习-cd - zihengCat
+          C++学习笔记-引用 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/06/03/Linux命令学习-cd/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/06/24/C-学习笔记-引用/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -164,16 +164,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
-                        
-                          <a class="tag" href="/tags/#Shell" title="Shell">Shell</a>
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
                         
                     </div>
-                    <h1>Linux命令学习-cd</h1>
+                    <h1>C++学习笔记-引用</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-06-03
+                        2017-06-24
                     </span>
                 </div>
             </div>
@@ -192,10 +190,19 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h1><p><code>cd</code>命令可以说是广大Linux用户最常使用的命令啦，它的作用是改变shell当前工作目录。<br><code>cd</code>是<em>Change directory</em>的意思。<br><code>cd</code>是一个shell内置指令(shell builtin)。</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">type</span> <span class="keyword">cd</span></div><div class="line"><span class="keyword">cd</span> <span class="keyword">is</span> <span class="keyword">a</span> <span class="keyword">shell</span> builtin</div></pre></td></tr></table></figure>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">$ help cd</div><div class="line">cd: cd [-L|[-P [-e]]] [dir]</div><div class="line">    Change the shell working directory.</div><div class="line">    </div><div class="line">    Change the current directory <span class="keyword">to</span> DIR.  The <span class="keyword">default</span> DIR <span class="keyword">is</span> the value <span class="keyword">of</span> the</div><div class="line">    HOME shell variable.</div><div class="line">    </div><div class="line">    The variable CDPATH defines the search path <span class="keyword">for</span> the directory containing</div><div class="line">    DIR.  Alternative directory names <span class="keyword">in</span> CDPATH are separated <span class="keyword">by</span> a colon (:).</div><div class="line">    A null directory name <span class="keyword">is</span> the same <span class="keyword">as</span> the current directory.  <span class="keyword">If</span> DIR begins</div><div class="line">    <span class="keyword">with</span> a slash (/), <span class="keyword">then</span> CDPATH <span class="keyword">is</span> <span class="keyword">not</span> used.</div><div class="line">    </div><div class="line">    <span class="keyword">If</span> the directory <span class="keyword">is</span> <span class="keyword">not</span> found, <span class="keyword">and</span> the shell <span class="keyword">option</span> `cdable_vars<span class="comment">' is set,</span></div><div class="line">    the word <span class="keyword">is</span> assumed <span class="keyword">to</span> be  a variable name.  <span class="keyword">If</span> that variable has a value,</div><div class="line">    its value <span class="keyword">is</span> used <span class="keyword">for</span> DIR.</div><div class="line">    </div><div class="line">    Options:</div><div class="line">        -L	force symbolic links <span class="keyword">to</span> be followed</div><div class="line">        -P	use the physical directory <span class="keyword">structure</span> without following symbolic</div><div class="line">    	links</div><div class="line">        -e	<span class="keyword">if</span> the -P <span class="keyword">option</span> <span class="keyword">is</span> supplied, <span class="keyword">and</span> the current working directory</div><div class="line">    	cannot be determined successfully, <span class="keyword">exit</span> <span class="keyword">with</span> a non-zero status</div><div class="line">    </div><div class="line">    The <span class="keyword">default</span> <span class="keyword">is</span> <span class="keyword">to</span> follow symbolic links, <span class="keyword">as</span> <span class="keyword">if</span> `-L<span class="comment">' were specified.</span></div><div class="line">    </div><div class="line">    <span class="keyword">Exit</span> Status:</div><div class="line">    Returns <span class="number">0</span> <span class="keyword">if</span> the directory <span class="keyword">is</span> changed, <span class="keyword">and</span> <span class="keyword">if</span> $PWD <span class="keyword">is</span> <span class="keyword">set</span> successfully <span class="keyword">when</span></div><div class="line">    -P <span class="keyword">is</span> used; non-zero otherwise.</div></pre></td></tr></table></figure>
-<p>可以看到，<code>cd</code>命令帮我们改变了当前shell的工作目录，并设置<code>$PWD</code>环境变量的值。<br>如果不加任何参数，<code>cd</code>命令将使用环境变量<code>$HOME</code>（返回当前用户的家目录)。<br><code>-P</code>选项表示使用实际的路径名，而非符号链接(symbolic links)。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍C++中的引用(reference)。</p>
+<h1 id="引用-reference"><a href="#引用-reference" class="headerlink" title="引用(reference)"></a>引用(reference)</h1><p>在C++中，可以为一个已存在的对象取一个别名，这被称为引用(reference)。<br>声明引用的符号是<code>&amp;</code>，没错，就是取址运算符。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> n = <span class="number">8</span>;      <span class="comment">/* 定义一个int变量 */</span></div><div class="line">    <span class="keyword">int</span>&amp; rn = n;    <span class="comment">/* 声明int引用rn, 初始化为变量n */</span></div><div class="line">    n = <span class="number">32</span>;         <span class="comment">/* 对 n 进行赋值 */</span></div><div class="line">    rn = <span class="number">64</span>;        <span class="comment">/* 对 rn 进行赋值 */</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述代码，我们声明了变量n的引用rn。对于rn的赋值操作等同于对n的操作。<br>我们可以简单的理解为，rn就是n的一个别名(alias)。<br>引用更多的应用是在函数形式参数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span>&amp; n)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> n = <span class="number">64</span>;</div><div class="line">    f(n);       <span class="comment">/* 引用传递 */</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span>&amp; n)</span></span>&#123;</div><div class="line">    n *= <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在函数形式参数中使用引用，相当于C中的指针传递，在f函数中对n的操作会直接影响到main函数中的n。<br>在C中，我们已经习惯了值传递(call by value)避免副作用，如果想对函数外的变量做些修改，我们会使用指针，但是即使是传递指针，也是值传递(传递的值是地址)。<br>C++引入了引用这一特性。</p>
+<h1 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h1><p>但是，C++中的引用到底是什么呢？只是已有对象的一个别名吗？如果是，为什么引用作为函数参数有指针的效果呢？<br><strong>实际上，C++的引用就是通过指针的形式实现的。</strong><br>我们很难从源代码的层面去验证这一点，无论是对引用的赋值，还是取地址等操作，都是对其所绑定对象的操作。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f_r</span><span class="params">(<span class="keyword">int</span>&amp; n)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f_p</span><span class="params">(<span class="keyword">int</span>* n)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> n = <span class="number">64</span>;</div><div class="line">    <span class="keyword">int</span>* np = &amp;n;</div><div class="line">    <span class="keyword">int</span>&amp; nr = n;</div><div class="line">    *np *= <span class="number">2</span>;        <span class="comment">/* 以指针的方式操作变量 */</span></div><div class="line">    nr *= <span class="number">2</span>;         <span class="comment">/* 以引用的方式操作变量 */</span> </div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f_r</span><span class="params">(<span class="keyword">int</span>&amp; n)</span></span>&#123;</div><div class="line">    <span class="comment">/* do something */</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">f_p</span><span class="params">(<span class="keyword">int</span>* n)</span></span>&#123;</div><div class="line">    <span class="comment">/* do something */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们可以做这样一个实验，分别以指针和引用的方式操作变量。<br>观察它们的汇编代码:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> g++ cc_ref.cc -S -O0</span></div></pre></td></tr></table></figure>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">main:</div><div class="line">.LFB0:</div><div class="line">.cfi_startproc</div><div class="line">    pushq   %rbp</div><div class="line">    .cfi_def_cfa_offset <span class="number">16</span></div><div class="line">    .cfi_offset <span class="number">6</span>, <span class="number">-16</span></div><div class="line">    movq    %rsp, %rbp</div><div class="line">    .cfi_def_cfa_register <span class="number">6</span></div><div class="line">    movl    $64, <span class="number">-12</span>(%rbp)      <span class="comment">/* 栈分配 12 字节空间 */</span></div><div class="line">    leaq    <span class="number">-12</span>(%rbp), %rax</div><div class="line">    movq    %rax, <span class="number">-8</span>(%rbp)      <span class="comment">/* 指针赋值操作 */</span></div><div class="line">    movq    <span class="number">-8</span>(%rbp), %rax</div><div class="line">    movl    (%rax), %eax</div><div class="line">    leal    (%rax,%rax), %edx</div><div class="line">    movq    <span class="number">-8</span>(%rbp), %rax</div><div class="line">    movl    %edx, (%rax)</div><div class="line">    movl    $0, %eax</div><div class="line">    popq    %rbp</div><div class="line">    .cfi_def_cfa <span class="number">7</span>, <span class="number">8</span></div><div class="line">    ret</div><div class="line">.cfi_endproc</div></pre></td></tr></table></figure>
+<p>我们发现，指针和引用生成的汇编代码是完全相同的！引用的本质是一个8个字节的指针变量。<br>同样，在函数传递参数时，指针与引用生成的汇编代码也是完全相同的。<br><strong>C++引用是以指针的形式实现的。</strong><br>更准确的说，引用是<strong>const指针</strong>，所以在声明引用时需要绑定对象(初始化)，绑定后就不能更改绑定对象了。<br>C++的引用不如指针来得灵活，但是，引用在C++中有非常重要的应用，了解引用的具体细节是非常有必要的。<br>据说，BS当年加入引用是为了让代码少些<code>*</code>号，看着更简洁一些….</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>C++官方资料: <a href="http://en.cppreference.com/w/cpp/language/reference" target="_blank" rel="external">http://en.cppreference.com/w/cpp/language/reference</a></p>
 
 
                 <hr>
@@ -204,13 +211,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/06/12/为CentOS7添加EPEL源/" data-toggle="tooltip" data-placement="top" title="为CentOS7添加EPEL源">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/06/02/C学习笔记-理解size_t/" data-toggle="tooltip" data-placement="top" title="C学习笔记-理解size_t">Next Post &rarr;</a>
+                            <a href="/2017/06/23/C学习笔记-理解time-t/" data-toggle="tooltip" data-placement="top" title="C学习笔记-理解time_t">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -254,8 +257,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "zihengcat";
-    var disqus_identifier = "https://zihengcat.github.io/2017/06/03/Linux命令学习-cd/";
-    var disqus_url = "https://zihengcat.github.io/2017/06/03/Linux命令学习-cd/";
+    var disqus_identifier = "https://zihengcat.github.io/2017/06/24/C-学习笔记-引用/";
+    var disqus_url = "https://zihengcat.github.io/2017/06/24/C-学习笔记-引用/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
