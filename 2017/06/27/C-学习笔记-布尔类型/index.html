@@ -12,11 +12,11 @@
 
     <title>
         
-          Shell学习笔记-Shell状态解释 - zihengCat
+          C++学习笔记-布尔类型 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/05/30/Shell学习笔记-Shell状态解释/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/06/27/C-学习笔记-布尔类型/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -164,14 +164,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Shell" title="Shell">Shell</a>
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
                         
                     </div>
-                    <h1>Shell学习笔记-Shell状态解释</h1>
+                    <h1>C++学习笔记-布尔类型</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-05-30
+                        2017-06-27
                     </span>
                 </div>
             </div>
@@ -190,40 +190,25 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="Shell状态"><a href="#Shell状态" class="headerlink" title="Shell状态"></a>Shell状态</h1><p>有个有意思的bash环境变量<code>SHELLOPTS</code>，还有一个bash特殊变量<code>$-</code>。它们揭示出当前shell的状态。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"$-"</span></span></div><div class="line">himBH</div></pre></td></tr></table></figure>
-<p><code>himBH</code>是什么意思？它表示当前shell的什么状态呢？</p>
-<p>搜索Stack Overflow的问答后，子恒喵才大概明白了<code>himBH</code>是啥意思。</p>
-<ul>
-<li><code>h</code>: 以<em>Hash</em>方式缓存环境变量<code>$PATH</code>中的可执行文件，用来加速命令执行。如果在已经缓存的情况下移动了可执行文件，shell就不一定找不到命令啦。使用<code>type</code>检查命令时，出现的Hashed，就是这个选项启用的。</li>
-<li><code>i</code>: 表示<em>Interactive</em>，当前shell是可交互的。</li>
-<li><code>m</code>: 启用<em>Job control</em>，bash的工作控制功能。</li>
-<li><code>B</code>: 启用<em>Brace expansion</em>，使得shell可以展开<code>*</code>，<code>?</code>这些形式的命令。</li>
-<li><code>H</code>: 启用<em>History substitution</em>，bash的历史机制啦，<code>history</code>，<code>!</code>这些。 </li>
-</ul>
-<p>在shell script中：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="built_in">echo</span> $-</div></pre></td></tr></table></figure></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> bash ./test.sh</span></div><div class="line">hB</div></pre></td></tr></table></figure>
-<p>只有<code>hB</code>哦，说明在shell script中，<strong>默认是不启用可交互性，历史纪录，工作控制的</strong>。</p>
-<h1 id="set命令"><a href="#set命令" class="headerlink" title="set命令"></a>set命令</h1><p>子恒喵查阅man文档，发现了这段话:</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解C++中的布尔类型<code>bool</code>。</p>
+<h1 id="布尔类型Boolean"><a href="#布尔类型Boolean" class="headerlink" title="布尔类型Boolean"></a>布尔类型Boolean</h1><p>现代的程序设计语言中，一定少不了<code>bool</code>布尔类型之一基本数据类型。<br>可是啊，C语言是没有<code>bool</code>类型的，后来C提供了一个标准库来补充<code>bool</code>类型,但是不管怎么说，C原生是没有<code>bool</code>类型的。<br>想要在C中使用<code>bool</code>，我们一般会用整型来替代，C判断逻辑真假的规则也很宽泛：<strong><code>0</code>为假，<code>非0</code>为真</strong>。</p>
 <blockquote>
-<p>Expands to the current option flags as specified upon invocation, by the set builtin command, or those set by the shell itself (such as the -i option).</p>
+<p><strong>Boolean type</strong><br>bool - type, capable of holding one of the two values: true or false. The value of sizeof(bool) is implementation defined and might differ from 1.</p>
 </blockquote>
-<p>在bash中，<code>set</code>命令可以显示出当前shell环境下的所有变量。其实，<code>set</code>命令还可以加参数，改变当前shell的状态。</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">help</span> <span class="keyword">set</span></div><div class="line"><span class="string">...</span></div><div class="line"><span class="keyword">set</span> [-abefhkmnptuvxBCHP] [-o option-name] [--] [arg <span class="string">...</span>]</div><div class="line"><span class="string">...</span></div></pre></td></tr></table></figure>
-<p>具体可以用help或者man查看，有很多的shell状态flag。</p>
-<p>其中，子恒喵用的比较多的是<code>set -u</code>。<code>-u</code>标志会对shell的变量替换作更加严格的限制，使用未定义的变量会直接提示错误。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> $- &amp;&amp; <span class="built_in">echo</span> <span class="variable">$&#123;unset_var&#125;</span></span></div><div class="line">himBH</div></pre></td></tr></table></figure>
-<p>未定义变量的值为null。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">set</span> -u &amp;&amp; <span class="built_in">echo</span> $- &amp;&amp; <span class="built_in">echo</span> <span class="variable">$&#123;unset_var&#125;</span></span></div><div class="line">himuBH</div><div class="line">-bash: unset_var: unbound variable</div></pre></td></tr></table></figure></p>
-<p>在<code>-u</code>模式下，取用一个未定义的变量，bash会报错。<br>这在命令行操作或shell脚本撰写时很有用。</p>
+<p>在C++中，终于加上了对布尔类型的支持。<code>bool</code>, <code>true</code>, <code>false</code>成为了C++中的关键字。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="keyword">bool</span> <span class="keyword">b_t</span> = <span class="literal">true</span>;</div><div class="line">    <span class="keyword">bool</span> b_f = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>C++继承了C逻辑判断的规则。</p>
+<h1 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h1><p>C++与C的逻辑判断有细微的不同。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPE_T    (1 &lt;= 2)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPE_F    (1 == 2)</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d %lu\n"</span>, EXPE_T, <span class="keyword">sizeof</span>(EXPE_T));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d %lu\n"</span>, EXPE_F, <span class="keyword">sizeof</span>(EXPE_F));</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>C和C++执行上述代码，结果有细微区别:</p>
+<ul>
+<li><code>true</code>为1, <code>false</code>为0，这点C/C++相同</li>
+<li><code>sizeof</code>的值不同，C为4，C++为1</li>
+</ul>
+<p>我们来观察C++代码生成的汇编代码:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="keyword">bool</span> <span class="keyword">b_t</span> = <span class="literal">true</span>;</div><div class="line">    <span class="keyword">bool</span> b_f = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">main:</div><div class="line">    ...</div><div class="line">    movb    $<span class="number">1</span>, -<span class="number">1</span>(<span class="comment">%rbp)</span></div><div class="line">    movb    $<span class="number">0</span>, -<span class="number">2</span>(<span class="comment">%rbp)</span></div><div class="line">    ...</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>原来，<strong>在C++中，<code>bool</code>类型是占1个字节的整型，<code>true</code>的字面量为1，<code>false</code>的字面量为0。</strong>而在C中，逻辑类型占4字节，正好是<code>int</code>整型所占的大小。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>Stack Overflow 问答: <a href="https://stackoverflow.com/questions/18146443/what-do-the-characters-in-the-bash-environment-variable-mean" target="_blank" rel="external">https://stackoverflow.com/questions/18146443/what-do-the-characters-in-the-bash-environment-variable-mean</a></p>
-</li>
-<li><p>Job control 详解: <a href="https://www.gnu.org/software/bash/manual/html\_node/Job-Control.html#Job-Control" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html\_node/Job-Control.html#Job-Control</a></p>
-</li>
-<li><p>Brace Expansion 详解: <a href="https://www.gnu.org/software/bash/manual/html\_node/Brace-Expansion.html#Brace-Expansion" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html\_node/Brace-Expansion.html#Brace-Expansion</a></p>
-</li>
-<li><p>History Expansion 详解: <a href="https://www.gnu.org/software/bash/manual/html\_node/History-Interaction.html#History-Interaction" target="_blank" rel="external">https://www.gnu.org/software/bash/manual/html\_node/History-Interaction.html#History-Interaction</a></p>
-</li>
+<li>C++官方资料: <a href="http://en.cppreference.com/w/cpp/language/bool_literal" target="_blank" rel="external">http://en.cppreference.com/w/cpp/language/bool_literal</a></li>
 </ul>
 
 
@@ -233,13 +218,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/06/01/Linux命令学习-pwd/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-pwd">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/05/29/Shell学习笔记-Shell简介/" data-toggle="tooltip" data-placement="top" title="Shell学习笔记-Shell简介">Next Post &rarr;</a>
+                            <a href="/2017/06/26/C学习笔记-作用域scope/" data-toggle="tooltip" data-placement="top" title="C学习笔记-作用域scope">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -283,8 +264,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "zihengcat";
-    var disqus_identifier = "https://zihengcat.github.io/2017/05/30/Shell学习笔记-Shell状态解释/";
-    var disqus_url = "https://zihengcat.github.io/2017/05/30/Shell学习笔记-Shell状态解释/";
+    var disqus_identifier = "https://zihengcat.github.io/2017/06/27/C-学习笔记-布尔类型/";
+    var disqus_url = "https://zihengcat.github.io/2017/06/27/C-学习笔记-布尔类型/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
