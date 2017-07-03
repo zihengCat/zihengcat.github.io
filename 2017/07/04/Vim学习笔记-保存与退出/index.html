@@ -231,17 +231,11 @@
 </tbody>
 </table>
 <p><strong>注意, <code>:wq</code>与<code>:x</code>是有区别的。</strong></p>
-<ul>
-<li><code>:wq</code>的行为</li>
-</ul>
-<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">:w</span></div><div class="line"><span class="symbol">:q</span></div></pre></td></tr></table></figure>
+<h2 id="wq的行为"><a href="#wq的行为" class="headerlink" title=":wq的行为"></a><code>:wq</code>的行为</h2><figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">:w</span></div><div class="line"><span class="symbol">:q</span></div></pre></td></tr></table></figure>
 <p>不管文件有没有被更改,<code>:wq</code>都是重写入一遍文件, 再退出。所以对于没有更改过的文件使用<code>wq</code>, 我们会发现<strong>文件的修改时间变动了</strong>。 某些情况下, 这会带来不便。</p>
-<ul>
-<li><code>:x</code>的行为</li>
-</ul>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">if</span><span class="params">( modified )</span></span>&#123;</div><div class="line">    :wq</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span>&#123;</div><div class="line">    :<span class="selector-tag">q</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="x的行为"><a href="#x的行为" class="headerlink" title=":x的行为"></a><code>:x</code>的行为</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">if</span><span class="params">( modified )</span></span>&#123;</div><div class="line">    :wq</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span>&#123;</div><div class="line">    :<span class="selector-tag">q</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>而<code>:x</code>的行为则是: 如果文件有更改, 则写入并退出; 如果文件没有更改, 则直接退出。<br><code>ZZ</code>命令的行为等同于<code>:x</code>, 输入方式是直接在Normal模式下键入2个大写Z, 无需<code>:</code>冒号, 也不用按<code>Enter</code>回车, 算是<code>:x</code>的快捷键吧。</p>
-<p>还是使用<code>:x</code>比较好呢。</p>
+<p>还是使用<code>:x</code>比较好呢:)</p>
 
 
                 <hr>
