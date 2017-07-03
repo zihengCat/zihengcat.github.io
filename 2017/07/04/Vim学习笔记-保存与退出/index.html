@@ -191,55 +191,55 @@
                 post-container">
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文整理<code>vim</code>中的保存与退出命令。</p>
-<h1 id="保存-amp-退出命令"><a href="#保存-amp-退出命令" class="headerlink" title="保存&amp;退出命令"></a>保存&amp;退出命令</h1><p>整理一下目前子恒喵知道的<code>vim</code><strong>保存</strong>&amp;&amp;<strong>退出</strong>命令。</p>
+<h1 id="保存-amp-退出命令"><a href="#保存-amp-退出命令" class="headerlink" title="保存&amp;退出命令"></a>保存&amp;退出命令</h1><p>整理一下目前子恒喵知道的<code>vim</code><strong>保存</strong>&amp;<strong>退出</strong>命令。</p>
 <table>
 <thead>
 <tr>
 <th style="text-align:center">Command</th>
-<th style="text-align:center">Description</th>
+<th style="text-align:left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center">:w</td>
-<td style="text-align:center">将缓冲区里的数据写入到指定文件中, 通常意义上的保存命令</td>
+<td style="text-align:left">将缓冲区里的数据写入到指定文件中, 通常意义上的保存命令</td>
 </tr>
 <tr>
 <td style="text-align:center">:w!</td>
-<td style="text-align:center">强制写入文件, 到底能不能写, 还得看vim用户的权限</td>
+<td style="text-align:left">强制写入文件, 到底能不能写, 还得看vim用户的权限</td>
 </tr>
 <tr>
 <td style="text-align:center">:q</td>
-<td style="text-align:center">退出vim, 如果文件有更改, 则给出提示信息, 不允许用户退出</td>
+<td style="text-align:left">退出vim, 如果文件有更改, 则给出提示信息, 不允许用户退出</td>
 </tr>
 <tr>
 <td style="text-align:center">:q!</td>
-<td style="text-align:center">放弃对文件所做的修改, 强制退出</td>
+<td style="text-align:left">放弃对文件所做的修改, 强制退出</td>
 </tr>
 <tr>
 <td style="text-align:center">:wq</td>
-<td style="text-align:center">保存并退出</td>
+<td style="text-align:left">保存并退出</td>
 </tr>
 <tr>
 <td style="text-align:center">:x</td>
-<td style="text-align:center">保存并退出(与:wq 有差别)</td>
+<td style="text-align:left">保存并退出(与:wq 有差别)</td>
 </tr>
 <tr>
 <td style="text-align:center">ZZ</td>
-<td style="text-align:center">等同于:x</td>
+<td style="text-align:left">等同于:x</td>
 </tr>
 </tbody>
 </table>
 <p><strong>注意, <code>:wq</code>与<code>:x</code>是有区别的。</strong></p>
 <ul>
-<li><code>:wq</code>的行为<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">:w</span></div><div class="line"><span class="symbol">:q</span></div></pre></td></tr></table></figure>
-</li>
+<li><code>:wq</code>的行为</li>
 </ul>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">:w</span></div><div class="line"><span class="symbol">:q</span></div></pre></td></tr></table></figure>
 <p>不管文件有没有被更改,<code>:wq</code>都是重写入一遍文件, 再退出。所以对于没有更改过的文件使用<code>wq</code>, 我们会发现<strong>文件的修改时间变动了</strong>。 某些情况下, 这会带来不便。</p>
 <ul>
-<li><code>:x</code>的行为<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">if</span><span class="params">( modified )</span></span>&#123;</div><div class="line">    :wq</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    :<span class="selector-tag">q</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
+<li><code>:x</code>的行为</li>
 </ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">if</span><span class="params">( modified )</span></span>&#123;</div><div class="line">    :wq</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span>&#123;</div><div class="line">    :<span class="selector-tag">q</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>而<code>:x</code>的行为则是: 如果文件有更改, 则写入并退出; 如果文件没有更改, 则直接退出。<br><code>ZZ</code>命令的行为等同于<code>:x</code>, 输入方式是直接在Normal模式下键入2个大写Z, 无需<code>:</code>冒号, 也不用按<code>Enter</code>回车, 算是<code>:x</code>的快捷键吧。</p>
 <p>还是使用<code>:x</code>比较好呢。</p>
 
