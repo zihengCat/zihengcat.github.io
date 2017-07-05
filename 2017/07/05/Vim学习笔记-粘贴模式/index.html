@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -190,13 +190,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍<code>Vim</code>中的粘贴模式<code>paste mode</code>。</p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>子恒喵在使用<code>vim</code>时，会遇到这样的情况：从外部复制粘贴文本到命令行的<code>vim</code>时，会出现格式、缩进不准确的问题。<br>这种情况在复制粘贴代码的时候尤其明显。之前，子恒喵都是手动解决缩进问题的…</p>
-<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>出现这种问题的原因是：<br>我们对<code>vim</code>做了各种<code>indent</code>设置。在处理从外部复制到<code>vim</code>中的内容时，<code>vim</code>会认为这是用户手动输入的，所以对文本做不正确的缩进。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍Vim中的粘贴模式<code>paste mode</code>。</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>子恒喵在使用vim时，会遇到这样的情况：从<em>外部</em>复制粘贴文本到命令行的vim时，会出现格式、缩进不正确的问题。</p>
+<blockquote>
+<p>从macOS系统剪切板复制粘贴内容到Terminal中的vim。<br>这种情况在复制粘贴代码时尤为明显。之前，子恒喵都是手动解决缩进问题的…</p>
+</blockquote>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>出现这种问题的原因是：<br>我们对vim做了各种<code>indent</code>设置。在处理从外部复制到vim中的内容时，vim会认为这是用户手动输入的，所以对文本做了不正确的缩进。</p>
 <h1 id="粘贴模式-paste-mode"><a href="#粘贴模式-paste-mode" class="headerlink" title="粘贴模式 paste mode"></a>粘贴模式 paste mode</h1><p>vim提供了一种特殊的粘贴模式，专门用来解决<strong>从外部粘贴内容到vim中格式不正确</strong>这一问题。<br>在粘贴内容前，在vim命令模式下输入:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> paste</div></pre></td></tr></table></figure></p>
 <p>启用粘贴模式。再进入编辑模式，我们会发现提示符已经变成<code>-- INSERT (paste) --</code>，此时粘贴内容，就不会出现格式缩进混乱的问题啦。</p>
-<p><code>vim</code>实现粘贴模式的原理是：<strong>暂时关闭所有影响格式缩进的设置，比如<code>autoindent</code>。</strong><br>退出粘贴模式也是很简单的:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> nopaste</div></pre></td></tr></table></figure></p>
-<p>更多信息可以查阅<code>vim</code>帮助文档：<code>:help paste</code>。</p>
+<p>vim实现粘贴模式的原理是：<strong>暂时关闭所有影响格式缩进的设置，比如<code>autoindent</code>。</strong><br>退出粘贴模式也是很简单的:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> nopaste</div></pre></td></tr></table></figure></p>
+<p>更多信息可以查阅vim帮助文档：<code>:help paste</code>。</p>
 
 
                 <hr>
