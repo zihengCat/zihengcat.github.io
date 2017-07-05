@@ -12,11 +12,11 @@
 
     <title>
         
-          C++学习笔记-布尔类型 - zihengCat
+          Vim学习笔记-粘贴模式 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/06/27/C-学习笔记-布尔类型/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/05/Vim学习笔记-粘贴模式/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -164,14 +164,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                          <a class="tag" href="/tags/#Vim" title="Vim">Vim</a>
                         
                     </div>
-                    <h1>C++学习笔记-布尔类型</h1>
+                    <h1>Vim学习笔记-粘贴模式</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-06-27
+                        2017-07-05
                     </span>
                 </div>
             </div>
@@ -190,26 +190,13 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解C++中的布尔类型<code>bool</code>。</p>
-<h1 id="布尔类型Boolean"><a href="#布尔类型Boolean" class="headerlink" title="布尔类型Boolean"></a>布尔类型Boolean</h1><p>现代的程序设计语言中，一定少不了<code>bool</code>布尔类型之一基本数据类型。<br>可是啊，C语言是没有<code>bool</code>类型的，后来C提供了一个标准库来补充<code>bool</code>类型,但是不管怎么说，C原生是没有<code>bool</code>类型的。<br>想要在C中使用<code>bool</code>，我们一般会用整型来替代，C判断逻辑真假的规则也很宽泛：<strong><code>0</code>为假，<code>非0</code>为真</strong>。</p>
-<blockquote>
-<p><strong>Boolean type</strong><br>bool - type, capable of holding one of the two values: true or false. The value of sizeof(bool) is implementation defined and might differ from 1.</p>
-</blockquote>
-<p>在C++中，终于加上了对布尔类型的支持。<code>bool</code>, <code>true</code>, <code>false</code>成为了C++中的关键字。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="keyword">bool</span> <span class="keyword">b_t</span> = <span class="literal">true</span>;</div><div class="line">    <span class="keyword">bool</span> b_f = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>C++继承了C逻辑判断的规则。</p>
-<h1 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h1><p>C++与C的逻辑判断有细微的不同。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPE_T    (1 &lt;= 2)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> EXPE_F    (1 == 2)</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d %lu\n"</span>, EXPE_T, <span class="keyword">sizeof</span>(EXPE_T));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d %lu\n"</span>, EXPE_F, <span class="keyword">sizeof</span>(EXPE_F));</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>C和C++执行上述代码，结果有细微区别:</p>
-<ul>
-<li><code>true</code>为1, <code>false</code>为0，这点C/C++相同</li>
-<li><code>sizeof</code>的值不同，C为4，C++为1</li>
-</ul>
-<p>我们来观察C++代码生成的汇编代码:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="keyword">bool</span> <span class="keyword">b_t</span> = <span class="literal">true</span>;</div><div class="line">    <span class="keyword">bool</span> b_f = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">main:</div><div class="line">    ...</div><div class="line">    movb    $<span class="number">1</span>, -<span class="number">1</span>(<span class="comment">%rbp)</span></div><div class="line">    movb    $<span class="number">0</span>, -<span class="number">2</span>(<span class="comment">%rbp)</span></div><div class="line">    ...</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>原来，<strong>在C++中，<code>bool</code>类型是占1个字节的整型，<code>true</code>的字面量为1，<code>false</code>的字面量为0。</strong>而在C中，逻辑类型占4字节，正好是<code>int</code>整型所占的大小。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>C++官方资料: <a href="http://en.cppreference.com/w/cpp/language/bool_literal" target="_blank" rel="external">http://en.cppreference.com/w/cpp/language/bool_literal</a></li>
-</ul>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍<code>Vim</code>中的粘贴模式<code>paste mode</code>。</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>子恒喵在使用<code>vim</code>时，会遇到这样的情况：从外部复制粘贴文本到命令行的<code>vim</code>时，会出现格式、缩进不准确的问题。<br>这种情况在复制粘贴代码的时候尤其明显。之前，子恒喵都是手动解决缩进问题的…</p>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>出现这种问题的原因是：<br>我们对<code>vim</code>做了各种<code>indent</code>设置。在处理从外部复制到<code>vim</code>中的内容时，<code>vim</code>会认为这是用户手动输入的，所以对文本做不正确的缩进。</p>
+<h1 id="粘贴模式-paste-mode"><a href="#粘贴模式-paste-mode" class="headerlink" title="粘贴模式 paste mode"></a>粘贴模式 paste mode</h1><p>vim提供了一种特殊的粘贴模式，专门用来解决<strong>从外部粘贴内容到vim中格式不正确</strong>这一问题。<br>在粘贴内容前，在vim命令模式下输入:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> paste</div></pre></td></tr></table></figure></p>
+<p>启用粘贴模式。再进入编辑模式，我们会发现提示符已经变成<code>-- INSERT (paste) --</code>，此时粘贴内容，就不会出现格式缩进混乱的问题啦。</p>
+<p><code>vim</code>实现粘贴模式的原理是：<strong>暂时关闭所有影响格式缩进的设置，比如<code>autoindent</code>。</strong><br>退出粘贴模式也是很简单的:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> nopaste</div></pre></td></tr></table></figure></p>
+<p>更多信息可以查阅<code>vim</code>帮助文档：<code>:help paste</code>。</p>
 
 
                 <hr>
@@ -218,13 +205,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/06/29/C-学习笔记-类与结构体/" data-toggle="tooltip" data-placement="top" title="C++学习笔记-类与结构体">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/06/26/C学习笔记-作用域scope/" data-toggle="tooltip" data-placement="top" title="C学习笔记-作用域scope">Next Post &rarr;</a>
+                            <a href="/2017/07/04/Vim学习笔记-保存与退出/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-保存与退出">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -268,8 +251,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "zihengcat";
-    var disqus_identifier = "https://zihengcat.github.io/2017/06/27/C-学习笔记-布尔类型/";
-    var disqus_url = "https://zihengcat.github.io/2017/06/27/C-学习笔记-布尔类型/";
+    var disqus_identifier = "https://zihengcat.github.io/2017/07/05/Vim学习笔记-粘贴模式/";
+    var disqus_url = "https://zihengcat.github.io/2017/07/05/Vim学习笔记-粘贴模式/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
