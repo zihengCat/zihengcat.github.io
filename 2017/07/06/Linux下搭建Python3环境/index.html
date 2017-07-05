@@ -12,11 +12,11 @@
 
     <title>
         
-          Vim学习笔记-粘贴模式 - zihengCat
+          Linux下搭建Python3环境 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/07/05/Vim学习笔记-粘贴模式/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/06/Linux下搭建Python3环境/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -164,14 +164,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Vim" title="Vim">Vim</a>
+                          <a class="tag" href="/tags/#Linxu" title="Linxu">Linxu</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
-                    <h1>Vim学习笔记-粘贴模式</h1>
+                    <h1>Linux下搭建Python3环境</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-07-05
+                        2017-07-06
                     </span>
                 </div>
             </div>
@@ -190,17 +192,30 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍Vim中的粘贴模式<code>paste mode</code>。</p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>子恒喵在使用vim时，会遇到这样的情况：从<strong>外部</strong>复制粘贴文本到命令行的vim时，会出现格式、缩进不正确的问题。</p>
-<blockquote>
-<p>从macOS系统剪切板复制粘贴内容到Terminal中的vim。</p>
-</blockquote>
-<p>这种情况在复制粘贴代码时尤为明显。之前，子恒喵都是手动解决缩进问题的…</p>
-<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>出现这种问题的原因是：<br>我们对vim做了各种<code>indent</code>设置。在处理从外部复制到vim中的内容时，vim会认为这是用户手动输入的，所以对文本做了不正确的缩进。</p>
-<h1 id="粘贴模式-paste-mode"><a href="#粘贴模式-paste-mode" class="headerlink" title="粘贴模式 paste mode"></a>粘贴模式 paste mode</h1><p>vim提供了一种特殊的粘贴模式，专门用来解决<strong>从外部粘贴内容到vim中格式不正确</strong>这一问题。<br>在粘贴内容前，在vim命令模式下输入:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> paste</div></pre></td></tr></table></figure></p>
-<p>启用粘贴模式。再进入编辑模式，我们会发现提示符已经变成<code>-- INSERT (paste) --</code>，此时粘贴内容，就不会出现格式缩进混乱的问题啦。</p>
-<p>vim实现粘贴模式的原理是：<strong>暂时关闭所有影响格式缩进的设置，比如<code>autoindent</code>。</strong><br>退出粘贴模式，我们就可以正常编辑文本了:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> nopaste</div></pre></td></tr></table></figure></p>
-<p>更多信息可以查阅vim帮助文档：<code>:help paste</code>。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍在Linux环境下编译安装Python3。</p>
+<h1 id="编译安装Python3"><a href="#编译安装Python3" class="headerlink" title="编译安装Python3"></a>编译安装Python3</h1><p>在子恒喵使用的CentOS7 Linux 系统中，默认的<code>yum</code>源是没有最新版Python3的安装包的。<br>系统自带的一个Python是老版本的Python2，而且是精简过的…(作用只是为一些系统应用提供支持而已)我们不能随意更动，否则会有各种各样的问题…(比如<code>yum</code>不能用什么的)<br>所以，手动编译安装Python3，是搭建Python学习环境的最佳选择。</p>
+<h2 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 编译环境"></a>Step 1 编译环境</h2><p>我们需要安装几个基础的编译工具包，这是编译源码所必需的。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo yum install gcc make </span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo yum install wget</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li><code>gcc</code>，<code>make</code>用来编译Python源码(Python语言的官方实现是使用C的)</li>
+<li><code>wget</code>是Linux下好用的下载工具，可以用来下载Python源码包</li>
+</ul>
+<h2 id="Step-2-获取源码"><a href="#Step-2-获取源码" class="headerlink" title="Step 2 获取源码"></a>Step 2 获取源码</h2><p>接下来，我们前往<a href="https://www.python.org" target="_blank" rel="external">Python官方网站</a>下载最新的Python3源码包。<br>注意，一定要下载源码包<code>source tarball</code>哦。<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget https:<span class="regexp">//</span>www.python.org<span class="regexp">/ftp/</span>python<span class="regexp">/3.6.1/</span>Python-<span class="number">3.6</span>.<span class="number">1</span>.tar.xz</div></pre></td></tr></table></figure></p>
+<p>解压缩，解包(xz压缩包要分两步解压，gz的话就可以在tar命令中一步搞定)<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> xz <span class="_">-d</span> ./Python-3.6.1.tar.xz</span></div><div class="line"><span class="meta">$</span><span class="bash"> tar -xv <span class="_">-f</span> ./Python-3.6.1.tar</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span></span></div></pre></td></tr></table></figure></p>
+<p>嗯，80+MB的源码，XZ直接给压到16MB，相当强大。</p>
+<h2 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 安装依赖"></a>Step 3 安装依赖</h2><p>进入Python3源码目录，我们可以先看一下<code>README.rst</code>这个文件，上面告诉了我们编译安装的具体步骤。<br>但是，在编译安装之前，我们需要安装Python需要的一些依赖，这是README上没有提到的。(倒是会在编译检查依赖时告诉你…)<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#/bin/bash</span></div><div class="line"></div><div class="line">deps=<span class="string">"zlib-devel bzip2-devel openssl-devel readline-devel ncurses-devel sqlite-devel tk-devel tcl-devel gdbm-devel"</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable">$&#123;deps&#125;</span></div><div class="line"><span class="keyword">do</span> </div><div class="line">    sudo yum -y install <span class="variable">$&#123;i&#125;</span></div><div class="line">done</div><div class="line"></div><div class="line"><span class="keyword">exit</span> <span class="variable">$&#123;?&#125;</span></div></pre></td></tr></table></figure></p>
+<p>手写一段shell脚本，把依赖包装好。</p>
+<h2 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 编译安装"></a>Step 4 编译安装</h2><p>依赖都安装好啦，接下来，我们就按照<code>README</code>的指引，编译我们的Python3吧。<br>请确保在Python源代码目录下执行以下操作:</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="string">./configure</span> <span class="params">--prefix=/usr/local/python-3</span>.6.1 <span class="params">--enable-optimizations</span></div></pre></td></tr></table></figure>
+<p>此命令检查编译环境，检查依赖性，没有问题的话，会成功生成<code>Makefile</code>。<br>这里我们添加了两个参数: </p>
+<ul>
+<li><code>--prefix</code>指定安装路径，默认在<code>/usr/local</code>，子恒喵习惯单独指定一个安装目录，这样管理起来会比较方便</li>
+<li><code>--enable-optimizations</code>开启编译优化选项，增加编译时间，换取性能提升，这是值得的。</li>
+</ul>
+<p>更多编译参数可以查看: <code>./configure --help</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> make</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo make install</span></div></pre></td></tr></table></figure>
+<p>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。^_^<br>如果自定义了安装路径，别忘了将路径加入<code>PATH</code>环境变量中，再将python3链接到<code>/usr/bin</code>下吧。</p>
+<h2 id="Step-5-检验安装"><a href="#Step-5-检验安装" class="headerlink" title="Step 5 检验安装"></a>Step 5 检验安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> python3 --version</span></div></pre></td></tr></table></figure>
+<p>至此，最新版的Python3已经安装完成，愉快地使用Python编程吧～</p>
 
 
                 <hr>
@@ -209,13 +224,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/07/06/Linux下搭建Python3环境/" data-toggle="tooltip" data-placement="top" title="Linux下搭建Python3环境">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/07/04/Vim学习笔记-保存与退出/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-保存与退出">Next Post &rarr;</a>
+                            <a href="/2017/07/05/Vim学习笔记-粘贴模式/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-粘贴模式">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -259,8 +270,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "zihengcat";
-    var disqus_identifier = "https://zihengcat.github.io/2017/07/05/Vim学习笔记-粘贴模式/";
-    var disqus_url = "https://zihengcat.github.io/2017/07/05/Vim学习笔记-粘贴模式/";
+    var disqus_identifier = "https://zihengcat.github.io/2017/07/06/Linux下搭建Python3环境/";
+    var disqus_url = "https://zihengcat.github.io/2017/07/06/Linux下搭建Python3环境/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
