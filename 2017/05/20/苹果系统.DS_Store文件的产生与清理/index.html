@@ -89,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -166,8 +166,6 @@
                         
                           <a class="tag" href="/tags/#Macintosh" title="Macintosh">Macintosh</a>
                         
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
-                        
                     </div>
                     <h1>苹果系统.DS_Store文件的产生与清理</h1>
                     <h2 class="subheading"></h2>
@@ -199,7 +197,7 @@
 <h1 id="DS-Store文件的生成-关闭"><a href="#DS-Store文件的生成-关闭" class="headerlink" title=".DS_Store文件的生成/关闭"></a>.DS_Store文件的生成/关闭</h1><p>命令行下输入以下命令可以禁止系统创建<em>.DS_Store</em>文件。注意，命令是区分用户的，以哪个用户的身份执行，就改写哪个用户的配置文件。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> defaults write com.apple.desktopservices DSDontWriteStores <span class="literal">true</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> defaults write com.apple.desktopservices DSDontWriteNetworkStores <span class="literal">true</span></span></div></pre></td></tr></table></figure>
 <p>输入反向命令可以恢复。<br>执行完命令后，让Finder退出重启使生效。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> killall Finder</span></div></pre></td></tr></table></figure></p>
-<p><strong>注: 上述方法在OSX10.7后已经失效，还是写命令查找删除好了…</strong></p>
+<p><strong>注: 上述方法在OSX10.7后已经失效，写命令查找删除好了…</strong></p>
 <h1 id="命令删除-DS-Store文件"><a href="#命令删除-DS-Store文件" class="headerlink" title="命令删除.DS_Store文件"></a>命令删除.DS_Store文件</h1><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo <span class="built_in">find</span> / -<span class="built_in">name</span> <span class="string">".DS_Store"</span> -depth -<span class="built_in">exec</span> rm &#123;&#125; \;</div></pre></td></tr></table></figure>
 <p>使用<code>find</code>命令查找目标文件，删除掉就可以啦。<br><figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">find</span> ./ -<span class="built_in">name</span> <span class="string">".DS_Store"</span> -depth -<span class="built_in">exec</span> rm &#123;&#125; \;</div></pre></td></tr></table></figure></p>
 <p>清除当前目录下所有<em>.DS_Store</em>文件。</p>
