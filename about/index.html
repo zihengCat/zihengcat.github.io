@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <!-- Head tag -->
 <head>
@@ -192,15 +192,31 @@
 
                     
 
-
                     
 
                     
 
+<!-- Gitment 代码 begin --> 
+<div id="gitment_container">
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id:    'hexo_gitment',         // 可选。默认为 location.href
+  owner: 'zihengcat',            //你的 GitHub ID  
+  repo:  'zihengcat.github.io',  //存储评论的 repo
+  oauth: {
+    client_id: 'f039815621dd7dfd694e',                            //你的 client ID  
+    client_secret: 'fbd18887ac773d1d7a16a91054c3c996a18eb4fe',    //你的 client secret
+  },  
+})
+gitment.render('gitment_container')
+</script>
+</div>
+<!-- Gitment 代码 end --> 
 
 
                 
-
             </div>
     <!-- Sidebar Container -->
             <div class="
@@ -320,7 +336,6 @@
     </div>
 </footer>
 
-
 <!-- busuanzi -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
@@ -402,11 +417,5 @@
 
 
 
-
-<!-- Image to hack wechat -->
-<!-- <img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0" /> -->
-<!-- Migrate from head to bottom, no longer block render and still work -->
-
 </body>
-
 </html>
