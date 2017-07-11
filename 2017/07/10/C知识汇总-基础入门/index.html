@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword"  content="blog">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          C知识汇总-基础入门 - zihengCat
+        
+    </title>
+
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/10/C知识汇总-基础入门/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">ziheng&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#C" title="C">C</a>
+                        
+                    </div>
+                    <h1>C知识汇总-基础入门</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-07-10
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="C语言发展历程"><a href="#C语言发展历程" class="headerlink" title="C语言发展历程"></a>C语言发展历程</h1><p>C语言的发展历程大致上分为三个阶段：<em>Old Style C</em>、<em>ANSI C(C89)</em>和<em>C99</em>。目前最新的标准是<em>C11</em>。<br>Ken Thompson和Dennis Ritchie最初发明C语言时有很多语法和现在最常用的写法并不一样，但为了向后兼容性（Backward Compatibility），这些语法仍然在C89和C99中保留下来了。C89是最早的C语言规范，于1989年提出，1990年首先由ANSI（美国国家标准委员会，American National Standards Institute）推出，后来被接纳为ISO国际标准（ISO/IEC 9899:1990），因而有时也称为C90，最经典的C语言教材<em>TCPL[K&amp;R]</em>就是基于这个版本的，ANSI C是目前最广泛采用的C语言标准，大多数编译器都完全支持。C99标准（ISO/IEC 9899:1999）是在1999年推出的，加入了许多新特性，在C99推出之后相当长的一段时间里，连GNU GCC也没有完全实现C99的所有特性。</p>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"hello, world!\n"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="编译运行"><a href="#编译运行" class="headerlink" title="编译运行"></a>编译运行</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gcc hello<span class="selector-class">.c</span> &amp;&amp; ./<span class="selector-tag">a</span>.out</div></pre></td></tr></table></figure>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><ul>
+<li><p><strong>跨行注释符</strong> <code>/* ... */</code><br>无法嵌套，也不能出现在字符串字面量中。</p>
+</li>
+<li><p><strong>单行注释符</strong> <code>//...</code><br>从注释开始至该行末尾所有字符都属于注释。无法换行，也不能穿插在代码中间。</p>
+</li>
+</ul>
+<blockquote>
+<p>单行注释语法从C++中借鉴而来，在C99中被标准化。</p>
+</blockquote>
+<h1 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h1><ol>
+<li>标识符是由字母和数字组成的字符序列，但其第一个字符必须为字母或下划线。下划线<code>_</code>被看作是字母，通常用于命名较长的变量名，以提高可读性。</li>
+<li>例程的名字通常以下划线开头，因此变量名不要以下划线开头。</li>
+<li>大小写敏感；</li>
+<li>在传统的C语言用法中，变量名使用小写字母，符号常量名全部使用大写字母；</li>
+<li>对于内部名而言，至少前31个字符是有效的。对于外部名，ANSI标准只保证前6个字符的唯一性，并且不区分大小写。</li>
+<li>类似于<code>if</code>、<code>else</code>、<code>int</code>、<code>float</code>等关键字是保留给语言本身使用的，不能把它们用作变量名。所有关键字中的字符都为小写。</li>
+</ol>
+<p>C99规定的关键字：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">-</th>
+<th style="text-align:center">-</th>
+<th style="text-align:center">-</th>
+<th style="text-align:center">-</th>
+<th style="text-align:center">-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">auto</td>
+<td style="text-align:center">break</td>
+<td style="text-align:center">case</td>
+<td style="text-align:center">char</td>
+<td style="text-align:center">const</td>
+</tr>
+<tr>
+<td style="text-align:center">continue</td>
+<td style="text-align:center">default</td>
+<td style="text-align:center">do</td>
+<td style="text-align:center">double</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">else</td>
+<td style="text-align:center">enum</td>
+<td style="text-align:center">extern</td>
+<td style="text-align:center">float</td>
+<td style="text-align:center">for</td>
+</tr>
+<tr>
+<td style="text-align:center">goto</td>
+<td style="text-align:center">if</td>
+<td style="text-align:center">inline</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">long</td>
+</tr>
+<tr>
+<td style="text-align:center">register</td>
+<td style="text-align:center">restrict</td>
+<td style="text-align:center">return</td>
+<td style="text-align:center">short</td>
+<td style="text-align:center">signed</td>
+</tr>
+<tr>
+<td style="text-align:center">sizeof</td>
+<td style="text-align:center">static</td>
+<td style="text-align:center">struct</td>
+<td style="text-align:center">switch</td>
+<td style="text-align:center">typedef</td>
+</tr>
+<tr>
+<td style="text-align:center">union</td>
+<td style="text-align:center">unsigned</td>
+<td style="text-align:center">void</td>
+<td style="text-align:center">volatile</td>
+<td style="text-align:center">while</td>
+</tr>
+<tr>
+<td style="text-align:center">_Bool</td>
+<td style="text-align:center">_Complex</td>
+<td style="text-align:center">_Imaginary</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h2><ol>
+<li>二元算数运算符：<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>%</code>；</li>
+<li>整数除法会截断结果中的小数部分；</li>
+<li><code>%</code>运算不能应用于浮点类型(<em>float, double</em>)；</li>
+<li>在有负操作数的情况下，整数除法截取的方向以及取模运算结果的符号取决于具体机器的实现，这和处理上溢或下溢的情况是一样的。</li>
+<li>优先级：一元运算符<code>+</code>、<code>-</code>最高；<code>*</code>、<code>/</code>、<code>%</code>次之；二元运算符<code>+</code>、<code>-</code>最低；</li>
+<li>运算符结合规则：从左到右。</li>
+</ol>
+<h2 id="关系与逻辑运算符"><a href="#关系与逻辑运算符" class="headerlink" title="关系与逻辑运算符"></a>关系与逻辑运算符</h2><p>关系运算符：<br><code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>&lt;=</code><br>它们具有相同的优先级。优先级仅次于它们的是相等性运算符：<br><code>==</code>、<code>!=</code><br><strong>关系运算符的优先级低于算术运算符 。</strong></p>
+<p>逻辑运算符<code>&amp;&amp;</code>与<code>||</code>有一些较为特殊的属性，由<code>&amp;&amp;</code>与<code>||</code>连接的表达式按<strong>从左到右</strong>的顺序进行求值，并且，在知道结果值为真或为假后<strong>立即停止运算（短路运算）</strong>。<br>逻辑运算符优先级：<code>&amp;&amp;</code>比<code>||</code>的优先级高，但两者都比关系运算符和相等性运算符的优先级低。</p>
+<h2 id="自增自减运算符"><a href="#自增自减运算符" class="headerlink" title="自增自减运算符"></a>自增自减运算符</h2><ul>
+<li><code>++n</code>先自增，后取用</li>
+<li><code>n++</code>先取用，后自增</li>
+</ul>
+<h2 id="按位运算符"><a href="#按位运算符" class="headerlink" title="按位运算符"></a>按位运算符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>&amp;</code></td>
+<td style="text-align:left">按位与（AND）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>｜</code></td>
+<td style="text-align:left">按位或（OR）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>^</code></td>
+<td style="text-align:left">按位异或（XOR）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>~</code></td>
+<td style="text-align:left">按位取反</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&lt;&lt;</code></td>
+<td style="text-align:left">左移</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&gt;&gt;</code></td>
+<td style="text-align:left">右移</td>
+</tr>
+</tbody>
+</table>
+<h2 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h2><p><em>expr1</em> <code>?</code> <em>expr2</em> <code>:</code> <em>expr3</em><br>判断<code>expr1</code>的值，如果为真，则结果是<code>expr2</code>；如果为假，则结果是<code>expr3</code>。<br>注意，如果<code>expr2</code>与<code>expr3</code>类型不同，结果的类型也将进行转换。<br>例如，如果<code>f</code>为<em>float</em>类型，<code>n</code>为<em>int</em>类型，那么表达式<code>(n &gt; 0) ? f : n</code> 的结果是<em>float</em>类型，与<code>n</code>是否为正值无关 。</p>
+<h2 id="运算符的优先级与结合顺序"><a href="#运算符的优先级与结合顺序" class="headerlink" title="运算符的优先级与结合顺序"></a>运算符的优先级与结合顺序</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">结合性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>()</code> <code>[]</code> <code>-&gt;</code> <code>.</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>!</code> <code>~</code> <code>++</code> <code>--</code> <code>+</code> <code>-</code> <code>*</code> <code>(type)</code> <code>sizeof</code></td>
+<td style="text-align:center"><strong>从右至左</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>*</code> <code>/</code> <code>%</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>+</code> <code>-</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&lt;&lt;</code> <code>&gt;&gt;</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>==</code> <code>!=</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&amp;</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>^</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>｜</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>&amp;&amp;</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>｜｜</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>? :</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>=</code> <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code>^=</code> <code>&amp;=</code> <code>｜=</code> <code>&lt;&lt;=</code> <code>&gt;&gt;=</code></td>
+<td style="text-align:center"><strong>从右至左</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>,</code></td>
+<td style="text-align:center"><em>从左至右</em></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>优先级从高到低排列</p>
+</blockquote>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/07/11/Vim学习笔记-多行注释/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-多行注释">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/07/09/Linux下搭建LaTeX学习环境/" data-toggle="tooltip" data-placement="top" title="Linux下搭建LaTeX学习环境">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zihengcat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; ziheng&#39;s Blog 2017 
+                    <br>
+                    Theme by Hux 
+                    <span style="display: inline-block; margin: 0 5px;">
+                    <i class="fa fa-heart"></i>
+                    <span> | </span>
+                    </span> 
+                    Ported by Kaijun | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                    </br>
+                    <span id="busuanzi_container_site_pv">
+                      本站访问量<span id="busuanzi_value_site_pv"></span>次 | 
+                    </span>
+                    <span id="busuanzi_container_site_uv">
+                      本站访客数<span id="busuanzi_value_site_uv"></span>人 | 
+                    </span>
+                    <span id="busuanzi_container_page_pv">
+                      本文阅读量<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- busuanzi -->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zihengcat.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+</body>
+</html>
