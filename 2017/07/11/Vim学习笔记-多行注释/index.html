@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -201,16 +201,16 @@
 <p>一般的IDE都有提供<strong>批量注释</strong>的功能，非常方便实用。<br>在vim命令行环境下，也可以实现多行注释。</p>
 <h2 id="vim-多行注释"><a href="#vim-多行注释" class="headerlink" title="vim 多行注释"></a>vim 多行注释</h2><ol>
 <li><code>Ctrl</code> + <code>v</code> 进入 <em>VISUAL BLOCK</em> 区块选择模式</li>
-<li>选择需要注释的行（<em>hjkl</em>移动区块进行选择）</li>
-<li><code>Shift</code> + <code>i</code>（大写I) 进入插入模式，光标跳到行首</li>
+<li>选择需要注释的行（<em>hjkl</em> 移动区块进行选择）</li>
+<li><code>Shift</code> + <code>i</code>（大写I) 进入插入模式，光标跳至行首</li>
 <li>键入注释符（如<code>#</code>）</li>
 <li><code>Esc</code>退出插入模式</li>
 <li><strong>短暂延迟</strong>后，所有被选中的行首都被添加了注释符</li>
 </ol>
 <h2 id="vim-多行解注释"><a href="#vim-多行解注释" class="headerlink" title="vim 多行解注释"></a>vim 多行解注释</h2><ol>
 <li><code>Ctrl</code> + <code>v</code> 进入 <em>VISUAL BLOCK</em> 区块选择模式</li>
-<li>选择注释行首的注释符（<em>hjkl</em>移动区块进行选择）</li>
-<li><code>x</code>或<code>d</code>删除注释符号</li>
+<li>选择注释行首的注释符（<em>hjkl</em> 移动区块进行选择）</li>
+<li><code>x</code>或<code>d</code>删除注释符</li>
 </ol>
 
 
