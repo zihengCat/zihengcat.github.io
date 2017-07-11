@@ -12,11 +12,11 @@
 
     <title>
         
-          Vim学习笔记-多行注释 - zihengCat
+          LaTeX特殊字符-速查表 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/07/11/Vim学习笔记-多行注释/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/12/LaTeX特殊字符-速查表/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -164,14 +164,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Vim" title="Vim">Vim</a>
+                          <a class="tag" href="/tags/#LaTeX" title="LaTeX">LaTeX</a>
                         
                     </div>
-                    <h1>Vim学习笔记-多行注释</h1>
+                    <h1>LaTeX特殊字符-速查表</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-07-11
+                        2017-07-12
                     </span>
                 </div>
             </div>
@@ -190,28 +190,10 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍<code>Vim</code>实用小技巧－多行注释。</p>
-<h1 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h1><p>在我们写代码的过程中，时常会将一部分代码注释起来。<br>在<code>C</code>，<code>C++</code>中，我们可以使用<code>/*...*/</code>实现多行注释，或使用<code>#if 0 ... #endif</code>宏注释。<br>可是有的语言只支持单行注释:</p>
-<ul>
-<li>Python中的<code>#</code>注释</li>
-<li>shell中的<code>#</code>注释</li>
-<li>LaTeX中的<code>%</code>注释</li>
-<li>…</li>
-</ul>
-<p>一般的IDE都有提供<strong>批量注释</strong>的功能，非常方便实用。<br>在vim命令行环境下，也可以实现多行注释。</p>
-<h2 id="vim-多行注释"><a href="#vim-多行注释" class="headerlink" title="vim 多行注释"></a>vim 多行注释</h2><ol>
-<li><code>Ctrl</code> + <code>v</code> 进入 <em>VISUAL BLOCK</em> 区块选择模式</li>
-<li>选择需要注释的行（<em>hjkl</em> 移动区块进行选择）</li>
-<li><code>Shift</code> + <code>i</code>（大写I) 进入插入模式，光标跳至行首</li>
-<li>键入注释符（如<code>#</code>）</li>
-<li><code>Esc</code>退出插入模式</li>
-<li><strong>短暂延迟</strong>后，所有被选中的行首都被添加了注释符</li>
-</ol>
-<h2 id="vim-多行解注释"><a href="#vim-多行解注释" class="headerlink" title="vim 多行解注释"></a>vim 多行解注释</h2><ol>
-<li><code>Ctrl</code> + <code>v</code> 进入 <em>VISUAL BLOCK</em> 区块选择模式</li>
-<li>选择注释行首的注释符（<em>hjkl</em> 移动区块进行选择）</li>
-<li><code>x</code>或<code>d</code>删除注释符</li>
-</ol>
+                <p><img src="special-symbols.png" alt="special-symbols"></p>
+<blockquote>
+<p><a href="http://math.ecnu.edu.cn/~latex/examples/special-symbols.pdf" target="_blank" rel="external">PDF版</a></p>
+</blockquote>
 
 
                 <hr>
@@ -220,13 +202,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/07/12/LaTeX特殊字符-速查表/" data-toggle="tooltip" data-placement="top" title="LaTeX特殊字符-速查表">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/07/10/C知识汇总-基础入门/" data-toggle="tooltip" data-placement="top" title="C知识汇总-基础入门">Next Post &rarr;</a>
+                            <a href="/2017/07/11/Vim学习笔记-多行注释/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-多行注释">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
