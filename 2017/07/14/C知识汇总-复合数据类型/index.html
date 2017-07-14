@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword"  content="blog">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          C知识汇总-复合数据类型 - zihengCat
+        
+    </title>
+
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/14/C知识汇总-复合数据类型/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">ziheng&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#C" title="C">C</a>
+                        
+                    </div>
+                    <h1>C知识汇总-复合数据类型</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-07-14
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>数组（Array）是一种复合数据类型，它由一系列相同类型的元素（Element）组成。</p>
+<h2 id="定义数组"><a href="#定义数组" class="headerlink" title="定义数组"></a>定义数组</h2><p>使用<code>[...]</code>可以定义一个数组：<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="class"><span class="keyword">type</span>&gt; <span class="title">array_name</span> [&lt;constant expression&gt;];</span></div></pre></td></tr></table></figure></p>
+<p>数组元素的存储空间是相邻的。</p>
+<ul>
+<li>ANSI C 数组的元素个数必须在编译时刻确定；</li>
+<li>C99 增添了变长数组(VLA)这一新特性。</li>
+</ul>
+<h2 id="访问数组元素"><a href="#访问数组元素" class="headerlink" title="访问数组元素"></a>访问数组元素</h2><p>数组中的元素通过下标（或叫索引，Index）来访问。<br><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">array_name[<span class="keyword">index</span>] = <span class="keyword">value</span>;</div></pre></td></tr></table></figure></p>
+<p><strong>数组下标从“0”开始。</strong>大多数编程语言都是这么规定的，所以计算机术语中有 <em>Zeroth</em> 这个词。</p>
+<p>使用数组下标不能超出数组的长度范围，这一点在使用变量做数组下标时尤其要注意。<strong>C编译器并不检查数组访问越界的错误</strong>，编译时能顺利通过，运行时会出错。</p>
+<h2 id="数组初始化和赋值"><a href="#数组初始化和赋值" class="headerlink" title="数组初始化和赋值"></a>数组初始化和赋值</h2><p>数组定义时使用<code>{...}</code>初始化。<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> <span class="type">array_name </span>[&lt;<span class="keyword">constant</span> expression&gt;] = &#123;</div><div class="line">    type_value,</div><div class="line">    ...</div><div class="line">    type_value,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><code>{...}</code>依次初始化数组中的每个变量，未被赋值的变量用(<code>0</code>)填充。</p>
+<p>可以使用下标为数组元素赋值。<strong>两个数组之间不可直接<code>=</code>赋值。</strong></p>
+<h2 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h2><p>数组也可以嵌套，一个数组的元素可以是另外一个数组，这样就构成了多维数组（Multi-dimensional Array）。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">type array_name[<span class="string">size1</span>][<span class="symbol">size2</span>]...[sizeN];</div></pre></td></tr></table></figure>
+<p>多维数组最简单的形式是二维数组。一个二维数组，在本质上，是一个一维数组的列表。声明一个 x 行 y 列的二维整型数组，形式如下：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">type array_name[<span class="string">&lt;x&gt;</span>][<span class="symbol">&lt;y&gt;</span>];</div></pre></td></tr></table></figure></p>
+<p>从逻辑模型上看，这个二维数组是x行y列的表，元素的两个下标分别是行号和列号。<strong>从物理模型上看，数组元素在内存中仍然是连续存储的。</strong></p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>C的字符串可以看作<strong>以<code>\0</code>空字符结尾的字符数组</strong>，它的每个元素都是字符(char)型。<br>每个字符串末尾都有一个字符<code>\0</code>结束符，这里的<code>\0</code>是ASCII码为0的Null字符，在C语言中这种字符串也称为以零结尾的字符串（Null-terminated String）。数组元素可以通过数组名加下标的方式访问，而字符串也可以像数组一样使用，可以加下标访问其中的字符。</p>
+<h1 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h1><p>结构体是C语言提供的一种自定义复合数据类型的方式。</p>
+<h2 id="定义结构体"><a href="#定义结构体" class="headerlink" title="定义结构体"></a>定义结构体</h2><p>为了定义复合结构，需要使用 struct 语句。struct 语句定义了一个包含多个成员的新的数据类型，struct 语句的格式如下：</p>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> [structure tag]</div><div class="line">&#123;</div><div class="line">   <span class="keyword">member</span> definition;</div><div class="line">   <span class="keyword">member</span> definition;</div><div class="line">   ...</div><div class="line">   <span class="keyword">member</span> definition;</div><div class="line">&#125; [one <span class="keyword">or</span> more structure variables];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意结构体声明后的<code>;</code>不能少。结构体类型定义是一种声明，要以<code>;</code>号结尾。</p>
+</blockquote>
+<p>可以在定义了 struct 后直接用普通的声明语句来声明变量：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">structure_tag</span> <span class="title">variable1</span>, <span class="title">variable2</span>;</span></div></pre></td></tr></table></figure></p>
+<h2 id="访问结构体成员"><a href="#访问结构体成员" class="headerlink" title="访问结构体成员"></a>访问结构体成员</h2><p>可以用<code>.</code>运算符（<code>.</code>号，Period）来访问结构体成员，结构体成员之间的存储空间是相邻的。</p>
+<h2 id="结构初始化与赋值"><a href="#结构初始化与赋值" class="headerlink" title="结构初始化与赋值"></a>结构初始化与赋值</h2><p>结构体变量也可以在定义时初始化：<br><figure class="highlight capnproto"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">structure_tag</span> variable = </span>&#123; member_value, ... member_value &#125;;</div></pre></td></tr></table></figure></p>
+<p>initializer初始化过程中的数据依次赋给结构体的各成员。如果initializer中的数据比结构体的成员多，编译器会报错，但如果只是末尾多个逗号则不算错。如果initializer中的数据比结构体的成员少，<strong>未指定的成员将用0来初始化</strong>，就像未初始化的全局变量一样。</p>
+<p><code>{...}</code>只能用于结构体初始化，不能用于结构体赋值。</p>
+<ul>
+<li><p>ANSI C只允许在<code>{...}</code>中使用<strong>常量表达式</strong>来初始化结构体变量，无论是全局变量还是局部变量。</p>
+</li>
+<li><p>局部变量的结构体可以使用另一个变量的值来初始化它的成员，如果是全局变量，就只能用<strong>常量表达式</strong>来初始化。这是C99的新特性。</p>
+</li>
+<li><p>我们可以使用<code>.</code>运算符为结构体变量中的成员一一赋值。</p>
+</li>
+<li>也可以使用一个相同类型的结构体变量为结构体赋值，此时发生的是<strong>内存拷贝</strong>。</li>
+</ul>
+<h2 id="嵌套结构体"><a href="#嵌套结构体" class="headerlink" title="嵌套结构体"></a>嵌套结构体</h2><p>结构体也是一种递归定义：结构体的成员具有某种数据类型，而结构体本身也是一种数据类型。换句话说，结构体的成员可以是另一个结构体，即结构体可以嵌套定义。<br><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> [structure tag]</div><div class="line">&#123;</div><div class="line">   <span class="keyword">member</span> definition;</div><div class="line"></div><div class="line">   <span class="keyword">struct</span> [structure tag]&#123;</div><div class="line">       <span class="keyword">member</span> definition;</div><div class="line">       ...</div><div class="line">       <span class="keyword">member</span> definition;</div><div class="line">   &#125; structure variables;</div><div class="line"></div><div class="line">   ...</div><div class="line"></div><div class="line">   <span class="keyword">member</span> definition;</div><div class="line">&#125; [one <span class="keyword">or</span> more structure variables];</div></pre></td></tr></table></figure></p>
+<p>嵌套结构体可以嵌套初始化，例如：<br><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">struct structure<span class="number">_</span>tag <span class="keyword">variable</span> = &#123; </div><div class="line">    &#123; member<span class="number">_</span><span class="keyword">value</span>, ... member<span class="number">_</span><span class="keyword">value</span> &#125;,</div><div class="line">    &#123; member<span class="number">_</span><span class="keyword">value</span>, ... member<span class="number">_</span><span class="keyword">value</span> &#125;,</div><div class="line">    &#123; member<span class="number">_</span><span class="keyword">value</span>, ... member<span class="number">_</span><span class="keyword">value</span> &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>嵌套结构体也可以平坦(<em>Flat</em>)初始化，因为结构体成员的内存布局是紧挨着排列的：<br><figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">struct structure<span class="number">_</span>tag <span class="keyword">variable</span> = &#123; </div><div class="line">    member<span class="number">_</span><span class="keyword">value</span>, ... member<span class="number">_</span><span class="keyword">value</span>,</div><div class="line">    member<span class="number">_</span><span class="keyword">value</span>, ... member<span class="number">_</span><span class="keyword">value</span>,</div><div class="line">    member<span class="number">_</span><span class="keyword">value</span>, ... member<span class="number">_</span><span class="keyword">value</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>访问嵌套结构体成员要用到多个<code>.</code>运算符：<br><figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">struct1.struct2.member = member_value<span class="comment">;</span></div></pre></td></tr></table></figure></p>
+<h1 id="共用体"><a href="#共用体" class="headerlink" title="共用体"></a>共用体</h1><p>共用体是一种特殊的数据类型，允许我们在相同的内存位置存储不同的数据类型。可以定义一个带有多成员的共用体，但是同一时刻只能有一个成员带有值。共用体提供了一种使用相同的内存位置的有效方式。</p>
+<h2 id="定义共用体"><a href="#定义共用体" class="headerlink" title="定义共用体"></a>定义共用体</h2><p>定义共用体使用 union 语句，方式与定义结构类似。union 语句定义了一个新的数据类型，带有多个成员。union 语句的格式如下：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">union</span> [<span class="title">union</span> <span class="title">tag</span>]</span></div><div class="line">&#123;</div><div class="line">   member definition;</div><div class="line">   member definition;</div><div class="line">   ...</div><div class="line">   member definition;</div><div class="line">&#125; [one or more <span class="class"><span class="keyword">union</span> <span class="title">variables</span>];</span></div></pre></td></tr></table></figure></p>
+<h2 id="访问共用体成员"><a href="#访问共用体成员" class="headerlink" title="访问共用体成员"></a>访问共用体成员</h2><p>可以用<code>.</code>运算符（<code>.</code>号，Period）来访问共用体成员。</p>
+<h2 id="共用体与结构体的区别"><a href="#共用体与结构体的区别" class="headerlink" title="共用体与结构体的区别"></a>共用体与结构体的区别</h2><ul>
+<li><p>结构体变量所占内存空间是结构体各成员空间之和（+内存对齐），各成员有其独立的内存空间。</p>
+</li>
+<li><p>共用体变量所占内存空间是<strong>共用体最大成员所占内容空间</strong>，各成员共用同一块内存空间。</p>
+</li>
+</ul>
+<p>所以，同一时刻，共用体只有一个有效数据成员。<br>使用共用体的目的是为了节约内存。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/07/13/C知识汇总-基本数据类型/" data-toggle="tooltip" data-placement="top" title="C知识汇总-基本数据类型">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zihengcat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; ziheng&#39;s Blog 2017 
+                    <br>
+                    Theme by Hux 
+                    <span style="display: inline-block; margin: 0 5px;">
+                    <i class="fa fa-heart"></i>
+                    <span> | </span>
+                    </span> 
+                    Ported by Kaijun | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                    </br>
+                    <span id="busuanzi_container_site_pv">
+                      本站访问量<span id="busuanzi_value_site_pv"></span>次 | 
+                    </span>
+                    <span id="busuanzi_container_site_uv">
+                      本站访客数<span id="busuanzi_value_site_uv"></span>人 | 
+                    </span>
+                    <span id="busuanzi_container_page_pv">
+                      本文阅读量<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- busuanzi -->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zihengcat.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+</body>
+</html>
