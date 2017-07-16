@@ -194,44 +194,43 @@
 <h1 id="常量分类"><a href="#常量分类" class="headerlink" title="常量分类"></a>常量分类</h1><table>
 <thead>
 <tr>
-<th>常量</th>
+<th style="text-align:center">常量</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>整型常量</td>
+<td style="text-align:center">整型常量</td>
 <td>1, 2, 3, 4 之类的常量，默认为10进制，可以8进制<code>0</code>或16进制<code>0x</code>表示，默认以<code>int</code>存储。</td>
 </tr>
 <tr>
-<td>长整型常量</td>
+<td style="text-align:center">长整型常量</td>
 <td>以<code>l</code>或<code>L</code>结尾的整数，以<code>long</code>存储。</td>
 </tr>
 <tr>
-<td>无符号整型常量</td>
+<td style="text-align:center">无符号整型常量</td>
 <td>以<code>u</code>或<code>U</code>结尾的整型常量。</td>
 </tr>
 <tr>
-<td>浮点型常量</td>
+<td style="text-align:center">浮点型常量</td>
 <td>带小数点的数或以科学计数法表示的数，默认以<code>double</code>存储，可带<code>f</code>/<code>F</code>或<code>l</code>/<code>L</code>后缀改变其存储形式。</td>
 </tr>
 <tr>
-<td>字符型常量</td>
+<td style="text-align:center">字符型常量</td>
 <td>以单引号<code>&#39;</code>包括的单个字符，以<code>char</code>存储。</td>
 </tr>
 <tr>
-<td>字符串常量</td>
+<td style="text-align:center">字符串常量</td>
 <td>以双引号<code>&quot;</code>包括的一串字符序列。</td>
 </tr>
 <tr>
-<td>枚举常量</td>
+<td style="text-align:center">枚举常量</td>
 <td>整型常量值列表。</td>
 </tr>
 </tbody>
 </table>
-<h1 id="字符常量"><a href="#字符常量" class="headerlink" title="字符常量"></a>字符常量</h1><p>一个字符常量是一个整数，书写时将一个字符括在单引号中，如，‘x’。字符在机器字符集中的数值就是字符常量的值。字符常量一般用来与其他字符进行比较，但也可以像其他整数一样参与数值运算。</p>
-<p>某些字符可以通过转义字符序列（例如换行符\n）表示为字符和字符串常量。转义字符序列看起来像两个字符，但只表示一个字符。另外，我们可以用<code>\ooo</code>表示 任意的字节大小的位模式 。其中，ooo代表1~3个八进制数字[0-7]。这种位模式还可以用<code>\xhhh</code>表示，其中，hh是一个或多个十六进制数字[0-9,a-f,A-F]。</p>
-<p>ANSI C语言的全部转义字符序列：</p>
+<h1 id="字符常量"><a href="#字符常量" class="headerlink" title="字符常量"></a>字符常量</h1><p>一个字符常量是一个整数，书写时将一个字符括在单引号中，如，‘x’。字符在机器字符集中的数值就是字符常量的值。字符常量一般用来与其他字符进行比较，但也可以像其他整数一样参与数值运算。<br>某些字符可以通过转义字符序列（例如换行符\n）表示为字符和字符串常量。转义字符序列看起来像两个字符，但只表示一个字符。另外，我们可以用<code>\ooo</code>表示 任意的字节大小的位模式 。其中，ooo代表1~3个八进制数字[0-7]。这种位模式还可以用<code>\xhhh</code>表示，其中，hh是一个或多个十六进制数字[0-9, a-f, A-F]。</p>
+<p>ANSI C语言的转义字符：</p>
 <table>
 <thead>
 <tr>
