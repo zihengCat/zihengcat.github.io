@@ -12,11 +12,11 @@
 
     <title>
         
-          C学习笔记-理解size_t - zihengCat
+          C知识汇总-常量 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/06/02/C学习笔记-理解size_t/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/16/C知识汇总-常量/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -167,11 +167,11 @@
                           <a class="tag" href="/tags/#C" title="C">C</a>
                         
                     </div>
-                    <h1>C学习笔记-理解size_t</h1>
+                    <h1>C知识汇总-常量</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-06-02
+                        2017-07-16
                     </span>
                 </div>
             </div>
@@ -190,25 +190,130 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文讲解C语言中<code>size_t</code>类型及其应用。</p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在C语言的标准库头文件中和很多开源项目中，我们都能发现<code>size_t</code>这个”数据类型”的身影。函数参数，函数返回值，循环控制变量，似乎<code>size_t</code>无处不在，可是我们又不太了解这个”数据类型”。</p>
-<h1 id="size-t"><a href="#size-t" class="headerlink" title="size_t"></a>size_t</h1><p><code>size_t</code>实际上是<strong>无符号整型</strong>，它并不是一个全新的数据类型，更不是一个关键字。<code>size_t</code>是由<code>typedef</code>定义而来的，我们在很多标准库头文件中都能发现它的身影。</p>
-<p>我们可以在标准库头文件<code>&lt;stddef.h&gt;</code>中找到<code>size_t</code>的定义。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> __SIZE_TYPE__ long unsigned int</span></div><div class="line"><span class="keyword">typedef</span> __SIZE_TYPE__ <span class="keyword">size_t</span>;</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>在子恒喵的机器上，<code>size_t</code>的真面目就是<code>long unsigned int</code>。</p>
-<h1 id="使用size-t的原因"><a href="#使用size-t的原因" class="headerlink" title="使用size_t的原因"></a>使用size_t的原因</h1><p>查阅相关文档后，子恒喵了解到，<code>size_t</code>实际上是<em>size type</em>的意思，它是一种<strong>计数类型</strong>。取值范围与机器架构与操作系统相关。32位机器一般是<code>unsigned int</code>，占4字节；64位机器一般是<code>unsigned long</code>，占8字节。</p>
-<p><code>size_t</code>常被用作计数，例如，<code>sizeof</code>运算符得到对象所占的字节数，字符串函数<code>strlen</code>返回字符串的长度等等，都是<code>size_t</code>类型的。</p>
-<p><code>size_t</code>类型<strong>理论上能容纳此机器中所能建立最大对象的字节大小</strong>。常被应用在数组索引，内存管理函数中。<br>最初设计<code>size_t</code>类型，是为了程序的跨平台兼容。</p>
-<h1 id="size-t小陷阱"><a href="#size-t小陷阱" class="headerlink" title="size_t小陷阱"></a>size_t小陷阱</h1><p>子恒喵在Google搜索的时候，发现了一个有趣的例子。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">if</span>(i &lt; <span class="built_in">strlen</span>(<span class="string">"hello"</span>))&#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Hello, World\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"Hello, ziheng\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ gcc test<span class="selector-class">.c</span> &amp;&amp; ./<span class="selector-tag">a</span><span class="selector-class">.out</span></div><div class="line">Hello, World</div></pre></td></tr></table></figure>
-<p>上述代码编译执行后，打印出<code>Hello, World</code>，这似乎与我们预想的有些不同啊。<br>实际上，这里触发了C的隐式自动类型转换机制，<code>size_t</code>的类型是<code>unsigned long int</code>，带符号整型变量<code>i</code>会被自动转换成<code>unsigned int</code>，即无符号整型，-1被转化成无符号数是4294967295，远大于5。</p>
-<p><strong>有符号数和无符号数之间的运算，千万小心。</strong></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>官方文档: <a href="http://en.cppreference.com/w/c/types/size\_t" target="_blank" rel="external">http://en.cppreference.com/w/c/types/size\_t</a></p>
-</li>
-<li><p>小陷阱例子: <a href="http://demon.tw/programming/c-size\_t-pitfall.html" target="_blank" rel="external">http://demon.tw/programming/c-size\_t-pitfall.html</a></p>
-</li>
+                <h1 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h1><p>常量，顾名思义，就是在程序运行期间，固定不变的量，这些固定的值，又被称做<strong>字面量</strong>。<br>常量可以是任何的基本数据类型，包括整型数字、浮点数字、字符、字符串和布尔值。<br>程序运行期间，内存中有一块不可写区域用来存放常量。</p>
+<h1 id="常量分类"><a href="#常量分类" class="headerlink" title="常量分类"></a>常量分类</h1><table>
+<thead>
+<tr>
+<th>常量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>整型常量</td>
+<td>1, 2, 3, 4 之类的常量，默认为10进制，可以8进制<code>0</code>或16进制<code>0x</code>表示，默认以<code>int</code>存储。</td>
+</tr>
+<tr>
+<td>长整型常量</td>
+<td>以<code>l</code>或<code>L</code>结尾的整数，以<code>long</code>存储。</td>
+</tr>
+<tr>
+<td>无符号整型常量</td>
+<td>以<code>u</code>或<code>U</code>结尾的整型常量。</td>
+</tr>
+<tr>
+<td>浮点型常量</td>
+<td>带小数点的数或以科学计数法表示的数，默认以<code>double</code>存储，可带<code>f</code>/<code>F</code>或<code>l</code>/<code>L</code>后缀改变其存储形式。</td>
+</tr>
+<tr>
+<td>字符型常量</td>
+<td>以单引号<code>&#39;</code>包括的单个字符，以<code>char</code>存储。</td>
+</tr>
+<tr>
+<td>字符串常量</td>
+<td>以双引号<code>&quot;</code>包括的一串字符序列。</td>
+</tr>
+<tr>
+<td>枚举常量</td>
+<td>整型常量值列表。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="字符常量"><a href="#字符常量" class="headerlink" title="字符常量"></a>字符常量</h1><p>一个字符常量是一个整数，书写时将一个字符括在单引号中，如，‘x’。字符在机器字符集中的数值就是字符常量的值。字符常量一般用来与其他字符进行比较，但也可以像其他整数一样参与数值运算。</p>
+<p>某些字符可以通过转义字符序列（例如换行符\n）表示为字符和字符串常量。转义字符序列看起来像两个字符，但只表示一个字符。另外，我们可以用<code>\ooo</code>表示 任意的字节大小的位模式 。其中，ooo代表1~3个八进制数字[0-7]。这种位模式还可以用<code>\xhhh</code>表示，其中，hh是一个或多个十六进制数字[0-9,a-f,A-F]。</p>
+<p>ANSI C语言的全部转义字符序列：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">转义字符</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>\a</code></td>
+<td style="text-align:left">响铃符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\b</code></td>
+<td style="text-align:left">退格符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\f</code></td>
+<td style="text-align:left">换页符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\n</code></td>
+<td style="text-align:left">换行符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\r</code></td>
+<td style="text-align:left">回车符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\t</code></td>
+<td style="text-align:left">水平制表符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\v</code></td>
+<td style="text-align:left">纵向制表符</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\\</code></td>
+<td style="text-align:left">反斜杠</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\?</code></td>
+<td style="text-align:left">问号</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\&#39;</code></td>
+<td style="text-align:left">单引号</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\&quot;</code></td>
+<td style="text-align:left">双引号</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\ooo</code></td>
+<td style="text-align:left">八进制数</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\xhh</code></td>
+<td style="text-align:left">十六进制数</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>\0</code></td>
+<td style="text-align:left">空字符</td>
+</tr>
+</tbody>
+</table>
+<h1 id="字符串常量"><a href="#字符串常量" class="headerlink" title="字符串常量"></a>字符串常量</h1><p>字符串常量也叫字符串字面量，是用双引号<code>&quot;</code>括起来的0或多个字符组成的字符序列。<br><strong>编译时，相邻的多个字符串常量会被自动拼接起来。</strong><br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"hello,"</span>        <span class="string">" world"</span></div></pre></td></tr></table></figure></p>
+<p>等价于：<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"hello, world"</span></div></pre></td></tr></table></figure></p>
+<p>字符串常量就是字符数组。字符串内部使用一个空字符<code>\0</code>作为串的结尾，因此，存储字符串的物理存储单元数比括在双引号中的字符数多1个 。<br>C语言对字符串的长度没有限制，但程序必须扫描完整个字符串后才能确定字符串的长度。标准库函数<code>strlen</code>可以返回字符串参数的长度，长度不包括末尾的<code>\0</code>。<br>注意搞清楚字符常量与仅包含一个字符的字符串之间的区别：<code>&#39;x&#39;</code>与<code>&quot;x&quot;</code>是不同的。前者是一个整数，其值是字母x在机器字符集中对应的数值（内部表示值）；后者是一个包含一个字符（即字母x）以及一个结束符<code>\0</code>的字符数组。</p>
+<h1 id="枚举常量"><a href="#枚举常量" class="headerlink" title="枚举常量"></a>枚举常量</h1><p>枚举是一个常量整型值的列表，例如：<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">enum</span> <span class="title">boolean</span> &#123;<span class="title">TRUE</span>, <span class="title">FALSE</span>&#125;;</span></div></pre></td></tr></table></figure></p>
+<p>在没有显式说明的情况下，enum 类型中第一个枚举量的值为0，第二个为1，依此递增。如果只指定了部分枚举名的值，那么未指定的枚举名的值将依着最后一个指定值向后递增。</p>
+<ul>
+<li><strong>枚举中枚举量的名字必须互不相同。</strong></li>
+<li><strong>但不同的名字的枚举量可以具有相同的值。</strong></li>
 </ul>
+<h2 id="枚举常量与-define常量"><a href="#枚举常量与-define常量" class="headerlink" title="枚举常量与#define常量"></a>枚举常量与<code>#define</code>常量</h2><p>枚举为建立常量值与名字之间的关联提供了一种便利的方式。<br>相对于<code>#define</code>常量来说，枚举常量的优势在于常量值可以自动生成。<br>可以声明enum类型的变量，但编译器不检查变量中存储的值是否为该枚举的有效值。<br>在调试程序可以以符号形式打印出枚举变量的值，这是枚举常量的优势之一。</p>
+<h1 id="const限定符"><a href="#const限定符" class="headerlink" title="const限定符"></a>const限定符</h1><p>任何变量在声明时都可以用<code>const</code>限定符限定。该限定符表示变量的值不能被修改。对数组而言，<code>const</code>限定符指定数组所有元素的值都不能被修改。<br><code>const</code>限定符也可配合函数参数使用，表明该函数不修改传入变量的值。</p>
+<ul>
+<li><strong>在C中，以const限定的变量，仍可以通过特殊方法修改变量的值。</strong></li>
+<li><strong>在C++中，const具有更加严格的限定性，可以放心当作常量使用。</strong></li>
+</ul>
+<p>试图修改const限定符限定的值，是未定义行为(undefined behavior)。</p>
 
 
                 <hr>
@@ -217,13 +322,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/06/03/Linux命令学习-cd/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-cd">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/06/01/Linux命令学习-pwd/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-pwd">Next Post &rarr;</a>
+                            <a href="/2017/07/14/C知识汇总-复合数据类型/" data-toggle="tooltip" data-placement="top" title="C知识汇总-复合数据类型">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
