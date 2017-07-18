@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword"  content="blog">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          C知识汇总-控制流 - zihengCat
+        
+    </title>
+
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/17/C知识汇总-控制流/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">ziheng&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#C" title="C">C</a>
+                        
+                    </div>
+                    <h1>C知识汇总-控制流</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-07-17
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h1><p>控制流是程序执行中所有可能的事件顺序的一个抽象表示。包括顺序，分支，循环。C语言提供了多种控制结构。</p>
+<h1 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h1><p>分支判断结构要求程序员指定一个或多个要评估或测试的条件，以及条件为真时要执行的语句（必需的）和条件为假时要执行的语句（可选的）。</p>
+<p>C语言把任何非零和非空的值假定为 true，把零或 null 假定为 false。</p>
+<h2 id="if-else-语句"><a href="#if-else-语句" class="headerlink" title="if-else 语句"></a>if-else 语句</h2><p>if-else 语句由一个布尔表达式后跟一个或多个语句组成。</p>
+<h3 id="if-else-流程图"><a href="#if-else-流程图" class="headerlink" title="if-else 流程图"></a>if-else 流程图</h3><p><strong>流程图</strong><br><img src="./if_statement.jpg" alt="if-statement"></p>
+<h3 id="if-else-语法"><a href="#if-else-语法" class="headerlink" title="if-else 语法"></a>if-else 语法</h3><p><strong>语法</strong><br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(condition<span class="params">-expression</span>)&#123;</div><div class="line">	statement(s);</div><div class="line">	<span class="params">...</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(condition<span class="params">-expression</span>)&#123;</div><div class="line">	statement(s);</div><div class="line">	<span class="params">...</span></div><div class="line">&#125;</div><div class="line"><span class="params">...</span></div><div class="line"><span class="keyword">else</span>&#123;</div><div class="line">	statement(s);</div><div class="line">	<span class="params">...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="switch-case-语句"><a href="#switch-case-语句" class="headerlink" title="switch-case 语句"></a>switch-case 语句</h2><p>一个 switch 语句允许测试一个变量等于多个值时的情况。每个值称为一个 case，且被测试的变量会对每个 switch-case 进行检查。</p>
+<h3 id="switch-case-流程图"><a href="#switch-case-流程图" class="headerlink" title="switch-case 流程图"></a>switch-case 流程图</h3><p><strong>流程图</strong><br><img src="./switch_statement.jpg" alt="switch-statement"></p>
+<h3 id="switch-case-语法"><a href="#switch-case-语法" class="headerlink" title="switch-case 语法"></a>switch-case 语法</h3><p><strong>语法</strong><br><figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span>(<span class="keyword">expression</span>)&#123;</div><div class="line">    <span class="keyword">case</span> constant-<span class="keyword">expression</span>  :</div><div class="line">       statement(s);</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> constant-<span class="keyword">expression</span>  :</div><div class="line">       statement(s);</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">	...</div><div class="line">    <span class="keyword">default</span> :</div><div class="line">       statement(s);</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="switch-case-注意事项"><a href="#switch-case-注意事项" class="headerlink" title="switch-case 注意事项"></a>switch-case 注意事项</h3><p><strong>注意事项</strong></p>
+<ul>
+<li>switch 语句中的 expression 必须是一个整型或枚举类型，或者是一个 class 类型，其中 class 有一个单一的转换函数将其转换为整型或枚举类型。</li>
+<li>在一个 switch 中可以有任意数量的 case 语句。每个 case 后跟一个要比较的值和一个冒号。</li>
+<li>case 的 constant-expression 必须与 switch 中的变量具有相同的数据类型，且必须是一个常量或字面量。</li>
+<li>当被测试的变量等于 case 中的常量时，case 后跟的语句将被执行，直到遇到 break 语句为止。</li>
+<li>当遇到 break 语句时，switch 终止，控制流将跳转到 switch 语句后的下一行。</li>
+<li>不是每一个 case 都需要包含 break。如果 case 语句不包含 break，控制流将会 继续 后续的 case，直到遇到 break 为止。</li>
+<li>一个 switch 语句可以有一个可选的 default case，出现在 switch 的结尾。default case 可用于在上面所有 case 都不为真时执行一个任务。default case 中的 break 语句不是必需的。</li>
+</ul>
+<h1 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h1><p>循环语句允许我们多次执行一个语句或一组语句。</p>
+<h2 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h2><p>只要给定的条件为真，while 循环语句会重复执行目标语句。</p>
+<h3 id="while-loop-流程图"><a href="#while-loop-流程图" class="headerlink" title="while-loop 流程图"></a>while-loop 流程图</h3><p><strong>流程图</strong><br><img src="./while_loop.png" alt="while-loop"></p>
+<h3 id="while-语法"><a href="#while-语法" class="headerlink" title="while 语法"></a>while 语法</h3><p><strong>语法</strong><br><figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(<span class="keyword">condition</span>-<span class="keyword">expression</span>)&#123;</div><div class="line">	statement(s);</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="do-while-循环"><a href="#do-while-循环" class="headerlink" title="do-while 循环"></a>do-while 循环</h2><p>do-while 循环与 while 循环类似，但是 do-while 循环在尾部检测循环条件，并会确保至少执行一次循环语句。</p>
+<h3 id="do-while-loop-流程图"><a href="#do-while-loop-流程图" class="headerlink" title="do-while-loop 流程图"></a>do-while-loop 流程图</h3><p><strong>流程图</strong><br><img src="./do_while_loop.jpg" alt="do-while-loop"></p>
+<h3 id="do-while-语法"><a href="#do-while-语法" class="headerlink" title="do-while 语法"></a>do-while 语法</h3><p><strong>语法</strong><br><figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">do</span>&#123;</div><div class="line">	statement(s);</div><div class="line">	...</div><div class="line">&#125;<span class="keyword">while</span>(<span class="keyword">condition</span>-<span class="keyword">expression</span>);</div></pre></td></tr></table></figure></p>
+<h2 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h2><p>for 循环允许我们将循环变量初始化，循环条件，循环变量更新写在一起。更加方便直观。</p>
+<h3 id="for-loop-流程图"><a href="#for-loop-流程图" class="headerlink" title="for-loop 流程图"></a>for-loop 流程图</h3><p><strong>流程图</strong></p>
+<p><img src="./for_loop.png" alt="for-loop"></p>
+<h3 id="for-loop-语法"><a href="#for-loop-语法" class="headerlink" title="for-loop 语法"></a>for-loop 语法</h3><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for (<span class="name">init</span><span class="comment">; condition; update)&#123;</span></div><div class="line">	statement(<span class="name">s</span>)<span class="comment">;</span></div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="for-loop-注意事项"><a href="#for-loop-注意事项" class="headerlink" title="for-loop 注意事项"></a>for-loop 注意事项</h3><p><strong>注意事项</strong></p>
+<ul>
+<li>for后面的三部分语句都可以留空，但分号必须有。</li>
+<li>分号起着分隔语句的作用。</li>
+<li>如果 condition-expression 留空，则默认为 true。</li>
+</ul>
+<h2 id="break语句与continue语句"><a href="#break语句与continue语句" class="headerlink" title="break语句与continue语句"></a>break语句与continue语句</h2><h3 id="break语句"><a href="#break语句" class="headerlink" title="break语句"></a>break语句</h3><p>break语句可以用于从for、while与do-while循环中提前退出，就如同从switch语句中提前退出一样。break语句能使程序从switch语句或<strong>最内层</strong>循环中立即跳出。</p>
+<h3 id="continue语句"><a href="#continue语句" class="headerlink" title="continue语句"></a>continue语句</h3><p>continue语句用于使for、while或do-while语句开始下一次循环的执行。</p>
+<ul>
+<li>在while与do-while语句中，continue语句的执行意味着立即执行测试部分；</li>
+<li>在for循环中，则意味着使控制转移到递增循环变量部分。<br>continue语句只用于循环语句，不用于switch语句。某个循环包含的switch语句中的continue语句，将导致进入下一次循环。</li>
+</ul>
+<h1 id="goto-语句与-label-标号"><a href="#goto-语句与-label-标号" class="headerlink" title="goto 语句与 label 标号"></a>goto 语句与 label 标号</h1><p>C语言提供了跳转的goto语句以及标记跳转位置的标号。从结构化程序设计的理论上讲，goto语句是没有必要的，实践中不使用goto语句也可以很容易的写出代码。C语言提供的goto语句是汇编代码层级的抽象。</p>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><img src="./goto_statement.jpg" alt="goto-statement"></p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">goto <span class="keyword">label</span><span class="bash">;</span></div><div class="line">	...</div><div class="line"><span class="keyword">label</span><span class="bash">: statement;</span></div></pre></td></tr></table></figure>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><p>goto 语句只能跳转到<strong>同一函数内</strong>的lable标号位置。</p>
+</li>
+<li><p>label 可以是任何除C关键字以外的纯文本，可以设置在同函数的任何位置。</p>
+</li>
+<li>任何使用 goto 语句的程序可以改写成不需要使用 goto 语句的形式。</li>
+<li><strong>不建议使用 goto 语句。</strong></li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/07/16/C知识汇总-常量/" data-toggle="tooltip" data-placement="top" title="C知识汇总-常量">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zihengcat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; ziheng&#39;s Blog 2017 
+                    <br>
+                    Theme by Hux 
+                    <span style="display: inline-block; margin: 0 5px;">
+                    <i class="fa fa-heart"></i>
+                    <span> | </span>
+                    </span> 
+                    Ported by Kaijun | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                    </br>
+                    <span id="busuanzi_container_site_pv">
+                      本站访问量<span id="busuanzi_value_site_pv"></span>次 | 
+                    </span>
+                    <span id="busuanzi_container_site_uv">
+                      本站访客数<span id="busuanzi_value_site_uv"></span>人 | 
+                    </span>
+                    <span id="busuanzi_container_page_pv">
+                      本文阅读量<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- busuanzi -->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zihengcat.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+</body>
+</html>
