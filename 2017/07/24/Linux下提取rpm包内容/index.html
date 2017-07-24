@@ -12,11 +12,11 @@
 
     <title>
         
-          zihengCat
+          Linux下提取rpm包内容 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/page/4/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/24/Linux下提取rpm包内容/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -146,263 +146,148 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg-o.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>ziheng&#39;s Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">zihengCat is Here!</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                        
+                    </div>
+                    <h1>Linux下提取rpm包内容</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-07-24
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <!-- Main Content -->
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-<div class="post-preview">
-
-    <a href="/2017/06/01/Linux命令学习-pwd/">
-        <h2 class="post-title">
-            Linux命令学习-pwd
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            pwdpwd命令是一个相当常用的命令，它告诉我们shell当前工作目录。pwd是Print working directory的意思。pwd是一个shell内置指令(shell builtin)。
-12$ type pwdpwd is a shell builtin
-详解1234567891011121314$ help pwdpwd: pwd [-LP]    Print the name......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-06-01
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/30/Shell学习笔记-Shell状态解释/">
-        <h2 class="post-title">
-            Shell学习笔记-Shell状态解释
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Shell状态有个有意思的bash环境变量SHELLOPTS，还有一个bash特殊变量$-。它们揭示出当前shell的状态。
-12$ echo "$-"himBH
-himBH是什么意思？它表示当前shell的什么状态呢？
-搜索Stack Overflow的问答后，子恒喵才大概明白了himBH是啥意思。
-
-h: 以Hash方式缓存环境变量$PATH中的可执行文件，用来加速命令执行。如果在已经缓......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-05-30
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/29/Shell学习笔记-Shell简介/">
-        <h2 class="post-title">
-            Shell学习笔记-Shell简介
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            摘要本文简要介绍Shell。    
-
-前言
-创世纪（1970 年 1 月 1 日）起经过数年后被目击到的妖精。会寄宿在家中，有着类似于棕精灵（Brownie）的生活方式，向她们拜托家务事或者杂活的时候，会回答两次并接受的温顺孩子。她们不常出现在人类存在的地方，因为言语不通，会用信件交流。如果拜托的事情说得比较含糊的话，有可能会造成误解而发生不得了的事情。对此的技巧是明确地像“做那个做这个&......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-05-29
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/20/苹果系统.DS_Store文件的产生与清理/">
-        <h2 class="post-title">
-            苹果系统.DS_Store文件的产生与清理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            前言使用苹果系统的同学都大都认识这个.DS_Store文件, 这个文件是苹果桌面程序Finder产生，纪录了当前目录的一些显示信息,比如, Finder以何种形式显示目录, 目录文件图标大小, 背景图, 目录元数据等等。该文件的全称是Desktop Services Store,由Finder产生，为Finder所用。有点类似与Windows系统下的desktop.ini文件。该文件默认是隐......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-05-20
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/19/C学习笔记-编译预处理指令/">
-        <h2 class="post-title">
-            C学习笔记-编译预处理指令
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            摘要本篇讲解C语言中的编译预处理指令。
-前言C代码的编译过程大致需要经过如下几个阶段:
-1源代码 --&gt; 编译预处理 --&gt; 编译 --&gt; 汇编 --&gt; 链接 --&gt; 可执行文件
-其中，编译预处理是第一阶段，由编译预处理器完成。C语言在设计之初，并没有考虑设计机制满足如下需求:
-
-包含外部文件至源代码
-定义宏
-根据条件编译代码
-
-为了满足这些需求，诞生了编译预处......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-05-19
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/14/使用GitHub-Pages与Hexo搭建个人小站/">
-        <h2 class="post-title">
-            使用GitHub-Pages与Hexo搭建个人小站
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            摘要此篇教程介绍如何使用GitHub Pages 与 Hexo 搭建个人独立博客。
-前言子恒喵并不是一只擅长写东西的喵，一直也没有写博客的习惯。不是大牛，没有啥有用的干货可以输出，建立这个个人小站也只是因为想在学习代码的路上记录一些个人学习心得。这是子恒喵博客的第一篇, Hello, World
-为什么选择GitHub Pages 与 Hexo现如今自媒体那么发达，能写东西的地方多了去啦, ......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-05-14
-    </p>
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-        <li class="previous">
-            <a href="/page/3/">&larr; Newer Posts</a>
-        </li>
-    
-    
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于大部分 <em>RedHat</em> 系的 Linux 系统而言，大都采用 <code>rpm</code> 作为默认的包管理器。<br>我们可以使用 <code>rpm -qlp</code> 查看一枚rpm包所包含的文件。如何在不安装rpm包的情况下提取包中的文件呢？</p>
+<h1 id="提取-rpm-包内容"><a href="#提取-rpm-包内容" class="headerlink" title="提取 rpm 包内容"></a>提取 rpm 包内容</h1><p>为了提取rpm包中的文件，我们需要用到两个命令: <code>rpm2cpio</code> 与 <code>cpio</code>。<br>使用以下命令，即可将rpm包内容提取出来：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm2cpio <span class="variable">&lt;packagename.rpm&gt;</span> |<span class="string"> cpio -idmv</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>rpm2cpio</code><br>由于rpm包是使用cpio格式打包的，此命令的作用就是将rpm包转换为cpio归档，直接输出到<strong>标准输出(stdout)</strong>。</p>
+</li>
+<li><p><code>cpio</code><br>cpio命令主要是用来建立或者还原备份档，与tar命令类似。</p>
+<ul>
+<li>i<br>extract，导出文件。</li>
+<li>d<br>make-directories，建立目录导出文件。</li>
+<li>m<br>保持文件的更新时间。</li>
+<li>v<br>显示详情。</li>
+</ul>
+</li>
 </ul>
 
 
+                <hr>
 
-                <!-- 如果开启评论功能 -->
                 
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/07/21/Linux下unzip乱码解决/" data-toggle="tooltip" data-placement="top" title="Linux下unzip乱码解决">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.png" />
-                        
-
-                        
-                            <p>I&#39;m zihengCat. A student in Hangzhou, learning Coding now.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/zihengcat">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
