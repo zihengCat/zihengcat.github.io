@@ -196,11 +196,12 @@
 <li>查看目录文件</li>
 <li>查看当前IP地址</li>
 <li>执行shell脚本</li>
-<li>…<br>这在vim中是非常容易办到的。</li>
+<li>…</li>
 </ul>
-<h1 id="Ctrl-z"><a href="#Ctrl-z" class="headerlink" title="Ctrl + z"></a><code>Ctrl + z</code></h1><p>传统方式: 使用shell的任务管理功能 <em>job control</em><br><code>Ctrl + z</code>将当前 vim 进程挂起，返回shell命令行。执行完相应操作后，<br>再使用<code>fg</code>将 vim 拉回。</p>
-<h1 id="cmd"><a href="#cmd" class="headerlink" title=":!{cmd}"></a><code>:!{cmd}</code></h1><p>如果我们只想执行一条shell命令，可以直接在vim命令行模式下键入<code>!{cmd}</code>，<br>感叹号<code>!</code>接需要执行的shell命令。命令执行完成后，按任意键返回vim。</p>
-<h1 id="sh-ell"><a href="#sh-ell" class="headerlink" title=":sh[ell]"></a><code>:sh[ell]</code></h1><p>还有一种方式，我们可以在vim下启动一支shell子进程，在子进程完成相应操作：<br><code>:sh[ell]</code>。</p>
+<p>这在vim中是非常容易办到的。</p>
+<h2 id="Ctrl-z"><a href="#Ctrl-z" class="headerlink" title="Ctrl + z"></a><code>Ctrl + z</code></h2><p>传统方式: 使用shell的任务管理功能 <em>job control</em>，<code>Ctrl + z</code>将当前 vim 进程挂起，返回shell命令行。执行完相应操作后，再使用<code>fg</code>将 vim 拉回。</p>
+<h2 id="cmd"><a href="#cmd" class="headerlink" title=":!{cmd}"></a><code>:!{cmd}</code></h2><p>如果我们只想执行一条shell命令，可以直接在vim命令行模式下键入<code>!{cmd}</code>，感叹号<code>!</code>后接需要执行的shell命令。命令执行完成后，按任意键返回vim。</p>
+<h2 id="sh-ell"><a href="#sh-ell" class="headerlink" title=":sh[ell]"></a><code>:sh[ell]</code></h2><p>还有一种方式，我们可以在vim下启动一支shell子进程，在子进程完成相应操作：<code>:sh[ell]</code>。</p>
 <blockquote>
 <p>参考:<br>:help shell</p>
 </blockquote>
