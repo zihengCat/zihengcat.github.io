@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -195,10 +195,10 @@
 <p>C语言把任何非零和非空的值假定为 true，把零或 null 假定为 false。</p>
 <h2 id="if-else-语句"><a href="#if-else-语句" class="headerlink" title="if-else 语句"></a>if-else 语句</h2><p>if-else 语句由一个布尔表达式后跟一个或多个语句组成。</p>
 <h3 id="if-else-流程图"><a href="#if-else-流程图" class="headerlink" title="if-else 流程图"></a>if-else 流程图</h3><p><strong>流程图</strong><br><img src="./if_statement.jpg" alt="if-statement"></p>
-<h3 id="if-else-语法"><a href="#if-else-语法" class="headerlink" title="if-else 语法"></a>if-else 语法</h3><p><strong>语法</strong><br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(condition<span class="params">-expression</span>)&#123;</div><div class="line">	statement(s);</div><div class="line">	<span class="params">...</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(condition<span class="params">-expression</span>)&#123;</div><div class="line">	statement(s);</div><div class="line">	<span class="params">...</span></div><div class="line">&#125;</div><div class="line"><span class="params">...</span></div><div class="line"><span class="keyword">else</span>&#123;</div><div class="line">	statement(s);</div><div class="line">	<span class="params">...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="if-else-语法"><a href="#if-else-语法" class="headerlink" title="if-else 语法"></a>if-else 语法</h3><p><strong>语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">if(condition-expression)&#123;</div><div class="line">	statement(s);</div><div class="line">	...</div><div class="line">&#125;</div><div class="line">else if(condition-expression)&#123;</div><div class="line">	statement(s);</div><div class="line">	...</div><div class="line">&#125;</div><div class="line">...</div><div class="line">else&#123;</div><div class="line">	statement(s);</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="switch-case-语句"><a href="#switch-case-语句" class="headerlink" title="switch-case 语句"></a>switch-case 语句</h2><p>一个 switch 语句允许测试一个变量等于多个值时的情况。每个值称为一个 case，且被测试的变量会对每个 switch-case 进行检查。</p>
 <h3 id="switch-case-流程图"><a href="#switch-case-流程图" class="headerlink" title="switch-case 流程图"></a>switch-case 流程图</h3><p><strong>流程图</strong><br><img src="./switch_statement.jpg" alt="switch-statement"></p>
-<h3 id="switch-case-语法"><a href="#switch-case-语法" class="headerlink" title="switch-case 语法"></a>switch-case 语法</h3><p><strong>语法</strong><br><figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span>(<span class="keyword">expression</span>)&#123;</div><div class="line">    <span class="keyword">case</span> constant-<span class="keyword">expression</span>  :</div><div class="line">       statement(s);</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> constant-<span class="keyword">expression</span>  :</div><div class="line">       statement(s);</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">	...</div><div class="line">    <span class="keyword">default</span> :</div><div class="line">       statement(s);</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="switch-case-语法"><a href="#switch-case-语法" class="headerlink" title="switch-case 语法"></a>switch-case 语法</h3><p><strong>语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">switch(expression)&#123;</div><div class="line">    case constant-expression  :</div><div class="line">       statement(s);</div><div class="line">       break;</div><div class="line">    case constant-expression  :</div><div class="line">       statement(s);</div><div class="line">       break;</div><div class="line">	...</div><div class="line">    default :</div><div class="line">       statement(s);</div><div class="line">       break;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="switch-case-注意事项"><a href="#switch-case-注意事项" class="headerlink" title="switch-case 注意事项"></a>switch-case 注意事项</h3><p><strong>注意事项</strong></p>
 <ul>
 <li>switch 语句中的 expression 必须是一个整型或枚举类型，或者是一个 class 类型，其中 class 有一个单一的转换函数将其转换为整型或枚举类型。</li>
@@ -212,14 +212,14 @@
 <h1 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h1><p>循环语句允许我们多次执行一个语句或一组语句。</p>
 <h2 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h2><p>只要给定的条件为真，while 循环语句会重复执行目标语句。</p>
 <h3 id="while-loop-流程图"><a href="#while-loop-流程图" class="headerlink" title="while-loop 流程图"></a>while-loop 流程图</h3><p><strong>流程图</strong><br><img src="./while_loop.png" alt="while-loop"></p>
-<h3 id="while-语法"><a href="#while-语法" class="headerlink" title="while 语法"></a>while 语法</h3><p><strong>语法</strong><br><figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span>(<span class="keyword">condition</span>-<span class="keyword">expression</span>)&#123;</div><div class="line">	statement(s);</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="while-语法"><a href="#while-语法" class="headerlink" title="while 语法"></a>while 语法</h3><p><strong>语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">while(condition-expression)&#123;</div><div class="line">	statement(s);</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="do-while-循环"><a href="#do-while-循环" class="headerlink" title="do-while 循环"></a>do-while 循环</h2><p>do-while 循环与 while 循环类似，但是 do-while 循环在尾部检测循环条件，并会确保至少执行一次循环语句。</p>
 <h3 id="do-while-loop-流程图"><a href="#do-while-loop-流程图" class="headerlink" title="do-while-loop 流程图"></a>do-while-loop 流程图</h3><p><strong>流程图</strong><br><img src="./do_while_loop.jpg" alt="do-while-loop"></p>
-<h3 id="do-while-语法"><a href="#do-while-语法" class="headerlink" title="do-while 语法"></a>do-while 语法</h3><p><strong>语法</strong><br><figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">do</span>&#123;</div><div class="line">	statement(s);</div><div class="line">	...</div><div class="line">&#125;<span class="keyword">while</span>(<span class="keyword">condition</span>-<span class="keyword">expression</span>);</div></pre></td></tr></table></figure></p>
+<h3 id="do-while-语法"><a href="#do-while-语法" class="headerlink" title="do-while 语法"></a>do-while 语法</h3><p><strong>语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">do&#123;</div><div class="line">	statement(s);</div><div class="line">	...</div><div class="line">&#125;while(condition-expression);</div></pre></td></tr></table></figure></p>
 <h2 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h2><p>for 循环允许我们将循环变量初始化，循环条件，循环变量更新写在一起。更加方便直观。</p>
 <h3 id="for-loop-流程图"><a href="#for-loop-流程图" class="headerlink" title="for-loop 流程图"></a>for-loop 流程图</h3><p><strong>流程图</strong></p>
 <p><img src="./for_loop.png" alt="for-loop"></p>
-<h3 id="for-loop-语法"><a href="#for-loop-语法" class="headerlink" title="for-loop 语法"></a>for-loop 语法</h3><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for (<span class="name">init</span><span class="comment">; condition; update)&#123;</span></div><div class="line">	statement(<span class="name">s</span>)<span class="comment">;</span></div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="for-loop-语法"><a href="#for-loop-语法" class="headerlink" title="for-loop 语法"></a>for-loop 语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for (init; condition; update)&#123;</div><div class="line">	statement(s);</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="for-loop-注意事项"><a href="#for-loop-注意事项" class="headerlink" title="for-loop 注意事项"></a>for-loop 注意事项</h3><p><strong>注意事项</strong></p>
 <ul>
 <li>for后面的三部分语句都可以留空，但分号必须有。</li>
@@ -234,7 +234,7 @@
 </ul>
 <h1 id="goto-语句与-label-标号"><a href="#goto-语句与-label-标号" class="headerlink" title="goto 语句与 label 标号"></a>goto 语句与 label 标号</h1><p>C语言提供了跳转的goto语句以及标记跳转位置的标号。从结构化程序设计的理论上讲，goto语句是没有必要的，实践中不使用goto语句也可以很容易的写出代码。C语言提供的goto语句是汇编代码层级的抽象。</p>
 <h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><img src="./goto_statement.jpg" alt="goto-statement"></p>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">goto <span class="keyword">label</span><span class="bash">;</span></div><div class="line">	...</div><div class="line"><span class="keyword">label</span><span class="bash">: statement;</span></div></pre></td></tr></table></figure>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">goto label;</div><div class="line">	...</div><div class="line">label: statement;</div></pre></td></tr></table></figure>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
 <li><p>goto 语句只能跳转到<strong>同一函数内</strong>的lable标号位置。</p>
 </li>

@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -191,8 +191,8 @@
                 post-container">
 
                 <h1 id="C语言发展历程"><a href="#C语言发展历程" class="headerlink" title="C语言发展历程"></a>C语言发展历程</h1><p>C语言的发展历程大致上分为三个阶段：<em>Old Style C</em>、<em>ANSI C(C89)</em>和<em>C99</em>。目前最新的标准是<em>C11</em>。<br>Ken Thompson和Dennis Ritchie最初发明C语言时有很多语法和现在最常用的写法并不一样，但为了向后兼容性（Backward Compatibility），这些语法仍然在C89和C99中保留下来了。C89是最早的C语言规范，于1989年提出，1990年首先由ANSI（美国国家标准委员会，American National Standards Institute）推出，后来被接纳为ISO国际标准（ISO/IEC 9899:1990），因而有时也称为C90，最经典的C语言教材<em>TCPL[K&amp;R]</em>就是基于这个版本的，ANSI C是目前最广泛采用的C语言标准，大多数编译器都完全支持。C99标准（ISO/IEC 9899:1999）是在1999年推出的，加入了许多新特性，在C99推出之后相当长的一段时间里，连GNU GCC也没有完全实现C99的所有特性。</p>
-<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"hello, world!\n"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="编译运行"><a href="#编译运行" class="headerlink" title="编译运行"></a>编译运行</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gcc hello<span class="selector-class">.c</span> &amp;&amp; ./<span class="selector-tag">a</span>.out</div></pre></td></tr></table></figure>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">int main(void)&#123;</div><div class="line">    printf(&quot;hello, world!\n&quot;);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="编译运行"><a href="#编译运行" class="headerlink" title="编译运行"></a>编译运行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gcc hello.c &amp;&amp; ./a.out</div></pre></td></tr></table></figure>
 <h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><ul>
 <li><p><strong>跨行注释符</strong> <code>/* ... */</code><br>无法嵌套，也不能出现在字符串字面量中。</p>
 </li>

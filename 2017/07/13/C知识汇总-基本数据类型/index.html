@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -219,7 +219,7 @@
 </tbody>
 </table>
 <h2 id="short-与-long"><a href="#short-与-long" class="headerlink" title="short 与 long"></a>short 与 long</h2><p><code>short</code>与<code>long</code>两个限定符用于限定整型</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">short</span> <span class="keyword">int</span> n;</div><div class="line"><span class="keyword">long</span>  <span class="keyword">int</span> m;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">short int n;</div><div class="line">long  int m;</div></pre></td></tr></table></figure>
 <p>在上述这种类型的声明中，<strong>关键字<code>int</code>可以省略</strong> 。通常很多人也习惯这么做。</p>
 <p><code>short</code>与<code>long</code>两个限定符的引入，可以为我们提供满足实际需要的不同长度的整型数。int通常代表特定机器中整数的自然长度。short类型通常为16位，long类型通常为32位，int类型可以为16位或32位。各编译器可以根据硬件特性自主选择合适的类型长度，但要遵循下列限制：short与int类型至少为16位，而long类型至少为32位，并且short类型不得长于int类型，int类型不得长于long类型。</p>
 <h2 id="signed-与-unsigned"><a href="#signed-与-unsigned" class="headerlink" title="signed 与 unsigned"></a>signed 与 unsigned</h2><p>类型限定符signed与unsigned可用于限定任何整型(包括char类型)。unsigned类型的数总是正值或0，并遵守算数模 <em>2^n</em> 定律，其中n是该类型占用的位数。例如，如果char对象占用8位，那么unsigned char类型变量的取值范围为0~255,而signed char类型变量的取值范围则为 -128~127（在采用对二补码的机器上）。不带限定符的char类型对象是否带符号则取决于具体机器，但可打印字符总是正值。</p>

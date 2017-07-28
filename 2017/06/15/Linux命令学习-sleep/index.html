@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -191,9 +191,9 @@
                 post-container">
 
                 <h1 id="sleep"><a href="#sleep" class="headerlink" title="sleep"></a>sleep</h1><p><code>sleep</code>命令的作用非常简单，就是使系统<strong>暂停</strong>一段时间。<br><code>sleep</code>是<em>GNU coreutils</em>工具之一。</p>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ sleep <span class="comment">--help</span></div><div class="line">Usage: sleep NUMBER[SUFFIX]...</div><div class="line">  <span class="keyword">or</span>:  sleep OPTION</div><div class="line">Pause <span class="keyword">for</span> NUMBER <span class="built_in">seconds</span>.  SUFFIX may be <span class="string">'s'</span> <span class="keyword">for</span> <span class="built_in">seconds</span> (<span class="keyword">the</span> default),</div><div class="line"><span class="string">'m'</span> <span class="keyword">for</span> minutes, <span class="string">'h'</span> <span class="keyword">for</span> hours <span class="keyword">or</span> <span class="string">'d'</span> <span class="keyword">for</span> days.  Unlike most implementations</div><div class="line">that <span class="built_in">require</span> NUMBER be <span class="keyword">an</span> <span class="keyword">integer</span>, here NUMBER may be <span class="keyword">an</span> arbitrary floating</div><div class="line">point <span class="built_in">number</span>.  Given <span class="literal">two</span> <span class="keyword">or</span> more arguments, pause <span class="keyword">for</span> <span class="keyword">the</span> amount <span class="keyword">of</span> <span class="built_in">time</span></div><div class="line">specified <span class="keyword">by</span> <span class="keyword">the</span> <span class="built_in">sum</span> <span class="keyword">of</span> their values.</div><div class="line"></div><div class="line">      <span class="comment">--help     display this help and exit</span></div><div class="line">      <span class="comment">--version  output version information and exit</span></div><div class="line"></div><div class="line">GNU coreutils online help: &lt;<span class="keyword">http</span>://www.gnu.org/software/coreutils/&gt;</div><div class="line">For complete documentation, run: info coreutils <span class="string">'sleep invocation'</span></div></pre></td></tr></table></figure>
+<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ sleep --help</div><div class="line">Usage: sleep NUMBER[SUFFIX]...</div><div class="line">  or:  sleep OPTION</div><div class="line">Pause for NUMBER seconds.  SUFFIX may be &apos;s&apos; for seconds (the default),</div><div class="line">&apos;m&apos; for minutes, &apos;h&apos; for hours or &apos;d&apos; for days.  Unlike most implementations</div><div class="line">that require NUMBER be an integer, here NUMBER may be an arbitrary floating</div><div class="line">point number.  Given two or more arguments, pause for the amount of time</div><div class="line">specified by the sum of their values.</div><div class="line"></div><div class="line">      --help     display this help and exit</div><div class="line">      --version  output version information and exit</div><div class="line"></div><div class="line">GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;</div><div class="line">For complete documentation, run: info coreutils &apos;sleep invocation&apos;</div></pre></td></tr></table></figure>
 <p>命令没有特殊的选项，就是<em>help</em>与<em>version</em>两个常规的选项啦。</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sleep</span> <span class="built_in">number</span>[smhd]…</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sleep number[smhd]…</div></pre></td></tr></table></figure>
 <p>用法是，sleep后接一个数字(可以是整数，也可以是浮点数)，再接一个后缀：</p>
 <ul>
 <li>s: 秒</li>

@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -191,7 +191,7 @@
                 post-container">
 
                 <h1 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h1><p><code>uname</code>命令可以打印当前系统信息。<br><code>uname</code>是<em>GNU coreutils</em>工具之一，遵循<em>IEEE POSIX</em>规范。</p>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ uname --<span class="keyword">help</span></div><div class="line">Usage: uname [OPTION]...</div><div class="line"><span class="keyword">Print</span> certain <span class="built_in">system</span> information.  With <span class="keyword">no</span> OPTION, same <span class="keyword">as</span> -s.</div><div class="line"></div><div class="line">  -<span class="keyword">a</span>, --<span class="keyword">all</span>                <span class="keyword">print</span> <span class="keyword">all</span> information, in the following order,</div><div class="line">                             except omit -<span class="keyword">p</span> <span class="built_in">and</span> -i <span class="keyword">if</span> unknown:</div><div class="line">  -s, --kernel-name        <span class="keyword">print</span> the kernel name</div><div class="line">  -n, --nodename           <span class="keyword">print</span> the network node <span class="built_in">hostname</span></div><div class="line">  -r, --kernel-release     <span class="keyword">print</span> the kernel release</div><div class="line">  -v, --kernel-<span class="keyword">version</span>     <span class="keyword">print</span> the kernel <span class="keyword">version</span></div><div class="line">  -<span class="keyword">m</span>, --machine            <span class="keyword">print</span> the machine hardware name</div><div class="line">  -<span class="keyword">p</span>, --processor          <span class="keyword">print</span> the processor <span class="built_in">type</span> <span class="built_in">or</span> <span class="string">"unknown"</span></div><div class="line">  -i, --hardware-platform  <span class="keyword">print</span> the hardware platform <span class="built_in">or</span> <span class="string">"unknown"</span></div><div class="line">  -<span class="keyword">o</span>, --operating-<span class="built_in">system</span>   <span class="keyword">print</span> the operating <span class="built_in">system</span></div><div class="line">      --<span class="keyword">help</span>     <span class="keyword">display</span> this <span class="keyword">help</span> <span class="built_in">and</span> <span class="keyword">exit</span></div><div class="line">      --<span class="keyword">version</span>  output <span class="keyword">version</span> information <span class="built_in">and</span> <span class="keyword">exit</span></div><div class="line"></div><div class="line">GNU coreutils online <span class="keyword">help</span>: &lt;http://www.gnu.org/software/coreutils/&gt;</div><div class="line">For <span class="built_in">complete</span> documentation, run: info coreutils <span class="string">'uname invocation'</span></div></pre></td></tr></table></figure>
+<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$ uname --help</div><div class="line">Usage: uname [OPTION]...</div><div class="line">Print certain system information.  With no OPTION, same as -s.</div><div class="line"></div><div class="line">  -a, --all                print all information, in the following order,</div><div class="line">                             except omit -p and -i if unknown:</div><div class="line">  -s, --kernel-name        print the kernel name</div><div class="line">  -n, --nodename           print the network node hostname</div><div class="line">  -r, --kernel-release     print the kernel release</div><div class="line">  -v, --kernel-version     print the kernel version</div><div class="line">  -m, --machine            print the machine hardware name</div><div class="line">  -p, --processor          print the processor type or &quot;unknown&quot;</div><div class="line">  -i, --hardware-platform  print the hardware platform or &quot;unknown&quot;</div><div class="line">  -o, --operating-system   print the operating system</div><div class="line">      --help     display this help and exit</div><div class="line">      --version  output version information and exit</div><div class="line"></div><div class="line">GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;</div><div class="line">For complete documentation, run: info coreutils &apos;uname invocation&apos;</div></pre></td></tr></table></figure>
 <ul>
 <li>s: 核心名</li>
 <li>o: 操作系统名</li>
