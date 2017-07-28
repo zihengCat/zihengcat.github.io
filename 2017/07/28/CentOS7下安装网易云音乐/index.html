@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword"  content="blog">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          CentOS7下安装网易云音乐 - zihengCat
+        
+    </title>
+
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/28/CentOS7下安装网易云音乐/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">ziheng&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                        
+                    </div>
+                    <h1>CentOS7下安装网易云音乐</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-07-28
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍在CentOS7下安装网易云音乐。</p>
+<h1 id="网易云音乐Linux版"><a href="#网易云音乐Linux版" class="headerlink" title="网易云音乐Linux版"></a>网易云音乐Linux版</h1><p><img src="./netease-cloud-music-pic1.png" alt="netease-cloud-music-pic1"></p>
+<p><em>网易云音乐</em> 是以其优秀的用户体验征服了大量用户，半年前，网易云音乐与深度科技团队合作推出了”网易云音乐Linux版”，简直是国产软件中的一股清流。可惜，网易只提供了 <em>debian</em> 系的打包文件 deb，并没有提供 rpm 格式的打包文件。Fedora, Arch社区的小伙伴们有自发打包网易云音乐Linux版。但是，子恒喵用的是CentOS7…只能手动安装了。</p>
+<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><p>子恒喵使用的系统为<code>CentOS-7-x86_64-1611</code>，内核版本号为<code>3.10.0-514.el7.x86_64</code>。</p>
+<h2 id="Step-1-下载安装包"><a href="#Step-1-下载安装包" class="headerlink" title="Step 1 下载安装包"></a>Step 1 下载安装包</h2><p>请前往<a href="http://music.163.com/#/download" target="_blank" rel="external">网易云音乐下载页</a>，下载<strong>ubuntu14.04(64位)</strong>版本。注意请下载这个版本，不是说其他版本不能用，只是因为其他版本对依赖包的处理相当繁琐，有些依赖包找不到，甚至要更动到基础依赖包（GLIBC）。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget http://s1.music<span class="meta">.126</span>.net/download/pc/netease-cloud-music_1<span class="meta">.0</span><span class="meta">.0</span>-2_amd64_ubuntu14<span class="meta">.04</span>.deb</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>请下载低版本ubuntu14.04(64位)安装包。</p>
+</blockquote>
+<h2 id="Step-2-解压安装包"><a href="#Step-2-解压安装包" class="headerlink" title="Step 2 解压安装包"></a>Step 2 解压安装包</h2><p>新建一个文件夹，接下来的操作都在该文件夹中进行。<br>我们可以使用<code>ar</code>工具提取deb包中的内容。<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ mkdir netease-music</div><div class="line">$ mv ./netease-cloud-music_1.<span class="number">0.0</span>-<span class="number">2</span>_amd64_ubuntu14.<span class="number">04</span><span class="selector-class">.deb</span> netease-music</div><div class="line">$ cd netease-music</div><div class="line">$ ar -xv ./netease-cloud-music_1.<span class="number">0.0</span>-<span class="number">2</span>_amd64_ubuntu14.<span class="number">04</span><span class="selector-class">.deb</span></div><div class="line">x - debian-binary</div><div class="line">x - control<span class="selector-class">.tar</span><span class="selector-class">.gz</span></div><div class="line">x - data<span class="selector-class">.tar</span><span class="selector-class">.xz</span></div></pre></td></tr></table></figure></p>
+<p>可以看到，得到3个文件，其中 <em>data.tar.xz</em> 就是网易云音乐Linux版的主体文件。<em>control.tar.gz</em> 是控制文件，包含该deb包的基本信息，文件MD5校验码等等。<br>接下来我们解压出网易云音乐Linux版的主体文件。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> xz <span class="_">-d</span> ./data.tar.xz</span></div><div class="line"><span class="meta">$</span><span class="bash"> tar -xv <span class="_">-f</span> ./data.tar</span></div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>解压得到一个<code>/usr</code>目录，进去一看，<code>bin</code>，<code>lib</code>，<code>share</code>，标准的Linux软件目录。<br>我们来把这些文件放到它们应该去的地方。<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo chown -R <span class="string">root:</span>root .<span class="regexp">/usr/</span></div><div class="line">$ sudo cp -r .<span class="regexp">/usr/</span>* <span class="regexp">/usr/</span></div></pre></td></tr></table></figure></p>
+<h2 id="Step-3-解决依赖问题"><a href="#Step-3-解决依赖问题" class="headerlink" title="Step 3 解决依赖问题"></a>Step 3 解决依赖问题</h2><p>这一步应该是最繁琐的啦。我们需要手动解决依赖问题。<br>我们先把依赖信息取出来。还记得<code>control.tar.gz</code>这个文件么，里面就有存放网易云音乐的依赖包信息。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> tar -xvz <span class="_">-f</span> ./control.tar.gz</span></div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>解压出来的那个<code>control</code>文件中，就有我们需要的依赖信息。<br>在使用yum解决依赖包问题之前，我们需要先引入额外的两枚yum仓库：<code>epel</code>与<code>rpmfusion</code>。这两枚yum仓库中可以找到我们需要的依赖包。<br>如何安装，可以看<a href="https://zihengcat.github.io/2017/06/12/为CentOS7添加EPEL源/">这篇博文</a>。</p>
+<p>网易云音乐Linux版使用的图形库是<code>Qt</code>，我们把<code>Qt</code>的依赖包装上。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo yum install qt5-qtbase-gui qt5-qtx11extras qt5-qtmultimedia</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>解决图形库依赖</p>
+</blockquote>
+<p>网易云音乐Linux版使用的解码器是<code>gstreamer</code>。还有<code>gstreamer</code>3枚插件。<br><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ sudo yum install gstreamer<span class="string">\</span></div><div class="line">                   gstreamer-plugins-good<span class="string">\</span></div><div class="line">                   gstreamer-plugins-bad<span class="string">\</span></div><div class="line">                   gstreamer-plugins-ugly</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>解决解码器依赖</p>
+</blockquote>
+<p>网易云音乐Linux版使用到了<code>chrome-sandbox</code>（云音乐客户端本质就是在chrome外边套层壳…），我们还需要一枚依赖包。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo yum install libXScrnSaver</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>解决 chrome 框架依赖</p>
+</blockquote>
+<p><strong>可以查看<code>control</code>文件，将还缺失的依赖包补齐。</strong></p>
+<h2 id="Step-4-解决-abort-问题"><a href="#Step-4-解决-abort-问题" class="headerlink" title="Step 4 解决 abort 问题"></a>Step 4 解决 abort 问题</h2><p>装好依赖包以后，我们还有一个小问题要解决。网易云音乐Linux使用<code>chrome</code>框架，需要chrome沙盒机制<code>chrome-sandbox</code>正常工作。<br>启用<code>chrome-sandbox</code>机制，我们需要为<code>chrome-sandbox</code>设置特殊权限位: <strong>suid</strong></p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo chown <span class="symbol">root:</span>root /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">netease</span>-<span class="title">cloud</span>-<span class="title">music</span>/<span class="title">chrome</span>-<span class="title">sandbox</span></span></div><div class="line">$ sudo chmod <span class="number">4755</span> /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">netease</span>-<span class="title">cloud</span>-<span class="title">music</span>/<span class="title">chrome</span>-<span class="title">sandbox</span></span></div></pre></td></tr></table></figure>
+<p>此时，我们执行<code>netease-cloud-music</code>命令，就没有问题了。</p>
+<p><img src="./netease-cloud-music-pic2.png" alt="netease-cloud-music-pic2"></p>
+<h2 id="Step-5-图形界面快捷方式"><a href="#Step-5-图形界面快捷方式" class="headerlink" title="Step 5 图形界面快捷方式"></a>Step 5 图形界面快捷方式</h2><p>至此，我们的安装过程就已经完成。接下来的一些工作，都是锦上添花的事情。<br>我们不希望每次都从命令行启动网易云音乐，我们来添加图形界面快捷方式。<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo chmod <span class="number">644</span> <span class="regexp">/usr/</span>share<span class="regexp">/applications/</span>netease-cloud-music.desktop</div><div class="line">$ sudo vi <span class="regexp">/usr/</span>share<span class="regexp">/applications/</span>netease-cloud-music.desktop</div></pre></td></tr></table></figure></p>
+<p>修改<code>Icon</code>与<code>Exec</code>选项，使其对应到正确的路径。<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="section">[Desktop Entry]</span></div><div class="line"><span class="attr">Version</span>=<span class="number">1.0</span></div><div class="line"><span class="attr">Type</span>=Application</div><div class="line"><span class="attr">Name</span>=NetEase Cloud Music</div><div class="line"><span class="attr">Name[zh_CN]</span>=网易云音乐</div><div class="line"><span class="attr">Name[zh_TW]</span>=網易雲音樂</div><div class="line"><span class="attr">Comment</span>=NetEase Cloud Music</div><div class="line"><span class="attr">Comment[zh_CN]</span>=网易云音乐</div><div class="line"><span class="attr">Comment[zh_TW]</span>=網易雲音樂</div><div class="line"><span class="attr">Icon</span>=/usr/share/icons/hicolor/scalable/apps/netease-cloud-music.svg</div><div class="line"><span class="attr">Exec</span>=/usr/bin/netease-cloud-music %U</div><div class="line"><span class="attr">Comment</span>=NetEase Cloud Music</div><div class="line"><span class="attr">Categories</span>=AudioVideo;Player;</div><div class="line"><span class="attr">Terminal</span>=<span class="literal">false</span></div><div class="line"><span class="attr">StartupNotify</span>=<span class="literal">true</span></div><div class="line"><span class="attr">MimeType</span>=audio/aac;audio/flac;audio/mp3;audio/mp4;audio/mpeg;audio/ogg;audio/x-ape;audio/x-flac;audio/x-mp3;audio/x-mpeg;audio/x-ms-wma;audio/x-vorbis;audio/x-vorbis+ogg;audio/x-wav;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意使用绝对路径</p>
+</blockquote>
+<h2 id="Step-6-卸载相关配置"><a href="#Step-6-卸载相关配置" class="headerlink" title="Step 6 卸载相关配置"></a>Step 6 卸载相关配置</h2><p>由于网易云音乐Linux版是我们手动安装的，并不能使用包管理器管理它，最好写一支脚本，纪录下安装文件路径，方便卸载。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="built_in">set</span> -u</div><div class="line">BIN_DIR=<span class="string">'/usr/bin/netease-cloud-music'</span></div><div class="line">LIB_DIR=<span class="string">'/usr/lib/netease-cloud-music/'</span></div><div class="line">DES_DIR=<span class="string">'/usr/share/applications/netease-cloud-music.desktop'</span></div><div class="line">ICO_DIR=<span class="string">'/usr/share/icons/hicolor/scalable/apps/netease-cloud-music.svg'</span></div><div class="line">DOC_DIR=<span class="string">'/usr/share/doc/netease-cloud-music/'</span></div><div class="line"></div><div class="line"><span class="function"><span class="title">uninstall</span></span>()&#123;</div><div class="line">    sudo rm -rf <span class="variable">$&#123;BIN_DIR&#125;</span> &amp;&amp; \</div><div class="line">    sudo rm -rf <span class="variable">$&#123;LIB_DIR&#125;</span> &amp;&amp; \</div><div class="line">    sudo rm -rf <span class="variable">$&#123;DES_DIR&#125;</span> &amp;&amp; \</div><div class="line">    sudo rm -rf <span class="variable">$&#123;ICO_DIR&#125;</span> &amp;&amp; \</div><div class="line">    sudo rm -rf <span class="variable">$&#123;DOC_DIR&#125;</span> &amp;&amp; \</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">#uninstall  # 卸载网易云音乐Linux版</span></div><div class="line"><span class="built_in">exit</span> <span class="variable">$&#123;?&#125;</span></div></pre></td></tr></table></figure></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/07/26/Vim学习笔记-执行shell命令/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-执行shell命令">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/zihengcat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; ziheng&#39;s Blog 2017 
+                    <br>
+                    Theme by Hux 
+                    <span style="display: inline-block; margin: 0 5px;">
+                    <i class="fa fa-heart"></i>
+                    <span> | </span>
+                    </span> 
+                    Ported by Kaijun | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                    </br>
+                    <span id="busuanzi_container_site_pv">
+                      本站访问量<span id="busuanzi_value_site_pv"></span>次 | 
+                    </span>
+                    <span id="busuanzi_container_site_uv">
+                      本站访客数<span id="busuanzi_value_site_uv"></span>人 | 
+                    </span>
+                    <span id="busuanzi_container_page_pv">
+                      本文阅读量<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- busuanzi -->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://zihengcat.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+</body>
+</html>
