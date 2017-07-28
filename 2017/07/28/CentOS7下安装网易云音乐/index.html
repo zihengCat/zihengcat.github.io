@@ -89,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -194,8 +194,12 @@
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍在CentOS7下安装网易云音乐。</p>
 <h1 id="网易云音乐Linux版"><a href="#网易云音乐Linux版" class="headerlink" title="网易云音乐Linux版"></a>网易云音乐Linux版</h1><p><img src="./netease-cloud-music-pic1.png" alt="netease-cloud-music-pic1"></p>
-<p><em>网易云音乐</em> 是以其优秀的用户体验征服了大量用户，半年前，网易云音乐与深度科技团队合作推出了”网易云音乐Linux版”，简直是国产软件中的一股清流。可惜，网易只提供了 <em>debian</em> 系的打包文件 deb，并没有提供 rpm 格式的打包文件。Fedora, Arch社区的小伙伴们有自发打包网易云音乐Linux版。但是，子恒喵用的是CentOS7…只能手动安装了。</p>
-<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><p>子恒喵使用的系统为<code>CentOS-7-x86_64-1611</code>，内核版本号为<code>3.10.0-514.el7.x86_64</code>。</p>
+<p>网易云音乐以其优秀的用户体验征服了大量用户，半年前，网易云音乐与深度科技团队合作推出了”网易云音乐Linux版”，简直是国产软件中的一股清流。可惜，网易只提供了 <em>debian</em> 系的打包文件 deb，并没有提供 rpm 格式的打包文件。Fedora, Arch社区的小伙伴们有自发打包网易云音乐Linux版。但是，子恒喵用的是<em>CentOS7</em>…只能手动安装了。</p>
+<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><p>子恒喵使用的系统:</p>
+<ul>
+<li>系统版本号: <em>CentOS-7-x86_64-1611</em></li>
+<li>内核版本号: <em>3.10.0-514.el7.x86_64</em></li>
+</ul>
 <h2 id="Step-1-下载安装包"><a href="#Step-1-下载安装包" class="headerlink" title="Step 1 下载安装包"></a>Step 1 下载安装包</h2><p>请前往<a href="http://music.163.com/#/download" target="_blank" rel="external">网易云音乐下载页</a>，下载<strong>ubuntu14.04(64位)</strong>版本。注意请下载这个版本，不是说其他版本不能用，只是因为其他版本对依赖包的处理相当繁琐，有些依赖包找不到，甚至要更动到基础依赖包（GLIBC）。<br><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ wget http://s1.music<span class="meta">.126</span>.net/download/pc/netease-cloud-music_1<span class="meta">.0</span><span class="meta">.0</span>-2_amd64_ubuntu14<span class="meta">.04</span>.deb</div></pre></td></tr></table></figure></p>
 <blockquote>
 <p>请下载低版本ubuntu14.04(64位)安装包。</p>
