@@ -190,11 +190,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近，子恒喵的苹果笔记本电脑的 Wi-FI 网络似乎出现了一点小问题。<br>有时候显示的是 Wi-FI 网络正常连接，但是网络就是卡住不上，网络时断时续的感觉…<br>在<strong>重置 Macintosh 网络配置</strong>之后，这个问题就解决了。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近，子恒喵的苹果笔记本电脑的 Wi-Fi 网络似乎出现了一点小问题。<br>有时候显示的是 Wi-Fi 网络正常连接，但是网络就是卡住不上，网络时断时续的感觉…<br>在<strong>重置 Macintosh 网络配置</strong>之后，这个问题就解决了。</p>
 <h1 id="Macintosh-重置网络"><a href="#Macintosh-重置网络" class="headerlink" title="Macintosh 重置网络"></a>Macintosh 重置网络</h1><p>重置 OS X 的网络十分简单粗暴，进入存放网络配置文件的目录，删光网络配置文件就行了。</p>
-<ul>
-<li>OS X 网络配置文件路径：<em>/Library/Preferences/SystemConfiguration/</em></li>
-</ul>
+<p>OS X 网络配置文件路径：<em>/Library/Preferences/SystemConfiguration/</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo rm -rf /Library/Preferences/SystemConfiguration/</div><div class="line">$ sudo reboot</div></pre></td></tr></table></figure>
 <p>删完文件之后，重启系统，会自动生成好初始化的配置文件。之后去设置里把网络重新配置一遍，就没有太大问题了。</p>
 
