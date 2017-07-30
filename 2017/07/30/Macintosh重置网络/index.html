@@ -12,11 +12,11 @@
 
     <title>
         
-          C知识汇总-代码风格 - zihengCat
+          Macintosh重置网络 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/07/29/C知识汇总-代码风格/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/30/Macintosh重置网络/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -164,14 +164,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#C" title="C">C</a>
+                          <a class="tag" href="/tags/#Macintosh" title="Macintosh">Macintosh</a>
                         
                     </div>
-                    <h1>C知识汇总-代码风格</h1>
+                    <h1>Macintosh重置网络</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-07-29
+                        2017-07-30
                     </span>
                 </div>
             </div>
@@ -190,79 +190,13 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="空白与缩进"><a href="#空白与缩进" class="headerlink" title="空白与缩进"></a>空白与缩进</h1><h2 id="空白"><a href="#空白" class="headerlink" title="空白"></a>空白</h2><ol>
-<li><p>关键字<code>if</code>、<code>while</code>、<code>for</code>与其后的控制表达式的<code>(</code>括号之间插入一个空格分隔，但括号内的表达式应紧贴括号。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">while (1);</div></pre></td></tr></table></figure>
-</li>
-<li><p>双目运算符的两侧各插入一个空格分隔，单目运算符和操作数之间不加空格。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">i = i + 1;</div><div class="line">++i;</div><div class="line">!(i &lt; 1);</div><div class="line">-x; </div><div class="line">&amp;a[1];</div></pre></td></tr></table></figure>
-</li>
-<li><p>后缀运算符和操作数之间不加空格。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s.a           /* 取结构体成员 */</div><div class="line">foo(arg1)     /* 函数调用 */</div><div class="line">a[i]          /* 取数组成员 */</div></pre></td></tr></table></figure>
-</li>
-<li><p>逗号<code>,</code>与分号<code>;</code>之后加空格，这是英文的书写习惯。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for(i = 0; i &lt; 10; i++);</div><div class="line">foo(arg1, arg2);</div></pre></td></tr></table></figure>
-</li>
-<li><p>以上关于双目运算符和后缀运算符的规则并没有严格要求，有时候为了突出优先级也可以写得更紧凑一些，但是省略的空格一定不要误导了读代码的人。</p>
-</li>
-<li><p>由于UNIX系统标准的字符终端是24行80列的，接近或大于80个字符的较长语句要折行写，折行后用空格和上面的表达式或参数对齐。</p>
-</li>
-<li><p>较长的字符串可以断成多个字符串分行书写，C编译器会自动把相邻的多个字符串拼接在一起。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">printf(&quot;This is such a long sentence that &quot;</div><div class="line">       &quot;it cannot be held within a line\n&quot;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>可以在变量定义语句中使变量名对齐，这样看起来很美观。</p>
-</li>
-</ol>
-<h2 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h2><ol>
-<li><p>要用缩进体现出语句块的层次关系。</p>
-</li>
-<li><p>不要混用Tab与空格。</p>
-</li>
-<li><p><code>if/else</code>、<code>while</code>、<code>do/while</code>、<code>for</code>、<code>switch</code> 这些带语句块的语句，语句块<code>{...}</code>可以和关键字写在同一行，用空格隔开；也可以单独写一行。</p>
-</li>
-<li><p><code>switch</code> 语句块里的 <code>case</code>、<code>default</code> 对齐写。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">switch (c) &#123;</div><div class="line">case &apos;A&apos;:   </div><div class="line">    /* statements */</div><div class="line">case &apos;B&apos;:</div><div class="line">    /* statements */</div><div class="line">case &apos;C&apos;:</div><div class="line">    /* statements */</div><div class="line">default:</div><div class="line">    /* statements */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>代码中每个逻辑段落之间应该用一个空行分隔开。例如每个函数定义之间应该插入一个空行，头文件、全局变量定义和函数定义之间也应该插入空行。</p>
-</li>
-<li><p>如果一个函数的语句很长，也可以根据相关性分成若干组，用空行分隔。</p>
-</li>
-</ol>
-<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><ol>
-<li><p>注释应采用<code>/* comment */</code>的形式，用空格把界定符和文字分隔来开。</p>
-</li>
-<li><p>函数注释说明此函数的功能、参数、返回值、错误码等，写在函数定义上侧，和此函数定义之间不留空行，顶头写不缩进。</p>
-</li>
-<li><p>相对独立的语句组注释对这一组语句做特别说明，写在语句组上侧，和此语句组之间不留空行，与当前语句组的缩进一致。</p>
-</li>
-<li><p>代码行右侧的简短注释对当前代码行做特别说明，一般为单行注释，和代码之间至少用一个空格隔开，一个源文件中所有的右侧注释最好能上下对齐。</p>
-</li>
-<li><p>复杂的结构体定义比函数更需要注释说明。</p>
-</li>
-<li><p>复杂的宏定义和变量声明也需要注释。</p>
-</li>
-</ol>
-<blockquote>
-<p>关于注释应该使用 <code>/*...*/</code> 还是 <code>//</code> 可以具体情况具体分析。<br><em>Linux Kernel</em> 因为考虑到平台兼容性，不允许使用 C99 的<code>//</code>注释。<br>但如果程序并不会兼容性有过多要求，也可以使用<code>//</code>进行注释。</p>
-</blockquote>
-<h1 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h1><h2 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h2><p>内核编码风格规定: </p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近，子恒喵的苹果笔记本电脑的 Wi-FI 网络似乎出现了一点小问题。<br>有时候显示的是 Wi-FI 网络正常连接，但是网络就是卡住不上，网络时断时续的感觉…<br>在<strong>重置 Macintosh 网络配置</strong>之后，这个问题就解决了。</p>
+<h1 id="Macintosh-重置网络"><a href="#Macintosh-重置网络" class="headerlink" title="Macintosh 重置网络"></a>Macintosh 重置网络</h1><p>重置 OS X 的网络十分简单粗暴，进入存放网络配置文件的目录，删光网络配置文件就行了。</p>
 <ul>
-<li>变量、函数和类型采用全小写加下划线的方式命名。</li>
-<li>变量的名字应当使用“名词”或者“形容词+名词”。</li>
+<li>OS X 网络配置文件路径：<em>/Library/Preferences/SystemConfiguration/</em></li>
 </ul>
-<h3 id="普通变量命名"><a href="#普通变量命名" class="headerlink" title="普通变量命名"></a>普通变量命名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">string table_name;      /* good - uses underscore */</div><div class="line">string tableName;       /* bad - mixed case */</div></pre></td></tr></table></figure>
-<h3 id="全局变量命名"><a href="#全局变量命名" class="headerlink" title="全局变量命名"></a>全局变量命名</h3><p>尽量不使用全局变量，如果不得已需要全局变量，则在全局变量加前缀<code>g_</code>(表示 <em>global</em>)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">int g_how_many_people;    /* global variable */</div><div class="line">int g_how_much_money;     /* global variable*/</div></pre></td></tr></table></figure></p>
-<h3 id="静态变量命名"><a href="#静态变量命名" class="headerlink" title="静态变量命名"></a>静态变量命名</h3><p>静态变量加前缀 <code>s_</code>(表示 <em>static</em>)。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">void init(...)</div><div class="line">&#123;</div><div class="line">    static int s_init_value;    /* static variable */</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="常量命名"><a href="#常量命名" class="headerlink" title="常量命名"></a>常量命名</h2><p>常量采用全大写加下划线的方式命名。</p>
-<ul>
-<li>const 常量</li>
-<li>宏定义常量</li>
-<li>枚举常量</li>
-</ul>
-<h2 id="函数、类型命名"><a href="#函数、类型命名" class="headerlink" title="函数、类型命名"></a>函数、类型命名</h2><p>函数、类型命名统一小写加下划线，和变量的命名方式相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">void add_table_entry();</div><div class="line">int delete_url();</div><div class="line">struct complex_struct&#123;</div><div class="line">    double x, y;</div><div class="line">&#125;;</div><div class="line">enum coordinate_type &#123; RECTANGULAR, POLAR &#125;;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>Modern C++ 建议函数名的每个单词首字母大写, 没有下划线。<br>这种大小写混合的命名方式在c++代码中很普遍，称为 camelcase（驼峰命名法）。<br>因为这种命名方式有高有低像驼峰一样。</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo rm -rf /Library/Preferences/SystemConfiguration/</div><div class="line">$ sudo reboot</div></pre></td></tr></table></figure>
+<p>删完文件之后，重启系统，会自动生成好初始化的配置文件。之后去设置里把网络重新配置一遍，就没有太大问题了。</p>
 
 
                 <hr>
@@ -271,13 +205,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/07/30/Macintosh重置网络/" data-toggle="tooltip" data-placement="top" title="Macintosh重置网络">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/07/28/CentOS7下安装网易云音乐/" data-toggle="tooltip" data-placement="top" title="CentOS7下安装网易云音乐">Next Post &rarr;</a>
+                            <a href="/2017/07/29/C知识汇总-代码风格/" data-toggle="tooltip" data-placement="top" title="C知识汇总-代码风格">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
