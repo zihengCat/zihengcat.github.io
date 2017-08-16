@@ -89,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -180,6 +180,31 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2017/08/16/Git实用技巧-覆写上次提交/">
+        <h2 class="post-title">
+            Git实用技巧-覆写上次提交
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言我们在使用Git时，会遇到需要修改上次提交的情况。比如：想要修改上次的提交信息，添加新内容到上次提交，等等。
+覆写上次提交我们可以使用git commit命令的amend选项来覆写上次提交。
+1$ git commit --amend
+执行此命令后，git会弹出编辑界面，你可以修改上次的提交信息。
+1$ git commit --amend -m &quot;an updated com......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2017-08-16
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -400,29 +425,6 @@ Ctrl + z传统方式: 使用shell的任务管理功能 job control，Ctrl + z将
     <p class="post-meta">
         Posted by zihengCat on
         2017-07-26
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/07/24/Linux下提取rpm包内容/">
-        <h2 class="post-title">
-            Linux下提取rpm包内容
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            前言对于大部分 RedHat 系的 Linux 系统而言，大都采用 rpm 作为默认的包管理器。我们可以使用 rpm -qlp 查看一枚rpm包所包含的文件。如何在不安装rpm包的情况下提取包中的文件呢？
-提取 rpm 包内容为了提取rpm包中的文件，我们需要用到两个命令: rpm2cpio 与 cpio。使用以下命令，即可将rpm包内容提取出来：
-1$ rpm2cpio &lt;packa......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-07-24
     </p>
 
 </div>
