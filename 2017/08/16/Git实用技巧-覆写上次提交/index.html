@@ -202,7 +202,8 @@
 <blockquote>
 <p>来自 git help 的说明。</p>
 </blockquote>
-<p>需要注意的是，<code>amend</code>选项不会<strong>直接修改</strong>上次的提交，而是会<strong>新创建</strong>出一枚提交，包含了上次提交的全部内容与新添加的内容，原提交会被”删除”。<br>所以，对于已经推送到远程仓库的提交，我们要谨慎使用<code>amend</code>选项。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push &lt;remote&gt; &lt;branch&gt; --force</div></pre></td></tr></table></figure></p>
+<p>需要注意的是，<code>amend</code>选项不会<strong>直接修改</strong>上次的提交，而是会<strong>新创建</strong>出一枚提交，包含了上次提交的全部内容与新添加的内容，原提交会被“删除”。<br>所以，对于已经推送到远程仓库的提交，我们要谨慎使用<code>amend</code>选项。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push &lt;remote&gt; &lt;branch&gt; --force</div></pre></td></tr></table></figure>
 <p>对于已经推送到远程仓库的提交，可以使用强制推送来覆盖（谨慎使用）。</p>
 <p><img src="./amend-pic.svg" alt="amend-pic"></p>
 <blockquote>
