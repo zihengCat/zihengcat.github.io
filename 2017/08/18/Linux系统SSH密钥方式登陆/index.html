@@ -12,11 +12,11 @@
 
     <title>
         
-          Linux命令学习-cd - zihengCat
+          Linux系统SSH密钥方式登陆 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/06/03/Linux命令学习-cd/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/08/18/Linux系统SSH密钥方式登陆/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -166,14 +166,12 @@
                         
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
-                          <a class="tag" href="/tags/#Shell" title="Shell">Shell</a>
-                        
                     </div>
-                    <h1>Linux命令学习-cd</h1>
+                    <h1>Linux系统SSH密钥方式登陆</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-06-03
+                        2017-08-18
                     </span>
                 </div>
             </div>
@@ -192,10 +190,36 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h1><p><code>cd</code>命令可以说是广大Linux用户最常使用的命令啦，它的作用是改变shell当前工作目录。<br><code>cd</code>是<em>Change directory</em>的意思。<br><code>cd</code>是一个shell内置指令(shell builtin)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ type cd</div><div class="line">cd is a shell builtin</div></pre></td></tr></table></figure>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">$ help cd</div><div class="line">cd: cd [-L|[-P [-e]]] [dir]</div><div class="line">    Change the shell working directory.</div><div class="line">    </div><div class="line">    Change the current directory to DIR.  The default DIR is the value of the</div><div class="line">    HOME shell variable.</div><div class="line">    </div><div class="line">    The variable CDPATH defines the search path for the directory containing</div><div class="line">    DIR.  Alternative directory names in CDPATH are separated by a colon (:).</div><div class="line">    A null directory name is the same as the current directory.  If DIR begins</div><div class="line">    with a slash (/), then CDPATH is not used.</div><div class="line">    </div><div class="line">    If the directory is not found, and the shell option `cdable_vars&apos; is set,</div><div class="line">    the word is assumed to be  a variable name.  If that variable has a value,</div><div class="line">    its value is used for DIR.</div><div class="line">    </div><div class="line">    Options:</div><div class="line">        -L	force symbolic links to be followed</div><div class="line">        -P	use the physical directory structure without following symbolic</div><div class="line">    	links</div><div class="line">        -e	if the -P option is supplied, and the current working directory</div><div class="line">    	cannot be determined successfully, exit with a non-zero status</div><div class="line">    </div><div class="line">    The default is to follow symbolic links, as if `-L&apos; were specified.</div><div class="line">    </div><div class="line">    Exit Status:</div><div class="line">    Returns 0 if the directory is changed, and if $PWD is set successfully when</div><div class="line">    -P is used; non-zero otherwise.</div></pre></td></tr></table></figure>
-<p>可以看到，<code>cd</code>命令帮我们改变了当前shell的工作目录，并设置<code>$PWD</code>环境变量的值。<br>如果不加任何参数，<code>cd</code>命令将使用环境变量<code>$HOME</code>（返回当前用户的家目录)。<br><code>-P</code>选项表示使用实际的路径名，而非符号链接(symbolic links)。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Linux系统的朋友一定知道SSH（Secure Shell），Linux系统下默认的远程登陆服务。<br>我们每次使用SSH远程登陆到远端主机时，总是要输入密码，如果是服务器的话，密码一般都很复杂。实际上，SSH还可以使用密钥认证的方式远程登陆。</p>
+<h1 id="配置SSH密钥认证登陆"><a href="#配置SSH密钥认证登陆" class="headerlink" title="配置SSH密钥认证登陆"></a>配置SSH密钥认证登陆</h1><p>首先，我们需要确认远程主机的<strong>sshd</strong>服务开启了密钥认证功能。<br>查看ssh的配置文件，确认打开了相关选项。修改ssh配置文件要用到root权限。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo vi /etc/ssh/sshd_config</div><div class="line">...</div><div class="line">SAAuthentication yes</div><div class="line">PubkeyAuthentication yes</div><div class="line">AuthorizedKeysFile .ssh/authorized_keys</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>ssh默认就是开启密钥认证功能的，但还是确认一下比较稳妥…</p>
+</blockquote>
+<p>修改完配置选项后，重启sshd服务。</p>
+<p>接下来，我们需要生成一对密钥，在<strong>客户端（client）</strong>使用<code>ssh-keygen</code>命令来完成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen</div></pre></td></tr></table></figure></p>
+<p>该命令会提示3条语句，一般我们回车跳过即可。</p>
+<ul>
+<li>密钥对存放位置</li>
+<li>输入控制密码</li>
+<li>再输入（确认）控制密码<br>命令更多选项可以查看man文档。</li>
+</ul>
+<p>该命令生成了一对RSA密钥，放在用户家目录 <em>~/.ssh</em> 下，文件名是<em>id_rsa</em>，<em>id_rsa.pub</em>。带.pub后缀的是公钥，不带后缀的是私钥。</p>
+<p>然后，我们把公钥上传到远端主机上完成相关配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-copy-id &lt;user&gt;@&lt;hostname&gt;</div></pre></td></tr></table></figure></p>
+<p>我们可以使用ssh-copy-id命令自动完成配置，也可以手动完成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ scp -P &lt;port&gt; ~/.ssh/id_rsa.pub &lt;user&gt;@&lt;hostname&gt;:~</div><div class="line">$ ssh &lt;user&gt;@&lt;hostname&gt;</div><div class="line">$ cat ~/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</div><div class="line">$ chmod 700 ~/.ssh &amp;&amp; chmod 600 ~/.ssh/authorized_keys</div><div class="line">$ rm ~/id_rsa.pub</div></pre></td></tr></table></figure></p>
+<p>其实这一步就是将<em>id_rsa.pub</em>公钥写入到<em>authorized_keys</em>中。如果没有文件，就手动创建。再将 <em>authorized_keys</em> 与 <em>~/.ssh</em>权限设置正确。权限不对，认证会失败。</p>
+<p>OK，配置完成！现在我们已经可以从客户端无密码登陆远程目标主机了。</p>
+<h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>SSH免密码登陆的工作原理也很简单，就是使用密钥加解密认证取代原先了的密码认证。</p>
+<p><img src="./ssh-key-auth-flow.png" alt="ssh-key-auth-flow"></p>
+<blockquote>
+<p>SSH密钥认证流程图<br>图片取自DigitalOcean</p>
+</blockquote>
+<p>初始化连接，服务端发送一段随机字符串给客户端，客户端使用私钥加密后发回，客户端使用公钥解密，如果可以正确配对，则认证通过，允许远程登陆。<br>关于加解密的过程，子恒喵没学过密码学，也不是很懂…<br>但是，SSH远程登陆不用输密码啦，还是很方便哒！</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><p>RedHat官方教程：<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-ssh-configuration-keypairs.html" target="_blank" rel="external">https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-ssh-configuration-keypairs.html</a></p>
+</li>
+<li><p>Debian官方教程：<a href="https://debian-administration.org/article/530/SSH_with_authentication_key_instead_of_password" target="_blank" rel="external">https://debian-administration.org/article/530/SSH_with_authentication_key_instead_of_password</a></p>
+</li>
+</ul>
 
 
                 <hr>
@@ -204,13 +228,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/06/12/为CentOS7添加EPEL源/" data-toggle="tooltip" data-placement="top" title="为CentOS7添加EPEL源">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/06/02/C学习笔记-理解size_t/" data-toggle="tooltip" data-placement="top" title="C学习笔记-理解size_t">Next Post &rarr;</a>
+                            <a href="/2017/08/16/Git实用技巧-覆写上次提交/" data-toggle="tooltip" data-placement="top" title="Git实用技巧-覆写上次提交">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
