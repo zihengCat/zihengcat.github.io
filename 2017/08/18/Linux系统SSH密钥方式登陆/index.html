@@ -89,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -197,23 +197,23 @@
 </blockquote>
 <p>修改完配置选项后，重启sshd服务。</p>
 <p>接下来，我们需要生成一对密钥，在<strong>客户端（client）</strong>使用<code>ssh-keygen</code>命令来完成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen</div></pre></td></tr></table></figure></p>
-<p>该命令会提示3条语句，一般我们回车跳过即可。</p>
+<p>该命令会提示3条语句，一般情况下，我们回车跳过即可（命令更多选项可以查看man文档）。</p>
 <ul>
 <li>密钥对存放位置</li>
 <li>输入控制密码</li>
-<li>再输入（确认）控制密码<br>命令更多选项可以查看man文档。</li>
+<li>再输入（确认）控制密码</li>
 </ul>
 <p>该命令生成了一对RSA密钥，放在用户家目录 <em>~/.ssh</em> 下，文件名是<em>id_rsa</em>，<em>id_rsa.pub</em>。带.pub后缀的是公钥，不带后缀的是私钥。</p>
 <p>然后，我们把公钥上传到远端主机上完成相关配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-copy-id &lt;user&gt;@&lt;hostname&gt;</div></pre></td></tr></table></figure></p>
-<p>我们可以使用ssh-copy-id命令自动完成配置，也可以手动完成。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ scp -P &lt;port&gt; ~/.ssh/id_rsa.pub &lt;user&gt;@&lt;hostname&gt;:~</div><div class="line">$ ssh &lt;user&gt;@&lt;hostname&gt;</div><div class="line">$ cat ~/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</div><div class="line">$ chmod 700 ~/.ssh &amp;&amp; chmod 600 ~/.ssh/authorized_keys</div><div class="line">$ rm ~/id_rsa.pub</div></pre></td></tr></table></figure></p>
-<p>其实这一步就是将<em>id_rsa.pub</em>公钥写入到<em>authorized_keys</em>中。如果没有文件，就手动创建。再将 <em>authorized_keys</em> 与 <em>~/.ssh</em>权限设置正确。权限不对，认证会失败。</p>
+<p>我们可以使用<code>ssh-copy-id</code>命令自动完成配置，也可以手动操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ scp -P &lt;port&gt; ~/.ssh/id_rsa.pub &lt;user&gt;@&lt;hostname&gt;:~</div><div class="line">$ ssh &lt;user&gt;@&lt;hostname&gt;</div><div class="line">$ cat ~/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</div><div class="line">$ chmod 700 ~/.ssh &amp;&amp; chmod 600 ~/.ssh/authorized_keys</div><div class="line">$ rm ~/id_rsa.pub</div></pre></td></tr></table></figure></p>
+<p>其实这一步就是将<em>id_rsa.pub</em>公钥写入到<em>authorized_keys</em>中。如果没有该文件，就手动创建一个。再将 <em>authorized_keys</em> 与 <em>~/.ssh</em>权限设置正确。<strong>权限不对，认证会失败。</strong></p>
 <p>OK，配置完成！现在我们已经可以从客户端无密码登陆远程目标主机了。</p>
-<h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>SSH免密码登陆的工作原理也很简单，就是使用密钥加解密认证取代原先了的密码认证。</p>
+<h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>SSH免密码登陆是使用密钥加解密认证取代原先了的密码认证。</p>
 <p><img src="./ssh-key-auth-flow.png" alt="ssh-key-auth-flow"></p>
 <blockquote>
 <p>SSH密钥认证流程图<br>图片取自DigitalOcean</p>
 </blockquote>
-<p>初始化连接，服务端发送一段随机字符串给客户端，客户端使用私钥加密后发回，客户端使用公钥解密，如果可以正确配对，则认证通过，允许远程登陆。<br>关于加解密的过程，子恒喵没学过密码学，也不是很懂…<br>但是，SSH远程登陆不用输密码啦，还是很方便哒！</p>
+<p>首先初始化连接，服务端发送一段随机字符串给客户端，客户端使用私钥加密后发回，客户端再使用公钥解密，如果解密后的内容可以正确配对，则认证通过，允许远程登陆。<br>关于加解密的过程，子恒喵没学过密码学，也不是很懂…但是，SSH远程登陆不用输密码啦，还是很方便哒！</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>RedHat官方教程：<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-ssh-configuration-keypairs.html" target="_blank" rel="external">https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-ssh-configuration-keypairs.html</a></p>
 </li>
