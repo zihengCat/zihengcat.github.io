@@ -12,11 +12,11 @@
 
     <title>
         
-          Hexo博客添加网易云音乐插件 - zihengCat
+          Hexo博客添加网易云音乐外链 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/06/13/博客添加网易云音乐插件/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/06/13/博客添加网易云音乐外链/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -89,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -167,7 +167,7 @@
                           <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
                         
                     </div>
-                    <h1>Hexo博客添加网易云音乐插件</h1>
+                    <h1>Hexo博客添加网易云音乐外链</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -190,9 +190,10 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="网易云音乐"><a href="#网易云音乐" class="headerlink" title="网易云音乐"></a>网易云音乐</h1><p>测试博客正文添加网易云音乐外链。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=32069326&auto=0&height=66"></iframe>
-
+                <h1 id="网易云音乐外链测试"><a href="#网易云音乐外链测试" class="headerlink" title="网易云音乐外链测试"></a>网易云音乐外链测试</h1><p>测试博客正文添加网易云音乐外链。</p>
+<!-- Spirits - KOKIA -->
+<!-- Begin -->
+<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=32069326&auto=0&height=66"></iframe><br><!-- End --></p>
 <p>成功!</p>
 <h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><blockquote>
 <p>网易云音乐提供单曲、专辑、歌单、电台节目的外链播放器，将外链播放器放在论坛、网站上，都可以免费播放。</p>
@@ -204,18 +205,39 @@
 <li>最后将播放器的代码黏贴到你的网站上，大功告成！</li>
 </ol>
 </blockquote>
-<p>其实就是<code>iframe</code>调用…</p>
-<p>Markdown 可以直接插<code>iframe HTML</code>代码，只要博客系统支持<code>iframe</code>就可以用。</p>
-<p>比如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line">&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=32069326&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure>
+<p>其实就在你的网页上插入一个<code>iframe</code>…</p>
+<p>Markdown 可以直接内联HTML代码，只要博客系统支持<code>iframe</code>调用即可。<br>比如本文的测试用例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"></div><div class="line">&lt;!-- Spirits - KOKIA --&gt;</div><div class="line">&lt;!-- Begin --&gt;</div><div class="line">&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot; src=&quot;//music.163.com/outchain/player?type=2&amp;id=32069326&amp;auto=0&amp;height=66&quot;&gt;&lt;/iframe&gt;</div><div class="line">&lt;!-- End --&gt;</div><div class="line"></div><div class="line">...</div></pre></td></tr></table></figure></p>
 <p>相关参数:</p>
-<ul>
-<li>width –&gt; 宽度</li>
-<li>height –&gt; 高度</li>
-<li>type –&gt; 1歌曲, 2歌单, 3电台 </li>
-<li>id –&gt; 歌曲ID号</li>
-<li>auto –&gt; 1自动播放, 0手动播放</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>width</td>
+<td>宽度</td>
+</tr>
+<tr>
+<td>height</td>
+<td>高度</td>
+</tr>
+<tr>
+<td>type</td>
+<td>歌曲(1), 歌单(2), 电台(3)</td>
+</tr>
+<tr>
+<td>id</td>
+<td>歌曲ID号</td>
+</tr>
+<tr>
+<td>auto</td>
+<td>自动播放(1), 0手动播放(0)</td>
+</tr>
+</tbody>
+</table>
 
 
                 <hr>
