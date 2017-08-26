@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -192,7 +192,7 @@
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍<code>Vim</code>中的分屏操作<code>split</code>。</p>
 <h1 id="分屏split"><a href="#分屏split" class="headerlink" title="分屏split"></a>分屏split</h1><p>作为一个命令行下的文本编辑器，<code>vim</code>可以利用分屏<code>split</code>操作实现类似GUI编辑器的多文件编辑效果，非常强大。</p>
-<h1 id="分屏命令"><a href="#分屏命令" class="headerlink" title="分屏命令"></a>分屏命令</h1><p>在<code>vim</code>命令行模式下输入相应指令即可启动分屏模式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:split [filename]   # 水平分割窗口</div><div class="line">:vsplit [filename]  # 垂直分割窗口</div></pre></td></tr></table></figure></p>
+<h1 id="分屏命令"><a href="#分屏命令" class="headerlink" title="分屏命令"></a>分屏命令</h1><p>在<code>vim</code>命令行模式下输入相应指令即可启动分屏模式。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">:split [filename]   # 水平分割窗口</div><div class="line">:vsplit [filename]  # 垂直分割窗口</div></pre></td></tr></table></figure></p>
 <p>如果不加文件名，则默认对当前文件进行分割。命令可以简写为<code>:sp</code>,<code>:vsp</code>。<br>如果希望在<code>vim</code>启动时多文件分屏显示，可以使用<code>-o</code>或<code>-O</code>参数。</p>
 <h1 id="分屏快捷键"><a href="#分屏快捷键" class="headerlink" title="分屏快捷键"></a>分屏快捷键</h1><p>与分屏相关的快捷键基本都以<code>Ctrl + w</code>开头。</p>
 <ul>

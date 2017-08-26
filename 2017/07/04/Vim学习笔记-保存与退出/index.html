@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -231,9 +231,9 @@
 </tbody>
 </table>
 <p><strong>注意，<code>:wq</code>与<code>:x</code>是有区别的。</strong></p>
-<h2 id="wq的行为"><a href="#wq的行为" class="headerlink" title=":wq的行为"></a><code>:wq</code>的行为</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(:w) &amp;&amp; (:q)</div></pre></td></tr></table></figure>
+<h2 id="wq的行为"><a href="#wq的行为" class="headerlink" title=":wq的行为"></a><code>:wq</code>的行为</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">(:w) &amp;&amp; (:q)</div></pre></td></tr></table></figure>
 <p>不管文件有没有被更改，<code>:wq</code>都会重写入一遍文件，再退出。所以，对于没有更改过的文件使用<code>wq</code>保存退出，我们会发现<strong>文件的修改时间变动了</strong>。某些情况下，这会带来不便。</p>
-<h2 id="x的行为"><a href="#x的行为" class="headerlink" title=":x的行为"></a><code>:x</code>的行为</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">modified ? (:wq) : (:q)</div></pre></td></tr></table></figure>
+<h2 id="x的行为"><a href="#x的行为" class="headerlink" title=":x的行为"></a><code>:x</code>的行为</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">modified ? (:wq) : (:q)</div></pre></td></tr></table></figure>
 <p>而<code>:x</code>的行为是：如果文件有更改，则写入并退出；如果文件没有更改，则直接退出。</p>
 <p>还是使用<code>:x</code>比较好呢 ^_^</p>
 <p><code>ZZ</code>命令的行为等同于<code>:x</code>，输入方式是直接在Normal模式下键入2个大写Z，无需<code>:</code>冒号，也不用敲<code>Enter</code>回车，算是<code>:x</code>的快捷键吧。</p>

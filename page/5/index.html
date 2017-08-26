@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -247,8 +247,8 @@ EPEL源包含了许多高质量的软件，大部分软件的依赖包也可以�
         </h3>
         <div class="post-content-preview">
             cdcd命令可以说是广大Linux用户最常使用的命令啦，它的作用是改变shell当前工作目录。cd是Change directory的意思。cd是一个shell内置指令(shell builtin)。
-12$ type cdcd is a shell builtin
-详解12345678910111213141516171819202122232425262728$ help cdcd: c......
+$ type cdcd is a shell builtin
+详解$ help cdcd: cd [-L|[-P [-e]]] [dir]    Change the shell workin......
         </div>
     </a>
     <p class="post-meta">
@@ -293,8 +293,8 @@ size_tsize_t实际上是无符号整型，它并不是一个全新的数据类�
         </h3>
         <div class="post-content-preview">
             pwdpwd命令是一个相当常用的命令，它告诉我们shell当前工作目录。pwd是Print working directory的意思。pwd是一个shell内置指令(shell builtin)。
-12$ type pwdpwd is a shell builtin
-详解1234567891011121314$ help pwdpwd: pwd [-LP]    Print the name......
+$ type pwdpwd is a shell builtin
+详解$ help pwdpwd: pwd [-LP]    Print the name of the current worki......
         </div>
     </a>
     <p class="post-meta">
@@ -316,11 +316,11 @@ size_tsize_t实际上是无符号整型，它并不是一个全新的数据类�
         </h3>
         <div class="post-content-preview">
             Shell状态有个有意思的bash环境变量SHELLOPTS，还有一个bash特殊变量$-。它们揭示出当前shell的状态。
-12$ echo &quot;$-&quot;himBH
+$ echo &quot;$-&quot;himBH
 himBH是什么意思？它表示当前shell的什么状态呢？
 搜索Stack Overflow的问答后，子恒喵才大概明白了himBH是啥意思。
 
-h: 以Hash方式缓存环境变量$PATH中的可执行文件，用来加速命......
+h: 以Hash方式缓存环境变量$PATH中的可执行文件，用来加速命令执......
         </div>
     </a>
     <p class="post-meta">
@@ -388,14 +388,14 @@ h: 以Hash方式缓存环境变量$PATH中的可执行文件，用来加速命..
         <div class="post-content-preview">
             摘要本篇讲解C语言中的编译预处理指令。
 前言C代码的编译过程大致需要经过如下几个阶段:
-1源代码 --&gt; 编译预处理 --&gt; 编译 --&gt; 汇编 --&gt; 链接 --&gt; 可执行文件
+源代码 --&gt; 编译预处理 --&gt; 编译 --&gt; 汇编 --&gt; 链接 --&gt; 可执行文件
 其中，编译预处理是第一阶段，由编译预处理器完成。C语言在设计之初，并没有考虑设计机制满足如下需求:
 
 包含外部文件至源代码
 定义宏
 根据条件编译代码
 
-为了满足这些需求，诞生了编译预处......
+为了满足这些需求，诞生了编译预处理......
         </div>
     </a>
     <p class="post-meta">

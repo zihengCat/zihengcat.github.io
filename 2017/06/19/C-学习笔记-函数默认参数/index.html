@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -191,19 +191,19 @@
                 post-container">
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍C++中的函数默认参数。</p>
-<h1 id="函数默认参数-Default-arguments"><a href="#函数默认参数-Default-arguments" class="headerlink" title="函数默认参数(Default arguments)"></a>函数默认参数(Default arguments)</h1><p>在C++中，我们可以在<strong>函数原型声明</strong>中为形式参数指定一个默认的值。<br>例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">void f(int size, int init = 0); /* 函数默认参数 */</div><div class="line">int main(void)&#123;</div><div class="line">    f(10);      /* 给1个参数 */</div><div class="line">    f(10, 10);  /* 给2个参数 */</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">void f(int size, int init)&#123;</div><div class="line">    /* do something */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h1><p>C++中函数默认参数的实现机制很简单，就是编译器自动帮你补齐参数…<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ g++ -S df_func.cc</div><div class="line">$ less df_func.s</div></pre></td></tr></table></figure></p>
+<h1 id="函数默认参数-Default-arguments"><a href="#函数默认参数-Default-arguments" class="headerlink" title="函数默认参数(Default arguments)"></a>函数默认参数(Default arguments)</h1><p>在C++中，我们可以在<strong>函数原型声明</strong>中为形式参数指定一个默认的值。<br>例如:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">void f(int size, int init = 0); /* 函数默认参数 */</div><div class="line">int main(void)&#123;</div><div class="line">    f(10);      /* 给1个参数 */</div><div class="line">    f(10, 10);  /* 给2个参数 */</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">void f(int size, int init)&#123;</div><div class="line">    /* do something */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h1><p>C++中函数默认参数的实现机制很简单，就是编译器自动帮你补齐参数…<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ g++ -S df_func.cc</div><div class="line">$ less df_func.s</div></pre></td></tr></table></figure></p>
 <p>观察汇编代码文件，我们发现: </p>
 <ul>
 <li>函数还是那个函数，需要2个参数</li>
 <li>调用函数时，缺失的参数由默认参数补齐(编译器完成)</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">void f(int size, int init = 0);   /* 函数默认参数 */</div><div class="line">...</div><div class="line">    f(10);      /* 实际上是 f(10, 0) */</div><div class="line">    f(10, 10); </div><div class="line">...</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">...</div><div class="line">void f(int size, int init = 0);   /* 函数默认参数 */</div><div class="line">...</div><div class="line">    f(10);      /* 实际上是 f(10, 0) */</div><div class="line">    f(10, 10); </div><div class="line">...</div></pre></td></tr></table></figure>
 <h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
 <li>函数默认参数是写在<strong>函数原型声明declaration</strong>中的，不能写在<strong>函数定义definition</strong>之中。(编译器是通过函数原型补上默认参数)</li>
 <li>函数默认参数是编译器在编译时<em>compile-time</em>做的事情，而非运行时<em>run-time</em>机制。</li>
 <li>函数默认参数必须<strong>从右往左</strong>写，因为编译器是从左往右匹配参数的。</li>
-<li>函数默认参数并不安全，因为可以很容易地修改函数原型。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">void f1(int i = 0, int j, int k);    /* 非法 */</div><div class="line">void f2(int i, int j = 0, int k);    /* 非法 */</div><div class="line">void f3(int i, int j = 0, int k = 0);/* 合法 */</div></pre></td></tr></table></figure>
+<li>函数默认参数并不安全，因为可以很容易地修改函数原型。<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">void f1(int i = 0, int j, int k);    /* 非法 */</div><div class="line">void f2(int i, int j = 0, int k);    /* 非法 */</div><div class="line">void f3(int i, int j = 0, int k = 0);/* 合法 */</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>函数默认参数与函数重载结合在一起，可能使代码看上去很混乱…<br>谨慎使用函数默认参数吧。</p>

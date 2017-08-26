@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -193,7 +193,7 @@
         <div class="post-content-preview">
             前言本文讲解C中的作用域。
 代码块作用域(Block scope)代码块(Block)是以{...}包裹起来的一组语句。
-1234567891011121314151617#include &lt;stdio.h&gt;#define PRTP(x) \    printf(&quot;%s: %d: %p\n&quot;, #x, (x), &amp;(x))int a = 4;     ......
+#include &lt;stdio.h&gt;#define PRTP(x) \    printf(&quot;%s: %d: %p\n&quot;, #x, (x), &amp;(x))int a = 4;        /* 全局作用域 &apos;a&apos;......
         </div>
     </a>
     <p class="post-meta">
@@ -215,8 +215,8 @@
         </h3>
         <div class="post-content-preview">
             前言本文讲解C中的enum枚举类型。
-枚举类型 enum在C中，我们可以使用enum枚举类型，枚举类型是一种包含枚举常量的特殊的类型。语法:123enum identifier &#123;    enumerator-list&#125;;
-样例:1234567891011121314151617enum color &#123;            /* 声明枚举类型 color */......
+枚举类型 enum在C中，我们可以使用enum枚举类型，枚举类型是一种包含枚举常量的特殊的类型。语法:enum identifier &#123;    enumerator-list&#125;;
+样例:enum color &#123;            /* 声明枚举类型 color */    RED,                /* 有......
         </div>
     </a>
     <p class="post-meta">
@@ -239,7 +239,7 @@
         <div class="post-content-preview">
             前言本文介绍C++中的引用(reference)。
 引用(reference)在C++中，可以为一个已存在的对象取一个别名，这被称为引用(reference)。声明引用的符号是&amp;，没错，就是取址运算符。
-1234567int main(void)&#123;    int n = 8;      /* 定义一个int变量 */    int&amp; rn = n;    /* 声明......
+int main(void)&#123;    int n = 8;      /* 定义一个int变量 */    int&amp; rn = n;    /* 声明int引用rn......
         </div>
     </a>
     <p class="post-meta">
@@ -286,7 +286,7 @@
             
         </h3>
         <div class="post-content-preview">
-            有趣的const在C中，用const关键字修饰变量或者形式参数时，表明该变量不可修改。然而，C中的const更多只是一种”约定”，表明程序不会修改变量值的一种约定。我们是有办法修改const的变量的。12345678#include &lt;stdio.h&gt;int main(void)&#123;    const int num = 10;     /* const 修饰整型变量 *......
+            有趣的const在C中，用const关键字修饰变量或者形式参数时，表明该变量不可修改。然而，C中的const更多只是一种”约定”，表明程序不会修改变量值的一种约定。我们是有办法修改const的变量的。#include &lt;stdio.h&gt;int main(void)&#123;    const int num = 10;     /* const 修饰整型变量 */    int......
         </div>
     </a>
     <p class="post-meta">
@@ -308,7 +308,7 @@
         </h3>
         <div class="post-content-preview">
             前言本文介绍C++中的函数默认参数。
-函数默认参数(Default arguments)在C++中，我们可以在函数原型声明中为形式参数指定一个默认的值。例如:123456789void f(int size, int init = 0); /* 函数默认参数 */int main(void)&#123;    f(10);      /* 给1个参数 */    f(10, 10);  /*......
+函数默认参数(Default arguments)在C++中，我们可以在函数原型声明中为形式参数指定一个默认的值。例如:void f(int size, int init = 0); /* 函数默认参数 */int main(void)&#123;    f(10);      /* 给1个参数 */    f(10, 10);  /* 给2个参数 */......
         </div>
     </a>
     <p class="post-meta">
@@ -332,7 +332,7 @@
             前言本文讲述C++中的函数重载机制。
 函数重载(Function Overloading)在C++中，如果函数的函数名相同，返回类型相同，参数表不同，那么这些函数就构成重载关系，这被称为函数重载(Function Overloading)。
 例如:
-1234567...void func(int);void func(double);...func(3)     /* 调用void func......
+...void func(int);void func(double);...func(3)     /* 调用void func(int)  ......
         </div>
     </a>
     <p class="post-meta">
@@ -354,7 +354,7 @@
         </h3>
         <div class="post-content-preview">
             unameuname命令可以打印当前系统信息。uname是GNU coreutils工具之一，遵循IEEE POSIX规范。
-详解12345678910111213141516171819$ uname --helpUsage: uname [OPTION]...Print certain system information.  With no OPTION, same as -s.  -......
+详解$ uname --helpUsage: uname [OPTION]...Print certain system information.  With no OPTION, same as -s.  -a, --all                print......
         </div>
     </a>
     <p class="post-meta">
@@ -376,7 +376,7 @@
         </h3>
         <div class="post-content-preview">
             sleepsleep命令的作用非常简单，就是使系统暂停一段时间。sleep是GNU coreutils工具之一。
-详解1234567891011121314$ sleep --helpUsage: sleep NUMBER[SUFFIX]...  or:  sleep OPTIONPause for NUMBER seconds.  SUFFIX may be &apos;s&apos; f......
+详解$ sleep --helpUsage: sleep NUMBER[SUFFIX]...  or:  sleep OPTIONPause for NUMBER seconds.  SUFFIX may be &apos;s&apos; for seconds (the def......
         </div>
     </a>
     <p class="post-meta">
@@ -398,7 +398,7 @@
         </h3>
         <div class="post-content-preview">
             catLinux上还有猫命令cat?!其实，这个命令不是猫咪的意思啦…cat是concatenate的意思。cat命令是一般用来查看文件内容(文本文件)。
-详解12345678910111213141516171819202122232425$ cat --helpUsage: cat [OPTION]... [FILE]...Concatenate FILE(s), or standard......
+详解$ cat --helpUsage: cat [OPTION]... [FILE]...Concatenate FILE(s), or standard input, to standard output.  -A, --show-a......
         </div>
     </a>
     <p class="post-meta">

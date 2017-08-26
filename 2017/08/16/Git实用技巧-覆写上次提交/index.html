@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -192,18 +192,18 @@
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我们在使用Git时，会遇到需要修改上次提交的情况。<br>比如：想要修改上次的提交信息，添加新内容到上次提交，等等。</p>
 <h1 id="覆写上次提交"><a href="#覆写上次提交" class="headerlink" title="覆写上次提交"></a>覆写上次提交</h1><p>我们可以使用<em>git commit</em>命令的<code>amend</code>选项来覆写上次提交。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit --amend</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git commit --amend</div></pre></td></tr></table></figure>
 <p>执行此命令后，git会弹出编辑界面，你可以修改上次的<strong>提交信息</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit --amend -m &quot;an updated commit message&quot;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git commit --amend -m &quot;an updated commit message&quot;</div></pre></td></tr></table></figure>
 <p>加入<code>-m</code>选项可以快捷修改提交信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit --amend --no-edit</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git commit --amend --no-edit</div></pre></td></tr></table></figure>
 <p>加入<code>--no-edit</code>选项表示不修改上次提交信息。这适用于添加新内容到上次提交的情况。</p>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">--amend</div><div class="line"></div><div class="line">    Replace the tip of the current branch by creating a new</div><div class="line">    commit. The recorded tree is prepared as usual (including</div><div class="line">    the effect of the -i and -o options and explicit pathspec),</div><div class="line">    and the message from the original commit is used as the</div><div class="line">    starting point, instead of an empty message, when no other</div><div class="line">    message is specified from the command line via options such</div><div class="line">    as -m, -F, -c, etc. The new commit has the same parents and</div><div class="line">    author as the current one (the --reset-author option can</div><div class="line">    countermand this).</div><div class="line"></div><div class="line">    It is a rough equivalent for:</div><div class="line"></div><div class="line">                $ git reset --soft HEAD^</div><div class="line">                $ ... do something else to come up with the right tree ...</div><div class="line">                $ git commit -c ORIG_HEAD</div><div class="line"></div><div class="line">    but can be used to amend a merge commit.</div><div class="line"></div><div class="line">    You should understand the implications of rewriting history</div><div class="line">    if you amend a commit that has already been published. (See</div><div class="line">    the &quot;RECOVERING FROM UPSTREAM REBASE&quot; section in git-</div><div class="line">    rebase(1).)</div></pre></td></tr></table></figure>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">--amend</div><div class="line"></div><div class="line">    Replace the tip of the current branch by creating a new</div><div class="line">    commit. The recorded tree is prepared as usual (including</div><div class="line">    the effect of the -i and -o options and explicit pathspec),</div><div class="line">    and the message from the original commit is used as the</div><div class="line">    starting point, instead of an empty message, when no other</div><div class="line">    message is specified from the command line via options such</div><div class="line">    as -m, -F, -c, etc. The new commit has the same parents and</div><div class="line">    author as the current one (the --reset-author option can</div><div class="line">    countermand this).</div><div class="line"></div><div class="line">    It is a rough equivalent for:</div><div class="line"></div><div class="line">                $ git reset --soft HEAD^</div><div class="line">                $ ... do something else to come up with the right tree ...</div><div class="line">                $ git commit -c ORIG_HEAD</div><div class="line"></div><div class="line">    but can be used to amend a merge commit.</div><div class="line"></div><div class="line">    You should understand the implications of rewriting history</div><div class="line">    if you amend a commit that has already been published. (See</div><div class="line">    the &quot;RECOVERING FROM UPSTREAM REBASE&quot; section in git-</div><div class="line">    rebase(1).)</div></pre></td></tr></table></figure>
 <blockquote>
 <p>来自 git help 的说明。</p>
 </blockquote>
 <p>需要注意的是，<code>amend</code>选项不会<strong>直接修改</strong>上次的提交，而是会<strong>新创建</strong>出一枚提交，包含了上次提交的全部内容与新添加的内容，原提交会被“删除”。<br>所以，对于已经推送到远程仓库的提交，我们要谨慎使用<code>amend</code>选项。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push &lt;remote&gt; &lt;branch&gt; --force</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git push &lt;remote&gt; &lt;branch&gt; --force</div></pre></td></tr></table></figure>
 <p>对于已经推送到远程仓库的提交，可以使用强制推送来覆盖（谨慎使用）。</p>
 <p><img src="./amend-pic.svg" alt="amend-pic"></p>
 <blockquote>

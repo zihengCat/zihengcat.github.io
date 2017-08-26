@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -194,8 +194,8 @@
 <p>出现提示的原因是，苹果系统有一个<em>GateKeeper</em>保护机制（自 OSX 10.5 加入）。从互联网上下载来的文件，会被自动打上<em>com.apple.quarantine</em>标志，翻译过来就是<em>免疫隔离</em>，系统根据这个<strong>附加属性</strong>对这个文件作出限制。</p>
 <p>苹果系统加入文件附加属性应该是有系统安全的考量，保护用户免受恶意软件的侵害。但是对一些专业用户而言，这个功能就显得有点不是很舒服了…</p>
 <p>所幸，我们方便地去掉这些自动加上的附加属性（extended attributes）。</p>
-<h1 id="移除附加属性"><a href="#移除附加属性" class="headerlink" title="移除附加属性"></a>移除附加属性</h1><p>对于一个打上附加属性的文件，文件的权限位会多出一个<code>@</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls -al@</div></pre></td></tr></table></figure></p>
-<p>使用<code>ls -al@</code>命令可以很清楚的看到文件的附加属性（xattr也可以查看）。<br>macOS 提供了一个<code>xattr</code>系统工具，我们可以它利用来清除文件附加属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ xattr -d &lt;com.apple.quarantine&gt; &lt;filename&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="移除附加属性"><a href="#移除附加属性" class="headerlink" title="移除附加属性"></a>移除附加属性</h1><p>对于一个打上附加属性的文件，文件的权限位会多出一个<code>@</code>。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ ls -al@</div></pre></td></tr></table></figure></p>
+<p>使用<code>ls -al@</code>命令可以很清楚的看到文件的附加属性（xattr也可以查看）。<br>macOS 提供了一个<code>xattr</code>系统工具，我们可以它利用来清除文件附加属性。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ xattr -d &lt;com.apple.quarantine&gt; &lt;filename&gt;</div></pre></td></tr></table></figure></p>
 <p>命令格式：<code>xattr</code> + <code>-d</code> + <em>附加属性</em> + <em>文件名</em></p>
 <blockquote>
 <p>更详细的说明可以查看: xattr –help 或 man xattr</p>

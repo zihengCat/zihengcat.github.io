@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -264,9 +264,9 @@
 </tr>
 </tbody>
 </table>
-<p><strong>fprintf</strong><br>fprintf 函数用于按照 format 说明的格式把参数列表中参数的内容进行转换，并写入stream指向的流。返回值是实际写入的字符数。若出错则返回一个负值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int fprintf(FILE *stream, const char *format, ...)</div></pre></td></tr></table></figure></p>
-<p><strong>printf</strong><br><code>printf(...)</code>函数等价于<code>fprintf(stdout, ...)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int printf(const char *format, ...)</div></pre></td></tr></table></figure></p>
-<p><strong>sprintf</strong><br>sprintf 函数与 printf 函数的功能基本相同，但输出到数组中，并以<code>\0</code>结束。 s必须足够大，以便能装下输出结果，否则会溢出。该函数返回实际输出的字符数，不包括<code>\0</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int sprintf(char *str, const char *format, ...);</div></pre></td></tr></table></figure></p>
+<p><strong>fprintf</strong><br>fprintf 函数用于按照 format 说明的格式把参数列表中参数的内容进行转换，并写入stream指向的流。返回值是实际写入的字符数。若出错则返回一个负值。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int fprintf(FILE *stream, const char *format, ...)</div></pre></td></tr></table></figure></p>
+<p><strong>printf</strong><br><code>printf(...)</code>函数等价于<code>fprintf(stdout, ...)</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int printf(const char *format, ...)</div></pre></td></tr></table></figure></p>
+<p><strong>sprintf</strong><br>sprintf 函数与 printf 函数的功能基本相同，但输出到数组中，并以<code>\0</code>结束。 s必须足够大，以便能装下输出结果，否则会溢出。该函数返回实际输出的字符数，不包括<code>\0</code>。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int sprintf(char *str, const char *format, ...);</div></pre></td></tr></table></figure></p>
 <h2 id="格式化输入"><a href="#格式化输入" class="headerlink" title="格式化输入"></a>格式化输入</h2><p>scanf 类函数用于提供格式化输入转换。</p>
 <p>格式字符串 format 通常包含有用于指导输入转换的转换规格说明。格式字符串中可以包含：</p>
 <ul>
@@ -332,9 +332,9 @@
 </tr>
 </tbody>
 </table>
-<p><strong>fscanf</strong><br>fscanf 函数用于在格式串 format 的控制下从流stream中读入字符，把转换后的值赋给后续各个参数，在此每一个参数都必须是一个指针。当格式串 format 结束时函数返回。返回实际被转换并赋值的输入项的数目。如果到达文件的末尾或在参数被转换前出错，那么该函数返回 EOF。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int fscanf(FILE *stream, const char *format, ...)</div></pre></td></tr></table></figure></p>
-<p><strong>scanf</strong><br><code>scanf(...)</code>函数等价于<code>fscanf(stdin, ...)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int scanf(const char* format, ...)</div></pre></td></tr></table></figure></p>
-<p><strong>sscanf</strong><br>sscanf 函数从目标字符串中格式化读取数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int sscanf(char *s,const *format, ... )</div></pre></td></tr></table></figure></p>
+<p><strong>fscanf</strong><br>fscanf 函数用于在格式串 format 的控制下从流stream中读入字符，把转换后的值赋给后续各个参数，在此每一个参数都必须是一个指针。当格式串 format 结束时函数返回。返回实际被转换并赋值的输入项的数目。如果到达文件的末尾或在参数被转换前出错，那么该函数返回 EOF。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int fscanf(FILE *stream, const char *format, ...)</div></pre></td></tr></table></figure></p>
+<p><strong>scanf</strong><br><code>scanf(...)</code>函数等价于<code>fscanf(stdin, ...)</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int scanf(const char* format, ...)</div></pre></td></tr></table></figure></p>
+<p><strong>sscanf</strong><br>sscanf 函数从目标字符串中格式化读取数据。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int sscanf(char *s,const *format, ... )</div></pre></td></tr></table></figure></p>
 <h1 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h1>
 
                 <hr>
