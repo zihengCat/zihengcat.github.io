@@ -12,11 +12,11 @@
 
     <title>
         
-          About - zihengCat
+          Python学习笔记-HelloPython - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/about/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/08/31/Python学习笔记-HelloPython/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -146,136 +146,146 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg-o.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is zihengCat.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                    <h1>Python学习笔记-HelloPython</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-08-31
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <h1 id="关于我-About-Me"><a href="#关于我-About-Me" class="headerlink" title="关于我/About Me"></a>关于我/About Me</h1><p>你好，我是子恒喵！大学生，学写代码，坐标杭州。<br>Hey, this is zihengCat! A student in Hangzhou, China. Learning coding now.</p>
-<h1 id="联系我-Contact-Me"><a href="#联系我-Contact-Me" class="headerlink" title="联系我/Contact Me"></a>联系我/Contact Me</h1><ul>
-<li>Email: zihenglv@gmail.com </li>
-<li>GitHub: github.com/zihengcat</li>
-</ul>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/">Linux下安装Python学习环境。</a></p>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h1><h2 id="交互式执行"><a href="#交互式执行" class="headerlink" title="交互式执行"></a>交互式执行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ python3</div><div class="line">Python 3.6.2 (default, Jul 19 2017, 02:14:24) </div><div class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; print(&quot;Hello, World&quot;)</div><div class="line">Hello, World</div><div class="line">&gt;&gt;&gt; exit()</div></pre></td></tr></table></figure>
+<h2 id="脚本式执行"><a href="#脚本式执行" class="headerlink" title="脚本式执行"></a>脚本式执行</h2><p>打开文本编辑器，键入以下代码。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line">print(&quot;Hello World!&quot;)</div></pre></td></tr></table></figure></p>
+<p>使用Python解释器解释执行。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ python3 hello.py</div></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ chmod 755 hello.py</div><div class="line">$ ./hello.py</div></pre></td></tr></table></figure></p>
+<h1 id="逻辑行与物理行"><a href="#逻辑行与物理行" class="headerlink" title="逻辑行与物理行"></a>逻辑行与物理行</h1><p>代码文本中的行即为<strong>物理行</strong> 。Python将一条语句当作一个<strong>逻辑行</strong> 。<br>Python假设一个物理行对应一个逻辑行，可以使用<code>\</code>接续逻辑行。<br>Python鼓励每条语句占一行 ，这样可读性更强。<br>如果你希望在一个物理行包含多个逻辑行，则必须使用分号<code>;</code> 显式说明一个逻辑行(一条语句)的结束。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line">s = &apos;Hello, World!&apos;; print\</div><div class="line">(s)</div></pre></td></tr></table></figure></p>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>Python中的注释有<strong>单行注释</strong>和<strong>多行注释</strong>。注释的内容会被解释器忽略。</p>
+<h2 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h2><p>以<code>#</code> 开头，直接到该行行尾(换行符)。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line">print(&quot;Hello World!&quot;)   # 打印 Hello World</div></pre></td></tr></table></figure>
+<h2 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h2><p>使用成对三单引号<code>&#39;&#39;&#39;</code>或三双引号<code>&quot;&quot;&quot;</code>组成的跨行字符串。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line">&apos;&apos;&apos;</div><div class="line">这是多行注释，使用三单引号</div><div class="line">这是多行注释，使用三单引号</div><div class="line">这是多行注释，使用三单引号</div><div class="line">&apos;&apos;&apos;</div><div class="line">print(&quot;Hello World!&quot;)</div><div class="line">&quot;&quot;&quot;</div><div class="line">这是多行注释，使用三双引号</div><div class="line">这是多行注释，使用三双引号</div><div class="line">这是多行注释，使用三双引号</div><div class="line">&quot;&quot;&quot;</div></pre></td></tr></table></figure>
+<h1 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h1><p><strong>Python逻辑行开头空白字符十分重要</strong>。被称作缩进。<br>逻辑行开头的空白字符(空格和制表符)用于确定逻辑行的缩进级别，依此按顺序将语句分组。同组的语句的缩进级别必须相同，语句组也被称作语句块。<br><strong>错误的缩进会导致程序出错。</strong></p>
+<blockquote>
+<p>不要混合使用制表符和空格来缩进，Python建议每个缩进层次使用四个空格或单个制表符。</p>
+</blockquote>
 
 
-                <!-- 如果开启评论功能 -->
-                
-                    <hr>
-
-                    
-
-                    
-
-                    
-
-                    
-
-<!-- Gitment 代码 begin --> 
-<div id="gitment_container">
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id:    'hexo_gitment',         // 可选。默认为 location.href
-  owner: 'zihengcat',            //你的 GitHub ID  
-  repo:  'zihengcat.github.io',  //存储评论的 repo
-  oauth: {
-    client_id: 'f039815621dd7dfd694e',                            //你的 client ID  
-    client_secret: 'fbd18887ac773d1d7a16a91054c3c996a18eb4fe',    //你的 client secret
-  },  
-})
-gitment.render('gitment_container')
-</script>
-</div>
-<!-- Gitment 代码 end --> 
-
+                <hr>
 
                 
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/08/26/Git实用技巧-配置credential-helper/" data-toggle="tooltip" data-placement="top" title="Git实用技巧-配置credential.helper">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.png" />
-                        
-
-                        
-                            <p>I&#39;m zihengCat. A student in Hangzhou, learning Coding now.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/zihengcat">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                            
-                            
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
