@@ -89,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -191,13 +191,14 @@
                 post-container">
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a href="https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/">Linux下安装Python学习环境。</a></p>
-<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h1><h2 id="交互式执行"><a href="#交互式执行" class="headerlink" title="交互式执行"></a>交互式执行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ python3</div><div class="line">Python 3.6.2 (default, Jul 19 2017, 02:14:24) </div><div class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; print(&quot;Hello, World&quot;)</div><div class="line">Hello, World</div><div class="line">&gt;&gt;&gt; exit()</div></pre></td></tr></table></figure>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h1><p>我们来看看Python程序语言的Hello World。</p>
+<h2 id="交互式执行"><a href="#交互式执行" class="headerlink" title="交互式执行"></a>交互式执行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ python3</div><div class="line">Python 3.6.2 (default, Jul 19 2017, 02:14:24) </div><div class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; print(&quot;Hello, World&quot;)</div><div class="line">Hello, World</div><div class="line">&gt;&gt;&gt; exit()</div></pre></td></tr></table></figure>
 <h2 id="脚本式执行"><a href="#脚本式执行" class="headerlink" title="脚本式执行"></a>脚本式执行</h2><p>打开文本编辑器，键入以下代码。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line">print(&quot;Hello World!&quot;)</div></pre></td></tr></table></figure></p>
 <p>使用Python解释器解释执行。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ python3 hello.py</div></pre></td></tr></table></figure></p>
 <p>或<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ chmod 755 hello.py</div><div class="line">$ ./hello.py</div></pre></td></tr></table></figure></p>
 <h1 id="逻辑行与物理行"><a href="#逻辑行与物理行" class="headerlink" title="逻辑行与物理行"></a>逻辑行与物理行</h1><p>代码文本中的行即为<strong>物理行</strong> 。Python将一条语句当作一个<strong>逻辑行</strong> 。<br>Python假设一个物理行对应一个逻辑行，可以使用<code>\</code>接续逻辑行。<br>Python鼓励每条语句占一行 ，这样可读性更强。<br>如果你希望在一个物理行包含多个逻辑行，则必须使用分号<code>;</code> 显式说明一个逻辑行(一条语句)的结束。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line">s = &apos;Hello, World!&apos;; print\</div><div class="line">(s)</div></pre></td></tr></table></figure></p>
 <h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>Python中的注释有<strong>单行注释</strong>和<strong>多行注释</strong>。注释的内容会被解释器忽略。</p>
-<h2 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h2><p>以<code>#</code> 开头，直接到该行行尾(换行符)。</p>
+<h2 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h2><p>以<code>#</code>开头，直到该行行尾(换行符)。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line">print(&quot;Hello World!&quot;)   # 打印 Hello World</div></pre></td></tr></table></figure>
 <h2 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h2><p>使用成对三单引号<code>&#39;&#39;&#39;</code>或三双引号<code>&quot;&quot;&quot;</code>组成的跨行字符串。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line">&apos;&apos;&apos;</div><div class="line">这是多行注释，使用三单引号</div><div class="line">这是多行注释，使用三单引号</div><div class="line">这是多行注释，使用三单引号</div><div class="line">&apos;&apos;&apos;</div><div class="line">print(&quot;Hello World!&quot;)</div><div class="line">&quot;&quot;&quot;</div><div class="line">这是多行注释，使用三双引号</div><div class="line">这是多行注释，使用三双引号</div><div class="line">这是多行注释，使用三双引号</div><div class="line">&quot;&quot;&quot;</div></pre></td></tr></table></figure>
