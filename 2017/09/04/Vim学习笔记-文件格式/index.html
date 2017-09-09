@@ -190,7 +190,7 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="断行符的故事"><a href="#断行符的故事" class="headerlink" title="断行符的故事"></a>断行符的故事</h1><p>很久以前，老式的电传打字机使用两个字符来另起新行。一个字符把滑动架移回首位，称为回车(Carriage Return)，另一个字符把纸上移一行，称为换行(Line Feed)。<br>当计算机问世以后，存储器曾经非常昂贵。有些人就认定没必要用两个字符来表示行尾。UNIX 开发者决定他们可以用 <code>&lt;LF&gt;</code> 一个字符来表示行尾。Apple 开发者规定了用 <code>&lt;CR&gt;</code>。开发 MS-DOS (以及 Microsoft Windows) 的那些家伙则决定沿用老式的 <code>&lt;CR&gt;&lt;LF&gt;</code>。那意味着，如果你试图把一个文件从一种系统移到另一种系统，那么就有换行符方面的麻烦。</p>
+                <h1 id="断行符的故事"><a href="#断行符的故事" class="headerlink" title="断行符的故事"></a>断行符的故事</h1><p>很久以前，老式的电传打字机使用两个字符来另起新行。一个字符把滑动架移回首位，称为<em>回车(Carriage Return)</em>，另一个字符把纸上移一行，称为<em>换行(Line Feed)</em>。<br>当计算机问世以后，存储器曾经一度非常昂贵。有些人就认定没必要使用两个字符来表示行尾。UNIX 开发者决定他们可以用 <code>&lt;LF&gt;</code> 一个字符来表示行尾。Apple 开发者规定了用 <code>&lt;CR&gt;</code>。而开发 MS-DOS (以及 Microsoft Windows) 的那些家伙则决定沿用老式的 <code>&lt;CR&gt;&lt;LF&gt;</code>。这意味着，如果你试图把一个文件从一种系统移到另一种系统，那么就有换行符方面的麻烦。</p>
 <blockquote>
 <p>摘录自vimdoc</p>
 </blockquote>
@@ -227,7 +227,7 @@
 <blockquote>
 <p>注: Mac OS X(10) 后系统断行符与UNIX相同</p>
 </blockquote>
-<h1 id="转换断行符"><a href="#转换断行符" class="headerlink" title="转换断行符"></a>转换断行符</h1><p>Vim 编辑器能自动识别不同文件格式，可以非常方便的实现不同操作系统之间的文件格式转换。<br>Vim中，我们可以使用<code>set: f[ile]f[ormat]</code>命令查看当前编辑文本的文本格式。vim使用<em>unix，dos，mac</em>标识别不同文本格式。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">:set ff?</div></pre></td></tr></table></figure></p>
+<h1 id="转换断行符"><a href="#转换断行符" class="headerlink" title="转换断行符"></a>转换断行符</h1><p>Vim 编辑器能自动识别不同文件格式，可以非常方便的实现不同操作系统之间的文件格式转换。<br>Vim中，我们可以使用<code>set: f[ile]f[ormat]</code>命令查看当前编辑文本的文本格式。vim使用<em>unix，dos，mac</em>标识不同文本格式。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">:set ff?</div></pre></td></tr></table></figure></p>
 <p>使用<code>set: f[ile]f[ormat]s</code>命令可以查看Vim 在编辑一个新文件时尝试该选项定义的各种格式。不同系统默认设置不同。比如在Linux系统下，vim优先识别与使用unix断行符。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">fileformats=unix,dos        /* Unix based systems */</div><div class="line">fileformats=dos,unix        /* Windows and DOS systems */</div><div class="line">fileformats=mac,unix,dos    /* Mac OS 9 systems */</div></pre></td></tr></table></figure></p>
 <p>在Vim中转换文本格式非常简单，只需设置一下当前编辑文本的<code>fileformat</code>选项即可。vim会自动帮助我们完成断行字符的转换工作。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">:set ff=dos</div></pre></td></tr></table></figure></p>
 <blockquote>
