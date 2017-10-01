@@ -12,11 +12,11 @@
 
     <title>
         
-          Linux命令学习-uname - zihengCat
+          zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/06/17/Linux命令学习-uname/">
+    <link rel="canonical" href="https://zihengcat.github.io/i_dont_wanna_use_default_archives/2017/10/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -146,150 +146,7 @@
 
 
     <!-- Main Content -->
-    
-<!-- Image to hack wechat -->
-<!-- <img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/img/home-bg-o.jpg')
-    }
-</style>
-<header class="intro-header" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
-                        
-                    </div>
-                    <h1>Linux命令学习-uname</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by zihengCat on
-                        2017-06-17
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                <h1 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h1><p><code>uname</code>命令可以打印当前系统信息。<br><code>uname</code>是<em>GNU coreutils</em>工具之一，遵循<em>IEEE POSIX</em>规范。</p>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ uname --help</div><div class="line">Usage: uname [OPTION]...</div><div class="line">Print certain system information.  With no OPTION, same as -s.</div><div class="line"></div><div class="line">  -a, --all                print all information, in the following order,</div><div class="line">                             except omit -p and -i if unknown:</div><div class="line">  -s, --kernel-name        print the kernel name</div><div class="line">  -n, --nodename           print the network node hostname</div><div class="line">  -r, --kernel-release     print the kernel release</div><div class="line">  -v, --kernel-version     print the kernel version</div><div class="line">  -m, --machine            print the machine hardware name</div><div class="line">  -p, --processor          print the processor type or &quot;unknown&quot;</div><div class="line">  -i, --hardware-platform  print the hardware platform or &quot;unknown&quot;</div><div class="line">  -o, --operating-system   print the operating system</div><div class="line">      --help     display this help and exit</div><div class="line">      --version  output version information and exit</div><div class="line"></div><div class="line">GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;</div><div class="line">For complete documentation, run: info coreutils &apos;uname invocation&apos;</div></pre></td></tr></table></figure>
-<ul>
-<li>s: 核心名</li>
-<li>o: 操作系统名</li>
-<li>n: 网络用户名</li>
-<li>r: 内核发行版</li>
-<li>v: 内核版本号</li>
-<li>m: 硬件名</li>
-<li>p: 处理器架构</li>
-<li>i: 硬件架构</li>
-<li>a: 打印以上所有信息</li>
-</ul>
-<p>我们可以在shell脚本中使用<code>uname</code>检测当前系统环境。</p>
-
-
-                <hr>
-
-                
-
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2017/06/18/C-学习笔记-函数重载/" data-toggle="tooltip" data-placement="top" title="C++学习笔记-函数重载">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2017/06/15/Linux命令学习-sleep/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-sleep">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
-
-                
-
-                
-
-            </div>
-    <!-- Side Catalog Container -->
-        
-
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-
-        </div>
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
-
+    <!-- Default Archive layout, we use archives instead. -->
 
     <!-- Footer -->
     <!-- Footer -->
