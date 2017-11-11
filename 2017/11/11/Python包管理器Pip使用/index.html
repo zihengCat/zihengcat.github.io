@@ -205,7 +205,7 @@
 </tr>
 <tr>
 <td style="text-align:center"><code>--version</code></td>
-<td style="text-align:center">打印当前pip版本信息</td>
+<td style="text-align:center">打印当前Pip版本信息</td>
 </tr>
 <tr>
 <td style="text-align:center"><code>--verbose</code></td>
@@ -227,8 +227,10 @@
 </table>
 <h2 id="搜索-Search"><a href="#搜索-Search" class="headerlink" title="搜索(Search)"></a>搜索(Search)</h2><p><code>pip</code>搜索命令，直接输入搜索信息，<code>pip</code>就会在PyPI仓库中搜索相关的包。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pip search [options] &lt;query&gt;</div></pre></td></tr></table></figure>
-<h2 id="安装-Install"><a href="#安装-Install" class="headerlink" title="安装(Install)"></a>安装(Install)</h2><p><code>pip</code>安装命令，全局安装可能需要<em>sudo</em>权限。</p>
+<h2 id="安装-Install"><a href="#安装-Install" class="headerlink" title="安装(Install)"></a>安装(Install)</h2><p><code>pip</code>安装命令，全局安装可能需要 <em>sudo</em> 权限。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pip install [options] &lt;package&gt; ...</div></pre></td></tr></table></figure>
+<p>离线安装软件包(<em>.whl</em>是Python软件包打包格式)。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pip install &lt;package.whl&gt;</div></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
@@ -271,7 +273,7 @@
 <tbody>
 <tr>
 <td style="text-align:center"><code>--outdated</code></td>
-<td style="text-align:center">列出有更新的包（检查更新）</td>
+<td style="text-align:center">列出有更新的包（<strong>检查更新</strong>）</td>
 </tr>
 <tr>
 <td style="text-align:center"><code>--uptodate</code></td>
@@ -279,7 +281,7 @@
 </tr>
 <tr>
 <td style="text-align:center"><code>--local</code></td>
-<td style="text-align:center">列出虚拟环境中包</td>
+<td style="text-align:center">仅列出虚拟环境中的包</td>
 </tr>
 </tbody>
 </table>
@@ -294,11 +296,11 @@
 <tbody>
 <tr>
 <td style="text-align:center"><code>--files</code></td>
-<td style="text-align:center">显示该包中的所有文件</td>
+<td style="text-align:center">显示该软件包中的所有文件</td>
 </tr>
 </tbody>
 </table>
-<h1 id="更换Pip源"><a href="#更换Pip源" class="headerlink" title="更换Pip源"></a>更换Pip源</h1><p><code>pip</code>默认的PyPI仓库是: <em><a href="https://pypi.python.org/pypi" target="_blank" rel="external">https://pypi.python.org/pypi</a></em>。有时在国内访问不顺畅，我们可以利用<code>-i</code>选项指定镜像仓库。</p>
+<h1 id="更换Pip源"><a href="#更换Pip源" class="headerlink" title="更换Pip源"></a>更换Pip源</h1><p><code>pip</code>默认的PyPI仓库是: <em><a href="https://pypi.python.org/pypi" target="_blank" rel="external">https://pypi.python.org/pypi</a></em>。<br>默认有时在国内访问不顺畅，我们可以利用<code>-i</code>选项自定义镜像仓库。</p>
 <table>
 <thead>
 <tr>
@@ -313,7 +315,9 @@
 </tr>
 </tbody>
 </table>
-<p><strong>一些 PyPI 国内镜像</strong></p>
+<blockquote>
+<p>一些 PyPI 国内镜像</p>
+</blockquote>
 <table>
 <thead>
 <tr>
