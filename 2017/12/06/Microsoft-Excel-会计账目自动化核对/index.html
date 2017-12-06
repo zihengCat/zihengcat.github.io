@@ -12,11 +12,11 @@
 
     <title>
         
-          Linux命令学习-uname - zihengCat
+          Microsoft Excel 会计账目自动化核对 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/06/17/Linux命令学习-uname/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/12/06/Microsoft-Excel-会计账目自动化核对/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -164,14 +164,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
                         
                     </div>
-                    <h1>Linux命令学习-uname</h1>
+                    <h1>Microsoft Excel 会计账目自动化核对</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-06-17
+                        2017-12-06
                     </span>
                 </div>
             </div>
@@ -190,20 +190,9 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h1><p><code>uname</code>命令可以打印当前系统信息。<br><code>uname</code>是<em>GNU coreutils</em>工具之一，遵循<em>IEEE POSIX</em>规范。</p>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ uname --help</div><div class="line">Usage: uname [OPTION]...</div><div class="line">Print certain system information.  With no OPTION, same as -s.</div><div class="line"></div><div class="line">  -a, --all                print all information, in the following order,</div><div class="line">                             except omit -p and -i if unknown:</div><div class="line">  -s, --kernel-name        print the kernel name</div><div class="line">  -n, --nodename           print the network node hostname</div><div class="line">  -r, --kernel-release     print the kernel release</div><div class="line">  -v, --kernel-version     print the kernel version</div><div class="line">  -m, --machine            print the machine hardware name</div><div class="line">  -p, --processor          print the processor type or &quot;unknown&quot;</div><div class="line">  -i, --hardware-platform  print the hardware platform or &quot;unknown&quot;</div><div class="line">  -o, --operating-system   print the operating system</div><div class="line">      --help     display this help and exit</div><div class="line">      --version  output version information and exit</div><div class="line"></div><div class="line">GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;</div><div class="line">For complete documentation, run: info coreutils &apos;uname invocation&apos;</div></pre></td></tr></table></figure>
-<ul>
-<li>s: 核心名</li>
-<li>o: 操作系统名</li>
-<li>n: 网络用户名</li>
-<li>r: 内核发行版</li>
-<li>v: 内核版本号</li>
-<li>m: 硬件名</li>
-<li>p: 处理器架构</li>
-<li>i: 硬件架构</li>
-<li>a: 打印以上所有信息</li>
-</ul>
-<p>我们可以在shell脚本中使用<code>uname</code>检测当前系统环境。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>昨天，有位会计系的同学拜托子恒喵，希望我能帮他解决一个关于<strong>会计账目核对</strong>的问题，这是他兼职淘宝店会计时碰到的实际问题。问题不难，解决问题后，子恒喵觉得这个案例挺有代表性，还是值得记录一下的。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>现有淘宝女装店铺某月销售记录表，退换货记录表(两张Excel表格)。<br>每一条退换货记录都有一条销售记录与之对应，但是由于各种原因，会有<strong>退换货记录与销售记录不匹配</strong>的情况(客户名，商品名，商品价格不匹配)。<br>需要找出这些错误记录，修改正确。</p>
+<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>最开始的时候啊，会计系同学将两张表合在一起，排序后(销售纪录与退换货记录紧挨着)手工核对。<br>可是啊，销售记录表有<em>20多万</em>条数据，退换货记录<em>2万多</em>条数据，手工核对…看一会儿眼就花了。<br>子恒喵使用Excel自带的VBA开发者工具实现账目核对自动化。<br>打开Excel开发者工具VBA，撰写如下代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Sub data_check()</div><div class="line">    &apos;循环变量</div><div class="line">    Dim i As Long</div><div class="line">    Dim j As Long</div><div class="line"></div><div class="line">    &apos;获取两表长度</div><div class="line">    rows_1 = Sheets(&quot;退换货记录表&quot;).usedrange.rows.count</div><div class="line">    rows_2 = Sheets(&quot;销售记录表&quot;).usedrange.rows.count</div><div class="line"></div><div class="line">    For i = 2 To rows_1</div><div class="line">      For j = 2 To rows_2</div><div class="line">                                                                    &apos;匹配三项数据</div><div class="line">        If Sheets(&quot;销售记录表&quot;).Cells(i, 1) =</div><div class="line">           Sheets(&quot;退换货记录表&quot;).Cells(i, 1) Then</div><div class="line">            If Sheets(&quot;销售记录表&quot;).Cells(i, 3) =</div><div class="line">               Sheets(&quot;退换货记录表&quot;).Cells(i, 3) Then</div><div class="line">                If Sheets(&quot;销售记录表&quot;).Cells(i, 5) =</div><div class="line">                   Sheets(&quot;退换货记录表&quot;).Cells(i, 5) Then</div><div class="line">                                                                    &apos;匹配成功则标注出来</div><div class="line">                     Sheets(&quot;退换货记录表&quot;).Cells(i, 10) = &quot;匹配&quot;</div><div class="line">                End If</div><div class="line">            End If</div><div class="line">        End If</div><div class="line">      Next j</div><div class="line">    Next i</div><div class="line"></div><div class="line">End Sub</div></pre></td></tr></table></figure></p>
 
 
                 <hr>
@@ -212,13 +201,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/06/18/C-学习笔记-函数重载/" data-toggle="tooltip" data-placement="top" title="C++学习笔记-函数重载">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/06/15/Linux命令学习-sleep/" data-toggle="tooltip" data-placement="top" title="Linux命令学习-sleep">Next Post &rarr;</a>
+                            <a href="/2017/11/11/Python包管理器Pip使用/" data-toggle="tooltip" data-placement="top" title="Python包管理器Pip使用">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
