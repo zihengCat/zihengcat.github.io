@@ -190,26 +190,38 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录Vim下一些常用的<strong>查找替换</strong>命令。</p>
-<h1 id="Vim查找替换命令"><a href="#Vim查找替换命令" class="headerlink" title="Vim查找替换命令"></a>Vim查找替换命令</h1><table>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录Vim下一些常用的<strong>查找与替换</strong>命令。</p>
+<h1 id="查找-Search-命令"><a href="#查找-Search-命令" class="headerlink" title="查找(Search)命令"></a>查找(Search)命令</h1><p>查找操作通过<code>/</code>或<code>?</code>开启，输入查找字符串后按<code>&lt;Enter&gt;</code>回车键进入查找模式，按<code>&lt;Esc&gt;</code>退出键退出查找模式。</p>
+<table>
 <thead>
 <tr>
 <th style="text-align:center">Command</th>
-<th style="text-align:center">Description</th>
+<th style="text-align:left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center">/word</td>
-<td style="text-align:center">正向(上)查找目标字符串</td>
+<td style="text-align:left">正向(上)查找目标字符串</td>
 </tr>
 <tr>
 <td style="text-align:center">?word</td>
-<td style="text-align:center">反向(下)查找目标字符串</td>
+<td style="text-align:left">反向(下)查找目标字符串</td>
 </tr>
+</tbody>
+</table>
+<p>如果查找到多个匹配项，可通过<code>n</code>(前一项)与<code>N</code>(后一项)来回跳转。<br>查找后，匹配字符串会高亮反显出来，输入<code>:noh</code>或再搜索一枚文件中不存在的字符串就可以取消高亮啦。</p>
+<h1 id="替换-Substitute-命令"><a href="#替换-Substitute-命令" class="headerlink" title="替换(Substitute)命令"></a>替换(Substitute)命令</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">Command</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td style="text-align:center">n1,n2s/word1/word2/g</td>
-<td style="text-align:center">第n1行至n2行查找替换目标字符串</td>
+<td style="text-align:left">第n1行至n2行查找替换目标字符串</td>
 </tr>
 </tbody>
 </table>
