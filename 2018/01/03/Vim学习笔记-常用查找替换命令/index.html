@@ -12,11 +12,11 @@
 
     <title>
         
-          课程总结 - C++ For Programmers (ud210) - zihengCat
+          Vim学习笔记-常用查找替换命令 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/10/02/课程总结-C-For-Programmers-ud210/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/01/03/Vim学习笔记-常用查找替换命令/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -164,14 +164,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Courses" title="Courses">Courses</a>
+                          <a class="tag" href="/tags/#Vim" title="Vim">Vim</a>
                         
                     </div>
-                    <h1>课程总结 - C++ For Programmers (ud210)</h1>
+                    <h1>Vim学习笔记-常用查找替换命令</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-10-02
+                        2018-01-03
                     </span>
                 </div>
             </div>
@@ -190,25 +190,29 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>子恒喵去Udacity上慕课，发现Udacity新开设了一门课程，<strong>C++ For Programmers</strong>，课程号<strong>ud210</strong>。喵最近刚好看了《C++ Primer》，便趁热打铁报名学习了这门课。上完ud210，喵感觉Udacity新开的这门课程有很多可圈可点之处。</p>
-<blockquote>
-<p>C++ For Programmers (ud210)<br>课程链接:<br><a href="https://cn.udacity.com/course/c-for-programmers--ud210" target="_blank" rel="external">https://cn.udacity.com/course/c-for-programmers--ud210</a></p>
-</blockquote>
-<h1 id="C-For-Programmers-ud210"><a href="#C-For-Programmers-ud210" class="headerlink" title="C++ For Programmers (ud210)"></a>C++ For Programmers (ud210)</h1><p><em>C++ For Programmers (ud210)</em> 并不是一门很难的课程，但也不是为编程初学者准备的。课程先修条件写得很明白，这门课程是为那些<strong>有其他编程语言基础，想要快速入门C++</strong>的人士准备的。<br>课程难度定位为<strong>中级</strong>，学习时间为<strong>3周</strong>(实际上，喵只花了3天就学习完了…)。如果你已经是一个C++熟练使用者，那完全没有必要上这门课。<br>最让喵感到惊喜的，Udacity为了准备这门课程，专程采访了C++之父Bjarne Stroustrup，相当用心。能聆听到C++的创造者对C++的一些看法，还是很有意义的。</p>
-<p>接下来，喵对ud210课程做个小结。</p>
-<ul>
-<li><p>Lesson 01-04<br>前4节课，讲解C++的程序结构，变量，头文件，控制流等等所有程序设计语言都有的东西。以及一些C++与其他程序设计语言不同之处（强类型，编译执行，前后缀++/–等）。</p>
-</li>
-<li><p>Lesson 05-07<br>第5至第7节课，讲解C++强大的指针，数组与函数。如果学习者没有C的基础，可能对这些感念理解起来有些困难。但这些是C++操作底层必不可少的特性。</p>
-</li>
-<li><p>Lesson 08-12<br>第8至第12节课，讲解C++的高级编程特性，面向对象与范型。当然，只是初步的介绍，没有多加深入。</p>
-</li>
-<li><p>Lesson 13<br>第13节课，讲解如何使用标准模版库Vector，以及迭代器的概念。</p>
-</li>
-<li><p>Lesson 14<br>最后是一些简单的C++面试题，如果能胸有成竹地回答上来，那么ud210这门课就没白上啦。</p>
-</li>
-</ul>
-<p>最后喵想说的是，C++是一门很艰深的程序设计语言，仅凭这门课掌握C++是远远不够的。正如课程介绍中所说，这门课只是带大家快速入门C++。想要熟练掌握C++，还需要继续深入学习与大量实践。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录Vim下一些常用的<strong>查找替换</strong>命令。</p>
+<h1 id="Vim查找替换命令"><a href="#Vim查找替换命令" class="headerlink" title="Vim查找替换命令"></a>Vim查找替换命令</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">Command</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">/word</td>
+<td style="text-align:center">正向(上)查找目标字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">?word</td>
+<td style="text-align:center">反向(下)查找目标字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">n1,n2s/word1/word2/g</td>
+<td style="text-align:center">第n1行至n2行查找替换目标字符串</td>
+</tr>
+</tbody>
+</table>
 
 
                 <hr>
@@ -217,13 +221,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/11/07/Python学习笔记-理解Python装饰器-decorator/" data-toggle="tooltip" data-placement="top" title="Python学习笔记 - 理解Python装饰器(decorator)">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/09/04/Vim学习笔记-文件格式/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-文件格式">Next Post &rarr;</a>
+                            <a href="/2017/12/06/Microsoft-Excel-会计账目自动化核对/" data-toggle="tooltip" data-placement="top" title="Microsoft Excel 会计账目自动化核对">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
