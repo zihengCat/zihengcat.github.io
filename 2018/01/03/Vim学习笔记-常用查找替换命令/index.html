@@ -89,6 +89,13 @@
 
                         
                         <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -97,13 +104,6 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -211,7 +211,19 @@
 </tbody>
 </table>
 <p>如果查找到多个匹配项，可通过<code>n</code>(前一项)与<code>N</code>(后一项)来回跳转。<br>查找后，匹配字符串会高亮反显出来，输入<code>:noh</code>或<strong>再搜索一枚文件中不存在的字符串</strong>就可以取消高亮啦。</p>
-<h1 id="替换-Substitute-命令"><a href="#替换-Substitute-命令" class="headerlink" title="替换(Substitute)命令"></a>替换(Substitute)命令</h1><table>
+<h1 id="替换-Substitute-命令"><a href="#替换-Substitute-命令" class="headerlink" title="替换(Substitute)命令"></a>替换(Substitute)命令</h1><p>替换操作通过<code>:s</code>（substitute）命令进行，基本格式：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">:[range] s[ubstitute]/&#123;pattner&#125;/&#123;string&#125;/[flags]</div></pre></td></tr></table></figure></p>
+<p>其中，</p>
+<p><strong>range (作用范围)</strong></p>
+<ul>
+<li><code>%</code> ：全文</li>
+<li><code>n, m</code> ：第n行至第m行</li>
+<li><code>.</code>：当前行</li>
+<li><code>$</code>：最后行</li>
+<li><code>., $</code>：当前行至最后一行</li>
+<li>`., +n ：当前行至其后n行</li>
+<li><code>&#39;&lt;, &gt;&#39;</code> ：visual选择模式下选择区域后输入<code>:</code>得到选区</li>
+</ul>
+<table>
 <thead>
 <tr>
 <th style="text-align:center">Command</th>
