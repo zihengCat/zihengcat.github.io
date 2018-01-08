@@ -191,8 +191,8 @@
                 post-container">
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录Vim下一些常用的<strong>查找与替换</strong>命令。</p>
-<h1 id="查找-Search-命令"><a href="#查找-Search-命令" class="headerlink" title="查找(Search)命令"></a>查找(Search)命令</h1><p>查找操作通过<code>/</code>或<code>?</code>开启，输入查找字符串后按<code>&lt;Enter&gt;</code>回车键进入查找模式，按<code>&lt;Esc&gt;</code>退出键退出查找模式。</p>
-<table>
+<h1 id="查找-Search-命令"><a href="#查找-Search-命令" class="headerlink" title="查找(Search)命令"></a>查找(Search)命令</h1><p>查找操作通过<code>/</code>或<code>?</code>开启，输入查找字符串后按<code>&lt;Enter&gt;</code>回车键进入查找模式，按<code>&lt;Esc&gt;</code>退出键退出查找模式。<br>如果查找到多个匹配项，可通过<code>n</code>(查找下一个)与<code>N</code>(查找上一个)来回跳转。<br>查找后，查找到的字符串会高亮反显出来(默认情况，可通过配置文件取消)，输入<code>:noh</code>或再搜索一枚文件中不存在的字符串就可以取消高亮。<br>在查找命令中加入<code>\c</code>表示大小写不敏感查找，<code>\C</code>表示大小写敏感查找。<br><strong>查找命令支持正则表达式。</strong></p>
+<h2 id="查找示例"><a href="#查找示例" class="headerlink" title="查找示例"></a>查找示例</h2><table>
 <thead>
 <tr>
 <th style="text-align:center">Command</th>
@@ -210,10 +210,11 @@
 </tr>
 </tbody>
 </table>
-<p>如果查找到多个匹配项，可通过<code>n</code>(前一项)与<code>N</code>(后一项)来回跳转。<br>查找后，匹配字符串会高亮反显出来，输入<code>:noh</code>或<strong>再搜索一枚文件中不存在的字符串</strong>就可以取消高亮啦。</p>
+<blockquote>
+<p>查找命令示例</p>
+</blockquote>
 <h1 id="替换-Substitute-命令"><a href="#替换-Substitute-命令" class="headerlink" title="替换(Substitute)命令"></a>替换(Substitute)命令</h1><p>替换操作通过<code>:s</code>（substitute）命令进行，基本格式：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">:[range] s[ubstitute]/&#123;pattner&#125;/&#123;string&#125;/[flags]</div></pre></td></tr></table></figure></p>
-<p>其中，</p>
-<p><strong>range (作用范围)</strong></p>
+<h2 id="range-作用范围"><a href="#range-作用范围" class="headerlink" title="range (作用范围)"></a>range (作用范围)</h2><p>命令的开始，写上替换操作的作用范围。</p>
 <ul>
 <li><code>%</code>: 全文</li>
 <li><code>n, m</code>: 第n行至第m行</li>
@@ -221,9 +222,20 @@
 <li><code>$</code>: 最后行</li>
 <li><code>., $</code>: 当前行至最后一行</li>
 <li><code>., +n</code>: 当前行至其后n行</li>
-<li><code>&#39;&lt;,&#39;&gt;</code>: Visual选择模式下得到的选区(输入<code>:</code>)</li>
+<li><code>&#39;&lt;,&#39;&gt;</code>: Visual选择模式下得到选区范围(输入<code>:</code>)</li>
 </ul>
-<table>
+<h2 id="s-替换操作"><a href="#s-替换操作" class="headerlink" title="s (替换操作)"></a>s (替换操作)</h2><p>写好范围后接<code>s</code>，指示这是一个替换操作。</p>
+<h2 id="分隔符"><a href="#分隔符" class="headerlink" title="/ (分隔符)"></a>/ (分隔符)</h2><p>替换命令一般以<code>/</code>作为分隔符，也可以使用其他符号，但是同行命令中所用分隔符需要一至。</p>
+<h2 id="pattner-查找目标"><a href="#pattner-查找目标" class="headerlink" title="pattner (查找目标)"></a>pattner (查找目标)</h2><p>原字符串。</p>
+<h2 id="string-替换内容"><a href="#string-替换内容" class="headerlink" title="string (替换内容)"></a>string (替换内容)</h2><p>替换后字符串。</p>
+<h2 id="flags-标志位"><a href="#flags-标志位" class="headerlink" title="flags (标志位)"></a>flags (标志位)</h2><ul>
+<li><code>[空]</code>: 仅替换最开始一次(如果有多个匹配项)</li>
+<li><code>g</code>: 全局替换(所有查找到的都替换掉)</li>
+<li><code>i</code>: 忽略大小写</li>
+<li>‘I’: 大小写敏感(默认)</li>
+<li><code>c</code>: 替换时提示确认操作(<code>y</code>确认，<code>n</code>取消，<code>a</code>全部替换，<code>q</code>退出)</li>
+</ul>
+<h2 id="替换示例"><a href="#替换示例" class="headerlink" title="替换示例"></a>替换示例</h2><table>
 <thead>
 <tr>
 <th style="text-align:center">Command</th>
@@ -232,11 +244,23 @@
 </thead>
 <tbody>
 <tr>
+<td style="text-align:center">:%s/word1/word2/g</td>
+<td style="text-align:left">全文查找并替换字符串</td>
+</tr>
+<tr>
 <td style="text-align:center">:n1,n2s/word1/word2/g</td>
 <td style="text-align:left">第n1行至n2行查找并替换字符串</td>
 </tr>
+<tr>
+<td style="text-align:center">:%s/\n/\r\n/g</td>
+<td style="text-align:left">将全文中的UNIX换行符替换为MS-DOS换行符</td>
+</tr>
 </tbody>
 </table>
+<blockquote>
+<p>替换命令示例</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>vim 帮助文档(:help :s)</p>
 
 
                 <hr>
