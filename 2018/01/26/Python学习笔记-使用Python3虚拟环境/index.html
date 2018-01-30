@@ -12,11 +12,11 @@
 
     <title>
         
-          使用Python包管理器-pip - zihengCat
+          Python学习笔记 - 使用Python虚拟环境 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/11/11/Python包管理器Pip使用/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/01/26/Python学习笔记-使用Python3虚拟环境/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -89,13 +89,6 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/tags/">Tags</a>
                         </li>
                         
@@ -104,6 +97,13 @@
                         
                         <li>
                             <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -167,11 +167,11 @@
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
-                    <h1>使用Python包管理器-pip</h1>
+                    <h1>Python学习笔记 - 使用Python虚拟环境</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-11-11
+                        2018-01-26
                     </span>
                 </div>
             </div>
@@ -190,197 +190,72 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>pip</code>是<em>PyPA</em>提供的一个非常好用的 Python 包管理工具。<br>本文记录一些<code>pip</code>的常用命令（<code>pip3</code> 适用）。</p>
-<h1 id="pip-常用命令"><a href="#pip-常用命令" class="headerlink" title="pip 常用命令"></a>pip 常用命令</h1><h2 id="通用-General"><a href="#通用-General" class="headerlink" title="通用(General)"></a>通用(General)</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">选项</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>--help</code></td>
-<td style="text-align:center">打印帮助页面</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>--version</code></td>
-<td style="text-align:center">打印当前pip版本信息</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>--verbose</code></td>
-<td style="text-align:center">显示详细信息</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>--quiet</code></td>
-<td style="text-align:center">显示简略信息</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>--no-cache-dir</code></td>
-<td style="text-align:center">不使用缓存</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>--proxy &lt;proxy&gt;</code></td>
-<td style="text-align:center">使用代理</td>
-</tr>
-</tbody>
-</table>
-<h2 id="搜索-Search"><a href="#搜索-Search" class="headerlink" title="搜索(Search)"></a>搜索(Search)</h2><p><code>pip</code>搜索命令，直接输入搜索信息，<code>pip</code>就会在PyPI仓库中搜索相关的包。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pip search [options] &lt;query&gt;</div></pre></td></tr></table></figure>
-<h2 id="安装-Install"><a href="#安装-Install" class="headerlink" title="安装(Install)"></a>安装(Install)</h2><p><code>pip</code>安装命令，全局安装可能需要 <em>sudo</em> 权限。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pip install [options] &lt;package&gt; ...</div></pre></td></tr></table></figure>
-<p>离线安装软件包(<em>.whl</em>是Python软件包打包格式)。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pip install &lt;package.whl&gt;</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">选项</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>--upgrade</code></td>
-<td style="text-align:center">更新已安装包</td>
-</tr>
-</tbody>
-</table>
-<h2 id="卸载-Uninstall"><a href="#卸载-Uninstall" class="headerlink" title="卸载(Uninstall)"></a>卸载(Uninstall)</h2><p><code>pip</code>卸载命令，卸载已安装的包。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pip uninstall [options] &lt;package&gt; ...</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">选项</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>--yes</code></td>
-<td style="text-align:center">直接确认卸载</td>
-</tr>
-</tbody>
-</table>
-<h2 id="列表-List"><a href="#列表-List" class="headerlink" title="列表(List)"></a>列表(List)</h2><p><code>pip</code>列表命令，可以列出已安装包的相关信息。<br>注意一下，<code>pip</code>的<strong>检查更新</strong>功能放在<em>list</em>里。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ pip list [options]</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">选项</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>--outdated</code></td>
-<td style="text-align:center">列出有更新的包（<strong>检查更新</strong>）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>--uptodate</code></td>
-<td style="text-align:center">列出已更新的包</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>--local</code></td>
-<td style="text-align:center">仅列出虚拟环境中的包</td>
-</tr>
-</tbody>
-</table>
-<h2 id="显示-Show"><a href="#显示-Show" class="headerlink" title="显示(Show)"></a>显示(Show)</h2><p><code>pip</code>显示命令，查询已安装包的详细信息。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">选项</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>--files</code></td>
-<td style="text-align:center">显示该软件包中的所有文件</td>
-</tr>
-</tbody>
-</table>
-<h1 id="更换pip源"><a href="#更换pip源" class="headerlink" title="更换pip源"></a>更换pip源</h1><p><code>pip</code>使用PyPI仓库来为我们提供Python软件包。但是默认仓库地址在国内访问不顺畅，我们可以利用<code>-i</code>选项使用自定义镜像仓库。</p>
-<blockquote>
-<p>PyPI默认仓库地址: <em><a href="https://pypi.python.org/pypi" target="_blank" rel="external">https://pypi.python.org/pypi</a></em>。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">选项</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>--index &lt;url&gt;</code></td>
-<td style="text-align:center">自定义 Python 包仓库地址</td>
-</tr>
-</tbody>
-</table>
-<h2 id="PyPI-国内镜像推荐"><a href="#PyPI-国内镜像推荐" class="headerlink" title="PyPI 国内镜像推荐"></a>PyPI 国内镜像推荐</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">提供方</th>
-<th style="text-align:left">地址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">阿里云</td>
-<td style="text-align:left"><a href="http://mirrors.aliyun.com/pypi/" target="_blank" rel="external">http://mirrors.aliyun.com/pypi/</a></td>
-</tr>
-<tr>
-<td style="text-align:center">豆瓣网</td>
-<td style="text-align:left"><a href="http://pypi.douban.com/" target="_blank" rel="external">http://pypi.douban.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:center">清华大学</td>
-<td style="text-align:left"><a href="https://pypi.tuna.tsinghua.edu.cn/" target="_blank" rel="external">https://pypi.tuna.tsinghua.edu.cn/</a></td>
-</tr>
-<tr>
-<td style="text-align:center">中科大</td>
-<td style="text-align:left"><a href="http://pypi.mirrors.ustc.edu.cn/" target="_blank" rel="external">http://pypi.mirrors.ustc.edu.cn/</a></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>一些 PyPI 国内镜像</p>
-</blockquote>
-<h2 id="如何使用-PyPI-镜像"><a href="#如何使用-PyPI-镜像" class="headerlink" title="如何使用 PyPI 镜像"></a>如何使用 PyPI 镜像</h2><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">pip install -i &lt;url/simple&gt; some-packages</div></pre></td></tr></table></figure>
-<blockquote>
-<p><code>-i</code>表示临时使用镜像地址<br><code>simple</code>是 PyPI 软件包目录</p>
-</blockquote>
-<p>修改<code>pip.conf</code>文件可将自定义镜像地址设为默认。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">操作系统</th>
-<th style="text-align:left">文件位置</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Linux</td>
-<td style="text-align:left"><em>~/.pip/pip.conf</em></td>
-</tr>
-<tr>
-<td style="text-align:center">macOS</td>
-<td style="text-align:left"><em>$HOME/Library/Application Support/pip/pip.conf</em></td>
-</tr>
-<tr>
-<td style="text-align:center">Windows</td>
-<td style="text-align:left"><em>%APPDATA%\pip\pip.ini</em></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>操作系统不同，<code>pip.conf</code>文件位置不同<br>如果目录/配置文件不存在，手动创建即可</p>
-</blockquote>
-<p>在<code>pip.conf</code>配置文件中全局指定PyPI镜像地址。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">[global]</div><div class="line">index-url = &lt;url/simple&gt;</div></pre></td></tr></table></figure></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>pip官方文档: <a href="https://pip.pypa.io/en/latest/" target="_blank" rel="external">https://pip.pypa.io/en/latest/</a></li>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在项目开发中，我们有时会希望项目有一个专属环境（自己的目录，特定Python版本，特定版本的第三方软件包…）而与系统环境区分开来。</p>
+<ul>
+<li>不同应用开发环境相互独立</li>
+<li>环境升级不影响其他应用，也不影响全局Python环境</li>
+<li>有效防止软件包混乱与软件版本冲突</li>
 </ul>
+<blockquote>
+<p>使用Python虚拟环境的优点</p>
+</blockquote>
+<h1 id="Python3-虚拟环境-pyenv"><a href="#Python3-虚拟环境-pyenv" class="headerlink" title="Python3 虚拟环境 - pyenv"></a>Python3 虚拟环境 - pyenv</h1><p>Python3提供了<code>venv</code>模块，帮助我们创建轻量级的“虚拟环境”。该虚拟环境是将全局Python环境复制一份出来给特定项目。</p>
+<h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><p>使用Python3自带的<code>venv</code>模块即可轻松创建一个虚拟环境。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">python3 -m venv /path/to/new/virtual/environment</div></pre></td></tr></table></figure>
+<blockquote>
+<p>命令后接想创建虚拟环境的路径</p>
+</blockquote>
+<p>命令执行完后，我们发现Python已经自动为我们创建好了目标目录，目录下存放着Python的主二进制文件，标准库文件与一些配置文件（从系统环境中复制而来）。</p>
+<h2 id="激活-退出虚拟环境"><a href="#激活-退出虚拟环境" class="headerlink" title="激活/退出虚拟环境"></a>激活/退出虚拟环境</h2><p>创建完虚拟环境后，我们通过执行<code>path/bin</code>目录下的<code>activate</code>激活脚本即可在当前Shell下激活虚拟环境（Shell环境不同，激活脚本也不同）。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd /path/to/new/virtual/environment</div><div class="line">source ./bin/activate</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>source</code>激活虚拟环境</p>
+</blockquote>
+<p>想要退出当前虚拟环境也非常简单，执行<code>deactivate</code>脚本即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd /path/to/new/virtual/environment</div><div class="line">source ./bin/deactivate</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>source</code>退出虚拟环境</p>
+</blockquote>
+<h2 id="使用虚拟环境"><a href="#使用虚拟环境" class="headerlink" title="使用虚拟环境"></a>使用虚拟环境</h2><p>激活虚拟环境后，我们可以在该虚拟环境下执行任何操作（安装第三方软件包等），而这些操作都与系统Python环境毫不相关。</p>
+<p>需要注意的是，默认情况下，虚拟环境与系统环境是隔离的，虚拟环境下也没有系统环境中已经安装的软件包，所有用到第三方软件包需要我们在虚拟环境下再自行下载一遍（pip是默认安装的）。</p>
+<h2 id="venv命令选项"><a href="#venv命令选项" class="headerlink" title="venv命令选项"></a><code>venv</code>命令选项</h2><p>使用<code>-h</code>选项可以查看<code>venv</code>命令的帮助文档。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">python3 -m venv -h</div><div class="line"></div><div class="line">usage: venv [-h] [--system-site-packages] [--symlinks | --copies] [--clear]</div><div class="line">            [--upgrade] [--without-pip]</div><div class="line">            ENV_DIR [ENV_DIR ...]</div><div class="line"></div><div class="line">Creates virtual Python environments in one or more target directories.</div><div class="line"></div><div class="line">positional arguments:</div><div class="line">  ENV_DIR               A directory to create the environment in.</div><div class="line"></div><div class="line">optional arguments:</div><div class="line">  -h, --help            show this help message and exit</div><div class="line">  --system-site-packages</div><div class="line">                        Give the virtual environment access to the system</div><div class="line">                        site-packages dir.</div><div class="line">  --symlinks            Try to use symlinks rather than copies, when symlinks</div><div class="line">                        are not the default for the platform.</div><div class="line">  --copies              Try to use copies rather than symlinks, even when</div><div class="line">                        symlinks are the default for the platform.</div><div class="line">  --clear               Delete the contents of the environment directory if it</div><div class="line">                        already exists, before environment creation.</div><div class="line">  --upgrade             Upgrade the environment directory to use this version</div><div class="line">                        of Python, assuming Python has been upgraded in-place.</div><div class="line">  --without-pip         Skips installing or upgrading pip in the virtual</div><div class="line">                        environment (pip is bootstrapped by default)</div><div class="line"></div><div class="line">Once an environment has been created, you may wish to activate it, e.g. by</div><div class="line">sourcing an activate script in its bin directory.</div></pre></td></tr></table></figure>
+<p>简单翻译一下吧。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">选项</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">–system-site-packages</td>
+<td style="text-align:left">虚拟环境可访问系统环境下的第三方软件包</td>
+</tr>
+<tr>
+<td style="text-align:center">–symlinks</td>
+<td style="text-align:left">使用链接而不是直接复制文件</td>
+</tr>
+<tr>
+<td style="text-align:center">–copies</td>
+<td style="text-align:left">复制文件而不使用链接</td>
+</tr>
+<tr>
+<td style="text-align:center">–clear</td>
+<td style="text-align:left">如果目标目录已有内容存在，先清空目录再创建虚拟环境</td>
+</tr>
+<tr>
+<td style="text-align:center">–upgrade</td>
+<td style="text-align:left">更新虚拟环境</td>
+</tr>
+<tr>
+<td style="text-align:center">–without-pip</td>
+<td style="text-align:left">创建虚拟环境时不安装pip（默认是安装的）</td>
+</tr>
+</tbody>
+</table>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>Python官方文档：<a href="https://docs.python.org/3/library/venv.html" target="_blank" rel="external">https://docs.python.org/3/library/venv.html</a></p>
 
 
                 <hr>
@@ -389,13 +264,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/12/06/Microsoft-Excel-会计账目自动化核对/" data-toggle="tooltip" data-placement="top" title="Microsoft Excel 会计账目自动化核对">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/11/07/Python学习笔记-理解Python装饰器-decorator/" data-toggle="tooltip" data-placement="top" title="Python学习笔记 - 理解Python装饰器(decorator)">Next Post &rarr;</a>
+                            <a href="/2018/01/03/Vim学习笔记-常用查找替换命令/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-常用查找替换命令">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
