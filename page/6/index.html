@@ -88,6 +88,13 @@
 
                         
                         <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -96,13 +103,6 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -306,18 +306,19 @@ $ type pwdpwd is a shell builtin
 
     <a href="/2017/05/30/Shell学习笔记-Shell状态解释/">
         <h2 class="post-title">
-            Shell学习笔记-Shell状态解释
+            Shell学习笔记 - Bash状态解释
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            Shell状态有个有意思的bash环境变量SHELLOPTS，还有一个bash特殊变量$-。它们揭示出当前shell的状态。
+            前言本文介绍Linux下Bash的几种执行状态。
+Bash 状态有个有意思的Bash环境变量SHELLOPTS，还有一个Bash特殊变量$-。它们揭示出当前Shell的工作状态。
 $ echo &quot;$-&quot;himBH
-himBH是什么意思？它表示当前shell的什么状态呢？
-搜索Stack Overflow的问答后，子恒喵才大概明白了himBH是啥意思。
+himBH是什么意思？它又表示当前shell的什么状态呢？
+搜索了Stack Overflow上的问答后，子恒喵大概明白了himBH是啥意思。
 
-h: 以Hash方式缓存环境变量$PATH中的可执行文件，用来加速命令执......
+h: 以Has......
         </div>
     </a>
     <p class="post-meta">
