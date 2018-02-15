@@ -88,6 +88,13 @@
 
                         
                         <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -96,13 +103,6 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -214,10 +214,10 @@
 <blockquote>
 <p><code>source</code>激活虚拟环境</p>
 </blockquote>
-<p>想要退出当前虚拟环境也非常简单，执行<code>deactivate</code>脚本即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">cd /path/to/new/virtual/environment</div><div class="line">source ./bin/deactivate</div></pre></td></tr></table></figure>
+<p>想要退出当前虚拟环境也非常简单，在虚拟环境命令行下键入<code>deactivate</code>即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">(virtual environment)$ deactivate</div></pre></td></tr></table></figure>
 <blockquote>
-<p><code>source</code>退出虚拟环境</p>
+<p>退出虚拟环境</p>
 </blockquote>
 <h2 id="使用虚拟环境"><a href="#使用虚拟环境" class="headerlink" title="使用虚拟环境"></a>使用虚拟环境</h2><p>激活虚拟环境后，我们可以在该虚拟环境下执行任何操作（安装第三方软件包等），而这些操作都与系统Python环境毫不相关。</p>
 <p>需要注意的是，默认情况下，虚拟环境与系统环境是隔离的，虚拟环境下也没有系统环境中已经安装的第三方软件包，所有用到第三方软件包都需要我们在虚拟环境下再自行下载一遍（pip默认安装）。</p>
