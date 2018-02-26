@@ -12,11 +12,11 @@
 
     <title>
         
-          About - zihengCat
+          LeetCode - 231. 2的幂次（Power of Two） - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/about/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/02/26/LeetCode-231-2的幂次/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -145,178 +145,218 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg-o.jpg')">
+    
+<!-- Image to hack wechat -->
+<!--
+<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
+-->
+<!--
+<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
+-->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is zihengCat.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        
+                    </div>
+                    <h1>LeetCode - 231. 2的幂次（Power of Two）</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2018-02-26
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-                <h1 id="关于我-About-Me"><a href="#关于我-About-Me" class="headerlink" title="关于我 - About Me"></a>关于我 - About Me</h1><p>你好，我是子恒喵！大学生，学写代码，坐标杭州。<br>Hey, this is zihengCat! A student live in Hangzhou, China. Learning coding now.</p>
-<h1 id="联系我-Contact-Me"><a href="#联系我-Contact-Me" class="headerlink" title="联系我 - Contact Me"></a>联系我 - Contact Me</h1><ul>
-<li>E-Mail: <code>emloZW5nbHZAZ21haWwuY29t</code></li>
-<li>GitHub: <em>github.com/zihengCat</em></li>
-<li>LeetCode: <em>leetcode.com/zihengcat</em></li>
-</ul>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 231. 2的幂次（Power of Two）</em>问题。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个整型数，判断该数是否是<code>2</code>的幂次。</p>
+<p>注：只考虑是否为<code>2</code>的<strong>非负整数</strong>次幂即可。</p>
+<p><strong>例：</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">**输入**: 4</div><div class="line">**输出**: true</div><div class="line"></div><div class="line">**输入**: 6</div><div class="line">**输出**: false</div><div class="line"></div><div class="line">注：4为2^2。</div></pre></td></tr></table></figure></p>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="常规解法"><a href="#常规解法" class="headerlink" title="常规解法"></a>常规解法</h2><p>只需考虑是否为<code>2</code>的<strong>非负整数</strong>次幂，大大简化了问题。</p>
+<p><code>2</code>的幂次形如：<code>2 * 2 * 2...* 2</code>，均可被<code>2</code>无限整除。利用这个特性，我们就可以轻松解决此问题。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int isPowerOfTwo(int n) &#123;</div><div class="line">    /* 排除掉负数和0 */</div><div class="line">    if(n &lt;= 0) &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">    /* 设置商和余数 */</div><div class="line">    int quotient  = n,</div><div class="line">        remainder = 0;</div><div class="line">    /* 循环退出条件: 商为1（除尽） */</div><div class="line">    while(quotient != 1) &#123;</div><div class="line">        remainder = quotient % 2;</div><div class="line">        quotient /= 2;</div><div class="line">        /* 如果有余数，说明除不尽 */</div><div class="line">        if(remainder) &#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return 1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>C/C++ 代码</p>
+</blockquote>
+<h2 id="特殊解法"><a href="#特殊解法" class="headerlink" title="特殊解法"></a>特殊解法</h2><p>这道题的特殊解法是利用<code>2</code>的幂次数的二进制特性。</p>
+<p>例如：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><code>2</code>的幂次</th>
+<th style="text-align:center">十进制形式</th>
+<th style="text-align:center">二进制形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2 ^ 0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">b<em>00000001</em></td>
+</tr>
+<tr>
+<td style="text-align:center">2 ^ 1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">b<em>00000010</em></td>
+</tr>
+<tr>
+<td style="text-align:center">2 ^ 2</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">b<em>00000100</em></td>
+</tr>
+<tr>
+<td style="text-align:center">2 ^ 3</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">b<em>00001000</em></td>
+</tr>
+<tr>
+<td style="text-align:center">2 ^ 4</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">b<em>00010000</em></td>
+</tr>
+<tr>
+<td style="text-align:center">2 ^ 5</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">b<em>00100000</em></td>
+</tr>
+<tr>
+<td style="text-align:center">2 ^ 6</td>
+<td style="text-align:center">64</td>
+<td style="text-align:center">b<em>01000000</em></td>
+</tr>
+<tr>
+<td style="text-align:center">2 ^ 7</td>
+<td style="text-align:center">128</td>
+<td style="text-align:center">b<em>10000000</em></td>
+</tr>
+</tbody>
+</table>
+<p>所有<code>2</code>的幂次数，都是最高二进制位值为1，其他位均为0的数字。利用这个特性，我们可以使用位操作进行判断。</p>
+<p><em>n-1</em>得到最高位为0，其他位均为1的数，再与<em>n</em>做按位与<code>&amp;</code>操作，得到0（所有二进制位都为0）。如果该数不是<code>2</code>的幂次，结果必然不会是0。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int isPowerOfTwo(int n) &#123;</div><div class="line">    return (n &gt; 0) &amp;&amp; !(n &amp; (n - 1));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>C/C++ 代码</p>
+</blockquote>
 
 
-                <!-- 如果开启评论功能 -->
+                <hr>
+
                 
-                    <hr>
 
+                <ul class="pager">
                     
-
                     
-
+                        <li class="next">
+                            <a href="/2018/02/25/LeetCode-657-路线判断/" data-toggle="tooltip" data-placement="top" title="LeetCode - 657. 路线判断（Judge Route Circle）">Next Post &rarr;</a>
+                        </li>
                     
-
-                    
-
-<!-- Gitment Begin -->
-<div id="gitment_container">
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id:    'hexo_gitment',        // 可选 默认为 location.href
-  owner: 'zihengcat',           // 你的 GitHub ID
-  repo:  'zihengcat.github.io', // 存储评论的Repo
-  oauth: {
-    client_id: 'f039815621dd7dfd694e',                           // 你的 client ID
-    client_secret: 'fbd18887ac773d1d7a16a91054c3c996a18eb4fe'    // 你的 client secret
-  }
-});
-gitment.render("gitment_container");
-</script>
-</div>
-<!-- Gitment End -->
-
+                </ul>
 
                 
+
+                
+
             </div>
+    <!-- Side Catalog Container -->
+        
+
     <!-- Sidebar Container -->
+
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
-                            
-                        
-                            
-                            <a href="/tags/#C" title="C" rel="13">C</a>
-                            
-                        
-                            
-                            <a href="/tags/#Linux" title="Linux" rel="15">Linux</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                     </div>
                 </section>
                 
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.png" />
-                        
-
-                        
-                            <p>I&#39;m zihengCat. A student live in Hangzhou, learning Coding now.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/zihengcat">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                        </ul>
-                    </div>
-                </section>
 
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
