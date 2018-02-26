@@ -88,13 +88,6 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -103,6 +96,13 @@
                         
                         <li>
                             <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -201,7 +201,7 @@
 <p><strong>例：</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">**输入**: 4</div><div class="line">**输出**: true</div><div class="line"></div><div class="line">**输入**: 6</div><div class="line">**输出**: false</div><div class="line"></div><div class="line">注：4为2^2。</div></pre></td></tr></table></figure></p>
 <h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="常规解法"><a href="#常规解法" class="headerlink" title="常规解法"></a>常规解法</h2><p>只需考虑是否为<code>2</code>的<strong>非负整数</strong>次幂，大大简化了问题。</p>
 <p><code>2</code>的幂次形如：<code>2 * 2 * 2...* 2</code>，均可被<code>2</code>无限整除。利用这个特性，我们就可以轻松解决此问题。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int isPowerOfTwo(int n) &#123;</div><div class="line">    /* 排除掉负数和0 */</div><div class="line">    if(n &lt;= 0) &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">    /* 设置商和余数 */</div><div class="line">    int quotient  = n,</div><div class="line">        remainder = 0;</div><div class="line">    /* 循环退出条件: 商为1（除尽） */</div><div class="line">    while(quotient != 1) &#123;</div><div class="line">        remainder = quotient % 2;</div><div class="line">        quotient /= 2;</div><div class="line">        /* 如果有余数，说明除不尽 */</div><div class="line">        if(remainder) &#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return 1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int isPowerOfTwo(int n) &#123;</div><div class="line">    /* 排除掉负数和0 */</div><div class="line">    if(n &lt;= 0) &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">    /* 设置商和余数 */</div><div class="line">    int quotient  = n,</div><div class="line">        remainder = 0;</div><div class="line">    /* 循环退出条件: 商为1（除尽） */</div><div class="line">    while(quotient != 1) &#123;</div><div class="line">        remainder = quotient % 2;</div><div class="line">        quotient /= 2;</div><div class="line">        /* 如果有余数（除不尽） */</div><div class="line">        if(remainder) &#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return 1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>C/C++ 代码</p>
 </blockquote>
@@ -258,8 +258,8 @@
 </tr>
 </tbody>
 </table>
-<p>所有<code>2</code>的幂次数，都是最高二进制位值为1，其他位均为0的数字。利用这个特性，我们可以使用位操作进行判断。</p>
-<p><em>n-1</em>得到最高位为0，其他位均为1的数，再与<em>n</em>做按位与<code>&amp;</code>操作，得到0（所有二进制位都为0）。如果该数不是<code>2</code>的幂次，结果必然不会是0。</p>
+<p>所有<code>2</code>的幂次数，都是<strong>最高二进制位值为1，其他位均为0</strong>的数字。利用这个特性，我们可以使用位操作进行判断。</p>
+<p><strong>n-1</strong> 得到最高位为0，其他位均为1的数，再与 <strong>n</strong> 做按位与<code>&amp;</code>操作，得到0（所有二进制位都为0）。如果该数不是<code>2</code>的幂次，结果必然不会是0。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int isPowerOfTwo(int n) &#123;</div><div class="line">    return (n &gt; 0) &amp;&amp; !(n &amp; (n - 1));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>C/C++ 代码</p>
