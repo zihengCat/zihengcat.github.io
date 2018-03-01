@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -198,10 +198,10 @@
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 231. 2的幂次（Power of Two）</em>问题。</p>
 <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个整型数，判断该数是否是<code>2</code>的幂次。</p>
 <p>注：只考虑是否为<code>2</code>的<strong>非负整数</strong>次幂即可。</p>
-<p>例：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">**输入**: 4</div><div class="line">**输出**: true</div><div class="line"></div><div class="line">**输入**: 6</div><div class="line">**输出**: false</div><div class="line"></div><div class="line">注：4为2^2。</div></pre></td></tr></table></figure></p>
+<p>例：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">**输入**: 4</span><br><span class="line">**输出**: true</span><br><span class="line"></span><br><span class="line">**输入**: 6</span><br><span class="line">**输出**: false</span><br><span class="line"></span><br><span class="line">注：4为2^2。</span><br></pre></td></tr></table></figure></p>
 <h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="常规解法"><a href="#常规解法" class="headerlink" title="常规解法"></a>常规解法</h2><p>只需考虑是否为<code>2</code>的<strong>非负整数</strong>次幂，大大简化了问题。</p>
 <p><code>2</code>的幂次形如：<code>2 * 2 * 2...* 2</code>，均可被<code>2</code>无限整除。利用这个特性，我们就可以轻松解决此问题。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int isPowerOfTwo(int n) &#123;</div><div class="line">    /* 排除掉负数和0 */</div><div class="line">    if(n &lt;= 0) &#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">    /* 设置商和余数 */</div><div class="line">    int quotient  = n,</div><div class="line">        remainder = 0;</div><div class="line">    /* 循环退出条件: 商为1（除尽） */</div><div class="line">    while(quotient != 1) &#123;</div><div class="line">        remainder = quotient % 2;</div><div class="line">        quotient /= 2;</div><div class="line">        /* 如果有余数（除不尽） */</div><div class="line">        if(remainder) &#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return 1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int isPowerOfTwo(int n) &#123;</span><br><span class="line">    /* 排除掉负数和0 */</span><br><span class="line">    if(n &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    /* 设置商和余数 */</span><br><span class="line">    int quotient  = n,</span><br><span class="line">        remainder = 0;</span><br><span class="line">    /* 循环退出条件: 商为1（除尽） */</span><br><span class="line">    while(quotient != 1) &#123;</span><br><span class="line">        remainder = quotient % 2;</span><br><span class="line">        quotient /= 2;</span><br><span class="line">        /* 如果有余数（除不尽） */</span><br><span class="line">        if(remainder) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>C/C++ 代码</p>
 </blockquote>
@@ -260,7 +260,7 @@
 </table>
 <p>所有<code>2</code>的幂次数，都是<strong>最高二进制位值为1，其他位均为0</strong>的数字。利用这个特性，我们可以使用位操作进行判断。</p>
 <p><code>n-1</code>得到最高位为0，其他位均为1的数，再与<code>n</code>做按位与<code>&amp;</code>操作，得到0（所有二进制位都为0）。如果该数不是<code>2</code>的幂次，结果必然不会是0。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int isPowerOfTwo(int n) &#123;</div><div class="line">    return (n &gt; 0) &amp;&amp; !(n &amp; (n - 1));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int isPowerOfTwo(int n) &#123;</span><br><span class="line">    return (n &gt; 0) &amp;&amp; !(n &amp; (n - 1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>C/C++ 代码</p>
 </blockquote>

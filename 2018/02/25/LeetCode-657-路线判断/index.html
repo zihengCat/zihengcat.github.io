@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -197,10 +197,10 @@
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 657. 路线判断（Judge Route Circle）</em>问题。</p>
 <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>一个机器人初始位置在<em>(0, 0)</em>。输入一系列移动指令使机器人移动起来。判断机器人最终是否回到了初始位置。<br>输入的移动命令是一串字符串。每个移动指令是一个字符。机器人只按照<code>R</code>（右），<code>L</code>（左），<code>U</code>（上），<code>D</code>（下）四个合法指令移动。输出应为机器人是否走回到了原点（<code>true</code>/<code>false</code>）。</p>
-<p><strong>样例1：</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">输入: &quot;UD&quot;</div><div class="line">输出: true</div></pre></td></tr></table></figure></p>
-<p><strong>样例2：</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">输入: &quot;LL&quot;</div><div class="line">输出: false</div></pre></td></tr></table></figure></p>
+<p><strong>样例1：</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;UD&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure></p>
+<p><strong>样例2：</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: &quot;LL&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure></p>
 <h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>设置初始坐标为<em>(0, 0)</em>，遍历输入字符串，是合法指令就改变坐标，最后判断改变后坐标与<em>（0, 0）</em>点是否相等即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bool judgeCircle(char* moves) &#123;</div><div class="line">    int posX = 0, posY = 0;</div><div class="line">    while(*moves) &#123;</div><div class="line">        switch(*moves) &#123;</div><div class="line">            case &apos;R&apos;:</div><div class="line">                posX += 1;</div><div class="line">                break;</div><div class="line">            case &apos;L&apos;:</div><div class="line">                posX -= 1;</div><div class="line">                break;</div><div class="line">            case &apos;U&apos;:</div><div class="line">                posY += 1;</div><div class="line">                break;</div><div class="line">            case &apos;D&apos;:</div><div class="line">                posY -= 1;</div><div class="line">                break;</div><div class="line">            default:</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">        moves++;</div><div class="line">    &#125;</div><div class="line">    return posX == 0 &amp;&amp; posY == 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bool judgeCircle(char* moves) &#123;</span><br><span class="line">    int posX = 0, posY = 0;</span><br><span class="line">    while(*moves) &#123;</span><br><span class="line">        switch(*moves) &#123;</span><br><span class="line">            case &apos;R&apos;:</span><br><span class="line">                posX += 1;</span><br><span class="line">                break;</span><br><span class="line">            case &apos;L&apos;:</span><br><span class="line">                posX -= 1;</span><br><span class="line">                break;</span><br><span class="line">            case &apos;U&apos;:</span><br><span class="line">                posY += 1;</span><br><span class="line">                break;</span><br><span class="line">            case &apos;D&apos;:</span><br><span class="line">                posY -= 1;</span><br><span class="line">                break;</span><br><span class="line">            default:</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        moves++;</span><br><span class="line">    &#125;</span><br><span class="line">    return posX == 0 &amp;&amp; posY == 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>C/C++ 代码</p>
 </blockquote>

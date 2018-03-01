@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -202,7 +202,7 @@
 <li>第二部分：主机名/域名</li>
 <li>第三部分：主机别名(可省略)</li>
 </ul>
-<p><strong>hosts文件的格式</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line"># 注释</div><div class="line">IP地址    主机名/域名    别名(可省略)</div></pre></td></tr></table></figure></p>
+<p><strong>hosts文件的格式</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 注释</span><br><span class="line">IP地址    主机名/域名    别名(可省略)</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>域名与主机名无需过于区分，<br>习惯而已…</p>
 <ul>
@@ -210,7 +210,7 @@
 <li>在互联网中称域名。</li>
 </ul>
 </blockquote>
-<h1 id="规避-DNS-污染"><a href="#规避-DNS-污染" class="headerlink" title="规避 DNS 污染"></a>规避 DNS 污染</h1><p>由于hosts文件请求优先于DNS解析，我们可以修改本地hosts文件来规避部分DNS污染。<br><a href="https://github.com/racaljk/hosts" target="_blank" rel="external">hosts 开源项目</a><br>有好心的朋友整理了一些可用的IP地址，放置在GitHub上，我们可以使用。<br>将<code>hosts</code>文件下载下来，替换掉<code>/etc/hosts</code>文件就可以啦。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"># Update hosts file from GitHub</div><div class="line">update_hosts()&#123;</div><div class="line"></div><div class="line">    HOSTS_LINK=&apos;https://raw.githubusercontent.com/racaljk/hosts/master/hosts&apos;</div><div class="line">    # mirror link</div><div class="line">    # HOSTS_LINK=&quot;https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts&quot; </div><div class="line">    HOSTS_TMP=&apos;hosts.tmp&apos;</div><div class="line">    HOSTS_SRC=&apos;/etc/hosts&apos;</div><div class="line"></div><div class="line">    echo &apos;Downloading latest hosts file...&apos;</div><div class="line">    wget $&#123;HOSTS_LINK&#125; -O $&#123;HOSTS_TMP&#125;</div><div class="line"></div><div class="line">    echo &apos;Using sudo to replace file...&apos;</div><div class="line">    sudo cp -f $&#123;HOSTS_TMP&#125; $&#123;HOSTS_SRC&#125;</div><div class="line"></div><div class="line">    if test $&#123;?&#125; -eq 0</div><div class="line">    then</div><div class="line">        head -n 3 $&#123;HOSTS_SRC&#125;</div><div class="line">        rm $&#123;HOSTS_TMP&#125;</div><div class="line">        echo &apos;Update hosts Successful!&apos;</div><div class="line">        sudo systemctl restart network.service</div><div class="line">    else</div><div class="line">        echo &apos;Something Error...&apos;</div><div class="line">    fi</div><div class="line">&#125;</div><div class="line">update_host</div></pre></td></tr></table></figure></p>
+<h1 id="规避-DNS-污染"><a href="#规避-DNS-污染" class="headerlink" title="规避 DNS 污染"></a>规避 DNS 污染</h1><p>由于hosts文件请求优先于DNS解析，我们可以修改本地hosts文件来规避部分DNS污染。<br><a href="https://github.com/racaljk/hosts" target="_blank" rel="noopener">hosts 开源项目</a><br>有好心的朋友整理了一些可用的IP地址，放置在GitHub上，我们可以使用。<br>将<code>hosts</code>文件下载下来，替换掉<code>/etc/hosts</code>文件就可以啦。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># Update hosts file from GitHub</span><br><span class="line">update_hosts()&#123;</span><br><span class="line"></span><br><span class="line">    HOSTS_LINK=&apos;https://raw.githubusercontent.com/racaljk/hosts/master/hosts&apos;</span><br><span class="line">    # mirror link</span><br><span class="line">    # HOSTS_LINK=&quot;https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts&quot; </span><br><span class="line">    HOSTS_TMP=&apos;hosts.tmp&apos;</span><br><span class="line">    HOSTS_SRC=&apos;/etc/hosts&apos;</span><br><span class="line"></span><br><span class="line">    echo &apos;Downloading latest hosts file...&apos;</span><br><span class="line">    wget $&#123;HOSTS_LINK&#125; -O $&#123;HOSTS_TMP&#125;</span><br><span class="line"></span><br><span class="line">    echo &apos;Using sudo to replace file...&apos;</span><br><span class="line">    sudo cp -f $&#123;HOSTS_TMP&#125; $&#123;HOSTS_SRC&#125;</span><br><span class="line"></span><br><span class="line">    if test $&#123;?&#125; -eq 0</span><br><span class="line">    then</span><br><span class="line">        head -n 3 $&#123;HOSTS_SRC&#125;</span><br><span class="line">        rm $&#123;HOSTS_TMP&#125;</span><br><span class="line">        echo &apos;Update hosts Successful!&apos;</span><br><span class="line">        sudo systemctl restart network.service</span><br><span class="line">    else</span><br><span class="line">        echo &apos;Something Error...&apos;</span><br><span class="line">    fi</span><br><span class="line">&#125;</span><br><span class="line">update_host</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>GitHub 地址不能用就改用国内镜像</p>
 </blockquote>

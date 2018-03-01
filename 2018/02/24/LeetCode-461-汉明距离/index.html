@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -198,13 +198,13 @@
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 461. 汉明距离（Hamming distance）</em>问题。</p>
 <p>两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置不同字符的个数。</p>
 <blockquote>
-<p><a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="external">维基百科</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="noopener">维基百科</a></p>
 </blockquote>
 <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>两个整型数的汉明距离是指：这两个整型数对应比特位不同值的个数。<br>给出两个整型数x与y，计算它们的汉明距离。</p>
 <p>注意：<br>0 &lt;= <code>x</code>, <code>y</code> &lt; 2^31</p>
-<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">*输入*:  x = 1, y = 4</div><div class="line"></div><div class="line">*输出*: 2</div><div class="line"></div><div class="line">*解释*:</div><div class="line">-------------</div><div class="line">1   (0 0 0 1)</div><div class="line">4   (0 1 0 0)</div><div class="line">       ↑   ↑</div><div class="line">-------------</div><div class="line">箭头所指比特位，位置相同值不同。</div></pre></td></tr></table></figure></p>
+<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*输入*:  x = 1, y = 4</span><br><span class="line"></span><br><span class="line">*输出*: 2</span><br><span class="line"></span><br><span class="line">*解释*:</span><br><span class="line">-------------</span><br><span class="line">1   (0 0 0 1)</span><br><span class="line">4   (0 1 0 0)</span><br><span class="line">       ↑   ↑</span><br><span class="line">-------------</span><br><span class="line">箭头所指比特位，位置相同值不同。</span><br></pre></td></tr></table></figure></p>
 <h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>输入的整型数均为<code>int</code>类型，这可以免去考虑整型数比特数不相同的情况。<br>先使用异或<em>XOR</em>操作，问题转化为计算得到数中比特值为<code>1</code>的个数。<br>判断最右比特位是否为<code>1</code>，循环移位即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int hammingDistance(int x, int y) &#123;</div><div class="line">    int ret = x ^ y;</div><div class="line">    int cnt = 0;</div><div class="line">    while(ret) &#123;</div><div class="line">        cnt += ret &amp; 0x01;</div><div class="line">        ret &gt;&gt;= 1;</div><div class="line">    &#125;</div><div class="line">    return cnt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int hammingDistance(int x, int y) &#123;</span><br><span class="line">    int ret = x ^ y;</span><br><span class="line">    int cnt = 0;</span><br><span class="line">    while(ret) &#123;</span><br><span class="line">        cnt += ret &amp; 0x01;</span><br><span class="line">        ret &gt;&gt;= 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>C/C++ 代码</p>
 </blockquote>

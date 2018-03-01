@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -199,7 +199,7 @@
 <li>函数定义 <em>definition</em> 提供了函数实际主体。</li>
 </ul>
 <p>函数还有很多叫法，如方法、子过程、子程序等等。</p>
-<h1 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h1><p>定义C函数的语法如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">return_type function_name( parameter list )&#123;</div><div class="line">    /*  body of the function */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h1><p>定义C函数的语法如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">return_type function_name( parameter list )&#123;</span><br><span class="line">    /*  body of the function */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在 C 语言中，函数由一个函数头和一个函数体组成：</p>
 <ul>
 <li><p><strong>返回类型</strong>：一个函数可以返回一个值。<em>return_type</em> 是函数返回值的数据类型。有些函数只执行所需的操作而不返回值，在这种情况下，<em>return_type</em> 是关键字 <code>void</code>。</p>
@@ -211,9 +211,9 @@
 <li><p><strong>函数主体</strong>：函数主体包含一组定义函数执行任务的语句。</p>
 </li>
 </ul>
-<h1 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h1><p>调用一个已经定义好的参数，直接使用函数名 + 实际参数即可。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">...</div><div class="line">    function_name( arguments );     /* 调用函数 */</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<h1 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h1><p>调用一个已经定义好的参数，直接使用函数名 + 实际参数即可。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">    function_name( arguments );     /* 调用函数 */</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <p>函数类型就是函数返回值的类型。</p>
-<h1 id="函数声明与函数定义"><a href="#函数声明与函数定义" class="headerlink" title="函数声明与函数定义"></a>函数声明与函数定义</h1><p>函数声明会告诉编译器函数名称及如何调用函数。函数主体可以单独定义。<br>函数声明的语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">return_type function_name( parameter list );</div></pre></td></tr></table></figure></p>
+<h1 id="函数声明与函数定义"><a href="#函数声明与函数定义" class="headerlink" title="函数声明与函数定义"></a>函数声明与函数定义</h1><p>函数声明会告诉编译器函数名称及如何调用函数。函数主体可以单独定义。<br>函数声明的语法：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">return_type function_name( parameter list );</span><br></pre></td></tr></table></figure></p>
 <p>可以看到，函数声明其实就是函数头。函数声明并不产生实际的机器代码，只是告诉编译器如何调用该函数。<br>使编译器可以在实际调用该函数时正确分配栈空间。所以，函数声明中的形参列表可以只带类型，不带参数名，但是我们一般都会带上参数名。</p>
 <ul>
 <li><p><strong>C函数必须先声明后调用。</strong>所以我们一般将函数声明放入头文件中，在需要使用此函数时将相应的头文件包含进来。</p>

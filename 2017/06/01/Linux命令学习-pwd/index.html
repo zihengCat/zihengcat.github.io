@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -196,8 +196,8 @@
                 post-container">
 
                 <h1 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h1><p><code>pwd</code>命令是一个相当常用的命令，它告诉我们shell当前工作目录。<br><code>pwd</code>是<em>Print working directory</em>的意思。<br><code>pwd</code>是一个shell内置指令(shell builtin)。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ type pwd</div><div class="line">pwd is a shell builtin</div></pre></td></tr></table></figure>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ help pwd</div><div class="line">pwd: pwd [-LP]</div><div class="line">    Print the name of the current working directory.</div><div class="line">    </div><div class="line">    Options:</div><div class="line">      -L	print the value of $PWD if it names the current working</div><div class="line">    	directory</div><div class="line">      -P	print the physical directory, without any symbolic links</div><div class="line">    </div><div class="line">    By default, `pwd&apos; behaves as if `-L&apos; were specified.</div><div class="line">    </div><div class="line">    Exit Status:</div><div class="line">    Returns 0 unless an invalid option is given or the current directory</div><div class="line">    cannot be read.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ type pwd</span><br><span class="line">pwd is a shell builtin</span><br></pre></td></tr></table></figure>
+<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ help pwd</span><br><span class="line">pwd: pwd [-LP]</span><br><span class="line">    Print the name of the current working directory.</span><br><span class="line">    </span><br><span class="line">    Options:</span><br><span class="line">      -L	print the value of $PWD if it names the current working</span><br><span class="line">    	directory</span><br><span class="line">      -P	print the physical directory, without any symbolic links</span><br><span class="line">    </span><br><span class="line">    By default, `pwd&apos; behaves as if `-L&apos; were specified.</span><br><span class="line">    </span><br><span class="line">    Exit Status:</span><br><span class="line">    Returns 0 unless an invalid option is given or the current directory</span><br><span class="line">    cannot be read.</span><br></pre></td></tr></table></figure>
 <p>可以看到，<code>pwd</code>命令实际上是打印出了shell环境变量<code>$PWD</code>的值。<br><code>-P</code>选项打印出实际的路径，而非快捷链接（symbolic links）,该选项有时候会有用。</p>
 
 

@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -195,23 +195,23 @@
 
                 <h1 id="空白与缩进"><a href="#空白与缩进" class="headerlink" title="空白与缩进"></a>空白与缩进</h1><h2 id="空白"><a href="#空白" class="headerlink" title="空白"></a>空白</h2><ol>
 <li><p>关键字<code>if</code>、<code>while</code>、<code>for</code>与其后的控制表达式的<code>(</code>括号之间插入一个空格分隔，但括号内的表达式应紧贴括号。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">while (1);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">while (1);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>双目运算符的两侧各插入一个空格分隔，单目运算符和操作数之间不加空格。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">i = i + 1;</div><div class="line">++i;</div><div class="line">!(i &lt; 1);</div><div class="line">-x; </div><div class="line">&amp;a[1];</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">i = i + 1;</span><br><span class="line">++i;</span><br><span class="line">!(i &lt; 1);</span><br><span class="line">-x; </span><br><span class="line">&amp;a[1];</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>后缀运算符和操作数之间不加空格。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">s.a           /* 取结构体成员 */</div><div class="line">foo(arg1)     /* 函数调用 */</div><div class="line">a[i]          /* 取数组成员 */</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">s.a           /* 取结构体成员 */</span><br><span class="line">foo(arg1)     /* 函数调用 */</span><br><span class="line">a[i]          /* 取数组成员 */</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>逗号<code>,</code>与分号<code>;</code>之后加空格，这是英文的书写习惯。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">for(i = 0; i &lt; 10; i++);</div><div class="line">foo(arg1, arg2);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for(i = 0; i &lt; 10; i++);</span><br><span class="line">foo(arg1, arg2);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>以上关于双目运算符和后缀运算符的规则并没有严格要求，有时候为了突出优先级也可以写得更紧凑一些，但是省略的空格一定不要误导了读代码的人。</p>
 </li>
 <li><p>由于UNIX系统标准的字符终端是24行80列的，接近或大于80个字符的较长语句要折行写，折行后用空格和上面的表达式或参数对齐。</p>
 </li>
 <li><p>较长的字符串可以断成多个字符串分行书写，C编译器会自动把相邻的多个字符串拼接在一起。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">printf(&quot;This is such a long sentence that &quot;</div><div class="line">       &quot;it cannot be held within a line\n&quot;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">printf(&quot;This is such a long sentence that &quot;</span><br><span class="line">       &quot;it cannot be held within a line\n&quot;);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>可以在变量定义语句中使变量名对齐，这样看起来很美观。</p>
 </li>
@@ -224,7 +224,7 @@
 <li><p><code>if/else</code>、<code>while</code>、<code>do/while</code>、<code>for</code>、<code>switch</code> 这些带语句块的语句，语句块<code>{...}</code>可以和关键字写在同一行，用空格隔开；也可以单独写一行。</p>
 </li>
 <li><p><code>switch</code> 语句块里的 <code>case</code>、<code>default</code> 对齐写。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">switch (c) &#123;</div><div class="line">case &apos;A&apos;:   </div><div class="line">    /* statements */</div><div class="line">case &apos;B&apos;:</div><div class="line">    /* statements */</div><div class="line">case &apos;C&apos;:</div><div class="line">    /* statements */</div><div class="line">default:</div><div class="line">    /* statements */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">switch (c) &#123;</span><br><span class="line">case &apos;A&apos;:   </span><br><span class="line">    /* statements */</span><br><span class="line">case &apos;B&apos;:</span><br><span class="line">    /* statements */</span><br><span class="line">case &apos;C&apos;:</span><br><span class="line">    /* statements */</span><br><span class="line">default:</span><br><span class="line">    /* statements */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>代码中每个逻辑段落之间应该用一个空行分隔开。例如每个函数定义之间应该插入一个空行，头文件、全局变量定义和函数定义之间也应该插入空行。</p>
 </li>
@@ -253,16 +253,16 @@
 <li>变量、函数和类型采用全小写加下划线的方式命名。</li>
 <li>变量的名字应当使用“名词”或者“形容词+名词”。</li>
 </ul>
-<h3 id="普通变量命名"><a href="#普通变量命名" class="headerlink" title="普通变量命名"></a>普通变量命名</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">string table_name;      /* good - uses underscore */</div><div class="line">string tableName;       /* bad - mixed case */</div></pre></td></tr></table></figure>
-<h3 id="全局变量命名"><a href="#全局变量命名" class="headerlink" title="全局变量命名"></a>全局变量命名</h3><p>尽量不使用全局变量，如果不得已需要全局变量，则在全局变量加前缀<code>g_</code>(表示 <em>global</em>)。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">int g_how_many_people;    /* global variable */</div><div class="line">int g_how_much_money;     /* global variable*/</div></pre></td></tr></table></figure></p>
-<h3 id="静态变量命名"><a href="#静态变量命名" class="headerlink" title="静态变量命名"></a>静态变量命名</h3><p>静态变量加前缀 <code>s_</code>(表示 <em>static</em>)。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">void init(...)</div><div class="line">&#123;</div><div class="line">    static int s_init_value;    /* static variable */</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="普通变量命名"><a href="#普通变量命名" class="headerlink" title="普通变量命名"></a>普通变量命名</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">string table_name;      /* good - uses underscore */</span><br><span class="line">string tableName;       /* bad - mixed case */</span><br></pre></td></tr></table></figure>
+<h3 id="全局变量命名"><a href="#全局变量命名" class="headerlink" title="全局变量命名"></a>全局变量命名</h3><p>尽量不使用全局变量，如果不得已需要全局变量，则在全局变量加前缀<code>g_</code>(表示 <em>global</em>)。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int g_how_many_people;    /* global variable */</span><br><span class="line">int g_how_much_money;     /* global variable*/</span><br></pre></td></tr></table></figure></p>
+<h3 id="静态变量命名"><a href="#静态变量命名" class="headerlink" title="静态变量命名"></a>静态变量命名</h3><p>静态变量加前缀 <code>s_</code>(表示 <em>static</em>)。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void init(...)</span><br><span class="line">&#123;</span><br><span class="line">    static int s_init_value;    /* static variable */</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="常量命名"><a href="#常量命名" class="headerlink" title="常量命名"></a>常量命名</h2><p>常量采用全大写加下划线的方式命名。</p>
 <ul>
 <li>const 常量</li>
 <li>宏定义常量</li>
 <li>枚举常量</li>
 </ul>
-<h2 id="函数、类型命名"><a href="#函数、类型命名" class="headerlink" title="函数、类型命名"></a>函数、类型命名</h2><p>函数、类型命名统一小写加下划线，和变量的命名方式相同。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">void add_table_entry();</div><div class="line">int delete_url();</div><div class="line">struct complex_struct&#123;</div><div class="line">    double x, y;</div><div class="line">&#125;;</div><div class="line">enum coordinate_type &#123; RECTANGULAR, POLAR &#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="函数、类型命名"><a href="#函数、类型命名" class="headerlink" title="函数、类型命名"></a>函数、类型命名</h2><p>函数、类型命名统一小写加下划线，和变量的命名方式相同。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void add_table_entry();</span><br><span class="line">int delete_url();</span><br><span class="line">struct complex_struct&#123;</span><br><span class="line">    double x, y;</span><br><span class="line">&#125;;</span><br><span class="line">enum coordinate_type &#123; RECTANGULAR, POLAR &#125;;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>Modern C++ 建议函数名的每个单词首字母大写, 没有下划线。<br>这种大小写混合的命名方式在c++代码中很普遍，称为 camelcase（驼峰命名法）。<br>因为这种命名方式有高有低像驼峰一样。</p>
 </blockquote>

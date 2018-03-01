@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -194,15 +194,15 @@
                 post-container">
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用苹果系统的同学都大都认识这个<em>.DS_Store</em>文件, 这个文件是苹果桌面程序<em>Finder</em>产生，纪录了当前目录的一些显示信息,比如, Finder以何种形式显示目录, 目录文件图标大小, 背景图, 目录元数据等等。该文件的全称是<em>Desktop Services Store</em>,由Finder产生，为Finder所用。有点类似与Windows系统下的<em>desktop.ini</em>文件。<br>该文件默认是隐藏的，Unix Like系统，文件or目录名带点号<code>.</code>的，会被认为是隐藏文件。<br>其实普通用户不需要在意这个文件，默认就是隐藏的，Finder也不会让你看到。但是啊，子恒喵有点精神洁癖,不喜欢在目录下出现多余的东西…而且在<strong>归档压缩</strong>，<strong>挂载共享文件系统</strong>时，这个文件总是会跑出来，让人很不爽。所以子恒喵决定干掉它。</p>
-<h1 id="Finder隐藏文件的显示-关闭"><a href="#Finder隐藏文件的显示-关闭" class="headerlink" title="Finder隐藏文件的显示/关闭"></a>Finder隐藏文件的显示/关闭</h1><p>Finder默认是不显示隐藏文件(以.开头的文件或目录)的，我们可以输入如下命令显示隐藏文件。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ defaults write com.apple.finder AppleShowAllFiles -bool true</div></pre></td></tr></table></figure></p>
-<p>当然我们也可以关闭显示隐藏文件。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ defaults write com.apple.finder AppleShowAllFiles -bool false</div></pre></td></tr></table></figure></p>
-<p>执行完命令后，让Finder退出重启就可以啦。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ killall Finder</div></pre></td></tr></table></figure></p>
+<h1 id="Finder隐藏文件的显示-关闭"><a href="#Finder隐藏文件的显示-关闭" class="headerlink" title="Finder隐藏文件的显示/关闭"></a>Finder隐藏文件的显示/关闭</h1><p>Finder默认是不显示隐藏文件(以.开头的文件或目录)的，我们可以输入如下命令显示隐藏文件。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ defaults write com.apple.finder AppleShowAllFiles -bool true</span><br></pre></td></tr></table></figure></p>
+<p>当然我们也可以关闭显示隐藏文件。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ defaults write com.apple.finder AppleShowAllFiles -bool false</span><br></pre></td></tr></table></figure></p>
+<p>执行完命令后，让Finder退出重启就可以啦。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ killall Finder</span><br></pre></td></tr></table></figure></p>
 <h1 id="DS-Store文件的生成-关闭"><a href="#DS-Store文件的生成-关闭" class="headerlink" title=".DS_Store文件的生成/关闭"></a>.DS_Store文件的生成/关闭</h1><p>命令行下输入以下命令可以禁止系统创建<em>.DS_Store</em>文件。注意，命令是区分用户的，以哪个用户的身份执行，就改写哪个用户的配置文件。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ defaults write com.apple.desktopservices DSDontWriteStores true</div><div class="line">$ defaults write com.apple.desktopservices DSDontWriteNetworkStores true</div></pre></td></tr></table></figure>
-<p>输入反向命令可以恢复。<br>执行完命令后，让Finder退出重启使生效。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ killall Finder</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ defaults write com.apple.desktopservices DSDontWriteStores true</span><br><span class="line">$ defaults write com.apple.desktopservices DSDontWriteNetworkStores true</span><br></pre></td></tr></table></figure>
+<p>输入反向命令可以恢复。<br>执行完命令后，让Finder退出重启使生效。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ killall Finder</span><br></pre></td></tr></table></figure></p>
 <p><strong>注: 上述方法在OSX10.7后已经失效，写命令查找删除好了…</strong></p>
-<h1 id="命令删除-DS-Store文件"><a href="#命令删除-DS-Store文件" class="headerlink" title="命令删除.DS_Store文件"></a>命令删除.DS_Store文件</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ sudo find / -name &quot;.DS_Store&quot; -depth -exec rm &#123;&#125; \;</div></pre></td></tr></table></figure>
-<p>使用<code>find</code>命令查找目标文件，删除掉就可以啦。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ find ./ -name &quot;.DS_Store&quot; -depth -exec rm &#123;&#125; \;</div></pre></td></tr></table></figure></p>
+<h1 id="命令删除-DS-Store文件"><a href="#命令删除-DS-Store文件" class="headerlink" title="命令删除.DS_Store文件"></a>命令删除.DS_Store文件</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo find / -name &quot;.DS_Store&quot; -depth -exec rm &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<p>使用<code>find</code>命令查找目标文件，删除掉就可以啦。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ find ./ -name &quot;.DS_Store&quot; -depth -exec rm &#123;&#125; \;</span><br></pre></td></tr></table></figure></p>
 <p>清除当前目录下所有<em>.DS_Store</em>文件。</p>
 
 

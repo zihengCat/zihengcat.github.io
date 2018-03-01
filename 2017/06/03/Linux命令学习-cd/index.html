@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -196,8 +196,8 @@
                 post-container">
 
                 <h1 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h1><p><code>cd</code>命令可以说是广大Linux用户最常使用的命令啦，它的作用是改变shell当前工作目录。<br><code>cd</code>是<em>Change directory</em>的意思。<br><code>cd</code>是一个shell内置指令(shell builtin)。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ type cd</div><div class="line">cd is a shell builtin</div></pre></td></tr></table></figure>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ help cd</div><div class="line">cd: cd [-L|[-P [-e]]] [dir]</div><div class="line">    Change the shell working directory.</div><div class="line">    </div><div class="line">    Change the current directory to DIR.  The default DIR is the value of the</div><div class="line">    HOME shell variable.</div><div class="line">    </div><div class="line">    The variable CDPATH defines the search path for the directory containing</div><div class="line">    DIR.  Alternative directory names in CDPATH are separated by a colon (:).</div><div class="line">    A null directory name is the same as the current directory.  If DIR begins</div><div class="line">    with a slash (/), then CDPATH is not used.</div><div class="line">    </div><div class="line">    If the directory is not found, and the shell option `cdable_vars&apos; is set,</div><div class="line">    the word is assumed to be  a variable name.  If that variable has a value,</div><div class="line">    its value is used for DIR.</div><div class="line">    </div><div class="line">    Options:</div><div class="line">        -L	force symbolic links to be followed</div><div class="line">        -P	use the physical directory structure without following symbolic</div><div class="line">    	links</div><div class="line">        -e	if the -P option is supplied, and the current working directory</div><div class="line">    	cannot be determined successfully, exit with a non-zero status</div><div class="line">    </div><div class="line">    The default is to follow symbolic links, as if `-L&apos; were specified.</div><div class="line">    </div><div class="line">    Exit Status:</div><div class="line">    Returns 0 if the directory is changed, and if $PWD is set successfully when</div><div class="line">    -P is used; non-zero otherwise.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ type cd</span><br><span class="line">cd is a shell builtin</span><br></pre></td></tr></table></figure>
+<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ help cd</span><br><span class="line">cd: cd [-L|[-P [-e]]] [dir]</span><br><span class="line">    Change the shell working directory.</span><br><span class="line">    </span><br><span class="line">    Change the current directory to DIR.  The default DIR is the value of the</span><br><span class="line">    HOME shell variable.</span><br><span class="line">    </span><br><span class="line">    The variable CDPATH defines the search path for the directory containing</span><br><span class="line">    DIR.  Alternative directory names in CDPATH are separated by a colon (:).</span><br><span class="line">    A null directory name is the same as the current directory.  If DIR begins</span><br><span class="line">    with a slash (/), then CDPATH is not used.</span><br><span class="line">    </span><br><span class="line">    If the directory is not found, and the shell option `cdable_vars&apos; is set,</span><br><span class="line">    the word is assumed to be  a variable name.  If that variable has a value,</span><br><span class="line">    its value is used for DIR.</span><br><span class="line">    </span><br><span class="line">    Options:</span><br><span class="line">        -L	force symbolic links to be followed</span><br><span class="line">        -P	use the physical directory structure without following symbolic</span><br><span class="line">    	links</span><br><span class="line">        -e	if the -P option is supplied, and the current working directory</span><br><span class="line">    	cannot be determined successfully, exit with a non-zero status</span><br><span class="line">    </span><br><span class="line">    The default is to follow symbolic links, as if `-L&apos; were specified.</span><br><span class="line">    </span><br><span class="line">    Exit Status:</span><br><span class="line">    Returns 0 if the directory is changed, and if $PWD is set successfully when</span><br><span class="line">    -P is used; non-zero otherwise.</span><br></pre></td></tr></table></figure>
 <p>可以看到，<code>cd</code>命令帮我们改变了当前shell的工作目录，并设置<code>$PWD</code>环境变量的值。<br>如果不加任何参数，<code>cd</code>命令将使用环境变量<code>$HOME</code>（返回当前用户的家目录)。<br><code>-P</code>选项表示使用实际的路径名，而非符号链接(symbolic links)。</p>
 
 

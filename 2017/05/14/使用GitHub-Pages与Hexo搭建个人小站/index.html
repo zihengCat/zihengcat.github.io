@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -204,29 +204,29 @@
 </ul>
 <p>以上几点只是子恒喵个人的情况啦，您可以选择自己熟悉的平台or工具，但是这篇教程还是要讲解Github Pages + Hexo 这套组合。</p>
 <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>既然选择了 GitHub Pages 与 Hexo，那我们需要搭建起相关的环境啦。不然它们可是跑不起来的哦。</p>
-<h2 id="Git环境搭建"><a href="#Git环境搭建" class="headerlink" title="Git环境搭建"></a>Git环境搭建</h2><p><a href="https://git-scm.com/" target="_blank" rel="external"><strong>Git官网</strong></a>     </p>
+<h2 id="Git环境搭建"><a href="#Git环境搭建" class="headerlink" title="Git环境搭建"></a>Git环境搭建</h2><p><a href="https://git-scm.com/" target="_blank" rel="noopener"><strong>Git官网</strong></a>     </p>
 <p>前往Git官方网站, 根据您的架构，系统下载安装最新版本Git。如果进不去，开启科学上网嘛~<br>大家养成下载软件去官网的好习惯哦。<br>子恒喵用的是CentOS Linux系统，一条<code>yum</code>命令就装好啦。</p>
-<h2 id="Node-js环境搭建"><a href="#Node-js环境搭建" class="headerlink" title="Node.js环境搭建"></a>Node.js环境搭建</h2><p><a href="https://nodejs.org/" target="_blank" rel="external"><strong>Node.js官网</strong></a>   </p>
+<h2 id="Node-js环境搭建"><a href="#Node-js环境搭建" class="headerlink" title="Node.js环境搭建"></a>Node.js环境搭建</h2><p><a href="https://nodejs.org/" target="_blank" rel="noopener"><strong>Node.js官网</strong></a>   </p>
 <p>前往Node.js官网, 根据您的架构，系统下载安装Node.js。<br>子恒喵选择的是LTS版本，手动编译安装的。</p>
 <h2 id="检验安装"><a href="#检验安装" class="headerlink" title="检验安装"></a>检验安装</h2><p>打开Terminal(Windows下CMD)，执行命令。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git --version</div><div class="line">$ node --version</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git --version</span><br><span class="line">$ node --version</span><br></pre></td></tr></table></figure>
 <p>如果正确打印出软件版本号，则表明环境搭建成功。</p>
 <h1 id="Hexo安装"><a href="#Hexo安装" class="headerlink" title="Hexo安装"></a>Hexo安装</h1><blockquote>
 <p>A fast, simple &amp; powerful blog framework, powered by Node.js.</p>
 </blockquote>
 <p>Hexo是一个快速、简洁且高效的博客框架，使用Node.js写成，支持Markdown格式。    </p>
-<p>Hexo的安装非常简单。一条命令即可。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ npm install hexo-cli -g</div></pre></td></tr></table></figure></p>
+<p>Hexo的安装非常简单。一条命令即可。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure></p>
 <p>这条命令就是使用NPM(Node.js默认包管理器) 安装上Hexo, 安装的是命令行版本的Hexo，-g 参数表示全局安装。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo --version</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo --version</span><br></pre></td></tr></table></figure>
 <p>安装完成后，执行以上命令，如果正确打印出Hexo及其相关软件的版本号，则安装成功。</p>
 <h1 id="Hexo使用"><a href="#Hexo使用" class="headerlink" title="Hexo使用"></a>Hexo使用</h1><p>安装完成之后，我们终于可以上手用用这个Hexo啦～<br>执行以下命令Hexo将会在指定文件夹中新建所需要的文件。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo init &lt;folder&gt;</div><div class="line">$ cd &lt;folder&gt;</div><div class="line">$ npm install</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
 <p>新建完成后，指定文件夹的目录如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">.</div><div class="line">├── _config.yml</div><div class="line">├── package.json</div><div class="line">├── scaffolds</div><div class="line">├── source</div><div class="line">|   ├── _drafts</div><div class="line">|   └── _posts</div><div class="line">└── themes</div></pre></td></tr></table></figure>
-<p>执行以下命令启动服务器。<br>默认情况下，访问网址为：<code>http://localhost:4000/</code>。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+<p>执行以下命令启动服务器。<br>默认情况下，访问网址为：<code>http://localhost:4000/</code>。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></p>
 <p>打开浏览器，键入<code>http://localhost:4000/</code>，我们的博客出现啦～</p>
 <h1 id="Hexo更多"><a href="#Hexo更多" class="headerlink" title="Hexo更多"></a>Hexo更多</h1><p>更多有关Hexo的信息，大家可以去查阅官方文档。</p>
-<p><a href="https://hexo.io/docs/" target="_blank" rel="external"><strong>Hexo Docs</strong></a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external"><strong>Hexo 中文文档</strong></a></p>
+<p><a href="https://hexo.io/docs/" target="_blank" rel="noopener"><strong>Hexo Docs</strong></a><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener"><strong>Hexo 中文文档</strong></a></p>
 <h1 id="GitHub-Pages"><a href="#GitHub-Pages" class="headerlink" title="GitHub Pages"></a>GitHub Pages</h1><blockquote>
 <p>Websites for you and your projects.    </p>
 </blockquote>
@@ -237,23 +237,23 @@
 <li>开发者项目与站点紧密相关</li>
 </ul>
 <p>注意注意，只托管静态网站哦。<br>如果博客配有大量高清图片, 请用图床吧。</p>
-<p><a href="https://pages.github.com/" target="_blank" rel="external"><strong>GitHub Pages 官方教程</strong></a><br>官方教程写得简洁明了，熟悉Git的你一定能轻松上手。</p>
+<p><a href="https://pages.github.com/" target="_blank" rel="noopener"><strong>GitHub Pages 官方教程</strong></a><br>官方教程写得简洁明了，熟悉Git的你一定能轻松上手。</p>
 <h1 id="发布网站"><a href="#发布网站" class="headerlink" title="发布网站"></a>发布网站</h1><p>现在，我们已经在GitHub上建立了自己的GitHub Pages：<code>yourname.github.io</code>。<br>也在本地跑起来了我们的Hexo博客小站：<code>http://localhost:4000</code>。<br>最后一步，也是最重要的一步，我们要把本地的站点托管到GitHub Pages上。</p>
-<p>由于GitHub Pages不支持动态网站，我们需要先生成静态网站再托管到GitHub上。使用Hexo的命令可以轻松完成。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure></p>
+<p>由于GitHub Pages不支持动态网站，我们需要先生成静态网站再托管到GitHub上。使用Hexo的命令可以轻松完成。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></p>
 <p>以上命令生成了静态网页文件，放置在<code>public</code>目录下。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git remote add origin &lt;your-github-pages-repo&gt;</div><div class="line">$ git add -A</div><div class="line">$ git commit</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git remote add origin &lt;your-github-pages-repo&gt;</span><br><span class="line">$ git add -A</span><br><span class="line">$ git commit</span><br><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
 <p>将<code>public</code>下的静态网页文件移置GitHub Pages的仓库中，提交推送就OK啦。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ hexo generate --deploy</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo generate --deploy</span><br></pre></td></tr></table></figure>
 <p>使用这个命令就可以将生成静态网页文件与提交到GitHub这两步结合起来，比较方便，前提是要先在配置文件中写好GitHub的相关信息。</p>
 <p>稍等片刻，访问<code>https://yourname.github.io</code>，我们的个人博客搭建完成啦。</p>
 <h1 id="备份建议"><a href="#备份建议" class="headerlink" title="备份建议"></a>备份建议</h1><p>毫无疑问，博客的博文资料是最珍贵的，框架可以换，但博文资料我们需要采用某些措施妥善的备份起来。<br>子恒喵给大家的建议是，使用<strong>GitHub备份博文资料</strong>。<br>由于我们上传到GitHub Pages 仓库上的是借助Hexo生成器生成的静态网页文件，我们不希望备份它们，这对日后博客内容的移植，修改造成不便。<br>我们需要将本地的Markdown文件备份下来，这才是我们需要做的。<br>Hexo本地目录下<code>source</code>文件夹存放着我们写的博文内容，我们只需要使用GitHub将这些内容备份起来。<br>这里子恒喵使用了<code>Git branch</code>分支功能来保存博文资料，没有新建出一个仓库。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git clone &lt;your-remote-github-repo.git&gt;</div><div class="line">$ cd &lt;folder&gt;</div><div class="line">$ git branch source</div><div class="line">$ git checkout source</div><div class="line">$ rm -rf ./[^.]*</div><div class="line">$ cp -r -v &lt;hexo/source&gt; ./</div><div class="line">$ git add --all</div><div class="line">$ git commit</div><div class="line">$ git push origin source</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone &lt;your-remote-github-repo.git&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ git branch source</span><br><span class="line">$ git checkout source</span><br><span class="line">$ rm -rf ./[^.]*</span><br><span class="line">$ cp -r -v &lt;hexo/source&gt; ./</span><br><span class="line">$ git add --all</span><br><span class="line">$ git commit</span><br><span class="line">$ git push origin source</span><br></pre></td></tr></table></figure>
 <p>虽然Git branch分支功能并不是为备份数据而生的，但是在这个特殊场景下，利用分支功能却非常合适。<code>master</code>分支存放静态网页文件，<code>source</code>分支存放Markdown文件。备份工作完满完成。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>Git官方网站:      <a href="https://git-scm.com/" target="_blank" rel="external">https://git-scm.com/</a>    </li>
-<li>Node.js 官方网站: <a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a></li>
-<li>Hexo官方网站:     <a href="https://hexo.io/" target="_blank" rel="external">https://hexo.io/</a></li>
-<li>GitHub-Pages介绍: <a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="external">https://help.github.com/articles/what-is-github-pages/</a></li>
+<li>Git官方网站:      <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a>    </li>
+<li>Node.js 官方网站: <a href="https://nodejs.org/" target="_blank" rel="noopener">https://nodejs.org/</a></li>
+<li>Hexo官方网站:     <a href="https://hexo.io/" target="_blank" rel="noopener">https://hexo.io/</a></li>
+<li>GitHub-Pages介绍: <a href="https://help.github.com/articles/what-is-github-pages/" target="_blank" rel="noopener">https://help.github.com/articles/what-is-github-pages/</a></li>
 </ul>
 <h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><ul>
 <li>2017-05-14 –&gt; 完成[初稿]</li>

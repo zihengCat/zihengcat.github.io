@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -195,20 +195,20 @@
 
                 <p><img src="./img_decorator.png" alt="img-decorator"></p>
 <blockquote>
-<p>图片取自:<br><a href="https://zhuanlan.zhihu.com/p/30487077" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/30487077</a></p>
+<p>图片取自:<br><a href="https://zhuanlan.zhihu.com/p/30487077" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/30487077</a></p>
 </blockquote>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Python 装饰器(decorator)本质上是一个 Python 函数或类，它可以让其他函数或类在不需要做任何代码修改的前提下增加额外功能，装饰器的返回值也是一个函数/类对象。装饰器常用于的场景：插入日志、性能测试、事务处理、缓存、权限校验等。有了装饰器，我们就可以抽离出大量与函数功能本身无关的代码到装饰器中并继续重用。装饰器的作用是<strong>为已经存在的对象添加额外的功能</strong>。</p>
-<h1 id="手写装饰器"><a href="#手写装饰器" class="headerlink" title="手写装饰器"></a>手写装饰器</h1><p>我们来实现一个简单的功能，计算函数的执行时间，并打印出来。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">import time</div><div class="line">def time_taken(f):</div><div class="line">    def new_f(*args, **kwargs):</div><div class="line">        &apos;&apos;&apos;</div><div class="line">        接受一枚函数，计算该函数执行时间，并打印</div><div class="line">        &apos;&apos;&apos;</div><div class="line">        before = time.time()</div><div class="line">        f(*args, **kwargs)</div><div class="line">        after = time.time()</div><div class="line">        res = after - before</div><div class="line">        print(&quot;Time taken %d&quot; % (res))</div><div class="line">        return res</div><div class="line">    return new_f</div><div class="line"></div><div class="line">def my_func():</div><div class="line">    # 任意函数</div><div class="line">    pass</div><div class="line">my_func = time_taken(my_func)</div><div class="line">my_func()</div></pre></td></tr></table></figure></p>
+<h1 id="手写装饰器"><a href="#手写装饰器" class="headerlink" title="手写装饰器"></a>手写装饰器</h1><p>我们来实现一个简单的功能，计算函数的执行时间，并打印出来。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import time</span><br><span class="line">def time_taken(f):</span><br><span class="line">    def new_f(*args, **kwargs):</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        接受一枚函数，计算该函数执行时间，并打印</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        before = time.time()</span><br><span class="line">        f(*args, **kwargs)</span><br><span class="line">        after = time.time()</span><br><span class="line">        res = after - before</span><br><span class="line">        print(&quot;Time taken %d&quot; % (res))</span><br><span class="line">        return res</span><br><span class="line">    return new_f</span><br><span class="line"></span><br><span class="line">def my_func():</span><br><span class="line">    # 任意函数</span><br><span class="line">    pass</span><br><span class="line">my_func = time_taken(my_func)</span><br><span class="line">my_func()</span><br></pre></td></tr></table></figure></p>
 <p>好啦，我们已经完成了这个计算函数执行时间的功能。我们将计算时间这一模式抽象成一枚函数，这里的<code>time_taken()</code>函数就是一个”装饰器”，接受一个函数，并在内部对该函数做一些”包装”，返回一个新的函数。</p>
 <h1 id="语法糖"><a href="#语法糖" class="headerlink" title="@ 语法糖"></a><code>@</code> 语法糖</h1><p>Python提供了一种更加简洁的装饰器语法，就是<code>@</code>符号。在需要应用装饰器的函数定义处加上<code>@function</code>，可以省去<code>my_func = function(my_func)</code>这条赋值语句，直接应用装饰器修饰过的函数。</p>
 <h1 id="args-与-kwargs"><a href="#args-与-kwargs" class="headerlink" title="*args 与 **kwargs"></a><code>*args</code> 与 <code>**kwargs</code></h1><p>如果我们的函数需要参数，可以直接在装饰器中指定。当然，我们可以使用<code>*args</code>与<code>**kwargs</code>来传入任意数量的参数。</p>
 <h1 id="带参装饰器"><a href="#带参装饰器" class="headerlink" title="带参装饰器"></a>带参装饰器</h1><p>装饰器还可以带有参数，非常灵活。其实现原理是，再用一枚函数对装饰器进行封装。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">def time_taken(t):</div><div class="line">    def decorator(f):</div><div class="line">        def new_f(*args, **kwargs):</div><div class="line">            &apos;&apos;&apos;</div><div class="line">            接受一枚函数，计算该函数执行时间，并打印</div><div class="line">            &apos;&apos;&apos;</div><div class="line">            print(&quot;Time now %s&quot; % (t))</div><div class="line">            before = time.time()</div><div class="line">            f(*args, **kwargs)</div><div class="line">            after = time.time()</div><div class="line">            res = after - before</div><div class="line">            print(&quot;Time taken %d&quot; % (res))</div><div class="line">            return res</div><div class="line">        return new_f</div><div class="line">   return decorator</div><div class="line"></div><div class="line">@time_taken(time.time())</div><div class="line">def my_func():</div><div class="line">    # 任意函数</div><div class="line">    pass</div><div class="line"># 等同于</div><div class="line"># my_func = time_taken(time.time())(my_func)</div><div class="line">my_func()</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def time_taken(t):</span><br><span class="line">    def decorator(f):</span><br><span class="line">        def new_f(*args, **kwargs):</span><br><span class="line">            &apos;&apos;&apos;</span><br><span class="line">            接受一枚函数，计算该函数执行时间，并打印</span><br><span class="line">            &apos;&apos;&apos;</span><br><span class="line">            print(&quot;Time now %s&quot; % (t))</span><br><span class="line">            before = time.time()</span><br><span class="line">            f(*args, **kwargs)</span><br><span class="line">            after = time.time()</span><br><span class="line">            res = after - before</span><br><span class="line">            print(&quot;Time taken %d&quot; % (res))</span><br><span class="line">            return res</span><br><span class="line">        return new_f</span><br><span class="line">   return decorator</span><br><span class="line"></span><br><span class="line">@time_taken(time.time())</span><br><span class="line">def my_func():</span><br><span class="line">    # 任意函数</span><br><span class="line">    pass</span><br><span class="line"># 等同于</span><br><span class="line"># my_func = time_taken(time.time())(my_func)</span><br><span class="line">my_func()</span><br></pre></td></tr></table></figure>
 <h1 id="装饰器调用顺序"><a href="#装饰器调用顺序" class="headerlink" title="装饰器调用顺序"></a>装饰器调用顺序</h1><p>一枚函数可以被多个装饰器修饰，装饰器的调用顺序是<strong>从里到外</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">@a</div><div class="line">@b</div><div class="line">@c</div><div class="line">def f():</div><div class="line">    pass</div></pre></td></tr></table></figure>
-<p>调用顺序为：<code>c() -&gt; b() -&gt; a()</code>。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">f = a( b( c( f ) ) )</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@a</span><br><span class="line">@b</span><br><span class="line">@c</span><br><span class="line">def f():</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+<p>调用顺序为：<code>c() -&gt; b() -&gt; a()</code>。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">f = a( b( c( f ) ) )</span><br></pre></td></tr></table></figure></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>Python Decorator in Detail: <a href="http://python-3-patterns-idioms-test.readthedocs.io/en/latest/PythonDecorators.html" target="_blank" rel="external">http://python-3-patterns-idioms-test.readthedocs.io/en/latest/PythonDecorators.html</a></li>
+<li>Python Decorator in Detail: <a href="http://python-3-patterns-idioms-test.readthedocs.io/en/latest/PythonDecorators.html" target="_blank" rel="noopener">http://python-3-patterns-idioms-test.readthedocs.io/en/latest/PythonDecorators.html</a></li>
 </ul>
 
 

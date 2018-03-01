@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -197,8 +197,8 @@
 
                 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p><code>zip</code>文档是 Windows 与 Linux 下常见的压缩文档格式。因其开源，易用的特点而广为流行。我们在 Linux 下使用<code>unzip</code>命令解压缩 Windows 系统压缩的 zip 文档时，时常出现<strong>文件名乱码</strong>的问题。</p>
 <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>由于 zip 并没有指定编码格式，在 Windows 下生成的 zip 文件中的编码一般都是 GBK/GB2312 等。而 Linux 下的默认编码是 UTF-8，编码格式不匹配，所以解压缩时就会乱码。</p>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>实际上，<code>unzip</code>命令带有指定字符编码这一选项。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ unzip --help</div><div class="line">...</div><div class="line">-O CHARSET  specify a character encoding for DOS, Windows and OS/2 archives</div><div class="line">-I CHARSET  specify a character encoding for UNIX and other archives</div><div class="line">...</div></pre></td></tr></table></figure></p>
-<p>我们只需在<code>unzip</code>解压文件时候加上<code>-O</code>选项指定字符集即可。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ unzip -O CP936 &lt;filename.zip&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>实际上，<code>unzip</code>命令带有指定字符编码这一选项。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ unzip --help</span><br><span class="line">...</span><br><span class="line">-O CHARSET  specify a character encoding for DOS, Windows and OS/2 archives</span><br><span class="line">-I CHARSET  specify a character encoding for UNIX and other archives</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>我们只需在<code>unzip</code>解压文件时候加上<code>-O</code>选项指定字符集即可。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ unzip -O CP936 &lt;filename.zip&gt;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>微软的 CP936 通常被视为等同 GBK，连 IANA 也以“CP936”为“GBK”之别名。事实上比较起来，GBK 定义之字符较 CP936 多出95字（15个非汉字及80个汉字），</p>
 <blockquote>

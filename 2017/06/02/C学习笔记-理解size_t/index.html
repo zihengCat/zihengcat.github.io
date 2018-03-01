@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -197,19 +197,19 @@
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在C语言的标准库头文件中和很多开源项目中，我们都能发现<code>size_t</code>这个”数据类型”的身影。函数参数，函数返回值，循环控制变量，似乎<code>size_t</code>无处不在，可是我们又不太了解这个”数据类型”。</p>
 <h1 id="size-t"><a href="#size-t" class="headerlink" title="size_t"></a>size_t</h1><p><code>size_t</code>实际上是<strong>无符号整型</strong>，它并不是一个全新的数据类型，更不是一个关键字。<code>size_t</code>是由<code>typedef</code>定义而来的，我们在很多标准库头文件中都能发现它的身影。</p>
 <p>我们可以在标准库头文件<code>&lt;stddef.h&gt;</code>中找到<code>size_t</code>的定义。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">...</div><div class="line">#define __SIZE_TYPE__ long unsigned int</div><div class="line">typedef __SIZE_TYPE__ size_t;</div><div class="line">...</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">#define __SIZE_TYPE__ long unsigned int</span><br><span class="line">typedef __SIZE_TYPE__ size_t;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>在子恒喵的机器上，<code>size_t</code>的真面目就是<code>long unsigned int</code>。</p>
 <h1 id="使用size-t的原因"><a href="#使用size-t的原因" class="headerlink" title="使用size_t的原因"></a>使用size_t的原因</h1><p>查阅相关文档后，子恒喵了解到，<code>size_t</code>实际上是<em>size type</em>的意思，它是一种<strong>计数类型</strong>。取值范围与机器架构与操作系统相关。32位机器一般是<code>unsigned int</code>，占4字节；64位机器一般是<code>unsigned long</code>，占8字节。</p>
 <p><code>size_t</code>常被用作计数，例如，<code>sizeof</code>运算符得到对象所占的字节数，字符串函数<code>strlen</code>返回字符串的长度等等，都是<code>size_t</code>类型的。</p>
 <p><code>size_t</code>类型<strong>理论上能容纳此机器中所能建立最大对象的字节大小</strong>。常被应用在数组索引，内存管理函数中。<br>最初设计<code>size_t</code>类型，是为了程序的跨平台兼容。</p>
-<h1 id="size-t小陷阱"><a href="#size-t小陷阱" class="headerlink" title="size_t小陷阱"></a>size_t小陷阱</h1><p>子恒喵在Google搜索的时候，发现了一个有趣的例子。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;string.h&gt;</div><div class="line">int main(void)</div><div class="line">&#123;</div><div class="line">    int i = -1;</div><div class="line">    if(i &lt; strlen(&quot;hello&quot;))&#123;</div><div class="line">        printf(&quot;Hello, World\n&quot;);</div><div class="line">    &#125;</div><div class="line">    else&#123;</div><div class="line">        printf(&quot;Hello, ziheng\n&quot;);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ gcc test.c &amp;&amp; ./a.out</div><div class="line">Hello, World</div></pre></td></tr></table></figure>
+<h1 id="size-t小陷阱"><a href="#size-t小陷阱" class="headerlink" title="size_t小陷阱"></a>size_t小陷阱</h1><p>子恒喵在Google搜索的时候，发现了一个有趣的例子。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int i = -1;</span><br><span class="line">    if(i &lt; strlen(&quot;hello&quot;))&#123;</span><br><span class="line">        printf(&quot;Hello, World\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        printf(&quot;Hello, ziheng\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ gcc test.c &amp;&amp; ./a.out</span><br><span class="line">Hello, World</span><br></pre></td></tr></table></figure>
 <p>上述代码编译执行后，打印出<code>Hello, World</code>，这似乎与我们预想的有些不同啊。<br>实际上，这里触发了C的隐式自动类型转换机制，<code>size_t</code>的类型是<code>unsigned long int</code>，带符号整型变量<code>i</code>会被自动转换成<code>unsigned int</code>，即无符号整型，-1被转化成无符号数是4294967295，远大于5。</p>
 <p><strong>有符号数和无符号数之间的运算，千万小心。</strong></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>官方文档: <a href="http://en.cppreference.com/w/c/types/size\_t" target="_blank" rel="external">http://en.cppreference.com/w/c/types/size\_t</a></p>
+<li><p>官方文档: <a href="http://en.cppreference.com/w/c/types/size\_t" target="_blank" rel="noopener">http://en.cppreference.com/w/c/types/size\_t</a></p>
 </li>
-<li><p>小陷阱例子: <a href="http://demon.tw/programming/c-size\_t-pitfall.html" target="_blank" rel="external">http://demon.tw/programming/c-size\_t-pitfall.html</a></p>
+<li><p>小陷阱例子: <a href="http://demon.tw/programming/c-size\_t-pitfall.html" target="_blank" rel="noopener">http://demon.tw/programming/c-size\_t-pitfall.html</a></p>
 </li>
 </ul>
 
