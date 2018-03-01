@@ -12,11 +12,11 @@
 
     <title>
         
-          LeetCode - 231. 2的幂次（Power of Two） - zihengCat
+          LeetCode - 504. 转换7进制（Base 7） - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2018/02/26/LeetCode-231-2的幂次/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/03/01/LeetCode-504-转换7进制/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -172,11 +172,11 @@
                           <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                     </div>
-                    <h1>LeetCode - 231. 2的幂次（Power of Two）</h1>
+                    <h1>LeetCode - 504. 转换7进制（Base 7）</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-02-26
+                        2018-03-01
                     </span>
                 </div>
             </div>
@@ -195,75 +195,28 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 231. 2的幂次（Power of Two）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个整型数，判断该数是否是<code>2</code>的幂次。</p>
-<p>注：只考虑是否为<code>2</code>的<strong>非负整数</strong>次幂即可。</p>
-<p>例：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">**输入**: 4</span><br><span class="line">**输出**: true</span><br><span class="line"></span><br><span class="line">**输入**: 6</span><br><span class="line">**输出**: false</span><br><span class="line"></span><br><span class="line">注：4为2^2。</span><br></pre></td></tr></table></figure></p>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="常规解法"><a href="#常规解法" class="headerlink" title="常规解法"></a>常规解法</h2><p>只需考虑是否为<code>2</code>的<strong>非负整数</strong>次幂，大大简化了问题。</p>
-<p><code>2</code>的幂次形如：<code>2 * 2 * 2...* 2</code>，均可被<code>2</code>无限整除。利用这个特性，我们就可以轻松解决此问题。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int isPowerOfTwo(int n) &#123;</span><br><span class="line">    /* 排除掉负数和0 */</span><br><span class="line">    if(n &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    /* 设置商和余数 */</span><br><span class="line">    int quotient  = n,</span><br><span class="line">        remainder = 0;</span><br><span class="line">    /* 循环退出条件: 商为1（除尽） */</span><br><span class="line">    while(quotient != 1) &#123;</span><br><span class="line">        remainder = quotient % 2;</span><br><span class="line">        quotient /= 2;</span><br><span class="line">        /* 如果有余数（除不尽） */</span><br><span class="line">        if(remainder) &#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 504. 转换7进制（Base 7）</em>问题。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个10进制整型数，将该数的7进制以字符串返回。</p>
+<p><strong>例1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">** 输入 **：100</span><br><span class="line">** 输出 **：&quot;202&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>例2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">** 输入 **：-7</span><br><span class="line">** 输出 **：&quot;-10&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>注：</strong>输入数字的范围[-1e7, 1e7]。</p>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>进制转换的问题，算法是做整除取余数。</p>
+<p><strong>例如：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">01: 101 / 7 = 14, 100 % 7 = 3</span><br><span class="line">02: 14  / 7 = 2,  14  % 7 = 0</span><br><span class="line">03: 2   / 7 = 0,  2   % 7 = 2</span><br></pre></td></tr></table></figure>
+<p>当被除数被除到0时，把取出的余数按<strong>从后至前</strong>的顺序排列，就可以得到进制转换后的数。<br>对于负数，可以先将负数转换为相反数进行运算，最后再加回负号。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;algorithms&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">/* ... */</span><br><span class="line">string convertToBase7(int num) &#123;</span><br><span class="line">    /* 处理负数 */</span><br><span class="line">    bool flag = false;</span><br><span class="line">    if(num &lt; 0) &#123;</span><br><span class="line">        num *= -1;</span><br><span class="line">        flag = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int remainder = 0;</span><br><span class="line">    string ret(&quot;&quot;);</span><br><span class="line"></span><br><span class="line">    /* 算法至少要执行1次 */</span><br><span class="line">    do &#123;</span><br><span class="line">        remainder = num % 7;</span><br><span class="line">        num /= 7;</span><br><span class="line">        ret += to_string(remainder);</span><br><span class="line">    &#125; while(num);</span><br><span class="line"></span><br><span class="line">    /* 注意排列顺序 */</span><br><span class="line">    reverse(ret.begin(), ret.end());</span><br><span class="line"></span><br><span class="line">    /* 加回负号 */</span><br><span class="line">    return flag == true ? &quot;-&quot; + ret : ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>C/C++ 代码</p>
+<p>C++ 代码 - convertToBase7</p>
 </blockquote>
-<h2 id="特殊解法"><a href="#特殊解法" class="headerlink" title="特殊解法"></a>特殊解法</h2><p>这道题的特殊解法是利用<code>2</code>的幂次数的二进制特性。</p>
-<p>例如：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"><code>2</code>的幂次</th>
-<th style="text-align:center">十进制形式</th>
-<th style="text-align:center">二进制形式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">2 ^ 0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center"><em>00000001</em></td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 1</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center"><em>00000010</em></td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 2</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center"><em>00000100</em></td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 3</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center"><em>00001000</em></td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 4</td>
-<td style="text-align:center">16</td>
-<td style="text-align:center"><em>00010000</em></td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 5</td>
-<td style="text-align:center">32</td>
-<td style="text-align:center"><em>00100000</em></td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 6</td>
-<td style="text-align:center">64</td>
-<td style="text-align:center"><em>01000000</em></td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 7</td>
-<td style="text-align:center">128</td>
-<td style="text-align:center"><em>10000000</em></td>
-</tr>
-</tbody>
-</table>
-<p>所有<code>2</code>的幂次数，都是<strong>最高二进制位值为1，其他位均为0</strong>的数字。利用这个特性，我们可以使用位操作进行判断。</p>
-<p><code>n-1</code>得到最高位为0，其他位均为1的数，再与<code>n</code>做按位与<code>&amp;</code>操作，得到0（所有二进制位都为0）。如果该数不是<code>2</code>的幂次，结果必然不会是0。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int isPowerOfTwo(int n) &#123;</span><br><span class="line">    return (n &gt; 0) &amp;&amp; !(n &amp; (n - 1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用C的话，我们需要手动实现一下<code>to_string</code>与<code>reverse</code>函数。C++有标准库可以直接使用。</p>
+<h1 id="拓展延伸"><a href="#拓展延伸" class="headerlink" title="拓展延伸"></a>拓展延伸</h1><p>理解了进制转换的算法后，我们就可以尝试将代码改写成支持转换任意进制数。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">string convertToBaseN(int num, int base) &#123;</span><br><span class="line">    bool flag = false;</span><br><span class="line">    if(num &lt; 0) &#123;</span><br><span class="line">        num *= -1;</span><br><span class="line">        flag = true;</span><br><span class="line">    &#125;</span><br><span class="line">    string ret(&quot;&quot;);</span><br><span class="line">    int remainder = 0;</span><br><span class="line">    do &#123;</span><br><span class="line">        remainder = num % base;</span><br><span class="line">        num /= base;</span><br><span class="line">        /* 使用自定义的字符串转换函数 */</span><br><span class="line">        ret += typical_to_string(remainder);</span><br><span class="line">    &#125; while(num);</span><br><span class="line">    reverse(ret.begin(), ret.end());</span><br><span class="line">    return flag == true ? &quot;-&quot; + ret : ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>C/C++ 代码</p>
+<p>C++ 代码 - convertToBaseN</p>
 </blockquote>
+<p>这里我们自定义字符串转换函数，比如要转换为<code>16进制</code>，就把余数<code>10</code>转换为字符串<code>&quot;a&quot;</code>，余数<code>11</code>转换为字符串<code>&quot;b&quot;</code>…依此类推。</p>
 
 
                 <hr>
@@ -272,13 +225,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/03/01/LeetCode-504-转换7进制/" data-toggle="tooltip" data-placement="top" title="LeetCode - 504. 转换7进制（Base 7）">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/02/25/LeetCode-657-路线判断/" data-toggle="tooltip" data-placement="top" title="LeetCode - 657. 路线判断（Judge Route Circle）">Next Post &rarr;</a>
+                            <a href="/2018/02/26/LeetCode-231-2的幂次/" data-toggle="tooltip" data-placement="top" title="LeetCode - 231. 2的幂次（Power of Two）">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
