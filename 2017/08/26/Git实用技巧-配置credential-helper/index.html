@@ -12,7 +12,7 @@
 
     <title>
         
-          Git实用技巧-配置credential.helper - zihengCat
+          Git 实用技巧 - 配置 credential.helper - zihengCat
         
     </title>
 
@@ -88,14 +88,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -170,7 +170,7 @@
                           <a class="tag" href="/tags/#Git" title="Git">Git</a>
                         
                     </div>
-                    <h1>Git实用技巧-配置credential.helper</h1>
+                    <h1>Git 实用技巧 - 配置 credential.helper</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -193,15 +193,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Git的数据交换协议有SSH与HTTP。<br>使用ssh，我们需要在本地配置ssh key，每次代码同步就不需要输入用户名和密码了。<br>使用http则不需要配置，但是在每次代码同步时候我们要输入用户名和密码，比较繁琐。<br>我们可以使用git credential helper来简化用户名密码的输入过程。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Git的数据交换协议有<code>SSH</code>与<code>HTTP</code>。<br>使用<code>ssh</code>协议，我们需要在本地配置<code>ssh key</code>，这样一来，每次与服务器代码同步就不需要输入用户名和密码了。<br>使用<code>http</code>不需要配置，但在每次代码同步时需要我们手动输入用户名和密码，操作比较繁琐。<br>我们可以使用<code>git credential helper</code>来简化用户名和密码的输入过程。</p>
 <h1 id="GitHub-免用户名密码同步"><a href="#GitHub-免用户名密码同步" class="headerlink" title="GitHub 免用户名密码同步"></a>GitHub 免用户名密码同步</h1><p>我们以最常用的GitHub为例，配置GitHub免用户名密码代码同步。</p>
-<h2 id="创建-Git-存储凭证"><a href="#创建-Git-存储凭证" class="headerlink" title="创建 Git 存储凭证"></a>创建 Git 存储凭证</h2><p>我们在<strong>用户家目录</strong>下创建一个<code>.git-credentials</code>隐藏文件。<br>将GitHub的用户名与密码按<strong>指定格式</strong>写入。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ touch .git-credentials</div><div class="line">$ echo -n &apos;https://&lt;user&gt;:&lt;pass&gt;@github.com&apos; &gt;&gt; ~/.git-credentials</div></pre></td></tr></table></figure></p>
+<h2 id="创建-Git-存储凭证"><a href="#创建-Git-存储凭证" class="headerlink" title="创建 Git 存储凭证"></a>创建 Git 存储凭证</h2><p>我们在<strong>用户家目录</strong>下创建一个名字为<code>.git-credentials</code>隐藏文件。<br>将GitHub的用户名与密码按<strong>指定格式</strong>写入该文件。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ touch .git-credentials</div><div class="line">$ echo -n &apos;https://&lt;user&gt;:&lt;pass&gt;@github.com&apos; &gt;&gt; ~/.git-credentials</div></pre></td></tr></table></figure></p>
 <blockquote>
-<p>user –&gt; GitHub 用户名<br>pass –&gt; GitHub 密码。</p>
+<p><code>user</code> –&gt; GitHub 用户名<br><code>pass</code> –&gt; GitHub 密码。</p>
 </blockquote>
-<h2 id="配置-credential-helper"><a href="#配置-credential-helper" class="headerlink" title="配置 credential.helper"></a>配置 credential.helper</h2><p>接下来我们在config配置文件中加入credential.helper选项。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git config --global credential.helper store</div></pre></td></tr></table></figure></p>
-<p>执行完成后，我们的<em>.gitconfig</em>配置文件中会多出一项<code>[credential]</code>。</p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>OK，以后我们与GitHub同步代码时，就不需要手动输入用户名与密码了，非常方便！<br>我们需要注意的是，<code>.git-credentials</code>中的用户名与密码是明文存储的，有一定的安全隐患。<br>关于git credential的配置信息可不止本文提到的这一点点，更多信息还请查看参考资料。</p>
+<h2 id="配置-credential-helper"><a href="#配置-credential-helper" class="headerlink" title="配置 credential.helper"></a>配置 credential.helper</h2><p>接下来，我们在<code>.gitconfig</code>配置文件中加入<code>credential.helper</code>选项。<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ git config --global credential.helper store</div></pre></td></tr></table></figure></p>
+<p>执行完成后，我们的<em>.gitconfig</em>配置文件中会多出一项<code>[credential]</code>。以后我们使用HTTP与GitHub进行代码同步时，就不需要手动输入用户名与密码了，非常方便！</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>需要注意的是，<code>.git-credentials</code>隐藏文件中的用户名与密码是明文存储的，这有一定的安全隐患。<br>关于<code>git credential</code>的更多信息，可以查看参考资料。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Git Credentials: <a href="https://git-scm.com/docs/gitcredentials" target="_blank" rel="external">https://git-scm.com/docs/gitcredentials</a></li>
 <li>Git Tools - Credential Storage: <a href="https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage" target="_blank" rel="external">https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage</a></li>
