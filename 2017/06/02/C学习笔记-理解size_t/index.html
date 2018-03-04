@@ -88,13 +88,6 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archives/">Archives</a>
                         </li>
                         
@@ -103,6 +96,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -206,9 +206,9 @@
 <p>上述代码编译执行后，打印出<code>Hello, World</code>，这似乎与我们预想的有些不同啊。<br>实际上，这里触发了C的隐式自动类型转换机制，<code>size_t</code>的类型是<code>unsigned long int</code>，带符号整型变量<code>i</code>会被自动转换成<code>unsigned int</code>，即无符号整型，-1被转化成无符号数是4294967295，远大于5。</p>
 <p><strong>有符号数和无符号数之间的运算，要小心。</strong></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>官方文档: <a href="http://en.cppreference.com/w/c/types/size\_t" target="_blank" rel="noopener">http://en.cppreference.com/w/c/types/size\_t</a></p>
+<li><p>官方文档: <a href="http://en.cppreference.com/w/c/types/size_t" target="_blank" rel="noopener">http://en.cppreference.com/w/c/types/size_t</a></p>
 </li>
-<li><p>小陷阱例子: <a href="http://demon.tw/programming/c-size\_t-pitfall.html" target="_blank" rel="noopener">http://demon.tw/programming/c-size\_t-pitfall.html</a></p>
+<li><p>小陷阱例子: <a href="http://demon.tw/programming/c-size_t-pitfall.html" target="_blank" rel="noopener">http://demon.tw/programming/c-size_t-pitfall.html</a></p>
 </li>
 </ul>
 
