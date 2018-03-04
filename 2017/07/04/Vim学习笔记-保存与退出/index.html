@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -234,17 +220,14 @@
 </tbody>
 </table>
 <p><strong>注意，<code>:wq</code>与<code>:x</code>是有区别的。</strong></p>
-<h2 id="wq的行为"><a href="#wq的行为" class="headerlink" title=":wq的行为"></a><code>:wq</code>的行为</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(:w) &amp;&amp; (:q)</span><br></pre></td></tr></table></figure>
-<p>不管文件有没有被更改，<code>:wq</code>都会重写入一遍文件，再退出。所以，对于没有更改过的文件使用<code>wq</code>保存退出，我们会发现<strong>文件的修改时间变动了</strong>。某些情况下，这会带来不便。</p>
-<h2 id="x的行为"><a href="#x的行为" class="headerlink" title=":x的行为"></a><code>:x</code>的行为</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">modified ? (:wq) : (:q)</span><br></pre></td></tr></table></figure>
-<p>而<code>:x</code>的行为是：如果文件有更改，则写入并退出；如果文件没有更改，则直接退出。</p>
+<h2 id="wq的行为"><a href="#wq的行为" class="headerlink" title=":wq的行为"></a><code>:wq</code>的行为</h2><pre><code>(:w) &amp;&amp; (:q)
+</code></pre><p>不管文件有没有被更改，<code>:wq</code>都会重写入一遍文件，再退出。所以，对于没有更改过的文件使用<code>wq</code>保存退出，我们会发现<strong>文件的修改时间变动了</strong>。某些情况下，这会带来不便。</p>
+<h2 id="x的行为"><a href="#x的行为" class="headerlink" title=":x的行为"></a><code>:x</code>的行为</h2><pre><code>modified ? (:wq) : (:q)
+</code></pre><p>而<code>:x</code>的行为是：如果文件有更改，则写入并退出；如果文件没有更改，则直接退出。</p>
 <p>还是使用<code>:x</code>比较好呢 ^_^</p>
 <p><code>ZZ</code>命令的行为等同于<code>:x</code>，输入方式是直接在Normal模式下键入2个大写Z，无需<code>:</code>冒号，也不用敲<code>Enter</code>回车，算是<code>:x</code>的快捷键吧。</p>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -258,11 +241,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -294,11 +272,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -344,8 +317,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -400,6 +376,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -420,25 +401,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -461,12 +423,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -200,10 +186,10 @@
 </blockquote>
 <p>EPEL源包含了许多高质量的软件，大部分软件的依赖包也可以在EPEL里找到。有了它，我们不用再为软件/依赖包缺失而苦恼啦。</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="命令安装"><a href="#命令安装" class="headerlink" title="命令安装"></a>命令安装</h2><p>EPEL源的安装非常简单，只需一条<code>yum</code>命令就可以安装啦。<br>这个包在CentOS Extras repository里面，默认是启用的。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo yum install epel-release</span><br></pre></td></tr></table></figure>
-<h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><p>当然，我们也可以手动安装:</p>
-<h3 id="Step-1-检查redhat版本"><a href="#Step-1-检查redhat版本" class="headerlink" title="Step 1 检查redhat版本"></a>Step 1 检查redhat版本</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cat /etc/redhat-release</span><br></pre></td></tr></table></figure>
-<p><code>uname</code>也可以，只要知道当前系统架构(i386/x86_64)与系统版本(CentOS-5/6/7)就可以啦。</p>
+<pre><code>$ sudo yum install epel-release
+</code></pre><h2 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h2><p>当然，我们也可以手动安装:</p>
+<h3 id="Step-1-检查redhat版本"><a href="#Step-1-检查redhat版本" class="headerlink" title="Step 1 检查redhat版本"></a>Step 1 检查redhat版本</h3><pre><code>$ cat /etc/redhat-release
+</code></pre><p><code>uname</code>也可以，只要知道当前系统架构(i386/x86_64)与系统版本(CentOS-5/6/7)就可以啦。</p>
 <h3 id="Step-2-安装EPEL包"><a href="#Step-2-安装EPEL包" class="headerlink" title="Step 2 安装EPEL包"></a>Step 2 安装EPEL包</h3><p>前往<a href="http://fedoraproject.org/wiki/EPEL" target="_blank" rel="noopener">EPEL</a>官方网站，获取最新版本的rpm包。</p>
 <ul>
 <li><a href="https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm" target="_blank" rel="noopener">EL7 version</a></li>
@@ -211,17 +197,29 @@
 <li><a href="https://dl.fedoraproject.org/pub/epel/epel-release-latest-5.noarch.rpm" target="_blank" rel="noopener">EL5 version</a></li>
 </ul>
 <p>下载完rpm包后，安装上就可以啦。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo rpm -ivh &lt;epel-release-version.rpm&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Step-3-检验EPEL源"><a href="#Step-3-检验EPEL源" class="headerlink" title="Step 3 检验EPEL源"></a>Step 3 检验EPEL源</h3><p>执行以下命令查看<code>yum</code>仓库: </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ yum clean all &amp;&amp; yum repolist</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Cleaning repos: base epel extras updates</span><br><span class="line">Cleaning up everything</span><br><span class="line">Cleaning up list of fastest mirrors</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Determining fastest mirrors</span><br><span class="line"> * base: mirrors.163.com</span><br><span class="line"> * epel: mirrors.ustc.edu.cn</span><br><span class="line"> * extras: mirrors.163.com</span><br><span class="line"> * updates: mirrors.njupt.edu.cn</span><br><span class="line">repo id                       repo name                                                      status</span><br><span class="line">base/7/x86_64                 CentOS-7 - Base                                                 9,363</span><br><span class="line">epel/x86_64                   Extra Packages for Enterprise Linux 7 - x86_64                 11,787</span><br><span class="line">extras/7/x86_64               CentOS-7 - Extras                                                 380</span><br><span class="line">updates/7/x86_64              CentOS-7 - Updates                                              1,851</span><br><span class="line">repolist: 23,381</span><br></pre></td></tr></table></figure>
-<p>可以看到，EPEL源已经被添加上了，仓库里多了好多的软件呐!</p>
+<pre><code>$ sudo rpm -ivh &lt;epel-release-version.rpm&gt;
+</code></pre><h3 id="Step-3-检验EPEL源"><a href="#Step-3-检验EPEL源" class="headerlink" title="Step 3 检验EPEL源"></a>Step 3 检验EPEL源</h3><p>执行以下命令查看<code>yum</code>仓库: </p>
+<pre><code>$ yum clean all &amp;&amp; yum repolist
+</code></pre><pre><code>Loaded plugins: fastestmirror
+Cleaning repos: base epel extras updates
+Cleaning up everything
+Cleaning up list of fastest mirrors
+Loaded plugins: fastestmirror
+Determining fastest mirrors
+ * base: mirrors.163.com
+ * epel: mirrors.ustc.edu.cn
+ * extras: mirrors.163.com
+ * updates: mirrors.njupt.edu.cn
+repo id                       repo name                                                      status
+base/7/x86_64                 CentOS-7 - Base                                                 9,363
+epel/x86_64                   Extra Packages for Enterprise Linux 7 - x86_64                 11,787
+extras/7/x86_64               CentOS-7 - Extras                                                 380
+updates/7/x86_64              CentOS-7 - Updates                                              1,851
+repolist: 23,381
+</code></pre><p>可以看到，EPEL源已经被添加上了，仓库里多了好多的软件呐!</p>
 <h1 id="手动安装-1"><a href="#手动安装-1" class="headerlink" title="手动安装?"></a>手动安装?</h1><p>子恒喵是直接将rpm包里的<code>epel.repo</code>拿出来放到<code>/etc/yum.repos.d/</code>里面去，当成一个第三方源来用了…<br>这样就不需要多装一个rpm包了…(似乎有点强迫症呐Orz…)</p>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -235,11 +233,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -273,11 +266,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -323,8 +311,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -379,6 +370,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -399,25 +395,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -440,12 +417,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

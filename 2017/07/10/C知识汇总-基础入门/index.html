@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -194,9 +180,13 @@
                 post-container">
 
                 <h1 id="C语言发展历程"><a href="#C语言发展历程" class="headerlink" title="C语言发展历程"></a>C语言发展历程</h1><p>C语言的发展历程大致上分为三个阶段：<em>Old Style C</em>、<em>ANSI C(C89)</em>和<em>C99</em>。目前最新的标准是<em>C11</em>。<br>Ken Thompson和Dennis Ritchie最初发明C语言时有很多语法和现在最常用的写法并不一样，但为了向后兼容性（Backward Compatibility），这些语法仍然在C89和C99中保留下来了。C89是最早的C语言规范，于1989年提出，1990年首先由ANSI（美国国家标准委员会，American National Standards Institute）推出，后来被接纳为ISO国际标准（ISO/IEC 9899:1990），因而有时也称为C90，最经典的C语言教材<em>TCPL[K&amp;R]</em>就是基于这个版本的，ANSI C是目前最广泛采用的C语言标准，大多数编译器都完全支持。C99标准（ISO/IEC 9899:1999）是在1999年推出的，加入了许多新特性，在C99推出之后相当长的一段时间里，连GNU GCC也没有完全实现C99的所有特性。</p>
-<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">    printf(&quot;hello, world!\n&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="编译运行"><a href="#编译运行" class="headerlink" title="编译运行"></a>编译运行</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ gcc hello.c &amp;&amp; ./a.out</span><br></pre></td></tr></table></figure>
-<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><ul>
+<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h1><pre><code>#include &lt;stdio.h&gt;
+int main(void){
+    printf(&quot;hello, world!\n&quot;);
+    return 0;
+}
+</code></pre><h2 id="编译运行"><a href="#编译运行" class="headerlink" title="编译运行"></a>编译运行</h2><pre><code>$ gcc hello.c &amp;&amp; ./a.out
+</code></pre><h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><ul>
 <li><p><strong>跨行注释符</strong> <code>/* ... */</code><br>无法嵌套，也不能出现在字符串字面量中。</p>
 </li>
 <li><p><strong>单行注释符</strong> <code>//...</code><br>从注释开始至该行末尾所有字符都属于注释。无法换行，也不能穿插在代码中间。</p>
@@ -406,10 +396,7 @@
 <p>优先级从高到低排列</p>
 </blockquote>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -423,11 +410,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -459,11 +441,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -509,8 +486,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -565,6 +545,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -585,25 +570,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -626,12 +592,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

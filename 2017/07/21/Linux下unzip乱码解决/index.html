@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -197,19 +183,22 @@
 
                 <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p><code>zip</code>文档是 Windows 与 Linux 下常见的压缩文档格式。因其开源，易用的特点而广为流行。我们在 Linux 下使用<code>unzip</code>命令解压缩 Windows 系统压缩的 zip 文档时，时常出现<strong>文件名乱码</strong>的问题。</p>
 <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>由于 zip 并没有指定编码格式，在 Windows 下生成的 zip 文件中的编码一般都是 GBK/GB2312 等。而 Linux 下的默认编码是 UTF-8，编码格式不匹配，所以解压缩时就会乱码。</p>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>实际上，<code>unzip</code>命令带有指定字符编码这一选项。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ unzip --help</span><br><span class="line">...</span><br><span class="line">-O CHARSET  specify a character encoding for DOS, Windows and OS/2 archives</span><br><span class="line">-I CHARSET  specify a character encoding for UNIX and other archives</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>我们只需在<code>unzip</code>解压文件时候加上<code>-O</code>选项指定字符集即可。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ unzip -O CP936 &lt;filename.zip&gt;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>实际上，<code>unzip</code>命令带有指定字符编码这一选项。</p>
+<pre><code>$ unzip --help
+...
+-O CHARSET  specify a character encoding for DOS, Windows and OS/2 archives
+-I CHARSET  specify a character encoding for UNIX and other archives
+...
+</code></pre><p>我们只需在<code>unzip</code>解压文件时候加上<code>-O</code>选项指定字符集即可。</p>
+<pre><code>$ unzip -O CP936 &lt;filename.zip&gt;
+</code></pre><blockquote>
 <p>微软的 CP936 通常被视为等同 GBK，连 IANA 也以“CP936”为“GBK”之别名。事实上比较起来，GBK 定义之字符较 CP936 多出95字（15个非汉字及80个汉字），</p>
 <blockquote>
 <p>—- 维基百科</p>
 </blockquote>
 </blockquote>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -223,11 +212,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -261,11 +245,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -311,8 +290,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -367,6 +349,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -387,25 +374,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -428,12 +396,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

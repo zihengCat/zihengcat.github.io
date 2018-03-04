@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -193,30 +179,88 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="有趣的const"><a href="#有趣的const" class="headerlink" title="有趣的const"></a>有趣的const</h1><p>在C中，用<code>const</code>关键字修饰变量或者形式参数时，表明该变量不可修改。<br>然而，C中的<code>const</code>更多只是一种”约定”，表明程序不会修改变量值的一种约定。<br>我们是有办法修改<code>const</code>的变量的。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">    const int num = 10;     /* const 修饰整型变量 */</span><br><span class="line">    int *p = (int*)(&amp;num);  /* 指针取 const 变量地址*/</span><br><span class="line">    *p = 100;               /* 通过指针修改 const 变量值 */</span><br><span class="line">    printf(&quot;%d\n&quot;, num);    /* 输出 100 */</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>我们可以使用指针间接修改<code>const</code>变量，编译器只会给个warning，告诉你：<strong>将const修饰的变量地址交给非const的指针，会丢弃const修饰符。</strong> 如果加上<strong>强制类型转换</strong>，甚至连warning都不会有。<br>这也表示了，在C中，const修饰符是一种”约定”，编译器在编译时并不保证变量一定不会被改变。毕竟，程序员们使用指针就可以轻松改掉const的值。</p>
-<p>然而，在C++中，事情就变得非常有意思啦。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">    const int num = 10;</span><br><span class="line">    int *p = (int*)(&amp;num);</span><br><span class="line">    *p = 100;</span><br><span class="line">    printf(&quot;%d\n&quot;, num);    /* 输出 10 */</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>与C不同，C++中，如果不使用强制类型转换，编译器会直接报错，告诉你：<strong>将一个const变量的地址赋给一个非const的指针，这件事情是不允许的。</strong></p>
+                <h1 id="有趣的const"><a href="#有趣的const" class="headerlink" title="有趣的const"></a>有趣的const</h1><p>在C中，用<code>const</code>关键字修饰变量或者形式参数时，表明该变量不可修改。<br>然而，C中的<code>const</code>更多只是一种”约定”，表明程序不会修改变量值的一种约定。<br>我们是有办法修改<code>const</code>的变量的。</p>
+<pre><code>#include &lt;stdio.h&gt;
+int main(void){
+    const int num = 10;     /* const 修饰整型变量 */
+    int *p = (int*)(&amp;num);  /* 指针取 const 变量地址*/
+    *p = 100;               /* 通过指针修改 const 变量值 */
+    printf(&quot;%d\n&quot;, num);    /* 输出 100 */
+    return 0;
+}
+</code></pre><p>我们可以使用指针间接修改<code>const</code>变量，编译器只会给个warning，告诉你：<strong>将const修饰的变量地址交给非const的指针，会丢弃const修饰符。</strong> 如果加上<strong>强制类型转换</strong>，甚至连warning都不会有。<br>这也表示了，在C中，const修饰符是一种”约定”，编译器在编译时并不保证变量一定不会被改变。毕竟，程序员们使用指针就可以轻松改掉const的值。</p>
+<p>然而，在C++中，事情就变得非常有意思啦。</p>
+<pre><code>#include &lt;stdio.h&gt;
+int main(void){
+    const int num = 10;
+    int *p = (int*)(&amp;num);
+    *p = 100;
+    printf(&quot;%d\n&quot;, num);    /* 输出 10 */
+    return 0;
+}
+</code></pre><p>与C不同，C++中，如果不使用强制类型转换，编译器会直接报错，告诉你：<strong>将一个const变量的地址赋给一个非const的指针，这件事情是不允许的。</strong></p>
 <p>更有意思的事情是，当我们使用指针强行修改变量值后，<code>printf</code>竟然输出了修改前的值!(使用std::cout也一样的) 这真是让子恒喵怀疑人生…</p>
 <h1 id="const机制窥探"><a href="#const机制窥探" class="headerlink" title="const机制窥探"></a>const机制窥探</h1><p>我们可以确定的是，指针p所指向的那片内存空间的值已经是100了，我们确实成功地修改了那片内存空间的值。(debug查看内存)<br>有趣的是，num的值没有改变…这是怎么回事？难道num不存放在那片栈空间之中？</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">    const int num = 10;</span><br><span class="line">    int *p = (int*)(&amp;num);</span><br><span class="line">    *p = 100;</span><br><span class="line">    printf(&quot;%d\n&quot;, *p);     /* 输出 100 */</span><br><span class="line">    printf(&quot;%d\n&quot;, num);    /* 输出 10 */</span><br><span class="line">    printf(&quot;%p %p\n&quot;, &amp;num, p);    /* 地址相同 */</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>无情的事实告诉我们，都是那片内存空间，但是打印出来的值就是不一样。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">    const int num = 10;</span><br><span class="line">    int *p = (int*)(&amp;num);</span><br><span class="line">    *p = 100;</span><br><span class="line">    int t = num;</span><br><span class="line">    printf(&quot;%d\n&quot;, t);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个例子更加明显,同样的源代码,</p>
+<pre><code>#include &lt;stdio.h&gt;
+int main(void){
+    const int num = 10;
+    int *p = (int*)(&amp;num);
+    *p = 100;
+    printf(&quot;%d\n&quot;, *p);     /* 输出 100 */
+    printf(&quot;%d\n&quot;, num);    /* 输出 10 */
+    printf(&quot;%p %p\n&quot;, &amp;num, p);    /* 地址相同 */
+    return 0;
+}
+</code></pre><p>无情的事实告诉我们，都是那片内存空间，但是打印出来的值就是不一样。</p>
+<pre><code>#include &lt;stdio.h&gt;
+int main(void){
+    const int num = 10;
+    int *p = (int*)(&amp;num);
+    *p = 100;
+    int t = num;
+    printf(&quot;%d\n&quot;, t);
+    return 0;
+}
+</code></pre><p>这个例子更加明显,同样的源代码,</p>
 <ul>
 <li>在C中，t的值为100；</li>
 <li>在C++中，t的值为10。</li>
 </ul>
-<p>要搞清楚到底发生了什么，我们需要追踪到它们的汇编代码。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ gcc -O0 -S ./c_const.c</span><br><span class="line">$ g++ -O0 -S ./cc_const.cc</span><br><span class="line">$ diff -c c_const.s cc_const.s</span><br></pre></td></tr></table></figure></p>
-<p>分别生成相应的汇编代码文件，通过<code>diff</code>比较。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">*** 19,26 ****</span><br><span class="line">    movq    %rax, -8(%rbp)</span><br><span class="line">    movq    -8(%rbp), %rax</span><br><span class="line">    movl    $100, (%rax)</span><br><span class="line">!   movl    -16(%rbp), %eax</span><br><span class="line">!   movl    %eax, -12(%rbp)</span><br><span class="line">    movl    -12(%rbp), %eax</span><br><span class="line">    movl    %eax, %esi</span><br><span class="line">    movl    $.LC0, %edi</span><br><span class="line">--- 19,25 ----</span><br><span class="line">    movq    %rax, -8(%rbp)</span><br><span class="line">    movq    -8(%rbp), %rax</span><br><span class="line">    movl    $100, (%rax)</span><br><span class="line">!   movl    $10, -12(%rbp)</span><br><span class="line">    movl    -12(%rbp), %eax</span><br><span class="line">    movl    %eax, %esi</span><br><span class="line">    movl    $.LC0, %edi</span><br></pre></td></tr></table></figure></p>
-<p>注意带<code>!</code>的几行。<br>观察汇编代码文件，子恒喵终于明白了这其中到底发生了什么。</p>
+<p>要搞清楚到底发生了什么，我们需要追踪到它们的汇编代码。</p>
+<pre><code>$ gcc -O0 -S ./c_const.c
+$ g++ -O0 -S ./cc_const.cc
+$ diff -c c_const.s cc_const.s
+</code></pre><p>分别生成相应的汇编代码文件，通过<code>diff</code>比较。</p>
+<pre><code>...
+*** 19,26 ****
+    movq    %rax, -8(%rbp)
+    movq    -8(%rbp), %rax
+    movl    $100, (%rax)
+!   movl    -16(%rbp), %eax
+!   movl    %eax, -12(%rbp)
+    movl    -12(%rbp), %eax
+    movl    %eax, %esi
+    movl    $.LC0, %edi
+--- 19,25 ----
+    movq    %rax, -8(%rbp)
+    movq    -8(%rbp), %rax
+    movl    $100, (%rax)
+!   movl    $10, -12(%rbp)
+    movl    -12(%rbp), %eax
+    movl    %eax, %esi
+    movl    $.LC0, %edi
+</code></pre><p>注意带<code>!</code>的几行。<br>观察汇编代码文件，子恒喵终于明白了这其中到底发生了什么。</p>
 <ul>
 <li>在C源码生成的汇编代码中，编译器忠实地翻译了源代码，将目标内存地址(&amp;num)的值赋给了栈上的变量t;</li>
 <li>而在C++源码生成的汇编代码中，<strong>编译器直接将一个立即数10赋给了栈上的变量t!</strong></li>
 </ul>
 <p>为什么在C++中打印的值还是原来的值？<br>结论：<strong>编译器在搞鬼。</strong></p>
-<p>这也可以解释，为什么在C++中，一个const的”变量”可以用做数组初始化。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">const int i = 100;</span><br><span class="line">int num[i];     /* 在C++，可行 */</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>数组和本地变量相同，都需要在编译时刻就分配好栈空间。但是，数组初始化不一定是需要一个常量，只需要一个在编译时刻确定的值就可以了。C++保证const变量能给出这样一个值。<br>C++中确定了某种机制，以保证const的值不变。甚至…如果不对const取地址，连变量都不会生成，直接就是一个立即数。<br>当然，C++也规定了，如果试图修改一个<strong>const对象</strong>的值，结果是未定义的（undefined behavior)，编译器可以有自己的理解。但是至少在上面那个例子中(GCC编译器)，const是真的没有变…</p>
+<p>这也可以解释，为什么在C++中，一个const的”变量”可以用做数组初始化。</p>
+<pre><code>...
+const int i = 100;
+int num[i];     /* 在C++，可行 */
+...
+</code></pre><p>数组和本地变量相同，都需要在编译时刻就分配好栈空间。但是，数组初始化不一定是需要一个常量，只需要一个在编译时刻确定的值就可以了。C++保证const变量能给出这样一个值。<br>C++中确定了某种机制，以保证const的值不变。甚至…如果不对const取地址，连变量都不会生成，直接就是一个立即数。<br>当然，C++也规定了，如果试图修改一个<strong>const对象</strong>的值，结果是未定义的（undefined behavior)，编译器可以有自己的理解。但是至少在上面那个例子中(GCC编译器)，const是真的没有变…</p>
 <blockquote>
 <p>const_cast用来丢弃变量的const声明，但不能改变变量所指向的对象的const属性。即：const_cast用于原本非const的对象；如果用于原本const的对象，结果不可预知（C++语言未对此种情况进行规定）<br>– The C++ Programming Language(Special Edition)<br><em>const</em> 在C++中的应用十分广泛，搞清楚const的细节还是很有必要的。<br>C++的编译器会在背后偷偷做很多事情，我们不一定知道。但我们知道，在C++中，const修饰的对象，C++以强有力的机制保证其值不被改变，而不仅仅是一种与程序员之间的”约定”。在C++中，我们可以放心大胆地使用const。</p>
 </blockquote>
@@ -224,10 +268,7 @@
 <li>C++官方文档: <a href="http://en.cppreference.com/w/cpp/language/cv" target="_blank" rel="noopener">http://en.cppreference.com/w/cpp/language/cv</a></li>
 </ul>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -241,11 +282,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -277,11 +313,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -327,8 +358,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -383,6 +417,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -403,25 +442,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -444,12 +464,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

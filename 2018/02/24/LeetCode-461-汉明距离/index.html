@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -202,17 +188,33 @@
 </blockquote>
 <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>两个整型数的汉明距离是指：这两个整型数对应比特位不同值的个数。<br>给出两个整型数x与y，计算它们的汉明距离。</p>
 <p>注意：<br>0 &lt;= <code>x</code>, <code>y</code> &lt; 2^31</p>
-<p>举例说明：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*输入*:  x = 1, y = 4</span><br><span class="line"></span><br><span class="line">*输出*: 2</span><br><span class="line"></span><br><span class="line">*解释*:</span><br><span class="line">-------------</span><br><span class="line">1   (0 0 0 1)</span><br><span class="line">4   (0 1 0 0)</span><br><span class="line">       ↑   ↑</span><br><span class="line">-------------</span><br><span class="line">箭头所指比特位，位置相同值不同。</span><br></pre></td></tr></table></figure></p>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>输入的整型数均为<code>int</code>类型，这可以免去考虑整型数比特数不相同的情况。<br>先使用异或<em>XOR</em>操作，问题转化为计算得到数中比特值为<code>1</code>的个数。<br>判断最右比特位是否为<code>1</code>，循环移位即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int hammingDistance(int x, int y) &#123;</span><br><span class="line">    int ret = x ^ y;</span><br><span class="line">    int cnt = 0;</span><br><span class="line">    while(ret) &#123;</span><br><span class="line">        cnt += ret &amp; 0x01;</span><br><span class="line">        ret &gt;&gt;= 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
+<p>举例说明：</p>
+<pre><code>*输入*:  x = 1, y = 4
+
+*输出*: 2
+
+*解释*:
+-------------
+1   (0 0 0 1)
+4   (0 1 0 0)
+       ↑   ↑
+-------------
+箭头所指比特位，位置相同值不同。
+</code></pre><h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>输入的整型数均为<code>int</code>类型，这可以免去考虑整型数比特数不相同的情况。<br>先使用异或<em>XOR</em>操作，问题转化为计算得到数中比特值为<code>1</code>的个数。<br>判断最右比特位是否为<code>1</code>，循环移位即可。</p>
+<pre><code>int hammingDistance(int x, int y) {
+    int ret = x ^ y;
+    int cnt = 0;
+    while(ret) {
+        cnt += ret &amp; 0x01;
+        ret &gt;&gt;= 1;
+    }
+    return cnt;
+}
+</code></pre><blockquote>
 <p>C/C++ 代码</p>
 </blockquote>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -226,11 +228,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -264,11 +261,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -314,8 +306,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -370,6 +365,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -390,25 +390,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -431,12 +412,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

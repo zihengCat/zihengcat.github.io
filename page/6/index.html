@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -175,8 +169,8 @@
                 post-container
             ">
 
-                <!-- Main Content -->
-
+                
+<!-- Main Content -->
 
 <div class="post-preview">
 
@@ -189,7 +183,11 @@
         </h3>
         <div class="post-content-preview">
             前言本文介绍C++中的函数默认参数。
-函数默认参数(Default arguments)在C++中，我们可以在函数原型声明中为形式参数指定一个默认的值。例如:void f(int size, int init = 0); /* 函数默认参数 */int main(void)&#123;    f(10);      /* 给1个参数 */    f(10, 10);  /* 给2个参数 */......
+函数默认参数(Default arguments)在C++中，我们可以在函数原型声明中为形式参数指定一个默认的值。例如: 
+void f(int size, int init = 0); /* 函数默认参数 */
+int main(void){
+    f(10);      /* 给1个参数 */
+    f(10, 10);  /* 给2个参数 */......
         </div>
     </a>
     <p class="post-meta">
@@ -213,7 +211,11 @@
             前言本文讲述C++中的函数重载机制。
 函数重载(Function Overloading)在C++中，如果函数的函数名相同，返回类型相同，参数表不同，那么这些函数就构成重载关系，这被称为函数重载(Function Overloading)。
 例如:
-...void func(int);void func(double);...func(3)     /* 调用void func(int)  ......
+...
+void func(int);
+void func(double);
+...
+func(3)     /* 调用void func(in......
         </div>
     </a>
     <p class="post-meta">
@@ -235,7 +237,11 @@
         </h3>
         <div class="post-content-preview">
             unameuname命令可以打印当前系统信息。uname是GNU coreutils工具之一，遵循IEEE POSIX规范。
-详解$ uname --helpUsage: uname [OPTION]...Print certain system information.  With no OPTION, same as -s.  -a, --all                print......
+详解$ uname --help
+Usage: uname [OPTION]...
+Print certain system information.  With no OPTION, same as -s.
+
+  -a, --all                p......
         </div>
     </a>
     <p class="post-meta">
@@ -257,7 +263,10 @@
         </h3>
         <div class="post-content-preview">
             sleepsleep命令的作用非常简单，就是使系统暂停一段时间。sleep是GNU coreutils工具之一。
-详解$ sleep --helpUsage: sleep NUMBER[SUFFIX]...  or:  sleep OPTIONPause for NUMBER seconds.  SUFFIX may be &apos;s&apos; for seconds (the def......
+详解$ sleep --help
+Usage: sleep NUMBER[SUFFIX]...
+  or:  sleep OPTION
+Pause for NUMBER seconds.  SUFFIX may be &#39;s&#39; for seconds (the de......
         </div>
     </a>
     <p class="post-meta">
@@ -279,7 +288,11 @@
         </h3>
         <div class="post-content-preview">
             catLinux上还有猫命令cat?!其实，这个命令不是猫咪的意思啦…cat是concatenate的意思。cat命令是一般用来查看文件内容(文本文件)。
-详解$ cat --helpUsage: cat [OPTION]... [FILE]...Concatenate FILE(s), or standard input, to standard output.  -A, --show-a......
+详解$ cat --help
+Usage: cat [OPTION]... [FILE]...
+Concatenate FILE(s), or standard input, to standard output.
+
+  -A, --sh......
         </div>
     </a>
     <p class="post-meta">
@@ -356,8 +369,11 @@ EPEL源包含了许多高质量的软件，大部分软件的依赖包也可以�
         </h3>
         <div class="post-content-preview">
             cdcd命令可以说是广大Linux用户最常使用的命令啦，它的作用是改变shell当前工作目录。cd是Change directory的意思。cd是一个shell内置指令(shell builtin)。
-$ type cdcd is a shell builtin
-详解$ help cdcd: cd [-L|[-P [-e]]] [dir]    Change the shell workin......
+$ type cd
+cd is a shell builtin
+详解$ help cd
+cd: cd [-L|[-P [-e]]] [dir]
+    Change the shell wor......
         </div>
     </a>
     <p class="post-meta">
@@ -401,8 +417,11 @@ size_t类型size_t实际上是无符号整型，它并不是一个全新的数�
         </h3>
         <div class="post-content-preview">
             pwdpwd命令是一个相当常用的命令，它告诉我们shell当前工作目录。pwd是Print working directory的意思。pwd是一个shell内置指令(shell builtin)。
-$ type pwdpwd is a shell builtin
-详解$ help pwdpwd: pwd [-LP]    Print the name of the current worki......
+$ type pwd
+pwd is a shell builtin
+详解$ help pwd
+pwd: pwd [-LP]
+    Print the name of the current wo......
         </div>
     </a>
     <p class="post-meta">
@@ -416,7 +435,6 @@ $ type pwdpwd is a shell builtin
 
 
 <!-- Pager -->
-
 <ul class="pager">
     
         <li class="previous">
@@ -544,8 +562,11 @@ $ type pwdpwd is a shell builtin
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -600,6 +621,11 @@ $ type pwdpwd is a shell builtin
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -620,25 +646,6 @@ $ type pwdpwd is a shell builtin
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -661,12 +668,6 @@ $ type pwdpwd is a shell builtin
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

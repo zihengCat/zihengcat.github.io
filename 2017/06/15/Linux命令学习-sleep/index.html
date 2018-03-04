@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -194,10 +180,23 @@
                 post-container">
 
                 <h1 id="sleep"><a href="#sleep" class="headerlink" title="sleep"></a>sleep</h1><p><code>sleep</code>命令的作用非常简单，就是使系统<strong>暂停</strong>一段时间。<br><code>sleep</code>是<em>GNU coreutils</em>工具之一。</p>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sleep --help</span><br><span class="line">Usage: sleep NUMBER[SUFFIX]...</span><br><span class="line">  or:  sleep OPTION</span><br><span class="line">Pause for NUMBER seconds.  SUFFIX may be &apos;s&apos; for seconds (the default),</span><br><span class="line">&apos;m&apos; for minutes, &apos;h&apos; for hours or &apos;d&apos; for days.  Unlike most implementations</span><br><span class="line">that require NUMBER be an integer, here NUMBER may be an arbitrary floating</span><br><span class="line">point number.  Given two or more arguments, pause for the amount of time</span><br><span class="line">specified by the sum of their values.</span><br><span class="line"></span><br><span class="line">      --help     display this help and exit</span><br><span class="line">      --version  output version information and exit</span><br><span class="line"></span><br><span class="line">GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;</span><br><span class="line">For complete documentation, run: info coreutils &apos;sleep invocation&apos;</span><br></pre></td></tr></table></figure>
-<p>命令没有特殊的选项，就是<em>help</em>与<em>version</em>两个常规的选项啦。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sleep number[smhd]…</span><br></pre></td></tr></table></figure>
-<p>用法是，sleep后接一个数字(可以是整数，也可以是浮点数)，再接一个后缀：</p>
+<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><pre><code>$ sleep --help
+Usage: sleep NUMBER[SUFFIX]...
+  or:  sleep OPTION
+Pause for NUMBER seconds.  SUFFIX may be &#39;s&#39; for seconds (the default),
+&#39;m&#39; for minutes, &#39;h&#39; for hours or &#39;d&#39; for days.  Unlike most implementations
+that require NUMBER be an integer, here NUMBER may be an arbitrary floating
+point number.  Given two or more arguments, pause for the amount of time
+specified by the sum of their values.
+
+      --help     display this help and exit
+      --version  output version information and exit
+
+GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
+For complete documentation, run: info coreutils &#39;sleep invocation&#39;
+</code></pre><p>命令没有特殊的选项，就是<em>help</em>与<em>version</em>两个常规的选项啦。</p>
+<pre><code>sleep number[smhd]…
+</code></pre><p>用法是，sleep后接一个数字(可以是整数，也可以是浮点数)，再接一个后缀：</p>
 <ul>
 <li>s: 秒</li>
 <li>m: 分</li>
@@ -207,10 +206,7 @@
 <p>默认是秒。<br>另外，接上多个数字的话，会计算时间的总和，比如: <code>sleep 10 20</code> 暂停30秒。</p>
 <p>字恒喵会在写脚本的时候使用<code>sleep</code>命令。</p>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -224,11 +220,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -260,11 +251,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -310,8 +296,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -366,6 +355,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -386,25 +380,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -427,12 +402,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -195,18 +181,42 @@
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我们在使用<code>Git</code>时，会遇到需要修改上次<code>commit</code>提交信息的需求。<br>比如：修改上次提交信息中的错误内容，或者添加新内容等等。</p>
 <h1 id="覆写上次提交（amend）"><a href="#覆写上次提交（amend）" class="headerlink" title="覆写上次提交（amend）"></a>覆写上次提交（amend）</h1><p>我们可以使用<code>git commit</code>命令的<code>amend</code>选项来覆写上次提交。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
-<p>执行此命令后，<code>git</code>会自动弹出编辑界面，让你可以修改上次的<strong>提交信息</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git commit --amend -m &quot;an updated commit message&quot;</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>$ git commit --amend
+</code></pre><p>执行此命令后，<code>git</code>会自动弹出编辑界面，让你可以修改上次的<strong>提交信息</strong>。</p>
+<pre><code>$ git commit --amend -m &quot;an updated commit message&quot;
+</code></pre><blockquote>
 <p><code>-m</code>选项：快捷修改提交信息。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git commit --amend --no-edit</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>$ git commit --amend --no-edit
+</code></pre><blockquote>
 <p><code>--no-edit</code>选项：表示不更动上次已经提交的信息。适用于添加新内容到上次提交的情况。</p>
 </blockquote>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">--amend</span><br><span class="line"></span><br><span class="line">    Replace the tip of the current branch by creating a new</span><br><span class="line">    commit. The recorded tree is prepared as usual (including</span><br><span class="line">    the effect of the -i and -o options and explicit pathspec),</span><br><span class="line">    and the message from the original commit is used as the</span><br><span class="line">    starting point, instead of an empty message, when no other</span><br><span class="line">    message is specified from the command line via options such</span><br><span class="line">    as -m, -F, -c, etc. The new commit has the same parents and</span><br><span class="line">    author as the current one (the --reset-author option can</span><br><span class="line">    countermand this).</span><br><span class="line"></span><br><span class="line">    It is a rough equivalent for:</span><br><span class="line"></span><br><span class="line">                $ git reset --soft HEAD^</span><br><span class="line">                $ ... do something else to come up with the right tree ...</span><br><span class="line">                $ git commit -c ORIG_HEAD</span><br><span class="line"></span><br><span class="line">    but can be used to amend a merge commit.</span><br><span class="line"></span><br><span class="line">    You should understand the implications of rewriting history</span><br><span class="line">    if you amend a commit that has already been published. (See</span><br><span class="line">    the &quot;RECOVERING FROM UPSTREAM REBASE&quot; section in git-</span><br><span class="line">    rebase(1).)</span><br></pre></td></tr></table></figure>
-<blockquote>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><pre><code>--amend
+
+    Replace the tip of the current branch by creating a new
+    commit. The recorded tree is prepared as usual (including
+    the effect of the -i and -o options and explicit pathspec),
+    and the message from the original commit is used as the
+    starting point, instead of an empty message, when no other
+    message is specified from the command line via options such
+    as -m, -F, -c, etc. The new commit has the same parents and
+    author as the current one (the --reset-author option can
+    countermand this).
+
+    It is a rough equivalent for:
+
+                $ git reset --soft HEAD^
+                $ ... do something else to come up with the right tree ...
+                $ git commit -c ORIG_HEAD
+
+    but can be used to amend a merge commit.
+
+    You should understand the implications of rewriting history
+    if you amend a commit that has already been published. (See
+    the &quot;RECOVERING FROM UPSTREAM REBASE&quot; section in git-
+    rebase(1).)
+
+</code></pre><blockquote>
 <p>来自 <code>git help</code> 的说明。</p>
 </blockquote>
 <p>需要注意的是，<code>amend</code>选项不会<strong>直接修改</strong>上次的提交，而是会<strong>新创建</strong>出一枚提交，包含了上次提交的全部内容与新添加的内容，原提交会被”删除”。</p>
@@ -214,8 +224,8 @@
 <p>修改前后的hash值是不同的。</p>
 </blockquote>
 <p>所以，<strong>对于已经推送到远程仓库的提交</strong>，要谨慎使用<code>amend</code>选项。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git push &lt;remote&gt; &lt;branch&gt; --force</span><br></pre></td></tr></table></figure>
-<p>对于已经推送到远程仓库的提交，可以使用强制推送来覆盖（谨慎使用）。</p>
+<pre><code>$ git push &lt;remote&gt; &lt;branch&gt; --force
+</code></pre><p>对于已经推送到远程仓库的提交，可以使用强制推送来覆盖（谨慎使用）。</p>
 <p><img src="./amend-pic.svg" alt="amend-pic"></p>
 <blockquote>
 <p><code>git commit --amend</code> 原理示意图<br>取自<a href="https://www.atlassian.com/git/tutorials/rewriting-history" target="_blank" rel="noopener">Atlassian</a>。</p>
@@ -231,10 +241,7 @@
 </li>
 </ul>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -248,11 +255,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -284,11 +286,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -334,8 +331,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -390,6 +390,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -410,25 +415,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -451,12 +437,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

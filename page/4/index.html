@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -175,8 +169,8 @@
                 post-container
             ">
 
-                <!-- Main Content -->
-
+                
+<!-- Main Content -->
 
 <div class="post-preview">
 
@@ -271,13 +265,14 @@ if-else 语句if-else 语句由一个布尔表达式后跟一个......
         </h3>
         <div class="post-content-preview">
             数组数组（Array）是一种复合数据类型，它由一系列相同类型的元素（Element）组成。
-定义数组使用[...]可以定义一个数组：&lt;type&gt; array_name [&lt;constant expression&gt;];
+定义数组使用[...]可以定义一个数组：
+&lt;type&gt; array_name [&lt;constant expression&gt;];
 数组元素的存储空间是相邻的。
 
 ANSI C 数组的元素个数必须在编译时刻确定；
 C99 增添了变长数组(VLA)这一新特性。
 
-访问数组元素数组中的元......
+访问数组元素数组中的......
         </div>
     </a>
     <p class="post-meta">
@@ -433,7 +428,6 @@ TeX（希腊语：/tɛx/[1]，音译“泰赫”，文本模式下写作TeX）�
 
 
 <!-- Pager -->
-
 <ul class="pager">
     
         <li class="previous">
@@ -561,8 +555,11 @@ TeX（希腊语：/tɛx/[1]，音译“泰赫”，文本模式下写作TeX）�
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -617,6 +614,11 @@ TeX（希腊语：/tɛx/[1]，音译“泰赫”，文本模式下写作TeX）�
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -637,25 +639,6 @@ TeX（希腊语：/tɛx/[1]，音译“泰赫”，文本模式下写作TeX）�
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -678,12 +661,6 @@ TeX（希腊语：/tɛx/[1]，音译“泰赫”，文本模式下写作TeX）�
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -200,15 +186,14 @@
 </blockquote>
 <p>这种情况在复制粘贴代码时尤为明显。之前，子恒喵都是手动解决缩进问题的…</p>
 <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>出现这种问题的原因是：<br>我们对vim做了各种<code>indent</code>设置。在处理从外部复制到vim中的内容时，vim会认为这是用户手动输入的，所以对文本做了不正确的缩进。</p>
-<h1 id="粘贴模式-paste-mode"><a href="#粘贴模式-paste-mode" class="headerlink" title="粘贴模式 paste mode"></a>粘贴模式 paste mode</h1><p>vim提供了一种特殊的粘贴模式，专门用来解决<strong>从外部粘贴内容到vim中格式不正确</strong>这一问题。<br>在粘贴内容前，在vim命令模式下输入:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">:set paste</span><br></pre></td></tr></table></figure></p>
-<p>启用粘贴模式。再进入编辑模式，我们会发现提示符已经变成<code>-- INSERT (paste) --</code>，此时粘贴内容，就不会出现格式缩进混乱的问题啦。</p>
-<p>vim实现粘贴模式的原理是：<strong>暂时关闭所有影响格式缩进的设置，比如<code>autoindent</code>。</strong><br>退出粘贴模式，我们就可以正常编辑文本了:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">:set nopaste</span><br></pre></td></tr></table></figure></p>
-<p>更多信息可以查阅vim帮助文档：<code>:help paste</code>。</p>
-
+<h1 id="粘贴模式-paste-mode"><a href="#粘贴模式-paste-mode" class="headerlink" title="粘贴模式 paste mode"></a>粘贴模式 paste mode</h1><p>vim提供了一种特殊的粘贴模式，专门用来解决<strong>从外部粘贴内容到vim中格式不正确</strong>这一问题。<br>在粘贴内容前，在vim命令模式下输入:</p>
+<pre><code>:set paste
+</code></pre><p>启用粘贴模式。再进入编辑模式，我们会发现提示符已经变成<code>-- INSERT (paste) --</code>，此时粘贴内容，就不会出现格式缩进混乱的问题啦。</p>
+<p>vim实现粘贴模式的原理是：<strong>暂时关闭所有影响格式缩进的设置，比如<code>autoindent</code>。</strong><br>退出粘贴模式，我们就可以正常编辑文本了:</p>
+<pre><code>:set nopaste
+</code></pre><p>更多信息可以查阅vim帮助文档：<code>:help paste</code>。</p>
 
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -222,11 +207,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -258,11 +238,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -308,8 +283,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -364,6 +342,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -384,25 +367,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -425,12 +389,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -195,8 +181,10 @@
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍<code>Vim</code>中的分屏操作<code>split</code>。</p>
 <h1 id="分屏split"><a href="#分屏split" class="headerlink" title="分屏split"></a>分屏split</h1><p>作为一个命令行下的文本编辑器，<code>vim</code>可以利用分屏<code>split</code>操作实现类似GUI编辑器的多文件编辑效果，非常强大。</p>
-<h1 id="分屏命令"><a href="#分屏命令" class="headerlink" title="分屏命令"></a>分屏命令</h1><p>在<code>vim</code>命令行模式下输入相应指令即可启动分屏模式。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">:split [filename]   # 水平分割窗口</span><br><span class="line">:vsplit [filename]  # 垂直分割窗口</span><br></pre></td></tr></table></figure></p>
-<p>如果不加文件名，则默认对当前文件进行分割。命令可以简写为<code>:sp</code>,<code>:vsp</code>。<br>如果希望在<code>vim</code>启动时多文件分屏显示，可以使用<code>-o</code>或<code>-O</code>参数。</p>
+<h1 id="分屏命令"><a href="#分屏命令" class="headerlink" title="分屏命令"></a>分屏命令</h1><p>在<code>vim</code>命令行模式下输入相应指令即可启动分屏模式。</p>
+<pre><code>:split [filename]   # 水平分割窗口
+:vsplit [filename]  # 垂直分割窗口
+</code></pre><p>如果不加文件名，则默认对当前文件进行分割。命令可以简写为<code>:sp</code>,<code>:vsp</code>。<br>如果希望在<code>vim</code>启动时多文件分屏显示，可以使用<code>-o</code>或<code>-O</code>参数。</p>
 <h1 id="分屏快捷键"><a href="#分屏快捷键" class="headerlink" title="分屏快捷键"></a>分屏快捷键</h1><p>与分屏相关的快捷键基本都以<code>Ctrl + w</code>开头。</p>
 <ul>
 <li><p><code>Ctrl</code> + <code>w</code> + <code>s</code><br>等同于<code>:split</code>。</p>
@@ -241,10 +229,7 @@
 </li>
 </ul>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -258,11 +243,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -294,11 +274,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -344,8 +319,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -400,6 +378,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -420,25 +403,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -461,12 +425,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

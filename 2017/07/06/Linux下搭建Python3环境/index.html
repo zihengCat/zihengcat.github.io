@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -197,34 +183,59 @@
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍在Linux环境下编译安装Python3。</p>
 <h1 id="编译安装Python3"><a href="#编译安装Python3" class="headerlink" title="编译安装Python3"></a>编译安装Python3</h1><p>在子恒喵使用的CentOS7 Linux 系统中，默认的<code>yum</code>源是没有最新版Python3的安装包的。<br>系统自带的是一枚老版本的Python2，而且精简过，只为一些系统应用提供支持，我们不要随意更动，否则会出现各种各样的问题…(比如<code>yum</code>不能用)<br>所以，手动编译安装Python3，是Linux下搭建Python学习环境的最佳选择。</p>
-<h2 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 编译环境"></a>Step 1 编译环境</h2><p>我们需要安装几个基础的编译工具包，这是编译源码所必需的。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo yum install gcc make</span><br><span class="line">$ sudo yum install wget</span><br></pre></td></tr></table></figure></p>
-<ul>
+<h2 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 编译环境"></a>Step 1 编译环境</h2><p>我们需要安装几个基础的编译工具包，这是编译源码所必需的。</p>
+<pre><code>$ sudo yum install gcc make
+$ sudo yum install wget
+</code></pre><ul>
 <li><code>gcc</code>，<code>make</code>用来编译Python源码（Python语言的官方实现是CPython）</li>
 <li><code>wget</code>是Linux下一个好用的下载工具，可以用来下载Python源码包（大部分Linux系统都会默认安装）</li>
 </ul>
-<h2 id="Step-2-获取源码"><a href="#Step-2-获取源码" class="headerlink" title="Step 2 获取源码"></a>Step 2 获取源码</h2><p>接下来，我们前往<a href="https://www.python.org" target="_blank" rel="noopener">Python官方网站</a>下载最新的Python3源码包。<br>注意，一定要下载源码包<code>source tarball</code>哦。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz</span><br></pre></td></tr></table></figure></p>
-<p>解压缩，解包（xz压缩包要分两步解压，gz就可以在tar命令中一步搞定）<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ xz -d ./Python-3.6.1.tar.xz</span><br><span class="line">$ tar -xv -f ./Python-3.6.1.tar</span><br></pre></td></tr></table></figure></p>
-<p>嗯，80+MB的源码，XZ直接给压到16MB…相当强大。</p>
-<h2 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 安装依赖"></a>Step 3 安装依赖</h2><p><code>cd</code>进入Python3源码目录，我们可以先看一下<code>README.rst</code>这个文件，上面告诉了我们编译安装的具体步骤。<br>但是，在编译安装之前，我们需要先安装一些Python依赖包，这是README上没有提到的。(会在configure检查依赖时告诉你…)<br>为了省去后续查找安装依赖的麻烦，子恒喵在这里把所需要的依赖包都写出来。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#/bin/bash</span><br><span class="line"></span><br><span class="line">deps=&quot;zlib-devel \</span><br><span class="line">      bzip2-devel \</span><br><span class="line">      openssl-devel \</span><br><span class="line">      readline-devel \</span><br><span class="line">      ncurses-devel \</span><br><span class="line">      sqlite-devel \</span><br><span class="line">      tcl-devel \</span><br><span class="line">      tk-devel \</span><br><span class="line">      gdbm-devel&quot;</span><br><span class="line"></span><br><span class="line">for i in $&#123;deps&#125;</span><br><span class="line">do</span><br><span class="line">    sudo yum -y install $&#123;i&#125;</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">exit $&#123;?&#125;</span><br></pre></td></tr></table></figure></p>
-<p>手写一段shell脚本，把依赖包都装上。<br><code>debian</code>系的系统，可以在远端仓库里寻找相应的依赖包。</p>
+<h2 id="Step-2-获取源码"><a href="#Step-2-获取源码" class="headerlink" title="Step 2 获取源码"></a>Step 2 获取源码</h2><p>接下来，我们前往<a href="https://www.python.org" target="_blank" rel="noopener">Python官方网站</a>下载最新的Python3源码包。<br>注意，一定要下载源码包<code>source tarball</code>哦。</p>
+<pre><code>$ wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
+</code></pre><p>解压缩，解包（xz压缩包要分两步解压，gz就可以在tar命令中一步搞定）</p>
+<pre><code>$ xz -d ./Python-3.6.1.tar.xz
+$ tar -xv -f ./Python-3.6.1.tar
+</code></pre><p>嗯，80+MB的源码，XZ直接给压到16MB…相当强大。</p>
+<h2 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 安装依赖"></a>Step 3 安装依赖</h2><p><code>cd</code>进入Python3源码目录，我们可以先看一下<code>README.rst</code>这个文件，上面告诉了我们编译安装的具体步骤。<br>但是，在编译安装之前，我们需要先安装一些Python依赖包，这是README上没有提到的。(会在configure检查依赖时告诉你…)<br>为了省去后续查找安装依赖的麻烦，子恒喵在这里把所需要的依赖包都写出来。</p>
+<pre><code>#/bin/bash
+
+deps=&quot;zlib-devel \
+      bzip2-devel \
+      openssl-devel \
+      readline-devel \
+      ncurses-devel \
+      sqlite-devel \
+      tcl-devel \
+      tk-devel \
+      gdbm-devel&quot;
+
+for i in ${deps}
+do
+    sudo yum -y install ${i}
+done
+
+exit ${?}
+</code></pre><p>手写一段shell脚本，把依赖包都装上。<br><code>debian</code>系的系统，可以在远端仓库里寻找相应的依赖包。</p>
 <h2 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 编译安装"></a>Step 4 编译安装</h2><p>依赖都安装好之后，接下来，我们就按照<code>README</code>的指引，编译我们的Python3吧。<br>请确保在Python源代码目录下执行以下操作:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ ./configure --prefix=/usr/local/python-3.6.1 --enable-optimizations</span><br></pre></td></tr></table></figure>
-<p>此命令会检查当前系统的编译环境，软件依赖性等等，如果没有问题的话，会成功生成<code>Makefile</code>。<br>这里我们添加了两个参数:</p>
+<pre><code>$ ./configure --prefix=/usr/local/python-3.6.1 --enable-optimizations
+</code></pre><p>此命令会检查当前系统的编译环境，软件依赖性等等，如果没有问题的话，会成功生成<code>Makefile</code>。<br>这里我们添加了两个参数:</p>
 <ul>
 <li><code>--prefix</code> 自定义安装路径，默认在<code>/usr/local</code>，子恒喵习惯单独指定一个安装目录，这样管理起来会比较方便</li>
 <li><code>--enable-optimizations</code> 开启编译优化选项，增加编译时间，换取性能提升，这是值得的。</li>
 </ul>
 <p>更多编译参数可以查看: <code>./configure --help</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ make</span><br><span class="line">$ sudo make install</span><br></pre></td></tr></table></figure>
-<p>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。<br>如果自定义了安装路径，别忘了将路径加入<code>PATH</code>环境变量中，并将python3链接到<code>/usr/bin/</code>哦。^_^</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ echo &apos;export PATH=$&#123;PATH&#125;:&lt;prefix/bin&gt;&apos; &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
-<h2 id="Step-5-检验安装"><a href="#Step-5-检验安装" class="headerlink" title="Step 5 检验安装"></a>Step 5 检验安装</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ python3</span><br><span class="line">Python 3.6.1 (default, Jul  6 2017, 15:12:56)</span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-<p>至此，最新版Python3已经安装完成，愉快地使用Python编程吧!</p>
-
+<pre><code>$ make
+$ sudo make install
+</code></pre><p>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。<br>如果自定义了安装路径，别忘了将路径加入<code>PATH</code>环境变量中，并将python3链接到<code>/usr/bin/</code>哦。^_^</p>
+<pre><code>$ echo &#39;export PATH=${PATH}:&lt;prefix/bin&gt;&#39; &gt;&gt; ~/.bashrc
+</code></pre><h2 id="Step-5-检验安装"><a href="#Step-5-检验安装" class="headerlink" title="Step 5 检验安装"></a>Step 5 检验安装</h2><pre><code>$ python3
+Python 3.6.1 (default, Jul  6 2017, 15:12:56)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;
+</code></pre><p>至此，最新版Python3已经安装完成，愉快地使用Python编程吧!</p>
 
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -238,11 +249,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -276,11 +282,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -326,8 +327,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -382,6 +386,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -402,25 +411,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -443,12 +433,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

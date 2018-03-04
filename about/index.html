@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -175,9 +169,9 @@
                 post-container
             ">
 
-                <h1 id="关于我-About-Me"><a href="#关于我-About-Me" class="headerlink" title="关于我 - About Me"></a>关于我 - About Me</h1><p>你好，我是子恒喵！大学生，学写代码，坐标杭州。<br>Hey, this is zihengCat! A student live in Hangzhou, China. Learning coding now.</p>
+                <h1 id="关于我-About-Me"><a href="#关于我-About-Me" class="headerlink" title="关于我 - About Me"></a>关于我 - About Me</h1><p>你好，我是子恒喵！大学生，学写代码，坐标杭州。欢迎留言～(ﾉ≧∀≦)ﾉ<br>Hey, this is zihengCat! A student live in Hangzhou, China. Learning coding now.</p>
 <h1 id="联系我-Contact-Me"><a href="#联系我-Contact-Me" class="headerlink" title="联系我 - Contact Me"></a>联系我 - Contact Me</h1><ul>
-<li>E-Mail: <a href="mailto:zihenglv@gmail.com" target="_blank" rel="noopener">zihenglv@gmail.com</a></li>
+<li>E-mail: <a href="mailto:zihenglv@gmail.com" target="_blank" rel="noopener">zihenglv@gmail.com</a></li>
 <li>GitHub: <a href="https://github.com/zihengCat" target="_blank" rel="noopener">https://github.com/zihengCat</a></li>
 <li>LeetCode: <a href="https://leetcode.com/zihengcat" target="_blank" rel="noopener">https://leetcode.com/zihengcat</a></li>
 </ul>
@@ -186,36 +180,26 @@
                 <!-- 如果开启评论功能 -->
                 
                     <hr>
-
-                    
-
-                    
-
-                    
-
-                    
-
 <!-- Gitment Begin -->
 <div id="gitment_container">
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id:    'hexo_gitment',        // 可选 默认为 location.href
-  owner: 'zihengcat',           // 你的 GitHub ID
-  repo:  'zihengcat.github.io', // 存储评论的Repo
-  oauth: {
-    client_id: 'f039815621dd7dfd694e',                           // 你的 client ID
-    client_secret: 'fbd18887ac773d1d7a16a91054c3c996a18eb4fe'    // 你的 client secret
-  }
-});
-gitment.render("gitment_container");
-</script>
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js">
+  </script>
+  <script>
+    var gitment = new Gitment({
+      id:    'hexo_gitment',        // 可选 默认为 location.href
+      owner: 'zihengcat',           // 你的 GitHub ID
+      repo:  'zihengcat.github.io', // 存储评论的Repo
+      oauth: {
+        client_id: 'f039815621dd7dfd694e',                           // 你的 client ID
+        client_secret: 'fbd18887ac773d1d7a16a91054c3c996a18eb4fe'    // 你的 client secret
+      }
+    });
+    gitment.render(document.getElementById('gitment_container'));
+  </script>
 </div>
 <!-- Gitment End -->
 
-
-                
             </div>
     <!-- Sidebar Container -->
             <div class="
@@ -326,8 +310,11 @@ gitment.render("gitment_container");
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -382,6 +369,11 @@ gitment.render("gitment_container");
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -402,25 +394,6 @@ gitment.render("gitment_container");
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -443,12 +416,6 @@ gitment.render("gitment_container");
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

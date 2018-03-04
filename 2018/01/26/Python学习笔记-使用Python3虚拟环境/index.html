@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -204,26 +190,55 @@
 </blockquote>
 <h1 id="Python3-虚拟环境"><a href="#Python3-虚拟环境" class="headerlink" title="Python3 虚拟环境"></a>Python3 虚拟环境</h1><p>Python3 提供了<code>venv</code>模块，可以为我们创建出轻量级的<em>虚拟环境</em>。该虚拟环境是将全局Python环境复制一份出来给予特定项目。</p>
 <h2 id="创建虚拟环境"><a href="#创建虚拟环境" class="headerlink" title="创建虚拟环境"></a>创建虚拟环境</h2><p>使用 Python3 自带的<code>venv</code>模块即可轻松创建一个虚拟环境。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3 -m venv /path/to/new/virtual/environment</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>python3 -m venv /path/to/new/virtual/environment
+</code></pre><blockquote>
 <p>命令后接创建虚拟环境的路径</p>
 </blockquote>
 <p>命令执行完后，我们发现Python已经自动为我们创建好了目录，目录下存放着Python的主二进制文件，标准库文件与一些配置文件（从系统环境中复制而来）。</p>
 <h2 id="激活-退出虚拟环境"><a href="#激活-退出虚拟环境" class="headerlink" title="激活/退出虚拟环境"></a>激活/退出虚拟环境</h2><p>创建完虚拟环境后，我们通过执行<code>path/bin</code>目录下的<code>activate</code>激活脚本即可在当前Shell下激活虚拟环境（Shell环境不同，激活脚本也不同）。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd /path/to/new/virtual/environment</span><br><span class="line">source ./bin/activate</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>cd /path/to/new/virtual/environment
+source ./bin/activate
+</code></pre><blockquote>
 <p><code>source</code>激活虚拟环境</p>
 </blockquote>
 <p>想要退出当前虚拟环境也非常简单，在虚拟环境命令行下键入<code>deactivate</code>即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(virtual environment)$ deactivate</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>(virtual environment)$ deactivate
+</code></pre><blockquote>
 <p>退出虚拟环境</p>
 </blockquote>
 <h2 id="使用虚拟环境"><a href="#使用虚拟环境" class="headerlink" title="使用虚拟环境"></a>使用虚拟环境</h2><p>激活虚拟环境后，我们可以在该虚拟环境下执行任何操作（安装第三方软件包等），而这些操作都与系统Python环境毫不相关。</p>
 <p>需要注意的是，默认情况下，虚拟环境与系统环境是隔离的，虚拟环境下也没有系统环境中已经安装的第三方软件包，所有用到第三方软件包都需要我们在虚拟环境下再自行下载一遍（pip默认安装）。</p>
 <h2 id="venv命令选项"><a href="#venv命令选项" class="headerlink" title="venv命令选项"></a><code>venv</code>命令选项</h2><p>使用<code>-h</code>选项可以查看<code>venv</code>命令的帮助文档。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3 -m venv -h</span><br><span class="line"></span><br><span class="line">usage: venv [-h] [--system-site-packages] [--symlinks | --copies] [--clear]</span><br><span class="line">            [--upgrade] [--without-pip]</span><br><span class="line">            ENV_DIR [ENV_DIR ...]</span><br><span class="line"></span><br><span class="line">Creates virtual Python environments in one or more target directories.</span><br><span class="line"></span><br><span class="line">positional arguments:</span><br><span class="line">  ENV_DIR               A directory to create the environment in.</span><br><span class="line"></span><br><span class="line">optional arguments:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  --system-site-packages</span><br><span class="line">                        Give the virtual environment access to the system</span><br><span class="line">                        site-packages dir.</span><br><span class="line">  --symlinks            Try to use symlinks rather than copies, when symlinks</span><br><span class="line">                        are not the default for the platform.</span><br><span class="line">  --copies              Try to use copies rather than symlinks, even when</span><br><span class="line">                        symlinks are the default for the platform.</span><br><span class="line">  --clear               Delete the contents of the environment directory if it</span><br><span class="line">                        already exists, before environment creation.</span><br><span class="line">  --upgrade             Upgrade the environment directory to use this version</span><br><span class="line">                        of Python, assuming Python has been upgraded in-place.</span><br><span class="line">  --without-pip         Skips installing or upgrading pip in the virtual</span><br><span class="line">                        environment (pip is bootstrapped by default)</span><br><span class="line"></span><br><span class="line">Once an environment has been created, you may wish to activate it, e.g. by</span><br><span class="line">sourcing an activate script in its bin directory.</span><br></pre></td></tr></table></figure>
-<p>简单翻译一下吧。</p>
+<pre><code>python3 -m venv -h
+
+usage: venv [-h] [--system-site-packages] [--symlinks | --copies] [--clear]
+            [--upgrade] [--without-pip]
+            ENV_DIR [ENV_DIR ...]
+
+Creates virtual Python environments in one or more target directories.
+
+positional arguments:
+  ENV_DIR               A directory to create the environment in.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --system-site-packages
+                        Give the virtual environment access to the system
+                        site-packages dir.
+  --symlinks            Try to use symlinks rather than copies, when symlinks
+                        are not the default for the platform.
+  --copies              Try to use copies rather than symlinks, even when
+                        symlinks are the default for the platform.
+  --clear               Delete the contents of the environment directory if it
+                        already exists, before environment creation.
+  --upgrade             Upgrade the environment directory to use this version
+                        of Python, assuming Python has been upgraded in-place.
+  --without-pip         Skips installing or upgrading pip in the virtual
+                        environment (pip is bootstrapped by default)
+
+Once an environment has been created, you may wish to activate it, e.g. by
+sourcing an activate script in its bin directory.
+</code></pre><p>简单翻译一下吧。</p>
 <table>
 <thead>
 <tr>
@@ -262,10 +277,7 @@
 <li>Python官方文档：<a href="https://docs.python.org/3/library/venv.html" target="_blank" rel="noopener">https://docs.python.org/3/library/venv.html</a></li>
 </ul>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -279,11 +291,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -315,11 +322,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -365,8 +367,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -421,6 +426,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -441,25 +451,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -482,12 +473,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

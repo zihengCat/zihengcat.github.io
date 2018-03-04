@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -203,55 +189,111 @@
 <li>系统版本号: <em>CentOS-7-x86_64-1611</em></li>
 <li>内核版本号: <em>3.10.0-514.el7.x86_64</em></li>
 </ul>
-<h2 id="Step-1-下载安装包"><a href="#Step-1-下载安装包" class="headerlink" title="Step 1 下载安装包"></a>Step 1 下载安装包</h2><p>请前往<a href="http://music.163.com/#/download" target="_blank" rel="noopener">网易云音乐下载页</a>，下载<strong>Ubuntu14.04(64位)</strong>版本。注意请下载这个版本。不是说其他版本不能装，只是其他版本对依赖包的处理比较繁琐，有些依赖包会找不到，还要更动到基础依赖包（GLIBC）。低版本就没有那么多的问题，依赖关系都可以使用<code>yum</code>轻松解决。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ wget http://s1.music.126.net/download/pc/netease-cloud-music_1.0.0-2_amd64_ubuntu14.04.deb</span><br></pre></td></tr></table></figure></p>
-<blockquote>
+<h2 id="Step-1-下载安装包"><a href="#Step-1-下载安装包" class="headerlink" title="Step 1 下载安装包"></a>Step 1 下载安装包</h2><p>请前往<a href="http://music.163.com/#/download" target="_blank" rel="noopener">网易云音乐下载页</a>，下载<strong>Ubuntu14.04(64位)</strong>版本。注意请下载这个版本。不是说其他版本不能装，只是其他版本对依赖包的处理比较繁琐，有些依赖包会找不到，还要更动到基础依赖包（GLIBC）。低版本就没有那么多的问题，依赖关系都可以使用<code>yum</code>轻松解决。</p>
+<pre><code>$ wget http://s1.music.126.net/download/pc/netease-cloud-music_1.0.0-2_amd64_ubuntu14.04.deb
+</code></pre><blockquote>
 <p>下载低版本 ubuntu14.04（64位）安装包。</p>
 </blockquote>
 <h2 id="Step-2-解压安装包"><a href="#Step-2-解压安装包" class="headerlink" title="Step 2 解压安装包"></a>Step 2 解压安装包</h2><p>新建一个文件夹，接下来的操作都在该文件夹中进行。</p>
-<p>我们使用<code>ar</code>工具提取出<code>*.deb</code>包中的内容。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ mkdir netease-music</span><br><span class="line">$ mv ./netease-cloud-music_1.0.0-2_amd64_ubuntu14.04.deb netease-music</span><br><span class="line">$ cd netease-music</span><br><span class="line">$ ar -xv ./netease-cloud-music_1.0.0-2_amd64_ubuntu14.04.deb</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>提取得到3个文件，其中，<code>data.tar.xz</code>就是网易云音乐Linux版主体文件压缩包，<code>control.tar.gz</code>是控制文件压缩包(包含该包的基本信息，文件MD5校验码等等)。</p>
-<p>接下来，我们解压出网易云音乐Linux版的主体文件。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ xz -d ./data.tar.xz</span><br><span class="line">$ tar -xv -f ./data.tar</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>解压得到一个<code>/usr</code>目录，进去瞧瞧：</p>
+<p>我们使用<code>ar</code>工具提取出<code>*.deb</code>包中的内容。</p>
+<pre><code>$ mkdir netease-music
+$ mv ./netease-cloud-music_1.0.0-2_amd64_ubuntu14.04.deb netease-music
+$ cd netease-music
+$ ar -xv ./netease-cloud-music_1.0.0-2_amd64_ubuntu14.04.deb
+...
+</code></pre><p>提取得到3个文件，其中，<code>data.tar.xz</code>就是网易云音乐Linux版主体文件压缩包，<code>control.tar.gz</code>是控制文件压缩包(包含该包的基本信息，文件MD5校验码等等)。</p>
+<p>接下来，我们解压出网易云音乐Linux版的主体文件。</p>
+<pre><code>$ xz -d ./data.tar.xz
+$ tar -xv -f ./data.tar
+...
+</code></pre><p>解压得到一个<code>/usr</code>目录，进去瞧瞧：</p>
 <ul>
 <li><em>bin</em></li>
 <li><em>lib</em></li>
 <li><em>share</em></li>
 </ul>
 <p>标准的 Linux 软件目录结构。</p>
-<p>来把这些文件放到它们应该去的地方。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo chown -R root:root ./usr/</span><br><span class="line">$ sudo cp -r ./usr/* /usr/</span><br></pre></td></tr></table></figure></p>
-<h2 id="Step-3-解决依赖问题"><a href="#Step-3-解决依赖问题" class="headerlink" title="Step 3 解决依赖问题"></a>Step 3 解决依赖问题</h2><p>这一步是最繁琐的啦，我们需要<strong>手动</strong>解决软件依赖性问题。</p>
-<h3 id="提取依赖信息"><a href="#提取依赖信息" class="headerlink" title="提取依赖信息"></a>提取依赖信息</h3><p>我们先把依赖信息提取出来。还记得<code>control.tar.gz</code>这个文件么，里面就有记录网易云音乐所需依赖信息。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ tar -xvz -f ./control.tar.gz</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>解压出来的<code>control</code>文件中，有我们需要的依赖信息。</p>
+<p>来把这些文件放到它们应该去的地方。</p>
+<pre><code>$ sudo chown -R root:root ./usr/
+$ sudo cp -r ./usr/* /usr/
+</code></pre><h2 id="Step-3-解决依赖问题"><a href="#Step-3-解决依赖问题" class="headerlink" title="Step 3 解决依赖问题"></a>Step 3 解决依赖问题</h2><p>这一步是最繁琐的啦，我们需要<strong>手动</strong>解决软件依赖性问题。</p>
+<h3 id="提取依赖信息"><a href="#提取依赖信息" class="headerlink" title="提取依赖信息"></a>提取依赖信息</h3><p>我们先把依赖信息提取出来。还记得<code>control.tar.gz</code>这个文件么，里面就有记录网易云音乐所需依赖信息。</p>
+<pre><code>$ tar -xvz -f ./control.tar.gz
+...
+</code></pre><p>解压出来的<code>control</code>文件中，有我们需要的依赖信息。</p>
 <h3 id="引入额外-yum-仓库"><a href="#引入额外-yum-仓库" class="headerlink" title="引入额外 yum 仓库"></a>引入额外 yum 仓库</h3><p>在使用yum解决依赖性问题之前，我们需要先额外引入两枚yum仓库：<code>epel</code>与<code>rpmfusion</code>。<br>这两枚yum仓库中可以找到我们所需要的全部依赖包。<br>如何引入yum仓库，可以看<a href="https://zihengcat.github.io/2017/06/12/为CentOS7添加EPEL源/">这篇博文</a>。</p>
-<h3 id="使用-yum-解决依赖问题"><a href="#使用-yum-解决依赖问题" class="headerlink" title="使用 yum 解决依赖问题"></a>使用 yum 解决依赖问题</h3><p>网易云音乐Linux版使用的图形库是<code>Qt</code>，我们把<code>Qt</code>的依赖包装上。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo yum install qt5-qtbase-gui qt5-qtx11extras qt5-qtmultimedia</span><br></pre></td></tr></table></figure></p>
-<blockquote>
+<h3 id="使用-yum-解决依赖问题"><a href="#使用-yum-解决依赖问题" class="headerlink" title="使用 yum 解决依赖问题"></a>使用 yum 解决依赖问题</h3><p>网易云音乐Linux版使用的图形库是<code>Qt</code>，我们把<code>Qt</code>的依赖包装上。</p>
+<pre><code>$ sudo yum install qt5-qtbase-gui qt5-qtx11extras qt5-qtmultimedia
+</code></pre><blockquote>
 <p>解决图形库依赖</p>
 </blockquote>
-<p>网易云音乐Linux版使用的解码器是<code>gstreamer</code>。另外还需要<code>gstreamer</code>的3枚插件。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo yum install gstreamer \</span><br><span class="line">gstreamer-plugins-good \</span><br><span class="line">gstreamer-plugins-bad \</span><br><span class="line">gstreamer-plugins-ugly</span><br></pre></td></tr></table></figure></p>
-<blockquote>
+<p>网易云音乐Linux版使用的解码器是<code>gstreamer</code>。另外还需要<code>gstreamer</code>的3枚插件。</p>
+<pre><code>$ sudo yum install gstreamer \
+gstreamer-plugins-good \
+gstreamer-plugins-bad \
+gstreamer-plugins-ugly
+</code></pre><blockquote>
 <p>解决解码器依赖</p>
 </blockquote>
-<p>网易云音乐Linux版使用到了<code>chrome-sandbox</code>（云音乐客户端就是在chrome外边套了层壳…），我们还需要1枚依赖包。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo yum install libXScrnSaver</span><br></pre></td></tr></table></figure></p>
-<blockquote>
+<p>网易云音乐Linux版使用到了<code>chrome-sandbox</code>（云音乐客户端就是在chrome外边套了层壳…），我们还需要1枚依赖包。</p>
+<pre><code>$ sudo yum install libXScrnSaver
+</code></pre><blockquote>
 <p>解决 chrome 框架依赖</p>
 </blockquote>
 <p>在子恒喵的系统上，安装上述依赖包就已经可以解决依赖性问题了。<strong>如果还遇到依赖性问题，你可以查看<code>control</code>文件，将缺失的依赖包补齐。</strong></p>
 <h2 id="Step-4-解决-abort-问题"><a href="#Step-4-解决-abort-问题" class="headerlink" title="Step 4 解决 abort 问题"></a>Step 4 解决 abort 问题</h2><p>装好依赖包，解决软件依赖性问题之后，我们还有一个小问题要处理。由于网易云音乐Linux使用的是<code>chrome</code>框架，需要chrome沙盒机制<code>chrome-sandbox</code>能正常工作。</p>
-<p>启用<code>chrome-sandbox</code>机制，我们需要为<code>chrome-sandbox</code>这个文件设置特殊权限位: <strong>suid</strong>。<br>改变文件所属用户为 <em>root</em>，设置权限位为 <em>4755</em>（加入 <em>suid</em> 特殊权限位）。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo chown root:root /usr/lib/netease-cloud-music/chrome-sandbox</span><br><span class="line">$ sudo chmod 4755 /usr/lib/netease-cloud-music/chrome-sandbox</span><br></pre></td></tr></table></figure></p>
-<p>此时，我们在命令行下执行<code>netease-cloud-music</code>命令，应该就没有问题了。<br>网易云音乐Linux版正常运行。</p>
+<p>启用<code>chrome-sandbox</code>机制，我们需要为<code>chrome-sandbox</code>这个文件设置特殊权限位: <strong>suid</strong>。<br>改变文件所属用户为 <em>root</em>，设置权限位为 <em>4755</em>（加入 <em>suid</em> 特殊权限位）。</p>
+<pre><code>$ sudo chown root:root /usr/lib/netease-cloud-music/chrome-sandbox
+$ sudo chmod 4755 /usr/lib/netease-cloud-music/chrome-sandbox
+</code></pre><p>此时，我们在命令行下执行<code>netease-cloud-music</code>命令，应该就没有问题了。<br>网易云音乐Linux版正常运行。</p>
 <p><img src="./netease-cloud-music-pic2.png" alt="netease-cloud-music-pic2"></p>
 <h2 id="Step-5-图形界面快捷方式"><a href="#Step-5-图形界面快捷方式" class="headerlink" title="Step 5 图形界面快捷方式"></a>Step 5 图形界面快捷方式</h2><p>至此，我们的安装过程已经完成。接下来的一些工作，都是一些锦上添花的事情啦。</p>
-<p>我们不希望每次都从要命令行启动网易云音乐，我们来为它添加图形界面快捷方式。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo chmod 644 /usr/share/applications/netease-cloud-music.desktop</span><br><span class="line">$ sudo vi /usr/share/applications/netease-cloud-music.desktop</span><br></pre></td></tr></table></figure></p>
-<p>修改<code>Icon</code>与<code>Exec</code>选项，使其对应到正确的路径。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Version=1.0</span><br><span class="line">Type=Application</span><br><span class="line">Name=NetEase Cloud Music</span><br><span class="line">Name[zh_CN]=网易云音乐</span><br><span class="line">Name[zh_TW]=網易雲音樂</span><br><span class="line">Comment=NetEase Cloud Music</span><br><span class="line">Comment[zh_CN]=网易云音乐</span><br><span class="line">Comment[zh_TW]=網易雲音樂</span><br><span class="line">Icon=/usr/share/icons/hicolor/scalable/apps/netease-cloud-music.svg</span><br><span class="line">Exec=/usr/bin/netease-cloud-music %U</span><br><span class="line">Comment=NetEase Cloud Music</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<blockquote>
+<p>我们不希望每次都从要命令行启动网易云音乐，我们来为它添加图形界面快捷方式。</p>
+<pre><code>$ sudo chmod 644 /usr/share/applications/netease-cloud-music.desktop
+$ sudo vi /usr/share/applications/netease-cloud-music.desktop
+</code></pre><p>修改<code>Icon</code>与<code>Exec</code>选项，使其对应到正确的路径。</p>
+<pre><code>[Desktop Entry]
+Version=1.0
+Type=Application
+Name=NetEase Cloud Music
+Name[zh_CN]=网易云音乐
+Name[zh_TW]=網易雲音樂
+Comment=NetEase Cloud Music
+Comment[zh_CN]=网易云音乐
+Comment[zh_TW]=網易雲音樂
+Icon=/usr/share/icons/hicolor/scalable/apps/netease-cloud-music.svg
+Exec=/usr/bin/netease-cloud-music %U
+Comment=NetEase Cloud Music
+...
+</code></pre><blockquote>
 <p>注意使用绝对路径</p>
 </blockquote>
-<h2 id="Step-6-卸载相关"><a href="#Step-6-卸载相关" class="headerlink" title="Step 6 卸载相关"></a>Step 6 卸载相关</h2><p>由于网易云音乐Linux版是我们手动安装的，并不能使用软件包管理器管理它。我们可以手写一支脚本，记录下文件安装路径，方便日后卸载。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line"># Bash Script for uninstalling netease-cloud-music.</span><br><span class="line"></span><br><span class="line">set -u</span><br><span class="line"></span><br><span class="line">BIN_DIR=&apos;/usr/bin/netease-cloud-music&apos;</span><br><span class="line">LIB_DIR=&apos;/usr/lib/netease-cloud-music/&apos;</span><br><span class="line">DES_DIR=&apos;/usr/share/applications/netease-cloud-music.desktop&apos;</span><br><span class="line">ICO_DIR=&apos;/usr/share/icons/hicolor/scalable/apps/netease-cloud-music.svg&apos;</span><br><span class="line">DOC_DIR=&apos;/usr/share/doc/netease-cloud-music/&apos;</span><br><span class="line"></span><br><span class="line">uninstall()&#123;</span><br><span class="line">    sudo rm -rf $&#123;BIN_DIR&#125; &amp;&amp; \</span><br><span class="line">    sudo rm -rf $&#123;LIB_DIR&#125; &amp;&amp; \</span><br><span class="line">    sudo rm -rf $&#123;DES_DIR&#125; &amp;&amp; \</span><br><span class="line">    sudo rm -rf $&#123;ICO_DIR&#125; &amp;&amp; \</span><br><span class="line">    sudo rm -rf $&#123;DOC_DIR&#125; &amp;&amp; \</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#uninstall  # call uninstall function to do uninstalling things</span><br><span class="line"></span><br><span class="line">exit $&#123;?&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Step-6-卸载相关"><a href="#Step-6-卸载相关" class="headerlink" title="Step 6 卸载相关"></a>Step 6 卸载相关</h2><p>由于网易云音乐Linux版是我们手动安装的，并不能使用软件包管理器管理它。我们可以手写一支脚本，记录下文件安装路径，方便日后卸载。</p>
+<pre><code>#!/bin/bash
 
+# Bash Script for uninstalling netease-cloud-music.
 
+set -u
+
+BIN_DIR=&#39;/usr/bin/netease-cloud-music&#39;
+LIB_DIR=&#39;/usr/lib/netease-cloud-music/&#39;
+DES_DIR=&#39;/usr/share/applications/netease-cloud-music.desktop&#39;
+ICO_DIR=&#39;/usr/share/icons/hicolor/scalable/apps/netease-cloud-music.svg&#39;
+DOC_DIR=&#39;/usr/share/doc/netease-cloud-music/&#39;
+
+uninstall(){
+    sudo rm -rf ${BIN_DIR} &amp;&amp; \
+    sudo rm -rf ${LIB_DIR} &amp;&amp; \
+    sudo rm -rf ${DES_DIR} &amp;&amp; \
+    sudo rm -rf ${ICO_DIR} &amp;&amp; \
+    sudo rm -rf ${DOC_DIR} &amp;&amp; \
+}
+
+#uninstall  # call uninstall function to do uninstalling things
+
+exit ${?}
+</code></pre>
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -265,11 +307,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -303,11 +340,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -353,8 +385,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -409,6 +444,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -429,25 +469,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -470,12 +491,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

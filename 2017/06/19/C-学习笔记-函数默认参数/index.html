@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -194,31 +180,45 @@
                 post-container">
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍C++中的函数默认参数。</p>
-<h1 id="函数默认参数-Default-arguments"><a href="#函数默认参数-Default-arguments" class="headerlink" title="函数默认参数(Default arguments)"></a>函数默认参数(Default arguments)</h1><p>在C++中，我们可以在<strong>函数原型声明</strong>中为形式参数指定一个默认的值。<br>例如:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void f(int size, int init = 0); /* 函数默认参数 */</span><br><span class="line">int main(void)&#123;</span><br><span class="line">    f(10);      /* 给1个参数 */</span><br><span class="line">    f(10, 10);  /* 给2个参数 */</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line">void f(int size, int init)&#123;</span><br><span class="line">    /* do something */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h1><p>C++中函数默认参数的实现机制很简单，就是编译器自动帮你补齐参数…<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ g++ -S df_func.cc</span><br><span class="line">$ less df_func.s</span><br></pre></td></tr></table></figure></p>
-<p>观察汇编代码文件，我们发现: </p>
+<h1 id="函数默认参数-Default-arguments"><a href="#函数默认参数-Default-arguments" class="headerlink" title="函数默认参数(Default arguments)"></a>函数默认参数(Default arguments)</h1><p>在C++中，我们可以在<strong>函数原型声明</strong>中为形式参数指定一个默认的值。<br>例如: </p>
+<pre><code>void f(int size, int init = 0); /* 函数默认参数 */
+int main(void){
+    f(10);      /* 给1个参数 */
+    f(10, 10);  /* 给2个参数 */
+    return 0;
+}
+void f(int size, int init){
+    /* do something */
+}
+</code></pre><h1 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h1><p>C++中函数默认参数的实现机制很简单，就是编译器自动帮你补齐参数…</p>
+<pre><code>$ g++ -S df_func.cc
+$ less df_func.s
+</code></pre><p>观察汇编代码文件，我们发现: </p>
 <ul>
 <li>函数还是那个函数，需要2个参数</li>
 <li>调用函数时，缺失的参数由默认参数补齐(编译器完成)</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">void f(int size, int init = 0);   /* 函数默认参数 */</span><br><span class="line">...</span><br><span class="line">    f(10);      /* 实际上是 f(10, 0) */</span><br><span class="line">    f(10, 10); </span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
+<pre><code>...
+void f(int size, int init = 0);   /* 函数默认参数 */
+...
+    f(10);      /* 实际上是 f(10, 0) */
+    f(10, 10); 
+...
+</code></pre><h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
 <li>函数默认参数是写在<strong>函数原型声明declaration</strong>中的，不能写在<strong>函数定义definition</strong>之中。(编译器是通过函数原型补上默认参数)</li>
 <li>函数默认参数是编译器在编译时<em>compile-time</em>做的事情，而非运行时<em>run-time</em>机制。</li>
 <li>函数默认参数必须<strong>从右往左</strong>写，因为编译器是从左往右匹配参数的。</li>
-<li>函数默认参数并不安全，因为可以很容易地修改函数原型。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void f1(int i = 0, int j, int k);    /* 非法 */</span><br><span class="line">void f2(int i, int j = 0, int k);    /* 非法 */</span><br><span class="line">void f3(int i, int j = 0, int k = 0);/* 合法 */</span><br></pre></td></tr></table></figure>
-</li>
+<li>函数默认参数并不安全，因为可以很容易地修改函数原型。<pre><code>void f1(int i = 0, int j, int k);    /* 非法 */
+void f2(int i, int j = 0, int k);    /* 非法 */
+void f3(int i, int j = 0, int k = 0);/* 合法 */
+</code></pre>函数默认参数与函数重载结合在一起，可能使代码看上去很混乱…<br>谨慎使用函数默认参数吧。</li>
 </ol>
-<p>函数默认参数与函数重载结合在一起，可能使代码看上去很混乱…<br>谨慎使用函数默认参数吧。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>C++官方文档: <a href="http://en.cppreference.com/w/cpp/language/default\_arguments" target="_blank" rel="noopener">http://en.cppreference.com/w/cpp/language/default\_arguments</a></li>
 <li>MSDN文档: <a href="https://docs.microsoft.com/en-us/cpp/cpp/default-arguments" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/cpp/cpp/default-arguments</a></li>
 </ul>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -232,11 +232,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -268,11 +263,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -318,8 +308,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -374,6 +367,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -394,25 +392,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -435,12 +414,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -175,8 +169,8 @@
                 post-container
             ">
 
-                <!-- Main Content -->
-
+                
+<!-- Main Content -->
 
 <div class="post-preview">
 
@@ -258,8 +252,10 @@ Description
         <div class="post-content-preview">
             前言本文介绍Vim中的分屏操作split。
 分屏split作为一个命令行下的文本编辑器，vim可以利用分屏split操作实现类似GUI编辑器的多文件编辑效果，非常强大。
-分屏命令在vim命令行模式下输入相应指令即可启动分屏模式。:split [filename]   # 水平分割窗口:vsplit [filename]  # 垂直分割窗口
-如果不加文件名，则默认对当前文件进行分割。命令可以简......
+分屏命令在vim命令行模式下输入相应指令即可启动分屏模式。
+:split [filename]   # 水平分割窗口
+:vsplit [filename]  # 垂直分割窗口
+如果不加文件名，则默认对当前文件进行分割。命令可......
         </div>
     </a>
     <p class="post-meta">
@@ -282,7 +278,11 @@ Description
         <div class="post-content-preview">
             前言本文讲解C++中的类class与结构体struct之间的异同。
 类与结构C++对C的结构体做了巨大的扩展，加入了成员函数，继承等功能，以适应面向对象(OOP)的特性。
-在C++中，类class与结构体struct基本上是可以等同起来用的，C++的结构体struct也可以有成员函数，可以被继承…struct Point&#123;public:    Point(void);    voi......
+在C++中，类class与结构体struct基本上是可以等同起来用的，C++的结构体struct也可以有成员函数，可以被继承…
+struct Point{
+public:
+    Point(void);
+    void......
         </div>
     </a>
     <p class="post-meta">
@@ -329,7 +329,10 @@ Boolean typebool - ty......
         <div class="post-content-preview">
             前言本文讲解C中的作用域。
 代码块作用域(Block scope)代码块(Block)是以{...}包裹起来的一组语句。
-#include &lt;stdio.h&gt;#define PRTP(x) \    printf(&quot;%s: %d: %p\n&quot;, #x, (x), &amp;(x))int a = 4;        /* 全局作用域 &apos;a&apos;......
+#include &lt;stdio.h&gt;
+#define PRTP(x) \
+    printf(&quot;%s: %d: %p\n&quot;, #x, (x), &amp;(x))
+int a = 4;        /* 全局作用域 &#39;a&#39......
         </div>
     </a>
     <p class="post-meta">
@@ -351,8 +354,14 @@ Boolean typebool - ty......
         </h3>
         <div class="post-content-preview">
             前言本文讲解C中的enum枚举类型。
-枚举类型 enum在C中，我们可以使用enum枚举类型，枚举类型是一种包含枚举常量的特殊的类型。语法:enum identifier &#123;    enumerator-list&#125;;
-样例:enum color &#123;            /* 声明枚举类型 color */    RED,                /* 有......
+枚举类型 enum在C中，我们可以使用enum枚举类型，枚举类型是一种包含枚举常量的特殊的类型。语法:
+enum identifier {
+    enumerator-list
+};
+样例:
+enum color {            /* 声明枚举类型 color */
+    RED,                /* 有3个枚举常量 */
+......
         </div>
     </a>
     <p class="post-meta">
@@ -375,7 +384,9 @@ Boolean typebool - ty......
         <div class="post-content-preview">
             前言本文介绍C++中的引用(reference)。
 引用(reference)在C++中，可以为一个已存在的对象取一个别名，这被称为引用(reference)。声明引用的符号是&amp;，没错，就是取址运算符。
-int main(void)&#123;    int n = 8;      /* 定义一个int变量 */    int&amp; rn = n;    /* 声明int引用rn......
+int main(void){
+    int n = 8;      /* 定义一个int变量 */
+    int&amp; rn = n;    /* 声明int引用rn, 初......
         </div>
     </a>
     <p class="post-meta">
@@ -422,7 +433,11 @@ int main(void)&#123;    int n = 8;      /* 定义一个int变量 */    int&amp; 
             
         </h3>
         <div class="post-content-preview">
-            有趣的const在C中，用const关键字修饰变量或者形式参数时，表明该变量不可修改。然而，C中的const更多只是一种”约定”，表明程序不会修改变量值的一种约定。我们是有办法修改const的变量的。#include &lt;stdio.h&gt;int main(void)&#123;    const int num = 10;     /* const 修饰整型变量 */    int......
+            有趣的const在C中，用const关键字修饰变量或者形式参数时，表明该变量不可修改。然而，C中的const更多只是一种”约定”，表明程序不会修改变量值的一种约定。我们是有办法修改const的变量的。
+#include &lt;stdio.h&gt;
+int main(void){
+    const int num = 10;     /* const 修饰整型变量 */
+    int ......
         </div>
     </a>
     <p class="post-meta">
@@ -436,7 +451,6 @@ int main(void)&#123;    int n = 8;      /* 定义一个int变量 */    int&amp; 
 
 
 <!-- Pager -->
-
 <ul class="pager">
     
         <li class="previous">
@@ -564,8 +578,11 @@ int main(void)&#123;    int n = 8;      /* 定义一个int变量 */    int&amp; 
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -620,6 +637,11 @@ int main(void)&#123;    int n = 8;      /* 定义一个int变量 */    int&amp; 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -640,25 +662,6 @@ int main(void)&#123;    int n = 8;      /* 定义一个int变量 */    int&amp; 
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -681,12 +684,6 @@ int main(void)&#123;    int n = 8;      /* 定义一个int变量 */    int&amp; 
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

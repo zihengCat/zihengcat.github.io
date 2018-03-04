@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -197,27 +183,31 @@
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终端是每位程序员的好伙伴，但是由于某些众所周知的原因，国内的网络环境让广大程序员们只能看着终端上提示信息[连接断开，下载失败…]欲哭无泪。<br>本文介绍<em>macOS</em>下终端走<code>socks5</code>代理连接的方法（应该也适用于UNIX/Linux）。</p>
 <h1 id="终端设置"><a href="#终端设置" class="headerlink" title="终端设置"></a>终端设置</h1><p>在终端下，设置环境变量<code>ALL_PROXY</code>为本地<code>socks5</code>代理连接。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ export ALL_PROXY=socks5://127.0.0.1:&lt;port&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>$ export ALL_PROXY=socks5://127.0.0.1:&lt;port&gt;
+</code></pre><blockquote>
 <p><code>&lt;port&gt;</code>：本地代理连接端口号。</p>
 </blockquote>
 <p>我们可以通过观察IP来判断代理连接是否设置成功。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ curl -i http://ip.cn</span><br></pre></td></tr></table></figure>
-<h1 id="脚本化设置"><a href="#脚本化设置" class="headerlink" title="脚本化设置"></a>脚本化设置</h1><p>我们可以将命令写入到<code>~/.bash_profile</code>中，快捷设置。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function setProxy() &#123;</span><br><span class="line">    export ALL_PROXY=socks5://127.0.0.1:$1</span><br><span class="line">&#125;</span><br><span class="line">function unsetProxy() &#123;</span><br><span class="line">    unset ALL_PROXY</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
+<pre><code>$ curl -i http://ip.cn
+</code></pre><h1 id="脚本化设置"><a href="#脚本化设置" class="headerlink" title="脚本化设置"></a>脚本化设置</h1><p>我们可以将命令写入到<code>~/.bash_profile</code>中，快捷设置。</p>
+<pre><code>function setProxy() {
+    export ALL_PROXY=socks5://127.0.0.1:$1
+}
+function unsetProxy() {
+    unset ALL_PROXY
+}
+</code></pre><blockquote>
 <p>使用<code>shell</code>函数，<code>alias</code>别名都实现同样的效果。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ setProxy &lt;port&gt;   # 启动终端代理连接</span><br><span class="line">...</span><br><span class="line">$ unsetProxy        # 关闭终端代理连接</span><br></pre></td></tr></table></figure>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>设置环境变量<code>ALL_PROXY</code>后，终端下只要支持此变量的网络应用程序大多数都会走这个代理（Homebrew）。还有一点，<code>socks5</code>代理会与国内镜像源发生冲突，也是因为某些众所周知的原因啦…</p>
+<pre><code>$ setProxy &lt;port&gt;   # 启动终端代理连接
+...
+$ unsetProxy        # 关闭终端代理连接
+</code></pre><h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>设置环境变量<code>ALL_PROXY</code>后，终端下只要支持此变量的网络应用程序大多数都会走这个代理（Homebrew）。还有一点，<code>socks5</code>代理会与国内镜像源发生冲突，也是因为某些众所周知的原因啦…</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>掘金: <a href="https://juejin.im/entry/5821840cd203090055134cc0" target="_blank" rel="noopener">https://juejin.im/entry/5821840cd203090055134cc0</a></li>
 </ul>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -231,11 +221,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -269,11 +254,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -319,8 +299,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -375,6 +358,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -395,25 +383,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -436,12 +405,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

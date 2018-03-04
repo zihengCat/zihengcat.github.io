@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -194,8 +180,32 @@
                 post-container">
 
                 <h1 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h1><p>Linux上还有猫命令<code>cat</code>?!<br>其实，这个命令不是猫咪的意思啦…<code>cat</code>是<em>concatenate</em>的意思。<br><code>cat</code>命令是一般用来查看文件内容(文本文件)。</p>
-<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cat --help</span><br><span class="line">Usage: cat [OPTION]... [FILE]...</span><br><span class="line">Concatenate FILE(s), or standard input, to standard output.</span><br><span class="line"></span><br><span class="line">  -A, --show-all           equivalent to -vET</span><br><span class="line">  -b, --number-nonblank    number nonempty output lines, overrides -n</span><br><span class="line">  -e                       equivalent to -vE</span><br><span class="line">  -E, --show-ends          display $ at end of each line</span><br><span class="line">  -n, --number             number all output lines</span><br><span class="line">  -s, --squeeze-blank      suppress repeated empty output lines</span><br><span class="line">  -t                       equivalent to -vT</span><br><span class="line">  -T, --show-tabs          display TAB characters as ^I</span><br><span class="line">  -u                       (ignored)</span><br><span class="line">  -v, --show-nonprinting   use ^ and M- notation, except for LFD and TAB</span><br><span class="line">      --help     display this help and exit</span><br><span class="line">      --version  output version information and exit</span><br><span class="line"></span><br><span class="line">With no FILE, or when FILE is -, read standard input.</span><br><span class="line"></span><br><span class="line">Examples:</span><br><span class="line">  cat f - g  Output f&apos;s contents, then standard input, then g&apos;s contents.</span><br><span class="line">  cat        Copy standard input to standard output.</span><br><span class="line"></span><br><span class="line">GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;</span><br><span class="line">For complete documentation, run: info coreutils &apos;cat invocation&apos;</span><br></pre></td></tr></table></figure>
-<p><code>cat</code>后面接一个文件，就是将该文件的内容显示到标准输出;<br>不接文件的话，就是打印标准输入到标准输出。</p>
+<h1 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h1><pre><code>$ cat --help
+Usage: cat [OPTION]... [FILE]...
+Concatenate FILE(s), or standard input, to standard output.
+
+  -A, --show-all           equivalent to -vET
+  -b, --number-nonblank    number nonempty output lines, overrides -n
+  -e                       equivalent to -vE
+  -E, --show-ends          display $ at end of each line
+  -n, --number             number all output lines
+  -s, --squeeze-blank      suppress repeated empty output lines
+  -t                       equivalent to -vT
+  -T, --show-tabs          display TAB characters as ^I
+  -u                       (ignored)
+  -v, --show-nonprinting   use ^ and M- notation, except for LFD and TAB
+      --help     display this help and exit
+      --version  output version information and exit
+
+With no FILE, or when FILE is -, read standard input.
+
+Examples:
+  cat f - g  Output f&#39;s contents, then standard input, then g&#39;s contents.
+  cat        Copy standard input to standard output.
+
+GNU coreutils online help: &lt;http://www.gnu.org/software/coreutils/&gt;
+For complete documentation, run: info coreutils &#39;cat invocation&#39;
+</code></pre><p><code>cat</code>后面接一个文件，就是将该文件的内容显示到标准输出;<br>不接文件的话，就是打印标准输入到标准输出。</p>
 <ul>
 <li><code>-E</code>选项: 将文件中的断行符以<code>$</code>的形式显示出来。</li>
 <li><code>-T</code>选项: 将文件中的制表符以<code>^I</code>的形式显示出来。</li>
@@ -207,10 +217,7 @@
 </ul>
 <p>只要记住，<code>-A</code>显示非打印字符，<code>-n</code>显示行号，<code>-s</code>去除空行，就可以啦！</p>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -224,11 +231,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -260,11 +262,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -310,8 +307,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -366,6 +366,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -386,25 +391,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -427,12 +413,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

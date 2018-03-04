@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -194,22 +180,35 @@
                 post-container">
 
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Linux系统的朋友一定知道SSH（Secure Shell），Linux系统下默认的远程登陆服务。<br>我们每次使用SSH远程登陆到远端主机时，总是要输入密码，如果是服务器的话，密码一般都很复杂。实际上，SSH还可以使用密钥认证的方式远程登陆。</p>
-<h1 id="配置SSH密钥认证登陆"><a href="#配置SSH密钥认证登陆" class="headerlink" title="配置SSH密钥认证登陆"></a>配置SSH密钥认证登陆</h1><p>首先，我们需要确认远程主机的<strong>sshd</strong>服务开启了密钥认证功能。<br>查看ssh的配置文件，确认打开了相关选项。修改ssh配置文件要用到root权限。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo vi /etc/ssh/sshd_config</span><br><span class="line">...</span><br><span class="line">SAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<blockquote>
+<h1 id="配置SSH密钥认证登陆"><a href="#配置SSH密钥认证登陆" class="headerlink" title="配置SSH密钥认证登陆"></a>配置SSH密钥认证登陆</h1><p>首先，我们需要确认远程主机的<strong>sshd</strong>服务开启了密钥认证功能。<br>查看ssh的配置文件，确认打开了相关选项。修改ssh配置文件要用到root权限。</p>
+<pre><code>$ sudo vi /etc/ssh/sshd_config
+...
+SAAuthentication yes
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+...
+</code></pre><blockquote>
 <p>ssh默认就是开启密钥认证功能的，但还是确认一下比较稳妥…</p>
 </blockquote>
 <p>修改完配置选项后，重启sshd服务。</p>
-<p>接下来，我们需要生成一对密钥，在<strong>客户端（client）</strong>使用<code>ssh-keygen</code>命令来完成。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen</span><br></pre></td></tr></table></figure></p>
-<p>该命令会提示3条语句，一般情况下，我们回车跳过即可（命令更多选项可以查看man文档）。</p>
+<p>接下来，我们需要生成一对密钥，在<strong>客户端（client）</strong>使用<code>ssh-keygen</code>命令来完成。</p>
+<pre><code>$ ssh-keygen
+</code></pre><p>该命令会提示3条语句，一般情况下，我们回车跳过即可（命令更多选项可以查看man文档）。</p>
 <ul>
 <li>密钥对存放位置</li>
 <li>输入控制密码</li>
 <li>再输入（确认）控制密码</li>
 </ul>
 <p>该命令生成了一对RSA密钥，放在用户家目录 <em>~/.ssh</em> 下，文件名是<em>id_rsa</em>，<em>id_rsa.pub</em>。带.pub后缀的是公钥，不带后缀的是私钥。</p>
-<p>然后，我们把公钥上传到<strong>服务端（server）</strong>远端主机上完成相关配置。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ ssh-copy-id &lt;user&gt;@&lt;hostname&gt;</span><br></pre></td></tr></table></figure></p>
-<p>我们可以使用<code>ssh-copy-id</code>命令自动完成配置，也可以手动操作。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ scp -P &lt;port&gt; ~/.ssh/id_rsa.pub &lt;user&gt;@&lt;hostname&gt;:~</span><br><span class="line">$ ssh &lt;user&gt;@&lt;hostname&gt;</span><br><span class="line">$ cat ~/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line">$ chmod 700 ~/.ssh &amp;&amp; chmod 600 ~/.ssh/authorized_keys</span><br><span class="line">$ rm ~/id_rsa.pub</span><br></pre></td></tr></table></figure></p>
-<p>其实这一步就是将<em>id_rsa.pub</em>公钥写入到<em>authorized_keys</em>中。如果没有该文件，就手动创建一个。再将 <em>authorized_keys</em> 与 <em>~/.ssh</em>权限设置正确。<strong>权限不对，认证会失败。</strong></p>
+<p>然后，我们把公钥上传到<strong>服务端（server）</strong>远端主机上完成相关配置。</p>
+<pre><code>$ ssh-copy-id &lt;user&gt;@&lt;hostname&gt;
+</code></pre><p>我们可以使用<code>ssh-copy-id</code>命令自动完成配置，也可以手动操作。</p>
+<pre><code>$ scp -P &lt;port&gt; ~/.ssh/id_rsa.pub &lt;user&gt;@&lt;hostname&gt;:~
+$ ssh &lt;user&gt;@&lt;hostname&gt;
+$ cat ~/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+$ chmod 700 ~/.ssh &amp;&amp; chmod 600 ~/.ssh/authorized_keys
+$ rm ~/id_rsa.pub
+</code></pre><p>其实这一步就是将<em>id_rsa.pub</em>公钥写入到<em>authorized_keys</em>中。如果没有该文件，就手动创建一个。再将 <em>authorized_keys</em> 与 <em>~/.ssh</em>权限设置正确。<strong>权限不对，认证会失败。</strong></p>
 <p>OK，配置完成！现在我们已经可以从客户端无密码登陆远程目标主机了。</p>
 <h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>SSH免密码登陆是使用密钥加解密认证取代原先了的密码认证。</p>
 <p><img src="./ssh-key-auth-flow.png" alt="ssh-key-auth-flow"></p>
@@ -224,10 +223,7 @@
 </li>
 </ul>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -241,11 +237,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -277,11 +268,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -327,8 +313,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -383,6 +372,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -403,25 +397,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -444,12 +419,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 

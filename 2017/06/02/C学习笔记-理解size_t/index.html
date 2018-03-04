@@ -25,19 +25,13 @@
     <link rel="stylesheet" href="/css/hux-blog.min.css">
 
     <!-- Pygments Highlight CSS -->
+    <!--
     <link rel="stylesheet" href="/css/highlight.css">
+    -->
 
     <!-- Custom Fonts -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
     <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Hux Delete, sad but pending in China -->
-    <!--
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -95,14 +89,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -146,14 +140,6 @@
 
     <!-- Main Content -->
     
-<!-- Image to hack wechat -->
-<!--
-<img src="https://zihengcat.github.io/img/icon_wechat.png" width="0" height="0">
--->
-<!--
-<img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0">
--->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -196,14 +182,31 @@
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解C语言中<code>size_t</code>类型及其应用。<br>在C语言的标准头文件中和很多内核项目中，我们都能发现<code>size_t</code>这个”数据类型”的身影。函数参数，函数返回值，循环控制变量，似乎<code>size_t</code>无处不在，可是我们又不太了解这个”数据类型”。</p>
 <h1 id="size-t类型"><a href="#size-t类型" class="headerlink" title="size_t类型"></a><code>size_t</code>类型</h1><p><code>size_t</code>实际上是<strong>无符号整型</strong>，它并不是一个全新的数据类型，更不是一个关键字。<code>size_t</code>是由<code>typedef</code>定义而来的，我们在很多标准库头文件中都能发现它的身影。</p>
 <p>我们可以在标准库头文件<code>&lt;stddef.h&gt;</code>中找到<code>size_t</code>的定义。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">#define __SIZE_TYPE__ long unsigned int</span><br><span class="line">typedef __SIZE_TYPE__ size_t;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>在子恒喵的机器上，<code>size_t</code>的真面目就是<code>long unsigned int</code>。</p>
+<pre><code>...
+#define __SIZE_TYPE__ long unsigned int
+typedef __SIZE_TYPE__ size_t;
+...
+</code></pre><p>在子恒喵的机器上，<code>size_t</code>的真面目就是<code>long unsigned int</code>。</p>
 <h1 id="使用size-t的原因"><a href="#使用size-t的原因" class="headerlink" title="使用size_t的原因"></a>使用<code>size_t</code>的原因</h1><p>查阅相关文档后，子恒喵了解到，<code>size_t</code>实际上是<em>size type</em>的意思，它是一种<strong>计数类型</strong>。取值范围与机器架构与操作系统相关。32位机器一般是<code>unsigned int</code>，占4字节；64位机器一般是<code>unsigned long</code>，占8字节。</p>
 <p><code>size_t</code>常被用作计数，例如，<code>sizeof</code>运算符得到对象所占的字节数，字符串函数<code>strlen</code>返回字符串的长度等等，都是<code>size_t</code>类型的。</p>
 <p><code>size_t</code>类型<strong>理论上能容纳此机器中所能建立最大对象的字节大小</strong>。常被应用在数组索引，内存管理函数中。<br>最初设计<code>size_t</code>类型，是为了程序的跨平台兼容。</p>
-<h1 id="size-t小陷阱"><a href="#size-t小陷阱" class="headerlink" title="size_t小陷阱"></a><code>size_t</code>小陷阱</h1><p>子恒喵在Google搜索的时候，发现了一个有趣的例子。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int i = -1;</span><br><span class="line">    if(i &lt; strlen(&quot;hello&quot;))&#123;</span><br><span class="line">        printf(&quot;Hello, World\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        printf(&quot;Hello, ziheng\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ gcc test.c &amp;&amp; ./a.out</span><br><span class="line">Hello, World</span><br></pre></td></tr></table></figure>
-<p>上述代码编译执行后，打印出<code>Hello, World</code>，这似乎与我们预想的有些不同啊。<br>实际上，这里触发了C的隐式自动类型转换机制，<code>size_t</code>的类型是<code>unsigned long int</code>，带符号整型变量<code>i</code>会被自动转换成<code>unsigned int</code>，即无符号整型，-1被转化成无符号数是4294967295，远大于5。</p>
+<h1 id="size-t小陷阱"><a href="#size-t小陷阱" class="headerlink" title="size_t小陷阱"></a><code>size_t</code>小陷阱</h1><p>子恒喵在Google搜索的时候，发现了一个有趣的例子。</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+int main(void)
+{
+    int i = -1;
+    if(i &lt; strlen(&quot;hello&quot;)){
+        printf(&quot;Hello, World\n&quot;);
+    }
+    else{
+        printf(&quot;Hello, ziheng\n&quot;);
+    }
+    return 0;
+}
+</code></pre><pre><code>$ gcc test.c &amp;&amp; ./a.out
+Hello, World
+</code></pre><p>上述代码编译执行后，打印出<code>Hello, World</code>，这似乎与我们预想的有些不同啊。<br>实际上，这里触发了C的隐式自动类型转换机制，<code>size_t</code>的类型是<code>unsigned long int</code>，带符号整型变量<code>i</code>会被自动转换成<code>unsigned int</code>，即无符号整型，-1被转化成无符号数是4294967295，远大于5。</p>
 <p><strong>有符号数和无符号数之间的运算，要小心。</strong></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>官方文档: <a href="http://en.cppreference.com/w/c/types/size_t" target="_blank" rel="noopener">http://en.cppreference.com/w/c/types/size_t</a></p>
@@ -212,10 +215,7 @@
 </li>
 </ul>
 
-
                 <hr>
-
-                
 
                 <ul class="pager">
                     
@@ -229,11 +229,6 @@
                         </li>
                     
                 </ul>
-
-                
-
-                
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -265,11 +260,6 @@
         </div>
     </div>
 </article>
-
-
-
-
-
 
 
 <!-- async load function -->
@@ -315,8 +305,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
+
                 
+
                 
+
                 
 
                 
@@ -371,6 +364,11 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- jQuery -->
 <script src="/js/jquery.min.js"></script>
 
@@ -391,25 +389,6 @@
       s.parentNode.insertBefore(o, s);
     }
 </script>
-
-<!--
-     Because of the native support for backtick-style fenced code blocks
-     right within the Markdown is landed in Github Pages,
-     From V1.6, There is no need for Highlight.js,
-     so Huxblog drops it officially.
-
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
--->
-<!--
-    <script>
-        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
-            hljs.initHighlightingOnLoad();
-        })
-    </script>
-    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
--->
-
 
 <!-- jquery.tagcloud.js -->
 <script>
@@ -432,12 +411,6 @@
         if($nav) FastClick.attach($nav);
     })
 </script>
-
-<!-- Google Analytics -->
-
-
-<!-- Baidu Tongji -->
-
 
 <!-- Side Catalog -->
 
