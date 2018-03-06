@@ -12,11 +12,11 @@
 
     <title>
         
-          Vim学习笔记-文件格式 - zihengCat
+          zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/09/04/Vim学习笔记-文件格式/">
+    <link rel="canonical" href="https://zihengcat.github.io/tags/Web/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -139,180 +139,7 @@
 
 
     <!-- Main Content -->
-    
-<!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/img/home-bg-o.jpg')
-    }
-</style>
-<header class="intro-header" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#Vim" title="Vim">Vim</a>
-                        
-                    </div>
-                    <h1>Vim学习笔记-文件格式</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by zihengCat on
-                        2017-09-04
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-                <h1 id="断行符的故事"><a href="#断行符的故事" class="headerlink" title="断行符的故事"></a>断行符的故事</h1><p>很久以前，老式的电传打字机使用两个字符来另起新行。一个字符把滑动架移回首位，称为<em>回车(Carriage Return)</em>，另一个字符把纸上移一行，称为<em>换行(Line Feed)</em>。<br>当计算机问世以后，存储器曾经一度非常昂贵。有些人就认定没必要使用两个字符来表示行尾。UNIX 开发者决定他们可以用 <code>&lt;LF&gt;</code> 一个字符来表示行尾。Apple 开发者规定了用 <code>&lt;CR&gt;</code>。而开发 MS-DOS (以及 Microsoft Windows) 的那些家伙则决定沿用老式的 <code>&lt;CR&gt;&lt;LF&gt;</code>。这意味着，如果你试图把一个文件从一种系统移到另一种系统，那么就有换行符方面的麻烦。</p>
-<blockquote>
-<p>以上摘录自vimdoc</p>
-</blockquote>
-<p>下表展示了不同操作系统下文本文件断行字符的区别。</p>
-<blockquote>
-<p>表1: 不同操作系统断行符区别</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">UNIX</th>
-<th style="text-align:center">MS-DOS</th>
-<th style="text-align:center">Mac</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>&lt;LF&gt;</code></td>
-<td style="text-align:center"><code>&lt;CR&gt;&lt;LF&gt;</code></td>
-<td style="text-align:center"><code>&lt;CR&gt;</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>\n</code></td>
-<td style="text-align:center"><code>\r\n</code></td>
-<td style="text-align:center"><code>\r</code></td>
-</tr>
-<tr>
-<td style="text-align:center">0x0A</td>
-<td style="text-align:center">0x0D0A</td>
-<td style="text-align:center">0x0D</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>注: Mac OS X(10) 后系统断行符与UNIX相同</p>
-</blockquote>
-<h1 id="转换断行符"><a href="#转换断行符" class="headerlink" title="转换断行符"></a>转换断行符</h1><p>Vim 编辑器能自动识别不同文件格式，可以非常方便的实现不同操作系统之间的文件格式转换。<br>Vim中，我们可以使用<code>set: f[ile]f[ormat]</code>命令查看当前编辑文本的文本格式。vim使用<em>unix，dos，mac</em>标识不同文本格式。</p>
-<pre><code>:set ff?
-</code></pre><p>使用<code>set: f[ile]f[ormat]s</code>命令可以查看Vim 在编辑一个新文件时尝试该选项定义的各种格式。不同系统默认设置不同。比如在Linux系统下，vim优先识别与使用UNIX断行符。</p>
-<pre><code>fileformats=unix,dos        /* Unix based systems */
-fileformats=dos,unix        /* Windows and DOS systems */
-fileformats=mac,unix,dos    /* Mac OS 9 systems */
-</code></pre><p>在Vim中转换文本格式非常简单，只需设置一下当前编辑文本的<code>fileformat</code>选项即可。vim会自动帮助我们完成断行字符的转换工作。</p>
-<pre><code>:set ff=dos
-</code></pre><blockquote>
-<p>vim下转换UNIX文本格式至MS-DOS文本格式</p>
-</blockquote>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>vim帮助文档：<code>:help ff</code>，<code>:help file-formats</code></li>
-<li>vim维基百科：<a href="http://vim.wikia.com/wiki/File_format" target="_blank" rel="noopener">http://vim.wikia.com/wiki/File_format</a></li>
-</ul>
-
-                <hr>
-
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2017/10/02/课程总结-C-For-Programmers-ud210/" data-toggle="tooltip" data-placement="top" title="课程总结 - C++ For Programmers (ud210)">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2017/08/31/Python学习笔记-HelloPython/" data-toggle="tooltip" data-placement="top" title="Python学习笔记 - Hello, Python">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
-            </div>
-    <!-- Side Catalog Container -->
-        
-
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#Vim" title="Vim">Vim</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-
-        </div>
-    </div>
-</article>
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
+    <!-- Default Archive layout, we use archives instead. -->
 
 
     <!-- Footer -->

@@ -12,11 +12,11 @@
 
     <title>
         
-          CentOS-7 下安装网易云音乐 - zihengCat
+          Hexo博客添加highlight.js代码高亮 - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/2017/07/28/CentOS7下安装网易云音乐/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/03/05/Hexo博客添加highlight-js代码高亮/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -153,16 +153,18 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
                         
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                          <a class="tag" href="/tags/#Web" title="Web">Web</a>
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
                         
                     </div>
-                    <h1>CentOS-7 下安装网易云音乐</h1>
+                    <h1>Hexo博客添加highlight.js代码高亮</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-07-28
+                        2018-03-05
                     </span>
                 </div>
             </div>
@@ -181,129 +183,52 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍如何在<strong>CentOS-7</strong>下安装网易云音乐。</p>
-<h1 id="网易云音乐Linux版"><a href="#网易云音乐Linux版" class="headerlink" title="网易云音乐Linux版"></a>网易云音乐Linux版</h1><p><img src="./netease-cloud-music-pic1.png" alt="netease-cloud-music-pic1"></p>
-<p>网易云音乐以其优秀的用户体验征服了大量用户，半年前，网易云音乐与深度科技团队合作推出了“网易云音乐Linux版”，简直是国产软件中的一股清流。可惜，网易只提供了<em>Debian</em>系的打包文件<code>*.deb</code>，并没有提供<em>RedHat</em>系<code>*.rpm</code>格式的打包文件。Fedora, Arch社区的小伙伴们有自发打包网易云音乐Linux版。子恒喵用的是<em>CentOS-7</em>…只能手动安装了。</p>
-<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><p>子恒喵使用的系统:</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>技术类博客有一个重要的需求是代码显示。而美观的代码显示能为文章添彩不少。<br>本文介绍在Hexo博客中利用<code>highlight.js</code>库手动实现美观的代码高亮效果。</p>
+<h1 id="highlight-js简介"><a href="#highlight-js简介" class="headerlink" title="highlight.js简介"></a><code>highlight.js</code>简介</h1><p><code>highlight.js</code>是一个 JavaScript 写成的代码高亮库。</p>
 <ul>
-<li>系统版本号: <em>CentOS-7-x86_64-1611</em></li>
-<li>内核版本号: <em>3.10.0-514.el7.x86_64</em></li>
+<li>支持176门语言与79种样式</li>
+<li>自动语言侦测</li>
+<li>支持多语言代码高亮</li>
+<li>Node.js可用</li>
+<li>支持自定义标签</li>
+<li>可以方便与其他<code>js</code>框架结合使用</li>
+<li>本身不依赖于任何框架</li>
 </ul>
-<h2 id="Step-1-下载安装包"><a href="#Step-1-下载安装包" class="headerlink" title="Step 1 下载安装包"></a>Step 1 下载安装包</h2><p>请前往<a href="http://music.163.com/#/download" target="_blank" rel="noopener">网易云音乐下载页</a>，下载<strong>Ubuntu14.04(64位)</strong>版本。注意请下载这个版本。不是说其他版本不能装，只是其他版本对依赖包的处理比较繁琐，有些依赖包会找不到，还要更动到基础依赖包（GLIBC）。低版本就没有那么多的问题，依赖关系都可以使用<code>yum</code>轻松解决。</p>
-<pre><code>$ wget http://s1.music.126.net/download/pc/netease-cloud-music_1.0.0-2_amd64_ubuntu14.04.deb
-</code></pre><blockquote>
-<p>下载低版本 ubuntu14.04（64位）安装包。</p>
+<blockquote>
+<p>highlight.js 库的优点</p>
 </blockquote>
-<h2 id="Step-2-解压安装包"><a href="#Step-2-解压安装包" class="headerlink" title="Step 2 解压安装包"></a>Step 2 解压安装包</h2><p>新建一个文件夹，接下来的操作都在该文件夹中进行。</p>
-<p>我们使用<code>ar</code>工具提取出<code>*.deb</code>包中的内容。</p>
-<pre><code>$ mkdir netease-music
-$ mv ./netease-cloud-music_1.0.0-2_amd64_ubuntu14.04.deb netease-music
-$ cd netease-music
-$ ar -xv ./netease-cloud-music_1.0.0-2_amd64_ubuntu14.04.deb
+<p>我们可以在<a href="https://highlightjs.org" target="_blank" rel="noopener">highlight.js官网</a>上查看各种高亮样式，选择喜欢样式。</p>
+<h1 id="为Hexo博客添加highlight-js"><a href="#为Hexo博客添加highlight-js" class="headerlink" title="为Hexo博客添加highlight.js"></a>为Hexo博客添加<code>highlight.js</code></h1><p>为Hexo博客添加<code>highlight.js</code>，我们首先要<strong>关闭Hexo自带的代码高亮工具</strong>。编辑<code>_config.yml</code>配置文件，关闭掉highlight功能。</p>
+<pre><code>...
+highlight:
+  enable: false
 ...
-</code></pre><p>提取得到3个文件，其中，<code>data.tar.xz</code>就是网易云音乐Linux版主体文件压缩包，<code>control.tar.gz</code>是控制文件压缩包(包含该包的基本信息，文件MD5校验码等等)。</p>
-<p>接下来，我们解压出网易云音乐Linux版的主体文件。</p>
-<pre><code>$ xz -d ./data.tar.xz
-$ tar -xv -f ./data.tar
-...
-</code></pre><p>解压得到一个<code>/usr</code>目录，进去瞧瞧：</p>
-<ul>
-<li><em>bin</em></li>
-<li><em>lib</em></li>
-<li><em>share</em></li>
+</code></pre><blockquote>
+<p>取消Hexo自带高亮工具</p>
+</blockquote>
+<p>接下来，引入<code>highlight.js</code>库。代码添加位置根据使用的Hexo主题而定，子恒喵这里选择直接添加到<code>footer.ejs</code>中。</p>
+<pre><code>&lt;% if (config.highlightjs) { %&gt;
+&lt;!-- Highlight.js --&gt;
+&lt;link rel=&quot;stylesheet&quot;
+      href=&quot;//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css&quot;&gt;
+&lt;script src=&quot;//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js&quot;&gt;
+&lt;/script&gt;
+&lt;script&gt;
+    hljs.initHighlightingOnLoad();
+&lt;/script&gt;
+&lt;% } %&gt;
+</code></pre><p>子恒喵这里还额外添加了<code>ejs</code>控制代码，以便在配置文件中手动启停高亮插件。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>GitHub项目地址: <a href="https://github.com/isagalaev/highlight.js" target="_blank" rel="noopener">https://github.com/isagalaev/highlight.js</a></li>
 </ul>
-<p>标准的 Linux 软件目录结构。</p>
-<p>来把这些文件放到它们应该去的地方。</p>
-<pre><code>$ sudo chown -R root:root ./usr/
-$ sudo cp -r ./usr/* /usr/
-</code></pre><h2 id="Step-3-解决依赖问题"><a href="#Step-3-解决依赖问题" class="headerlink" title="Step 3 解决依赖问题"></a>Step 3 解决依赖问题</h2><p>这一步是最繁琐的啦，我们需要<strong>手动</strong>解决软件依赖性问题。</p>
-<h3 id="提取依赖信息"><a href="#提取依赖信息" class="headerlink" title="提取依赖信息"></a>提取依赖信息</h3><p>我们先把依赖信息提取出来。还记得<code>control.tar.gz</code>这个文件么，里面就有记录网易云音乐所需依赖信息。</p>
-<pre><code>$ tar -xvz -f ./control.tar.gz
-...
-</code></pre><p>解压出来的<code>control</code>文件中，有我们需要的依赖信息。</p>
-<h3 id="引入额外-yum-仓库"><a href="#引入额外-yum-仓库" class="headerlink" title="引入额外 yum 仓库"></a>引入额外 yum 仓库</h3><p>在使用yum解决依赖性问题之前，我们需要先额外引入两枚yum仓库：<code>epel</code>与<code>rpmfusion</code>。<br>这两枚yum仓库中可以找到我们所需要的全部依赖包。<br>如何引入yum仓库，可以看<a href="https://zihengcat.github.io/2017/06/12/为CentOS7添加EPEL源/">这篇博文</a>。</p>
-<h3 id="使用-yum-解决依赖问题"><a href="#使用-yum-解决依赖问题" class="headerlink" title="使用 yum 解决依赖问题"></a>使用 yum 解决依赖问题</h3><p>网易云音乐Linux版使用的图形库是<code>Qt</code>，我们把<code>Qt</code>的依赖包装上。</p>
-<pre><code>$ sudo yum install qt5-qtbase-gui qt5-qtx11extras qt5-qtmultimedia
-</code></pre><blockquote>
-<p>解决图形库依赖</p>
-</blockquote>
-<p>网易云音乐Linux版使用的解码器是<code>gstreamer</code>。另外还需要<code>gstreamer</code>的3枚插件。</p>
-<pre><code>$ sudo yum install gstreamer \
-gstreamer-plugins-good \
-gstreamer-plugins-bad \
-gstreamer-plugins-ugly
-</code></pre><blockquote>
-<p>解决解码器依赖</p>
-</blockquote>
-<p>网易云音乐Linux版使用到了<code>chrome-sandbox</code>（云音乐客户端就是在chrome外边套了层壳…），我们还需要1枚依赖包。</p>
-<pre><code>$ sudo yum install libXScrnSaver
-</code></pre><blockquote>
-<p>解决 chrome 框架依赖</p>
-</blockquote>
-<p>在子恒喵的系统上，安装上述依赖包就已经可以解决依赖性问题了。<strong>如果还遇到依赖性问题，你可以查看<code>control</code>文件，将缺失的依赖包补齐。</strong></p>
-<h2 id="Step-4-解决-abort-问题"><a href="#Step-4-解决-abort-问题" class="headerlink" title="Step 4 解决 abort 问题"></a>Step 4 解决 abort 问题</h2><p>装好依赖包，解决软件依赖性问题之后，我们还有一个小问题要处理。由于网易云音乐Linux使用的是<code>chrome</code>框架，需要chrome沙盒机制<code>chrome-sandbox</code>能正常工作。</p>
-<p>启用<code>chrome-sandbox</code>机制，我们需要为<code>chrome-sandbox</code>这个文件设置特殊权限位: <strong>suid</strong>。<br>改变文件所属用户为 <em>root</em>，设置权限位为 <em>4755</em>（加入 <em>suid</em> 特殊权限位）。</p>
-<pre><code>$ sudo chown root:root /usr/lib/netease-cloud-music/chrome-sandbox
-$ sudo chmod 4755 /usr/lib/netease-cloud-music/chrome-sandbox
-</code></pre><p>此时，我们在命令行下执行<code>netease-cloud-music</code>命令，应该就没有问题了。<br>网易云音乐Linux版正常运行。</p>
-<p><img src="./netease-cloud-music-pic2.png" alt="netease-cloud-music-pic2"></p>
-<h2 id="Step-5-图形界面快捷方式"><a href="#Step-5-图形界面快捷方式" class="headerlink" title="Step 5 图形界面快捷方式"></a>Step 5 图形界面快捷方式</h2><p>至此，我们的安装过程已经完成。接下来的一些工作，都是一些锦上添花的事情啦。</p>
-<p>我们不希望每次都从要命令行启动网易云音乐，我们来为它添加图形界面快捷方式。</p>
-<pre><code>$ sudo chmod 644 /usr/share/applications/netease-cloud-music.desktop
-$ sudo vi /usr/share/applications/netease-cloud-music.desktop
-</code></pre><p>修改<code>Icon</code>与<code>Exec</code>选项，使其对应到正确的路径。</p>
-<pre><code>[Desktop Entry]
-Version=1.0
-Type=Application
-Name=NetEase Cloud Music
-Name[zh_CN]=网易云音乐
-Name[zh_TW]=網易雲音樂
-Comment=NetEase Cloud Music
-Comment[zh_CN]=网易云音乐
-Comment[zh_TW]=網易雲音樂
-Icon=/usr/share/icons/hicolor/scalable/apps/netease-cloud-music.svg
-Exec=/usr/bin/netease-cloud-music %U
-Comment=NetEase Cloud Music
-...
-</code></pre><blockquote>
-<p>注意使用绝对路径</p>
-</blockquote>
-<h2 id="Step-6-卸载相关"><a href="#Step-6-卸载相关" class="headerlink" title="Step 6 卸载相关"></a>Step 6 卸载相关</h2><p>由于网易云音乐Linux版是我们手动安装的，并不能使用软件包管理器管理它。我们可以手写一支脚本，记录下文件安装路径，方便日后卸载。</p>
-<pre><code>#!/bin/bash
 
-# Bash Script for uninstalling netease-cloud-music.
-
-set -u
-
-BIN_DIR=&#39;/usr/bin/netease-cloud-music&#39;
-LIB_DIR=&#39;/usr/lib/netease-cloud-music/&#39;
-DES_DIR=&#39;/usr/share/applications/netease-cloud-music.desktop&#39;
-ICO_DIR=&#39;/usr/share/icons/hicolor/scalable/apps/netease-cloud-music.svg&#39;
-DOC_DIR=&#39;/usr/share/doc/netease-cloud-music/&#39;
-
-uninstall(){
-    sudo rm -rf ${BIN_DIR} &amp;&amp; \
-    sudo rm -rf ${LIB_DIR} &amp;&amp; \
-    sudo rm -rf ${DES_DIR} &amp;&amp; \
-    sudo rm -rf ${ICO_DIR} &amp;&amp; \
-    sudo rm -rf ${DOC_DIR} &amp;&amp; \
-}
-
-#uninstall  # call uninstall function to do uninstalling things
-
-exit ${?}
-</code></pre>
                 <hr>
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/07/29/C知识汇总-代码风格/" data-toggle="tooltip" data-placement="top" title="C知识汇总-代码风格">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/07/26/Vim学习笔记-执行shell命令/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-执行shell命令">Next Post &rarr;</a>
+                            <a href="/2018/03/01/LeetCode-504-转换7进制/" data-toggle="tooltip" data-placement="top" title="LeetCode - 504. 转换7进制（Base 7）">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -325,9 +250,11 @@ exit ${?}
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
                         
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                          <a class="tag" href="/tags/#Web" title="Web">Web</a>
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
                         
                     </div>
                 </section>
