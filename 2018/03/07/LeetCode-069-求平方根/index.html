@@ -12,11 +12,11 @@
 
     <title>
         
-          zihengCat
+          LeetCode - 069. 求平方根（Sqrt） - zihengCat
         
     </title>
 
-    <link rel="canonical" href="https://zihengcat.github.io/i_dont_wanna_use_default_archives/2018/02/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/03/07/LeetCode-069-求平方根/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -139,7 +139,194 @@
 
 
     <!-- Main Content -->
-    <!-- Default Archive layout, we use archives instead. -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg-o.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        
+                    </div>
+                    <h1>LeetCode - 069. 求平方根（Sqrt）</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2018-03-07
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 069. 求平方根（Sqrt）</em>问题。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>请手动编程实现<code>int sqrt(int x)</code>函数，求某整数的平方根。<br>注：给出的整型数保证不会小于0。</p>
+<p><strong>示例1:</strong></p>
+<pre><code>输入：4
+输出：2
+</code></pre><p><strong>示例2:</strong></p>
+<pre><code>输入：8
+输出：2
+解释：8的平方根为2.82842...，取整数部分。
+</code></pre><h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p><code>sqrt</code>是最常用的数学函数之一，在这个问题中，需要我们手动实现<code>sqrt</code>函数，而不宜使用标准库自带的数学函数。</p>
+<h2 id="二分求解法"><a href="#二分求解法" class="headerlink" title="二分求解法"></a>二分求解法</h2><p>第一个思路是使用二分法，猜测一个数，平方后与原数进行比对，确定一个精度范围即可求解。</p>
+<pre><code>/* 绝对值函数 */
+#define ABS(x) \
+    ((x) &lt; 0 ? -(x) : (x))
+/* 设置精度 */
+#define LIMIT 0.01
+int mySqrt(int x) {
+    /* 处理非正数情况 */
+    if(x &lt;= 0) { return 0; }
+    double hig = double(x);
+    double low = 0;
+    double lst = 0;
+    double guess = (low + hig)/2;
+    do {
+       lst = guess;
+       if(guess * guess &gt; x) {
+           hig = guess;
+           guess = (low + hig)/2;
+       }
+       else if(guess * guess &lt; x) {
+           low = guess;
+           guess = (low + hig)/2;
+       }
+       else if(guess * guess == x) {
+           break;
+       }
+    } while(ABS(guess - lst) &gt; LIMIT);
+
+    return (int)guess;
+}
+</code></pre><blockquote>
+<p>C/C++ 代码</p>
+</blockquote>
+<h2 id="牛顿迭代法"><a href="#牛顿迭代法" class="headerlink" title="牛顿迭代法"></a>牛顿迭代法</h2><p>另一种方法就是使用牛顿迭代法，要求根号n的近似值，先随便猜测一个数<code>x</code>，然后<strong>不断令<code>x</code>等于<code>x</code>和<code>a/x</code>的平均数</strong>，迭代六七次后就已经相当精确了。</p>
+<pre><code>/* 绝对值函数 */
+#define ABS(x) \
+    ((x) &lt; 0 ? -(x) : (x))
+/* 设置精度 */
+#define LIMIT 0.01
+int mySqrt(int x) {
+    /* 处理非正数情况 */
+    if(x &lt;= 0) { return 0; }
+    double guess = x;
+    double last  = 0;
+    do {
+        last  = guess;
+        guess = (guess + guess/x)/2;
+    } while(ABS(guess - last) &gt; LIMIT);
+    return (int)guess;
+}
+</code></pre><blockquote>
+<p>C/C++ 代码</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>一个Sqrt函数引发的血案: <a href="http://diducoder.com/sotry-about-sqrt.html" target="_blank" rel="noopener">http://diducoder.com/sotry-about-sqrt.html</a></li>
+</ul>
+
+                <hr>
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/03/05/Hexo博客添加highlight-js代码高亮/" data-toggle="tooltip" data-placement="top" title="Hexo博客添加highlight.js代码高亮">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
