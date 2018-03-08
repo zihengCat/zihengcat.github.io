@@ -12,7 +12,7 @@
 
     <title>
         
-          排序算法 - 选择排序（Select Sort） - zihengCat
+          排序算法 - 选择排序（Selection Sort） - zihengCat
         
     </title>
 
@@ -156,7 +156,7 @@
                           <a class="tag" href="/tags/#Algorithms" title="Algorithms">Algorithms</a>
                         
                     </div>
-                    <h1>排序算法 - 选择排序（Select Sort）</h1>
+                    <h1>排序算法 - 选择排序（Selection Sort）</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -179,8 +179,8 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍<em>排序算法 - 选择排序（Select Sort）</em>。</p>
-<h1 id="选择排序（Select-Sort）"><a href="#选择排序（Select-Sort）" class="headerlink" title="选择排序（Select Sort）"></a>选择排序（Select Sort）</h1><p>选择排序是常用的排序算法之一，该排序算法的核心思想是：<strong>将数组中最大/最小的数置换到最前位置，依次迭代。</strong></p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍<em>排序算法 - 选择排序（Selection Sort）</em>。</p>
+<h1 id="选择排序（Selection-Sort）"><a href="#选择排序（Selection-Sort）" class="headerlink" title="选择排序（Selection Sort）"></a>选择排序（Selection Sort）</h1><p>选择排序是常用的排序算法之一，该排序算法的核心思想是：<strong>将数组中最大/最小的数置换到最前位置，依次迭代。</strong></p>
 <table>
 <thead>
 <tr>
@@ -211,7 +211,7 @@
 <p>示例: 选择排序（从大到小排序）</p>
 </blockquote>
 <p>可以看到，每次迭代后，就有一个数字就被放到了正确的位置上。</p>
-<pre><code>void selectSort(int* array, int length) {
+<pre><code>void selectionSort(int* array, int length) {
     /* 每轮循环都有一个数被归位，下轮循环只需从下个位置开始即可 */
     for(int i = 0; i&lt;length; i++) {
         putLargestValue(array, length, i);
@@ -234,6 +234,7 @@ void putLargestValue(int* array, int length, int index) {
 </code></pre><blockquote>
 <p>选择排序（C/C++ 代码）</p>
 </blockquote>
+<p>选择排序的算法复杂度为<em>O(n^2)</em>，显然，它不是一种很高效的排序算法。</p>
 
                 <hr>
 
