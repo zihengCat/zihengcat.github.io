@@ -82,14 +82,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -200,7 +200,7 @@
             --prefix=&#39;/usr/local/packages/vim-80/&#39; \
             CFLAGS=&#39;-O3  -Wall&#39;
 </code></pre><blockquote>
-<p>这是子恒喵的个人的编译配置，不添加GUI与多语言环境的支持<br>详细选项可以查看: <code>./configure --help</code></p>
+<p>这是子恒喵的个人的编译配置，不添加 GUI 与多语言环境的支持<br>详细选项可以查看: <code>./configure --help</code></p>
 </blockquote>
 <p>注意这几个选项:</p>
 <table>
@@ -234,9 +234,9 @@
 </tbody>
 </table>
 <blockquote>
-<p>开启Python支持选项后， 还需要指定Python配置库的路径。</p>
+<p>开启Python支持选项后，还需要指定Python配置库的路径。</p>
 </blockquote>
-<p>Python的配置库路径一般在 <em><path></path>/lib/pythonx.x/config-xx/</em> 下。<code>&lt;PATH&gt;</code>是Python的安装目录，具体路径，不同版本会略有不同。</p>
+<p>Python的配置库路径一般在 <code>&lt;PATH&gt;/lib/pythonx.x/config-xx/*</code>下。其中<code>&lt;PATH&gt;</code>是Python的安装目录，具体路径，不同版本会略有不同。</p>
 <h2 id="Step5-编译安装"><a href="#Step5-编译安装" class="headerlink" title="Step5 编译安装"></a>Step5 编译安装</h2><p>标准的编译安装流程。如果配置没有什么问题，可以顺利地编译安装。</p>
 <pre><code>$ make
 $ sudo make install
