@@ -82,7 +82,7 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -96,7 +96,7 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -181,13 +181,13 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在Linux系统下编译安装Vim并添加Python支持。<br>Vim是子恒喵钟爱的文本编辑器，添加Python支持是为了使用大量优秀的Vim插件。</p>
-<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><h2 id="Step1-安装Python环境"><a href="#Step1-安装Python环境" class="headerlink" title="Step1 安装Python环境"></a>Step1 安装Python环境</h2><p>Python有两个版本，Python2与Python3，我们可以选择任意版本安装，也可以把两个版本的Python都装上。</p>
-<p>我们可以使用包管理器安装Python，也可以手动编译安装Python。手动编译安装具体步骤可以看<a href="https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/">这篇博文</a>。<br>子恒喵的情况有些特殊(系统是CentOS7…)，Python2是从<em>yum</em>仓库安装的，Python3是编译安装的。</p>
-<h2 id="Step2-获取源码"><a href="#Step2-获取源码" class="headerlink" title="Step2 获取源码"></a>Step2 获取源码</h2><p>前往<a href="http://www.vim.org/" target="_blank" rel="noopener">Vim.org</a>获取源码，推荐使用Vim在GitHub上的镜像。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><em>Vim</em>一直是子恒喵最钟爱的文本编辑器，为Vim添加Python支持可以使得Vim如虎添翼。<br>本文讲解在Linux系统下编译安装Vim并添加Python支持。</p>
+<h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><h2 id="Step1-安装Python环境"><a href="#Step1-安装Python环境" class="headerlink" title="Step1 安装Python环境"></a>Step1 安装Python环境</h2><p>Python有两个版本，Python2与Python3，我们可以选择安装任意版本，也可以把两个版本的Python都装上。</p>
+<p>我们可以使用包管理器安装Python，也可以手动编译安装Python。手动编译安装具体步骤可以看<a href="https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/">这篇博文</a>。<br>子恒喵的操作系统是CentOS7，Python2从<em>yum</em>仓库安装，Python3则手动编译安装。</p>
+<h2 id="Step2-获取源码"><a href="#Step2-获取源码" class="headerlink" title="Step2 获取源码"></a>Step2 获取源码</h2><p>前往<a href="http://www.vim.org/" target="_blank" rel="noopener">vim.org</a>官网获取源代码，推荐直接克隆Vim在GitHub上的镜像仓库。</p>
 <pre><code>$ git clone https://github.com/vim/vim.git
-</code></pre><h2 id="Step3-解决依赖性"><a href="#Step3-解决依赖性" class="headerlink" title="Step3 解决依赖性"></a>Step3 解决依赖性</h2><p>Vim的依赖很少，我们只需安装GCC，make等等的编译工具即可。至少子恒喵没有遇到依赖性的问题。如果遇到缺少依赖包(可能有个<em>ncurses</em>)，<code>configure</code>会提示我们，装好就行了。</p>
-<h2 id="Step4-编译配置选项"><a href="#Step4-编译配置选项" class="headerlink" title="Step4 编译配置选项"></a>Step4 编译配置选项</h2><p>需要添加哪些功能，就把哪些功能选项打开。Ruby，Perl等功能都可以打开，前提是系统已经安装好了相应的环境，这里我们只开启对Python支持。</p>
+</code></pre><h2 id="Step3-解决依赖性"><a href="#Step3-解决依赖性" class="headerlink" title="Step3 解决依赖性"></a>Step3 解决依赖性</h2><p>Vim所需的依赖很少，我们只需安装<code>GCC</code>，<code>make</code>等基础编译工具即可。至少子恒喵没有遇到啥依赖性的问题。如果遇到缺少依赖包(可能有个<em>ncurses</em>)，<code>configure</code>会提示我们，按照提示装好就行了。</p>
+<h2 id="Step4-添加配置选项"><a href="#Step4-添加配置选项" class="headerlink" title="Step4 添加配置选项"></a>Step4 添加配置选项</h2><p>需要添加哪些功能，就把哪些功能选项打开。<code>Ruby</code>，<code>Perl</code>，<code>Lua</code>等等的动态语言支持功能都可以打开，前提当前系统已经安装好了相应的环境，这里我们只开启对<code>Python</code>支持。</p>
 <pre><code>./configure --with-features=huge \
             --enable-gui=no \
             --enable-pythoninterp=yes \
@@ -200,27 +200,53 @@
             --prefix=&#39;/usr/local/packages/vim-80/&#39; \
             CFLAGS=&#39;-O3  -Wall&#39;
 </code></pre><blockquote>
-<p>这是子恒喵的个人的编译配置，没有添加GUI与多语言环境的支持<br>详细选项查看: ./configure –help</p>
+<p>这是子恒喵的个人的编译配置，不添加GUI与多语言环境的支持<br>详细选项可以查看: <code>./configure --help</code></p>
 </blockquote>
-<p>注意这几个选项。</p>
-<ul>
-<li><code>--prefix</code>: 指定安装目录</li>
-<li><code>--enable-pythoninterp=yes</code>: 打开Python2支持</li>
-<li><code>--with-python-config-dir=PATH</code>: 指定Python3配置库路径</li>
-<li><code>--enable-python3interp=yes</code>: 打开Python3支持</li>
-<li><code>--with-python3-config-dir=PATH</code>: 指定Python3配置库路径</li>
-</ul>
-<p><strong>开启Python支持选项后，还要指定Python配置库的路径。</strong>Python的配置库路径一般在 <em><path></path>/lib/pythonx.x/config-xx/</em> 下。PATH是Python的安装目录，具体路径，不同版本略有不同。</p>
-<h2 id="Step5-编译安装"><a href="#Step5-编译安装" class="headerlink" title="Step5 编译安装"></a>Step5 编译安装</h2><p>标准的编译安装过程。如果没有什么问题，可以顺利地编译安装。</p>
+<p>注意这几个选项:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>--prefix</code></td>
+<td style="text-align:left">指定安装目录</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--enable-pythoninterp=yes</code></td>
+<td style="text-align:left">打开Python2支持</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--with-python-config-dir=&lt;PATH&gt;</code></td>
+<td style="text-align:left">指定Python3配置库路径</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--enable-python3interp=yes</code></td>
+<td style="text-align:left">打开Python3支持</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>--with-python3-config-dir=&lt;PATH&gt;</code></td>
+<td style="text-align:left">指定Python3配置库路径</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>开启Python支持选项后， 还需要指定Python配置库的路径。</p>
+</blockquote>
+<p>Python的配置库路径一般在 <em><path></path>/lib/pythonx.x/config-xx/</em> 下。<code>&lt;PATH&gt;</code>是Python的安装目录，具体路径，不同版本会略有不同。</p>
+<h2 id="Step5-编译安装"><a href="#Step5-编译安装" class="headerlink" title="Step5 编译安装"></a>Step5 编译安装</h2><p>标准的编译安装流程。如果配置没有什么问题，可以顺利地编译安装。</p>
 <pre><code>$ make
 $ sudo make install
-</code></pre><p>如果指定了安装目录，注意添加到系统<em>PATH</em>路径。</p>
+</code></pre><p>如果自定义了安装目录，注意添加到系统<code>&lt;PATH&gt;</code>路径。</p>
 <h2 id="Step6-检验安装"><a href="#Step6-检验安装" class="headerlink" title="Step6 检验安装"></a>Step6 检验安装</h2><pre><code>$ vim --version
 ...
-</code></pre><p>安装没问题的话，可以看到vim的版本信息。vim已经包含Python功能，并有链接Python的配置库。</p>
+</code></pre><p>安装没问题的话，可以看到vim的版本信息。编译好的vim已经包含对Python的支持，并链接到Python的配置库。</p>
 <pre><code>:python import sys; print(sys.version)
 :python3 import sys; print(sys.version)
-</code></pre><p>进入vim，输入以上指令，如果可以顺利打印出Python版本号，说明vim的Python功能确实可用。</p>
+</code></pre><p>进入vim，输入以上指令，如果可以顺利打印出Python版本号，说明vim的Python支持确实可用。</p>
 
                 <hr>
 
