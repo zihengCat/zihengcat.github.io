@@ -181,8 +181,15 @@
             
         </h3>
         <div class="post-content-preview">
-            测试When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
-...
+            测试When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
+
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+
+
+$$
+f(x) = \int_{-\infty}^\infty
+    \hat f(\xi)\,e^{2 \pi i \xi x}
+    \,d......
         </div>
     </a>
     <p class="post-meta">
@@ -701,7 +708,8 @@ p –&gt; previousn –&gt; nex......
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
-            inlineMath: [ ['$', '$'] ]
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
         }
     });
 </script>
