@@ -173,6 +173,35 @@
 
 <div class="post-preview">
 
+    <a href="/2017/06/25/C学习笔记-枚举类型/">
+        <h2 class="post-title">
+            C学习笔记-枚举类型
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文讲解C中的enum枚举类型。
+枚举类型 enum在C中，我们可以使用enum枚举类型，枚举类型是一种包含枚举常量的特殊的类型。语法:
+enum identifier {
+    enumerator-list
+};
+样例:
+enum color {            /* 声明枚举类型 color */
+    RED,                /* 有3个枚举常量 */
+......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2017-06-25
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2017/06/24/C-学习笔记-引用/">
         <h2 class="post-title">
             C++学习笔记-引用
@@ -409,30 +438,6 @@ Concatenate FILE(s), or standard input, to standard output.
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/06/12/为CentOS7添加EPEL源/">
-        <h2 class="post-title">
-            为CentOS7添加EPEL源
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            前言
-EPEL (Extra Packages for Enterprise Linux) 是Fedora小组维护的一个软件仓库项目，为RHEL/CentOS提供他们默认不提供的软件包。这个源兼容RHEL以及像CentOS和Scientific Linux这样的衍生版本。
-
-EPEL源包含了许多高质量的软件，大部分软件的依赖包也可以在EPEL里找到。有了它，我们不用再为软件/依赖包缺失而苦恼......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-06-12
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -617,15 +622,29 @@ EPEL源包含了许多高质量的软件，大部分软件的依赖包也可以�
 
 
 <!-- BuSuanzi.js -->
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
 <!-- Highlight.js -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ]
+        }
+    });
+</script>
 
 
 <!-- jQuery -->
