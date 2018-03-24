@@ -183,30 +183,30 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>技术类博客有一个重要的需求是代码显示。而美观的代码显示能为文章添彩不少。<br>本文介绍在Hexo博客中利用<code>highlight.js</code>库手动实现美观的代码高亮效果。</p>
-<h1 id="highlight-js简介"><a href="#highlight-js简介" class="headerlink" title="highlight.js简介"></a><code>highlight.js</code>简介</h1><p><code>highlight.js</code>是一个 JavaScript 写成的代码高亮库。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>技术类个人博客总是绕不开一个重要的需求：漂亮显示代码。美观的代码显示能为博客文章添彩不少。<br>本文介绍在如何在Hexo博客中利用<code>highlight.js</code>库实现美观的代码高亮显示效果。</p>
+<h1 id="highlight-js简介"><a href="#highlight-js简介" class="headerlink" title="highlight.js简介"></a><code>highlight.js</code>简介</h1><p><code>highlight.js</code>是一枚 JavaScript 写成的代码高亮库。</p>
 <ul>
 <li>支持176门语言与79种样式</li>
 <li>自动语言侦测</li>
 <li>支持多语言代码高亮</li>
 <li>Node.js可用</li>
 <li>支持自定义标签</li>
-<li>可以方便与其他<code>js</code>框架结合使用</li>
+<li>方便与其他JS框架结合使用</li>
 <li>本身不依赖于任何框架</li>
 </ul>
 <blockquote>
 <p>highlight.js 库的优点</p>
 </blockquote>
-<p>我们可以在<a href="https://highlightjs.org" target="_blank" rel="noopener">highlight.js官网</a>上查看各种高亮样式，选择喜欢样式。</p>
-<h1 id="为Hexo博客添加highlight-js"><a href="#为Hexo博客添加highlight-js" class="headerlink" title="为Hexo博客添加highlight.js"></a>为Hexo博客添加<code>highlight.js</code></h1><p>为Hexo博客添加<code>highlight.js</code>，我们首先要<strong>关闭Hexo自带的代码高亮工具</strong>。编辑<code>_config.yml</code>配置文件，关闭掉highlight功能。</p>
+<p>我们可以在<a href="https://highlightjs.org" target="_blank" rel="noopener">highlight.js</a>官方网站上浏览其支持的高亮样式。</p>
+<h1 id="为Hexo博客添加代码高亮"><a href="#为Hexo博客添加代码高亮" class="headerlink" title="为Hexo博客添加代码高亮"></a>为Hexo博客添加代码高亮</h1><p>想要为Hexo博客添加<code>highlight.js</code>，我们首先需要<strong>关闭Hexo自带的代码高亮插件</strong>。编辑<code>_config.yml</code>配置文件，关闭掉自带highlight功能。</p>
 <pre><code>...
 highlight:
   enable: false
 ...
 </code></pre><blockquote>
-<p>取消Hexo自带高亮工具</p>
+<p>取消Hexo自带代码高亮</p>
 </blockquote>
-<p>接下来，引入<code>highlight.js</code>库。代码添加位置根据使用的Hexo主题而定，子恒喵这里选择直接添加到<code>footer.ejs</code>中。</p>
+<p>接下来，手动引入<code>highlight.js</code>库。代码添加位置根据具体使用的Hexo主题定，子恒喵这里是选择直接添加到<code>footer.ejs</code>中。</p>
 <pre><code>&lt;% if (config.highlightjs) { %&gt;
 &lt;!-- Highlight.js --&gt;
 &lt;link rel=&quot;stylesheet&quot;
@@ -217,9 +217,10 @@ highlight:
     hljs.initHighlightingOnLoad();
 &lt;/script&gt;
 &lt;% } %&gt;
-</code></pre><p>子恒喵这里还额外添加了<code>ejs</code>控制代码，以便在配置文件中手动启停高亮插件。</p>
+</code></pre><p>先引入JS库文件与CSS样式文件，接着初始化脚本即可。子恒喵这里额外添加了<code>ejs</code>控制代码，方便在配置文件中手动启停插件。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>GitHub项目地址: <a href="https://github.com/isagalaev/highlight.js" target="_blank" rel="noopener">https://github.com/isagalaev/highlight.js</a></li>
+<li>官方网站: <a href="https://highlightjs.org" target="_blank" rel="noopener">https://highlightjs.org</a></li>
+<li>项目地址: <a href="https://github.com/isagalaev/highlight.js" target="_blank" rel="noopener">https://github.com/isagalaev/highlight.js</a></li>
 </ul>
 
                 <hr>
