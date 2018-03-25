@@ -47,9 +47,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">ziheng&#39;s Blog</a>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <!-- Known Issue, found by Hux:
             <nav>'s height woule be hold on by its content.
@@ -67,19 +68,25 @@
                     
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/about/">
+                                About
+                            </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/archives/">
+                                Archives
+                            </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/tags/">
+                                Tags
+                            </a>
                         </li>
                         
                     
@@ -98,7 +105,6 @@
     var $toggle = document.querySelector('.navbar-toggle');
     var $navbar = document.querySelector('#huxblog_navbar');
     var $collapse = document.querySelector('.navbar-collapse');
-
     $toggle.addEventListener('click', handleMagic)
     function handleMagic(e){
         if ($navbar.className.indexOf('in') > 0) {
@@ -108,12 +114,12 @@
             setTimeout(function(){
                 // prevent frequently toggle
                 if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
+                    $collapse.style.height = "0px";
                 }
             },400)
-        }else{
+        } else {
         // OPEN
-            $collapse.style.height = "auto"
+            $collapse.style.height = "auto";
             $navbar.className += " in";
         }
     }
@@ -254,9 +260,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/06/29/C-学习笔记-类与结构体/">
+                     <a href="/2017/06/21/C-学习笔记-有趣的const/">
                         <h2 class="post-title">
-                            C++学习笔记-类与结构体
+                            C++学习笔记-有趣的const
                         </h2>
                         
                     </a>
@@ -269,9 +275,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/06/21/C-学习笔记-有趣的const/">
+                     <a href="/2017/06/29/C-学习笔记-类与结构体/">
                         <h2 class="post-title">
-                            C++学习笔记-有趣的const
+                            C++学习笔记-类与结构体
                         </h2>
                         
                     </a>
@@ -620,9 +626,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/06/25/C学习笔记-枚举类型/">
+                     <a href="/2017/06/26/C学习笔记-作用域scope/">
                         <h2 class="post-title">
-                            C学习笔记-枚举类型
+                            C学习笔记-作用域scope
                         </h2>
                         
                     </a>
@@ -635,9 +641,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/06/26/C学习笔记-作用域scope/">
+                     <a href="/2017/06/25/C学习笔记-枚举类型/">
                         <h2 class="post-title">
-                            C学习笔记-作用域scope
+                            C学习笔记-枚举类型
                         </h2>
                         
                     </a>
