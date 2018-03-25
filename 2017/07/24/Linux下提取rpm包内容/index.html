@@ -128,7 +128,7 @@
     <!-- Post Header -->
 <style type="text/css">
     header.intro-header {
-        background-image: url('/img/home-bg-o.jpg')
+        background-image: url('/img/home-bg-o.jpg');
     }
 </style>
 <header class="intro-header" >
@@ -154,18 +154,15 @@
         </div>
     </div>
 </header>
-
 <!-- Post Content -->
 <article>
     <div class="container">
         <div class="row">
-
-    <!-- Post Container -->
+<!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于大部分 <em>RedHat</em> 系的 Linux 系统而言，大都采用 <code>rpm</code> 作为默认的包管理器。<br>我们可以使用 <code>rpm -qlp</code> 查看一枚rpm包所包含的文件。如何在不安装rpm包的情况下提取包中的文件呢？</p>
 <h1 id="提取-rpm-包内容"><a href="#提取-rpm-包内容" class="headerlink" title="提取 rpm 包内容"></a>提取 rpm 包内容</h1><p>为了提取rpm包中的文件，我们需要用到两个命令: <code>rpm2cpio</code> 与 <code>cpio</code>。<br>使用以下命令，即可将rpm包内容提取出来：</p>
 <pre><code>$ rpm2cpio &lt;packagename.rpm&gt; | cpio -idmv 
@@ -183,7 +180,6 @@
 </ul>
 
                 <hr>
-
                 <ul class="pager">
                     
                         <li class="previous">
@@ -197,15 +193,13 @@
                     
                 </ul>
             </div>
-    <!-- Side Catalog Container -->
+<!-- Side Catalog Container -->
         
-
-    <!-- Sidebar Container -->
+<!-- Sidebar Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
                 <!-- Featured Tags -->
                 
                 <section>
@@ -220,11 +214,9 @@
                     </div>
                 </section>
                 
-
                 <!-- Friends Blog -->
                 
             </div>
-
         </div>
     </div>
 </article>

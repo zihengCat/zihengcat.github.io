@@ -128,7 +128,7 @@
     <!-- Post Header -->
 <style type="text/css">
     header.intro-header {
-        background-image: url('/img/home-bg-o.jpg')
+        background-image: url('/img/home-bg-o.jpg');
     }
 </style>
 <header class="intro-header" >
@@ -152,18 +152,15 @@
         </div>
     </div>
 </header>
-
 <!-- Post Content -->
 <article>
     <div class="container">
         <div class="row">
-
-    <!-- Post Container -->
+<!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Linux系统的朋友一定知道SSH（Secure Shell），Linux系统下默认的远程登陆服务。<br>我们每次使用SSH远程登陆到远端主机时，总是要输入密码，如果是服务器的话，密码一般都很复杂。实际上，SSH还可以使用密钥认证的方式远程登陆。</p>
 <h1 id="配置SSH密钥认证登陆"><a href="#配置SSH密钥认证登陆" class="headerlink" title="配置SSH密钥认证登陆"></a>配置SSH密钥认证登陆</h1><p>首先，我们需要确认远程主机的<strong>sshd</strong>服务开启了密钥认证功能。<br>查看ssh的配置文件，确认打开了相关选项。修改ssh配置文件要用到root权限。</p>
 <pre><code>$ sudo vi /etc/ssh/sshd_config
@@ -209,7 +206,6 @@ $ rm ~/id_rsa.pub
 </ul>
 
                 <hr>
-
                 <ul class="pager">
                     
                         <li class="previous">
@@ -223,15 +219,13 @@ $ rm ~/id_rsa.pub
                     
                 </ul>
             </div>
-    <!-- Side Catalog Container -->
+<!-- Side Catalog Container -->
         
-
-    <!-- Sidebar Container -->
+<!-- Sidebar Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
                 <!-- Featured Tags -->
                 
                 <section>
@@ -244,11 +238,9 @@ $ rm ~/id_rsa.pub
                     </div>
                 </section>
                 
-
                 <!-- Friends Blog -->
                 
             </div>
-
         </div>
     </div>
 </article>

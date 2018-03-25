@@ -128,7 +128,7 @@
     <!-- Post Header -->
 <style type="text/css">
     header.intro-header {
-        background-image: url('/img/home-bg-o.jpg')
+        background-image: url('/img/home-bg-o.jpg');
     }
 </style>
 <header class="intro-header" >
@@ -152,18 +152,15 @@
         </div>
     </div>
 </header>
-
 <!-- Post Content -->
 <article>
     <div class="container">
         <div class="row">
-
-    <!-- Post Container -->
+<!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用苹果系统的同学都大都认识这个<em>.DS_Store</em>文件, 这个文件是苹果桌面程序<em>Finder</em>产生，纪录了当前目录的一些显示信息,比如, Finder以何种形式显示目录, 目录文件图标大小, 背景图, 目录元数据等等。该文件的全称是<em>Desktop Services Store</em>,由Finder产生，为Finder所用。有点类似与Windows系统下的<em>desktop.ini</em>文件。<br>该文件默认是隐藏的，Unix Like系统，文件or目录名带点号<code>.</code>的，会被认为是隐藏文件。<br>其实普通用户不需要在意这个文件，默认就是隐藏的，Finder也不会让你看到。但是啊，子恒喵有点精神洁癖,不喜欢在目录下出现多余的东西…而且在<strong>归档压缩</strong>，<strong>挂载共享文件系统</strong>时，这个文件总是会跑出来，让人很不爽。所以子恒喵决定干掉它。</p>
 <h1 id="Finder隐藏文件的显示-关闭"><a href="#Finder隐藏文件的显示-关闭" class="headerlink" title="Finder隐藏文件的显示/关闭"></a>Finder隐藏文件的显示/关闭</h1><p>Finder默认是不显示隐藏文件(以.开头的文件或目录)的，我们可以输入如下命令显示隐藏文件。</p>
 <pre><code>$ defaults write com.apple.finder AppleShowAllFiles -bool true
@@ -183,7 +180,6 @@ $ defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 </code></pre><p>清除当前目录下所有<em>.DS_Store</em>文件。</p>
 
                 <hr>
-
                 <ul class="pager">
                     
                         <li class="previous">
@@ -197,15 +193,13 @@ $ defaults write com.apple.desktopservices DSDontWriteNetworkStores true
                     
                 </ul>
             </div>
-    <!-- Side Catalog Container -->
+<!-- Side Catalog Container -->
         
-
-    <!-- Sidebar Container -->
+<!-- Sidebar Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
                 <!-- Featured Tags -->
                 
                 <section>
@@ -218,11 +212,9 @@ $ defaults write com.apple.desktopservices DSDontWriteNetworkStores true
                     </div>
                 </section>
                 
-
                 <!-- Friends Blog -->
                 
             </div>
-
         </div>
     </div>
 </article>

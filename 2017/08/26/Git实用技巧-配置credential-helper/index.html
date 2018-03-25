@@ -128,7 +128,7 @@
     <!-- Post Header -->
 <style type="text/css">
     header.intro-header {
-        background-image: url('/img/home-bg-o.jpg')
+        background-image: url('/img/home-bg-o.jpg');
     }
 </style>
 <header class="intro-header" >
@@ -152,18 +152,15 @@
         </div>
     </div>
 </header>
-
 <!-- Post Content -->
 <article>
     <div class="container">
         <div class="row">
-
-    <!-- Post Container -->
+<!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Git的数据交换协议有<code>SSH</code>与<code>HTTP</code>。<br>使用<code>ssh</code>协议，我们需要在本地配置<code>ssh key</code>，这样一来，每次与服务器代码同步就不需要输入用户名和密码了。<br>使用<code>http</code>不需要配置，但在每次代码同步时需要我们手动输入用户名和密码，操作比较繁琐。<br>我们可以使用<code>git credential helper</code>来简化用户名和密码的输入过程。</p>
 <h1 id="GitHub-免用户名密码同步"><a href="#GitHub-免用户名密码同步" class="headerlink" title="GitHub 免用户名密码同步"></a>GitHub 免用户名密码同步</h1><p>我们以最常用的GitHub为例，配置GitHub免用户名密码代码同步。</p>
 <h2 id="创建-Git-存储凭证"><a href="#创建-Git-存储凭证" class="headerlink" title="创建 Git 存储凭证"></a>创建 Git 存储凭证</h2><p>我们在<strong>用户家目录</strong>下创建一个名字为<code>.git-credentials</code>隐藏文件。<br>将GitHub的用户名与密码按<strong>指定格式</strong>写入该文件。</p>
@@ -182,7 +179,6 @@ $ echo -n &#39;https://&lt;user&gt;:&lt;pass&gt;@github.com&#39; &gt;&gt; ~/.git
 </ul>
 
                 <hr>
-
                 <ul class="pager">
                     
                         <li class="previous">
@@ -196,15 +192,13 @@ $ echo -n &#39;https://&lt;user&gt;:&lt;pass&gt;@github.com&#39; &gt;&gt; ~/.git
                     
                 </ul>
             </div>
-    <!-- Side Catalog Container -->
+<!-- Side Catalog Container -->
         
-
-    <!-- Sidebar Container -->
+<!-- Sidebar Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
                 <!-- Featured Tags -->
                 
                 <section>
@@ -217,11 +211,9 @@ $ echo -n &#39;https://&lt;user&gt;:&lt;pass&gt;@github.com&#39; &gt;&gt; ~/.git
                     </div>
                 </section>
                 
-
                 <!-- Friends Blog -->
                 
             </div>
-
         </div>
     </div>
 </article>
