@@ -770,7 +770,8 @@ body {
   line-height: 28px;
   margin: 0 2px;
   margin-bottom: 8px;
-  background: #D6D6D6;
+  /* Custom tag Cloud Background Color */
+  background: #bbbbbb;
 }
 #tag_cloud a:hover,
 #tag_cloud .tag:hover,
