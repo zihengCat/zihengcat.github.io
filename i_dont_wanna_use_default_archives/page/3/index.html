@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/i_dont_wanna_use_default_archives/page/3/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/hux-blog.min.css">
@@ -76,16 +76,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -208,10 +208,10 @@
 
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Custom Theme JavaScript -->
 <script src="/js/hux-blog.min.js"></script>
@@ -223,15 +223,23 @@
           o = d.createElement(t),
           s = d.getElementsByTagName(t)[0];
       o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
       s.parentNode.insertBefore(o, s);
     }
 </script>
 
 <!-- jQuery.tagCloud.js -->
 <script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
+    /* only load tagcloud.js in tag.html */
+    if($('#tag_cloud').length !== 0) {
         async("https://zihengcat.github.io/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
@@ -244,9 +252,12 @@
 
 <!--fastClick.js -->
 <script>
-    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
         var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
+        if($nav) {
+            FastClick.attach($nav);
+        }
     })
 </script>
 
