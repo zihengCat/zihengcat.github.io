@@ -563,7 +563,7 @@ pre code {
 }
 footer {
   font-size: 20px;
-  padding: 50px 0 65px;
+  padding: 50px 50px 50px 50px;
 }
 footer .list-inline {
   margin: 0;
