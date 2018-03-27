@@ -402,20 +402,21 @@ long  int m;
 </script>
 
 <!-- jQuery.tagCloud.js -->
-<script>
+<!--
+<script type="text/javascript">
     /* only load tagcloud.js in tag.html */
     if($('#tag_cloud').length !== 0) {
-        // async("https://zihengcat.github.io/js/jquery.tagcloud.js",
         async("https://raw.githubusercontent.com/addywaddy/jquery.tagcloud.js/master/jquery.tagcloud.js",
         function() {
             $.fn.tagcloud.defaults = {
-                // size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
+                // size: { start: 1, end: 1, unit: 'em' },
+                color: { start: '#bbbbee', end: '#0085a1' },
             };
             $('#tag_cloud a').tagcloud();
         });
     }
 </script>
+-->
 
 <!--fastClick.js -->
 <script>
