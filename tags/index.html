@@ -76,16 +76,16 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -701,9 +701,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/07/29/C知识汇总-代码风格/">
+                     <a href="/2017/07/22/C知识汇总-函数/">
                         <h2 class="post-title">
-                            C知识汇总-代码风格
+                            C知识汇总-函数
                         </h2>
                         
                     </a>
@@ -716,9 +716,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2017/07/22/C知识汇总-函数/">
+                     <a href="/2017/07/29/C知识汇总-代码风格/">
                         <h2 class="post-title">
-                            C知识汇总-函数
+                            C知识汇总-代码风格
                         </h2>
                         
                     </a>
@@ -1760,13 +1760,15 @@
 <script>
     /* only load tagcloud.js in tag.html */
     if($('#tag_cloud').length !== 0) {
-        async("https://zihengcat.github.io/js/jquery.tagcloud.js",function(){
+        // async("https://zihengcat.github.io/js/jquery.tagcloud.js",
+        async("https://raw.githubusercontent.com/addywaddy/jquery.tagcloud.js/master/jquery.tagcloud.js",
+        function() {
             $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
+                // size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
             };
             $('#tag_cloud a').tagcloud();
-        })
+        });
     }
 </script>
 
