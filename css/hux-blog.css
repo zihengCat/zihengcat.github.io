@@ -145,6 +145,8 @@ pre code {
   width: auto;
   white-space: pre;
   word-wrap: normal;
+  /* same background color with highlight.js */
+  background-color: #f8f8f8;
 }
 .post-container a {
   color: #337ab7;
