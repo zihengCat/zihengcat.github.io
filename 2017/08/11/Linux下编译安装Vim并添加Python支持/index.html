@@ -69,14 +69,6 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -87,6 +79,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -164,12 +164,12 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><em>Vim</em>一直是子恒喵最钟爱的文本编辑器，为Vim添加Python支持可以使得Vim如虎添翼。<br>本文讲解在Linux系统下编译安装Vim并添加Python支持。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><em>Vim</em>一直是子恒喵最钟爱的文本编辑器，为Vim添加Python支持更使Vim如虎添翼。<br>本文讲解在Linux系统下编译安装Vim并添加Python支持。</p>
 <h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><h2 id="Step1-安装Python环境"><a href="#Step1-安装Python环境" class="headerlink" title="Step1 安装Python环境"></a>Step1 安装Python环境</h2><p>Python有两个版本，Python2与Python3，我们可以选择安装任意版本，也可以把两个版本的Python都装上。</p>
 <p>我们可以使用包管理器安装Python，也可以手动编译安装Python。手动编译安装具体步骤可以看<a href="https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/">这篇博文</a>。<br>子恒喵的操作系统是CentOS7，Python2从<em>yum</em>仓库安装，Python3则手动编译安装。</p>
 <h2 id="Step2-获取源码"><a href="#Step2-获取源码" class="headerlink" title="Step2 获取源码"></a>Step2 获取源码</h2><p>前往<a href="http://www.vim.org/" target="_blank" rel="noopener">vim.org</a>官网获取源代码，推荐直接克隆Vim在GitHub上的镜像仓库。</p>
 <pre><code>$ git clone https://github.com/vim/vim.git
-</code></pre><h2 id="Step3-解决依赖性"><a href="#Step3-解决依赖性" class="headerlink" title="Step3 解决依赖性"></a>Step3 解决依赖性</h2><p>Vim所需的依赖很少，我们只需安装<code>GCC</code>，<code>make</code>等基础编译工具即可。至少子恒喵没有遇到啥依赖性的问题。如果遇到缺少依赖包(可能有个<em>ncurses</em>)，<code>configure</code>会提示我们，按照提示装好就行了。</p>
+</code></pre><h2 id="Step3-解决依赖性"><a href="#Step3-解决依赖性" class="headerlink" title="Step3 解决依赖性"></a>Step3 解决依赖性</h2><p>Vim 所需的依赖库很少，我们只需要准备好<code>GCC</code>，<code>make</code>等基础编译工具即可。子恒喵没有遇到依赖性的问题。如果遇到缺少依赖包（比如提示需要安装终端库<code>ncurses</code>），<code>configure</code>会提示我们，按照提示装好依赖就可以了。</p>
 <h2 id="Step4-添加配置选项"><a href="#Step4-添加配置选项" class="headerlink" title="Step4 添加配置选项"></a>Step4 添加配置选项</h2><p>需要添加哪些功能，就把哪些功能选项打开。<code>Ruby</code>，<code>Perl</code>，<code>Lua</code>等等的动态语言支持功能都可以打开，前提当前系统已经安装好了相应的环境，这里我们只开启对<code>Python</code>支持。</p>
 <pre><code>./configure --with-features=huge \
             --enable-gui=no \
@@ -226,10 +226,10 @@ $ sudo make install
 </code></pre><p>如果自定义了安装目录，注意添加到系统<code>&lt;PATH&gt;</code>路径。</p>
 <h2 id="Step6-检验安装"><a href="#Step6-检验安装" class="headerlink" title="Step6 检验安装"></a>Step6 检验安装</h2><pre><code>$ vim --version
 ...
-</code></pre><p>安装没问题的话，可以看到vim的版本信息。编译好的vim已经包含对Python的支持，并链接到Python的配置库。</p>
+</code></pre><p>安装没问题的话，可以看到Vim的版本信息。编译好的Vim已经包含了对Python的支持，并正确链接到Python的配置库。</p>
 <pre><code>:python import sys; print(sys.version)
 :python3 import sys; print(sys.version)
-</code></pre><p>进入vim，输入以上指令，如果可以顺利打印出Python版本号，说明vim的Python支持确实可用。</p>
+</code></pre><p>进入Vim，输入以上指令，如果可以顺利打印出Python版本号，说明Vim的Python支持确实可用。</p>
 
                 <hr>
 <!--
