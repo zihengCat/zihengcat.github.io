@@ -162,9 +162,9 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解向量的基本概念及其表示方法，并编程实现向量数据结构。</p>
-<h1 id="向量的基本概念"><a href="#向量的基本概念" class="headerlink" title="向量的基本概念"></a>向量的基本概念</h1><p>向量（英语：vector，也称矢量）是数学、物理学和工程学等多个学科中的基本概念，指<strong>一个同时具有大小和方向几何对象</strong>。<br>数学上，一般只考虑向量的大小与方向，不考虑向量起点（自由向量）。</p>
-<h1 id="向量的表示方法"><a href="#向量的表示方法" class="headerlink" title="向量的表示方法"></a>向量的表示方法</h1><p>数学上，常用一条<strong>有向线段</strong>来表示向量，可以标明向量的起点与终点，有时也直接使用字母表示。<br>向量用矩阵的方式表示。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解向量的基本概念及其表示方法，并通过编程实现向量数据结构。</p>
+<h1 id="向量的基本概念"><a href="#向量的基本概念" class="headerlink" title="向量的基本概念"></a>向量的基本概念</h1><p>向量（英语：vector，也称矢量）是数学、物理学和工程学等多个学科中的基本概念，指<strong>一个同时具有大小和方向几何对象</strong>。<br>数学上，一般只考虑向量的大小与方向，不考虑向量起点（自由向量）。<br>如果<strong>两个向量大小相等，方向相同</strong>，我们就说这两个向量是相等的。</p>
+<h1 id="向量的表示方法"><a href="#向量的表示方法" class="headerlink" title="向量的表示方法"></a>向量的表示方法</h1><p>数学上，常用一条<strong>有向线段</strong>来表示向量，可以标明向量的起点与终点，有时也直接使用字母表示。<br>向量也可以用矩阵的方式来表示。</p>
 
 $$
 \overrightarrow{AB}
@@ -175,13 +175,37 @@ $$
 $$
 \overrightarrow{v} =
 \begin{bmatrix}
-    n_{1} \\
-    n_{2} \\
+    x_{1} \\
+    x_{2} \\
     ...   \\
-    n_{n}
+    x_{n}
 \end{bmatrix}
 $$
 
+<h1 id="向量的数据结构"><a href="#向量的数据结构" class="headerlink" title="向量的数据结构"></a>向量的数据结构</h1><p>在了解向量基本概念后，我们可以考虑向量的数据结构。<br>向量的矩阵表示可以帮助我们构建起向量的数据结构。只需存储向量各维度的数值即可。比较两个向量是否相等就转化为比较向量各个维度的数值是否相等。</p>
+<pre><code>class Vector(object):
+    def __init__(self, coordinates):
+        try:
+            self.coordinates = tuple(coordinates)
+            self.dimension = len(coordinates)
+        except:
+            print(&quot;Format error&quot;);
+    def __str__(self):
+        return &quot;Vector: {0}&quot;.format(self.coordinates)
+    def __eq__(self, v):
+        return self.coordinates == v.coordinates
+</code></pre><blockquote>
+<p>Python 代码实现</p>
+</blockquote>
+<pre><code>if __name__ == &quot;__main__&quot;:
+    v = Vector([1, 1])
+    w = Vector([2, 1])
+    print(v, w)
+    print(v == w)
+
+</code></pre><blockquote>
+<p>Python 测试代码</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>同济大学高等数学（第7版）下册</li>
 </ul>
