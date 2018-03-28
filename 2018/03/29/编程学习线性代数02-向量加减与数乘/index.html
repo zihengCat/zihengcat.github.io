@@ -69,16 +69,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -162,7 +162,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解向量的加减与数乘，并编程实现它们。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解向量的加减与数乘，并通过编程实现它们。</p>
 <h1 id="向量加减"><a href="#向量加减" class="headerlink" title="向量加减"></a>向量加减</h1><p>向量加法：两个向量首尾相接，由起点指向终点的新向量（三角形法则）。或将两个向量平移至共起点，作平行四边形，取对角线（平行四边形法则）。<br>向量减法：向量减法可以看作是则可以看成是一个向量加上一个大小相等，方向相反的向量（反向量），按向量加法进行运算。<br>向量加减满足<strong>交换律与结合律</strong>。<br>使用向量矩阵进行加减运算非常简便，各维度数值直接相加减即可。<br>
 $$
 \overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}
@@ -201,7 +201,7 @@ $$
 <blockquote>
 <p>向量平行四边形法则</p>
 </blockquote>
-<h1 id="向量数乘"><a href="#向量数乘" class="headerlink" title="向量数乘"></a>向量数乘</h1><p>一个标量与一个向量之间可以做乘法，相乘得到一个方向与原向量相同或相反，大小为原向量大小倍数的新向量。<br><code>-1</code>与任意向量相乘会得到原向量的<strong>反向量</strong>，<code>0</code>与任意向量相乘会得到<strong>零向量</strong>。<br>直观的理解，向量数乘就是对向量做<strong>“伸缩”</strong>。<br>使用向量矩阵进行向量数乘运算也非常简便，各维度数值直接乘即可。</p>
+<h1 id="向量数乘"><a href="#向量数乘" class="headerlink" title="向量数乘"></a>向量数乘</h1><p>一个标量与一个向量之间可以做乘法，相乘得到一个方向与原向量相同或相反，大小为原向量大小倍数的新向量。<br><code>-1</code>与任意向量相乘会得到原向量的<strong>反向量</strong>，<code>0</code>与任意向量相乘会得到<strong>零向量</strong>。<br>直观的理解，向量数乘就是对向量做<strong>“伸缩”</strong>。<br>使用向量矩阵进行向量数乘运算也非常简便，各维度数值直接与标量相乘即可。</p>
 
 $$
 k \cdot \overrightarrow{v} = k\overrightarrow{v}
@@ -227,9 +227,9 @@ $$
 
 <p><img src="./vector-scalar-multiply.svg" alt="vector-scalar-multiply"></p>
 <blockquote>
-<p>向量数乘（v(1, 1) * 2 = w(2, 2)）</p>
+<p>向量数乘（数乘2）</p>
 </blockquote>
-<h1 id="向量线性运算的编程实现"><a href="#向量线性运算的编程实现" class="headerlink" title="向量线性运算的编程实现"></a>向量线性运算的编程实现</h1><p>在理解了向量加减与数乘线性运算后，我们来考虑编程实现它们。<br>在上一节构建的向量类上，我们再添加上数乘方法与加减运算方法。</p>
+<h1 id="向量线性运算的编程实现"><a href="#向量线性运算的编程实现" class="headerlink" title="向量线性运算的编程实现"></a>向量线性运算的编程实现</h1><p>在理解了向量加减与数乘线性运算后，我们来考虑编程实现它们。<br>在上一节构建的向量类上，我们再添加上数乘方法与加减运算方法。<br>向量数乘与加减的实现代码大同小异，取出向量各个维度的数值，分别相加、相减、数乘即可。</p>
 <pre><code>...
     # 向量加法(循环方法)
     def __add__(self, v):
