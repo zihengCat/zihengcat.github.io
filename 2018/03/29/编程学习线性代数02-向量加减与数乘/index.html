@@ -163,7 +163,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解向量的加减与数乘，并编程实现它们。</p>
-<h1 id="向量加减"><a href="#向量加减" class="headerlink" title="向量加减"></a>向量加减</h1><p>向量加法：两个向量首尾相接，由起点指向终点的新向量（三角形法则）。或将两个向量平移至共起点，作平行四边形，取对角线（平行四边形法则）。<br>向量减法：向量减法可以看作是则可以看成是一个向量加上一个大小相等，方向相反的向量（反向量）。<br>使用向量矩阵进行运算非常简便，各维度数值直接相加减即可。<br>
+<h1 id="向量加减"><a href="#向量加减" class="headerlink" title="向量加减"></a>向量加减</h1><p>向量加法：两个向量首尾相接，由起点指向终点的新向量（三角形法则）。或将两个向量平移至共起点，作平行四边形，取对角线（平行四边形法则）。<br>向量减法：向量减法可以看作是则可以看成是一个向量加上一个大小相等，方向相反的向量（反向量）。<br>向量加减满足交换律与结合律。<br>使用向量矩阵进行加减运算非常简便，各维度数值直接相加减即可。<br>
 $$
 \overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}
 $$
@@ -201,7 +201,34 @@ $$
 <blockquote>
 <p>向量平行四边形法则</p>
 </blockquote>
-<h1 id="向量数乘"><a href="#向量数乘" class="headerlink" title="向量数乘"></a>向量数乘</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1>
+<h1 id="向量数乘"><a href="#向量数乘" class="headerlink" title="向量数乘"></a>向量数乘</h1><p>一个标量与一个向量之间可以做乘法，相乘得到一个方向与原向量相同或相反，大小为原向量大小倍数的新向量。<br>-1与任意向量相乘会得到原向量的反向量，0与任意向量相乘会得到零向量。<br>直观的理解，向量数乘就是对向量做”伸缩”。<br>使用向量矩阵进行向量数乘运算也非常简便，各维度数值直接乘即可。</p>
+
+$$
+k \cdot \overrightarrow{v} = k\overrightarrow{v}
+$$
+
+$$
+k \cdot 
+\overrightarrow{v} 
+\begin{bmatrix}
+    x_{1}  \\
+    x_{2}  \\
+    ...    \\
+    x_{n}  \\
+\end{bmatrix}
+= \overrightarrow{w}
+\begin{bmatrix}
+    k \cdot x_{1}  \\
+    k \cdot x_{2}  \\
+    ...            \\
+    k \cdot x_{n}  \\
+\end{bmatrix}
+$$
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>同济高等数学（第7版）下册, P2 - P6</li>
+</ul>
+
                 <hr>
 <!--
                 <ul class="pager">
