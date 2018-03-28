@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/03/29/编程学习线性代数03-向量长度与单位向量/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/03/26/编程学习线性代数02-向量加减与数乘/">
     <title>
         
-          编程学习线性代数03 - 向量长度与单位向量 - zihengCat
+          编程学习线性代数02 - 向量加减与数乘 - zihengCat
         
     </title>
 
@@ -142,11 +142,11 @@
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
-                    <h1>编程学习线性代数03 - 向量长度与单位向量</h1>
+                    <h1>编程学习线性代数02 - 向量加减与数乘</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-03-29
+                        2018-03-26
                     </span>
                 </div>
             </div>
@@ -162,88 +162,120 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解向量长度与单位向量的求法，并通过编程实现。</p>
-<h1 id="向量长度"><a href="#向量长度" class="headerlink" title="向量长度"></a>向量长度</h1><p>向量的两个基本属性是大小与方向，向量长度（英语: magnitude，也叫向量的模）便是向量的大小，它是一个<strong>标量</strong>。<br>我们可以这样理解，向量长度就是向量起点至终点的距离（两点间的距离）。想要计算向量长度，我们需要用到<strong>勾股定理</strong>。</p>
-
-$$
-\lVert \overrightarrow{v} \rVert =
-\sqrt{
-{v_{x}}^{2} + {v_{y}}^{2}
-}
-$$
-
-<p><img src="./vector-magnitude-2d.svg" alt="vector-magnitude-2d"></p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解向量的加减与数乘，并通过编程实现它们。</p>
+<h1 id="向量加减"><a href="#向量加减" class="headerlink" title="向量加减"></a>向量加减</h1><p><strong>向量加法</strong>：两个向量首尾相接，由起点指向终点的新向量（三角形法则）。或将两个向量平移至共起点，作平行四边形，取对角线（平行四边形法则）。<br><strong>向量减法</strong>：向量减法可以看作是则可以看成是一个向量加上一个大小相等，方向相反的向量（反向量），按向量加法进行运算。<br>向量加减满足<strong>交换律与结合律</strong>。</p>
+<p><img src="./vector-triangle-law.svg" alt="vector-triangle-law"></p>
 <blockquote>
-<p>二维向量长度</p>
+<p>向量运算三角形法则</p>
 </blockquote>
-
-$$
-\lVert \overrightarrow{v} \rVert =
-\sqrt{
-{v_{x}}^{2} + {v_{y}}^{2} + {v_{z}}^{2}
-}
-$$
-
-<p><img src="./vector-magnitude-3d.png" alt="vector-magnitude-3d"></p>
+<p><img src="./vector-parallelogram-law.svg" alt="vector-parallelogram-law"></p>
 <blockquote>
-<p>三维向量长度</p>
+<p>向量运算平行四边形法则</p>
 </blockquote>
-<p>扩展到<strong>N维向量</strong>，我们可以利用公式求向量长度。</p>
-
-
+<p>使用向量矩阵进行加减运算非常简便，各维度数值直接相加减即可。<br>
 $$
-\overrightarrow{v} = 
+\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}
+$$
+$$
+v_{1} 
 \begin{bmatrix}
-    v_{1} \\
-    v_{2} \\
+    a_{1} \\
+    a_{2} \\
     ...   \\
-    v_{n} \\
+    a_{n}
 \end{bmatrix}
-$$
-
-$$
-\lVert \overrightarrow{v} \rVert =
-\sqrt{
-{v_{1}}^{2} + {v_{2}}^{2} + ... + {v_{n}}^{2}
-}
-$$
-
-<h1 id="单位向量"><a href="#单位向量" class="headerlink" title="单位向量"></a>单位向量</h1><p>方向相同，长度不同的一组向量可以有无穷多个，其中，单位向量就是该方向上长度为<code>1</code>的向量。<br>单位向量被用作度量单位以及指示方向。例如，在三维直角坐标系中，X、Y、Z三个方向的单位向量分别为：</p>
-
-$$
-\^{i} = 
+\pm
+v_{2}
 \begin{bmatrix}
-    1 \\
-    0 \\
-    0 \\
+    b_{1} \\
+    b_{2} \\
+    ...   \\
+    b_{n}
 \end{bmatrix}
-\^{j} = 
+=
+v_{3}
 \begin{bmatrix}
-    0 \\
-    1 \\
-    0 \\
+    a_{1} \pm b_{1} \\
+    a_{2} \pm b_{2} \\
+    ...             \\
+    a_{n} \pm b_{n} \\
 \end{bmatrix}
+$$
+</p>
+<h1 id="向量数乘"><a href="#向量数乘" class="headerlink" title="向量数乘"></a>向量数乘</h1><p>一个标量与一个向量之间可以做乘法，相乘得到一个方向与原向量相同或相反，大小为原向量大小倍数的新向量。<br><code>-1</code>与任意向量相乘会得到原向量的<strong>反向量</strong>，<code>0</code>与任意向量相乘会得到<strong>零向量</strong>。<br>直观的理解，向量数乘就是对向量做<strong>“伸缩”</strong>。<br>使用向量矩阵进行向量数乘运算也非常简便，各维度数值直接与标量相乘即可。</p>
 
-\^{k} = 
+$$
+k \cdot \overrightarrow{v} = k\overrightarrow{v}
+$$
+
+$$
+k \cdot 
+\overrightarrow{v} 
 \begin{bmatrix}
-    0 \\
-    0 \\
-    1 \\
+    x_{1}  \\
+    x_{2}  \\
+    ...    \\
+    x_{n}  \\
+\end{bmatrix}
+= \overrightarrow{w}
+\begin{bmatrix}
+    k \cdot x_{1}  \\
+    k \cdot x_{2}  \\
+    ...            \\
+    k \cdot x_{n}  \\
 \end{bmatrix}
 $$
 
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1>
+<p><img src="./vector-scalar-multiply.svg" alt="vector-scalar-multiply"></p>
+<blockquote>
+<p>向量数乘（数乘2）</p>
+</blockquote>
+<h1 id="向量线性运算的编程实现"><a href="#向量线性运算的编程实现" class="headerlink" title="向量线性运算的编程实现"></a>向量线性运算的编程实现</h1><p>在理解了向量加减与数乘线性运算后，我们来考虑编程实现它们。<br>在上一节构建的向量类上，我们再添加上数乘方法与加减运算方法。<br>向量数乘与加减的实现代码大同小异，取出向量各个维度的数值，分别相加、相减、数乘即可。</p>
+<pre><code>...
+    # 向量加法(循环方法)
+    def __add__(self, v):
+        new_coordinates = []
+        n = len(self.coordinates)
+        for i in range(n):
+            new_coordinates.append(self.coordinates[i] + v.coordinates[i])
+        return Vector(new_coordinates)
+    # 向量加法(列表生成式)
+    def __sub__(self, v):
+        new_coordinates = [x - y for (x,y) in
+                           zip(self.coordinates, v.coordinates)]
+        return Vector(new_coordinates)
+    # 向量数乘(不重载运算符)
+    def scalar_mul(self, c):
+        new_coordinates = [c * x for x in self.coordinates]
+        return Vector(new_coordinates)
+...
+</code></pre><blockquote>
+<p>向量的线性运算（Python实现）</p>
+</blockquote>
+<pre><code>def vector_add_sub_scalarmul_test():
+    v = Vector([1, 2])
+    w = Vector([2, 5])
+    print(v + w, v - w)
+    print(v.scalar_mul(3))
+    print(w.scalar_mul(-1/2))
+</code></pre><blockquote>
+<p>向量线性运算测试代码</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>同济高等数学（第7版）下册, P2 - P6</li>
+</ul>
+
                 <hr>
 <!--
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2018/03/29/编程学习线性代数02-向量加减与数乘/" data-toggle="tooltip" data-placement="top" title="编程学习线性代数02 - 向量加减与数乘">&larr; Previous Post</a>
+                            <a href="/2018/03/27/编程学习线性代数03-向量长度与单位向量/" data-toggle="tooltip" data-placement="top" title="编程学习线性代数03 - 向量长度与单位向量">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2018/03/28/编程学习线性代数01-向量及其表示/" data-toggle="tooltip" data-placement="top" title="编程学习线性代数01 - 向量及其表示">Next Post &rarr;</a>
+                            <a href="/2018/03/25/编程学习线性代数01-向量及其表示/" data-toggle="tooltip" data-placement="top" title="编程学习线性代数01 - 向量及其表示">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
