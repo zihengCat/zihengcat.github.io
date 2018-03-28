@@ -182,17 +182,21 @@ $$
 \end{bmatrix}
 $$
 
-<h1 id="向量的数据结构"><a href="#向量的数据结构" class="headerlink" title="向量的数据结构"></a>向量的数据结构</h1><p>在了解向量基本概念后，我们可以考虑向量的数据结构。<br>向量的矩阵表示可以帮助我们构建起向量的数据结构。只需存储向量各维度的数值即可。比较两个向量是否相等就转化为比较向量各个维度的数值是否相等。</p>
+<h1 id="向量的数据结构"><a href="#向量的数据结构" class="headerlink" title="向量的数据结构"></a>向量的数据结构</h1><p>在了解向量基本概念后，我们可以考虑向量的数据结构。<br>向量的矩阵表示可以帮助我们构建起向量的数据结构。只需存储向量各维度的数值即可。比较两个向量是否相等就转化为了比较向量各个维度的数值是否相等。</p>
 <pre><code>class Vector(object):
     def __init__(self, coordinates):
         try:
+            # 存储向量各维度数值
             self.coordinates = tuple(coordinates)
+            # 存储向量维度
             self.dimension = len(coordinates)
         except:
             print(&quot;Format error&quot;);
     def __str__(self):
+        # 向量字符串化
         return &quot;Vector: {0}&quot;.format(self.coordinates)
     def __eq__(self, v):
+        # 向量比较
         return self.coordinates == v.coordinates
 </code></pre><blockquote>
 <p>Python 代码实现</p>
@@ -202,12 +206,13 @@ $$
     w = Vector([2, 1])
     print(v, w)
     print(v == w)
-
+    w = Vector([1, 1])
+    print(v == w)
 </code></pre><blockquote>
 <p>Python 测试代码</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>同济大学高等数学（第7版）下册</li>
+<li>同济高等数学（第7版）下册</li>
 </ul>
 
                 <hr>
