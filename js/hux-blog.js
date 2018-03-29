@@ -1,17 +1,18 @@
 /*!
  * Clean Blog v1.0.0 (http://startbootstrap.com)
  * Copyright 2015 Start Bootstrap
- * Licensed under Apache 2.0 (https://github.com/IronSummitMedia/startbootstrap/blob/gh-pages/LICENSE)
+ * Licensed under Apache 2.0
+ * https://github.com/IronSummitMedia/startbootstrap/blob/gh-pages/LICENSE
  */
 
-// Tooltip Init
+// Tooltip init
 $(function() {
     $("[data-toggle='tooltip']").tooltip();
 });
 
 
 // make all images responsive
-/* 
+/*
  * Unuse by Hux
  * actually only Portfolio-Pages can't use it and only post-img need it.
  * so I modify the _layout/post and CSS to make post-img responsive!
@@ -23,22 +24,14 @@ $(function() {
 // responsive tables
 $(document).ready(function() {
 	$("table").wrap("<div class='table-responsive'></div>");
-	$("table").addClass("table");
-});
-
-// responsive embed videos
-$(document).ready(function () { 
-    $('iframe[src*="youtube.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
-	$('iframe[src*="youtube.com"]').addClass('embed-responsive-item');
-    $('iframe[src*="vimeo.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
-	$('iframe[src*="vimeo.com"]').addClass('embed-responsive-item');
+	$("table").addClass("table table-bordered table-striped");
 });
 
 // Navigation Scripts to Show Header on Scroll-Up
 jQuery(document).ready(function($) {
     var MQL = 1170;
 
-    //primary navigation slide-in effect
+    // primary navigation slide-in effect
     if ($(window).width() > MQL) {
         var headerHeight = $('.navbar-custom').height();
         $(window).on('scroll', {
@@ -46,16 +39,16 @@ jQuery(document).ready(function($) {
             },
             function() {
                 var currentTop = $(window).scrollTop();
-                //check if user is scrolling up
+                // check if user is scrolling up
                 if (currentTop < this.previousTop) {
-                    //if scrolling up...
+                    // if scrolling up...
                     if (currentTop > 0 && $('.navbar-custom').hasClass('is-fixed')) {
                         $('.navbar-custom').addClass('is-visible');
                     } else {
                         $('.navbar-custom').removeClass('is-visible is-fixed');
                     }
                 } else {
-                    //if scrolling down...
+                    // if scrolling down...
                     $('.navbar-custom').removeClass('is-visible');
                     if (currentTop > headerHeight && !$('.navbar-custom').hasClass('is-fixed')) $('.navbar-custom').addClass('is-fixed');
                 }
