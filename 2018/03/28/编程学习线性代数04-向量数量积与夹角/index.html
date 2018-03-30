@@ -69,16 +69,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -376,21 +376,26 @@ $</td>
 <h1 id="相关测试代码"><a href="#相关测试代码" class="headerlink" title="相关测试代码"></a>相关测试代码</h1><p>我们来写一些测试代码，看看我们新添加的方法能否正常工作。</p>
 <pre><code>def vector_dot_angle_test():
     v = Vector([0, 0, 1])
-    w = Vector([0, 1, 0])
+    w = Vector([0, 1, 0]
     print(v.dot(w))
     print(v.angle_with(w, True))
-
+    print(&quot;-------------------&quot;)
     v = Vector([1, 1, 1])
     w = Vector([10, 10, 10])
     print(v.dot(w))
     print(v.angle_with(w))
-
-    v = Vector([0, 0, 1])
-    w = Vector([0, 0, -1])
+    print(&quot;-------------------&quot;)
+    v = Vector([2, 0])
+    w = Vector([0, 8])
+    print(v.dot(w))
+    print(v.angle_with(w, True))
+    print(&quot;-------------------&quot;)
+    v = Vector([1, 0])
+    w = Vector([-1, 0])
     print(v.dot(w))
     print(v.angle_with(w, True))
 </code></pre><blockquote>
-<p>相关测试代码</p>
+<p>向量数量积与夹角相关测试代码</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>同济高等数学（第7版）下册, P14 - P17</li>
