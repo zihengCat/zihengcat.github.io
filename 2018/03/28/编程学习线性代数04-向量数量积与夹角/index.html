@@ -69,16 +69,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -163,10 +163,10 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解向量的数量积与向量夹角，并通过编程实现。</p>
-<h1 id="向量数量积"><a href="#向量数量积" class="headerlink" title="向量数量积"></a>向量数量积</h1><p>两个向量的数量积（英语: Inner Products）在几何上可以表示为两向量的模长乘以两向量之间夹角的余弦值。向量数量积是一个<strong>标量</strong>。向量数量积的几何定义可以帮助我们寻找两向量之间的夹角。</p>
+<h1 id="向量数量积"><a href="#向量数量积" class="headerlink" title="向量数量积"></a>向量数量积</h1><p>两个向量的数量积（英语: Inner Products）在几何上可以表示为<strong>两向量的模长乘以两向量之间夹角的余弦值</strong>。向量数量积是一个<strong>标量</strong>。向量数量积的几何定义可以帮助我们寻找两向量之间的夹角，这个夹角我们一般指：将两向量移至共起点后，取较小的角度。</p>
 <p><img src="./vector-inner-products.svg" alt="vector-inner-products"></p>
 <blockquote>
-<p>图 1: 向量数量积的几何图示</p>
+<p>图1: 向量数量积的几何图示</p>
 </blockquote>
 
 $$
@@ -202,7 +202,7 @@ $$
 \end{align}
 $$
 
-<p>向量数量积的几何定义虽然直观明了，但是不好计算，我们再看看向量数量积的代数定义。</p>
+<p>向量数量积的几何定义虽然直观明了，但是不好计算，我们再看看向量数量积的代数定义。向量数量积的代数定义指出：<strong>两个向量的数量积是两向量各对应维度数值乘积的累加和</strong>。这可以帮助我们快速计算出数量积的结果。</p>
 
 $$
 \begin{align}
@@ -243,7 +243,7 @@ a_{n} \cdot b_{n}
 $$
 
 <p>向量数量积的代数定义可以帮助我们快速计算出结果。</p>
-<h1 id="向量数量积与向量夹角的关系"><a href="#向量数量积与向量夹角的关系" class="headerlink" title="向量数量积与向量夹角的关系"></a>向量数量积与向量夹角的关系</h1><p>我们知道，$\cos(x)$函数的值域是$[-1, 1]$，再结合向量数量积的几何定义，我们就可以得到著名的<strong>柯西-施瓦茨不等式</strong>。</p>
+<h1 id="向量数量积与向量夹角的关系"><a href="#向量数量积与向量夹角的关系" class="headerlink" title="向量数量积与向量夹角的关系"></a>向量数量积与向量夹角的关系</h1><p>我们知道，$\cos(x)$函数的值域是$[-1, 1]$，再结合向量数量积的几何定义，我们就可以得到著名的<strong>柯西-施瓦茨不等式</strong>。该不等式在数学各领域都有非常广泛的应用。</p>
 
 $$
 \overrightarrow{v} \cdot \overrightarrow{w} =
@@ -276,7 +276,7 @@ $$
 
 $$
 
-<p>接下来，我们结合向量数量积的几何定义来考虑一下向量的夹角。我们设两个向量都不是零向量（数量积存在）。</p>
+<p>接下来，我们结合向量数量积的几何定义来考虑一下向量的夹角。向量夹角与向量位置关系。我们设两个向量都不是零向量（数量积存在）。</p>
 
 $$
 \overrightarrow{v} \cdot \overrightarrow{w} =
@@ -344,7 +344,7 @@ $</td>
 </tbody>
 </table>
 <blockquote>
-<p>表 1: 向量数量积与向量夹角关系</p>
+<p>表1: 向量数量积与向量夹角、向量位置关系</p>
 </blockquote>
 <h1 id="向量数量积的代码实现"><a href="#向量数量积的代码实现" class="headerlink" title="向量数量积的代码实现"></a>向量数量积的代码实现</h1><p>在了解向量数量积的概念后，我们考虑它的代码实现。<br>根据向量数量积的代数定义，我们可以很容易的实现一个求向量数量积的方法。取出两个向量对应维度的数值，相乘求和即可。</p>
 <pre><code>...
@@ -355,7 +355,7 @@ $</td>
 </code></pre><blockquote>
 <p>向量数量积的代码实现（Python）</p>
 </blockquote>
-<h1 id="向量夹角的代码实现"><a href="#向量夹角的代码实现" class="headerlink" title="向量夹角的代码实现"></a>向量夹角的代码实现</h1><p>接下来我们考虑向量夹角的代码实现。<br>根据向量数量积的代数定义，我们也可以容易得实现求向量夹角得方法。<br>这里我们还可以额外添加一个弧度转角度的功能。</p>
+<h1 id="向量夹角的代码实现"><a href="#向量夹角的代码实现" class="headerlink" title="向量夹角的代码实现"></a>向量夹角的代码实现</h1><p>接下来我们考虑向量夹角的代码实现。<br>根据向量数量积的代数定义，我们也可以容易得实现求向量夹角的方法。两向量点乘除以两向量模长乘积，再取反余弦即可。<br>这里我们还可以额外添加一个弧度转角度的功能。</p>
 <pre><code>...
     def angle_with(self, v, in_degrees = False):
         try:
@@ -373,7 +373,7 @@ $</td>
 </code></pre><blockquote>
 <p>向量夹角的代码实现（Python）</p>
 </blockquote>
-<h1 id="相关测试代码"><a href="#相关测试代码" class="headerlink" title="相关测试代码"></a>相关测试代码</h1><p>我们来写一些测试代码，看看我们新添加的方法能否正常工作。</p>
+<h1 id="相关测试代码"><a href="#相关测试代码" class="headerlink" title="相关测试代码"></a>相关测试代码</h1><p>我们来写一些测试代码，看看我们新添加的方法是否可用。</p>
 <pre><code>def vector_dot_angle_test():
     v = Vector([0, 0, 1])
     w = Vector([0, 1, 0]
