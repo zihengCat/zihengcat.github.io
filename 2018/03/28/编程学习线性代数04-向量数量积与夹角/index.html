@@ -77,16 +77,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -193,7 +193,6 @@ $$
 \frac{ 1 }
 { \lVert \overrightarrow{v} \rVert }
 \overrightarrow{v}
-
 \cdot
 \frac{ 1 }
 { \lVert \overrightarrow{w} \rVert }
@@ -276,7 +275,7 @@ $$
 
 $$
 
-<p>接下来，我们结合向量数量积的几何定义来考虑一下向量的夹角。向量夹角与向量位置关系。我们设两个向量都不是零向量（数量积存在）。</p>
+<p>接下来，我们结合向量数量积的几何定义来考虑一下向量夹角与向量位置关系。我们设两个向量都不是零向量（数量积存在）。</p>
 
 $$
 \overrightarrow{v} \cdot \overrightarrow{w} =
@@ -353,7 +352,7 @@ $</td>
         return sum([ x * y for (x, y) in zip(self.coordinates, v.coordinates)])
 ...
 </code></pre><blockquote>
-<p>向量数量积的代码实现（Python）</p>
+<p>代码清单: 向量数量积的代码实现（Python）</p>
 </blockquote>
 <h1 id="向量夹角的代码实现"><a href="#向量夹角的代码实现" class="headerlink" title="向量夹角的代码实现"></a>向量夹角的代码实现</h1><p>接下来我们考虑向量夹角的代码实现。<br>根据向量数量积的代数定义，我们也可以容易得实现求向量夹角的方法。两向量点乘除以两向量模长乘积，再取反余弦即可。<br>这里我们还可以额外添加一个弧度转角度的功能。</p>
 <pre><code>...
@@ -371,7 +370,7 @@ $</td>
 ...
 
 </code></pre><blockquote>
-<p>向量夹角的代码实现（Python）</p>
+<p>代码清单: 向量夹角的代码实现（Python）</p>
 </blockquote>
 <h1 id="相关测试代码"><a href="#相关测试代码" class="headerlink" title="相关测试代码"></a>相关测试代码</h1><p>我们来写一些测试代码，看看我们新添加的方法是否可用。</p>
 <pre><code>def vector_dot_angle_test():
@@ -395,7 +394,7 @@ $</td>
     print(v.dot(w))
     print(v.angle_with(w, True))
 </code></pre><blockquote>
-<p>向量数量积与夹角相关测试代码</p>
+<p>代码清单: 向量数量积与夹角相关测试代码</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>同济高等数学（第7版）下册, P14 - P17</li>
