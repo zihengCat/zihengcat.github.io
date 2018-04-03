@@ -166,7 +166,7 @@
 <h1 id="向量数量积"><a href="#向量数量积" class="headerlink" title="向量数量积"></a>向量数量积</h1><p>两个向量的数量积（英语: Inner Products）在几何上可以表示为<strong>两向量的模长乘以两向量之间夹角的余弦值</strong>。向量数量积是一个<strong>标量</strong>。向量数量积的几何定义可以帮助我们寻找两向量之间的夹角，这个夹角我们一般指：将两向量移至共起点后，取较小的角度。</p>
 <p><img src="./vector-inner-products.svg" alt="vector-inner-products"></p>
 <blockquote>
-<p>图1: 向量数量积的几何图示</p>
+<p>图1: 向量数量积的几何意义</p>
 </blockquote>
 
 $$
@@ -240,7 +240,24 @@ a_{n} \cdot b_{n}
 
 $$
 
-<p>向量数量积的代数定义可以帮助我们快速计算出结果。</p>
+<p>向量数量积的代数定义可以帮助我们快速计算出结果。下面我们来看看向量数量积的几个运算规律。</p>
+
+$$
+\overrightarrow{v} \cdot \overrightarrow{w}
+=
+\overrightarrow{w} \cdot \overrightarrow{v}
+\\
+(k \cdot \overrightarrow{v}) \cdot \overrightarrow{w}
+=
+\overrightarrow{v} \cdot (k \cdot \overrightarrow{w})
+\\
+(\overrightarrow{v} + \overrightarrow{w})
+\cdot c
+=
+\overrightarrow{v} \cdot c +
+\overrightarrow{w} \cdot c
+$$
+
 <h1 id="向量的方向余弦"><a href="#向量的方向余弦" class="headerlink" title="向量的方向余弦"></a>向量的方向余弦</h1><p>这里我们补充一个方向预弦的概念。在三维直角坐标系中，向量与XYZ三个坐标轴形成的夹角称为<strong>方向角</strong>，该向量与坐标轴形成的余弦值被称为<strong>方向余弦</strong>。方向余弦的求法: <strong>向量各个维度坐标值除以向量模长</strong>。</p>
 
 $$
