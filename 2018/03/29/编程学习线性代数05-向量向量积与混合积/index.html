@@ -289,7 +289,7 @@ $$
 </blockquote>
 <p>向量的混合积是由向量的数量积与向量分一起运算得到的。我们没有必要单独写一个求混合积的方法，完全可以由已经实现的数量积与向量积来得混合积。</p>
 <pre><code>...
-def mixed(m, v, w):
+def vector_mixed(m, v, w):
     return m.cross(v).dot(w)
 ...
 </code></pre><blockquote>
