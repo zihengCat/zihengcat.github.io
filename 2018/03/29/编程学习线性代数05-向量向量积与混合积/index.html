@@ -163,7 +163,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解向量的<strong>向量积</strong>与<strong>混合积</strong>，并通过编程实现它们。</p>
-<h1 id="向量向量积"><a href="#向量向量积" class="headerlink" title="向量向量积"></a>向量向量积</h1><p>两个向量的向量积（英语: Outer Products）向量空间中向量的二元运算。与数量积（点积）不同，向量积的运算结果是一个<strong>向量</strong>而不是一个标量，记作两向量<strong>叉乘</strong>，所得向量的模长为：<strong>原向量模长乘积乘以原向量夹角的正弦值</strong>。所得向量的方向与<strong>两个原向量都垂直</strong>。<br>向量向量积的几何意义可以理解为：<strong>由两向量为邻边构建的平行四边形的面积</strong>。</p>
+<h1 id="向量向量积"><a href="#向量向量积" class="headerlink" title="向量向量积"></a>向量向量积</h1><p>两个向量的向量积（英语: Outer Products）向量空间中向量的二元运算。与数量积（点积）不同，向量积的运算结果是一个<strong>向量</strong>而不是一个标量，记作两向量<strong>叉乘</strong>，向量积所得向量的模长为：<strong>原向量模长乘积乘以原向量夹角的正弦值</strong>，方向与<strong>两个原向量都垂直</strong>。<br>向量向量积的几何意义可以理解为：<strong>由两向量为邻边构建的平行四边形的面积</strong>。</p>
 
 $$
 \Vert \overrightarrow{v} \times \overrightarrow{w}\Vert =
@@ -172,15 +172,19 @@ $$
 \Vert \overrightarrow{w} \Vert
 \cdot
 \sin(\theta)
- \\
+\\
 \overrightarrow{v} \times \overrightarrow{w}
- \perp
+\perp
 \overrightarrow{v},
 \overrightarrow{v} \times \overrightarrow{w}
 \perp
 \overrightarrow{w}
 $$
 
+<blockquote>
+<p>图1: 向量向量积的几何意义</p>
+</blockquote>
+<p>想要计算出向量的向量积，我们需要引入三维直角坐标系，这里我们只考虑三维向量，不考虑高维$(n-1)$向量。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1>
                 <hr>
 <!--
