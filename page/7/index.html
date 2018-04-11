@@ -69,14 +69,6 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -87,6 +79,14 @@
                         <li>
                             <a href="/archives/">
                                 Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -152,6 +152,31 @@
          col-xs-12
          post-container">
     <!-- Main Content -->
+
+<div class="post-preview">
+
+    <a href="/2017/06/19/C-学习笔记-函数默认参数/">
+        <h2 class="post-title">
+            C++学习笔记-函数默认参数
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文介绍C++中的函数默认参数。
+函数默认参数(Default arguments)在C++中，我们可以在函数原型声明中为形式参数指定一个默认的值。例如: 
+void f(int size, int init = 0); /* 函数默认参数 */
+int main(void){
+    f(10);      /* 给1个参数 */
+    f(10, 10);  /* 给2个参数 */......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2017-06-19
+    </p>
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -378,33 +403,6 @@ pwd: pwd [-LP]
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/05/30/Shell学习笔记-Shell状态解释/">
-        <h2 class="post-title">
-            Shell学习笔记 - Bash状态解释
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            前言本文介绍Linux下Bash的几种执行状态。
-Bash 状态有个有意思的Bash环境变量SHELLOPTS，还有一个Bash特殊变量$-。它们揭示出当前Shell的工作状态。
-$ echo &quot;$-&quot;
-himBH
-himBH是什么意思？它又表示当前shell的什么状态呢？
-搜索了Stack Overflow上的问答后，子恒喵大概明白了himBH是啥意思。
-
-h: 以Ha......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-05-30
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 <ul class="pager">
@@ -467,6 +465,8 @@ h: 以Ha......
                         
                             
                         
+                            
+                            <a href="/tags/#Python" title="Python" rel="11">Python</a>
                             
                         
                             
