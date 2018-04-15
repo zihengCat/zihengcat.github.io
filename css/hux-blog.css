@@ -141,6 +141,16 @@ pre {
   /* same background color with highlight.js */
   background-color: #f8f8f8 !important;
 }
+/* using custom code CSS style */
+/*
+code {
+  border: 1px solid #ddd;
+  background: #f6f6f6;
+  padding: 3px;
+  border-radius: 3px;
+  font-size: 90%;
+}
+*/
 pre code {
   display: block;
   width: auto;
