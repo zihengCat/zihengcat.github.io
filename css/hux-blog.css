@@ -95,10 +95,12 @@ article {
 /* overflow-x: hidden; */
 }
 blockquote {
-  color: #808080;
-  font-style: italic;
+/* font-style: italic; */
   font-size: 0.95em;
-  margin: 20px 0 20px;
+  margin: 1em 0 1em 0;
+  padding: 0 1em 0 1em;
+  color: #6a737d;
+  border-left: 0.3em solid #dfe2e5;
 }
 blockquote p {
   margin: 0;
