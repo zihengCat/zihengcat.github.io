@@ -144,20 +144,21 @@ pre {
   background-color: #f8f8f8 !important;
 }
 pre code {
+  /* avoid highlight.js */
+  border: none;
   display: block;
   width: auto;
   white-space: pre;
   word-wrap: normal;
-  /* avoid highlight.js */
-  border: none;
 }
 code {
   /* using custom code CSS style */
+  color: inherit;
   border: 1px solid #ddd;
   background: #f6f6f6;
   padding: 3px;
   border-radius: 3px;
-  font-size: 90%;
+  font-size: 0.9em;
 }
 .post-container a {
   color: #337ab7;
