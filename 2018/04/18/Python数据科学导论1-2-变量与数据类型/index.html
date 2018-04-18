@@ -205,7 +205,11 @@ y = False
 </blockquote>
 <h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><h2 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h2><p>在Python中，我们可以可以使用赋值号<code>=</code>来为一枚变量赋予一个值。</p>
 <pre><code>x = 5
-</code></pre><p>接下来我们就可以使用<code>x</code>这个变量名来取得其存储的实际值<code>5</code>。<br>我们来练习变量的赋值操作。<br>创建名为<code>savings</code>变量并赋值为<code>100</code>。<br>打印变量<code>savings</code>。</p>
+</code></pre><p>接下来我们就可以使用<code>x</code>这个变量名来取得其存储的实际值<code>5</code>。<br>我们来练习变量的赋值操作。</p>
+<ul>
+<li>创建名为<code>savings</code>变量并赋值为<code>100</code>。</li>
+<li>打印变量<code>savings</code>。</li>
+</ul>
 <pre><code># 创建变量savings并赋值100
 savings = 100
 
@@ -214,7 +218,11 @@ print(savings)
 </code></pre><blockquote>
 <p>代码清单: 变量赋值练习</p>
 </blockquote>
-<h2 id="使用变量运算"><a href="#使用变量运算" class="headerlink" title="使用变量运算"></a>使用变量运算</h2><p>还记得上一节我们解决的那个实际问题么？现在我们使用变量来改写。<br>创建新变量<code>factor</code>，赋值为<code>1.10</code>。<br>利用变量<code>savings</code>与<code>factor</code>计算出结果，存储到新变量<code>result</code>中。<br>打印结果。</p>
+<h2 id="使用变量运算"><a href="#使用变量运算" class="headerlink" title="使用变量运算"></a>使用变量运算</h2><p>还记得上一节我们解决的那个实际问题么？现在我们使用变量来改写。<br>创建新变量<code>factor</code>，赋值为<code>1.10</code>。</p>
+<ul>
+<li>利用变量<code>savings</code>与<code>factor</code>计算出结果，存储到新变量<code>result</code>中。</li>
+<li>打印结果。</li>
+</ul>
 <pre><code># 创建变量 savings
 savings = 100
 
@@ -232,16 +240,23 @@ print(result))
 <h2 id="变量数据类型"><a href="#变量数据类型" class="headerlink" title="变量数据类型"></a>变量数据类型</h2><p>在之前的练习中，我们已经熟悉了数值型（整型与浮点型）变量。接下来我们认识另外两个非常常用的数据类型。</p>
 <p><strong>字符串</strong><br>Python中表示文本的基本方式，你可以使用成对单引号<code>&#39;</code>或双引号<code>&quot;</code>来创建字符串。</p>
 <p><strong>布尔值</strong><br>Python中表示逻辑值的方式，只能为真值<code>True</code>或假值<code>False</code>。</p>
-<p>创建一枚字符串变量<code>desc</code>，赋值为<code>&quot;compound interest&quot;</code>。<br>创建一枚布尔值变量<code>profitable</code>，赋值为<code>True</code>。</p>
-<pre><code># 创建变量 desc
-desc = &quot;compound interest&quot;
+<ul>
+<li>创建一枚字符串变量<code>desc</code>，赋值为<code>&quot;compound interest&quot;</code>。</li>
+<li>创建一枚布尔值变量<code>profitable</code>，赋值为<code>True</code>。<br><code>`</code><h1 id="创建变量-desc"><a href="#创建变量-desc" class="headerlink" title="创建变量 desc"></a>创建变量 desc</h1>desc = “compound interest”</li>
+</ul>
+<h1 id="创建变量-profitable"><a href="#创建变量-profitable" class="headerlink" title="创建变量 profitable"></a>创建变量 profitable</h1><p>profitable = True</p>
+<pre><code>&gt; 代码清单: 字符串与布尔值练习
 
-# 创建变量 profitable
-profitable = True
-</code></pre><blockquote>
-<p>代码清单: 字符串与布尔值练习</p>
+## 查看变量数据类型
+
+想查看一个值或者某变量所引值的数据类型，我们可以使用Python内置的功能函数`type()`。
+
+</code></pre><h1 id="创建变量"><a href="#创建变量" class="headerlink" title="创建变量"></a>创建变量</h1><p>a = 3.14<br>b = “pi”<br>c = True</p>
+<h1 id="查看变量数据类型"><a href="#查看变量数据类型" class="headerlink" title="查看变量数据类型"></a>查看变量数据类型</h1><p>print(type(a))<br>print(type(b))<br>print(type(c))<br><code>`</code></p>
+<blockquote>
+<p>代码清单: <code>type()</code>练习</p>
 </blockquote>
-<h2 id="查看变量数据类型"><a href="#查看变量数据类型" class="headerlink" title="查看变量数据类型"></a>查看变量数据类型</h2><h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
+<h2 id="不同数据类型变量的运算"><a href="#不同数据类型变量的运算" class="headerlink" title="不同数据类型变量的运算"></a>不同数据类型变量的运算</h2><h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
 <li>Python数据类型和变量: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658624177ea4f8fcb06bc4d0e8aab2fd7aa65dd95000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658624177ea4f8fcb06bc4d0e8aab2fd7aa65dd95000</a></li>
 </ul>
 
