@@ -162,9 +162,9 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解<em>Python数据科学导论1.1 - 你好, Python</em>的内容。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解<strong>[DAT208x]Python数据科学导论1.1 - 你好, Python</strong>的内容。</p>
 <h1 id="课程视频"><a href="#课程视频" class="headerlink" title="课程视频"></a>课程视频</h1><h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>关于Python</strong></p>
-<p>通过DAT208x - Python数据科学导论这门课程，你可以学习到：Python基础知识，一些数据科学的知识，使用Python数据分析库存储、操作数据。<br>Python是一门非常流行的高级编程语言，最初由 Guido van Rossum 开发。<br>Python是通用型编程语言，你可以在不同领域使用Python编程。<br>由于Python开源性质，在各个领域都有大量好用的Python包可供调用。<br>Python目前有两个大版本（2和3），本课程使用Python3。</p>
+<p>Python是一门非常流行的高级编程语言，最初由 Guido van Rossum 开发，目前由Python开源社区维护。<br>Python是一门通用型编程语言，你可以在不同领域使用Python编程。<br>由于Python开源性质，在各个领域都有大量好用的第三方库可供调用。<br>Python目前有两个大版本（2和3），由于历史原因，Python2会被渐渐淘汰，Python3会成为主流，本课程使用Python3教学。</p>
 <p><strong>Python脚本与Python解释器</strong></p>
 <p>与编译型语言有所不同，Python是一门动态语言。我们可以直接在Python解释器中输入代码语句，也可以将代码语句写入到一个后缀名为<code>.py</code>的文本文件中，再将该文本文件交给Python解释器解释执行。</p>
 <h1 id="知识检验"><a href="#知识检验" class="headerlink" title="知识检验"></a>知识检验</h1><p>Python脚本文件的后缀名是什么？</p>
@@ -177,14 +177,14 @@
 <blockquote>
 <p>解: B</p>
 </blockquote>
-<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><p>学习一门新的编程语言，第一个程序总是会写<code>Hello, world!</code>，这就像一个仪式般的开始。</p>
+<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello, World"></a>Hello, World</h2><p>学习一门新的编程语言，第一个程序总是会写<code>Hello, world!</code>，这就像一个仪式般的开始。</p>
 <pre><code># Say hello, world
 print(&quot;Hello, world!&quot;)
 print(&quot;你好，世界！&quot;)
 </code></pre><blockquote>
 <p>代码清单: Hello, world</p>
 </blockquote>
-<p>接下来，我们使用Python做些运算（加减乘除四则运算）。</p>
+<h2 id="Python作计算器"><a href="#Python作计算器" class="headerlink" title="Python作计算器"></a>Python作计算器</h2><p>接下来，我们使用Python做些运算（加减乘除四则运算）。</p>
 <pre><code># 用Python作加减乘除四则运算
 print(2 + 2)
 print(5 - 3)
@@ -193,13 +193,13 @@ print(4 / 8)
 </code></pre><blockquote>
 <p>代码清单: 将Python用作计算器</p>
 </blockquote>
-<p>让我们了解一下<strong>程序注释</strong>的概念。注释是程序非常重要的一部分，注释使得你和他人都可以充分理解这段代码的意义，注释是给人看而不是给机器看的。<br>想在Python中加入注释，可以使用<code>#</code>符号。从<strong><code>#</code>开始到该行行末</strong>的所有内容都会被Python解释器忽略，不会真正执行。</p>
+<h2 id="Python注释"><a href="#Python注释" class="headerlink" title="Python注释"></a>Python注释</h2><p>让我们了解一下<strong>程序注释</strong>的概念。注释是程序非常重要的一部分，注释使得你和他人都可以充分理解这段代码的意义，注释是给人看而不是给机器看的。<br>想在Python中加入注释，可以使用<code>#</code>符号。从<strong><code>#</code>开始到该行行末</strong>的所有内容都会被Python解释器忽略，不会真正执行。</p>
 <pre><code># 这是Python注释
 print(&quot;这是一条Python语句&quot;)
 </code></pre><blockquote>
 <p>代码清单: 使用Python注释</p>
 </blockquote>
-<p>最后，我们尝试使用Python编程解决实际问题。</p>
+<h2 id="Python编程求解实际问题"><a href="#Python编程求解实际问题" class="headerlink" title="Python编程求解实际问题"></a>Python编程求解实际问题</h2><p>最后，我们尝试使用Python编程解决实际问题。</p>
 <p>假设你将100元用作投资，年收益10%，则7年后本金加收益共多少？<br>第$1$年: $100 \times (1 + 0.1) = 110$<br>第$2$年: $100 \times (1 + 0.1) \times (1 + 0.1) = 121$<br>…<br>第$7$年: $?$</p>
 <pre><code># 幂次(4的2次方)
 print(4 ** 2)
