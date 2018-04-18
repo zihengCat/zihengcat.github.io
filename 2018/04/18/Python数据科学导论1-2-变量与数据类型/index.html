@@ -273,7 +273,30 @@ print(doubledesc)
 </code></pre><blockquote>
 <p>代码清单: 不同数据类型变量的运算</p>
 </blockquote>
-<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
+<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><p>当我们对两个字符串使用<code>+</code>运算符，会将两个字符串拼接起来。<br>但是如果你将字符串类型与数值类型相加，Python就会报错。<br>这也很好理解，Python不知道字符串与数值类型相加后该得到一个什么类型的结果。<br>想解决这个问题，我们需要做明确的数据类型转换。有一些内置的功能函数可以帮助我们做数据类型转换。</p>
+<ul>
+<li><code>str()</code>可以将数据转换为字符串类型</li>
+<li><code>int()</code>可以将数据转换为整型数</li>
+<li><code>float()</code>可以将数据转换为浮点数</li>
+<li><code>bool()</code>可以将数据转换为布尔值</li>
+</ul>
+<p>数据类型转换其实是个挺复杂的话题，涉及到隐式转换与显式转换，转换规则…但现在我们不需要知道这么多，使用Python内置函数，就可以帮助我们解决大部分类型转换的问题了。</p>
+<pre><code># 定义变量
+savings = 100
+result = 100 * 1.10 ** 7
+
+# 使用类型转换
+print(&quot;I started with $&quot; + str(savings) + &quot; and now have $&quot; + str(result) + &quot;. Awesome!&quot;)
+
+# 定义字符串 pi 变量
+pi_string = &quot;3.1415926&quot;
+
+# 转换字符串类型为浮点数类型
+pi_float = float(pi_string)
+</code></pre><blockquote>
+<p>代码清单: 数据类型转换练习</p>
+</blockquote>
+<h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
 <li>Python数据类型和变量: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658624177ea4f8fcb06bc4d0e8aab2fd7aa65dd95000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658624177ea4f8fcb06bc4d0e8aab2fd7aa65dd95000</a></li>
 </ul>
 
