@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/04/15/LeetCode-326-3的幂次/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/04/18/Python数据科学导论1-1-你好Python/">
     <title>
         
-          LeetCode - 326. 3的幂次（Power of Three） - zihengCat
+          Python 数据科学导论1.1 - 你好Python - zihengCat
         
     </title>
 
@@ -139,16 +139,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
-                        
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
-                    <h1>LeetCode - 326. 3的幂次（Power of Three）</h1>
+                    <h1>Python 数据科学导论1.1 - 你好Python</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-04-15
+                        2018-04-18
                     </span>
                 </div>
             </div>
@@ -164,50 +162,40 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 326. 3的幂次（Power of Three）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个整型数，请你写个功能函数判断，该数是否是<code>3</code>的幂次。结果返回一个布尔值。</p>
-<p>例:</p>
-<pre><code>输入: 4
-输出: false
-
-输入: 9
-输出: true
-</code></pre><h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>只考虑是否为<code>3</code>的<strong>非负整数</strong>次幂。</p>
-<p><code>3</code>的幂次形如：<code>3 * 3 * 3 * ... * 3</code>，均可被<code>3</code>无限整除。利用这个特性，我们就可以解决此问题。</p>
-<pre><code>bool isPowerOfThree(int n) {
-    /* 排除掉负数和0 */
-    if(n &lt;= 0) {
-        return 0;
-    }
-    /* 设置商和余数 */
-    int quotient  = n,
-        remainder = 0;
-    /* 循环退出条件: 商为1（除尽） */
-    while(quotient != 1) {
-        remainder = quotient % 3;
-        quotient /= 3;
-        /* 如果有余数（除不尽） */
-        if(remainder) {
-            return 0;
-        }
-    }
-    return 1;
-}
-</code></pre><blockquote>
-<p>C/C++ 代码（常规解法）</p>
-</blockquote>
-<h1 id="特殊解法（不使用迭代-递归）"><a href="#特殊解法（不使用迭代-递归）" class="headerlink" title="特殊解法（不使用迭代/递归）"></a>特殊解法（不使用迭代/递归）</h1>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解 <em>Python 数据科学导论1.1 - 你好Python</em> 的内容。</p>
+<h1 id="课程视频"><a href="#课程视频" class="headerlink" title="课程视频"></a>课程视频</h1><h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>关于Python</strong></p>
+<p>通过<em>DAT208x - Python数据科学导论</em>，你可以学习到：Python基础知识，一些数据科学的知识，使用Python数据分析库存储、操作数据。<br>Python是一门非常流行的高级编程语言，最初由 Guido van Rossum 开发。<br>Python是通用型编程语言，你可以在不同领域使用Python编程。<br>由于Python开源性质，在各个领域都有大量好用的Python包可供调用。<br>Python目前有两个大版本（2和3），本课程使用Python3。</p>
+<p><strong>Python脚本与Python解释器</strong></p>
+<p>与编译型语言有所不同，Python是一门动态语言。我们可以直接在Python解释器中输入代码语句，也可以将代码语句写入到一个后缀名<code>.py</code>的文本文件中，再将该文本文件交给Python解释器解释执行。</p>
+<h1 id="知识检验"><a href="#知识检验" class="headerlink" title="知识检验"></a>知识检验</h1><p>下列语句正确的是:</p>
+<ul>
+<li>[] 123</li>
+<li>[] 2314</li>
+<li>[] 324</li>
+<li>[] 234</li>
+</ul>
+<p>Python脚本文件的后缀名是什么？</p>
+<ul>
+<li>[] <code>.script</code></li>
+<li>[] <code>.pyscript</code></li>
+<li>[] <code>.py</code></li>
+<li>[] <code>.python</code></li>
+</ul>
+<p>如果要计算出<code>3 + 4</code>的结果并打印出来，Python代码该怎么写？</p>
+<ul>
+<li>[] <code>print 3 + 4</code></li>
+<li>[] <code>print(3 + 4)</code></li>
+<li>[] <code>put 3 + 4</code></li>
+<li>[] <code>put(3 + 4)</code></li>
+</ul>
+<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1>
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/04/18/Python数据科学导论1-1-你好Python/" data-toggle="tooltip" data-placement="top" title="Python 数据科学导论1.1 - 你好Python">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/04/11/编程学习线性代数06-平面及其表示/" data-toggle="tooltip" data-placement="top" title="编程学习线性代数06 - 平面及其表示">Next Post &rarr;</a>
+                            <a href="/2018/04/15/LeetCode-326-3的幂次/" data-toggle="tooltip" data-placement="top" title="LeetCode - 326. 3的幂次（Power of Three）">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -227,9 +215,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
-                        
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
                 </section>

@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/04/15/LeetCode-326-3的幂次/">
+    <link rel="canonical" href="https://zihengcat.github.io/i_dont_wanna_use_default_archives/2018/page/3/">
     <title>
         
-          LeetCode - 326. 3的幂次（Power of Three） - zihengCat
+          zihengCat
         
     </title>
 
@@ -126,162 +126,7 @@
     }
 </script>
 
-    <!-- Post Header -->
-<style type="text/css">
-    header.intro-header {
-        background-image: url('/img/home-bg-o.jpg');
-    }
-</style>
-<header class="intro-header" >
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
-                        
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
-                        
-                    </div>
-                    <h1>LeetCode - 326. 3的幂次（Power of Three）</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by zihengCat on
-                        2018-04-15
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-<!-- Post Container -->
-            <div class="
-                 col-lg-8 col-lg-offset-2
-                 col-md-10 col-md-offset-1
-                 post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 326. 3的幂次（Power of Three）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个整型数，请你写个功能函数判断，该数是否是<code>3</code>的幂次。结果返回一个布尔值。</p>
-<p>例:</p>
-<pre><code>输入: 4
-输出: false
-
-输入: 9
-输出: true
-</code></pre><h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>只考虑是否为<code>3</code>的<strong>非负整数</strong>次幂。</p>
-<p><code>3</code>的幂次形如：<code>3 * 3 * 3 * ... * 3</code>，均可被<code>3</code>无限整除。利用这个特性，我们就可以解决此问题。</p>
-<pre><code>bool isPowerOfThree(int n) {
-    /* 排除掉负数和0 */
-    if(n &lt;= 0) {
-        return 0;
-    }
-    /* 设置商和余数 */
-    int quotient  = n,
-        remainder = 0;
-    /* 循环退出条件: 商为1（除尽） */
-    while(quotient != 1) {
-        remainder = quotient % 3;
-        quotient /= 3;
-        /* 如果有余数（除不尽） */
-        if(remainder) {
-            return 0;
-        }
-    }
-    return 1;
-}
-</code></pre><blockquote>
-<p>C/C++ 代码（常规解法）</p>
-</blockquote>
-<h1 id="特殊解法（不使用迭代-递归）"><a href="#特殊解法（不使用迭代-递归）" class="headerlink" title="特殊解法（不使用迭代/递归）"></a>特殊解法（不使用迭代/递归）</h1>
-                <hr>
-<!--
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2018/04/18/Python数据科学导论1-1-你好Python/" data-toggle="tooltip" data-placement="top" title="Python 数据科学导论1.1 - 你好Python">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2018/04/11/编程学习线性代数06-平面及其表示/" data-toggle="tooltip" data-placement="top" title="编程学习线性代数06 - 平面及其表示">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
--->
-            </div>
-<!-- Side Catalog Container -->
-        
-<!-- Sidebar Container -->
-            <div class="
-                 col-lg-8 col-lg-offset-2
-                 col-md-10 col-md-offset-1
-                 sidebar-container">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
-                        
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
-                        
-                    </div>
-                </section>
-                
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </div>
-</article>
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
+    <!-- Default Archive layout, we use archives.ejs instead. -->
 
     <!-- Footer -->
 <footer>
