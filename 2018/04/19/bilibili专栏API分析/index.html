@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/04/18/Python数据科学导论1-2-变量与数据类型/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/04/19/bilibili专栏API分析/">
     <title>
         
-          Python数据科学导论1.2 - 变量与数据类型 - zihengCat
+          bilibili专栏API分析 - zihengCat
         
     </title>
 
@@ -139,14 +139,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                          <a class="tag" href="/tags/#Project" title="Project">Project</a>
                         
                     </div>
-                    <h1>Python数据科学导论1.2 - 变量与数据类型</h1>
+                    <h1>bilibili专栏API分析</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-04-18
+                        2018-04-19
                     </span>
                 </div>
             </div>
@@ -162,155 +162,103 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解<strong>[DAT208x]Python数据科学导论1.2 - 变量与数据类型</strong>的内容。</p>
-<h1 id="课程视频"><a href="#课程视频" class="headerlink" title="课程视频"></a>课程视频</h1><h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>Python变量</strong></p>
-<p>变量是一个特殊的，可以存储值的量。我们可以将一个值赋予给一枚变量，再之后就可以通过变量名来引用这个值了。以下实例可以帮助我们更好地理解变量。</p>
-<pre><code># 将数值赋给变量
-height = 1.79
-weight = 68.7
-
-# 通过变量名引用值
-print(&quot;height = &quot;, height)
-print(&quot;weight = &quot;, weight)
-
-# 计算BMI
-bmi = weight / height ** 2
-print(&quot;BMI = &quot;, bmi)
-</code></pre><blockquote>
-<p>代码清单: 计算BMI</p>
-</blockquote>
-<p>变量名必须是<strong>英文大小写、数字和下划线<code>_</code>的组合，不能以数字开头，也不能与Python保留字冲突</strong>。</p>
-<p><strong>Python数据类型</strong></p>
-<p>Python是一门动态性，弱类型的编程语言。创建变量无需事先声明该变量所存储的数据类型，并且在程序运行时，变量也可以动态改变其所指向的数据类型。<br>但是，我们需要建立起<strong>数据应有类型</strong>这个概念。在Python中，能够直接处理的数据类型有：<strong>整型数、浮点数、字符串、布尔值、空值</strong>。<br>我们可以使用<code>type()</code>查看数据类型。<br>数据类型不同，其运算的表现行为也不尽相同。</p>
-<h1 id="知识检验"><a href="#知识检验" class="headerlink" title="知识检验"></a>知识检验</h1><p>如果要创建变量<code>x</code>并赋值<code>15</code>，这段Python代码该怎么写？</p>
-<p>$A.$ <code>x equals 15</code><br>$B.$ <code>x is 15</code><br>$C.$ <code>15 = x</code><br>$D.$ <code>x = 15</code></p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文对B站专栏API做简要分析。</p>
+<h1 id="表单数据结构"><a href="#表单数据结构" class="headerlink" title="表单数据结构"></a>表单数据结构</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">键</th>
+<th style="text-align:left">值</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>title</code></td>
+<td style="text-align:left"><code>String</code></td>
+<td style="text-align:left">文章标题</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>banner_url</code></td>
+<td style="text-align:left"><code>URL</code></td>
+<td style="text-align:left">文章头图</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>content</code></td>
+<td style="text-align:left"><code>HTML</code></td>
+<td style="text-align:left">文章内容</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>summary</code></td>
+<td style="text-align:left"><code>String</code></td>
+<td style="text-align:left">文章小结(前<code>100</code>字符)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>word</code></td>
+<td style="text-align:left"><code>Number</code></td>
+<td style="text-align:left">文章总字符数(不含空白字符)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>category</code></td>
+<td style="text-align:left"><code>Number</code></td>
+<td style="text-align:left">文章类别</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>list_id</code></td>
+<td style="text-align:left"><code>Number</code></td>
+<td style="text-align:left">轻小说类别下的轻小说文集(其他类别下该值为<code>0</code>)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>tid</code></td>
+<td style="text-align:left"><code>Number</code></td>
+<td style="text-align:left">不明</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>reprint</code></td>
+<td style="text-align:left"><code>Number</code></td>
+<td style="text-align:left">文章转载权限(<code>0</code>不允许转载，<code>1</code>允许规范转载)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>tags</code></td>
+<td style="text-align:left"><code>String</code></td>
+<td style="text-align:left">文章标签(分隔符<code>,</code>)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>image_urls</code></td>
+<td style="text-align:left"><code>URL</code></td>
+<td style="text-align:left">专栏封面图</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>origin_image_urls</code></td>
+<td style="text-align:left"><code>URL</code></td>
+<td style="text-align:left">专栏封面原始图</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>dynamic_intro</code></td>
+<td style="text-align:left">专栏推荐语</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>aid</code></td>
+<td style="text-align:left"><code>Number</code></td>
+<td style="text-align:left">文章编号</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>csrf</code></td>
+<td style="text-align:left"><code>String</code></td>
+<td style="text-align:left">跨域访问</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>解: D</p>
+<p>表: B站专栏表单结构</p>
 </blockquote>
-<p>以下这段Python代码的执行结果为？</p>
-<pre><code>x = 5
-y = 7
-z = x + y + 1
-print(z)
-</code></pre><p>$A.$ <code>5</code><br>$B.$ <code>7</code><br>$C.$ <code>13</code><br>$D.$ <code>12</code></p>
-<blockquote>
-<p>解: C</p>
-</blockquote>
-<p>对于以下这段Python代码，说法正确的是？</p>
-<pre><code>x = &quot;test&quot;
-y = False
-</code></pre><p>$A.$ <code>x</code>是字符串，<code>y</code>是布尔值。<br>$B.$ <code>x</code>是整型数，<code>y</code>是布尔值。<br>$C.$ <code>x</code>是字符串，<code>y</code>是浮点数。<br>$D.$ <code>x</code>是整型数，<code>y</code>是浮点数。</p>
-<blockquote>
-<p>解: A</p>
-</blockquote>
-<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><h2 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h2><p>在Python中，我们可以可以使用赋值号<code>=</code>来为一枚变量赋予一个值。</p>
-<pre><code>x = 5
-</code></pre><p>接下来我们就可以使用<code>x</code>这个变量名来取得其存储的实际值<code>5</code>。<br>我们来练习变量的赋值操作。</p>
-<pre><code># 创建变量 savings 并赋值100
-savings = 100
-
-# 打印变量 savings
-print(savings)
-</code></pre><blockquote>
-<p>代码清单: 变量赋值练习</p>
-</blockquote>
-<h2 id="使用变量运算"><a href="#使用变量运算" class="headerlink" title="使用变量运算"></a>使用变量运算</h2><p>还记得上一节我们编程解决的那个实际问题么？那时候我们直接使用常量进行运算，现在我们使用变量来改写。</p>
-<pre><code># 创建变量 savings
-savings = 100
-
-# 创建变量 factor
-factor = 1.10
-
-# 计算结果
-result = savings * factor ** 7
-
-# 打印结果
-print(result))
-</code></pre><blockquote>
-<p>代码清单: 变量运算练习</p>
-</blockquote>
-<h2 id="变量数据类型"><a href="#变量数据类型" class="headerlink" title="变量数据类型"></a>变量数据类型</h2><p>在之前的练习中，我们已经熟悉了数值型（整型与浮点型）变量。接下来，我们认识一下另外两个非常常用的数据类型。</p>
-<p><strong>字符串</strong><br>Python中表示文本的基本方式，你可以使用成对单引号<code>&#39;</code>或双引号<code>&quot;</code>来创建字符串。</p>
-<p><strong>布尔值</strong><br>Python中表示逻辑值的方式，只能为真值<code>True</code>或假值<code>False</code>。</p>
-<pre><code># 创建字符串变量 desc
-desc = &quot;compound interest&quot;
-
-# 创建布尔值变量 profitable
-profitable = True
-</code></pre><blockquote>
-<p>代码清单: 字符串与布尔值练习</p>
-</blockquote>
-<h2 id="查看数据类型"><a href="#查看数据类型" class="headerlink" title="查看数据类型"></a>查看数据类型</h2><p>如果想要查看一个值或者变量所引值的数据类型，我们可以使用Python内置的功能函数<code>type()</code>。</p>
-<pre><code># 创建变量
-a = 3.14
-b = &quot;pi&quot;
-c = True
-
-# 查看数据类型
-print(type(a))
-print(type(b))
-print(type(c))
-</code></pre><blockquote>
-<p>代码清单: <code>type()</code>练习</p>
-</blockquote>
-<h2 id="不同数据类型变量的运算"><a href="#不同数据类型变量的运算" class="headerlink" title="不同数据类型变量的运算"></a>不同数据类型变量的运算</h2><p>不同数据类型直接的运算行为也不尽相同，比如，相加运算分别用到字符串和数值型上，其表现行为是不同的。我们来针对这一点做些练习吧。</p>
-<pre><code># 创建数据类型不同的一些变量
-savings = 100
-factor = 1.1
-desc = &quot;compound interest&quot;
-
-# 整型数 * 浮点数
-year1 = savings * factor
-
-# 查看 year1 数据类型
-print(type(year1))
-
-# 字符串的加法运算
-doubledesc = desc + desc
-
-# 查看结果
-print(doubledesc)
-</code></pre><blockquote>
-<p>代码清单: 不同数据类型变量的运算</p>
-</blockquote>
-<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><p>当我们对两个字符串使用<code>+</code>运算符，会将两个字符串拼接起来。<br>但是如果你将字符串类型与数值类型相加，Python就会报错。<br>这也很好理解，Python不知道字符串与数值类型相加后该得到一个什么类型的结果。<br>想解决这个问题，我们需要做明确的数据类型转换。有一些内置的功能函数可以帮助我们做数据类型转换。</p>
-<ul>
-<li><code>str()</code>可以将数据转换为字符串类型</li>
-<li><code>int()</code>可以将数据转换为整型数</li>
-<li><code>float()</code>可以将数据转换为浮点数</li>
-<li><code>bool()</code>可以将数据转换为布尔值</li>
-</ul>
-<p>数据类型转换其实是个挺复杂的话题，涉及到隐式转换与显式转换，转换规则…但现在我们不需要知道这么多，使用Python内置函数，就可以帮助我们解决大部分类型转换的问题了。</p>
-<pre><code># 定义变量
-savings = 100
-result = 100 * 1.10 ** 7
-
-# 使用类型转换
-print(&quot;I started with $&quot; + str(savings) + &quot; and now have $&quot; + str(result) + &quot;. Awesome!&quot;)
-
-# 定义字符串 pi 变量
-pi_string = &quot;3.1415926&quot;
-
-# 转换字符串类型为浮点数类型
-pi_float = float(pi_string)
-</code></pre><blockquote>
-<p>代码清单: 数据类型转换练习</p>
-</blockquote>
-<h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
-<li>Python数据类型和变量: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658624177ea4f8fcb06bc4d0e8aab2fd7aa65dd95000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658624177ea4f8fcb06bc4d0e8aab2fd7aa65dd95000</a></li>
-</ul>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/04/19/bilibili专栏API分析/" data-toggle="tooltip" data-placement="top" title="bilibili专栏API分析">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/04/17/Python数据科学导论1-1-你好Python/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论1.1 - 你好, Python">Next Post &rarr;</a>
+                            <a href="/2018/04/18/Python数据科学导论1-2-变量与数据类型/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论1.2 - 变量与数据类型">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -330,7 +278,7 @@ pi_float = float(pi_string)
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                          <a class="tag" href="/tags/#Project" title="Project">Project</a>
                         
                     </div>
                 </section>
