@@ -234,13 +234,13 @@
 </tr>
 <tr>
 <td style="text-align:left"><code>dynamic_intro</code></td>
-<td style="text-align:left"><code>String</code></td>
+<td style="text-align:left"><code>string</code></td>
 <td style="text-align:left">专栏推荐语</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>aid</code></td>
 <td style="text-align:left"><code>int</code></td>
-<td style="text-align:left">文章编号</td>
+<td style="text-align:left">文章草稿编号</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>csrf</code></td>
@@ -252,7 +252,7 @@
 <blockquote>
 <p>表: B站专栏表单结构</p>
 </blockquote>
-<h1 id="富文本编辑器规则"><a href="#富文本编辑器规则" class="headerlink" title="富文本编辑器规则"></a>富文本编辑器规则</h1><table>
+<h1 id="富文本编辑器转换规则"><a href="#富文本编辑器转换规则" class="headerlink" title="富文本编辑器转换规则"></a>富文本编辑器转换规则</h1><table>
 <thead>
 <tr>
 <th style="text-align:center">富文本选项</th>
@@ -294,7 +294,7 @@
 <tr>
 <td style="text-align:center">引用</td>
 <td style="text-align:center"><code>&lt;blockquote&gt;&lt;p&gt;...&lt;/p&gt;&lt;/blockquote&gt;</code></td>
-<td style="text-align:center">可跨行</td>
+<td style="text-align:center">可嵌套其他标签</td>
 </tr>
 <tr>
 <td style="text-align:center">分割线</td>
@@ -319,22 +319,22 @@
 <tr>
 <td style="text-align:center">链接</td>
 <td style="text-align:center"><code>&lt;a&gt;...&lt;/a&gt;</code></td>
-<td style="text-align:center">仅仅支持站内链接</td>
+<td style="text-align:center">仅支持站内链接</td>
 </tr>
 <tr>
 <td style="text-align:center">图片</td>
-<td style="text-align:center"><code>&lt;figure&gt;&lt;/figure&gt;</code></td>
+<td style="text-align:center"><code>&lt;figure&gt;&lt;img src=&quot;&quot;&gt;&lt;/figure&gt;</code></td>
 <td style="text-align:center">图片</td>
 </tr>
 <tr>
 <td style="text-align:center">站内卡片</td>
 <td style="text-align:center"><code>&lt;figure&gt;&lt;/figure&gt;</code></td>
-<td style="text-align:center">各种卡片</td>
+<td style="text-align:center">各种站内卡片</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>表: B站富文本编辑器转换规则</p>
+<p>表: B站专栏富文本编辑器转换规则</p>
 </blockquote>
 
                 <hr>
