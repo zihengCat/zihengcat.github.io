@@ -162,23 +162,25 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解<strong>[DAT208x]Python数据科学导论1.1 - 你好, Python</strong>的内容。</p>
-<h1 id="课程视频"><a href="#课程视频" class="headerlink" title="课程视频"></a>课程视频</h1><h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>关于Python</strong></p>
-<p>Python是一门非常流行的高级编程语言，最初由 Guido van Rossum 开发，目前由Python开源社区维护。<br>Python是一门通用型编程语言，你可以在不同领域使用Python编程。<br>由于Python开源性质，在各个领域都有大量好用的第三方库可供调用。<br>Python目前有两个大版本（2和3），由于历史原因，Python2会被渐渐淘汰，Python3会成为主流，本课程使用Python3教学。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是对<strong>[DAT208x] Python数据科学导论1.1 - 你好, Python</strong>做的内容梳理。</p>
+<h1 id="课程视频（bilibili源）"><a href="#课程视频（bilibili源）" class="headerlink" title="课程视频（bilibili源）"></a>课程视频（bilibili源）</h1><p><a href="https://www.bilibili.com/video/av22252199/?p=2" target="_blank" rel="noopener">av22252199 - P2</a></p>
+<h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>关于Python</strong></p>
+<p>Python是一门非常流行的高级编程语言，最初由 Guido van Rossum 开发，目前由Python开源社区维护。<br>Python是一门通用型编程语言，你可以在不同领域使用Python编程。<br>由于Python开源性质，在各个领域都有大量好用的第三方库可供调用。<br>Python目前有两个大版本（2和3），由于历史原因，Python2将会被逐渐淘汰，Python3会成为主流，本课程使用Python3教学。</p>
 <p><strong>Python脚本与Python解释器</strong></p>
-<p>与编译型语言有所不同，Python是一门动态语言。我们可以直接在Python解释器中输入代码语句，也可以将代码语句写入到一个后缀名为<code>.py</code>的文本文件中，再将该文本文件交给Python解释器解释执行。</p>
-<h1 id="知识检验"><a href="#知识检验" class="headerlink" title="知识检验"></a>知识检验</h1><p>Python脚本文件的后缀名是什么？</p>
-<p>$A.$ <code>.script</code><br>$B.$ <code>.pyscript</code><br>$C.$ <code>.py</code><br>$D.$ <code>.python</code></p>
+<p>与编译型语言有所不同，Python是一门动态语言。这意味着我们可以直接在Python解释器中输入代码语句执行；也可以将代码语句写入到一个后缀名为<code>.py</code>的文本文件中，再将该文本文件输入到Python解释器解释执行。</p>
+<h1 id="知识点考察"><a href="#知识点考察" class="headerlink" title="知识点考察"></a>知识点考察</h1><p>Python脚本文件的后缀名是什么？</p>
+<p>A. <code>.script</code><br>B. <code>.pyscript</code><br>C. <code>.py</code><br>D. <code>.python</code></p>
 <blockquote>
 <p>解: C</p>
 </blockquote>
 <p>如果要计算出<code>3 + 4</code>的结果并打印出来，Python代码该怎么写？</p>
-<p>$A.$ <code>print 3 + 4</code><br>$B.$ <code>print(3 + 4)</code><br>$C.$ <code>put 3 + 4</code><br>$D.$ <code>put(3 + 4)</code></p>
+<p>A. <code>print 3 + 4</code><br>B. <code>print(3 + 4)</code><br>C. <code>put 3 + 4</code><br>D. <code>put(3 + 4)</code></p>
 <blockquote>
 <p>解: B</p>
 </blockquote>
-<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello, World"></a>Hello, World</h2><p>学习一门新的编程语言，第一个程序总是会写<code>Hello, world!</code>，这就像一个仪式般的开始。</p>
-<pre><code># Say hello, world
+<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><p>本节的编程练习，你将亲手撰写你自己的Python代码。你将学会如何与Python解释器打交道，以及使用Python来做些运算。</p>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello, World"></a>Hello, World</h2><p>学习一门新的编程语言，第一个程序总是会写<code>Hello, world!</code>，这就像一个仪式般的开始。</p>
+<pre><code># 让 Python 说出 hello, world
 print(&quot;Hello, world!&quot;)
 print(&quot;你好，世界！&quot;)
 </code></pre><blockquote>
@@ -193,14 +195,15 @@ print(4 / 8)
 </code></pre><blockquote>
 <p>代码清单: 将Python用作计算器</p>
 </blockquote>
-<h2 id="Python注释"><a href="#Python注释" class="headerlink" title="Python注释"></a>Python注释</h2><p>让我们了解一下<strong>程序注释</strong>的概念。注释是程序非常重要的一部分，注释使得你和他人都可以充分理解这段代码的意义，注释是给人看而不是给机器看的。<br>想在Python中加入注释，可以使用<code>#</code>符号。从<strong><code>#</code>开始到该行行末</strong>的所有内容都会被Python解释器忽略，不会真正执行。</p>
+<h2 id="Python程序注释"><a href="#Python程序注释" class="headerlink" title="Python程序注释"></a>Python程序注释</h2><p>让我们了解一下<strong>程序注释</strong>的概念。注释是程序非常重要的一部分，注释使得你和他人都可以充分理解代码的意义，注释是给人看而不是给机器看的。</p>
+<p>想在Python中加入注释，我们可以使用<code>#</code>符号。从<strong><code>#</code>开始到该行行末</strong>的所有内容都会被Python解释器忽略，不会被真正执行。</p>
 <pre><code># 这是Python注释
 print(&quot;这是一条Python语句&quot;)
 </code></pre><blockquote>
 <p>代码清单: 使用Python注释</p>
 </blockquote>
-<h2 id="Python编程求解实际问题"><a href="#Python编程求解实际问题" class="headerlink" title="Python编程求解实际问题"></a>Python编程求解实际问题</h2><p>最后，我们尝试使用Python编程解决实际问题。</p>
-<p>假设你将100元用作投资，年收益10%，则7年后本金加收益共多少？<br>第$1$年: $100 \times (1 + 0.1) = 110$<br>第$2$年: $100 \times (1 + 0.1) \times (1 + 0.1) = 121$<br>…<br>第$7$年: $?$</p>
+<h2 id="Python编程求解实际问题"><a href="#Python编程求解实际问题" class="headerlink" title="Python编程求解实际问题"></a>Python编程求解实际问题</h2><p>最后，我们尝试使用Python编程解决一个实际问题。</p>
+<p>假设你将$100$元用作投资，年收益$10%$，则$7$年后本金加收益共计多少？<br>第$1$年: $100 \times (1 + 0.1) = 110$<br>第$2$年: $100 \times (1 + 0.1) \times (1 + 0.1) = 121$<br>…<br>第$7$年: $?$</p>
 <pre><code># 幂次(4的2次方)
 print(4 ** 2)
 
@@ -215,9 +218,9 @@ print(100 * (1 + 0.1) ** 7)
 <h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
 <li><p>关于Python: <a href="https://zh.wikipedia.org/wiki/Python" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Python</a></p>
 </li>
-<li><p>安装Python: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316090478912dab2a3a9e8f4ed49d28854b292f85bb000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316090478912dab2a3a9e8f4ed49d28854b292f85bb000</a></p>
+<li><p>Windows下安装Python: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316090478912dab2a3a9e8f4ed49d28854b292f85bb000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316090478912dab2a3a9e8f4ed49d28854b292f85bb000</a></p>
 </li>
-<li><p>从源码编译安装Python: <a href="https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/">https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/</a></p>
+<li><p>Linux下从源码编译安装Python: <a href="https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/">https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/</a></p>
 </li>
 </ul>
 
