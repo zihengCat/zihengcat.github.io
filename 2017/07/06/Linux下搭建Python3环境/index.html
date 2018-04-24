@@ -69,16 +69,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -164,22 +164,23 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍在Linux环境下编译安装Python3。</p>
-<h1 id="编译安装Python3"><a href="#编译安装Python3" class="headerlink" title="编译安装Python3"></a>编译安装Python3</h1><p>在子恒喵使用的CentOS7 Linux 系统中，默认的<code>yum</code>源是没有最新版Python3的安装包的。<br>系统自带的是一枚老版本的Python2，而且精简过，只为一些系统应用提供支持，我们不要随意更动，否则会出现各种各样的问题…(比如<code>yum</code>不能用)<br>所以，手动编译安装Python3，是Linux下搭建Python学习环境的最佳选择。</p>
-<h2 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 编译环境"></a>Step 1 编译环境</h2><p>我们需要安装几个基础的编译工具包，这是编译源码所必需的。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在Linux环境下编译安装<code>Python3</code>。</p>
+<h1 id="编译安装Python3"><a href="#编译安装Python3" class="headerlink" title="编译安装Python3"></a>编译安装Python3</h1><p>在子恒喵使用的<em>CentOS7 Linux</em>系统上，默认的<code>yum</code>源没有最新版的Python3。</p>
+<p>系统自带一枚老版本的Python2，而且精简过，为一些系统应用提供支持，我们不应该随意更动，不然会出现各种各样的Bug…(比如<code>yum</code>不能用)</p>
+<p>所以，手动编译安装Python3，是Linux下搭建Python学习环境的最佳选择。</p>
+<h2 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 编译环境"></a>Step 1 编译环境</h2><p>我们需要安装基础的编译工具包，这是编译源码所必需的。</p>
 <pre><code>$ sudo yum install gcc make
-$ sudo yum install wget
-</code></pre><ul>
-<li><code>gcc</code>，<code>make</code>用来编译Python源码（Python语言的官方实现是CPython）</li>
-<li><code>wget</code>是Linux下一个好用的下载工具，可以用来下载Python源码包（大部分Linux系统都会默认安装）</li>
-</ul>
-<h2 id="Step-2-获取源码"><a href="#Step-2-获取源码" class="headerlink" title="Step 2 获取源码"></a>Step 2 获取源码</h2><p>接下来，我们前往<a href="https://www.python.org" target="_blank" rel="noopener">Python官方网站</a>下载最新的Python3源码包。<br>注意，一定要下载源码包<code>source tarball</code>哦。</p>
+</code></pre><p><code>gcc</code>，<code>make</code>基础编译工具链，用来编译Python源码（Python语言的官方实现便是CPython）</p>
+<h2 id="Step-2-获取源码"><a href="#Step-2-获取源码" class="headerlink" title="Step 2 获取源码"></a>Step 2 获取源码</h2><p>接下来，我们前往<a href="https://www.python.org" target="_blank" rel="noopener">Python官方网站</a>下载最新的Python3源码包。</p>
+<p>注意，一定要下载源码包<code>source tarball</code>哦。</p>
 <pre><code>$ wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
-</code></pre><p>解压缩，解包（xz压缩包要分两步解压，gz就可以在tar命令中一步搞定）</p>
+</code></pre><p>解压缩，解包（<code>.xz</code>压缩包要分两步解压，<code>.gz</code>包解压就可以在<code>tar</code>命令中一步到位）。</p>
 <pre><code>$ xz -d ./Python-3.6.1.tar.xz
 $ tar -xv -f ./Python-3.6.1.tar
-</code></pre><p>嗯，80+MB的源码，XZ直接给压到16MB…相当强大。</p>
-<h2 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 安装依赖"></a>Step 3 安装依赖</h2><p><code>cd</code>进入Python3源码目录，我们可以先看一下<code>README.rst</code>这个文件，上面告诉了我们编译安装的具体步骤。<br>但是，在编译安装之前，我们需要先安装一些Python依赖包，这是README上没有提到的。(会在configure检查依赖时告诉你…)<br>为了省去后续查找安装依赖的麻烦，子恒喵在这里把所需要的依赖包都写出来。</p>
+</code></pre><p><em>80+MB</em>的源码，<code>xz</code>可以直接压到<code>16MB</code>…着实强大。</p>
+<h2 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 安装依赖"></a>Step 3 安装依赖</h2><p>我们<code>cd</code>进入Python3源码目录，我们可以先看一下<code>README.rst</code>这个文件，上面告诉了我们编译安装的具体步骤。</p>
+<p>在编译安装之前，我们需要先安装一些Python依赖包，这是<code>README</code>上没有提到的。(会在<code>./configure</code>检查依赖时告诉你…)</p>
+<p>为了省去后续查找安装依赖的麻烦，子恒喵在这里把所需要的依赖包全部列出。</p>
 <pre><code>#/bin/bash
 
 deps=&quot;zlib-devel \
@@ -198,25 +199,30 @@ do
 done
 
 exit ${?}
-</code></pre><p>手写一段shell脚本，把依赖包都装上。<br><code>debian</code>系的系统，可以在远端仓库里寻找相应的依赖包。</p>
-<h2 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 编译安装"></a>Step 4 编译安装</h2><p>依赖都安装好之后，接下来，我们就按照<code>README</code>的指引，编译我们的Python3吧。<br>请确保在Python源代码目录下执行以下操作:</p>
+</code></pre><blockquote>
+<p>代码清单: Python依赖库</p>
+</blockquote>
+<p>手写一段shell脚本，就把依赖包都装上。对于<code>Debian</code>系的系统，可以<code>apt</code>寻找相应的依赖包安装。</p>
+<h2 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 编译安装"></a>Step 4 编译安装</h2><p>依赖都安装好之后，接下来，我们就按照<code>README</code>的指引，编译安装Python3。请确保在Python源代码目录下执行以下操作:</p>
 <pre><code>$ ./configure --prefix=/usr/local/python-3.6.1 --enable-optimizations
-</code></pre><p>此命令会检查当前系统的编译环境，软件依赖性等等，如果没有问题的话，会成功生成<code>Makefile</code>。<br>这里我们添加了两个参数:</p>
+</code></pre><p>此命令会检查当前系统的编译环境，软件依赖性等等，如果没有问题的话，会成功生成<code>Makefile</code>。</p>
+<p>这里我们添加了两个参数:</p>
 <ul>
-<li><code>--prefix</code> 自定义安装路径，默认在<code>/usr/local</code>，子恒喵习惯单独指定一个安装目录，这样管理起来会比较方便</li>
-<li><code>--enable-optimizations</code> 开启编译优化选项，增加编译时间，换取性能提升，这是值得的。</li>
+<li><code>--prefix</code> 自定义安装路径，默认在<code>/usr/local</code>，个人习惯单独指定一个安装目录，这样管理起来会比较方便。</li>
+<li><code>--enable-optimizations</code> 开启编译优化选项，增加编译时间，换取性能提升，这是非常值得的。</li>
 </ul>
 <p>更多编译参数可以查看: <code>./configure --help</code></p>
 <pre><code>$ make
 $ sudo make install
-</code></pre><p>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。<br>如果自定义了安装路径，别忘了将路径加入<code>PATH</code>环境变量中，并将python3链接到<code>/usr/bin/</code>哦。^_^</p>
+</code></pre><p>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。</p>
+<p>如果<code>--prefix</code>自定义了安装目录，别忘了将路径加入<code>PATH</code>环境变量中，并将<code>Python3</code>链接到<code>/usr/bin/</code>下哦。</p>
 <pre><code>$ echo &#39;export PATH=${PATH}:&lt;prefix/bin&gt;&#39; &gt;&gt; ~/.bashrc
 </code></pre><h2 id="Step-5-检验安装"><a href="#Step-5-检验安装" class="headerlink" title="Step 5 检验安装"></a>Step 5 检验安装</h2><pre><code>$ python3
 Python 3.6.1 (default, Jul  6 2017, 15:12:56)
 [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux
 Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
 &gt;&gt;&gt;
-</code></pre><p>至此，最新版Python3已经安装完成，愉快地使用Python编程吧!</p>
+</code></pre><p>至此，最新版Python3已经安装完成，我们可以愉快地使用Python编程了!</p>
 
                 <hr>
 <!--
