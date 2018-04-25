@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/04/17/Python数据科学导论1-1-你好Python/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/04/20/Python数据科学导论2-1-列表数据类型/">
     <title>
         
-          Python数据科学导论1.1 - 你好, Python - zihengCat
+          Python数据科学导论2.1 - 列表数据类型 - zihengCat
         
     </title>
 
@@ -142,11 +142,11 @@
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
-                    <h1>Python数据科学导论1.1 - 你好, Python</h1>
+                    <h1>Python数据科学导论2.1 - 列表数据类型</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-04-17
+                        2018-04-20
                     </span>
                 </div>
             </div>
@@ -162,79 +162,101 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是对<strong>[DAT208x] Python数据科学导论1.1 - 你好, Python</strong>做的内容梳理。</p>
-<h1 id="课程视频（bilibili源）"><a href="#课程视频（bilibili源）" class="headerlink" title="课程视频（bilibili源）"></a>课程视频（bilibili源）</h1><p><a href="https://www.bilibili.com/video/av22252199/?p=2" target="_blank" rel="noopener">av22252199 - P2</a></p>
-<h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>关于Python</strong></p>
-<p>Python是一门非常流行的高级编程语言，最初由 Guido van Rossum 开发，目前由Python开源社区维护。<br>Python是一门通用型编程语言，你可以在不同领域使用Python编程。<br>由于Python开源性质，在各个领域都有大量好用的第三方库可供调用。<br>Python目前有两个大版本（2和3），由于历史原因，Python2将会被逐渐淘汰，Python3会成为主流，本课程使用Python3教学。</p>
-<p><strong>Python脚本与Python解释器</strong></p>
-<p>与编译型语言有所不同，Python是一门动态语言。这意味着我们可以直接在Python解释器中输入代码语句执行；也可以将代码语句写入到一个后缀名为<code>.py</code>的文本文件中，再将该文本文件输入到Python解释器解释执行。</p>
-<h1 id="知识点考察"><a href="#知识点考察" class="headerlink" title="知识点考察"></a>知识点考察</h1><p>Python脚本文件的后缀名是什么？</p>
-<p>A. <code>.script</code><br>B. <code>.pyscript</code><br>C. <code>.py</code><br>D. <code>.python</code></p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是对<strong>[DAT208x]Python数据科学导论2.1 - 列表数据类型</strong>做的内容梳理。</p>
+<h1 id="课程视频（Bilibili源）"><a href="#课程视频（Bilibili源）" class="headerlink" title="课程视频（Bilibili源）"></a>课程视频（Bilibili源）</h1><p><a href="https://www.bilibili.com/video/av22252199/?p=4" target="_blank" rel="noopener">av22252199 - P4</a></p>
+<h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>Python列表</strong></p>
+<p>有时候我们使用一枚枚变量来存储数据不太方便，我们可以Python List列表数据类型。列表是一种复合数据类型，表示一系列数据的集合。列表是有序的，我们可以通过下标/索引方便地取得列表中存储的数据。</p>
+<p>列表可以存储任何类型的数据，比如：列表中再嵌套子列表。</p>
+<p><strong>建立Python列表</strong></p>
+<p>我们可以使用一对方括号<code>[ ]</code>来建立Python列表。列表中的数据以逗号<code>,</code>分隔。</p>
+<h1 id="知识点考察"><a href="#知识点考察" class="headerlink" title="知识点考察"></a>知识点考察</h1><p>问：如果<code>fam</code>是一枚Python列表变量，则<code>type(fam)</code>的结果为？</p>
+<p>A =&gt; <code>pylist</code><br>B =&gt; <code>struct</code><br>C =&gt; <code>integer</code><br>D =&gt; <code>list</code></p>
 <blockquote>
-<p>解: C</p>
+<p>解: D</p>
 </blockquote>
-<p>如果要计算出<code>3 + 4</code>的结果并打印出来，Python代码该怎么写？</p>
-<p>A. <code>print 3 + 4</code><br>B. <code>print(3 + 4)</code><br>C. <code>put 3 + 4</code><br>D. <code>put(3 + 4)</code></p>
+<p>问：以下构造Python列表语句中，不合法的是？</p>
+<p>A =&gt; <code>x = [&quot;this&quot;, &quot;is&quot;, &quot;a&quot; True &quot;list&quot;]</code><br>B =&gt; <code>x = [&quot;this&quot;, &quot;is&quot;, &quot;a&quot; True, &quot;list&quot;]</code><br>C =&gt; <code>x = [&quot;this&quot;, &quot;is&quot;,  1, True, &quot;list&quot;]</code><br>D =&gt; <code>x = [&quot;this&quot; + &quot;is&quot;,  1, True, &quot;list&quot;]</code></p>
 <blockquote>
-<p>解: B</p>
+<p>解: A</p>
 </blockquote>
-<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><p>本节的编程练习，你将亲手撰写你自己的Python代码。你将学会如何与Python解释器打交道，以及使用Python来做些运算。</p>
-<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello, world!"></a>Hello, world!</h2><p>学习一门新的编程语言，第一个程序总是会写<code>Hello, world!</code>，这就像一个仪式般的开始。</p>
-<pre><code># 让 Python 说出 Hello, world!
-print(&quot;Hello, world!&quot;)
-print(&quot;你好，世界！&quot;)
-</code></pre><blockquote>
-<p>代码清单: Hello, world!</p>
+<p>问：以下Python列表中存储的数据类型有？（多选）</p>
+<pre><code>x = [&quot;you&quot;, 2, &quot;are&quot;, &quot;so&quot;, True]
+</code></pre><p>A =&gt; <code>int</code><br>B =&gt; <code>float</code><br>C =&gt; <code>str</code><br>D =&gt; <code>bool</code><br>E =&gt; <code>list</code></p>
+<blockquote>
+<p>解: A, C, D</p>
 </blockquote>
-<h2 id="Python作计算器"><a href="#Python作计算器" class="headerlink" title="Python作计算器"></a>Python作计算器</h2><p>接下来，我们使用Python做些运算（加减乘除四则运算）。</p>
-<pre><code># 用Python作加减乘除四则运算
-print(2 + 2)
-print(5 - 3)
-print(2 * 3)
-print(4 / 8)
-</code></pre><blockquote>
-<p>代码清单: 将Python用作计算器</p>
-</blockquote>
-<h2 id="Python程序注释"><a href="#Python程序注释" class="headerlink" title="Python程序注释"></a>Python程序注释</h2><p>让我们了解一下<strong>程序注释</strong>的概念。注释是程序非常重要的一部分，注释使得你和他人都可以充分理解代码的意义，注释是给人看而不是给机器看的。</p>
-<p>想在Python中加入注释，我们可以使用<code>#</code>符号。从<strong><code>#</code>开始到该行行末</strong>的所有内容都会被Python解释器忽略，不会被真正执行。</p>
-<pre><code># 这是Python注释
-print(&quot;这是一条Python语句&quot;)
-</code></pre><blockquote>
-<p>代码清单: 使用Python注释</p>
-</blockquote>
-<h2 id="Python编程求解实际问题"><a href="#Python编程求解实际问题" class="headerlink" title="Python编程求解实际问题"></a>Python编程求解实际问题</h2><p>最后，我们尝试使用Python编程解决一个实际问题。</p>
-<p>假设你将$100$元用作投资，年收益$10\%$，则$7$年后本金加收益共计多少？<br>第$1$年: $100 \times (1 + 0.1) = 110$<br>第$2$年: $100 \times (1 + 0.1) \times (1 + 0.1) = 121$<br>…<br>第$7$年: $?$</p>
-<pre><code># 幂次(4的2次方)
-print(4 ** 2)
+<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><p>本节的编程练习，你将学习使用不同的方式创建Python列表，并探究Python列表的一些有趣特性。</p>
+<h2 id="创建列表"><a href="#创建列表" class="headerlink" title="创建列表"></a>创建列表</h2><p>不同于<code>int</code>，<code>bool</code>这样的基础数据类型，列表是一种复合数据类型。你可以将各种不同数据类型都装进一个列表里。</p>
+<p>我们来创建一个列表，按顺序将一系列变量都装入，再打印出列表看一看。</p>
+<pre><code># 一些表示面积的变量（单位：平方米）
+hall = 11.25
+kit = 18.0
+liv = 20.0
+bed = 10.75
+bath = 9.50
 
-# 取余(18对7取余数)
-print(18 % 7)
+# 创建列表`areas`
+areas = [hall, kit, liv, bed, bath, ]
 
-# 编程解决实际问题
-print(100 * (1 + 0.1) ** 7)
+# 打印`areas`
+print(areas)
 </code></pre><blockquote>
-<p>代码清单: 使用Python解决实际问题</p>
+<p>代码清单: 创建列表练习</p>
+</blockquote>
+<h2 id="包含不同数据类型的列表"><a href="#包含不同数据类型的列表" class="headerlink" title="包含不同数据类型的列表"></a>包含不同数据类型的列表</h2><p>Python列表可以装入任何类型的数据，虽然这不太常用。在上一节编程练习中，我们将房间的面积装入了列表，现在我们将房间的名称也装进去。</p>
+<pre><code># 一些表示面积的变量（单位：平方米）
+hall = 11.25
+kit = 18.0
+liv = 20.0
+bed = 10.75
+bath = 9.50
+
+# 调整列表`areas`
+areas = [&quot;hallway&quot;, hall,
+         &quot;kitchen&quot;, kit,
+         &quot;living room&quot;, liv,
+         &quot;bedroom&quot;, bed,
+         &quot;bathroom&quot;, bath]
+
+# 打印`areas`
+print(areas)
+</code></pre><blockquote>
+<p>代码清单: 包含不同数据类型的列表练习</p>
+</blockquote>
+<h2 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h2><p>Python列表装入任何数据类型，当然也包括列表，列表是可以嵌套使用的。我们对上一节编程练习中的代码使用列表嵌套进一步改进。</p>
+<pre><code># 一些表示面积的变量（单位：平方米）
+hall = 11.25
+kit = 18.0
+liv = 20.0
+bed = 10.75
+bath = 9.50
+
+# 嵌套列表`areas`
+areas = [[ &quot;hallway&quot;, hall, ],
+         [ &quot;kitchen&quot;, kit, ],
+         [ &quot;living room&quot;, liv, ],
+         [ &quot;bedroom&quot;, bed, ],
+         [ &quot;bathroom&quot;, bath,]]
+
+# 打印`areas`
+print(areas)
+
+# 打印`areas`的类型
+print(type(areas))
+</code></pre><blockquote>
+<p>代码清单: 列表嵌套练习</p>
 </blockquote>
 <h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
-<li><p>关于Python: <a href="https://zh.wikipedia.org/wiki/Python" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Python</a></p>
-</li>
-<li><p>Windows下安装Python: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316090478912dab2a3a9e8f4ed49d28854b292f85bb000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316090478912dab2a3a9e8f4ed49d28854b292f85bb000</a></p>
-</li>
-<li><p>Linux下从源码编译安装Python: <a href="https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/">https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83/</a></p>
-</li>
+<li>Python列表与元组: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316724772904521142196b74a3f8abf93d8e97c6ee6000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316724772904521142196b74a3f8abf93d8e97c6ee6000</a></li>
 </ul>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/04/17/Python数据科学导论0-1-扬帆启航/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论0.1 - 扬帆起航">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/04/15/LeetCode-326-3的幂次/" data-toggle="tooltip" data-placement="top" title="LeetCode - 326. 3的幂次（Power of Three）">Next Post &rarr;</a>
+                            <a href="/2018/04/19/bilibili专栏API分析/" data-toggle="tooltip" data-placement="top" title="bilibili专栏API分析">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
