@@ -69,16 +69,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -163,13 +163,13 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解<strong>[DAT208x]Python数据科学导论1.2 - 变量与数据类型</strong>的内容。</p>
-<h1 id="课程视频"><a href="#课程视频" class="headerlink" title="课程视频"></a>课程视频</h1><h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>Python变量</strong></p>
-<p>变量是一个特殊的，可以存储值的量。我们可以将一个值赋予给一枚变量，再之后就可以通过变量名来引用这个值了。以下实例可以帮助我们更好地理解变量。</p>
-<pre><code># 将数值赋给变量
+<h1 id="课程视频"><a href="#课程视频" class="headerlink" title="课程视频"></a>课程视频</h1><h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>变量的概念</strong></p>
+<p><strong>变量</strong>是一个特殊的，可以改变存储值的量。我们可以将一个值赋予给一枚变量，之后就可以通过变量名来引用这个值了。以下实例可以帮助我们更好地理解变量。</p>
+<pre><code># 创建变量并赋值
 height = 1.79
 weight = 68.7
 
-# 通过变量名引用值
+# 通过变量名引用变量值
 print(&quot;height = &quot;, height)
 print(&quot;weight = &quot;, weight)
 
@@ -179,11 +179,15 @@ print(&quot;BMI = &quot;, bmi)
 </code></pre><blockquote>
 <p>代码清单: 计算BMI</p>
 </blockquote>
-<p>变量名必须是<strong>英文大小写、数字和下划线<code>_</code>的组合，不能以数字开头，也不能与Python保留字冲突</strong>。</p>
+<p><strong>变量名规则</strong></p>
+<p>在Python中，变量名必须是<strong>英文大小写、数字和下划线<code>_</code>的组合，不能以数字开头，也不能与Python关键字冲突</strong>。</p>
 <p><strong>Python数据类型</strong></p>
-<p>Python是一门动态性，弱类型的编程语言。创建变量无需事先声明该变量所存储的数据类型，并且在程序运行时，变量也可以动态改变其所指向的数据类型。<br>但是，我们需要建立起<strong>数据应有类型</strong>这个概念。在Python中，能够直接处理的数据类型有：<strong>整型数、浮点数、字符串、布尔值、空值</strong>。<br>我们可以使用<code>type()</code>查看数据类型。<br>数据类型不同，其运算的表现行为也不尽相同。</p>
+<p>Python是一门<strong>动态性，弱类型</strong>的编程语言。创建变量无需事先声明该变量所存储的数据类型，并且在程序运行时，变量也可以动态改变其所指向的数据类型。</p>
+<p>但是，我们要建立起<strong>数据应有类型</strong>这一概念。在Python中，能够直接处理的数据类型有：<strong>整型数、浮点数、字符串、布尔值、空值</strong>。</p>
+<p>我们可以使用内置功能函数<code>type()</code>查看数据类型。</p>
+<p>数据类型不同，其运算行为也不尽相同。</p>
 <h1 id="知识检验"><a href="#知识检验" class="headerlink" title="知识检验"></a>知识检验</h1><p>如果要创建变量<code>x</code>并赋值<code>15</code>，这段Python代码该怎么写？</p>
-<p>$A.$ <code>x equals 15</code><br>$B.$ <code>x is 15</code><br>$C.$ <code>15 = x</code><br>$D.$ <code>x = 15</code></p>
+<p>A. <code>x equals 15</code><br>B. <code>x is 15</code><br>C. <code>15 = x</code><br>D. <code>x = 15</code></p>
 <blockquote>
 <p>解: D</p>
 </blockquote>
@@ -192,36 +196,39 @@ print(&quot;BMI = &quot;, bmi)
 y = 7
 z = x + y + 1
 print(z)
-</code></pre><p>$A.$ <code>5</code><br>$B.$ <code>7</code><br>$C.$ <code>13</code><br>$D.$ <code>12</code></p>
+</code></pre><p>A. <code>5</code><br>B. <code>7</code><br>C. <code>13</code><br>D. <code>12</code></p>
 <blockquote>
 <p>解: C</p>
 </blockquote>
 <p>对于以下这段Python代码，说法正确的是？</p>
 <pre><code>x = &quot;test&quot;
 y = False
-</code></pre><p>$A.$ <code>x</code>是字符串，<code>y</code>是布尔值。<br>$B.$ <code>x</code>是整型数，<code>y</code>是布尔值。<br>$C.$ <code>x</code>是字符串，<code>y</code>是浮点数。<br>$D.$ <code>x</code>是整型数，<code>y</code>是浮点数。</p>
+</code></pre><p>A. <code>x</code>是字符串，<code>y</code>是布尔值。<br>B. <code>x</code>是整型数，<code>y</code>是布尔值。<br>C. <code>x</code>是字符串，<code>y</code>是浮点数。<br>D. <code>x</code>是整型数，<code>y</code>是浮点数。</p>
 <blockquote>
 <p>解: A</p>
 </blockquote>
-<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><h2 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h2><p>在Python中，我们可以可以使用赋值号<code>=</code>来为一枚变量赋予一个值。</p>
-<pre><code>x = 5
-</code></pre><p>接下来我们就可以使用<code>x</code>这个变量名来取得其存储的实际值<code>5</code>。<br>我们来练习变量的赋值操作。</p>
-<pre><code># 创建变量 savings 并赋值100
+<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><p>本节的编程练习，你将学会创建变量并使用变量做运算，以及认识不同数据类型的变量与它们的运算性质。</p>
+<h2 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h2><p>在Python中，我们可以可以使用赋值号<code>=</code>来为一枚变量赋予一个值，如：</p>
+<pre><code>创建变量`x`并赋值为5
+x = 5
+</code></pre><p>之后我们就可以使用<code>x</code>这个变量名来取得其存储的实际值<code>5</code>。</p>
+<p>我们来练习变量的赋值操作。</p>
+<pre><code># 创建变量`savings`并赋值100
 savings = 100
 
-# 打印变量 savings
+# 打印变量`savings`
 print(savings)
 </code></pre><blockquote>
 <p>代码清单: 变量赋值练习</p>
 </blockquote>
-<h2 id="使用变量运算"><a href="#使用变量运算" class="headerlink" title="使用变量运算"></a>使用变量运算</h2><p>还记得上一节我们编程解决的那个实际问题么？那时候我们直接使用常量进行运算，现在我们使用变量来改写。</p>
-<pre><code># 创建变量 savings
+<h2 id="使用变量运算"><a href="#使用变量运算" class="headerlink" title="使用变量运算"></a>使用变量运算</h2><p>还记得上一节我们编程解决的那个实际问题么？那时候我们直接使用<strong>常量</strong>进行运算，现在我们使用变量来改写这支程序。</p>
+<pre><code># 创建变量`savings`
 savings = 100
 
-# 创建变量 factor
+# 创建变量`factor`
 factor = 1.10
 
-# 计算结果
+# 使用变量计算
 result = savings * factor ** 7
 
 # 打印结果
@@ -230,17 +237,19 @@ print(result))
 <p>代码清单: 变量运算练习</p>
 </blockquote>
 <h2 id="变量数据类型"><a href="#变量数据类型" class="headerlink" title="变量数据类型"></a>变量数据类型</h2><p>在之前的练习中，我们已经熟悉了数值型（整型与浮点型）变量。接下来，我们认识一下另外两个非常常用的数据类型。</p>
-<p><strong>字符串</strong><br>Python中表示文本的基本方式，你可以使用成对单引号<code>&#39;</code>或双引号<code>&quot;</code>来创建字符串。</p>
-<p><strong>布尔值</strong><br>Python中表示逻辑值的方式，只能为真值<code>True</code>或假值<code>False</code>。</p>
-<pre><code># 创建字符串变量 desc
+<p><strong>字符串</strong></p>
+<p>Python中表示文本的基本方式，你可以使用成对单引号<code>&#39;</code>或成对双引号<code>&quot;</code>来创建字符串。</p>
+<p><strong>布尔值</strong></p>
+<p>Python中表示逻辑值的方式，只能为真值<code>True</code>或假值<code>False</code>。</p>
+<pre><code># 创建字符串变量`desc`
 desc = &quot;compound interest&quot;
 
-# 创建布尔值变量 profitable
+# 创建布尔值变量`profitable`
 profitable = True
 </code></pre><blockquote>
 <p>代码清单: 字符串与布尔值练习</p>
 </blockquote>
-<h2 id="查看数据类型"><a href="#查看数据类型" class="headerlink" title="查看数据类型"></a>查看数据类型</h2><p>如果想要查看一个值或者变量所引值的数据类型，我们可以使用Python内置的功能函数<code>type()</code>。</p>
+<h2 id="查看数据类型"><a href="#查看数据类型" class="headerlink" title="查看数据类型"></a>查看数据类型</h2><p>想要查看一个值或者变量所引值的数据类型，我们可以使用Python内置的功能函数<code>type()</code>。</p>
 <pre><code># 创建变量
 a = 3.14
 b = &quot;pi&quot;
@@ -253,7 +262,7 @@ print(type(c))
 </code></pre><blockquote>
 <p>代码清单: <code>type()</code>练习</p>
 </blockquote>
-<h2 id="不同数据类型变量的运算"><a href="#不同数据类型变量的运算" class="headerlink" title="不同数据类型变量的运算"></a>不同数据类型变量的运算</h2><p>不同数据类型直接的运算行为也不尽相同，比如，相加运算分别用到字符串和数值型上，其表现行为是不同的。我们来针对这一点做些练习吧。</p>
+<h2 id="不同数据类型变量的运算"><a href="#不同数据类型变量的运算" class="headerlink" title="不同数据类型变量的运算"></a>不同数据类型变量的运算</h2><p>数据类型不同，其运算行为也不尽相同，比如，加法运算分别用到字符串和数值型上，其运算行为是不同的。我们来针对这一点做些练习吧。</p>
 <pre><code># 创建数据类型不同的一些变量
 savings = 100
 factor = 1.1
@@ -262,7 +271,7 @@ desc = &quot;compound interest&quot;
 # 整型数 * 浮点数
 year1 = savings * factor
 
-# 查看 year1 数据类型
+# 查看`year1`数据类型
 print(type(year1))
 
 # 字符串的加法运算
@@ -273,31 +282,33 @@ print(doubledesc)
 </code></pre><blockquote>
 <p>代码清单: 不同数据类型变量的运算</p>
 </blockquote>
-<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><p>当我们对两个字符串使用<code>+</code>运算符，会将两个字符串拼接起来。<br>但是如果你将字符串类型与数值类型相加，Python就会报错。<br>这也很好理解，Python不知道字符串与数值类型相加后该得到一个什么类型的结果。<br>想解决这个问题，我们需要做明确的数据类型转换。有一些内置的功能函数可以帮助我们做数据类型转换。</p>
+<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><p>我们对两个字符串使用<code>+</code>运算符，Python会将两个字符串<strong>拼接</strong>起来。</p>
+<p>但是如果你将字符串类型与数值类型相加，Python就会报错。这很好理解，因为Python不知道字符串与数值类型相加后该得到一个什么类型的结果。</p>
+<p>想要解决这个问题，我们需要做明确的数据类型转换。有一些内置的功能函数可以帮助我们完成这项任务。</p>
 <ul>
-<li><code>str()</code>可以将数据转换为字符串类型</li>
-<li><code>int()</code>可以将数据转换为整型数</li>
-<li><code>float()</code>可以将数据转换为浮点数</li>
-<li><code>bool()</code>可以将数据转换为布尔值</li>
+<li><code>str()</code>将数据转换为字符串类型</li>
+<li><code>int()</code>将数据转换为整型数</li>
+<li><code>float()</code>将数据转换为浮点数</li>
+<li><code>bool()</code>将数据转换为布尔值</li>
 </ul>
-<p>数据类型转换其实是个挺复杂的话题，涉及到隐式转换与显式转换，转换规则…但现在我们不需要知道这么多，使用Python内置函数，就可以帮助我们解决大部分类型转换的问题了。</p>
+<p>数据类型转换其实是个挺复杂的话题，涉及到隐式转换与显式转换，各种转换规则…但现在我们不需要考虑这么多，使用Python内置函数，就可以帮助我们解决大部分类型转换问题了。</p>
 <pre><code># 定义变量
 savings = 100
 result = 100 * 1.10 ** 7
 
-# 使用类型转换
+# 使用内置函数进行类型转换
 print(&quot;I started with $&quot; + str(savings) + &quot; and now have $&quot; + str(result) + &quot;. Awesome!&quot;)
 
-# 定义字符串 pi 变量
+# 定义字符串变量`pi`
 pi_string = &quot;3.1415926&quot;
 
-# 转换字符串类型为浮点数类型
+# 将字符串类型转换为浮点数类型
 pi_float = float(pi_string)
 </code></pre><blockquote>
 <p>代码清单: 数据类型转换练习</p>
 </blockquote>
 <h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
-<li>Python数据类型和变量: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658624177ea4f8fcb06bc4d0e8aab2fd7aa65dd95000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658624177ea4f8fcb06bc4d0e8aab2fd7aa65dd95000</a></li>
+<li>Python数据类型与变量: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658624177ea4f8fcb06bc4d0e8aab2fd7aa65dd95000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658624177ea4f8fcb06bc4d0e8aab2fd7aa65dd95000</a></li>
 </ul>
 
                 <hr>
@@ -310,7 +321,7 @@ pi_float = float(pi_string)
                     
                     
                         <li class="next">
-                            <a href="/2018/04/17/Python数据科学导论0-1-扬帆启航/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论0.1 - 扬帆起航">Next Post &rarr;</a>
+                            <a href="/2018/04/17/Python数据科学导论1-1-你好Python/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论1.1 - 你好, Python">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
