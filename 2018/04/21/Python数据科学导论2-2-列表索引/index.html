@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/04/17/Python数据科学导论0-1-扬帆启航/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/04/21/Python数据科学导论2-2-列表索引/">
     <title>
         
-          Python数据科学导论0.1 - 扬帆起航 - zihengCat
+          Python数据科学导论2.2 - 列表索引 - zihengCat
         
     </title>
 
@@ -142,11 +142,11 @@
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
-                    <h1>Python数据科学导论0.1 - 扬帆起航</h1>
+                    <h1>Python数据科学导论2.2 - 列表索引</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-04-17
+                        2018-04-21
                     </span>
                 </div>
             </div>
@@ -162,36 +162,101 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是对<strong>[DAT208x] Python数据科学导论0.1 - 扬帆起航</strong>做的内容梳理。</p>
-<h1 id="课程视频（bilibili源）"><a href="#课程视频（bilibili源）" class="headerlink" title="课程视频（bilibili源）"></a>课程视频（bilibili源）</h1><p><a href="https://www.bilibili.com/video/av22252199/?p=1" target="_blank" rel="noopener">av22252199 - P1</a></p>
-<h1 id="欢迎"><a href="#欢迎" class="headerlink" title="欢迎"></a>欢迎</h1><p>Python 是一门非常强大的程序设计语言，在诸多领域都有非常广泛的应用。Python开源社区围绕这门语言开发了许多优秀的工具。近些年来，越来越多好用的Python数据分析工具被开发出来，这使得使用Python进行数据分析变得非常容易。</p>
-<p>如果你对<strong>使用Python</strong>做<strong>数据分析</strong>感兴趣，那这门课程正适合你。这门课将教授你Python编程的基础知识，以及使用Python做基础的数据分析。<strong>这门课程无需任何专业背景知识</strong>。</p>
-<p>愿你有一个愉快的学习体验！</p>
-<h1 id="关于课程"><a href="#关于课程" class="headerlink" title="关于课程"></a>关于课程</h1><p>本课程是由 Microsoft 与其合作伙伴 DataCamp 联合打造的<strong>Python数据分析入门课</strong>。你可以在MOOC平台edX上报名学习。</p>
-<p>本课程分为六大模块，我们会覆盖Python基础编程知识，让你能够使用Python做基础数据分析。我们从变量与基础运算开始，到控制流，函数与包。接下来你会学习Python Lists，Numpy Arrays 以及 Pandas DataFrames，以及最基本的数据可视化操作。</p>
-<p>每个模块都包含了课程视频，知识点考察，编程练习。每一节课程视频短小精悍，学起来不会有太大压力。<strong>编程练习是重中之重</strong>，你应该花最多的时间进行实际代码训练，你既可以在我们提供的在线交互式编程环境中编写代码，也可以在本机搭建相关环境练习。</p>
-<p>通过本课程，你可以学习到：</p>
-<ul>
-<li>Python语言基础：基本语法，变量，类型</li>
-<li>使用Python列表数据类型</li>
-<li>使用函数与第三方软件包</li>
-<li>使用 Numpy Array 做运算</li>
-<li>数据可视化的基本概念与操作</li>
-<li>熟悉Pandas DataFrame</li>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是对<strong>[DAT208x]Python数据科学导论2.2 - 列表索引</strong>做的内容梳理。</p>
+<h1 id="课程视频（Bilibili源）"><a href="#课程视频（Bilibili源）" class="headerlink" title="课程视频（Bilibili源）"></a>课程视频（Bilibili源）</h1><p><a href="https://www.bilibili.com/video/av22252199/?p=5" target="_blank" rel="noopener">av22252199 - P5</a></p>
+<h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>Python列表</strong></p>
+<p>有时候我们使用一枚枚变量来存储数据不太方便，我们可以Python List列表数据类型。列表是一种复合数据类型，表示一系列数据的集合。列表是有序的，我们可以通过下标/索引方便地取得列表中存储的数据。</p>
+<p>列表可以存储任何类型的数据，比如：列表中再嵌套子列表。</p>
+<p><strong>建立Python列表</strong></p>
+<p>我们可以使用一对方括号<code>[ ]</code>来建立Python列表。列表中的数据以逗号<code>,</code>分隔。</p>
+<h1 id="知识点考察"><a href="#知识点考察" class="headerlink" title="知识点考察"></a>知识点考察</h1><p>问：如果<code>fam</code>是一枚Python列表变量，则<code>type(fam)</code>的结果为？</p>
+<p>A =&gt; <code>pylist</code><br>B =&gt; <code>struct</code><br>C =&gt; <code>integer</code><br>D =&gt; <code>list</code></p>
+<blockquote>
+<p>解: D</p>
+</blockquote>
+<p>问：以下构造Python列表语句中，不合法的是？</p>
+<p>A =&gt; <code>x = [&quot;this&quot;, &quot;is&quot;, &quot;a&quot; True &quot;list&quot;]</code><br>B =&gt; <code>x = [&quot;this&quot;, &quot;is&quot;, &quot;a&quot; True, &quot;list&quot;]</code><br>C =&gt; <code>x = [&quot;this&quot;, &quot;is&quot;,  1, True, &quot;list&quot;]</code><br>D =&gt; <code>x = [&quot;this&quot; + &quot;is&quot;,  1, True, &quot;list&quot;]</code></p>
+<blockquote>
+<p>解: A</p>
+</blockquote>
+<p>问：以下Python列表中存储的数据类型有？（多选）</p>
+<pre><code>x = [&quot;you&quot;, 2, &quot;are&quot;, &quot;so&quot;, True]
+</code></pre><p>A =&gt; <code>int</code><br>B =&gt; <code>float</code><br>C =&gt; <code>str</code><br>D =&gt; <code>bool</code><br>E =&gt; <code>list</code></p>
+<blockquote>
+<p>解: A, C, D</p>
+</blockquote>
+<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><p>本节的编程练习，你将学习使用不同的方式创建Python列表，并探究Python列表的一些有趣特性。</p>
+<h2 id="创建列表"><a href="#创建列表" class="headerlink" title="创建列表"></a>创建列表</h2><p>不同于<code>int</code>，<code>bool</code>这样的基础数据类型，列表是一种复合数据类型。你可以将各种不同数据类型都装进一个列表里。</p>
+<p>我们来创建一个列表，按顺序将一系列变量都装入，再打印出列表看一看。</p>
+<pre><code># 一些表示面积的变量（单位：平方米）
+hall = 11.25
+kit = 18.0
+liv = 20.0
+bed = 10.75
+bath = 9.50
+
+# 创建列表`areas`
+areas = [hall, kit, liv, bed, bath, ]
+
+# 打印`areas`
+print(areas)
+</code></pre><blockquote>
+<p>代码清单: 创建列表练习</p>
+</blockquote>
+<h2 id="包含不同数据类型的列表"><a href="#包含不同数据类型的列表" class="headerlink" title="包含不同数据类型的列表"></a>包含不同数据类型的列表</h2><p>Python列表可以装入任何类型的数据，虽然这不太常用。在上一节编程练习中，我们将房间的面积装入了列表，现在我们将房间的名称也装进去。</p>
+<pre><code># 一些表示面积的变量（单位：平方米）
+hall = 11.25
+kit = 18.0
+liv = 20.0
+bed = 10.75
+bath = 9.50
+
+# 调整列表`areas`
+areas = [&quot;hallway&quot;, hall,
+         &quot;kitchen&quot;, kit,
+         &quot;living room&quot;, liv,
+         &quot;bedroom&quot;, bed,
+         &quot;bathroom&quot;, bath]
+
+# 打印`areas`
+print(areas)
+</code></pre><blockquote>
+<p>代码清单: 包含不同数据类型的列表练习</p>
+</blockquote>
+<h2 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h2><p>Python列表装入任何数据类型，当然也包括列表，列表是可以嵌套使用的。我们对上一节编程练习中的代码使用列表嵌套进一步改进。</p>
+<pre><code># 一些表示面积的变量（单位：平方米）
+hall = 11.25
+kit = 18.0
+liv = 20.0
+bed = 10.75
+bath = 9.50
+
+# 嵌套列表`areas`
+areas = [[ &quot;hallway&quot;, hall, ],
+         [ &quot;kitchen&quot;, kit, ],
+         [ &quot;living room&quot;, liv, ],
+         [ &quot;bedroom&quot;, bed, ],
+         [ &quot;bathroom&quot;, bath,]]
+
+# 打印`areas`
+print(areas)
+
+# 打印`areas`的类型
+print(type(areas))
+</code></pre><blockquote>
+<p>代码清单: 列表嵌套练习</p>
+</blockquote>
+<h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
+<li>Python列表与元组: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316724772904521142196b74a3f8abf93d8e97c6ee6000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316724772904521142196b74a3f8abf93d8e97c6ee6000</a></li>
 </ul>
-<p>本课程学时进度你可以<strong>自由安排</strong>。</p>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/04/18/Python数据科学导论1-2-变量与数据类型/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论1.2 - 变量与数据类型">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/04/17/Python数据科学导论1-1-你好Python/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论1.1 - 你好, Python">Next Post &rarr;</a>
+                            <a href="/2018/04/20/Python数据科学导论2-1-列表数据类型/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论2.1 - 列表数据类型">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
