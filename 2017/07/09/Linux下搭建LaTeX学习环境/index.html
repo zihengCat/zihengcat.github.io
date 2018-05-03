@@ -69,16 +69,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -162,17 +162,17 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解如何在Linux下搭建LaTeX学习环境: <code>TeX Live</code>。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解如何在Linux下安装<code>LaTeX</code>环境: <code>TeX Live</code>。</p>
 <h1 id="TeX简介"><a href="#TeX简介" class="headerlink" title="TeX简介"></a>TeX简介</h1><p><img src="./tex-1.png" alt="TeX-1"></p>
 <blockquote>
 <p>TeX（希腊语：/tɛx/[1]，音译“泰赫”，文本模式下写作TeX），是一个由美国计算机教授高德纳（Donald Ervin Knuth）编写的功能强大的排版软件。它在学术界十分流行，特别是数学、物理学和计算机科学界。TeX被普遍认为是一个优秀的排版工具，特别是在处理复杂的数学公式时。利用诸如是LaTeX等终端软件，TeX就能够排版出精美的文本以帮助人们辨认和查找。</p>
 </blockquote>
-<p>子恒喵对TeX排版软件的浅显理解：Microsoft Word的替代品，纯文本+命令行！ ^_^</p>
+<p>子恒喵对<code>TeX</code>排版软件的浅显理解：Microsoft Word的替代品，可以使用纯文本与命令行完成精美的排版任务。</p>
 <h1 id="TeX-LaTeX-与-TeX-Distribution"><a href="#TeX-LaTeX-与-TeX-Distribution" class="headerlink" title="TeX, LaTeX 与 TeX Distribution"></a>TeX, LaTeX 与 TeX Distribution</h1><p><img src="./tex-2.png" alt="TeX-2"></p>
 <blockquote>
 <p>其实世界上只有一个TeX程序，它就叫做 “TeX”, 它是由计算机科学家 D. E. Knuth 设计并且实现的。TeX 不仅是一个排版程序，而且是一种程序语言。LaTeX 就是用这种语言写成的一个“TeX 宏包”，它扩展了 TeX 的功能，使我们很方便的逻辑的进行创作而不是专心于字体，缩进这些烦人的东西。TeX 还有其它的大型宏包，它们和 LaTeX 一起都被叫做 “format”，现在还有一种常用的format叫做 ConTeXt, 用它能方便的作出极其漂亮的幻灯片，动态屏幕文档…… 我们通常用 TeX 都是在用 LaTeX, ConTeXt, 因为 TeX 的底层需要更多的知识才能了解，一般人不需要自己设计自己的格式。</p>
 </blockquote>
-<p>子恒喵的类比说明：</p>
+<p>类比说明：</p>
 <table>
 <thead>
 <tr>
@@ -183,34 +183,36 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>程序设计语言</strong></td>
-<td><strong>语言的标准库</strong></td>
-<td><strong>编译器, 开发工具, 第三方库, 说明文档等等的集合</strong></td>
+<td>程序设计语言</td>
+<td>语言的标准库</td>
+<td>编译器, 开发工具, 第三方库, 说明文档等的集合</td>
 </tr>
 </tbody>
 </table>
-<p>非常简洁易懂吧。 ^_^<br>我们要安装的<code>TeX Live</code>正是一支TeX Distribution。</p>
+<p>我们要安装的<code>TeX Live</code>正是一支TeX Distribution。</p>
 <h1 id="TeX-Live简介"><a href="#TeX-Live简介" class="headerlink" title="TeX Live简介"></a>TeX Live简介</h1><p><img src="./tex_live_Logo.png" alt="TeX Live Logo"></p>
 <blockquote>
 <p>TeX Live是由国际TeX用户组（TeX Users Group，TUG）整理和发布的TeX软件发行套装，包含与TeX系统相关的各种程序、编辑与查看工具、常用宏包及文档、常用字体及多国语言支持。TeX Live是许多Linux/Unix系统（比如Fedora、Debian、Ubuntu、Gentoo以及OpenBSD、FreeBSD、NetBSD等）默认或推荐的TeX套装，同时也支持包括Windows和Mac OS X等在内的其它操作系统。TeX Live是开发状态最为活跃的TeX发行版之一，保持着每年一版的更新频率。TeX Live属于免费软件。</p>
 </blockquote>
-<p>TeX Live是目前最好的TeX发行版，最新版本为2017。</p>
-<h1 id="安装TeX-Live"><a href="#安装TeX-Live" class="headerlink" title="安装TeX Live"></a>安装TeX Live</h1><p>子恒喵推荐使用<code>TeX Live</code>的<strong>ISO镜像包</strong>安装，不要使用<code>yum</code>或<code>apt</code>安装。</p>
+<p>TeX Live是目前最好的TeX发行版，每年都会进行版本更新。</p>
+<h1 id="安装TeX-Live"><a href="#安装TeX-Live" class="headerlink" title="安装TeX Live"></a>安装TeX Live</h1><p>对于<code>TeX Live</code>的安装，推荐使用<code>TeX Live</code>官方的<strong>ISO镜像包</strong>，不要使用<code>yum</code>或<code>apt</code>安装。</p>
 <h2 id="Step-1-获取安装镜像"><a href="#Step-1-获取安装镜像" class="headerlink" title="Step 1 获取安装镜像"></a>Step 1 获取安装镜像</h2><p>前往Tug的镜像下载站点，下载最新的ISO镜像安装包:</p>
 <p><strong>站点地址: <a href="https://www.tug.org/texlive/acquire-iso.html" target="_blank" rel="noopener">https://www.tug.org/texlive/acquire-iso.html</a></strong></p>
 <p>安装包接近4GB，选择最近的镜像站下吧。</p>
-<h2 id="Step-2-安装"><a href="#Step-2-安装" class="headerlink" title="Step 2 安装"></a>Step 2 安装</h2><p>在安装时需要用到perl的MD5校验与perl-Tk图形界面(可选)。<br>安装依赖包：</p>
-<pre><code>$ sudo yum -y install perl-Digest-MD5
+<h2 id="Step-2-安装"><a href="#Step-2-安装" class="headerlink" title="Step 2 安装"></a>Step 2 安装</h2><p>在安装时需要用到perl的MD5校验与<code>perl-Tk</code>图形界面（可选）。<br>安装依赖包:</p>
+<pre><code>$ sudo yum -y install wget
+$ sudo yum -y install perl-Digest-MD5
 $ sudo yum -y install perl-Tk
 </code></pre><p>挂载镜像文件：</p>
 <pre><code>$ sudo mount -o loop &lt;filename&gt;.iso /mnt
 $ cd /mnt
-</code></pre><p>启动安装脚本，可以选择图形界面，也可以操作命令行：</p>
+</code></pre><p>启动安装脚本，可以选择图形界面（<code>-gui</code>），也可以命令行操作（<code>-no-gui</code>）：</p>
 <pre><code>$ sudo ./install-tl -gui
 </code></pre><p><img src="./texlive2017.png" alt="texlive-2017"></p>
-<p>图形界面下，各种安装选项清晰明了。按情况安装就可以啦。<br>安装完成后，将安装目录加入到<code>PATH</code>之中：</p>
+<p>图形界面下，各种安装选项清晰明了。调整相关参数后安装即可。<br>安装完成后，将安装目录加入到<code>PATH</code>之中：</p>
 <pre><code>$ echo &#39;export PATH=${PATH}:&lt;install path&gt;/2017/bin&#39; &gt;&gt; ~/.bashrc
-</code></pre><h2 id="Step-3-检验安装"><a href="#Step-3-检验安装" class="headerlink" title="Step 3 检验安装"></a>Step 3 检验安装</h2><pre><code>$ tex -v
+</code></pre><h2 id="Step-3-检验安装"><a href="#Step-3-检验安装" class="headerlink" title="Step 3 检验安装"></a>Step 3 检验安装</h2><p>命令行下键入<code>tex</code>命令，如果可以正确打印出软件信息，即说明安装成功。</p>
+<pre><code>$ tex -v
 TeX 3.14159265 (TeX Live 2017)
 kpathsea version 6.2.3
 Copyright 2017 D.E. Knuth.
@@ -220,10 +222,9 @@ the Lesser GNU General Public License.
 For more information about these matters, see the file
 named COPYING and the TeX source.
 Primary author of TeX: D.E. Knuth.
-</code></pre><p>安装成功！</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>TeX介绍：<a href="https://ctan.org/tex/" target="_blank" rel="noopener">https://ctan.org/tex/</a></li>
-<li>TeX说明：<a href="http://www.ctex.org/documents/shredder/tex_frame.html" target="_blank" rel="noopener">http://www.ctex.org/documents/shredder/tex_frame.html</a></li>
+</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>TeX介绍: <a href="https://ctan.org/tex/" target="_blank" rel="noopener">https://ctan.org/tex/</a></li>
+<li>TeX说明: <a href="http://www.ctex.org/documents/shredder/tex_frame.html" target="_blank" rel="noopener">http://www.ctex.org/documents/shredder/tex_frame.html</a></li>
 </ul>
 
                 <hr>
