@@ -69,8 +69,8 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -85,8 +85,8 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -164,14 +164,14 @@
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是对<strong>[DAT208x]Python数据科学导论2.3 - 列表操作</strong>做的内容梳理。</p>
 <h1 id="课程视频（Bilibili源）"><a href="#课程视频（Bilibili源）" class="headerlink" title="课程视频（Bilibili源）"></a>课程视频（Bilibili源）</h1><p><a href="https://www.bilibili.com/video/av22252199/?p=6" target="_blank" rel="noopener">av22252199 - P6</a></p>
-<h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>列表操作 -&gt; 改变列表元素</strong></p>
+<h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>列表操作 - 改变列表元素</strong></p>
 <p>想要修改Python列表中的元素，索引需要修改的元素，重新赋值即可。我们可以使用<code>:</code>操作符对列表元素做批量修改。</p>
-<p><strong>列表操作 -&gt; 增加列表元素</strong></p>
+<p><strong>列表操作 - 增加列表元素</strong></p>
 <p>对两个列表做<code>+</code>运算，Python会将这两个列表首尾拼接起来。</p>
-<p><strong>列表操作 -&gt; 删除列表元素</strong></p>
+<p><strong>列表操作 - 删除列表元素</strong></p>
 <p>可以使用<code>del()</code>函数来删除列表中的元素。元素被删除后，列表元素会前移以保证列表的连续性。</p>
 <p><strong>Python列表内在机制</strong></p>
-<p>理解Python列表的内在机制非常重要。当我们创建出一个列表，列表中的数据实际存放在内存中，列表名是指向内存中实际数据区的一个引用。</p>
+<p>理解Python列表的内在机制非常重要。当我们创建出一个列表，列表中的数据实际存放在内存中，而列表名是指向内存中实际数据区的一个引用。</p>
 <h1 id="知识点考察"><a href="#知识点考察" class="headerlink" title="知识点考察"></a>知识点考察</h1><p>问：要将列表<code>x</code>中的第三个元素改成<code>&quot;c&quot;</code>，代码该怎么写？</p>
 <pre><code class="python">x = [&quot;a&quot;, &quot;b&quot;, &quot;b&quot;]
 </code></pre>
@@ -206,18 +206,96 @@ x[2:] = [&quot;s&quot;, &quot;t&quot;]
 </code></pre>
 <p>需要注意的是，<strong>列表元素索引是从0开始的</strong>。下面我们来做些练习。</p>
 <pre><code class="python"># 创建列表`areas`
-areas = [&quot;hallway&quot;, 11.25, &quot;kitchen&quot;, 18.0, &quot;living room&quot;, 20.0, &quot;bedroom&quot;, 10.75, &quot;bathroom&quot;, 9.50]
+areas = [ &quot;hallway&quot;, 11.25,
+          &quot;kitchen&quot;, 18.0,
+          &quot;living room&quot;, 20.0,
+          &quot;bedroom&quot;, 10.75,
+          &quot;bathroom&quot;, 9.50 ]
+
 # 修改列表倒数第一个元素
 areas[-1] = 10.50
+
 # 修改列表中第五个元素
 areas[4] = &quot;chill zone&quot;
+
 # 打印查看修改结果
 print(areas)
 </code></pre>
 <blockquote>
 <p>代码清单: 修改列表元素练习</p>
 </blockquote>
-<h2 id="扩展列表元素"><a href="#扩展列表元素" class="headerlink" title="扩展列表元素"></a>扩展列表元素</h2><h2 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h2><h2 id="拷贝列表"><a href="#拷贝列表" class="headerlink" title="拷贝列表"></a>拷贝列表</h2><h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
+<h2 id="扩展列表元素"><a href="#扩展列表元素" class="headerlink" title="扩展列表元素"></a>扩展列表元素</h2><p>如果想扩展列表元素，我们可以使用<code>+</code>运算符来为原始列表”加”上一个新列表。</p>
+<pre><code class="python">x = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+y = x + [&quot;e&quot;, &quot;f&quot;]
+</code></pre>
+<p>我们来对列表元素扩展做些练习。</p>
+<pre><code class="python"># 创建列表`areas`
+areas = [ &quot;hallway&quot;, 11.25,
+          &quot;kitchen&quot;, 18.0,
+          &quot;chill zone&quot;, 20.0,
+          &quot;bedroom&quot;, 10.75,
+          &quot;bathroom&quot;, 10.50 ]
+
+# 扩展列表元素
+areas_1 = areas + [&quot;poolhouse&quot;, 24.5]
+
+# 再扩展列表元素
+areas_2 = areas_1 + [&quot;garage&quot;, 15.45]
+
+# 打印查看结果
+print(areas_1)
+print(areas_2)
+</code></pre>
+<blockquote>
+<p>代码清单: 扩展列表元素练习</p>
+</blockquote>
+<h2 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h2><p>我们可以使用<code>def()</code>函数来删除列表中的元素。</p>
+<pre><code class="python">x = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
+# 删除列表第二个元素
+del(x[1])
+</code></pre>
+<p>元素被删除后，列表元素被删除后，所有删除元素后的列表元素会前移。</p>
+<pre><code class="python"># 创建列表`areas`
+areas = [ &quot;hallway&quot;, 11.25,
+          &quot;kitchen&quot;, 18.0,
+          &quot;chill zone&quot;, 20.0,
+          &quot;bedroom&quot;, 10.75,
+          &quot;bathroom&quot;, 10.50,
+          &quot;poolhouse&quot;, 24.5,
+          &quot;garage&quot;, 15.45 ]
+
+# 删除列表第一个元素
+del(areas[0])
+
+# 删除列表最后一个元素
+del(areas[-1])
+
+# 批量删除列表元素
+del(areas[2:4])
+
+# 打印查看结果
+print(areas)
+</code></pre>
+<blockquote>
+<p>代码清单: 删除列表元素练习</p>
+</blockquote>
+<h2 id="拷贝列表"><a href="#拷贝列表" class="headerlink" title="拷贝列表"></a>拷贝列表</h2><p>我们通过拷贝列表练习来加深对Python列表内在机制的理解。我们知道，列表名只是指向实际数据区的一个引用。如果我们直接使用<code>=</code>赋值号将列表名赋给一个新变量，实现的只是再创建一个引用，或者说<strong>浅拷贝</strong>。要想连同列表数据完全拷贝一份，或者说实现<strong>深拷贝</strong>，我们可以循环遍历每一个列表元素，使用列表构造函数<code>list()</code>，或使用列表切片<code>[:]</code>。</p>
+<pre><code class="python"># 创建一个列表
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+
+# 实现列表深拷贝
+areas_copy = areas[:]
+
+# 改变拷贝列表元素
+areas_copy[0] = 5.0
+
+# 查看原始列表(元素未改变)
+print(areas)
+</code></pre>
+<blockquote>
+<p>代码清单: 列表拷贝练习</p>
+</blockquote>
+<h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
 <li><p>Python官方文档: <a href="https://docs.python.org/3/tutorial/introduction.html#lists" target="_blank" rel="noopener">https://docs.python.org/3/tutorial/introduction.html#lists</a></p>
 </li>
 <li><p>Python列表与元组: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316724772904521142196b74a3f8abf93d8e97c6ee6000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316724772904521142196b74a3f8abf93d8e97c6ee6000</a></p>
