@@ -69,14 +69,6 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -87,6 +79,14 @@
                         <li>
                             <a href="/archives/">
                                 Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -162,7 +162,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是对<strong>[DAT208x]Python数据科学导论2.3 - 列表操作</strong>做的内容梳理。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是对<strong>【DAT208x】Python数据科学导论2.3 - 列表操作</strong>做的内容梳理。</p>
 <h1 id="课程视频（Bilibili源）"><a href="#课程视频（Bilibili源）" class="headerlink" title="课程视频（Bilibili源）"></a>课程视频（Bilibili源）</h1><p><a href="https://www.bilibili.com/video/av22252199/?p=6" target="_blank" rel="noopener">av22252199 - P6</a></p>
 <h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>列表操作 - 改变列表元素</strong></p>
 <p>想要修改Python列表中的元素，索引需要修改的元素，重新赋值即可。我们可以使用<code>:</code>操作符对列表元素做批量修改。</p>
@@ -182,7 +182,7 @@
 <p>问：要在列表<code>x</code>尾部添加一个新元素”d”，代码该怎么写？</p>
 <pre><code class="python">x = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
 </code></pre>
-<p>A =&gt; <code>x[4] = &quot;d&quot;</code><br>B =&gt; <code>x = x + &quot;d&quot;</code><br>C =&gt; <code>x = x + [&quot;d&quot;]</code><br>D =&gt; `x = x[4] + [“d”]</p>
+<p>A =&gt; <code>x[4] = &quot;d&quot;</code><br>B =&gt; <code>x = x + &quot;d&quot;</code><br>C =&gt; <code>x = x + [&quot;d&quot;]</code><br>D =&gt; <code>x = x[4] + [&quot;d&quot;]</code></p>
 <blockquote>
 <p>解: C</p>
 </blockquote>
@@ -249,7 +249,7 @@ print(areas_2)
 <blockquote>
 <p>代码清单: 扩展列表元素练习</p>
 </blockquote>
-<h2 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h2><p>我们可以使用<code>def()</code>函数来删除列表中的元素。</p>
+<h2 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h2><p>我们可以调用<code>del()</code>函数来删除列表中的元素。</p>
 <pre><code class="python">x = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]
 # 删除列表第二个元素
 del(x[1])
