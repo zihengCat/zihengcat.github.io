@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/about/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/04/23/Python数据科学导论3-1-函数/">
     <title>
         
-          About - zihengCat
+          Python数据科学导论3.1 - 函数 - zihengCat
         
     </title>
 
@@ -126,182 +126,166 @@
     }
 </script>
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg-o.jpg')">
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg-o.jpg');
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <span class="subheading">Hey, this is zihengCat.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                    <h1>Python数据科学导论3.1 - 函数</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2018-04-23
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-<!-- USE SIDEBAR -->
-  <!-- Post Container -->
-    <div class="
-         col-lg-8 col-lg-offset-1
-         col-md-8 col-md-offset-1
-         col-sm-12
-         col-xs-12
-         post-container">
-    <h1 id="关于我-About-Me"><a href="#关于我-About-Me" class="headerlink" title="关于我 - About Me"></a>关于我 - About Me</h1><p>你好，这是是子恒喵！大学生，学写代码，坐标杭州。欢迎留言 (ﾉ≧∀≦)ﾉ<br>Hey, this is zihengCat! A student live in Hangzhou, China. Learning coding now.</p>
-<h1 id="联系我-Contact-Me"><a href="#联系我-Contact-Me" class="headerlink" title="联系我 - Contact Me"></a>联系我 - Contact Me</h1><ul>
-<li>E-Mail: <a href="mailto:zihenglv@gmail.com" target="_blank" rel="noopener">zihenglv@gmail.com</a></li>
-<li>GitHub: <a href="https://github.com/zihengCat" target="_blank" rel="noopener">https://github.com/zihengCat</a></li>
-<li>Bilibili: <a href="https://space.bilibili.com/1584633" target="_blank" rel="noopener">https://space.bilibili.com/1584633</a></li>
-</ul>
-
-
-
-<hr>
-<!-- Gitment Begin -->
-<div id="gitment_container">
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js">
-  </script>
-  <script>
-    var gitment = new Gitment({
-      id:    'hexo_gitment',        // 可选 默认为 location.href
-      owner: 'zihengcat',           // 你的 GitHub ID
-      repo:  'zihengcat.github.io', // 存储 Repo
-      oauth: {
-        // 你的 client ID
-        client_id: 'f039815621dd7dfd694e',
-        // 你的 client secret
-        client_secret: 'fbd18887ac773d1d7a16a91054c3c996a18eb4fe'
-      }
-    });
-    gitment.render(document.getElementById('gitment_container'));
-  </script>
-</div>
-<!-- Gitment End -->
-
-    </div>
-
-    <!-- Sidebar Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是对<strong>【DAT208x】Python数据科学导论3.1 - 函数</strong>做的内容梳理。</p>
+<h1 id="课程视频（Bilibili源）"><a href="#课程视频（Bilibili源）" class="headerlink" title="课程视频（Bilibili源）"></a>课程视频（Bilibili源）</h1><p><a href="https://www.bilibili.com/video/av22252199/?p=7" target="_blank" rel="noopener">av22252199 - P7</a></p>
+<h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>Python函数</strong></p>
+<p>函数是一段可重用的代码，我们可以使用函数来帮助我们解决特定的问题。比如，使用<code>print()</code>函数做输出，使用<code>type()</code>函数判断变量数据类型。</p>
+<pre><code class="python">fam = [1.73, 1.68, 1.71, 1.89]
+# 调用最大值函数找到最大值
+tallest = max(fam)
+# 调用函数做四舍五入
+round(tallest)
+</code></pre>
+<p><strong>Python函数帮助</strong></p>
+<p>我们可以在Python交互式环境下使用<code>help()</code>函数查阅某个类/函数的帮助文档。这对我们认识、使用一个新函数很有帮助。</p>
+<h1 id="知识点考察"><a href="#知识点考察" class="headerlink" title="知识点考察"></a>知识点考察</h1><p>问：要找出列表<code>x</code>中的最小值，使用最小值函数<code>min()</code>，代码该怎么写？</p>
+<pre><code class="python">x = [1.73, 1.68, 1.71, 1.89]
+</code></pre>
+<p>A =&gt; <code>min x</code><br>B =&gt; <code>min[x]</code><br>C =&gt; <code>min(x)</code><br>D =&gt; <code>min = c</code></p>
+<blockquote>
+<p>解: C</p>
+</blockquote>
+<p>问：使用<code>round()</code>函数对<code>x</code>做四舍五入，保留2位小数，如何调用？</p>
+<pre><code class="python">x = 3.141519
+</code></pre>
+<p>A =&gt; <code>round(x)</code><br>B =&gt; <code>round(x, 2)</code><br>C =&gt; <code>round(x, &quot;2&quot;)</code><br>D =&gt; <code>round(2, x)</code></p>
+<blockquote>
+<p>解: B</p>
+</blockquote>
+<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><p>本节的编程练习，你将学习调用各类函数。</p>
+<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>Python提供一系列开箱即用的内置函数，使用函数可以使你的编程更加简单。我们已经熟悉<code>print()</code>，<code>type()</code>以及类型转换函数，这些都是内置函数。</p>
+<pre><code class="python"># 创建变量
+var1 = [1, 2, 3, 4]
+var2 = True
+
+# 调用`type()`函数判断变量类型
+print(type(var1))
+
+# 调用`len()`函数获取可迭代对象长度
+print(len(var1))
+
+# 调用`int()`函数做类型转换
+out2 = int(var2)
+</code></pre>
+<blockquote>
+<p>代码清单: 函数调用练习</p>
+</blockquote>
+<h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1>
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/04/22/Python数据科学导论2-3-列表操作/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论2.3 - 列表操作">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Linux" title="Linux" rel="16">Linux</a>
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#C" title="C" rel="13">C</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Python" title="Python" rel="18">Python</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
                 </section>
                 
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.png" />
-                        
-
-                        
-                            <p>I&#39;m zihengCat. A student live in Hangzhou, learning Coding now.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/zihengcat">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                        </ul>
-                    </div>
-                </section>
-
                 <!-- Friends Blog -->
                 
                 <hr>
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
-
                     
                 </ul>
                 
             </div>
-        
+        </div>
     </div>
-</div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
     <!-- Footer -->
 <footer>
