@@ -206,7 +206,7 @@ out2 = int(var2)
 <blockquote>
 <p>代码清单: 函数调用练习</p>
 </blockquote>
-<h2 id="多参数函数"><a href="#多参数函数" class="headerlink" title="多参数函数"></a>多参数函数</h2><p>有的函数可以接受不止一枚参数。例如<code>sorted()</code>函数。通过<code>help()</code>查阅该函数的帮助文档，我们会发现该函数接受三个参数：<code>iterable</code>，<code>key</code>，<code>reverse</code>。其中两个参数具有默认参数。<strong>默认参数：如果函数调用者不指定参数值，参数取得默认值。</strong></p>
+<h2 id="多参数函数"><a href="#多参数函数" class="headerlink" title="多参数函数"></a>多参数函数</h2><p>有的函数可以接受不止一枚参数。例如<code>sorted()</code>函数。通过<code>help()</code>查阅该函数的帮助文档，我们会发现该函数接受三个参数：<code>iterable</code>，<code>key</code>，<code>reverse</code>。其中两个参数具备默认参数。<strong>函数默认参数：如果函数调用者不指定参数值，则该参数取得默认值。</strong></p>
 <pre><code class="python"># 创建变量变量
 first = [11.25, 18.0, 20.0]
 second = [10.75, 9.50]
@@ -215,7 +215,7 @@ second = [10.75, 9.50]
 full = first + second
 
 # 按降序重排序列表
-full_sorted = sorted(full, reverse=True)
+full_sorted = sorted(full, reverse = True)
 
 # 打印查看结果
 print(full_sorted)
