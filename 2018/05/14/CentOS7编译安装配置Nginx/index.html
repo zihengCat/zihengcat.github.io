@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2017/07/12/LaTeX特殊字符-速查表/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/05/14/CentOS7编译安装配置Nginx/">
     <title>
         
-          LaTeX特殊字符 - 速查表 - zihengCat
+          CentOS7编译安装配置Nginx - zihengCat
         
     </title>
 
@@ -139,14 +139,12 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#LaTeX" title="LaTeX">LaTeX</a>
-                        
                     </div>
-                    <h1>LaTeX特殊字符 - 速查表</h1>
+                    <h1>CentOS7编译安装配置Nginx</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-07-12
+                        2018-05-14
                     </span>
                 </div>
             </div>
@@ -162,22 +160,145 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <p><img src="special-symbols.png" alt="special-symbols"></p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Nginx</code>是一款是由俄罗斯的软件工程师<em>Igor Sysoev</em>开发的，高性能的Web和反向代理 服务器，也是一个<code>IMAP/POP3/SMTP</code>代理服务器。</p>
+<p>本文记录<code>CentOS7 Linux</code>下手动编译安装<code>Nginx</code>，并配置启动的步骤。</p>
+<h1 id="Step-1-获取源码"><a href="#Step-1-获取源码" class="headerlink" title="Step 1 - 获取源码"></a>Step 1 - 获取源码</h1><p>前往<code>Nginx</code>官网获取最新版的<code>Nginx</code>源代码。也可以去<code>Nginx</code>在 GitHub 托管的镜像代码仓库获取源代码。</p>
 <blockquote>
-<p><a href="http://math.ecnu.edu.cn/~latex/examples/special-symbols.pdf" target="_blank" rel="noopener">PDF版</a></p>
+<p><code>Nginx</code>官网: <a href="http://nginx.org" target="_blank" rel="noopener">http://nginx.org</a><br><code>GitHub</code>镜像: <a href="https://github.com/nginx/nginx" target="_blank" rel="noopener">https://github.com/nginx/nginx</a></p>
+</blockquote>
+<h1 id="Step-2-安装编译工具与依赖库"><a href="#Step-2-安装编译工具与依赖库" class="headerlink" title="Step 2 - 安装编译工具与依赖库"></a>Step 2 - 安装编译工具与依赖库</h1><p>系统平台<code>CentOS7 Linux</code>，使用<code>yum</code>安装编译工具与依赖库。</p>
+<pre><code class="bash">#!/bin/bash
+
+# Shell script for install Nginx in CentOS7.
+
+set -u
+
+install_deps() {
+    sudo yum -y install       \
+                gcc           \
+                gcc-c++       \
+                make          \
+                autoconf      \
+                automake      \
+                libtool       \
+                zlib          \
+                zlib-devel    \
+                openssl       \
+                openssl-devel \
+                pcre          \
+                pcre-devel    \
+                libatomic     \
+                libatomic_ops-devel \
+                libxslt       \
+                libxslt-devel
+}
+install_deps
+</code></pre>
+<blockquote>
+<p>代码清单: 安装<code>Nginx</code>编译工具与依赖库</p>
+</blockquote>
+<h1 id="Step-3-编译选项"><a href="#Step-3-编译选项" class="headerlink" title="Step 3 - 编译选项"></a>Step 3 - 编译选项</h1><p><code>Nginx</code>的编译选项还是很多的，我们可以写个脚本来进行配置。</p>
+<pre><code class="bash">#!/bin/bash
+
+# Shell script for install Nginx in CentOS7.
+
+set -u
+
+NG_DIR=&#39;/opt/nginx-1.14.0&#39;
+#sudo makedir ${NG_DIR}
+./configure \
+    --prefix=${NG_DIR} \
+    --sbin-path=&quot;${NG_DIR}/sbin/nginx&quot; \
+    --conf-path=&quot;${NG_DIR}/etc/nginx.conf&quot; \
+    --error-log-path=&quot;${NG_DIR}/var/log/nginx/error.log&quot; \
+    --http-log-path=&quot;${NG_DIR}/var/log/nginx/access.log&quot; \
+    --pid-path=&quot;${NG_DIR}/var/run/nginx.pid&quot; \
+    --lock-path=&quot;${NG_DIR}/var/run/nginx.lock&quot; \
+    --http-client-body-temp-path=&quot;${NG_DIR}/var/cache/nginx/client_temp&quot; \
+    --http-proxy-temp-path=&quot;${NG_DIR}/var/cache/nginx/proxy_temp&quot; \
+    --http-fastcgi-temp-path=&quot;${NG_DIR}/var/cache/nginx/fastcgi_temp&quot; \
+    --http-uwsgi-temp-path=&quot;${NG_DIR}/var/cache/nginx/uwsgi_temp&quot; \
+    --http-scgi-temp-path=&quot;${NG_DIR}/var/cache/nginx/scgi_temp&quot; \
+    --user=nginx \
+    --group=nginx \
+    --with-threads \
+    --with-file-aio \
+    --with-http_ssl_module \
+    --with-http_v2_module \
+    --with-http_realip_module \
+    --with-http_addition_module \
+    --with-http_xslt_module \
+    --with-http_xslt_module=dynamic \
+    --with-http_sub_module \
+    --with-http_dav_module \
+    --with-http_flv_module \
+    --with-http_mp4_module \
+    --with-http_gunzip_module \
+    --with-http_gzip_static_module \
+    --with-http_auth_request_module \
+    --with-http_random_index_module \
+    --with-http_secure_link_module \
+    --with-http_degradation_module \
+    --with-http_slice_module \
+    --with-http_stub_status_module \
+    --with-mail \
+    --with-mail=dynamic \
+    --with-mail_ssl_module \
+    --with-stream \
+    --with-stream=dynamic \
+    --with-stream_ssl_module \
+    --with-stream_realip_module \
+    --with-stream_ssl_preread_module \
+    --with-pcre \
+    --with-libatomic \
+    --with-debug \
+    --with-cc-opt=&#39;-O3 -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic&#39;
+</code></pre>
+<blockquote>
+<p>代码清单: <code>Nginx</code>编译选项<br>相关说明: <code>./configure --help</code></p>
+</blockquote>
+<h1 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 - 编译安装"></a>Step 4 - 编译安装</h1><p>运行后<code>Nginx</code>会检测当前系统环境，依赖库是否齐全，如果都没有问题，则生成<code>Makefile</code>，我们就可以编译安装了。</p>
+<pre><code class="bash">#!/bin/bash
+
+# Shell script for install Nginx in CentOS7.
+
+set -u
+
+make &amp;&amp; sudo make install
+</code></pre>
+<blockquote>
+<p>代码清单: <code>Nginx</code>编译安装</p>
+</blockquote>
+<h1 id="Step-5-检验安装"><a href="#Step-5-检验安装" class="headerlink" title="Step 5 - 检验安装"></a>Step 5 - 检验安装</h1><p>如果编译安装没有问题的话，在目标目录下应该已经有<code>Nginx</code>文件存在了。使用命令<code>ngnix -V</code>查看<code>Nginx</code>软件版本及模块。</p>
+<pre><code class="bash">$ ngnix -V
+nginx version: nginx/1.14.0
+built by gcc 4.8.5 20150623 (Red Hat 4.8.5-28) (GCC)
+built with OpenSSL 1.0.2k-fips  26 Jan 2017
+TLS SNI support enabled
+...
+</code></pre>
+<blockquote>
+<p>代码清单: <code>Nginx</code>检验安装</p>
+</blockquote>
+<h1 id="Nginx-相关配置"><a href="#Nginx-相关配置" class="headerlink" title="Nginx 相关配置"></a>Nginx 相关配置</h1><pre><code>!/bin/bash
+
+# Shell script for install Nginx in CentOS7.
+
+set -u
+
+sudo groupadd www
+sudo useradd -g www www
+</code></pre><blockquote>
+<p>代码清单: <code>Nginx</code>配置</p>
 </blockquote>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/07/13/C知识汇总-基本数据类型/" data-toggle="tooltip" data-placement="top" title="C知识汇总-基本数据类型">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/07/11/Vim学习笔记-多行注释/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-多行注释">Next Post &rarr;</a>
+                            <a href="/2018/04/23/Python数据科学导论3-1-函数/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论3.1 - 函数">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -197,8 +318,6 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#LaTeX" title="LaTeX">LaTeX</a>
-                        
                     </div>
                 </section>
                 
