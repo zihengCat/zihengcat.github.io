@@ -173,15 +173,18 @@
 <blockquote>
 <p>图：阿里云开源镜像站LOGO图（取自OPSX官网）</p>
 </blockquote>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>阿里云开源镜像站有提供 树莓派（Raspberry Pi）的软件镜像。使用方法与Debian系统类似，修改<code>/etc/apt/source.list</code>即可（<strong>使用前可先备份原配置文件</strong>）。</p>
-<p>编辑<code>/etc/apt/source.list</code>文件，将 Raspbian 官方源地址注释掉，添加上阿里云的镜像地址即可。注意镜像地址应使用<code>https://mirrors.aliyun.com/raspbian/raspbian/</code>而不是<code>https://mirrors.aliyun.com/raspbian/</code>。</p>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>阿里云开源镜像站有提供树莓派（Raspberry Pi）的软件镜像地址。使用方法与Debian系统类似，修改<code>/etc/apt/source.list</code>即可（<strong>使用前可先备份原配置文件</strong>）。</p>
+<p>编辑<code>/etc/apt/source.list</code>文件，将 Raspbian 官方源地址注释掉，添加上阿里云的镜像地址。注意，镜像地址应使用<code>https://mirrors.aliyun.com/raspbian/raspbian/</code>而不是<code>https://mirrors.aliyun.com/raspbian/</code>。</p>
 <pre><code># Raspbian Official
 #deb http://raspbian.raspberrypi.org/raspbian/ stretch main contrib non-free rpi
 # Uncomment line below then &#39;apt-get update&#39; to enable &#39;apt-get source&#39;
 #deb-src http://raspbian.raspberrypi.org/raspbian/ stretch main contrib non-free rpi
 # Aliyun OPSX Mirror
 deb https://mirrors.aliyun.com/raspbian/raspbian/ stretch main contrib non-free rpi
-</code></pre><p>使用<code>apt</code>命令清理缓存文件，重建软件包索引，树莓派（Raspberry Pi）就可以正常使用阿里云镜像地址了。</p>
+</code></pre><blockquote>
+<p>注：<code>stretch</code> =&gt; raspbian系统版本<br>    <code>main contrib non-free rpi</code> =&gt; 启用的软件仓库类别</p>
+</blockquote>
+<p>修改完成后，使用<code>apt</code>命令清理缓存文件，重建软件包索引，树莓派（Raspberry Pi）就可以正常使用阿里云镜像地址了。</p>
 <pre><code>$ sudo apt clean all
 $ sudo apt update
 </code></pre>
