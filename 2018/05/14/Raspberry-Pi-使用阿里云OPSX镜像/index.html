@@ -182,7 +182,7 @@
 # Aliyun OPSX Mirror
 deb https://mirrors.aliyun.com/raspbian/raspbian/ stretch main contrib non-free rpi
 </code></pre><blockquote>
-<p>注：<br><code>stretch</code> =&gt; raspbian系统版本<br><code>main contrib non-free rpi</code> =&gt; 启用的软件仓库类别</p>
+<p>注：<br><code>stretch</code> =&gt; raspbian系统版本（根据实际系统填写）<br><code>main contrib non-free rpi</code> =&gt; 启用的软件仓库（类别）</p>
 </blockquote>
 <p>修改完成后，使用<code>apt</code>命令清理缓存文件，重建软件包索引，树莓派（Raspberry Pi）就可以正常使用阿里云镜像地址了。</p>
 <pre><code>$ sudo apt clean all
