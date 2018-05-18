@@ -163,7 +163,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Linux系统的小伙伴们一定知道SSH（Secure Shell），知名的远程登陆服务。<br>我们每次使用SSH远程登陆到远端主机时，总是要输入密码，如果是服务器的话，密码一般都设得很复杂（或者不允许密码登录）。SSH还可以使用密钥认证的方式进行远程登陆。</p>
-<h1 id="配置SSH密钥认证登陆"><a href="#配置SSH密钥认证登陆" class="headerlink" title="配置SSH密钥认证登陆"></a>配置SSH密钥认证登陆</h1><p>首先，我们需要确认远程主机的<strong>sshd</strong>服务开启了密钥认证功能。<br>查看ssh的配置文件，确认打开了相关选项。修改ssh配置文件要用到root权限。</p>
+<h1 id="配置SSH密钥认证登陆"><a href="#配置SSH密钥认证登陆" class="headerlink" title="配置SSH密钥认证登陆"></a>配置SSH密钥认证登陆</h1><p>首先，我们需要确认远程主机的<strong>sshd</strong>服务开启了密钥认证功能。<br>查看<code>sshd</code>配置文件，确认相关功能选项均已开启。修改<code>sshd</code>配置文件要root权限。</p>
 <pre><code>$ sudo vi /etc/ssh/sshd_config
 ...
 SAAuthentication yes
@@ -171,7 +171,7 @@ PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
 ...
 </code></pre><blockquote>
-<p>ssh默认就是开启密钥认证功能的，但还是确认一下比较稳妥…</p>
+<p>注：<code>ssh</code>默认开启密钥认证功能，但还是确认一下比较稳妥。</p>
 </blockquote>
 <p>修改完配置选项后，重启sshd服务。</p>
 <p>接下来，我们需要生成一对密钥，在<strong>客户端（client）</strong>使用<code>ssh-keygen</code>命令来完成。</p>
@@ -196,7 +196,7 @@ $ rm ~/id_rsa.pub
 <h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>SSH免密码登陆是使用密钥加解密认证取代原先了的密码认证。</p>
 <p><img src="./ssh-key-auth-flow.png" alt="ssh-key-auth-flow"></p>
 <blockquote>
-<p>图：SSH 密钥认证流程图<br>图片取自 DigitalOcean</p>
+<p>图：SSH 密钥认证流程图（取自 DigitalOcean）</p>
 </blockquote>
 <p>首先初始化连接，服务端发送一段随机字符串给客户端，客户端使用私钥加密后发回，客户端再使用公钥解密，如果解密后的内容可以正确配对，则认证通过，允许远程登陆。<br>关于加解密的过程，子恒喵没学过密码学，也不是很懂…但是，SSH远程登陆不用输密码啦，还是很方便的。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
