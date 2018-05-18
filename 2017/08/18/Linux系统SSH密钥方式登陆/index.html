@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2017/08/18/Linux系统SSH密钥方式登陆/">
     <title>
         
-          Linux系统SSH密钥方式登陆 - zihengCat
+          Linux系统配置SSH密钥登陆（免密码） - zihengCat
         
     </title>
 
@@ -142,7 +142,7 @@
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
                     </div>
-                    <h1>Linux系统SSH密钥方式登陆</h1>
+                    <h1>Linux系统配置SSH密钥登陆（免密码）</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -162,7 +162,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Linux系统的朋友一定知道SSH（Secure Shell），Linux系统下默认的远程登陆服务。<br>我们每次使用SSH远程登陆到远端主机时，总是要输入密码，如果是服务器的话，密码一般都很复杂。实际上，SSH还可以使用密钥认证的方式远程登陆。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Linux系统的小伙伴们一定知道SSH（Secure Shell），知名的远程登陆服务。<br>我们每次使用SSH远程登陆到远端主机时，总是要输入密码，如果是服务器的话，密码一般都设得很复杂（或者不允许密码登录）。SSH还可以使用密钥认证的方式进行远程登陆。</p>
 <h1 id="配置SSH密钥认证登陆"><a href="#配置SSH密钥认证登陆" class="headerlink" title="配置SSH密钥认证登陆"></a>配置SSH密钥认证登陆</h1><p>首先，我们需要确认远程主机的<strong>sshd</strong>服务开启了密钥认证功能。<br>查看ssh的配置文件，确认打开了相关选项。修改ssh配置文件要用到root权限。</p>
 <pre><code>$ sudo vi /etc/ssh/sshd_config
 ...
@@ -182,23 +182,23 @@ AuthorizedKeysFile .ssh/authorized_keys
 <li>输入控制密码</li>
 <li>再输入（确认）控制密码</li>
 </ul>
-<p>该命令生成了一对RSA密钥，放在用户家目录 <em>~/.ssh</em> 下，文件名是<em>id_rsa</em>，<em>id_rsa.pub</em>。带.pub后缀的是公钥，不带后缀的是私钥。</p>
+<p>该命令生成了一对RSA密钥，放在用户家目录<code>~/.ssh</code>下，文件名是<code>id_rsa</code>，<code>id_rsa.pub</code>。带<code>.pub</code>后缀的是公钥，不带后缀的是私钥。</p>
 <p>然后，我们把公钥上传到<strong>服务端（server）</strong>远端主机上完成相关配置。</p>
 <pre><code>$ ssh-copy-id &lt;user&gt;@&lt;hostname&gt;
-</code></pre><p>我们可以使用<code>ssh-copy-id</code>命令自动完成配置，也可以手动操作。</p>
+</code></pre><p>我们既可以使用<code>ssh-copy-id</code>命令自动完成配置，也可以手动操作。</p>
 <pre><code>$ scp -P &lt;port&gt; ~/.ssh/id_rsa.pub &lt;user&gt;@&lt;hostname&gt;:~
 $ ssh &lt;user&gt;@&lt;hostname&gt;
 $ cat ~/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
 $ chmod 700 ~/.ssh &amp;&amp; chmod 600 ~/.ssh/authorized_keys
 $ rm ~/id_rsa.pub
-</code></pre><p>其实这一步就是将<em>id_rsa.pub</em>公钥写入到<em>authorized_keys</em>中。如果没有该文件，就手动创建一个。再将 <em>authorized_keys</em> 与 <em>~/.ssh</em>权限设置正确。<strong>权限不对，认证会失败。</strong></p>
+</code></pre><p>其实这一步就是将<code>id_rsa.pub</code>公钥写入到<code>authorized_keys</code>中。如果没有该文件，就创建一个。再将<code>authorized_keys</code>与<code>~/.ssh</code>权限设置正确。<strong>权限设置不对，认证就会失败。</strong></p>
 <p>OK，配置完成！现在我们已经可以从客户端无密码登陆远程目标主机了。</p>
 <h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>SSH免密码登陆是使用密钥加解密认证取代原先了的密码认证。</p>
 <p><img src="./ssh-key-auth-flow.png" alt="ssh-key-auth-flow"></p>
 <blockquote>
-<p>SSH密钥认证流程图<br>图片取自DigitalOcean</p>
+<p>图：SSH 密钥认证流程图<br>图片取自 DigitalOcean</p>
 </blockquote>
-<p>首先初始化连接，服务端发送一段随机字符串给客户端，客户端使用私钥加密后发回，客户端再使用公钥解密，如果解密后的内容可以正确配对，则认证通过，允许远程登陆。<br>关于加解密的过程，子恒喵没学过密码学，也不是很懂…但是，SSH远程登陆不用输密码啦，还是很方便哒！</p>
+<p>首先初始化连接，服务端发送一段随机字符串给客户端，客户端使用私钥加密后发回，客户端再使用公钥解密，如果解密后的内容可以正确配对，则认证通过，允许远程登陆。<br>关于加解密的过程，子恒喵没学过密码学，也不是很懂…但是，SSH远程登陆不用输密码啦，还是很方便的。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>RedHat官方教程：<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-ssh-configuration-keypairs.html" target="_blank" rel="noopener">https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-ssh-configuration-keypairs.html</a></p>
 </li>
