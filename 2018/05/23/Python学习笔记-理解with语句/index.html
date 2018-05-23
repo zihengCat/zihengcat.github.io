@@ -69,16 +69,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -180,6 +180,57 @@ with context_expression [as target(s)]:
 <blockquote>
 <p>代码清单：使用<code>with</code>语句操作文件对象</p>
 </blockquote>
+<p>这里使用了<code>with</code>语句，不管在处理文件过程中是否发生异常，都能保证<code>with</code>语句执行完毕后关闭打开的文件句柄。使用传统<code>try...except...finally</code>异常处理结构，则可以写出如下代码：</p>
+<pre><code class="python">f = open(r&#39;filename&#39;)
+try:
+    # do with file f
+    # ...
+finally:
+    f.close()
+</code></pre>
+<blockquote>
+<p>代码清单：传统方式操作文件对象</p>
+</blockquote>
+<p>比较起来，使用<code>with</code>语句可以减少代码量，还可以使我们在操作资源对象时不会因忘记释放资源而出现问题（<code>with</code>语句在结束时会执行<code>__exit__()</code>方法自动回收资源）。</p>
+<h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>要理解<code>with</code>语句的工作原理，我们可以参考下列代码：</p>
+<pre><code class="python">context_manager = context_expression
+# 取得但不调用退出方法
+exit = type(context_manager).__exit__
+value = type(context_manager).__enter__(context_manager)
+# True 表示正常执行，即便有异常也忽略
+# False 表示重新抛出异常，需要对异常进行处理
+exc = True
+try:
+    try:
+        target = value  # 如果使用了 as 子句
+        # with-body     # 执行 with-body
+    except:
+        # 执行过程中有异常发生
+        exc = False
+        # 如果 __exit__ 返回 True，则异常被忽略
+        # 如果返回 False，则重新抛出异常
+        # 由外层代码对异常进行处理
+        if not exit(context_manager, *sys.exc_info()):
+            raise
+finally:
+    # 正常退出，或者通过 statement-body 中的 break/continue/return 语句退出
+    # 或者忽略异常退出
+    if exc:
+        # None 在上下文中被看做是 False
+        # 默认返回 None
+        exit(context_manager, None, None, None)
+</code></pre>
+<blockquote>
+<p>代码清单：<code>with</code>语句执行过程</p>
+</blockquote>
+<p>具体执行步骤为：</p>
+<ol>
+<li>执行<code>context_expression</code>，生成上下文管理器<code>context_manager</code></li>
+<li>调用上下文管理器的<code>__enter__()</code>方法；如果使用了<code>as</code>子句，则将<code>__enter__()</code>方法的返回结果赋值给<code>as</code>子句中的<code>target(s)</code></li>
+<li>执行<code>with</code>语句体<code>with-body</code></li>
+<li>不管是否执行过程中是否发生了异常，都会执行上下文管理器的<code>__exit__()</code>方法，该方法负责执行”清理”动作（如释放资源等）。</li>
+<li>出现异常时，将异常传递给<code>__exit__()</code>方法进行处理，如果返回<code>False</code>（异常处理失败），则会重新抛出异常，让<code>with</code>之外的语句逻辑来处理异常。如果返回<code>True</code>（异常处理成功），则忽略异常，不再对异常进行处理。</li>
+</ol>
 
                 <hr>
 <!--
