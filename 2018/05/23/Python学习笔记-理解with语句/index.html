@@ -69,14 +69,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -87,6 +79,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -225,12 +225,23 @@ finally:
 </blockquote>
 <p>具体执行步骤为：</p>
 <ol>
-<li>执行<code>context_expression</code>，生成上下文管理器<code>context_manager</code></li>
-<li>调用上下文管理器的<code>__enter__()</code>方法；如果使用了<code>as</code>子句，则将<code>__enter__()</code>方法的返回结果赋值给<code>as</code>子句中的<code>target(s)</code></li>
-<li>执行<code>with</code>语句体<code>with-body</code></li>
-<li>不管是否执行过程中是否发生了异常，都会执行上下文管理器的<code>__exit__()</code>方法，该方法负责执行”清理”动作（如释放资源等）。</li>
-<li>出现异常时，将异常传递给<code>__exit__()</code>方法进行处理，如果返回<code>False</code>（异常处理失败），则会重新抛出异常，让<code>with</code>之外的语句逻辑来处理异常。如果返回<code>True</code>（异常处理成功），则忽略异常，不再对异常进行处理。</li>
+<li><p>执行<code>context_expression</code>，生成上下文管理器<code>context_manager</code></p>
+</li>
+<li><p>调用上下文管理器的<code>__enter__()</code>方法；如果使用了<code>as</code>子句，则将<code>__enter__()</code>方法的返回结果赋值给<code>as</code>子句中的<code>target(s)</code></p>
+</li>
+<li><p>执行<code>with</code>语句体<code>with-body</code></p>
+</li>
+<li><p>不管是否执行过程中是否发生了异常，都会执行上下文管理器的<code>__exit__()</code>方法，该方法负责执行”清理”动作（如释放资源等）。</p>
+</li>
+<li><p>出现异常时，将异常传递给<code>__exit__()</code>方法进行处理，如果返回<code>False</code>（异常处理失败），则会重新抛出异常，让<code>with</code>之外的语句逻辑来处理异常。如果返回<code>True</code>（异常处理成功），则忽略异常，不再对异常进行处理。</p>
+</li>
 </ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><p>PEP343: <a href="https://www.python.org/dev/peps/pep-0343/" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0343/</a></p>
+</li>
+<li><p>IBMDevelopworks: <a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/index.html" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/index.html</a></p>
+</li>
+</ul>
 
                 <hr>
 <!--
