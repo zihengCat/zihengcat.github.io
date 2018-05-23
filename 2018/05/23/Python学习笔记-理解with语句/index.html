@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2017/11/11/Python学习笔记-包管理器pip使用/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/05/23/Python学习笔记-理解with语句/">
     <title>
         
-          Python学习笔记 - 包管理器pip使用小结 - zihengCat
+          Python学习笔记 - 理解with语句 - zihengCat
         
     </title>
 
@@ -142,11 +142,11 @@
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
-                    <h1>Python学习笔记 - 包管理器pip使用小结</h1>
+                    <h1>Python学习笔记 - 理解with语句</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-11-11
+                        2018-05-23
                     </span>
                 </div>
             </div>
@@ -162,252 +162,32 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>pip</code>是<strong>PyPA</strong>提供的一个非常好用的 Python 包管理工具。本文记录下一些<code>pip</code>的常用命令选项（<code>pip3</code>同样适用）。</p>
-<h1 id="pip-常用选项"><a href="#pip-常用选项" class="headerlink" title="pip 常用选项"></a>pip 常用选项</h1><h2 id="通用（General）"><a href="#通用（General）" class="headerlink" title="通用（General）"></a>通用（General）</h2><table>
-<thead>
-<tr>
-<th style="text-align:left">选项</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>--help</code></td>
-<td style="text-align:left">打印帮助页面</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>--version</code></td>
-<td style="text-align:left">打印版本信息</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>--verbose</code></td>
-<td style="text-align:left">显示详细信息</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>--quiet</code></td>
-<td style="text-align:left">显示简略信息</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>--no-cache-dir</code></td>
-<td style="text-align:left">不使用缓存</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>--proxy &lt;proxy&gt;</code></td>
-<td style="text-align:left">使用代理</td>
-</tr>
-</tbody>
-</table>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Python的<code>with</code>语句是从 Python 2.5 开始引入的一种与<strong>异常处理</strong>相关的功能。<code>with</code>语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的<strong>清理</strong>操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。</p>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><p><code>with</code>语句的基本语法格式如下所示，<code>with</code>后接上下文表达式（Context Expression），如果指定了<code>as</code>子句的话，Python会将上下文管理器的<code>__enter__()</code>方法的返回值赋给<code>target(s)</code>。<code>target(s)</code>可以是单个变量，也可以是<code>()</code>元组（不能是仅仅由<code>,</code>分隔的变量列表，必须加<code>()</code>）。</p>
+<pre><code class="python"># 语句头
+with context_expression [as target(s)]:
+    # 语句体
+    with-body
+</code></pre>
 <blockquote>
-<p>表: pip 通用选项表</p>
+<p>代码清单：<code>with</code>语句语法格式</p>
 </blockquote>
-<h2 id="搜索（Search）"><a href="#搜索（Search）" class="headerlink" title="搜索（Search）"></a>搜索（Search）</h2><p><code>pip</code>搜索命令，直接输入搜索字符串，<code>pip</code>就会在PyPI仓库中搜索相关的软件包。</p>
-<pre><code>$ pip search [options] &lt;query&gt;
-</code></pre><blockquote>
-<p>代码清单: pip 搜索命令格式</p>
-</blockquote>
-<h2 id="安装（Install）"><a href="#安装（Install）" class="headerlink" title="安装（Install）"></a>安装（Install）</h2><p><code>pip</code>安装软件包分为<strong>在线安装</strong>与<strong>离线安装</strong>两类。</p>
-<p>在线安装软件包，全局安装可能需要提供 <em>sudo</em> 权限。</p>
-<pre><code>$ pip install [options] &lt;package&gt; ...
-</code></pre><blockquote>
-<p>代码清单: pip 在线安装命令格式</p>
-</blockquote>
-<p>离线安装软件包（<code>.whl</code>是 Python 软件包打包格式）。</p>
-<pre><code>$ pip install &lt;package.whl&gt;
-</code></pre><blockquote>
-<p>代码清单: pip 离线安装命令格式</p>
-</blockquote>
-<p>想要更新已有软件包，需要加入<code>--upgrade</code>选项。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">选项</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>-U</code>, <code>--upgrade</code></td>
-<td style="text-align:left">更新已安装的包</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-r</code>, <code>--requirement</code></td>
-<td style="text-align:left">递归安装文件列表中的依赖包</td>
-</tr>
-</tbody>
-</table>
+<p>Python 中很多内建对象与标准库都支持<code>with</code>语句，比如可以自动关闭文件、线程锁的自动获取和释放等。以文件操作为例，使用<code>with</code>语句可以写如下代码：</p>
+<pre><code class="python">with open(r&#39;filename&#39;) as f:
+    # do with file f
+    # ...
+</code></pre>
 <blockquote>
-<p>表: pip 安装选项表</p>
+<p>代码清单：使用<code>with</code>语句操作文件对象</p>
 </blockquote>
-<h2 id="卸载（Uninstall）"><a href="#卸载（Uninstall）" class="headerlink" title="卸载（Uninstall）"></a>卸载（Uninstall）</h2><p><code>pip</code>卸载命令，卸载已安装的包。</p>
-<pre><code>$ pip uninstall [options] &lt;package&gt; ...
-</code></pre><blockquote>
-<p>代码清单: pip 卸载软件包命令格式</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">选项</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>-y</code>, <code>--yes</code></td>
-<td style="text-align:left">直接确认卸载</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>-r</code>, <code>--requirement</code></td>
-<td style="text-align:left">递归卸载文件列表中的依赖包</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>表: pip 卸载选项表</p>
-</blockquote>
-<h2 id="列表（List）"><a href="#列表（List）" class="headerlink" title="列表（List）"></a>列表（List）</h2><p><code>pip</code>列表命令，可以列出已安装包的相关信息。<br>注意一下，<code>pip</code>的<strong>检查更新</strong>功能是放在<code>list</code>里的。</p>
-<pre><code>$ pip list [options]
-</code></pre><blockquote>
-<p>代码清单: pip 卸载软件包命令格式</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">选项</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>--outdated</code></td>
-<td style="text-align:left">列出有更新的包（<strong>检查更新</strong>）</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>--uptodate</code></td>
-<td style="text-align:left">列出已更新的包</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>--local</code></td>
-<td style="text-align:left">仅列出在虚拟环境中的包</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>表: pip 列出选项表</p>
-</blockquote>
-<h2 id="显示（Show）"><a href="#显示（Show）" class="headerlink" title="显示（Show）"></a>显示（Show）</h2><p><code>pip</code>显示命令，查看已安装包的详细信息。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">选项</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>--files</code></td>
-<td style="text-align:center">显示该软件包中的所有文件</td>
-</tr>
-</tbody>
-</table>
-<h2 id="依赖（Freeze）"><a href="#依赖（Freeze）" class="headerlink" title="依赖（Freeze）"></a>依赖（Freeze）</h2><p><code>pip freeze</code>命令，可以生成一份依赖包列表，该命令生成的列表格式可被<code>pip</code>其他命令接受使用，常用来生成项目依赖表。</p>
-<h1 id="更换pip源"><a href="#更换pip源" class="headerlink" title="更换pip源"></a>更换pip源</h1><p><code>pip</code>使用PyPI仓库来为我们提供Python软件包。但是默认仓库地址在国内访问不顺畅，我们可以利用<code>-i</code>选项使用自定义镜像仓库。</p>
-<blockquote>
-<p>PyPI默认仓库地址: <em><a href="https://pypi.python.org/pypi" target="_blank" rel="noopener">https://pypi.python.org/pypi</a></em>。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">选项</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>--index &lt;url&gt;</code></td>
-<td style="text-align:center">自定义 Python 包仓库地址</td>
-</tr>
-</tbody>
-</table>
-<h2 id="PyPI-国内镜像推荐"><a href="#PyPI-国内镜像推荐" class="headerlink" title="PyPI 国内镜像推荐"></a>PyPI 国内镜像推荐</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">提供方</th>
-<th style="text-align:left">地址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">阿里云</td>
-<td style="text-align:left"><a href="http://mirrors.aliyun.com/pypi/" target="_blank" rel="noopener">http://mirrors.aliyun.com/pypi/</a></td>
-</tr>
-<tr>
-<td style="text-align:center">豆瓣网</td>
-<td style="text-align:left"><a href="http://pypi.douban.com/" target="_blank" rel="noopener">http://pypi.douban.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:center">清华大学</td>
-<td style="text-align:left"><a href="https://pypi.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/</a></td>
-</tr>
-<tr>
-<td style="text-align:center">中科大</td>
-<td style="text-align:left"><a href="http://pypi.mirrors.ustc.edu.cn/" target="_blank" rel="noopener">http://pypi.mirrors.ustc.edu.cn/</a></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>一些 PyPI 国内镜像</p>
-</blockquote>
-<h2 id="如何使用-PyPI-镜像"><a href="#如何使用-PyPI-镜像" class="headerlink" title="如何使用 PyPI 镜像"></a>如何使用 PyPI 镜像</h2><pre><code>pip install -i &lt;url/simple&gt; some-packages
-</code></pre><blockquote>
-<p><code>-i</code>表示临时使用镜像地址<br><code>simple</code>是 PyPI 软件包目录</p>
-</blockquote>
-<p>修改<code>pip.conf</code>文件可将自定义镜像地址设为默认。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">操作系统</th>
-<th style="text-align:left">文件位置</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Linux</td>
-<td style="text-align:left">~/.pip/pip.conf</td>
-</tr>
-<tr>
-<td style="text-align:center">macOS</td>
-<td style="text-align:left">$HOME/Library/Application Support/pip/pip.conf</td>
-</tr>
-<tr>
-<td style="text-align:center">Windows</td>
-<td style="text-align:left">%APPDATA%\pip\pip.ini</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>操作系统不同，<code>pip.conf</code>配置文件存放位置各不相同<br>如果目录/配置文件不存在，手动创建即可</p>
-</blockquote>
-<blockquote>
-<p>表: <code>pip.conf</code>位置表</p>
-</blockquote>
-<p>在<code>pip.conf</code>配置文件中全局指定PyPI镜像地址。</p>
-<pre><code>[global]
-index-url = &lt;url/simple&gt;
-</code></pre><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><code>pip</code>官方文档: <a href="https://pip.pypa.io/en/latest/" target="_blank" rel="noopener">https://pip.pypa.io/en/latest/</a></li>
-</ul>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/12/06/Microsoft-Excel-会计账目自动化核对/" data-toggle="tooltip" data-placement="top" title="Microsoft Excel 会计账目自动化核对">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/11/07/Python学习笔记-理解Python装饰器-decorator/" data-toggle="tooltip" data-placement="top" title="Python学习笔记 - 理解Python装饰器(decorator)">Next Post &rarr;</a>
+                            <a href="/2018/05/14/Raspberry-Pi-使用阿里云OPSX镜像/" data-toggle="tooltip" data-placement="top" title="Raspberry Pi 使用阿里云OPSX镜像">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
