@@ -167,7 +167,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Matplotlib</code>绘图库默认使用<code>X11</code>的用户图形界面（GUI）展示绘制的图形，对于不带GUI的服务器系统，想要使用<code>Matplotlib</code>绘图需要做一些额外配置。</p>
-<h1 id="服务器端（无GUI）使用Matplotlib绘图"><a href="#服务器端（无GUI）使用Matplotlib绘图" class="headerlink" title="服务器端（无GUI）使用Matplotlib绘图"></a>服务器端（无GUI）使用<code>Matplotlib</code>绘图</h1><p>想让<code>Matplotlib</code>在无图形界面（GUI）的环境下绘图，我们需要在导入<code>maptlotlib</code>，并指定其使用的后端（backend）绘图引擎。最简单的情况，就是使用<code>Agg</code>作为后端绘图引擎，<code>Agg</code>的含义是<strong>C++ Antigrain</strong>绘图引擎，不仅能渲染出高质量的PNG图片，还支持导出其他格式（PDF, PS, EPS, SVG）的图片。</p>
+<h1 id="服务器端（无GUI）使用Matplotlib绘图"><a href="#服务器端（无GUI）使用Matplotlib绘图" class="headerlink" title="服务器端（无GUI）使用Matplotlib绘图"></a>服务器端（无GUI）使用<code>Matplotlib</code>绘图</h1><p>想让<code>Matplotlib</code>在无图形界面（GUI）的环境下绘图，我们需要先导入<code>maptlotlib</code>包，再为其指定使用的后端（backend）绘图引擎。最简单的情况，就是设置使用<code>Agg</code>作为后端绘图引擎，<code>Agg</code>的含义是<strong>C++ Antigrain</strong>绘图引擎，不仅能渲染出高质量的PNG图片，还支持导出其他格式（PDF, PS, EPS, SVG）的图片。</p>
 <p>配置<code>Matplotlib</code>使用<code>Agg</code>后端引擎非常简单，导入<code>maptlotlib</code>库，使用<code>use</code>方法配置即可。注意，配置后端这一动作要在导入<code>pylab</code>或<code>pyplot</code>之前完成。</p>
 <pre><code class="python"># do this before importing pylab or pyplot
 import matplotlib
