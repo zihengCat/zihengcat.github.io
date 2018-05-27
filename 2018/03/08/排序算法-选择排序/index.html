@@ -8,7 +8,7 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/03/08/排序算法学习-选择排序/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/03/08/排序算法-选择排序/">
     <title>
         
           排序算法 - 选择排序（Selection Sort） - zihengCat
@@ -77,16 +77,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -139,7 +139,7 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Algorithms" title="Algorithms">Algorithms</a>
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
                     </div>
                     <h1>排序算法 - 选择排序（Selection Sort）</h1>
@@ -191,12 +191,16 @@
 </tbody>
 </table>
 <blockquote>
-<p>示例: 选择排序（从大到小排序）</p>
+<p>表：选择排序（从大到小排序）</p>
 </blockquote>
 <p>可以看到，每次迭代后，就有一个数字就被放到了正确的位置上。</p>
-<pre><code>void selectionSort(int* array, int length) {
+<pre><code>/* 选择排序
+ * 参数: 待排序数组，数组长度
+ * 返回: 无
+ */
+void selectionSort(int* array, int length) {
     /* 每轮循环都有一个数被归位，下轮循环只需从下个位置开始即可 */
-    for(int i = 0; i&lt;length; i++) {
+    for(int i = 0; i &lt; length; i++) {
         putLargestValue(array, length, i);
     }
 }
@@ -213,11 +217,10 @@ void putLargestValue(int* array, int length, int index) {
     array[index] = array[largestValueIndex];
     array[largestValueIndex] = tmp;
 }
-
 </code></pre><blockquote>
-<p>选择排序（C/C++ 代码）</p>
+<p>代码清单：选择排序（C/C++ 代码）</p>
 </blockquote>
-<p>选择排序的算法复杂度为$O(n^2)$，并不算一种很高效的排序算法。</p>
+<p>可以看到，选择排序的算法复杂度为$O(n^2)$，并不算一种很高效的排序算法。</p>
 
                 <hr>
 <!--
@@ -249,7 +252,7 @@ void putLargestValue(int* array, int length, int index) {
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Algorithms" title="Algorithms">Algorithms</a>
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
                     </div>
                 </section>
