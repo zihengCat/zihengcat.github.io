@@ -213,7 +213,9 @@ def do_webhooks()
                          target_branch, str(target_status[0]), str(target_status[1])],
                          stdout = subprocess.PIPE, stderr = subprocess.PIPE)
     # 打时间戳
-    return &quot;callback status: done&quot; + &#39;\r\n&#39; + &quot;server timestamp: &quot; + time.asctime(time.localtime(time.time()))
+    return &quot;callback status: done&quot; + &#39;\r\n&#39; + \
+           &quot;server timestamp: &quot; + \
+            time.asctime(time.localtime(time.time()))
 ...
 </code></pre>
 <blockquote>
