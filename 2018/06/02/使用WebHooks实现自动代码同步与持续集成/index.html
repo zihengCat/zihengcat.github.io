@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/05/23/Python学习笔记-理解with语句/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/06/02/使用WebHooks实现自动代码同步与持续集成/">
     <title>
         
-          Python学习笔记 - 理解with语句 - zihengCat
+          使用WebHooks实现自动代码同步与持续集成 - zihengCat
         
     </title>
 
@@ -139,14 +139,20 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Web" title="Web">Web</a>
+                        
+                          <a class="tag" href="/tags/#Git" title="Git">Git</a>
+                        
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
-                    <h1>Python学习笔记 - 理解with语句</h1>
+                    <h1>使用WebHooks实现自动代码同步与持续集成</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-05-23
+                        2018-06-02
                     </span>
                 </div>
             </div>
@@ -162,98 +168,29 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Python的<code>with</code>语句是从 Python 2.5 开始引入的一种与<strong>异常处理</strong>相关的功能。<code>with</code>语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的<strong>清理</strong>操作，释放资源，比如文件使用后自动关闭、线程中锁的自动获取和释放等。</p>
-<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><p><code>with</code>语句的基本语法格式如下所示，<code>with</code>后接上下文表达式（Context Expression），如果指定了<code>as</code>子句的话，Python会将上下文管理器的<code>__enter__()</code>方法的返回值赋给<code>target(s)</code>。<code>target(s)</code>可以是单个变量，也可以是<code>()</code>元组（不能是仅仅由<code>,</code>分隔的变量列表，必须加<code>()</code>）。</p>
-<pre><code class="python"># 语句头
-with context_expression [as target(s)]:
-    # 语句体
-    with-body
-</code></pre>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在现代软件开发流程中，为正在开发项目配置一套持续集成（Continuous Integration，简称CI）系统是非常有必要的。持续集成的目的，是为了让产品在快速迭代的同时，还能保持高质量，减少Bug。持续集成的核心思路：在分支代码合并到主分支之前，必须跑通自动化测试。</p>
 <blockquote>
-<p>代码清单：<code>with</code>语句语法格式</p>
+<p>“Continuous Integration doesn’t get rid of bugs, but it does make them dramatically easier to find and remove.” — Martin Fowler</p>
 </blockquote>
-<p>Python 中很多内建对象与标准库都支持<code>with</code>语句，比如可以自动关闭文件、线程锁的自动获取和释放等。以文件操作为例，使用<code>with</code>语句可以写如下代码：</p>
-<pre><code class="python">with open(r&#39;filename&#39;) as f:
-    # do with file f
-    # ...
-</code></pre>
-<blockquote>
-<p>代码清单：使用<code>with</code>语句操作文件对象</p>
-</blockquote>
-<p>这里使用了<code>with</code>语句，不管在处理文件过程中是否发生异常，都能保证<code>with</code>语句执行完毕后关闭打开的文件句柄。使用传统<code>try...except...finally</code>异常处理结构，则可以写出如下代码：</p>
-<pre><code class="python">f = open(r&#39;filename&#39;)
-try:
-    # do with file f
-    # ...
-finally:
-    f.close()
-</code></pre>
-<blockquote>
-<p>代码清单：传统方式操作文件对象</p>
-</blockquote>
-<p>比较起来，使用<code>with</code>语句可以减少代码量，还可以使我们在操作资源对象时不会因忘记释放资源而出现问题（<code>with</code>语句在结束时会执行<code>__exit__()</code>方法自动回收资源）。</p>
-<h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>要理解<code>with</code>语句的工作原理，我们可以参考下列代码：</p>
-<pre><code class="python">context_manager = context_expression
-# 取得但不调用退出方法
-exit = type(context_manager).__exit__
-value = type(context_manager).__enter__(context_manager)
-# True 表示正常执行，即便有异常也忽略
-# False 表示重新抛出异常，需要对异常进行处理
-exc = True
-try:
-    try:
-        target = value  # 如果使用了 as 子句
-        # with-body     # 执行 with-body
-    except:
-        # 执行过程中有异常发生
-        exc = False
-        # 如果 __exit__ 返回 True，则异常被忽略
-        # 如果返回 False，则重新抛出异常
-        # 由外层代码对异常进行处理
-        if not exit(context_manager, *sys.exc_info()):
-            raise
-finally:
-    # 正常退出，或者通过 statement-body 中的 break/continue/return 语句退出
-    # 或者忽略异常退出
-    if exc:
-        # None 在上下文中被看做是 False
-        # 默认返回 None
-        exit(context_manager, None, None, None)
-</code></pre>
-<blockquote>
-<p>代码清单：<code>with</code>语句执行过程</p>
-</blockquote>
-<p>具体执行步骤为：</p>
-<ol>
-<li><p>执行<code>context_expression</code>，生成上下文管理器<code>context_manager</code></p>
-</li>
-<li><p>调用上下文管理器的<code>__enter__()</code>方法；如果使用了<code>as</code>子句，则将<code>__enter__()</code>方法的返回结果赋值给<code>as</code>子句中的<code>target(s)</code></p>
-</li>
-<li><p>执行<code>with</code>语句体<code>with-body</code></p>
-</li>
-<li><p>不管是否执行过程中是否发生了异常，都会执行上下文管理器的<code>__exit__()</code>方法，该方法负责执行”清理”动作（如释放资源等）。</p>
-</li>
-<li><p>出现异常时，将异常传递给<code>__exit__()</code>方法进行处理，如果返回<code>False</code>（异常处理失败），则会重新抛出异常，让<code>with</code>之外的语句逻辑来处理异常。如果返回<code>True</code>（异常处理成功），则忽略异常，不再对异常进行处理。</p>
-</li>
-</ol>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>PEP343: <a href="https://www.python.org/dev/peps/pep-0343/" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0343/</a></p>
-</li>
-<li><p>IBMDevelopworks: <a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/index.html" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/opensource/os-cn-pythonwith/index.html</a></p>
-</li>
+<h1 id="流行的持续集成（CI）工具"><a href="#流行的持续集成（CI）工具" class="headerlink" title="流行的持续集成（CI）工具"></a>流行的持续集成（CI）工具</h1><p>下面列出了一些比较流行的持续集成（CI）工具。</p>
+<ul>
+<li>Jenkins</li>
+<li>Travis CI</li>
+<li>Circle CI</li>
+<li>GitLab CI</li>
+<li>Bamboo</li>
+<li>…</li>
 </ul>
+<p>在为项目选择持续继承（CI）工具时，需要考虑的一点是：使用<strong>本地解决方案</strong>还是选择<strong>托管服务</strong>。</p>
+<p>本地解决方案为构建过程提供了足够的灵活性，项目信息都能被存储在本地。而使用托管服务，则不需要考虑硬件方面的问题，配置也非常简单。如何取舍，要根据项目的实际情况决定。</p>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/06/02/使用WebHooks实现自动代码同步与持续集成/" data-toggle="tooltip" data-placement="top" title="使用WebHooks实现自动代码同步与持续集成">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/05/15/无GUI环境下的Python-Matplotlib绘图/" data-toggle="tooltip" data-placement="top" title="无GUI环境下的Python Matplotlib绘图">Next Post &rarr;</a>
+                            <a href="/2018/05/23/Python学习笔记-理解with语句/" data-toggle="tooltip" data-placement="top" title="Python学习笔记 - 理解with语句">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -273,6 +210,12 @@ finally:
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Web" title="Web">Web</a>
+                        
+                          <a class="tag" href="/tags/#Git" title="Git">Git</a>
+                        
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
                     </div>
