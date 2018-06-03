@@ -186,17 +186,38 @@
 <h1 id="WebHooks实现自动代码同步与持续集成"><a href="#WebHooks实现自动代码同步与持续集成" class="headerlink" title="WebHooks实现自动代码同步与持续集成"></a>WebHooks实现自动代码同步与持续集成</h1><p>Travis CI 是老牌的托管解决方案提供商之一，赢得了很多人的信任。其对开源项目提供免费服务，GitHub上诸多开源项目都选择 Travis CI 。</p>
 <p>Travis CI的持续集成（CI）通过<code>.travis.yml</code>文件进行配置，该文件包含了在构建时所需要执行的任务，支持多种语言并提供完善的帮助文档。</p>
 <blockquote>
-<p>Travis CI: <a href="https://travis-ci.com" target="_blank" rel="noopener">https://travis-ci.com</a></p>
+<p>Travis CI：<a href="https://travis-ci.com" target="_blank" rel="noopener">https://travis-ci.com</a></p>
 </blockquote>
 <p>Travis CI 有个不太好的地方，就是与GitHub的强绑定。这意味着，如果我们的开发项目没有托管在GitHub上，使用Travis CI 就会不太方便。所幸的是，主流Git代码托管平台都提供了<code>WebHooks</code>服务。</p>
 <blockquote>
-<p>Travis CI 配置需求: <a href="https://docs.travis-ci.com/user/getting-started/#Prerequisites" target="_blank" rel="noopener">https://docs.travis-ci.com/user/getting-started/#Prerequisites</a></p>
+<p>Travis CI 配置文档：<a href="https://docs.travis-ci.com/user/getting-started/#Prerequisites" target="_blank" rel="noopener">https://docs.travis-ci.com/user/getting-started/#Prerequisites</a></p>
 </blockquote>
 <p>以码云（Gitee）代码托管平台为例，码云（Gitee）提供<code>WebHooks</code>功能，可以在我们每次提交代码后，向指定的地址<code>POST</code>一条<code>JSON</code>消息，我们就可以根据该消息，来自动拉取托管在码云（Gitee）上的项目代码，再推送至GitHub，实现自动代码同步功能。</p>
-<p>自动代码同步服务并不局限于某种语言，某种框架，只要是能处理<code>HTTP</code>请求即可。个人使用<code>Python Flask</code>框架来搭建自动代码同步服务（Web Service）。</p>
+<p>自动代码同步服务并不局限于特定语言，特定框架，只要能处理<code>HTTP</code>请求即可。为了简便，个人使用<code>Python Flask</code>框架来搭建自动代码同步服务（Web Service）。代码逻辑也非常简单：<strong>获取<code>JSON</code>消息，提取目标数据，根据目标数据执行相关<code>Git</code>操作。</strong></p>
 <p><img src="./flask_gunicorn_nginx_architecture.png" alt="flask_gunicorn_nginx_architecture"></p>
 <blockquote>
-<p>图: 自动代码同步服务（Web Service）架构图</p>
+<p>图：自动代码同步服务（Web Service）架构图</p>
+</blockquote>
+<pre><code class="python">...
+# 处理来自码云（Gitee）的`JSON`消息
+@app.route(&#39;/&#39;, methods=[&#39;POST&#39;])
+def do_webhooks()
+    # 获取`JSON`消息
+    data = json.loads(flask.request.data)
+    # 提取目标分支
+    target_branch = data[&#39;ref&#39;][data[&#39;ref&#39;].rfind(&#39;/&#39;) + 1 : ]
+    # 提取分支状态（创建新分支，删除已有分支）
+    target_status = (data[&#39;created&#39;], data[&#39;deleted&#39;])
+    # 将目标参数传入脚本执行Git操作
+    r = subprocess.run([&#39;bash&#39;, &#39;./git_process.sh&#39;,
+                         target_branch, str(target_status[0]), str(target_status[1])],
+                         stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+    # 打时间戳
+    return &quot;callback status: done&quot; + &#39;\r\n&#39; + &quot;server timestamp: &quot; + time.asctime(time.localtime(time.time()))
+...
+</code></pre>
+<blockquote>
+<p>代码清单：自动代码同步服务（Web Service）核心代码</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1>
                 <hr>
