@@ -172,7 +172,7 @@
 <blockquote>
 <p>“Continuous Integration doesn’t get rid of bugs, but it does make them dramatically easier to find and remove.” — Martin Fowler</p>
 </blockquote>
-<h1 id="流行的持续集成（CI）工具"><a href="#流行的持续集成（CI）工具" class="headerlink" title="流行的持续集成（CI）工具"></a>流行的持续集成（CI）工具</h1><p>下面列出了一些比较流行的持续集成（CI）工具。</p>
+<h1 id="常用持续集成（CI）工具"><a href="#常用持续集成（CI）工具" class="headerlink" title="常用持续集成（CI）工具"></a>常用持续集成（CI）工具</h1><p>下面列出了一些比较流行的持续集成（CI）工具。</p>
 <ul>
 <li>Jenkins</li>
 <li>Travis CI</li>
@@ -221,8 +221,52 @@ def do_webhooks()
 <blockquote>
 <p>代码清单：自动代码同步服务（Web Service）核心代码</p>
 </blockquote>
+<p>在<code>git_process.sh</code>脚本中，根据传入的命令行参数，执行相应<code>git</code>操作即可。</p>
+<pre><code class="bash">#!/bin/bash
+
+# 进入项目目录
+P_DIR=&#39;/path/to/project&#39;
+cd ${P_DIR}
+
+# 接受命令行参数（分支, 状态）
+T_BRANCH=${1}
+T_CREATE=${2}
+T_DELETE=${3}
+
+# 提交操作
+if [[ ${T_CREATE} == &#39;False&#39; &amp;&amp; ${T_DELETE} == &#39;False&#39; ]]
+then
+    # 从 Gitee 拉取最新代码 -&gt;
+    # 移动到目标分支 -&gt;
+    # 合并最新代码 -&gt;
+    # 上传至 GitHub
+    git fetch origin -p &amp;&amp;  \
+    git checkout ${T_BRANCH} &amp;&amp; \
+    git pull origin ${T_BRANCH} &amp;&amp;  \
+    git push github ${T_BRANCH}
+# 创建新分支操作
+elif [[ ${T_CREATE} == &#39;True&#39; &amp;&amp; ${T_DELETE} == &#39;False&#39; ]]
+then
+    git fetch origin -p &amp;&amp;  \
+    git checkout ${T_BRANCH} &amp;&amp; \
+    git pull origin ${T_BRANCH} &amp;&amp;  \
+    git push github ${T_BRANCH}
+# 删除分支操作
+elif [[ ${T_CREATE} == &#39;False&#39; &amp;&amp; ${T_DELETE} == &#39;True&#39; ]]
+then
+    git fetch origin -p &amp;&amp;  \
+    git checkout master &amp;&amp; \
+    git push github --delete ${T_BRANCH}
+else
+    # 打印错误信息
+    echo &#39;error: unknown operation&#39;
+fi
+</code></pre>
+<blockquote>
+<p>代码清单：自动代码同步服务（Web Service）操作代码</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>StackOverflow问答（对特定分支执行任务）：<a href="https://stackoverflow.com/questions/31338562/travisci-run-after-success-on-a-specific-branch" target="_blank" rel="noopener">https://stackoverflow.com/questions/31338562/travisci-run-after-success-on-a-specific-branch</a></li>
+<li>StackOverflow问答（如何对特定分支执行任务）：<a href="https://stackoverflow.com/questions/31338562/travisci-run-after-success-on-a-specific-branch" target="_blank" rel="noopener">https://stackoverflow.com/questions/31338562/travisci-run-after-success-on-a-specific-branch</a></li>
 </ul>
 
                 <hr>
