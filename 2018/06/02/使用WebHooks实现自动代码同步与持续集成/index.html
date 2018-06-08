@@ -183,7 +183,7 @@
 </ul>
 <p>在为项目选择持续继承（CI）工具时，需要考虑的一点是：使用<strong>本地解决方案</strong>还是选择<strong>托管服务</strong>。</p>
 <p>本地解决方案为构建过程提供了足够的灵活性，项目信息都能被存储在本地。而使用托管服务，则不需要考虑硬件方面的问题，配置也非常简单。如何取舍，根据项目的实际情况而定。</p>
-<h1 id="WebHooks实现自动代码同步与持续集成"><a href="#WebHooks实现自动代码同步与持续集成" class="headerlink" title="WebHooks实现自动代码同步与持续集成"></a>WebHooks实现自动代码同步与持续集成</h1><p>Travis CI 是老牌的托管解决方案提供商之一，赢得了很多人的信任。其对开源项目提供免费服务，GitHub上诸多开源项目都选择 Travis CI 。</p>
+<h1 id="WebHooks实现自动代码同步"><a href="#WebHooks实现自动代码同步" class="headerlink" title="WebHooks实现自动代码同步"></a>WebHooks实现自动代码同步</h1><p>Travis CI 是老牌的托管解决方案提供商之一，赢得了很多人的信任。其对开源项目提供免费服务，GitHub上诸多开源项目都选择 Travis CI 。</p>
 <p>Travis CI的持续集成（CI）通过<code>.travis.yml</code>文件进行配置，该文件包含了在构建时所需要执行的任务，支持多种语言并提供完善的帮助文档。</p>
 <blockquote>
 <p>Travis CI：<a href="https://travis-ci.com" target="_blank" rel="noopener">https://travis-ci.com</a></p>
@@ -264,6 +264,16 @@ fi
 </code></pre>
 <blockquote>
 <p>代码清单：自动代码同步服务（Web Service）操作代码</p>
+</blockquote>
+<h1 id="Travis-CI-自动化部署"><a href="#Travis-CI-自动化部署" class="headerlink" title="Travis CI 自动化部署"></a>Travis CI 自动化部署</h1><p>持续集成的另一重要用途就是实现<strong>自动化部署</strong>。项目代码跑通自动化测试程序后，执行自动部署程序，将程序部署到生产服务器上去。</p>
+<p>最简单的一种部署方式便是使用<code>scp</code>：直接将目标代码目标程序远程拷贝到生产服务器上。这里就会遇到一个问题，<code>ssh</code>默认需要交互式输入密码，自动化场景不适用。如果配置<code>ssh</code>密钥方式登陆，也会很不方便（需要在开发机与服务器上都做相应配置）。</p>
+<p>一种解决方案是：使用<code>sshpass</code>插件。这款插件可以自动输入<code>ssh</code>密码，不需要交互式环境，可以很方便实现基于<code>scp</code>的自动化部署方案。</p>
+<pre><code>#!/bin/bash
+...
+sshpass -p ${DEPLOY_PASS} scp -P ${PORT} -o stricthostkeychecking=no -r ${DIST} &quot;${DEPLOY_USER}@${DEPLOY_SERVER}:${DEPLOY_PATH}&quot;
+...
+</code></pre><blockquote>
+<p>代码清单：<code>sshpass</code>实现自动化部署</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>StackOverflow问答（如何对特定分支执行任务）：<a href="https://stackoverflow.com/questions/31338562/travisci-run-after-success-on-a-specific-branch" target="_blank" rel="noopener">https://stackoverflow.com/questions/31338562/travisci-run-after-success-on-a-specific-branch</a></li>
