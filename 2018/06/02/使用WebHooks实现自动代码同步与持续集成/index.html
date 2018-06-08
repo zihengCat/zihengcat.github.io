@@ -268,7 +268,7 @@ fi
 <h1 id="Travis-CI-自动化部署"><a href="#Travis-CI-自动化部署" class="headerlink" title="Travis CI 自动化部署"></a>Travis CI 自动化部署</h1><p>持续集成的另一重要用途就是实现<strong>自动化部署</strong>。项目代码跑通自动化测试程序后，执行自动部署程序，将程序部署到生产服务器上去。</p>
 <p>最简单的一种部署方式便是使用<code>scp</code>：直接将目标代码目标程序远程拷贝到生产服务器上。这里就会遇到一个问题，<code>ssh</code>默认需要交互式输入密码，自动化场景不适用。如果配置<code>ssh</code>密钥方式登陆，也会很不方便（需要在开发机与服务器上都做相应配置）。</p>
 <p>一种解决方案是：使用<code>sshpass</code>插件。这款插件可以自动输入<code>ssh</code>密码，不需要交互式环境，可以很方便实现基于<code>scp</code>的自动化部署方案。</p>
-<p>另外，我们还需要在<code>scp</code>命令中加入<code>stricthostkeychecking=no</code>选项，禁用掉<code>ssh</code>在初次访问远程服务器时弹出的交互式Key认证询问。</p>
+<p>另外，我们还需要在<code>scp</code>命令中加入<code>stricthostkeychecking=no</code>选项，禁用掉<code>ssh</code>在初次访问远程服务器时的交互式认证问询。</p>
 <pre><code>#!/bin/bash
 ...
 sshpass -p ${DEPLOY_PASS} \
