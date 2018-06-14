@@ -140,6 +140,8 @@
                         
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        
                           <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
                         
                     </div>
@@ -164,24 +166,26 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 461. 汉明距离（Hamming distance）</em>问题。</p>
-<p>两个等长字符串之间的汉明距离（英语：Hamming distance）是两个字符串对应位置不同字符的个数。</p>
+<p>两个等长字符串之间的汉明距离（英语：Hamming distance）是指两个字符串对应位置不同字符的个数。</p>
 <blockquote>
-<p><a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="noopener">维基百科</a></p>
+<p>维基百科：<a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB</a></p>
 </blockquote>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>两个整型数的汉明距离是指：这两个整型数对应比特位不同值的个数。<br>给出两个整型数x与y，计算它们的汉明距离。</p>
-<p>注意：<br>0 &lt;= <code>x</code>, <code>y</code> &lt; 2^31</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>两个整型数的汉明距离是指：这两个整型数对应比特位不同值的个数。<br>给出两个整型数<code>x</code>与<code>y</code>，计算它们的汉明距离。</p>
+<blockquote>
+<p>整型范围：$[0, 2^31]$</p>
+</blockquote>
 <p>举例说明：</p>
-<pre><code>*输入*:  x = 1, y = 4
+<pre><code>输入：x = 1, y = 4
 
-*输出*: 2
+输出：2
 
-*解释*:
+解释：
 -------------
 1   (0 0 0 1)
 4   (0 1 0 0)
        ↑   ↑
 -------------
-箭头所指比特位，位置相同值不同。
+注意箭头所指比特位，位置相同值不同。
 </code></pre><h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>输入的整型数均为<code>int</code>类型，这可以免去考虑整型数比特数不相同的情况。<br>先使用异或<em>XOR</em>操作，问题转化为计算得到数中比特值为<code>1</code>的个数。<br>判断最右比特位是否为<code>1</code>，循环移位即可。</p>
 <pre><code>int hammingDistance(int x, int y) {
     int ret = x ^ y;
@@ -193,7 +197,7 @@
     return cnt;
 }
 </code></pre><blockquote>
-<p>C/C++ 代码</p>
+<p>代码清单：<code>C/C++</code>代码实现</p>
 </blockquote>
 
                 <hr>
@@ -227,6 +231,8 @@
                     <div class="tags">
                        
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                           <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
                         
