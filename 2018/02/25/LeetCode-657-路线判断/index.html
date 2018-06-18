@@ -140,6 +140,8 @@
                         
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        
                           <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
                         
                     </div>
@@ -164,15 +166,20 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 657. 路线判断（Judge Route Circle）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>一个机器人初始位置在<em>(0, 0)</em>。输入一系列移动指令使机器人移动起来。判断机器人最终是否回到了初始位置。<br>输入的移动命令是一串字符串。每个移动指令是一个字符。机器人只按照<code>R</code>（右），<code>L</code>（左），<code>U</code>（上），<code>D</code>（下）四个合法指令移动。输出应为机器人是否走回到了原点（<code>true</code>/<code>false</code>）。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>一个机器人初始位置在$(0, 0)$。输入一系列移动指令使机器人移动起来。判断机器人最终是否回到了初始位置。<br>输入的移动命令是一串字符串。每个移动指令是一个字符。机器人只按照<code>R</code>（右），<code>L</code>（左），<code>U</code>（上），<code>D</code>（下）四个合法指令移动。输出为一个布尔值，判断机器人是否走回到了原点（<code>true</code>/<code>false</code>）。</p>
 <p><strong>样例1：</strong></p>
 <pre><code>输入: &quot;UD&quot;
 输出: true
 </code></pre><p><strong>样例2：</strong></p>
 <pre><code>输入: &quot;LL&quot;
 输出: false
-</code></pre><h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>设置初始坐标为<em>(0, 0)</em>，遍历输入字符串，是合法指令就改变坐标，最后判断改变后坐标与<em>（0, 0）</em>点是否相等即可。</p>
-<pre><code>bool judgeCircle(char* moves) {
+</code></pre><h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>设置初始坐标为$(0, 0)$，遍历输入指令字符串，如果是合法指令就改变坐标，指令结束后判断改变后再坐标与$（0, 0）$点是否相等即可。</p>
+<pre><code>/*
+ *
+ * 输入：指令字符串
+ * 输出：布尔值
+ */
+bool judgeCircle(char* moves) {
     int posX = 0, posY = 0;
     while(*moves) {
         switch(*moves) {
@@ -196,7 +203,7 @@
     return posX == 0 &amp;&amp; posY == 0;
 }
 </code></pre><blockquote>
-<p>C/C++ 代码</p>
+<p>代码清单：C/C++ 代码</p>
 </blockquote>
 
                 <hr>
@@ -230,6 +237,8 @@
                     <div class="tags">
                        
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                           <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
                         
