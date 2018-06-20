@@ -161,18 +161,18 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Git</code>默<strong>认对于文件名大小写不敏感，不区分文件名大小写</strong>。这意味着如果我们只修改了文件名的大小写，<code>Git</code>会提示并没有发现任何改动。这一默认配置有时候会对项目造成影响。</p>
-<p>Windows 系统默认不区分大小写，macOS 默认是<strong>Mac OS 扩展（日志式）</strong>格式的磁盘，也不区分大小写，而 Linux 是区分大小写的，也许是为了系统兼容性考虑，<code>Git</code>默认也不区分文件名的大小写。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Git</code>默认配置<strong>对于文件名大小写不敏感，即不区分文件名大小写</strong>。这意味着，如果我们只修改了文件名大小写（大写字母改小写或小写字母改大写），<code>Git</code>并不会侦测到任何改动。这一默认配置有时候会对项目开发造成影响。</p>
+<p>Windows 系统默认不区分大小写，macOS 默认是<strong>Mac OS 扩展（日志式）</strong>磁盘格式，也不区分大小写，而 Linux 则是区分大小写的，或许是为了系统兼容性考虑，<code>Git</code>选择默认不区分文件名大小写。</p>
 <h1 id="Git中启用大小写敏感"><a href="#Git中启用大小写敏感" class="headerlink" title="Git中启用大小写敏感"></a><code>Git</code>中启用大小写敏感</h1><p>在一枚<code>git</code>仓库中，我们可以使用如下命令启动大小写敏感模式。</p>
 <pre><code>$ git config core.ignorecase false
 </code></pre><blockquote>
-<p>代码清单：<code>git</code>中启用大小写敏感</p>
+<p>代码清单：在<code>git</code>中启用大小写敏感模式</p>
 </blockquote>
-<p>或者，在默认启用对文件名大小写不敏感的情况下，使用<code>git mv</code>命令来修改文件名，也可以让<code>git</code>侦测到文件名称的变动。</p>
+<p>或者，在默认配置对文件名大小写不敏感的情况下，使用<code>git mv</code>命令来修改文件名，也可以让<code>git</code>侦测到文件名称的变动。</p>
 <pre><code>$ git config core.ignorecase true
 $ git mv [old_filename] [new_filename]
 </code></pre><blockquote>
-<p>代码清单：<code>git mv</code>修改文件名</p>
+<p>代码清单：使用<code>git mv</code>修改文件名</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>知乎问答：<a href="https://www.zhihu.com/question/57779034" target="_blank" rel="noopener">https://www.zhihu.com/question/57779034</a></li>
