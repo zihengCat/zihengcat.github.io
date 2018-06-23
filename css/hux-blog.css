@@ -480,9 +480,9 @@ code {
   background: no-repeat center center;
   background-color: #808080;
   background-attachment: scroll;
+  background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
-  background-size: cover;
   -o-background-size: cover;
   margin-bottom: 0px;
   /* 0 on mobile, modify by Hux */
