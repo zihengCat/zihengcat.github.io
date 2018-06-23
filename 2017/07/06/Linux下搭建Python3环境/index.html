@@ -482,11 +482,14 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </script>
 
 <!-- jQuery.tagCloud.js -->
+
+<script type="text/javascript" src="https://raw.githubusercontent.com/addywaddy/jquery.tagcloud.js/master/jquery.tagcloud.js"></script>
+
 <script type="text/javascript">
     /* only load `jQuery.tagCloud.js` in `tag.html` */
     if($('#tag_cloud').length !== 0) {
         /* use `rawgithubusercontent` for `MIME type` */
-        async("https://rawgithubusercontent.com/addywaddy/jquery.tagcloud.js/master/jquery.tagcloud.js",
+        /* async("https://rawgithubusercontent.com/addywaddy/jquery.tagcloud.js/master/jquery.tagcloud.js", */
         function() {
             $.fn.tagcloud.defaults = {
                 // size: { start: 1, end: 1, unit: 'em' },
