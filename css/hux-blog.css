@@ -245,9 +245,11 @@ code {
   color: inherit;
   border: 1px solid #ddd;
   background: #f6f6f6;
+  /*
   padding: 3px;
   border-radius: 3px;
   font-size: 0.9em;
+  */
 }
 .post-container a {
   color: #337ab7;
