@@ -690,7 +690,8 @@ form .row:first-child .floating-label-form-group {
   letter-spacing: 1px;
   padding: 10px;
   background-color: white;
-  border-radius: 0;
+  /* use nice `border-radius` */
+  border-radius: 999em;
 }
 @media only screen and (min-width: 768px) {
   .pager li > a,
