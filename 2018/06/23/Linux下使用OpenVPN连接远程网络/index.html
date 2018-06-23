@@ -278,7 +278,16 @@ $ openvpn --version
 <blockquote>
 <p>代码清单：检验<code>OpenVPN</code>安装</p>
 </blockquote>
-<h1 id="OpenVPN客户端连接"><a href="#OpenVPN客户端连接" class="headerlink" title="OpenVPN客户端连接"></a><code>OpenVPN</code>客户端连接</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<h1 id="OpenVPN客户端连接远程网络"><a href="#OpenVPN客户端连接远程网络" class="headerlink" title="OpenVPN客户端连接远程网络"></a><code>OpenVPN</code>客户端连接远程网络</h1><p>安装完成后，我们就可以使用<code>OpenVPN</code>来连接远程网络了。</p>
+<p>一般来说，企业VPN服务端的运维人员会给想要登录到远程网络的客户端一份<code>*.ovpn</code>配置文件。记录了用户登录该VPN所需的必要信息（认证方式，使用协议…）。拿到这份配置文件，我们就可以使用<code>OpenVPN</code>来登录了。</p>
+<pre><code class="bash"># 连接VPN需要使用`sudo`管理员权限
+$ sudo openvpn --config &lt;path/to/your/*.ovpn&gt;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：使用<code>OpenVPN</code>连接远程网络</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>编译 OpenVPN 及解决相关依赖问题：<a href="https://segmentfault.com/a/1190000009414135" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009414135</a></li>
 </ul>
 
