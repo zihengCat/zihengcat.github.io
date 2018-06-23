@@ -392,13 +392,11 @@
     if($('#tag_cloud').length !== 0) {
         /* use `rawgithubusercontent` for `MIME type` */
         /* async("https://rawgithubusercontent.com/addywaddy/jquery.tagcloud.js/master/jquery.tagcloud.js", */
-        function() {
-            $.fn.tagcloud.defaults = {
-                // size: { start: 1, end: 1, unit: 'em' },
-                color: { start: '#bbbbee', end: '#0085a1' },
-            };
-            $('#tag_cloud a').tagcloud();
-        }
+        $.fn.tagcloud.defaults = {
+            // size: { start: 1, end: 1, unit: 'em' },
+            color: { start: '#bbbbee', end: '#0085a1' },
+        };
+        $('#tag_cloud a').tagcloud();
     }
 </script>
 
