@@ -216,7 +216,7 @@ $ git checkout v2.4.6
 <p>代码清单：使用<code>git</code>取得<code>OpenVPN</code>源代码</p>
 </blockquote>
 <h2 id="Step-2-编译安装"><a href="#Step-2-编译安装" class="headerlink" title="Step 2 - 编译安装"></a>Step 2 - 编译安装</h2><p><code>OpenVPN</code>与其他Linux开源软件的编译安装方式大同小异，主要都是分三步走：<code>configure</code> -&gt; <code>make</code> -&gt; <code>make install</code>。有所不同的地方是，<code>OpenVPN</code>要先使用<code>autoconf</code>生成一份<code>configure</code>配置脚本。请确保系统已经安装了GNU基础编译套件（<code>gcc</code>，make，<code>autoconf</code>…）。</p>
-<pre><code># 使用`autoconf`生成`configure`配置脚本
+<pre><code class="bash"># 使用`autoconf`生成`configure`配置脚本
 $ autoreconf -i -v -f
 ...
 $ ./configure
@@ -225,7 +225,8 @@ $ make
 ...
 $ sudo make install
 ...
-</code></pre><blockquote>
+</code></pre>
+<blockquote>
 <p>代码清单：编译安装<code>OpenVPN</code>流程</p>
 </blockquote>
 <h1 id="OpenVPN客户端连接"><a href="#OpenVPN客户端连接" class="headerlink" title="OpenVPN客户端连接"></a><code>OpenVPN</code>客户端连接</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
