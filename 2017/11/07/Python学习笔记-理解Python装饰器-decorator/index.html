@@ -511,7 +511,8 @@ def f():
         $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
       }
       if (opts.color) {
-        $(this).css({"color": tagColor(opts.color, colorIncr, weighting)});
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
       }
     });
   };
@@ -524,7 +525,7 @@ def f():
 if($('#tag_cloud').length !== 0) {
     $.fn.tagcloud.defaults = {
         // size: { start: 1, end: 1, unit: 'em' },
-        background-color: { start: '#bbbbee', end: '#0085a1' },
+        color: { start: '#bbbbee', end: '#0085a1' },
     };
     $('#tag_cloud a').tagcloud();
 }

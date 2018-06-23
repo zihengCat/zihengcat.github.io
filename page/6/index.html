@@ -736,7 +736,8 @@ if-else 语句if-else 语句由一个布尔表达式后跟一个......
         $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
       }
       if (opts.color) {
-        $(this).css({"color": tagColor(opts.color, colorIncr, weighting)});
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
       }
     });
   };
@@ -749,7 +750,7 @@ if-else 语句if-else 语句由一个布尔表达式后跟一个......
 if($('#tag_cloud').length !== 0) {
     $.fn.tagcloud.defaults = {
         // size: { start: 1, end: 1, unit: 'em' },
-        background-color: { start: '#bbbbee', end: '#0085a1' },
+        color: { start: '#bbbbee', end: '#0085a1' },
     };
     $('#tag_cloud a').tagcloud();
 }

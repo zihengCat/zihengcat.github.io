@@ -731,7 +731,8 @@ hosts文件(域名解析文件)是一个用于储存计算机网络中各节点�
         $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
       }
       if (opts.color) {
-        $(this).css({"color": tagColor(opts.color, colorIncr, weighting)});
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
       }
     });
   };
@@ -744,7 +745,7 @@ hosts文件(域名解析文件)是一个用于储存计算机网络中各节点�
 if($('#tag_cloud').length !== 0) {
     $.fn.tagcloud.defaults = {
         // size: { start: 1, end: 1, unit: 'em' },
-        background-color: { start: '#bbbbee', end: '#0085a1' },
+        color: { start: '#bbbbee', end: '#0085a1' },
     };
     $('#tag_cloud a').tagcloud();
 }
