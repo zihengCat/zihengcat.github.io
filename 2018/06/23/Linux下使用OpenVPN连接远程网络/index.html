@@ -623,7 +623,7 @@ if($('#tag_cloud').length !== 0) {
 <script type="text/javascript">
 
     function generateCatalog (selector) {
-
+        /*
         // interop with multilangual
         if ('true' == 'true') {
             _containerSelector = 'div.post-container.active'
@@ -637,6 +637,7 @@ if($('#tag_cloud').length !== 0) {
 
         // clean
         $(selector).html('')
+        */
 
         // appending
         a.each(function () {
@@ -665,7 +666,7 @@ if($('#tag_cloud').length !== 0) {
 	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
     function () {
         $('.catalog-body').onePageNav({
-            currentClass: "active",
+            currentClass: "deactive",
             changeHash: !1,
             easing: "swing",
             filter: "",
