@@ -394,6 +394,8 @@ There is NO WARRANTY, to the extent permitted by law.
 
 <!-- jQuery.tagCloud.js -->
 
+<script src="/js/hux-blog.js"></script>
+
 <script type="text/javascript">
 /*!
  * jquery.tagcloud.js
@@ -486,16 +488,14 @@ There is NO WARRANTY, to the extent permitted by law.
     size: {start: 14, end: 18, unit: "pt"}
   };
 })(jQuery);
-</script>
 
-<script type="text/javascript">
-    if($('#tag_cloud').length !== 0) {
-        $.fn.tagcloud.defaults = {
-            // size: { start: 1, end: 1, unit: 'em' },
-            color: { start: '#bbbbee', end: '#0085a1' },
-        };
-        $('#tag_cloud a').tagcloud();
-    }
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
 </script>
 
 <!--fastClick.js -->
