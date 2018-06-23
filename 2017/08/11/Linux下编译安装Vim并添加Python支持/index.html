@@ -168,13 +168,13 @@
 <blockquote>
 <p>Linux下搭建Python3环境（编译安装）：<br><a href="https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83">https://zihengcat.github.io/2017/07/06/Linux%E4%B8%8B%E6%90%AD%E5%BB%BAPython3%E7%8E%AF%E5%A2%83</a></p>
 </blockquote>
-<h1 id="Step-2-获取源代码"><a href="#Step-2-获取源代码" class="headerlink" title="Step 2 - 获取源代码"></a>Step 2 - 获取源代码</h1><p>获取vim源代码，可以直接拉取vim在GitHub上的镜像仓库，也可以前往vim官网下载源码包。</p>
+<h1 id="Step-2-获取源代码"><a href="#Step-2-获取源代码" class="headerlink" title="Step 2 - 获取源代码"></a>Step 2 - 获取源代码</h1><p>获取<code>vim</code>源代码，可以直接拉取<code>vim</code>在GitHub上的镜像仓库，也可以前往<code>vim</code>官网下载源码包。</p>
 <blockquote>
 <p>Vim官网：<a href="http://www.vim.org" target="_blank" rel="noopener">http://www.vim.org</a><br>GitHub仓库：<a href="https://github.com/vim/vim" target="_blank" rel="noopener">https://github.com/vim/vim</a></p>
 </blockquote>
 <pre><code>$ git clone https://github.com/vim/vim.git
 </code></pre><blockquote>
-<p>代码清单：获取<code>vim</code>源码</p>
+<p>代码清单：<code>git</code>拉取<code>vim</code>源码</p>
 </blockquote>
 <h1 id="Step-3-解决依赖性"><a href="#Step-3-解决依赖性" class="headerlink" title="Step 3 - 解决依赖性"></a>Step 3 - 解决依赖性</h1><p>本机安装好<code>gcc</code>，<code>make</code>等基础编译工具。<code>vim</code>所需要的依赖库相当少，编译安装时基本不会遇到依赖性问题。如果缺少依赖包（如提示需要安装终端操作库<code>ncurses</code>），<code>configure</code>会给出报错提示信息，按照提示装好相应的依赖库即可。</p>
 <h2 id="Step-4-添加配置选项"><a href="#Step-4-添加配置选项" class="headerlink" title="Step 4 - 添加配置选项"></a>Step 4 - 添加配置选项</h2><p><code>vim</code>有着非常丰富的配置选项，需要添加哪些功能，就把哪些功能选项打开。<code>vim</code>对于<code>Ruby</code>，<code>Perl</code>，<code>Lua</code>等的动态语言都有提供支持接口，当然前提是系统已经安装好了相应环境。这里我们只开启对<code>Python</code>语言的支持。</p>
