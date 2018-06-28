@@ -166,7 +166,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Linux系统的小伙伴们一定知道SSH（Secure Shell），知名的远程登陆服务。<br>我们每次使用SSH远程登陆到远端主机时，总是要输入密码，如果是服务器的话，密码一般都设得很复杂（或者不允许密码登录）。SSH还可以使用密钥认证的方式进行远程登陆。</p>
-<h1 id="配置SSH密钥认证登陆"><a href="#配置SSH密钥认证登陆" class="headerlink" title="配置SSH密钥认证登陆"></a>配置SSH密钥认证登陆</h1><p>首先，我们需要确认远程主机的<strong>sshd服务</strong>开启了密钥认证功能。<br>查看<code>sshd</code>配置文件，确认相关功能选项均已开启。修改<code>sshd</code>配置文件需要root权限。</p>
+<h1 id="配置SSH密钥认证登陆（服务端）"><a href="#配置SSH密钥认证登陆（服务端）" class="headerlink" title="配置SSH密钥认证登陆（服务端）"></a>配置SSH密钥认证登陆（服务端）</h1><p>首先，我们需要确认远程主机的<strong>sshd服务</strong>开启了密钥认证功能。<br>查看<code>sshd</code>配置文件，确认相关功能选项均已开启。修改<code>sshd</code>配置文件需要root权限。</p>
 <pre><code>$ sudo vi /etc/ssh/sshd_config
 ...
 SAAuthentication yes
@@ -195,6 +195,9 @@ $ cat ~/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
 $ chmod 700 ~/.ssh &amp;&amp; chmod 600 ~/.ssh/authorized_keys
 $ rm ~/id_rsa.pub
 </code></pre><p>其实这一步就是将<code>id_rsa.pub</code>公钥写入到<code>authorized_keys</code>中。如果没有该文件，就创建一个。再将<code>authorized_keys</code>与<code>~/.ssh</code>权限设置正确。<strong>权限设置不对，认证就会失败。</strong></p>
+<blockquote>
+<p>注：<br><code>.ssh</code>目录权限：<code>0700</code><br><code>id_rsa</code>秘钥权限：<code>0600</code></p>
+</blockquote>
 <p>OK，配置完成！现在我们已经可以从客户端无密码登陆远程目标主机了。</p>
 <h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>SSH免密码登陆是使用密钥加解密认证取代原先了的密码认证。</p>
 <p><img src="./ssh-key-auth-flow.png" alt="ssh-key-auth-flow"></p>
