@@ -170,7 +170,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 561. 数组分片 I（Array Partition I）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个含有$2n$个整型数的数组，你的任务是，将这些数分为$n$组，形如：$(a_1, b_1), (a_2, b_2), … (a_n, b_n)$，使得下式的值取到<strong>最大</strong>，并输出最大值。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个含有$5n$个整型数的数组，你的任务是，将这些数分为$n$组，形如：$(a_1, b_1), (a_2, b_2), … (a_n, b_n)$，使得下式的值取到<strong>最大</strong>，输出这个最大值。</p>
 
 $$
 S = \sum_{i=1}^{n}\min(a_{i}, b_{i})
@@ -185,7 +185,7 @@ Output: 4
 <p><strong>注意：</strong></p>
 <ul>
 <li>$n$是一个正整数，取值范围：$[1, 10000]$</li>
-<li>数组中，所有整数的取值范围：$[-10000, 10000]$</li>
+<li>数组中所有整数的取值范围：$[-10000, 10000]$</li>
 </ul>
 <h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>显然，我们没有办法对一个乱序的数组进行排列组合，使得其每组最小值相加后得到的数值最大。我们首先要对数组进行<strong>排序操作（升序降序均可）</strong>。排序后，分组规则就简单明了，每两个数分一组，遍历求和后得到的数值，一定是最大的。</p>
 <pre><code class="C++">/* STL 头文件 */
