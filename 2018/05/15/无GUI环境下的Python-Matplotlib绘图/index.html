@@ -150,7 +150,7 @@
                         
                     </div>
                     <h1>无GUI环境下的Python Matplotlib绘图</h1>
-                    <h2 class="subheading"></h2>
+                    <h2 class="subheading">Matplotlib Graphing without GUI</h2>
                     <span class="meta">
                         Posted by zihengCat on
                         2018-05-15
@@ -170,7 +170,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Matplotlib</code>绘图库默认使用<code>X11</code>的用户图形界面（GUI）展示绘制的图形，对于不带GUI的服务器系统，想要使用<code>Matplotlib</code>绘图需要做一些额外配置。</p>
-<h1 id="服务器端（无GUI）使用Matplotlib绘图"><a href="#服务器端（无GUI）使用Matplotlib绘图" class="headerlink" title="服务器端（无GUI）使用Matplotlib绘图"></a>服务器端（无GUI）使用<code>Matplotlib</code>绘图</h1><p>想让<code>Matplotlib</code>在无图形界面（GUI）的环境下绘图，我们需要先导入<code>maptlotlib</code>包，再为其指定使用的后端（backend）绘图引擎。最简单的情况，就是设置使用<code>Agg</code>作为后端绘图引擎，<code>Agg</code>的含义是<strong>C++ Antigrain</strong>绘图引擎，不仅能渲染出高质量的PNG图片，还支持导出其他格式（PDF, PS, EPS, SVG）的图片。</p>
+<h1 id="服务器端「无GUI」使用Matplotlib绘图"><a href="#服务器端「无GUI」使用Matplotlib绘图" class="headerlink" title="服务器端「无GUI」使用Matplotlib绘图"></a>服务器端「无GUI」使用<code>Matplotlib</code>绘图</h1><p>想让<code>Matplotlib</code>在无图形界面（GUI）的环境下绘图，我们需要先导入<code>maptlotlib</code>包，再为其指定使用的后端（Backend）绘图引擎。最简单的情况，就是设置使用<code>Agg</code>作为后端绘图引擎，<code>Agg</code>的含义是「<strong>C++ Antigrain</strong>」绘图引擎，它不仅能够渲染出高质量的PNG图片，还支持导出其他格式「PDF, PS, EPS, SVG」图片。</p>
 <p>配置<code>Matplotlib</code>使用<code>Agg</code>后端引擎非常简单，导入<code>maptlotlib</code>库，使用<code>use</code>方法配置即可。注意，配置后端这一动作要在导入<code>pylab</code>或<code>pyplot</code>之前完成。</p>
 <pre><code class="python"># do this before importing pylab or pyplot
 import matplotlib
@@ -202,6 +202,20 @@ import matplotlib.pyplot as plt
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -505,6 +519,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
