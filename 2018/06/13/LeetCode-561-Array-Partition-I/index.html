@@ -203,7 +203,7 @@ public:
         int sum = 0;
         /* 隔二分组 */
         for(int i = 0; i &lt; nums.size(); i += 2) {
-            /* 求和 */
+            /* 遍历求和 */
             sum += MIN(nums[i], nums[i + 1]);
         }
         return sum;
@@ -211,7 +211,19 @@ public:
 };
 </code></pre>
 <blockquote>
-<p>注：C++代码</p>
+<p>代码清单：<code>C++</code>代码</p>
+</blockquote>
+<p>而使用<code>Python</code>，一行即可完成，<code>Python</code>语言的表现能力还是极强的。</p>
+<pre><code class="python">class Solution:
+    def arrayPairSum(self, nums):
+        &quot;&quot;&quot;
+        :type nums: List[int]
+        :rtype: int
+        &#39;&#39;&#39;
+        return sum(sorted(nums)[::2])
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Python</code>代码</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/array-partition-i/description/" target="_blank" rel="noopener">https://leetcode.com/problems/array-partition-i/description/</a></li>
