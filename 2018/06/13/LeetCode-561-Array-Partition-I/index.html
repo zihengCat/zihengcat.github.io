@@ -213,6 +213,24 @@ public:
 <blockquote>
 <p>代码清单：<code>C++</code>实现</p>
 </blockquote>
+<pre><code class="java">import java.util.*;
+class Solution {
+    public int arrayPairSum(int[] nums) {
+        Arrays.sort(nums);
+        int sum = 0;
+        for(int i = 0; i &lt; nums.length; i += 2) {
+            sum += this.min(nums[i], nums[i + 1]);
+        }
+        return sum;
+    }
+    private int min(int x, int y) {
+        return x &lt; y ? x : y;
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Java</code>实现</p>
+</blockquote>
 <p>而使用<code>Python</code>，一行即可完成，<code>Python</code>语言的表现力还是极强的。</p>
 <pre><code class="python">class Solution:
     def arrayPairSum(self, nums):
