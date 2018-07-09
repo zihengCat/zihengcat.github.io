@@ -170,7 +170,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 561. 数组分片 I（Array Partition I）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个含有$5n$个整型数的数组，你的任务是，将这些数分为$n$组，形如：$(a_1, b_1), (a_2, b_2), … (a_n, b_n)$，使得下式的值取到<strong>最大</strong>，输出这个最大值。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个含有$2n$个整型数的数组，你的任务是，将这些数分为$n$组，形如：$(a_1, b_1), (a_2, b_2), … (a_n, b_n)$，使得下式的值取到<strong>最大</strong>，并输出这个最大值。</p>
 
 $$
 S = \sum_{i=1}^{n}\min(a_{i}, b_{i})
@@ -231,7 +231,7 @@ class Solution {
 <blockquote>
 <p>代码清单：<code>Java</code>实现</p>
 </blockquote>
-<p>而使用<code>Python</code>，一行即可完成，<code>Python</code>语言的表现力还是极强的。</p>
+<p>而使用<code>Python</code>，一行代码即可完成。<code>Python</code>语言的表现力还是极强的。</p>
 <pre><code class="python">class Solution:
     def arrayPairSum(self, nums):
         &quot;&quot;&quot;
