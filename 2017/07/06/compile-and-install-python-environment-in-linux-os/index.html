@@ -8,7 +8,7 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2017/07/06/Linux下搭建Python环境/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/06/compile-and-install-python-environment-in-linux-os/">
     <title>
         
           Linux下搭建Python环境（编译安装） - zihengCat
@@ -148,7 +148,7 @@
                         
                     </div>
                     <h1>Linux下搭建Python环境（编译安装）</h1>
-                    <h2 class="subheading"></h2>
+                    <h2 class="subheading">Compile and Install Python Environment in Linux OS</h2>
                     <span class="meta">
                         Posted by zihengCat on
                         2017-07-06
@@ -167,18 +167,18 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在Linux环境下编译安装<code>Python3</code>。</p>
-<p>在子恒喵使用的<em>CentOS7 Linux</em>系统上，系统默认不安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也不是最新版本。</p>
-<p>系统自带一枚精简过的<code>Python2</code>，为一些系统应用提供支持，不应该随意更动，否则会出现各种各样的Bug（<code>yum</code>不能正常使用什么的…）。</p>
-<p>手动编译安装<code>Python3</code>，是Linux下搭建Python学习环境的最佳选择。</p>
-<h1 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 - 编译环境"></a>Step 1 - 编译环境</h1><p>我们需要在本机安装基础编译工具链，这是编译Python源码所必需的。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在Linux环境下编译安装<code>Python</code>环境。</p>
+<p>在个人使用的<em>CentOS7 Linux</em>系统上，系统默认不安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也不是最新版本。</p>
+<p>系统自带一枚低版本<code>Python2</code>，为一些系统组件提供支持，不应该随意更动，不然会出现各种各样的Bugs（<code>yum</code>无法正常使用什么的…）。</p>
+<p>手动编译安装<code>Python</code>，是Linux系统下搭建Python学习环境的最佳途径。</p>
+<h1 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 - 编译环境"></a>Step 1 - 编译环境</h1><p>首先，我们需要在本机安装「基础编译工具链」，这是编译<code>Python</code>源码所必需的。</p>
 <pre><code class="bash">$ sudo yum install gcc make
 </code></pre>
 <blockquote>
-<p>代码清单：安装基础编译工具</p>
+<p>代码清单：安装「基础编译工具」</p>
 </blockquote>
-<p>本机安装<code>gcc</code>，<code>make</code>基础编译工具，用来编译Python源码（Python语言的官方实现便是<em>CPython</em>）。</p>
-<h1 id="Step-2-获取源码"><a href="#Step-2-获取源码" class="headerlink" title="Step 2 - 获取源码"></a>Step 2 - 获取源码</h1><p>接下来，前往Python官方网站，下载最新的Python3源码包。注意要下载源码包<code>source tarball</code>。</p>
+<p>本机安装好<code>gcc</code>，<code>make</code>等基础编译工具，用来编译<code>Python</code>源码（Python语言的官方实现是<em>CPython</em>）。</p>
+<h1 id="Step-2-获取源码"><a href="#Step-2-获取源码" class="headerlink" title="Step 2 - 获取源码"></a>Step 2 - 获取源码</h1><p>接下来，前往Python官方网站，下载最新的Python3「源码包」。注意要下载源码包<code>source tarball</code>。</p>
 <blockquote>
 <p>Python官网：<a href="https://www.python.org" target="_blank" rel="noopener">https://www.python.org</a></p>
 </blockquote>
@@ -187,14 +187,23 @@
 <blockquote>
 <p>代码清单：获取Python源码包</p>
 </blockquote>
-<p>解压缩，解包（<code>*.tar.xz</code>压缩包需要分两步解压，<code>*.tar.gz</code>就可以使用<code>tar -xvz -f</code>一步到位）。</p>
+<p>解压缩，解包，<code>*.tar.xz</code>压缩包需要分两步解压，<code>*.tar.gz</code>则可以使用<code>tar -xvz -f</code>一步到位。</p>
 <pre><code class="bash">$ xz -d ./Python-3.6.1.tar.xz
 $ tar -xv -f ./Python-3.6.1.tar
 </code></pre>
 <blockquote>
-<p>代码清单：解压缩Python源码包</p>
+<p>代码清单：解压缩<code>Python</code>源码包</p>
 </blockquote>
-<h1 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 - 安装依赖"></a>Step 3 - 安装依赖</h1><p><code>cd</code>进入Python3源码目录，我们可以先看一下<code>README.rst</code>这个文件，上面告诉了我们编译安装的具体步骤。</p>
+<p>亦或者，我们也可以直接把 GitHub 上的<code>cpython</code>镜像仓库克隆到本地。</p>
+<pre><code class="bash">$ git clone https://github.com/python/cpython.git
+$ cd cpython
+$ git tag
+$ git checkout &lt;tag_version&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：使用<code>git</code>获取源代码</p>
+</blockquote>
+<h1 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 - 安装依赖"></a>Step 3 - 安装依赖</h1><p><code>cd</code>进入<code>Python</code>源码目录，我们可以先看一下<code>README.rst</code>这个文件，上面告诉了我们编译安装的具体步骤。</p>
 <p>在编译安装之前，我们需要先安装一些Python依赖包，这是<code>README</code>上没有提到的（会在<code>./configure</code>检查依赖项时告诉你…）。为了省去后续查找安装依赖的麻烦，这里把所需要的依赖包全部列出。</p>
 <table>
 <thead>
@@ -251,14 +260,14 @@ $ tar -xv -f ./Python-3.6.1.tar
 <td style="text-align:left"><code>tk-dev</code></td>
 </tr>
 <tr>
-<td style="text-align:center">GDBM</td>
+<td style="text-align:center">gdbm</td>
 <td style="text-align:left"><code>gdbm-devel</code></td>
 <td style="text-align:left"><code>libgdbm-dev</code></td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>表：不同Linux系统下<code>Python</code>依赖库表</p>
+<p>表：Linux系统下<code>Python</code>依赖库表</p>
 </blockquote>
 <pre><code class="bash"># 安装Python依赖库自动化脚本
 #/bin/bash
@@ -282,23 +291,37 @@ done
 exit ${?}
 </code></pre>
 <blockquote>
-<p>代码清单: CentOS7下安装Python依赖库脚本</p>
+<p>代码清单: CentOS7 Linux 下安装 Python 依赖库脚本</p>
 </blockquote>
 <p>手写一支shell脚本，把依赖包全部装好。对于<code>Debian</code>系的系统，可以使用<code>apt</code>命令安装相应的依赖包。</p>
-<h1 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 - 编译安装"></a>Step 4 - 编译安装</h1><p>依赖包都安装好之后，接下来，我们就按照<code>README</code>的指引，编译安装<code>Python3</code>。请确保在Python源代码目录下执行以下操作：</p>
-<pre><code class="bash">$ ./configure --prefix=/usr/local/python-3.6.1 --enable-optimizations
+<h1 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 - 编译安装"></a>Step 4 - 编译安装</h1><p>依赖包都安装好之后，接下来，我们就按照<code>README</code>的指引，编译安装<code>Python</code>。请确保在Python源代码目录下执行以下操作：</p>
+<pre><code class="bash">$ ./configure --prefix=/usr/local/python_3.6.1 --enable-optimizations
 </code></pre>
 <blockquote>
 <p>代码清单：编译配置选项</p>
 </blockquote>
 <p>此命令会检查当前系统的编译环境，软件依赖性等等，如果没有问题的话，会成功生成<code>Makefile</code>。</p>
 <p>这里我们添加了两个编译参数：</p>
-<ul>
-<li><code>--prefix</code>：自定义安装路径，默认在<code>/usr/local</code>，个人习惯单独指定一个安装目录，这样管理起来会比较方便。</li>
-<li><code>--enable-optimizations</code>：开启编译优化选项，增加编译时间，换取性能提升，这是值得的。</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">编译选项</th>
+<th style="text-align:center">解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>--prefix</code></td>
+<td style="text-align:center">自定义安装路径，默认在<code>/usr/local</code>，个人习惯单独指定一个安装目录，这样管理起来比较方便。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>--enable-optimizations</code></td>
+<td style="text-align:center">开启编译优化选项，增加编译时间，换取性能提升，这是值得的。</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>更多编译参数查看：<code>./configure --help</code>。</p>
+<p>更多编译选项参看：<code>./configure --help</code>。</p>
 </blockquote>
 <pre><code class="bash">$ make
 $ sudo make install
@@ -306,14 +329,14 @@ $ sudo make install
 <blockquote>
 <p>代码清单：编译安装</p>
 </blockquote>
-<p>编译安装，编译时间取决于机器性能。如果是虚拟机环境，可以把虚拟机性能调高一些。</p>
-<p>如果<code>--prefix</code>自定义了安装目录，别忘了将路径加入<code>PATH</code>环境变量中，并将<code>Python3</code>链接到<code>/usr/bin/</code>下哦。</p>
-<pre><code class="bash">$ echo &#39;export PATH=${PATH}:&lt;prefix/bin&gt;&#39; &gt;&gt; ~/.bashrc
+<p><code>make</code>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。</p>
+<p>如果使用<code>--prefix</code>编译选项自定义了安装目录，安装完成后不要忘记了将安装路径加入<code>PATH</code>环境变量中，并将<code>Python3</code>软链接到<code>/usr/bin/</code>下。</p>
+<pre><code class="bash">$ echo &#39;export PATH=${PATH}:&lt;path/to/python/bin&gt;&#39; &gt;&gt; ~/.bashrc
 </code></pre>
 <blockquote>
-<p>代码清单：加入Python到系统路径</p>
+<p>代码清单：加入<code>Python</code>到系统路径</p>
 </blockquote>
-<h1 id="Step-5-检验安装"><a href="#Step-5-检验安装" class="headerlink" title="Step 5 - 检验安装"></a>Step 5 - 检验安装</h1><p>命令行下直接启动Python3，如果安装部署都没有问题，就会正常进入Python3交互式环境。</p>
+<h1 id="Step-5-检验安装"><a href="#Step-5-检验安装" class="headerlink" title="Step 5 - 检验安装"></a>Step 5 - 检验安装</h1><p>命令行下直接启动Python3，如果「安装与部署」都没有问题，会正常进入Python3交互式环境。</p>
 <pre><code class="bash">$ python3
 Python 3.6.1 (default, Jul  6 2017, 15:12:56)
 [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux
@@ -342,6 +365,20 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -643,6 +680,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
