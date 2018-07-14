@@ -148,7 +148,7 @@
                         
                     </div>
                     <h1>macOS 设置终端 socks5 代理连接</h1>
-                    <h2 class="subheading"></h2>
+                    <h2 class="subheading">Using socks5 Proxy in macOS Terminal</h2>
                     <span class="meta">
                         Posted by zihengCat on
                         2018-02-27
@@ -167,33 +167,45 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终端是每位程序员的好伙伴，但是由于某些众所周知的原因，国内恶劣的网络环境让程序员们只能看着终端上提示信息[连接断开，下载失败…]欲哭无泪。<br>本文介绍<em>macOS</em>下设置终端走<code>socks5</code>代理连接的方法（也适用于UNIX/Linux）。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终端（Terminal）是每位程序员的好伙伴，但是由于「GFW」的原因，国内恶劣的网络环境让程序员们有时只能看着CLI提示信息「连接断开，下载失败…」欲哭无泪。</p>
+<p>本文介绍<em>macOS</em>下设置终端走<code>socks5</code>代理连接的方法「也适用于UNIX/Linux」。</p>
 <h1 id="终端设置"><a href="#终端设置" class="headerlink" title="终端设置"></a>终端设置</h1><p>在终端下，设置环境变量<code>ALL_PROXY</code>为本地<code>socks5</code>代理连接。</p>
-<pre><code>$ export ALL_PROXY=socks5://127.0.0.1:&lt;port&gt;
-</code></pre><blockquote>
-<p><code>&lt;port&gt;</code>: 本地代理连接端口号。</p>
+<pre><code class="bash">$ export ALL_PROXY=socks5://127.0.0.1:&lt;port&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：终端下设置本地<code>socks5</code>代理<br>注：<code>&lt;port&gt;</code>为本地代理连接端口号。</p>
 </blockquote>
-<p>我们可以通过观察IP来判断代理连接是否设置成功。</p>
+<p>我们可以通过观察<code>IP</code>来判断代理连接是否设置成功。</p>
 <pre><code>$ curl -i http://ip.cn
-</code></pre><h1 id="脚本化设置"><a href="#脚本化设置" class="headerlink" title="脚本化设置"></a>脚本化设置</h1><p>我们可以将命令写入到<code>~/.bash_profile</code>中，快捷设置。</p>
-<pre><code>function setProxy() {
+</code></pre><blockquote>
+<p>代码清单：使用<code>curl</code>观察IP</p>
+</blockquote>
+<h1 id="脚本化设置"><a href="#脚本化设置" class="headerlink" title="脚本化设置"></a>脚本化设置</h1><p>我们可以将命令写入到<code>~/.bash_profile</code>中，实现「脚本化」快捷设置。</p>
+<pre><code class="bash"># 设置终端代理
+function setProxy() {
     export ALL_PROXY=&quot;socks5://127.0.0.1:${1}&quot;
 }
+# 取消终端代理
 function unsetProxy() {
     unset ALL_PROXY
 }
+# 测试终端代理
 function testProxy() {
     curl -i &#39;http://ip.cn&#39;
 }
-</code></pre><blockquote>
-<p>使用<code>shell</code>函数，<code>alias</code>别名都可以实现。<br>这里演示<code>shell</code>函数实现。</p>
+</code></pre>
+<blockquote>
+<p>代码清单：脚本化快捷设置<code>socks5</code>代理<br>注：使用<code>shell</code>函数，<code>alias</code>别名都可以实现</p>
 </blockquote>
 <pre><code>$ setProxy &lt;port&gt;   # 启动终端代理连接
 ...
 $ unsetProxy        # 关闭终端代理连接
-</code></pre><h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>设置环境变量<code>ALL_PROXY</code>后，终端下只要支持此环境变量的网络应用程序大多都会走这个代理（如：　Homebrew）。还有，<code>socks5</code>代理会与国内镜像源发生冲突，也是因为某些众所周知的原因…</p>
+</code></pre><blockquote>
+<p>代码清单：快捷调用</p>
+</blockquote>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>设置环境变量<code>ALL_PROXY</code>后，终端下只要<strong>支持此环境变量</strong>的网络应用程序大多都会走这个代理「如：Homebrew」，但不是全部。另外，<code>socks5</code>代理会与国内镜像源发生冲突，这也是「GFW」的原因。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>掘金: <a href="https://juejin.im/entry/5821840cd203090055134cc0" target="_blank" rel="noopener">https://juejin.im/entry/5821840cd203090055134cc0</a></li>
+<li>掘金：<a href="https://juejin.im/entry/5821840cd203090055134cc0" target="_blank" rel="noopener">https://juejin.im/entry/5821840cd203090055134cc0</a></li>
 </ul>
 
                 <hr>
@@ -213,6 +225,20 @@ $ unsetProxy        # 关闭终端代理连接
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -514,6 +540,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
