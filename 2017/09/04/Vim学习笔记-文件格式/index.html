@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2017/09/04/Vim学习笔记-文件格式/">
     <title>
         
-          Vim学习笔记-文件格式 - zihengCat
+          Vim学习笔记 - 文件格式 - zihengCat
         
     </title>
 
@@ -145,7 +145,7 @@
                           <a class="tag" href="/tags/#Vim" title="Vim">Vim</a>
                         
                     </div>
-                    <h1>Vim学习笔记-文件格式</h1>
+                    <h1>Vim学习笔记 - 文件格式</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -165,20 +165,19 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="断行符的故事"><a href="#断行符的故事" class="headerlink" title="断行符的故事"></a>断行符的故事</h1><p>很久以前，老式的电传打字机使用两个字符来另起新行。一个字符把滑动架移回首位，称为<em>回车(Carriage Return)</em>，另一个字符把纸上移一行，称为<em>换行(Line Feed)</em>。<br>当计算机问世以后，存储器曾经一度非常昂贵。有些人就认定没必要使用两个字符来表示行尾。UNIX 开发者决定他们可以用 <code>&lt;LF&gt;</code> 一个字符来表示行尾。Apple 开发者规定了用 <code>&lt;CR&gt;</code>。而开发 MS-DOS (以及 Microsoft Windows) 的那些家伙则决定沿用老式的 <code>&lt;CR&gt;&lt;LF&gt;</code>。这意味着，如果你试图把一个文件从一种系统移到另一种系统，那么就有换行符方面的麻烦。</p>
+                <h1 id="断行符的故事"><a href="#断行符的故事" class="headerlink" title="断行符的故事"></a>断行符的故事</h1><p>很久以前，老式的电传打字机使用<strong>两枚字符</strong>来另起新行。一枚字符把滑动架移回首位，称为<em>回车（Carriage Return）</em>，另一枚字符把纸上移一行，称为<em>换行（Line Feed）</em>。</p>
+<p>当计算机问世以后，存储器曾经一度非常昂贵。有些人就认定，没有必要使用两枚字符来表示行尾。UNIX 的开发者们决定，他们可以只用<code>&lt;LF&gt;</code>一个字符来表示行尾。而 Apple 的开发者们则决定只使用<code>&lt;CR&gt;</code>。开发 MS-DOS（以及后来的 Microsoft Windows）的那些家伙们则决定沿用老式的<code>&lt;CR&gt;&lt;LF&gt;</code>。</p>
+<p>这意味着，如果你试图把一个文件从一种操作系统转移到另一种操作系统，可能会遇到「换行符」方面的麻烦。</p>
 <blockquote>
-<p>以上摘录自vimdoc</p>
+<p>注：摘录自<code>vimdoc</code></p>
 </blockquote>
 <p>下表展示了不同操作系统下文本文件断行字符的区别。</p>
-<blockquote>
-<p>表1: 不同操作系统断行符区别</p>
-</blockquote>
 <table>
 <thead>
 <tr>
 <th style="text-align:center">UNIX</th>
 <th style="text-align:center">MS-DOS</th>
-<th style="text-align:center">Mac</th>
+<th style="text-align:center">Macintosh</th>
 </tr>
 </thead>
 <tbody>
@@ -193,29 +192,36 @@
 <td style="text-align:center"><code>\r</code></td>
 </tr>
 <tr>
-<td style="text-align:center">0x0A</td>
-<td style="text-align:center">0x0D0A</td>
-<td style="text-align:center">0x0D</td>
+<td style="text-align:center"><code>0x0A</code></td>
+<td style="text-align:center"><code>0x0D0A</code></td>
+<td style="text-align:center"><code>0x0D</code></td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>注: Mac OS X(10) 后系统断行符与UNIX相同</p>
+<p>表：不同操作系统断行符区别<br>注：Mac OS X 后，Macintosh 系统断行符与 UNIX 相同了</p>
 </blockquote>
-<h1 id="转换断行符"><a href="#转换断行符" class="headerlink" title="转换断行符"></a>转换断行符</h1><p>Vim 编辑器能自动识别不同文件格式，可以非常方便的实现不同操作系统之间的文件格式转换。<br>Vim中，我们可以使用<code>set: f[ile]f[ormat]</code>命令查看当前编辑文本的文本格式。vim使用<em>unix，dos，mac</em>标识不同文本格式。</p>
+<h1 id="查看转换断行字符"><a href="#查看转换断行字符" class="headerlink" title="查看转换断行字符"></a>查看转换断行字符</h1><p>Vim文本编辑器能自动识别不同文件格式，我们可以非常方便地实现不同操作系统之间的文件格式转换。</p>
+<p>Vim中，我们可以使用<code>set: f[ile]f[ormat]</code>命令查看当前编辑文本的文本格式。vim使用<code>unix</code>，<code>dos</code>，<code>mac</code>标识不同系统的文本格式。</p>
 <pre><code>:set ff?
-</code></pre><p>使用<code>set: f[ile]f[ormat]s</code>命令可以查看Vim 在编辑一个新文件时尝试该选项定义的各种格式。不同系统默认设置不同。比如在Linux系统下，vim优先识别与使用UNIX断行符。</p>
+</code></pre><blockquote>
+<p>代码清单：命令查看当前编辑文本的文本格式</p>
+</blockquote>
+<p>不同系统默认设置不同。比如在Linux系统下，vim优先识别与使用UNIX断行符。</p>
 <pre><code>fileformats=unix,dos        /* Unix based systems */
 fileformats=dos,unix        /* Windows and DOS systems */
 fileformats=mac,unix,dos    /* Mac OS 9 systems */
-</code></pre><p>在Vim中转换文本格式非常简单，只需设置一下当前编辑文本的<code>fileformat</code>选项即可。vim会自动帮助我们完成断行字符的转换工作。</p>
+</code></pre><blockquote>
+<p>表：不同系统下断行符选择优先级</p>
+</blockquote>
+<p>在Vim中完成转换文本格式非常简单，只需设置一下当前编辑文本的<code>fileformat</code>选项即可。vim会自动帮助我们完成断行字符的转换工作。</p>
 <pre><code>:set ff=dos
 </code></pre><blockquote>
-<p>vim下转换UNIX文本格式至MS-DOS文本格式</p>
+<p>代码清单：vim 下转换 UNIX 文本格式至 MS-DOS 文本格式</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>vim帮助文档：<code>:help ff</code>，<code>:help file-formats</code></li>
-<li>vim维基百科：<a href="http://vim.wikia.com/wiki/File_format" target="_blank" rel="noopener">http://vim.wikia.com/wiki/File_format</a></li>
+<li>vim 帮助文档：<code>:help ff</code>，<code>:help file-formats</code></li>
+<li>vim 维基百科：<a href="http://vim.wikia.com/wiki/File_format" target="_blank" rel="noopener">http://vim.wikia.com/wiki/File_format</a></li>
 </ul>
 
                 <hr>
@@ -235,6 +241,20 @@ fileformats=mac,unix,dos    /* Mac OS 9 systems */
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -534,6 +554,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
