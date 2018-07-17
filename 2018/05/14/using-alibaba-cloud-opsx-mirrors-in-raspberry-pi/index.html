@@ -8,7 +8,7 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/05/14/Raspberry-Pi-使用阿里云OPSX镜像/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/05/14/using-alibaba-cloud-opsx-mirrors-in-raspberry-pi/">
     <title>
         
           Raspberry Pi 使用阿里云OPSX镜像 - zihengCat
@@ -148,7 +148,7 @@
                         
                     </div>
                     <h1>Raspberry Pi 使用阿里云OPSX镜像</h1>
-                    <h2 class="subheading"></h2>
+                    <h2 class="subheading">Using Alibaba Cloud OPSX Mirrors in Raspberry Pi</h2>
                     <span class="meta">
                         Posted by zihengCat on
                         2018-05-14
@@ -167,16 +167,17 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录在树莓派（Raspberry Pi）下使用阿里云开源镜像。</p>
-<h1 id="阿里云开源镜像站-OPSX"><a href="#阿里云开源镜像站-OPSX" class="headerlink" title="阿里云开源镜像站 - OPSX"></a>阿里云开源镜像站 - OPSX</h1><p>阿里家的开源镜像站（OPSX），非常良心。开源镜像的目的在于宣传自由软件的价值，提高自由软件社区文化氛围，推广自由软件在国内应用。在推广开源的道路上，阿里真是走在全国最前列。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录在树莓派「Raspberry Pi」下使用阿里云「OPSX」开源镜像。</p>
+<h1 id="阿里云开源镜像站-OPSX"><a href="#阿里云开源镜像站-OPSX" class="headerlink" title="阿里云开源镜像站 - OPSX"></a>阿里云开源镜像站 - OPSX</h1><p>阿里家的开源镜像站（OPSX），提供了主流开源仓库的软件镜像，非常良心。开源镜像的目的在于宣传自由软件的价值，提高自由软件社区文化氛围，推广自由软件在国内应用。在推广开源的道路上，阿里真是走在全国最前列。</p>
+<p>阿里云开源镜像站由阿里巴巴的天基团队支持。目前提供 Debian、Ubuntu、Fedora、Arch Linux、CentOS、openSUSE、Scientific Linux、Gentoo 等多个发行版的软件安装源和ISO下载服务，竭力为互联网用户提供全面，高效和稳定的软件服务。</p>
 <blockquote>
-<p>阿里云开源镜像站由阿里巴巴的天基团队支持。目前提供 Debian、Ubuntu、Fedora、Arch Linux、CentOS、openSUSE、Scientific Linux、Gentoo 等多个发行版的软件安装源和ISO下载服务，我们竭力为互联网用户提供全面，高效和稳定的软件服务。<br>官网: <a href="https://opsx.alibaba.com/" target="_blank" rel="noopener">https://opsx.alibaba.com/</a></p>
+<p>官方网址：<a href="https://opsx.alibaba.com/" target="_blank" rel="noopener">https://opsx.alibaba.com/</a></p>
 </blockquote>
 <p><img src="./opsx.png" alt="OPSX"></p>
 <blockquote>
 <p>图：阿里云开源镜像站LOGO图（取自OPSX官网）</p>
 </blockquote>
-<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>阿里云开源镜像站有提供树莓派（Raspberry Pi）的软件镜像地址。使用方法与Debian系统类似，修改<code>/etc/apt/source.list</code>即可（<strong>使用前可先备份原配置文件</strong>）。</p>
+<h1 id="镜像仓库使用方法"><a href="#镜像仓库使用方法" class="headerlink" title="镜像仓库使用方法"></a>镜像仓库使用方法</h1><p>阿里云开源镜像站有提供树莓派「Raspberry Pi」的软件镜像。使用方法与 Debian 系统类似，修改<code>/etc/apt/source.list</code>即可（<strong>使用前请先备份原配置文件</strong>）。</p>
 <p>编辑<code>/etc/apt/source.list</code>文件，将 Raspbian 官方源地址注释掉，添加上阿里云的镜像地址。注意，镜像地址应使用<code>https://mirrors.aliyun.com/raspbian/raspbian/</code>而不是<code>https://mirrors.aliyun.com/raspbian/</code>。</p>
 <pre><code># Raspbian Official
 #deb http://raspbian.raspberrypi.org/raspbian/ stretch main contrib non-free rpi
@@ -187,10 +188,13 @@ deb https://mirrors.aliyun.com/raspbian/raspbian/ stretch main contrib non-free 
 </code></pre><blockquote>
 <p>注：<br><code>stretch</code> =&gt; Raspbian系统版本（根据实际系统填写）<br><code>main contrib non-free rpi</code> =&gt; 启用的软件仓库（类别）</p>
 </blockquote>
-<p>修改完成后，使用<code>apt</code>命令清理缓存文件，重建软件包索引，树莓派（Raspberry Pi）就可以正常使用阿里云镜像地址了。</p>
+<p>修改完成后，使用<code>apt</code>命令清理缓存文件，重建软件包索引，树莓派「Raspberry Pi」就可以正常使用阿里云镜像地址了。</p>
 <pre><code>$ sudo apt clean all
 $ sudo apt update
-</code></pre>
+</code></pre><blockquote>
+<p>代码清单：<code>apt</code>更新「Raspberry Pi」系统软件包</p>
+</blockquote>
+
                 <hr>
 <!--
                 <ul class="pager">
@@ -208,6 +212,20 @@ $ sudo apt update
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -509,6 +527,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
