@@ -216,7 +216,7 @@
 <p>代码清单：<code>pip</code>在线安装命令（格式）</p>
 </blockquote>
 <p>离线安装软件包（<code>.whl</code>是 Python 软件包打包格式）。</p>
-<pre><code>$ pip install &lt;package.whl&gt;
+<pre><code>$ pip install &lt;package.whl&gt; ...
 </code></pre><blockquote>
 <p>代码清单：<code>pip</code>离线安装命令（格式）</p>
 </blockquote>
@@ -314,7 +314,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="依赖（Freeze）"><a href="#依赖（Freeze）" class="headerlink" title="依赖（Freeze）"></a>依赖（Freeze）</h2><p><code>pip freeze</code>命令，可以生成一份依赖包列表，该命令生成的列表格式可被<code>pip</code>其他命令接受使用。该命令常用来生成项目依赖表。</p>
+<h2 id="依赖（Freeze）"><a href="#依赖（Freeze）" class="headerlink" title="依赖（Freeze）"></a>依赖（Freeze）</h2><p><code>pip freeze</code>命令，可以生成一份<strong>依赖包列表</strong>，该命令生成的列表格式可被<code>pip</code>其他命令接受使用。该命令常用来生成项目依赖表。</p>
 <h1 id="更换pip源"><a href="#更换pip源" class="headerlink" title="更换pip源"></a>更换<code>pip</code>源</h1><p><code>pip</code>使用PyPI仓库来为我们提供Python软件包。但是默认仓库地址在国内访问不顺畅，我们可以利用<code>-i</code>选项使用自定义镜像仓库。</p>
 <blockquote>
 <p>PyPI 默认仓库地址: <em><a href="https://pypi.python.org/pypi" target="_blank" rel="noopener">https://pypi.python.org/pypi</a></em>。</p>
@@ -333,7 +333,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="PyPI-国内镜像推荐"><a href="#PyPI-国内镜像推荐" class="headerlink" title="PyPI 国内镜像推荐"></a>PyPI 国内镜像推荐</h2><table>
+<h2 id="PyPI-国内镜像推荐"><a href="#PyPI-国内镜像推荐" class="headerlink" title="PyPI 国内镜像推荐"></a>PyPI 国内镜像推荐</h2><p>由于国内恶劣网络条件的限制，在国内使用官方 PyPI 源时常会有<strong>卡断，速度缓慢</strong>的情况。为了解决这一问题，我们可以选择使用一些 PyPI 国内镜像。</p>
+<table>
 <thead>
 <tr>
 <th style="text-align:center">提供方</th>
@@ -364,7 +365,7 @@
 </blockquote>
 <h2 id="如何使用-PyPI-镜像"><a href="#如何使用-PyPI-镜像" class="headerlink" title="如何使用 PyPI 镜像"></a>如何使用 PyPI 镜像</h2><pre><code>pip install -i &lt;mirror_url&gt; some-packages
 </code></pre><blockquote>
-<p><code>-i</code>表示临时使用镜像地址<br><code>simple</code>是 PyPI 软件包目录</p>
+<p>注：<br><code>-i</code>表示临时使用镜像地址<br><code>simple</code>代表 PyPI 软件包目录</p>
 </blockquote>
 <p>修改<code>pip.conf</code>文件可将自定义镜像地址设为默认。</p>
 <table>
