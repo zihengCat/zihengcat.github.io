@@ -169,8 +169,10 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现代程序设计语言（尤其是脚本语言）的<code>IO</code>库在设计时，大多会针对输出流「Output Stream」做缓冲「Buffering」机制。其目的是为了最小化「Minimize」<code>IO</code>操作。众所周知，<code>IO</code>操作是非常慢非常费时的，例如：读写磁盘，访问网络，打印信息到控制台「Console」。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现代程序设计语言（尤其是脚本语言）的<code>IO</code>库在设计时，大多会针对输出流「Output Stream」做缓冲「Buffering」机制。其目的是为了最小化「Minimize」<code>IO</code>操作。众所周知，<code>IO</code>操作是非常慢、非常费时的，例如：读写磁盘，访问网络，打印信息到控制台「Console」。</p>
+<h1 id="缓冲「Buffering」机制"><a href="#缓冲「Buffering」机制" class="headerlink" title="缓冲「Buffering」机制"></a>缓冲「Buffering」机制</h1><p>在执行<code>IO</code>操作时，会在内存中开辟出一块空间，用作缓存「Buffer」，在缓存区域收到一定数据量或触发事件<code>flush()</code>前，不会真正执行<code>IO</code>动作。</p>
+<h1 id="不同语言下的实时输出流"><a href="#不同语言下的实时输出流" class="headerlink" title="不同语言下的实时输出流"></a>不同语言下的实时输出流</h1><p><code>IO</code>缓冲机制毫无疑问是优秀的设计，但有时候，这一机制也会我们带来麻烦（比如，使用<code>jenkins</code>持续集成下的控制台信息输出）。我们需要某些方法做到实时实时输出流打印。</p>
+<h2 id="Python语言"><a href="#Python语言" class="headerlink" title="Python语言"></a><code>Python</code>语言</h2><h2 id="Ruby语言"><a href="#Ruby语言" class="headerlink" title="Ruby语言"></a><code>Ruby</code>语言</h2><h2 id="Perl语言"><a href="#Perl语言" class="headerlink" title="Perl语言"></a><code>Perl</code>语言</h2><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>[1] Python3<code>print</code>打印函数说明文档：<a href="https://docs.python.org/3/library/functions.html#print" target="_blank" rel="noopener">https://docs.python.org/3/library/functions.html#print</a></li>
 </ul>
 
