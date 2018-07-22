@@ -171,27 +171,21 @@
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现代程序设计语言（尤其是脚本语言）的<code>IO</code>库在设计时，大多会针对输出流「Output Stream」做缓冲「Buffering」机制。其目的是为了最小化「Minimize」<code>IO</code>操作。众所周知，<code>IO</code>操作是非常慢、非常费时的，例如：读写磁盘，访问网络，打印信息到控制台「Console」。</p>
 <h1 id="缓冲「Buffering」机制"><a href="#缓冲「Buffering」机制" class="headerlink" title="缓冲「Buffering」机制"></a>缓冲「Buffering」机制</h1><p>在执行<code>IO</code>操作时，程序会在内存中开辟出一块合适的空间，用作缓存「Buffer」，在缓存区域收到一定数据量或触发事件<code>flush()</code>前，不会真正执行<code>IO</code>动作。</p>
-<h1 id="不同语言下的实时输出流"><a href="#不同语言下的实时输出流" class="headerlink" title="不同语言下的实时输出流"></a>不同语言下的实时输出流</h1><p><code>IO</code>缓冲机制毫无疑问是优秀的设计，但有时候，这一机制也会我们带来麻烦（比如，使用<code>jenkins</code>持续集成下的控制台信息输出）。我们需要某些方法做到实时实时输出流打印。</p>
+<h1 id="不同语言下的实时输出流"><a href="#不同语言下的实时输出流" class="headerlink" title="不同语言下的实时输出流"></a>不同语言下的实时输出流</h1><p><code>IO</code>缓冲机制毫无疑问是优秀的设计，但有时候，这一机制也会我们带来麻烦（比如，使用<code>jenkins</code>持续集成下的控制台信息输出）。我们需要某些方法做到实时输出流打印。</p>
 <h2 id="Python语言"><a href="#Python语言" class="headerlink" title="Python语言"></a><code>Python</code>语言</h2><p>在<code>Python</code>中，做到实时输出的方法还是很多的。</p>
-<ul>
-<li>使用Python解释器提供的<code>-u</code>参数</li>
-</ul>
+<p>使用Python解释器提供的<code>-u</code>参数。</p>
 <pre><code>$ python -u &lt;script.py&gt;
 </code></pre><blockquote>
 <p>代码清单：<code>Python</code>语言使用<code>-u</code>参数</p>
 </blockquote>
-<ul>
-<li>设置环境变量<code>PYTHONUNBUFFERED</code>的值为<code>1</code></li>
-</ul>
+<p>设置环境变量<code>PYTHONUNBUFFERED</code>的值为<code>1</code>。</p>
 <pre><code>$ export PYTHONUNBUFFERED=1
 </code></pre><blockquote>
 <p>代码清单：设置环境变量<code>PYTHONUNBUFFERED</code></p>
 </blockquote>
-<ul>
-<li>使用<code>fileObject.flush()</code>，在 Python3.3 之后，我们可以直接在<code>print()</code>函数中指定<code>flush</code>。</li>
-</ul>
+<p>使用<code>fileObject.flush()</code>。在 Python3.3 之后，我们可以直接在<code>print()</code>函数中指定<code>flush</code>参数。在 Python2 中，我们也可以通过<code>from __future__ import print_function</code>来使用新版本打印函数。</p>
 <pre><code class="python">import sys
-sys.stdout.write(&quot;output string&quot;)
+sys.stdout.write(&quot;...&quot;)
 # 立即刷新缓冲区
 sys.stdout.flush()
 </code></pre>
