@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/06/02/使用WebHooks实现自动代码同步与持续集成/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/06/20/continuous-integration-system-learn-and-practice/">
     <title>
         
-          使用WebHooks实现自动代码同步与持续集成 - zihengCat
+          持续集成（CI）系统 - 学习与实践 - zihengCat
         
     </title>
 
@@ -150,12 +150,14 @@
                         
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
                         
+                          <a class="tag" href="/tags/#Project" title="Project">Project</a>
+                        
                     </div>
-                    <h1>使用WebHooks实现自动代码同步与持续集成</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>持续集成（CI）系统 - 学习与实践</h1>
+                    <h2 class="subheading">Continuous Integration System - Learn and Practice</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-06-02
+                        2018-06-20
                     </span>
                 </div>
             </div>
@@ -171,11 +173,11 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在现代软件开发流程中，为正在开发项目配置一套持续集成（Continuous Integration，简称CI）系统是非常有必要的。持续集成的目的，是为了让产品在快速迭代的同时，还能保持高质量，减少Bug。持续集成的核心思路：<strong>在分支代码合并到主分支之前，必须跑通自动化测试。</strong></p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在现代软件开发流程中，为开发项目配置一套持续集成（Continuous Integration，简称CI）系统是非常有必要的。持续集成的目的，是为了让软件产品在快速迭代的同时，还能保持高质量，减少Bug。持续集成的核心思路是：<strong>在分支代码合并到主分支之前，必须跑通自动化测试。</strong></p>
 <blockquote>
 <p>“Continuous Integration doesn’t get rid of bugs, but it does make them dramatically easier to find and remove.” — Martin Fowler</p>
 </blockquote>
-<h1 id="常用持续集成（CI）工具"><a href="#常用持续集成（CI）工具" class="headerlink" title="常用持续集成（CI）工具"></a>常用持续集成（CI）工具</h1><p>下面列出了一些比较流行的持续集成（CI）工具。</p>
+<h1 id="常用持续集成（CI）工具"><a href="#常用持续集成（CI）工具" class="headerlink" title="常用持续集成（CI）工具"></a>常用持续集成（CI）工具</h1><p>下面列出了一些目前比较流行的持续集成（CI）工具。</p>
 <ul>
 <li>Jenkins</li>
 <li>Travis CI</li>
@@ -185,7 +187,7 @@
 <li>…</li>
 </ul>
 <p>在为项目选择持续继承（CI）工具时，需要考虑的一点是：使用<strong>本地解决方案</strong>还是选择<strong>托管服务</strong>。</p>
-<p>本地解决方案为构建过程提供了足够的灵活性，项目信息都能被存储在本地。而使用托管服务，则不需要考虑硬件方面的问题，配置也非常简单。如何取舍，根据项目的实际情况而定。</p>
+<p>本地解决方案为构建过程提供了足够的灵活性，所有的项目信息都被存储在本地。而使用托管服务，则不需要考虑硬件方面的问题，配置简单。如何取舍，需要根据项目的实际情况而定。</p>
 <h1 id="WebHooks实现自动代码同步"><a href="#WebHooks实现自动代码同步" class="headerlink" title="WebHooks实现自动代码同步"></a>WebHooks实现自动代码同步</h1><p>Travis CI 是老牌的托管解决方案提供商之一，赢得了很多人的信任。其对开源项目提供免费服务，GitHub上诸多开源项目都选择 Travis CI 。</p>
 <p>Travis CI的持续集成（CI）通过<code>.travis.yml</code>文件进行配置，该文件包含了在构建时所需要执行的任务，支持多种语言并提供完善的帮助文档。</p>
 <blockquote>
@@ -291,18 +293,32 @@ sshpass -p ${DEPLOY_PASS} \
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2018/06/07/Git实用技巧-区分文件名大小写/" data-toggle="tooltip" data-placement="top" title="Git 实用技巧 - 区分文件名大小写">&larr; Previous Post</a>
+                            <a href="/2018/06/23/install-and-configure-openvpn-in-linux-os/" data-toggle="tooltip" data-placement="top" title="Linux下使用OpenVPN连接远程网络">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2018/05/25/LeetCode-627-Swap-Salary/" data-toggle="tooltip" data-placement="top" title="LeetCode - 627. 交换薪水（Swap Salary）">Next Post &rarr;</a>
+                            <a href="/2018/06/13/LeetCode-561-Array-Partition-I/" data-toggle="tooltip" data-placement="top" title="LeetCode - 561. 数组分片 I（Array Partition I）">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -323,6 +339,8 @@ sshpass -p ${DEPLOY_PASS} \
                           <a class="tag" href="/tags/#Git" title="Git">Git</a>
                         
                           <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Project" title="Project">Project</a>
                         
                     </div>
                 </section>
@@ -608,6 +626,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
