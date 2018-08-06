@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/06/23/install-and-configure-openvpn-in-linux-os/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/07/06/Git实用技巧-删除无用远程分支/">
     <title>
         
-          Linux下使用OpenVPN连接远程网络 - zihengCat
+          Git实用技巧 - 删除无用远程分支 - zihengCat
         
     </title>
 
@@ -129,21 +129,12 @@
 <style type="text/css">
     header.intro-header {
         position: relative;
-        background-image: url('header.png');
-    }
-
-    header.intro-header .header-mask {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background: rgba(0, 0, 0, 0.3);
+        background-image: url('/img/home-bg-o.jpg');
     }
 
 </style>
 <header class="intro-header" >
 <!-- Header Image Mask -->
-
-    <div class="header-mask"></div>
 
     <div class="container">
         <div class="row">
@@ -151,16 +142,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
-                        
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                          <a class="tag" href="/tags/#Git" title="Git">Git</a>
                         
                     </div>
-                    <h1>Linux下使用OpenVPN连接远程网络</h1>
-                    <h2 class="subheading">Install And Configure OpenVPN in Linux OS</h2>
+                    <h1>Git实用技巧 - 删除无用远程分支</h1>
+                    <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-06-23
+                        2018-07-06
                     </span>
                 </div>
             </div>
@@ -176,132 +165,16 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>VPN (Virtual Private Network) 虚拟专有网络通过在公网上创建一个专用且加密的Tunnel（网络隧道）进行通讯。在实际的应用中，VPN可以帮助远程用户、公司分支机构、商业伙伴及供应商等之间建立一个安全可信的网络连接。</p>
-<p><img src="./openvpn.png" alt="OpenVPN"></p>
-<p><code>OpenVPN</code>是一款全功能的VPN软件，包含了客户端与服务端，它使用行业标准<code>SSL/TLS</code>协议实现 OSI 第 2 层或第 3 层安全网络扩展，支持电子证书，公开密钥，用户名/密码等多种灵活客户端认证方式，并允许用户使用防火墙规则应用于 VPN 虚拟接口的组专用访问控制策略，具有<strong>开源、跨平台、易于使用、稳定性与安全性</strong>的特点。<code>OpenVPN</code>是一款开源软件，以<code>GPLv2</code>开源协议释出。</p>
-<blockquote>
-<p>OpenVPN 官网：<a href="http://openvpn.net" target="_blank" rel="noopener">http://openvpn.net</a><br>GitHub 地址：<a href="https://github.com/OpenVPN/openvpn" target="_blank" rel="noopener">https://github.com/OpenVPN/openvpn</a></p>
-</blockquote>
-<h1 id="Linux下安装OpenVPN（编译安装）"><a href="#Linux下安装OpenVPN（编译安装）" class="headerlink" title="Linux下安装OpenVPN（编译安装）"></a>Linux下安装<code>OpenVPN</code>（编译安装）</h1><p>Windows与macOS下都已经有了优秀的<code>OpenVPN</code>图形化（GUI）工具，安装配置起来都非常简单方便。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">OS</th>
-<th style="text-align:center">App</th>
-<th style="text-align:center">Link</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Windows</td>
-<td style="text-align:center">OpenVPN-GUI</td>
-<td style="text-align:center"><a href="https://github.com/OpenVPN/openvpn-gui" target="_blank" rel="noopener">https://github.com/OpenVPN/openvpn-gui</a></td>
-</tr>
-<tr>
-<td style="text-align:center">macOS</td>
-<td style="text-align:center">Tunnelblick</td>
-<td style="text-align:center"><a href="https://github.com/Tunnelblick/Tunnelblick" target="_blank" rel="noopener">https://github.com/Tunnelblick/Tunnelblick</a></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>表：<code>OpenVPN</code>图形化（GUI）工具</p>
-</blockquote>
-<p>对于Linux系统，手动编译安装是使用<code>OpenVPN</code>的极佳方法。当然，使用系统级包管理器（<code>apt</code>，<code>yum</code>）直接安装也未尝不可。本文讲解从源码手动编译安装<code>OpenVPN</code>。</p>
-<p><code>OpenVPN</code>的源代码托管在了GitHub上，我们可以非常方便地使用<code>git</code>拉取到源码。也可以前往<code>OpenVPN</code>源代码下载页面，下载到源码包。</p>
-<blockquote>
-<p>源码包下载地址：<a href="https://openvpn.net/index.php/download/community-downloads.html" target="_blank" rel="noopener">https://openvpn.net/index.php/download/community-downloads.html</a><br>GitHub Releases：<a href="https://github.com/OpenVPN/openvpn/releases" target="_blank" rel="noopener">https://github.com/OpenVPN/openvpn/releases</a><br>注：源码包下载地址国内访问不畅「需要翻墙」。</p>
-</blockquote>
-<p>不管使用哪种方法，只要能拿到源码即可。下载源码包后使用<code>tar -xvz -f</code>解压缩<code>*.tar.gz</code>。</p>
-<pre><code class="bash"># 克隆源代码仓库
-$ git clone https://github.com/OpenVPN/openvpn.git
-...
-# 进入源代码目录
-$ cd ./openvpn
-# 查看软件发行版本（tags）
-$ git tag -l
-...
-# 切换到目标版本（v2.4.6）
-$ git checkout v2.4.6
-...
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在使用<code>Git</code>工作流「Git Workflow」时，我们会遇到这样的情况：远程分支已被删除，但在本地<code>Git</code>仓库中仍然留存着指向改远程分支的引用「References」，我们需要手动来清除这些留在本地的无用的远程分支。</p>
+<h1 id="Git删除无用远程分支"><a href="#Git删除无用远程分支" class="headerlink" title="Git删除无用远程分支"></a><code>Git</code>删除无用远程分支</h1><p>实际上，<code>Git</code>的开发者们也早已经考虑到了这样的使用场景，并提供了一枚方便的命令来帮助我们完成这件事。</p>
+<pre><code class="bash">$ git remote prune &lt;name&gt;
 </code></pre>
 <blockquote>
-<p>代码清单：使用<code>git</code>取得<code>OpenVPN</code>源代码</p>
+<p>代码清单：使用<code>prune</code>删除无用远程分支<br>注：加入<code>-n, --dry-run</code>选项，只打印无用远程分支而不真正执行删除操作。</p>
 </blockquote>
-<p><code>OpenVPN</code>与其他Linux开源软件的编译安装方式大同小异，主要都是分为三步走：<code>configure</code> -&gt; <code>make</code> -&gt; <code>make install</code>。</p>
-<p>有所不同的是，<code>OpenVPN</code>要先使用<code>autoconf</code>生成一份<code>configure</code>配置脚本。请确保你的系统已经安装上了GNU基础编译套件（<code>gcc</code>，<code>make</code>，<code>autoconf</code>…）。</p>
-<pre><code class="bash"># 使用`autoconf`生成`configure`配置脚本
-$ autoreconf -i -v -f
-...
-$ ./configure
-...
-$ make
-...
-$ sudo make install
-...
-</code></pre>
-<blockquote>
-<p>代码清单：编译安装<code>OpenVPN</code>流程</p>
-</blockquote>
-<p>下表总结了编译<code>OpenVPN</code>所需要的依赖库，可以通过系统包管理工具安装上。如果系统没有依赖库，执行<code>./configure</code>会有报错提示。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">依赖库</th>
-<th style="text-align:center"><code>deb</code>包（apt）</th>
-<th style="text-align:center"><code>rpm</code>包（yum）</th>
-<th style="text-align:left">简述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">OpenSSL</td>
-<td style="text-align:center">libssl-dev</td>
-<td style="text-align:center">openssl-devel</td>
-<td style="text-align:left"><code>SSL/TLS</code>开源实现库</td>
-</tr>
-<tr>
-<td style="text-align:center">Route</td>
-<td style="text-align:center">net-tools</td>
-<td style="text-align:center">net-tools</td>
-<td style="text-align:left">基础网络工具<code>route</code></td>
-</tr>
-<tr>
-<td style="text-align:center">LZO</td>
-<td style="text-align:center">liblzo2-dev</td>
-<td style="text-align:center">lzo-devel</td>
-<td style="text-align:left">一种致力于解压速度的数据压缩无损算法</td>
-</tr>
-<tr>
-<td style="text-align:center">PAM</td>
-<td style="text-align:center">libpam0g-dev</td>
-<td style="text-align:center">pam-devel</td>
-<td style="text-align:left">本地认证模块</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>表：<code>OpenVPN</code>依赖库表</p>
-</blockquote>
-<p>编译安装完成后，我们可以执行命令来确认<code>OpenVPN</code>是否成功安装。</p>
-<pre><code class="bash"># 打印`OpenVPN`版本信息
-$ openvpn --version
-...
-</code></pre>
-<blockquote>
-<p>代码清单：检验<code>OpenVPN</code>安装</p>
-</blockquote>
-<h1 id="OpenVPN客户端连接远程VPN网络"><a href="#OpenVPN客户端连接远程VPN网络" class="headerlink" title="OpenVPN客户端连接远程VPN网络"></a><code>OpenVPN</code>客户端连接远程VPN网络</h1><p>安装完成后，我们就可以使用<code>OpenVPN</code>来连接远程VPN网络了。</p>
-<p>一般来说，企业VPN服务端的运维人员会给需要登录到远程网络的客户端一份<code>*.ovpn</code>配置文件。该配置文件记录了用户登录该VPN所需的必要信息（认证方式，加密证书，使用协议…）。拿到这份配置文件，我们就可以使用<code>OpenVPN</code>来登录了。</p>
-<pre><code class="bash"># 连接VPN需要使用`sudo`管理员权限（系统操作）
-$ sudo openvpn --config &lt;path/to/your/*.ovpn&gt;
-...
-</code></pre>
-<blockquote>
-<p>代码清单：使用<code>OpenVPN</code>连接远程网络</p>
-</blockquote>
+<p>使用<code>git remote prune</code>命令，即可方便地删除无用远程分支，使得本地与远程分支状态保持一致。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>编译 OpenVPN 及解决相关依赖问题：<a href="https://segmentfault.com/a/1190000009414135" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009414135</a></li>
+<li><code>Git</code>官方文档：<a href="https://git-scm.com/docs/git-remote#git-remote-empruneem" target="_blank" rel="noopener">https://git-scm.com/docs/git-remote#git-remote-empruneem</a></li>
 </ul>
 
                 <hr>
@@ -309,12 +182,12 @@ $ sudo openvpn --config &lt;path/to/your/*.ovpn&gt;
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2018/07/06/Git实用技巧-删除无用远程分支/" data-toggle="tooltip" data-placement="top" title="Git实用技巧 - 删除无用远程分支">&larr; Previous Post</a>
+                            <a href="/2018/07/20/output-buffering-in-realtime-question-and-solution/" data-toggle="tooltip" data-placement="top" title="实时输出流打印 - 缓冲问题与解决方案">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2018/06/20/continuous-integration-system-learn-and-practice/" data-toggle="tooltip" data-placement="top" title="持续集成（CI）系统 - 学习与实践">Next Post &rarr;</a>
+                            <a href="/2018/06/23/install-and-configure-openvpn-in-linux-os/" data-toggle="tooltip" data-placement="top" title="Linux下使用OpenVPN连接远程网络">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -348,9 +221,7 @@ $ sudo openvpn --config &lt;path/to/your/*.ovpn&gt;
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
-                        
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                          <a class="tag" href="/tags/#Git" title="Git">Git</a>
                         
                     </div>
                 </section>
