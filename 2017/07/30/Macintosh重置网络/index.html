@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2017/07/30/Macintosh重置网络/">
     <title>
         
-          Macintosh重置网络 - zihengCat
+          Macintosh macOS 重置网络 - zihengCat
         
     </title>
 
@@ -145,7 +145,7 @@
                           <a class="tag" href="/tags/#Macintosh" title="Macintosh">Macintosh</a>
                         
                     </div>
-                    <h1>Macintosh重置网络</h1>
+                    <h1>Macintosh macOS 重置网络</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -165,12 +165,18 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近，子恒喵的苹果笔记本电脑的 Wi-Fi 网络似乎出现了一点小问题。<br>有时候显示的是 Wi-Fi 网络正常连接，但是网络就是卡住不上，网络时断时续的感觉…<br>在<strong>重置 Macintosh 网络配置</strong>之后，这个问题就解决了。</p>
-<h1 id="Macintosh-重置网络"><a href="#Macintosh-重置网络" class="headerlink" title="Macintosh 重置网络"></a>Macintosh 重置网络</h1><p>重置 OS X 的网络十分简单粗暴，进入存放网络配置文件的目录，删光网络配置文件就行了。</p>
-<p>OS X 网络配置文件路径：<em>/Library/Preferences/SystemConfiguration/</em></p>
-<pre><code>$ sudo rm -rf /Library/Preferences/SystemConfiguration/
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近，子恒喵苹果笔记本电脑的<code>Wi-Fi</code>网络似乎出现了点问题。<br>有时候，显示的是<code>Wi-Fi</code> 网络正常连接，但是网络就是卡住连不上，网络时断时续的感觉…<br>在<strong>重置 Macintosh macOS 网络配置</strong>之后，这个问题就得以解决。</p>
+<h1 id="Macintosh-macOS-重置网络"><a href="#Macintosh-macOS-重置网络" class="headerlink" title="Macintosh macOS 重置网络"></a>Macintosh macOS 重置网络</h1><p>重置<code>macOS</code>的网络非常简单粗暴，进入存放网络配置文件的目录，清空<strong>系统网络配置文件</strong>即可。</p>
+<blockquote>
+<p><code>macOS</code>系统网络配置文件路径：<code>/Library/Preferences/SystemConfiguration/</code></p>
+</blockquote>
+<pre><code class="bash">$ sudo rm -rf /Library/Preferences/SystemConfiguration/
 $ sudo reboot
-</code></pre><p>删完文件之后，重启系统，会自动生成好初始化的配置文件。之后去设置里把网络重新配置一遍，就没有太大问题了。</p>
+</code></pre>
+<blockquote>
+<p>代码清单：清空<code>macOS</code>系统网络配置文件</p>
+</blockquote>
+<p>清空配置文件后，重启一遍系统，<code>macOS</code>系统会自动初始化网络配置文件。之后再去<strong>系统偏好设置「System Preferences」</strong>里把网络重新配置一遍，就没有太大问题了。</p>
 
                 <hr>
 <!--
@@ -189,6 +195,20 @@ $ sudo reboot
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -488,6 +508,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
