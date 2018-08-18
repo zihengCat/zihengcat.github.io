@@ -173,7 +173,7 @@
 <blockquote>
 <p>图：<code>macOS</code>系统长按元音字母弹出提示框</p>
 </blockquote>
-<h1 id="macOS长按连续输入的简单设置方法"><a href="#macOS长按连续输入的简单设置方法" class="headerlink" title="macOS长按连续输入的简单设置方法"></a><code>macOS</code>长按连续输入的简单设置方法</h1><p>实际上，苹果「Apple」已经在<strong>用户系统配置项「Mac OS X User Defaults System」</strong>里预留出了长按连续输入的设置字段。我们可以方便地使用<code>defaluts</code>命令行工具关闭<code>ApplePressAndHoldEnabled</code>功能，设置完成后，注销或重启使其生效即可。</p>
+<h1 id="macOS长按连续输入的简单设置方法"><a href="#macOS长按连续输入的简单设置方法" class="headerlink" title="macOS长按连续输入的简单设置方法"></a><code>macOS</code>长按连续输入的简单设置方法</h1><p>实际上，苹果「Apple」已经在<strong>用户系统配置项「Mac OS X User Defaults System」</strong>里预留出了长按连续输入的设置字段。我们可以方便地<strong>使用<code>defaluts</code>命令行工具关闭<code>ApplePressAndHoldEnabled</code>功能</strong>，设置完成后，<strong>注销或重启使其生效</strong>即可。</p>
 <pre><code class="bash">$ defaults write -g ApplePressAndHoldEnabled -bool false
 # or
 $ defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false
