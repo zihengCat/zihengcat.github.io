@@ -168,11 +168,11 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Macintosh的<code>OS X Lion 10.7</code>系统对自带输入法做了诸多调整，这些改动大多有延续至后来的<code>macOS</code>操作系统。其中就包括：在使用系统自带英文输入法的情况下，长按一个元音字母，系统自动弹出元音音标提示框。</p>
+<p>苹果「Apple」设计此功能的初衷当然是为了提高输入便利性，但是如此一来，我们便不能<strong>长按连续输入字符</strong>了。有时，这会对开发人员的工作带来困扰。</p>
 <p><img src="./img_consecutive_input.png" alt="consecutive_input_pic"></p>
 <blockquote>
 <p>图：<code>macOS</code>系统长按元音字母弹出提示框</p>
 </blockquote>
-<p>苹果「Apple」设计此功能的初衷是为了输入的便利性，但是这样一来，我们便不能<strong>长按连续输入字符</strong>了，有时，这会对开发人员的工作带来困扰。</p>
 <h1 id="macOS长按连续输入的简单设置方法"><a href="#macOS长按连续输入的简单设置方法" class="headerlink" title="macOS长按连续输入的简单设置方法"></a><code>macOS</code>长按连续输入的简单设置方法</h1><p>实际上，苹果「Apple」已经在<strong>用户系统配置项「Mac OS X User Defaults System」</strong>里预留出了长按连续输入的设置字段。我们可以方便地使用<code>defaluts</code>命令行工具关闭<code>ApplePressAndHoldEnabled</code>功能，设置完成后，注销或重启使其生效即可。</p>
 <pre><code class="bash">$ defaults write -g ApplePressAndHoldEnabled -bool false
 # or
