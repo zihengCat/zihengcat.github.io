@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/02/26/LeetCode-231-2的幂次/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/08/26/generate-the-fernet-key-for-airflow/">
     <title>
         
-          LeetCode - 231. 2的幂次（Power of Two） - zihengCat
+          为 Airflow 加装 Crypto 库 - zihengCat
         
     </title>
 
@@ -142,16 +142,18 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Airflow" title="Airflow">Airflow</a>
                         
                     </div>
-                    <h1>LeetCode - 231. 2的幂次（Power of Two）</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>为 Airflow 加装 Crypto 库</h1>
+                    <h2 class="subheading">Using Crypto Package in Airflow</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-02-26
+                        2018-08-26
                     </span>
                 </div>
             </div>
@@ -167,120 +169,48 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 231. 2的幂次（Power of Two）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个整型数，判断该数是否是<code>2</code>的幂次。</p>
-<p>注：只考虑是否为<code>2</code>的<strong>非负整数</strong>次幂即可。</p>
-<p>例：</p>
-<pre><code>输入: 4
-输出: true
-
-输入: 6
-输出: false
-
-注: 4为2^2。
-</code></pre><h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><h2 id="常规解法"><a href="#常规解法" class="headerlink" title="常规解法"></a>常规解法</h2><p>只需考虑是否为<code>2</code>的<strong>非负整数</strong>次幂，大大简化了问题。</p>
-<p><code>2</code>的幂次形如：<code>2 * 2 * 2...* 2</code>，均可被<code>2</code>无限整除。利用这个特性，我们就可以轻松解决此问题。</p>
-<pre><code>int isPowerOfTwo(int n) {
-    /* 排除掉负数和0 */
-    if(n &lt;= 0) {
-        return 0;
-    }
-    /* 设置商和余数 */
-    int quotient  = n,
-        remainder = 0;
-    /* 循环退出条件: 商为1（除尽） */
-    while(quotient != 1) {
-        remainder = quotient % 2;
-        quotient /= 2;
-        /* 如果有余数（除不尽） */
-        if(remainder) {
-            return 0;
-        }
-    }
-    return 1;
-}
-</code></pre><blockquote>
-<p>C/C++ 代码（常规解法）</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Apache Airflow</code>任务调度框架默认将密码等敏感信息以<strong>明文</strong>形式存储到元数据（Metadata）库中。这会带来一定的安全隐患。Airflow 官方也强烈建议使用者安装<code>crypto</code>包以实现敏感信息的加密存储。</p>
+<p>另外，如果不安装<code>crypto</code>加密库，Airflow 的许多高级功能都是无法使用的。</p>
+<h1 id="为Airflow加装crypto库"><a href="#为Airflow加装crypto库" class="headerlink" title="为Airflow加装crypto库"></a>为<code>Airflow</code>加装<code>crypto</code>库</h1><p><code>Apache Airflow</code>默认不安装<code>crypto</code>库，我们需要手动安装配置。</p>
+<ol>
+<li>使用<code>pip</code>命令来安装<code>crypto</code>库。</li>
+</ol>
+<pre><code class="bash">$ pip install apache-airflow[crypto]
+</code></pre>
+<blockquote>
+<p>代码清单：<code>pip</code>安装<code>apache-airflow[crypto]</code></p>
 </blockquote>
-<h2 id="特殊解法"><a href="#特殊解法" class="headerlink" title="特殊解法"></a>特殊解法</h2><p>这道题的特殊解法是利用<code>2</code>的幂次数的二进制特性。</p>
-<p>例如：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"><code>2</code>的幂次</th>
-<th style="text-align:center">十进制形式</th>
-<th style="text-align:center">二进制形式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">2 ^ 0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">00000001</td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 1</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">00000010</td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 2</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">00000100</td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 3</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">00001000</td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 4</td>
-<td style="text-align:center">16</td>
-<td style="text-align:center">00010000</td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 5</td>
-<td style="text-align:center">32</td>
-<td style="text-align:center">00100000</td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 6</td>
-<td style="text-align:center">64</td>
-<td style="text-align:center">01000000</td>
-</tr>
-<tr>
-<td style="text-align:center">2 ^ 7</td>
-<td style="text-align:center">128</td>
-<td style="text-align:center">10000000</td>
-</tr>
-</tbody>
-</table>
-<p>所有<code>2</code>的幂次数，都是<strong>最高二进制位值为1，其他位均为0</strong>的数字。利用这个特性，我们可以使用位操作进行判断。</p>
-<p><code>n-1</code>得到最高位为<code>0</code>，其他位均为<code>1</code>的数，再与<code>n</code>做按位与<code>&amp;</code>操作，得到<code>0</code>（所有二进制位都为<code>0</code>）。如果该数不是<code>2</code>的幂次，结果必然不会是<code>0</code>。</p>
-<pre><code>int isPowerOfTwo(int n) {
-    return (n &gt; 0) &amp;&amp; !(n &amp; (n - 1));
-}
-</code></pre><blockquote>
-<p>C/C++ 代码（特殊解法）</p>
-</blockquote>
-
+<ol>
+<li>使用Python代码生成一枚<code>fernet_key</code>。<code>fernet_key</code>的格式必须为<code>base64-encoded</code>，长度必须为<code>32-bytes</code>。</li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1>
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/02/27/using-socks5-proxy-in-unix-terminal/" data-toggle="tooltip" data-placement="top" title="设置 UNIX 终端 socks5 代理连接">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/02/25/LeetCode-657-路线判断/" data-toggle="tooltip" data-placement="top" title="LeetCode - 657. 路线判断（Judge Route Circle）">Next Post &rarr;</a>
+                            <a href="/2018/08/02/simple-ways-to-set-macos-consecutive-input/" data-toggle="tooltip" data-placement="top" title="macOS 长按连续输入的简单设置方法">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -294,9 +224,11 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                          <a class="tag" href="/tags/#Airflow" title="Airflow">Airflow</a>
                         
                     </div>
                 </section>
@@ -582,6 +514,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
