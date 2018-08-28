@@ -171,43 +171,40 @@
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Apache Airflow</code>任务调度框架默认将密码等敏感信息以<strong>明文</strong>形式存储到元数据（Metadata）库中。这会带来一定的安全隐患。Airflow 官方也强烈建议使用者安装<code>crypto</code>包以实现敏感信息的加密存储。</p>
 <p>另外，如果不安装<code>crypto</code>加密库，Airflow 的许多高级功能都是无法使用的。</p>
-<h1 id="为Airflow加装crypto库"><a href="#为Airflow加装crypto库" class="headerlink" title="为Airflow加装crypto库"></a>为<code>Airflow</code>加装<code>crypto</code>库</h1><p><code>Apache Airflow</code>默认不安装<code>crypto</code>库，我们需要手动安装配置。</p>
-<ol>
-<li>使用<code>pip</code>命令来安装<code>crypto</code>库。</li>
-</ol>
+<h1 id="为Airflow加装crypto库"><a href="#为Airflow加装crypto库" class="headerlink" title="为Airflow加装crypto库"></a>为<code>Airflow</code>加装<code>crypto</code>库</h1><p>Apache Airflow 默认不会安装<code>crypto</code>库，我们需要手动安装并配置。</p>
+<p>首先，使用<code>pip</code>命令来安装上<code>crypto</code>库。</p>
 <pre><code class="bash">$ pip install apache-airflow[crypto]
 </code></pre>
 <blockquote>
 <p>代码清单：<code>pip</code>安装<code>apache-airflow[crypto]</code></p>
 </blockquote>
-<ol>
-<li>使用Python代码生成一枚<code>fernet_key</code>。<code>fernet_key</code>的格式必须为<code>base64-encoded</code>，长度必须为<code>32-bytes</code>。</li>
-</ol>
+<p>第二步，使用<code>Python</code>代码生成一枚<code>fernet_key</code>。<code>fernet_key</code>的格式必须为<code>base64-encoded</code>，长度必须为<code>32-bytes</code>。</p>
 <pre><code class="bash">$ python -c &quot;from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())&quot;
 ...
 </code></pre>
 <blockquote>
 <p>代码清单：<code>Python</code>生成<code>fernet_key</code></p>
 </blockquote>
-<ol>
-<li>配置<code>Airflow</code>使用<code>fernet_key</code>。将第二步得到的秘钥写入到配置文件<code>airflow.cfg</code>下，也可以设置一枚环境变量。</li>
-</ol>
-<pre><code>...
+<p>然后，配置<code>Airflow</code>使用<code>fernet_key</code>。将第二步得到的秘钥写入到配置文件<code>airflow.cfg</code>下，也可以设置一枚环境变量。</p>
+<pre><code class="bash">$ vim airflow.cfg
+...
 fernet_key = &lt;fernet_key&gt;
 ...
-</code></pre><blockquote>
+</code></pre>
+<blockquote>
 <p>代码清单：写<code>airflow.cfg</code>配置文件</p>
 </blockquote>
-<pre><code>AIRFLOW__CORE__FERNET_KEY=&#39;&lt;fernet_key&gt;&#39;
-</code></pre><blockquote>
+<pre><code class="bash">$ AIRFLOW__CORE__FERNET_KEY=&#39;&lt;fernet_key&gt;&#39;
+</code></pre>
+<blockquote>
 <p>代码清单：设置<code>AIRFLOW__CORE__FERNET_KEY</code>环境变量</p>
 </blockquote>
-<ol>
-<li>重启<code>Airflow</code>服务（调度服务，Webserver）。</li>
-</ol>
+<p>最后，重启<code>Airflow</code>服务（调度服务，<code>Webserver</code>）即可。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><code>Airflow</code>官方文档：<a href="https://airflow.apache.org/configuration.html#connections" target="_blank" rel="noopener">https://airflow.apache.org/configuration.html#connections</a></li>
-<li>为<code>Airflow</code>生成<code>fernet_key</code>：<a href="https://bcb.github.io/airflow/fernet-key" target="_blank" rel="noopener">https://bcb.github.io/airflow/fernet-key</a></li>
+<li><p><code>Airflow</code>官方文档：<a href="https://airflow.apache.org/configuration.html#connections" target="_blank" rel="noopener">https://airflow.apache.org/configuration.html#connections</a></p>
+</li>
+<li><p>为<code>Airflow</code>生成<code>fernet_key</code>：<a href="https://bcb.github.io/airflow/fernet-key" target="_blank" rel="noopener">https://bcb.github.io/airflow/fernet-key</a></p>
+</li>
 </ul>
 
                 <hr>
