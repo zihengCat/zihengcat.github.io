@@ -185,7 +185,7 @@
 <blockquote>
 <p>代码清单：<code>Python</code>生成<code>fernet_key</code></p>
 </blockquote>
-<p>然后，配置<code>Airflow</code>使用<code>fernet_key</code>。将第二步得到的秘钥写入到配置文件<code>airflow.cfg</code>下，也可以设置一枚环境变量。</p>
+<p>然后，配置<code>Airflow</code>使用<code>fernet_key</code>。将第二步得到的<strong>秘钥</strong>写入到<strong>配置文件<code>airflow.cfg</code></strong>中，也可以设置一枚环境变量。</p>
 <pre><code class="bash">$ vim airflow.cfg
 ...
 fernet_key = &lt;fernet_key&gt;
@@ -194,7 +194,7 @@ fernet_key = &lt;fernet_key&gt;
 <blockquote>
 <p>代码清单：写<code>airflow.cfg</code>配置文件</p>
 </blockquote>
-<pre><code class="bash">$ AIRFLOW__CORE__FERNET_KEY=&#39;&lt;fernet_key&gt;&#39;
+<pre><code class="bash">$ export AIRFLOW__CORE__FERNET_KEY=&#39;&lt;fernet_key&gt;&#39;
 </code></pre>
 <blockquote>
 <p>代码清单：设置<code>AIRFLOW__CORE__FERNET_KEY</code>环境变量</p>
