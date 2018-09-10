@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/08/26/generate-the-fernet-key-for-airflow/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/09/10/Docker容器修改locale编码格式/">
     <title>
         
-          为 Airflow 加装 Cryptography 库 - zihengCat
+          Docker 容器修改 locale 编码格式 - zihengCat
         
     </title>
 
@@ -144,16 +144,14 @@
                         
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
-                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
-                        
-                          <a class="tag" href="/tags/#Airflow" title="Airflow">Airflow</a>
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
                         
                     </div>
-                    <h1>为 Airflow 加装 Cryptography 库</h1>
-                    <h2 class="subheading">Using Cryptography Package in Airflow</h2>
+                    <h1>Docker 容器修改 locale 编码格式</h1>
+                    <h2 class="subheading">Docker Container Change locale Character Encoding</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-08-26
+                        2018-09-10
                     </span>
                 </div>
             </div>
@@ -169,55 +167,14 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Apache Airflow</code>任务调度框架默认将密码等敏感信息以<strong>明文</strong>形式存储到元数据（Metadata）库中。这会带来一定的安全隐患。Airflow 官方也强烈建议使用者安装<code>cryptography</code>库以实现敏感信息的加密存储。</p>
-<p>另外，如果不安装<code>cryptography</code>加密库，Airflow 的许多高级功能都是无法使用的。</p>
-<h1 id="为Airflow加装cryptography库"><a href="#为Airflow加装cryptography库" class="headerlink" title="为Airflow加装cryptography库"></a>为<code>Airflow</code>加装<code>cryptography</code>库</h1><p>Apache Airflow 默认不会安装<code>cryptography</code>库，我们需要手动安装并配置。</p>
-<p>首先，使用<code>pip</code>命令来安装上<code>cryptography</code>库。</p>
-<pre><code class="bash">$ pip install apache-airflow[crypto]
-</code></pre>
-<blockquote>
-<p>代码清单：<code>pip</code>安装<code>apache-airflow[crypto]</code></p>
-</blockquote>
-<p>第二步，使用<code>Python</code>代码生成一枚<code>fernet_key</code>。<code>fernet_key</code>的格式必须为<code>base64-encoded</code>，长度必须为<code>32-bytes</code>。</p>
-<pre><code class="bash">$ python -c &quot;from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())&quot;
-...
-</code></pre>
-<blockquote>
-<p>代码清单：<code>Python</code>生成<code>fernet_key</code></p>
-</blockquote>
-<p>然后，配置<code>Airflow</code>使用<code>fernet_key</code>。将第二步得到的<strong>秘钥</strong>写入到<strong>配置文件<code>airflow.cfg</code></strong>中，也可以设置一枚环境变量。</p>
-<pre><code class="bash">$ vim airflow.cfg
-...
-fernet_key = &lt;fernet_key&gt;
-...
-</code></pre>
-<blockquote>
-<p>代码清单：写<code>airflow.cfg</code>配置文件</p>
-</blockquote>
-<pre><code class="bash">$ export AIRFLOW__CORE__FERNET_KEY=&#39;&lt;fernet_key&gt;&#39;
-</code></pre>
-<blockquote>
-<p>代码清单：设置<code>AIRFLOW__CORE__FERNET_KEY</code>环境变量</p>
-</blockquote>
-<p>最后，重启<code>Airflow</code>服务（<code>scheduler</code>，<code>webserver</code>）即可。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p><code>Airflow</code>官方文档：<a href="https://airflow.apache.org/howto/secure-connections.html" target="_blank" rel="noopener">https://airflow.apache.org/howto/secure-connections.html</a></p>
-</li>
-<li><p>为<code>Airflow</code>生成<code>fernet_key</code>：<a href="https://bcb.github.io/airflow/fernet-key" target="_blank" rel="noopener">https://bcb.github.io/airflow/fernet-key</a></p>
-</li>
-</ul>
-
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h1 id="改变locale编码格式"><a href="#改变locale编码格式" class="headerlink" title="改变locale编码格式"></a>改变<code>locale</code>编码格式</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1>
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/09/10/Docker容器修改locale编码格式/" data-toggle="tooltip" data-placement="top" title="Docker 容器修改 locale 编码格式">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/08/02/simple-ways-to-set-macos-consecutive-input/" data-toggle="tooltip" data-placement="top" title="macOS 长按连续输入的简单设置方法">Next Post &rarr;</a>
+                            <a href="/2018/08/26/generate-the-fernet-key-for-airflow/" data-toggle="tooltip" data-placement="top" title="为 Airflow 加装 Cryptography 库">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -253,9 +210,7 @@ fernet_key = &lt;fernet_key&gt;
                        
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
-                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
-                        
-                          <a class="tag" href="/tags/#Airflow" title="Airflow">Airflow</a>
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
                         
                     </div>
                 </section>
