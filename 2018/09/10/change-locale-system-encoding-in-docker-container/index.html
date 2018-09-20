@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -168,7 +168,8 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>默认情况下，我们使用 Docker 镜像启动 Docker 容器，容器 Linux 系统默认使用的<code>locale</code>系统编码为<code>POSIX</code>，有时候这会为开发工作带来极大的不便（不支持Unicode显示）。</p>
-<pre><code>[root@86b20c974eb5 ~]# locale
+<pre><code>$ locale
+...
 LANG=
 LC_CTYPE=&quot;POSIX&quot;
 LC_NUMERIC=&quot;POSIX&quot;
@@ -183,8 +184,9 @@ LC_TELEPHONE=&quot;POSIX&quot;
 LC_MEASUREMENT=&quot;POSIX&quot;
 LC_IDENTIFICATION=&quot;POSIX&quot;
 LC_ALL=
+...
 </code></pre><blockquote>
-<p>代码清单：查看<code>Docker</code>容器内<code>locale</code>系统编码</p>
+<p>代码清单：查看<code>Docker</code>容器内部<code>locale</code>系统编码</p>
 </blockquote>
 <h1 id="改变locale编码格式"><a href="#改变locale编码格式" class="headerlink" title="改变locale编码格式"></a>改变<code>locale</code>编码格式</h1><p>我们可以在<code>Dockerfile</code>中指定系统需要使用的<code>locale</code>编码格式，再构建镜像。这样启动的<code>Docker</code>容器中就会使用指定好的系统编码了。</p>
 <pre><code>...
