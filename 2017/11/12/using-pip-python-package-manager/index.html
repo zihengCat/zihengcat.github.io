@@ -68,8 +68,8 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -84,8 +84,8 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -165,7 +165,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>pip</code>是一款由<strong>PyPA</strong>社区所开发维护的，非常好用的<strong><code>Python</code>包管理工具</strong>。如今，Python开发者社区已认可<code>pip</code>作为Python语言的默认包管理器。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>pip</code>是一款由<strong>PyPA</strong>社区所开发维护、非常好用的<strong><code>Python</code>包管理工具</strong>。现如今，Python开发者社区已认可<code>pip</code>作为Python语言的默认包管理器。</p>
 <p>本文记录下一些常用的<code>pip</code>命令选项。</p>
 <h1 id="pip常用选项"><a href="#pip常用选项" class="headerlink" title="pip常用选项"></a><code>pip</code>常用选项</h1><h2 id="通用（General）"><a href="#通用（General）" class="headerlink" title="通用（General）"></a>通用（General）</h2><table>
 <thead>
@@ -237,6 +237,10 @@
 <td style="text-align:left"><code>-r</code>, <code>--requirement</code></td>
 <td style="text-align:left">递归安装文件列表中的依赖包</td>
 </tr>
+<tr>
+<td style="text-align:left"><code>--no-cache-dir</code></td>
+<td style="text-align:left">禁用离线下载缓存</td>
+</tr>
 </tbody>
 </table>
 <blockquote>
@@ -269,7 +273,7 @@
 <p>表：<code>pip</code>卸载选项表</p>
 </blockquote>
 <h2 id="列表（List）"><a href="#列表（List）" class="headerlink" title="列表（List）"></a>列表（List）</h2><p><code>pip</code>列表命令，可以列出已安装包的相关信息。</p>
-<p>注意一下，<code>pip</code>的<strong>检查更新</strong>功能是放在<code>list</code>里的。</p>
+<p>注意，<code>pip</code>的<strong>检查更新</strong>功能是放在<code>list</code>里的。</p>
 <pre><code>$ pip list [options]
 </code></pre><blockquote>
 <p>代码清单：<code>pip</code>卸载软件包命令（格式）</p>
@@ -317,8 +321,8 @@
 <blockquote>
 <p>表：<code>pip</code>显示选项表</p>
 </blockquote>
-<h2 id="依赖（Freeze）"><a href="#依赖（Freeze）" class="headerlink" title="依赖（Freeze）"></a>依赖（Freeze）</h2><p><code>pip freeze</code>命令，可以生成一份<strong>依赖包列表</strong>，该命令生成的列表格式可被<code>pip</code>其他命令接受使用。该命令常用来生成项目依赖表。</p>
-<h1 id="更换pip源"><a href="#更换pip源" class="headerlink" title="更换pip源"></a>更换<code>pip</code>源</h1><p><code>pip</code>使用 PyPI 仓库来为我们提供 Python 软件包。但是默认的官方仓库地址在国内访问不畅，我们可以利用<code>-i</code>选项使用自定义镜像仓库。</p>
+<h2 id="依赖（Freeze）"><a href="#依赖（Freeze）" class="headerlink" title="依赖（Freeze）"></a>依赖（Freeze）</h2><p><code>pip freeze</code>命令，可以生成一份<strong>依赖包列表</strong>，该命令生成的列表格式可被<code>pip</code>其他命令选项接受使用。该命令常用来生成项目依赖表。</p>
+<h1 id="更换pip源"><a href="#更换pip源" class="headerlink" title="更换pip源"></a>更换<code>pip</code>源</h1><p><code>pip</code>使用 PyPI 仓库来为我们提供 Python 软件包。但是默认的官方仓库地址位于国外，国内访问不畅，我们可以利用<code>-i</code>选项使用自定义镜像仓库。</p>
 <blockquote>
 <p>PyPI 默认仓库地址：<a href="https://pypi.python.org/pypi" target="_blank" rel="noopener">https://pypi.python.org/pypi</a></p>
 </blockquote>
@@ -331,7 +335,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center"><code>--index &lt;url&gt;</code></td>
+<td style="text-align:center"><code>--index &lt;mirror_url&gt;</code></td>
 <td style="text-align:center">自定义 Python 包仓库地址</td>
 </tr>
 </tbody>
@@ -369,11 +373,12 @@
 <blockquote>
 <p>表：一些 PyPI 国内镜像</p>
 </blockquote>
-<h2 id="如何使用-PyPI-镜像"><a href="#如何使用-PyPI-镜像" class="headerlink" title="如何使用 PyPI 镜像"></a>如何使用 PyPI 镜像</h2><pre><code>pip install -i &lt;mirror_url&gt; some-packages
+<h2 id="如何使用-PyPI-镜像"><a href="#如何使用-PyPI-镜像" class="headerlink" title="如何使用 PyPI 镜像"></a>如何使用 PyPI 镜像</h2><p>用 PyPI 镜像非常简单，一次性使用的话，在<code>pip</code>安装命令后使用<code>-i</code>参数接想使用的镜像地址即可。</p>
+<pre><code>pip install -i &lt;mirror_url&gt; some-packages
 </code></pre><blockquote>
-<p>注：<br><code>-i</code>表示临时使用镜像地址<br><code>simple</code>代表 PyPI 软件包目录</p>
+<p>代码清单：<code>pip</code>使用 PyPI 镜像</p>
 </blockquote>
-<p>修改<code>pip.conf</code>文件可将自定义镜像地址设为默认。</p>
+<p>修改<code>pip.conf</code>文件可以将自定义镜像地址设为默认。操作系统（OS）不同，<code>pip.conf</code>配置文件存放位置也会不尽相同。如果对应目录下的配置文件不存在，手动创建即可。</p>
 <table>
 <thead>
 <tr>
@@ -398,9 +403,6 @@
 </table>
 <blockquote>
 <p>表：<code>pip.conf</code>存放位置表</p>
-</blockquote>
-<blockquote>
-<p>注：<br>操作系统不同，<code>pip.conf</code>配置文件存放位置也会各不相同，如果对应目录下的配置文件不存在，手动创建即可。</p>
 </blockquote>
 <p>我们可以在<code>pip.conf</code>配置文件中全局指定 PyPI 镜像地址。</p>
 <pre><code>...
