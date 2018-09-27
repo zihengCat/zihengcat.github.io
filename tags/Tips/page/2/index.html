@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2017/08/13/移除苹果系统下载文件的附加属性/">
+    <link rel="canonical" href="https://zihengcat.github.io/tags/Tips/page/2/">
     <title>
         
-          移除苹果系统下载文件的附加属性 - zihengCat
+          zihengCat
         
     </title>
 
@@ -125,164 +125,7 @@
     }
 </script>
 
-    <!-- Post Header -->
-<style type="text/css">
-    header.intro-header {
-        position: relative;
-        background-image: url('/img/home-bg-o.jpg');
-    }
-
-</style>
-<header class="intro-header" >
-<!-- Header Image Mask -->
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
-                        
-                          <a class="tag" href="/tags/#Macintosh" title="Macintosh">Macintosh</a>
-                        
-                    </div>
-                    <h1>移除苹果系统下载文件的附加属性</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by zihengCat on
-                        2017-08-13
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-<!-- Post Container -->
-            <div class="
-                 col-lg-8 col-lg-offset-2
-                 col-md-10 col-md-offset-1
-                 post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用苹果系统的同学一定有遇到过这样一种情形：从互联网上下载了一个文件，打开时系统提示我们该文件不安全。或者提示我们该软件来自未认证的开发者(非 Mac App Store 软件)。</p>
-<p>出现提示的原因是，苹果系统有一个<em>GateKeeper</em>保护机制（自 OSX 10.5 加入）。从互联网上下载来的文件，会被自动打上<em>com.apple.quarantine</em>标志，翻译过来就是<em>免疫隔离</em>，系统根据这个<strong>附加属性</strong>对这个文件作出限制。</p>
-<p>苹果系统加入文件附加属性应该是有系统安全的考量，保护用户免受恶意软件的侵害。但是对一些专业用户而言，这个功能就显得有点不是很舒服了…</p>
-<p>所幸，我们方便地去掉这些自动加上的附加属性（extended attributes）。</p>
-<h1 id="移除附加属性"><a href="#移除附加属性" class="headerlink" title="移除附加属性"></a>移除附加属性</h1><p>对于一个打上附加属性的文件，文件的权限位会多出一个<code>@</code>。</p>
-<pre><code>$ ls -al@
-</code></pre><p>使用<code>ls -al@</code>命令可以很清楚的看到文件的附加属性（xattr也可以查看）。<br>macOS 提供了一个<code>xattr</code>系统工具，我们可以它利用来清除文件附加属性。</p>
-<pre><code>$ xattr -d &lt;com.apple.quarantine&gt; &lt;filename&gt;
-</code></pre><p>命令格式：<code>xattr</code> + <code>-d</code> + <em>附加属性</em> + <em>文件名</em></p>
-<blockquote>
-<p>更详细的说明可以查看: xattr –help 或 man xattr</p>
-</blockquote>
-<p><code>xattr</code> + <em>文件名</em> 可以直接查看文件的附加属性。<br><code>-r</code>选项作用于目录，表示递归删除。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>StackOverflow 的问答: <a href="https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine" target="_blank" rel="noopener">https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine</a></li>
-</ul>
-
-                <hr>
-<!--
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2017/08/16/Git实用技巧-覆写上次提交/" data-toggle="tooltip" data-placement="top" title="Git 实用技巧 - 覆写上次提交">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2017/08/11/Linux下编译安装Vim并添加Python支持/" data-toggle="tooltip" data-placement="top" title="Linux下编译安装Vim并添加Python支持">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
--->
-            </div>
-<!-- Side Catalog Container -->
-        
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
-        
-<!-- Sidebar Container -->
-            <div class="
-                 col-lg-8 col-lg-offset-2
-                 col-md-10 col-md-offset-1
-                 sidebar-container">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
-                        
-                          <a class="tag" href="/tags/#Macintosh" title="Macintosh">Macintosh</a>
-                        
-                    </div>
-                </section>
-                
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </div>
-</article>
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
+    <!-- Default Archive layout, we use archives.ejs instead. -->
 
     <!-- Footer -->
 <footer>
@@ -516,56 +359,6 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
-
-<script type="text/javascript">
-    function generateCatalog (selector) {
-        // init
-        var _containerSelector = 'div.post-container';
-        var P = $(_containerSelector),a,n,t,l,i,c;
-        a = P.find('h1,h2,h3,h4,h5,h6');
-        // clean
-        $(selector).html('')
-        // appending
-        a.each(function () {
-            n = $(this).prop('tagName').toLowerCase();
-            i = "#"+$(this).prop('id');
-            t = $(this).text();
-            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
-            l = $('<li class="'+n+'_nav"></li>').append(c);
-            $(selector).append(l);
-        });
-        return true;
-    }
-
-    generateCatalog(".catalog-body");
-
-    // toggle side catalog
-    $(".catalog-toggle").click((function(e){
-        e.preventDefault();
-        $('.side-catalog').toggleClass("fold")
-    }))
-
-    /*
-     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
-     * Fork by Hux to support padding
-     */
-	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
-    function () {
-        $('.catalog-body').onePageNav({
-            currentClass: "deactive",
-            changeHash: !1,
-            easing: "swing",
-            filter: "",
-            scrollSpeed: 700,
-            scrollOffset: 0,
-            scrollThreshold: .2,
-            begin: null,
-            end: null,
-            scrollChange: null,
-            padding: 80
-        });
-    });
-</script>
 
 
 </body>
