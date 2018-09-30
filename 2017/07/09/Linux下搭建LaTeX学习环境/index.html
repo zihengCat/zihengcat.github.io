@@ -290,9 +290,11 @@ Primary author of TeX: D.E. Knuth.
       s.parentNode.insertBefore(o, s);
     }
 </script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<!-- anchor-js, Doc: http://bryanbraun.github.io/anchorjs/ -->
 <script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+    /* https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js */
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js',
+    function() {
         anchors.options = {
           visible: 'always',
           placement: 'right',

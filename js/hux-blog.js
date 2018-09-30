@@ -10,7 +10,6 @@ $(function() {
     $("[data-toggle='tooltip']").tooltip();
 });
 
-
 // make all images responsive
 /*
  * Unuse by Hux
@@ -30,7 +29,6 @@ $(document).ready(function() {
 // Navigation Scripts to Show Header on Scroll-Up
 jQuery(document).ready(function($) {
     var MQL = 1170;
-
     // primary navigation slide-in effect
     if ($(window).width() > MQL) {
         var headerHeight = $('.navbar-custom').height();
@@ -50,7 +48,9 @@ jQuery(document).ready(function($) {
                 } else {
                     // if scrolling down...
                     $('.navbar-custom').removeClass('is-visible');
-                    if (currentTop > headerHeight && !$('.navbar-custom').hasClass('is-fixed')) $('.navbar-custom').addClass('is-fixed');
+                    if (currentTop > headerHeight && !$('.navbar-custom').hasClass('is-fixed')) {
+                        $('.navbar-custom').addClass('is-fixed');
+                    }
                 }
                 this.previousTop = currentTop;
             });
