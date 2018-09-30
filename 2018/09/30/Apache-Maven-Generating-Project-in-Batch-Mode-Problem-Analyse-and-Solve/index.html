@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/archives/">
                                 Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -169,14 +169,37 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在<em>Maven in 5 Minutes</em>的指导学习过程中，很容易遇到这样一个问题：在执行<code>Apache</code>官方创建一个<code>Maven</code>项目（Creating a Project）时，<code>Maven</code>构建卡在了如下这一步。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Apache Maven 官方的<em>Maven in 5 Minutes</em>的指导学习中，很容易遇到这样一个问题：在执行创建一个<code>Maven</code>项目（Creating a Project）时，<code>Maven</code>构建卡在了如下这一步。</p>
 <pre><code>...
 [INFO] Generating project in Batch mode
 ...
 </code></pre><blockquote>
 <p>代码清单：<code>Maven</code>构建项目卡住的步骤</p>
 </blockquote>
-<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>在执行<code>mvn</code>创建项目命令时，额外加入<code>-X</code>参数，可查看命令执行的<code>[DEBUG]</code>详细信息。</p>
+<p>可以发现，Maven 构建程序实际上是在如下这步卡住的。</p>
+<pre><code>...
+[DEBUG] Searching for remote catalog: http://repo1.maven.org/maven2/archetype-catalog.xml
+...
+</code></pre><blockquote>
+<p>代码清单：<code>Maven</code>构建项目卡住的具体步骤</p>
+</blockquote>
+<p>可以推测出，引起该问题的原因是：由于国内恶劣的网络条件，导致 Maven 在查询/下载目标文件<code>archetype-catalog.xml</code>时遇到了障碍。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>已经知道了问题原因所在，解决方法也非常简单：手动下载目标文件至本地对应路径，将 Maven 加载方式改为本地即可。</p>
+<pre><code class="bash"># 手动下载目标文件至本地
+$ wget &#39;http://repo1.maven.org/maven2/archetype-catalog.xml&#39;
+...
+# 移动目标文件至 Maven 目录
+$ mv archetype-catalog.xml ~/.m2/repository/org/apache/maven/archetype/archetype-catalog/2.2/
+...
+# 加入参数`-DarchetypeCatalog=local`将 Maven 加载方式改为本地
+$ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -DarchetypeCatalog=local -X
+...
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Maven</code>构建项目问题解决</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Maven in 5 Minutes: <a href="https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html" target="_blank" rel="noopener">https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html</a></li>
 </ul>
 
