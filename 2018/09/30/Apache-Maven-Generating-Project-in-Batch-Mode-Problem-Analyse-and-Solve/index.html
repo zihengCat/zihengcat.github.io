@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -190,10 +190,17 @@
 $ wget &#39;http://repo1.maven.org/maven2/archetype-catalog.xml&#39;
 ...
 # 移动目标文件至 Maven 目录
-$ mv archetype-catalog.xml ~/.m2/repository/org/apache/maven/archetype/archetype-catalog/2.2/
+$ mv archetype-catalog.xml \
+     ~/.m2/repository/org/apache/maven/archetype/archetype-catalog/3.0.1/
 ...
 # 加入参数`-DarchetypeCatalog=local`将 Maven 加载方式改为本地
-$ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false -DarchetypeCatalog=local -X
+$ mvn archetype:generate \
+     -DgroupId=com.mycompany.app \
+     -DartifactId=my-app \
+     -DarchetypeArtifactId=maven-archetype-quickstart \
+     -DinteractiveMode=false \
+     -DarchetypeCatalog=local \
+     -X
 ...
 </code></pre>
 <blockquote>
