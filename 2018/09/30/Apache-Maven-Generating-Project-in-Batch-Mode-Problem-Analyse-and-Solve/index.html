@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/09/30/Apache-Maven-Generating-Project-in-Batch-Mode-Problem-Analyse-and-Solve/">
     <title>
         
-          修改 Docker 容器 locale 系统编码 - zihengCat
+          Apache Maven &quot;[INFO] Generating project in Batch mode&quot; 问题分析及解决 - zihengCat
         
     </title>
 
@@ -142,16 +142,18 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
-                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                          <a class="tag" href="/tags/#Apache" title="Apache">Apache</a>
+                        
+                          <a class="tag" href="/tags/#Maven" title="Maven">Maven</a>
                         
                     </div>
-                    <h1>修改 Docker 容器 locale 系统编码</h1>
-                    <h2 class="subheading">Change locale System Encoding in Docker Container</h2>
+                    <h1>Apache Maven &quot;[INFO] Generating project in Batch mode&quot; 问题分析及解决</h1>
+                    <h2 class="subheading">Apache Maven &quot;[INFO] Generating project in Batch mode&quot; Problem Analyse and Solve</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-09-10
+                        2018-09-30
                     </span>
                 </div>
             </div>
@@ -167,54 +169,24 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>默认情况下，我们使用 Docker 镜像启动 Docker 容器，容器 Linux 系统默认使用的<code>locale</code>系统编码为<code>POSIX</code>，有时候这会为开发工作带来极大的不便（不支持Unicode显示）。</p>
-<pre><code>$ locale
-...
-LANG=
-LC_CTYPE=&quot;POSIX&quot;
-LC_NUMERIC=&quot;POSIX&quot;
-LC_TIME=&quot;POSIX&quot;
-LC_COLLATE=&quot;POSIX&quot;
-LC_MONETARY=&quot;POSIX&quot;
-LC_MESSAGES=&quot;POSIX&quot;
-LC_PAPER=&quot;POSIX&quot;
-LC_NAME=&quot;POSIX&quot;
-LC_ADDRESS=&quot;POSIX&quot;
-LC_TELEPHONE=&quot;POSIX&quot;
-LC_MEASUREMENT=&quot;POSIX&quot;
-LC_IDENTIFICATION=&quot;POSIX&quot;
-LC_ALL=
-...
-</code></pre><blockquote>
-<p>代码清单：查看<code>Docker</code>容器内部<code>locale</code>系统编码</p>
-</blockquote>
-<h1 id="改变locale编码格式"><a href="#改变locale编码格式" class="headerlink" title="改变locale编码格式"></a>改变<code>locale</code>编码格式</h1><p>我们可以在<code>Dockerfile</code>中指定系统需要使用的<code>locale</code>编码格式，再构建镜像。这样启动的<code>Docker</code>容器中就会使用指定好的系统编码了。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在<em>Maven in 5 Minutes</em>的指导学习过程中，很容易遇到这样一个问题：在执行<code>Apache</code>官方创建一个<code>Maven</code>项目（Creating a Project）时，<code>Maven</code>构建卡在了如下这一步。</p>
 <pre><code>...
-ENV LANG     en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
-ENV LC_ALL   en_US.UTF-8
+[INFO] Generating project in Batch mode
 ...
 </code></pre><blockquote>
-<p>代码清单：在<code>Dockerfile</code>中指定<code>locale</code>系统编码为<code>en_US.UTF-8</code></p>
+<p>代码清单：<code>Maven</code>构建项目卡住的步骤</p>
 </blockquote>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>Stackoverflow「28405902」：<a href="https://stackoverflow.com/questions/28405902/how-to-set-the-locale-inside-a-ubuntu-docker-container" target="_blank" rel="noopener">https://stackoverflow.com/questions/28405902/how-to-set-the-locale-inside-a-ubuntu-docker-container</a></p>
-</li>
-<li><p>Docker and Locales：<a href="http://jaredmarkell.com/docker-and-locales/" target="_blank" rel="noopener">http://jaredmarkell.com/docker-and-locales/</a></p>
-</li>
+<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>Maven in 5 Minutes: <a href="https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html" target="_blank" rel="noopener">https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html</a></li>
 </ul>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/09/30/Apache-Maven-Generating-Project-in-Batch-Mode-Problem-Analyse-and-Solve/" data-toggle="tooltip" data-placement="top" title="Apache Maven "[INFO] Generating project in Batch mode" 问题分析及解决">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/08/26/generate-the-fernet-key-for-airflow/" data-toggle="tooltip" data-placement="top" title="为 Airflow 加装 Cryptography 库">Next Post &rarr;</a>
+                            <a href="/2018/09/10/change-locale-system-encoding-in-docker-container/" data-toggle="tooltip" data-placement="top" title="修改 Docker 容器 locale 系统编码">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -248,9 +220,11 @@ ENV LC_ALL   en_US.UTF-8
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
-                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                          <a class="tag" href="/tags/#Apache" title="Apache">Apache</a>
+                        
+                          <a class="tag" href="/tags/#Maven" title="Maven">Maven</a>
                         
                     </div>
                 </section>

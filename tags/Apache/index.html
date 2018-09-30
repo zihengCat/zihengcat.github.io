@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/09/10/change-locale-system-encoding-in-docker-container/">
+    <link rel="canonical" href="https://zihengcat.github.io/tags/Apache/">
     <title>
         
-          修改 Docker 容器 locale 系统编码 - zihengCat
+          zihengCat
         
     </title>
 
@@ -125,184 +125,7 @@
     }
 </script>
 
-    <!-- Post Header -->
-<style type="text/css">
-    header.intro-header {
-        position: relative;
-        background-image: url('/img/home-bg-o.jpg');
-    }
-
-</style>
-<header class="intro-header" >
-<!-- Header Image Mask -->
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
-                        
-                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
-                        
-                    </div>
-                    <h1>修改 Docker 容器 locale 系统编码</h1>
-                    <h2 class="subheading">Change locale System Encoding in Docker Container</h2>
-                    <span class="meta">
-                        Posted by zihengCat on
-                        2018-09-10
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-<!-- Post Container -->
-            <div class="
-                 col-lg-8 col-lg-offset-2
-                 col-md-10 col-md-offset-1
-                 post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>默认情况下，我们使用 Docker 镜像启动 Docker 容器，容器 Linux 系统默认使用的<code>locale</code>系统编码为<code>POSIX</code>，有时候这会为开发工作带来极大的不便（不支持Unicode显示）。</p>
-<pre><code>$ locale
-...
-LANG=
-LC_CTYPE=&quot;POSIX&quot;
-LC_NUMERIC=&quot;POSIX&quot;
-LC_TIME=&quot;POSIX&quot;
-LC_COLLATE=&quot;POSIX&quot;
-LC_MONETARY=&quot;POSIX&quot;
-LC_MESSAGES=&quot;POSIX&quot;
-LC_PAPER=&quot;POSIX&quot;
-LC_NAME=&quot;POSIX&quot;
-LC_ADDRESS=&quot;POSIX&quot;
-LC_TELEPHONE=&quot;POSIX&quot;
-LC_MEASUREMENT=&quot;POSIX&quot;
-LC_IDENTIFICATION=&quot;POSIX&quot;
-LC_ALL=
-...
-</code></pre><blockquote>
-<p>代码清单：查看<code>Docker</code>容器内部<code>locale</code>系统编码</p>
-</blockquote>
-<h1 id="改变locale编码格式"><a href="#改变locale编码格式" class="headerlink" title="改变locale编码格式"></a>改变<code>locale</code>编码格式</h1><p>我们可以在<code>Dockerfile</code>中指定系统需要使用的<code>locale</code>编码格式，再构建镜像。这样启动的<code>Docker</code>容器中就会使用指定好的系统编码了。</p>
-<pre><code>...
-ENV LANG     en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
-ENV LC_ALL   en_US.UTF-8
-...
-</code></pre><blockquote>
-<p>代码清单：在<code>Dockerfile</code>中指定<code>locale</code>系统编码为<code>en_US.UTF-8</code></p>
-</blockquote>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>Stackoverflow「28405902」：<a href="https://stackoverflow.com/questions/28405902/how-to-set-the-locale-inside-a-ubuntu-docker-container" target="_blank" rel="noopener">https://stackoverflow.com/questions/28405902/how-to-set-the-locale-inside-a-ubuntu-docker-container</a></p>
-</li>
-<li><p>Docker and Locales：<a href="http://jaredmarkell.com/docker-and-locales/" target="_blank" rel="noopener">http://jaredmarkell.com/docker-and-locales/</a></p>
-</li>
-</ul>
-
-                <hr>
-<!--
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2018/09/30/Apache-Maven-Generating-Project-in-Batch-Mode-Problem-Analyse-and-Solve/" data-toggle="tooltip" data-placement="top" title="Apache Maven "[INFO] Generating project in Batch mode" 问题分析及解决">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2018/08/26/generate-the-fernet-key-for-airflow/" data-toggle="tooltip" data-placement="top" title="为 Airflow 加装 Cryptography 库">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
--->
-            </div>
-<!-- Side Catalog Container -->
-        
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
-        
-<!-- Sidebar Container -->
-            <div class="
-                 col-lg-8 col-lg-offset-2
-                 col-md-10 col-md-offset-1
-                 sidebar-container">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
-                        
-                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
-                        
-                    </div>
-                </section>
-                
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </div>
-</article>
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
+    <!-- Default Archive layout, we use archives.ejs instead. -->
 
     <!-- Footer -->
 <footer>
@@ -536,56 +359,6 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
-
-<script type="text/javascript">
-    function generateCatalog (selector) {
-        // init
-        var _containerSelector = 'div.post-container';
-        var P = $(_containerSelector),a,n,t,l,i,c;
-        a = P.find('h1,h2,h3,h4,h5,h6');
-        // clean
-        $(selector).html('')
-        // appending
-        a.each(function () {
-            n = $(this).prop('tagName').toLowerCase();
-            i = "#"+$(this).prop('id');
-            t = $(this).text();
-            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
-            l = $('<li class="'+n+'_nav"></li>').append(c);
-            $(selector).append(l);
-        });
-        return true;
-    }
-
-    generateCatalog(".catalog-body");
-
-    // toggle side catalog
-    $(".catalog-toggle").click((function(e){
-        e.preventDefault();
-        $('.side-catalog').toggleClass("fold")
-    }))
-
-    /*
-     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
-     * Fork by Hux to support padding
-     */
-	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
-    function () {
-        $('.catalog-body').onePageNav({
-            currentClass: "deactive",
-            changeHash: !1,
-            easing: "swing",
-            filter: "",
-            scrollSpeed: 700,
-            scrollOffset: 0,
-            scrollThreshold: .2,
-            begin: null,
-            end: null,
-            scrollChange: null,
-            padding: 80
-        });
-    });
-</script>
 
 
 </body>
