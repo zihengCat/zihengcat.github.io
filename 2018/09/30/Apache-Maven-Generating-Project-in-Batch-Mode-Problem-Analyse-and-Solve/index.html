@@ -76,16 +76,16 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -187,7 +187,8 @@
 <p>可以推测出，引起该问题的原因是：<strong>由于国内恶劣的网络条件，导致 Maven 在查询/下载目标文件<code>archetype-catalog.xml</code>时遇到了障碍。</strong></p>
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>已经知道了问题原因所在，解决方法也非常简单：<strong>手动下载目标文件至本地对应路径，将 Maven 加载方式改为本地即可。</strong></p>
 <pre><code class="bash"># 手动下载目标文件至本地
-$ wget &#39;http://repo1.maven.org/maven2/archetype-catalog.xml&#39;
+$ curl -o &#39;archetype-catalog.xml&#39; \
+          &#39;http://repo1.maven.org/maven2/archetype-catalog.xml&#39;
 ...
 # 移动目标文件至 Maven 目录
 $ mv archetype-catalog.xml \
