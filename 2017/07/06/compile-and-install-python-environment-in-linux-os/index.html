@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/about/">
                                 About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -168,7 +168,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在Linux环境下编译安装<code>Python</code>环境。</p>
-<p>在个人使用的<em>CentOS7 Linux</em>系统上，系统默认不安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也不是最新版本。</p>
+<p>在个人使用的 <em>CentOS7 Linux</em> 系统上，系统默认不安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也不是最新版本。</p>
 <p>系统自带一枚低版本<code>Python2</code>，为一些系统组件提供支持，不应该随意更动，不然会出现各种各样的Bugs（<code>yum</code>无法正常使用什么的…）。</p>
 <p>手动编译安装<code>Python</code>，是Linux系统下搭建Python学习环境的最佳途径。</p>
 <h1 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 - 编译环境"></a>Step 1 - 编译环境</h1><p>首先，我们需要在本机安装「基础编译工具链」，这是编译<code>Python</code>源码所必需的。</p>
@@ -232,7 +232,7 @@ $ git checkout &lt;tag_version&gt;
 <tr>
 <td style="text-align:center">UUID</td>
 <td style="text-align:left"><code>uuid-devel</code></td>
-<td style="text-align:left"><code>libuuid-dev</code></td>
+<td style="text-align:left"><code>uuid-dev</code></td>
 </tr>
 <tr>
 <td style="text-align:center">OpenSSL</td>
@@ -301,7 +301,7 @@ exit ${?}
 <p>代码清单：<code>configure</code>编译配置选项</p>
 </blockquote>
 <p>此命令会检查当前系统的编译环境，软件依赖性等等，如果没有问题的话，会成功生成<code>Makefile</code>。</p>
-<p>这里我们添加了两个编译选项：</p>
+<p>这里我们添加了两个编译选项，更多编译选项可以参看：<code>./configure --help</code>。</p>
 <table>
 <thead>
 <tr>
@@ -321,7 +321,7 @@ exit ${?}
 </tbody>
 </table>
 <blockquote>
-<p>表：自定义编译选项表<br>更多编译选项参看：<code>./configure --help</code>。</p>
+<p>表：自定义编译选项表</p>
 </blockquote>
 <pre><code class="bash">$ make
 $ sudo make install
@@ -346,7 +346,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <blockquote>
 <p>代码清单：检验<code>Python</code>安装</p>
 </blockquote>
-<p>至此，最新版Python3已经安装完成，我们可以愉快地使用Python编程了。</p>
+<p>至此，最新版 Python3 已经安装完成，我们可以愉快地使用 Python 编程了。</p>
 
                 <hr>
 <!--
