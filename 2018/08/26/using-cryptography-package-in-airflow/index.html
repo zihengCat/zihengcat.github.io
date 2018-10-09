@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/archives/">
                                 Archives
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/tags/">
-                                Tags
                             </a>
                         </li>
                         
@@ -171,7 +171,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Apache Airflow</code>任务调度框架默认将密码等敏感信息以<strong>明文</strong>形式存储到元数据（Metadata）库中。这会带来一定的安全隐患。Airflow 官方也强烈建议使用者安装<code>cryptography</code>库以实现敏感信息的加密存储。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Apache Airflow</code>分布式任务调度框架默认将密码等敏感信息以<strong>明文</strong>形式存储到元数据（Metadata）库中。这会带来一定的安全隐患。Airbnb 官方也强烈建议开发者安装<code>cryptography</code>库以实现敏感信息的加密存储。</p>
 <p>另外，如果不安装<code>cryptography</code>加密库，Airflow 的许多高级功能都是无法使用的。</p>
 <h1 id="为Airflow加装cryptography库"><a href="#为Airflow加装cryptography库" class="headerlink" title="为Airflow加装cryptography库"></a>为<code>Airflow</code>加装<code>cryptography</code>库</h1><p>Apache Airflow 默认不会安装<code>cryptography</code>库，我们需要手动安装并配置。</p>
 <p>首先，使用<code>pip</code>命令来安装上<code>cryptography</code>库。</p>
