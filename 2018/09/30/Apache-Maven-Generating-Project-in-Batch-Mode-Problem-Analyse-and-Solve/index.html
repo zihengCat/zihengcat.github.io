@@ -169,19 +169,21 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在学习 Apache Maven 官方指导教程 <em>Maven in 5 Minutes</em> 的过程中，新人容易遇到这样一个问题：在执行创建一个<code>Maven</code>项目（Creating a Project）时，<code>Maven</code>构建卡在了如下这一步。</p>
-<pre><code>...
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在学习 Apache Maven 官方指导教程 <em>Maven in 5 Minutes</em> 的过程中，新人很容易遇到这样一个问题：在执行创建一个<code>Maven</code>项目（Creating a Project）时，<code>Maven</code>构建卡在了如下这一步。</p>
+<pre><code class="plain">...
 [INFO] Generating project in Batch mode
 ...
-</code></pre><blockquote>
+</code></pre>
+<blockquote>
 <p>代码清单：<code>Maven</code>构建项目 - 卡住步骤</p>
 </blockquote>
 <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>执行<code>mvn</code>创建项目命令时，额外加入<code>-X</code>参数，查看命令执行的<code>[DEBUG]</code>详细信息。</p>
 <p>可以发现，Maven 构建程序实际上是在如下这步卡住的。</p>
-<pre><code>...
+<pre><code class="plain">...
 [DEBUG] Searching for remote catalog: http://repo1.maven.org/maven2/archetype-catalog.xml
 ...
-</code></pre><blockquote>
+</code></pre>
+<blockquote>
 <p>代码清单：<code>Maven</code>构建项目 - 卡住具体步骤</p>
 </blockquote>
 <p>可以推测出，引起该问题的原因是：<strong>由于国内恶劣的网络条件，导致 Maven 在查询/下载目标文件<code>archetype-catalog.xml</code>时遇到了障碍。</strong></p>
