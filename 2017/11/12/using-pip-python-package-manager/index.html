@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -322,7 +322,8 @@
 <p>表：<code>pip</code>显示选项表</p>
 </blockquote>
 <h2 id="依赖（Freeze）"><a href="#依赖（Freeze）" class="headerlink" title="依赖（Freeze）"></a>依赖（Freeze）</h2><p><code>pip freeze</code>命令，可以生成一份<strong>依赖包列表</strong>，该命令生成的列表格式可被<code>pip</code>其他命令选项接受使用。该命令常用来生成项目依赖表。</p>
-<h1 id="更换pip源"><a href="#更换pip源" class="headerlink" title="更换pip源"></a>更换<code>pip</code>源</h1><p><code>pip</code>使用 PyPI 仓库来为我们提供 Python 软件包。但是默认的官方仓库地址位于国外，国内访问不畅，我们可以利用<code>-i</code>选项使用自定义镜像仓库。</p>
+<h1 id="更换pip源"><a href="#更换pip源" class="headerlink" title="更换pip源"></a>更换<code>pip</code>源</h1><p><code>pip</code>使用 PyPI 仓库来为我们提供 Python 软件包。但是默认的官方仓库地址位于国外，国内访问不畅，时不时会遇上下载个包要花很长时间，甚至超时无法下载的情况。</p>
+<p>我们可以利用<code>-i</code>选项使用自定义镜像仓库。</p>
 <blockquote>
 <p>PyPI 默认仓库地址：<a href="https://pypi.python.org/pypi" target="_blank" rel="noopener">https://pypi.python.org/pypi</a></p>
 </blockquote>
@@ -374,7 +375,7 @@
 <p>表：一些 PyPI 国内镜像</p>
 </blockquote>
 <h2 id="如何使用-PyPI-镜像"><a href="#如何使用-PyPI-镜像" class="headerlink" title="如何使用 PyPI 镜像"></a>如何使用 PyPI 镜像</h2><p>用 PyPI 镜像非常简单，一次性使用的话，在<code>pip</code>安装命令后使用<code>-i</code>参数接想使用的镜像地址即可。</p>
-<pre><code>pip install -i &lt;mirror_url&gt; some-packages
+<pre><code>$ pip install -i &lt;mirror_url&gt; some-packages
 </code></pre><blockquote>
 <p>代码清单：<code>pip</code>使用 PyPI 镜像</p>
 </blockquote>
@@ -408,6 +409,9 @@
 <pre><code>...
 [global]
 index-url = &lt;mirror_url&gt;
+...
+[install]
+trusted-host = &lt;mirror_host&gt;
 ...
 </code></pre><blockquote>
 <p>代码清单：<code>pip.conf</code>全局指定 PyPI 镜像地址</p>
