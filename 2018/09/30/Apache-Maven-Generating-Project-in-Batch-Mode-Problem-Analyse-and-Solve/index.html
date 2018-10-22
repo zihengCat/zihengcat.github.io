@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -178,7 +178,7 @@
 <p>代码清单：<code>Maven</code>构建项目 - 卡住步骤</p>
 </blockquote>
 <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>在执行<code>mvn</code>创建项目命令时，额外加入<code>-X</code>参数，查看该命令执行的<code>[DEBUG]</code>详细信息。</p>
-<p>可以发现，Maven 构建程序实际上是在如下这步卡住的。</p>
+<p>可以发现，Maven 构建程序实际是在如下这步卡住的。</p>
 <pre><code class="plain">...
 [DEBUG] Searching for remote catalog: http://repo1.maven.org/maven2/archetype-catalog.xml
 ...
