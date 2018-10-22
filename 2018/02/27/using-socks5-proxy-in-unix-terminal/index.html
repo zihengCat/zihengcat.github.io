@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/archives/">
                                 Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -167,8 +167,8 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终端（Terminal）是每位程序员的好伙伴，但是由于「GFW」的原因，国内恶劣的网络环境让程序员们有时只能看着CLI提示信息「连接断开，下载失败…」欲哭无泪。</p>
-<p>本文介绍 UNIX® 系统下，设置终端网络程序走<code>socks5</code>代理连接的方法，适用于UNIX/Linux/macOS。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终端（Terminal）是每一位程序员的好伙伴，但是由于「GFW」的原因，国内恶劣的网络环境让程序员们有时只能看着 CLI 提示信息「连接断开，下载失败…」欲哭无泪。</p>
+<p>本文介绍 UNIX 系统下，设置终端网络程序走<code>socks5</code>代理连接的方法（适用于UNIX/Linux/macOS）。</p>
 <h1 id="终端「Terminal」设置"><a href="#终端「Terminal」设置" class="headerlink" title="终端「Terminal」设置"></a>终端「Terminal」设置</h1><p>在终端下，设置环境变量<code>ALL_PROXY</code>为本地<code>socks5</code>代理连接。</p>
 <pre><code class="bash">$ export ALL_PROXY=socks5://127.0.0.1:&lt;port&gt;
 </code></pre>
