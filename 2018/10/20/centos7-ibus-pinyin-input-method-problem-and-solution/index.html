@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2017/07/29/C知识汇总-代码风格/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/10/20/centos7-ibus-pinyin-input-method-problem-and-solution/">
     <title>
         
-          C知识汇总-代码风格 - zihengCat
+          CentOS 7 IBus 拼音输入法问题及解决 - zihengCat
         
     </title>
 
@@ -142,14 +142,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#C" title="C">C</a>
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
                         
                     </div>
-                    <h1>C知识汇总-代码风格</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>CentOS 7 IBus 拼音输入法问题及解决</h1>
+                    <h2 class="subheading">CentOS 7 IBus Pinyin Input Method Problem and Solution</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2017-07-29
+                        2018-10-20
                     </span>
                 </div>
             </div>
@@ -165,123 +167,34 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="空白与缩进"><a href="#空白与缩进" class="headerlink" title="空白与缩进"></a>空白与缩进</h1><h2 id="空白"><a href="#空白" class="headerlink" title="空白"></a>空白</h2><ol>
-<li>关键字<code>if</code>、<code>while</code>、<code>for</code>与其后的控制表达式的<code>(</code>括号之间插入一个空格分隔，但括号内的表达式应紧贴括号。<pre><code>while (1);
-</code></pre></li>
-<li>双目运算符的两侧各插入一个空格分隔，单目运算符和操作数之间不加空格。<pre><code>i = i + 1;
-++i;
-!(i &lt; 1);
--x; 
-&amp;a[1];
-</code></pre></li>
-<li>后缀运算符和操作数之间不加空格。<pre><code>s.a           /* 取结构体成员 */
-foo(arg1)     /* 函数调用 */
-a[i]          /* 取数组成员 */
-</code></pre></li>
-<li>逗号<code>,</code>与分号<code>;</code>之后加空格，这是英文的书写习惯。<pre><code>for(i = 0; i &lt; 10; i++);
-foo(arg1, arg2);
-</code></pre></li>
-<li><p>以上关于双目运算符和后缀运算符的规则并没有严格要求，有时候为了突出优先级也可以写得更紧凑一些，但是省略的空格一定不要误导了读代码的人。</p>
-</li>
-<li><p>由于UNIX系统标准的字符终端是24行80列的，接近或大于80个字符的较长语句要折行写，折行后用空格和上面的表达式或参数对齐。</p>
-</li>
-<li><p>较长的字符串可以断成多个字符串分行书写，C编译器会自动把相邻的多个字符串拼接在一起。</p>
-<pre><code>printf(&quot;This is such a long sentence that &quot;
-    &quot;it cannot be held within a line\n&quot;);
-</code></pre></li>
-<li>可以在变量定义语句中使变量名对齐，这样看起来很美观。</li>
-</ol>
-<h2 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h2><ol>
-<li><p>要用缩进体现出语句块的层次关系。</p>
-</li>
-<li><p>不要混用Tab与空格。</p>
-</li>
-<li><p><code>if/else</code>、<code>while</code>、<code>do/while</code>、<code>for</code>、<code>switch</code> 这些带语句块的语句，语句块<code>{...}</code>可以和关键字写在同一行，用空格隔开；也可以单独写一行。</p>
-</li>
-<li><p><code>switch</code> 语句块里的 <code>case</code>、<code>default</code> 对齐写。</p>
-<pre><code>switch (c) {
-case &#39;A&#39;:   
- /* statements */
-case &#39;B&#39;:
- /* statements */
-case &#39;C&#39;:
- /* statements */
-default:
- /* statements */
-}
-</code></pre></li>
-<li><p>代码中每个逻辑段落之间应该用一个空行分隔开。例如每个函数定义之间应该插入一个空行，头文件、全局变量定义和函数定义之间也应该插入空行。</p>
-</li>
-<li><p>如果一个函数的语句很长，也可以根据相关性分成若干组，用空行分隔。</p>
-</li>
-</ol>
-<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><ol>
-<li><p>注释应采用<code>/* comment */</code>的形式，用空格把界定符和文字分隔来开。</p>
-</li>
-<li><p>函数注释说明此函数的功能、参数、返回值、错误码等，写在函数定义上侧，和此函数定义之间不留空行，顶头写不缩进。</p>
-</li>
-<li><p>相对独立的语句组注释对这一组语句做特别说明，写在语句组上侧，和此语句组之间不留空行，与当前语句组的缩进一致。</p>
-</li>
-<li><p>代码行右侧的简短注释对当前代码行做特别说明，一般为单行注释，和代码之间至少用一个空格隔开，一个源文件中所有的右侧注释最好能上下对齐。</p>
-</li>
-<li><p>复杂的结构体定义比函数更需要注释说明。</p>
-</li>
-<li><p>复杂的宏定义和变量声明也需要注释。</p>
-</li>
-</ol>
-<blockquote>
-<p>关于注释应该使用 <code>/*...*/</code> 还是 <code>//</code> 可以具体情况具体分析。<br><em>Linux Kernel</em> 因为考虑到平台兼容性，不允许使用 C99 的<code>//</code>注释。<br>但如果程序并不会兼容性有过多要求，也可以使用<code>//</code>进行注释。</p>
-</blockquote>
-<h1 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h1><h2 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h2><p>内核编码风格规定: </p>
-<ul>
-<li>变量、函数和类型采用全小写加下划线的方式命名。</li>
-<li>变量的名字应当使用“名词”或者“形容词+名词”。</li>
-</ul>
-<h3 id="普通变量命名"><a href="#普通变量命名" class="headerlink" title="普通变量命名"></a>普通变量命名</h3><pre><code>string table_name;      /* good - uses underscore */
-string tableName;       /* bad - mixed case */
-</code></pre><h3 id="全局变量命名"><a href="#全局变量命名" class="headerlink" title="全局变量命名"></a>全局变量命名</h3><p>尽量不使用全局变量，如果不得已需要全局变量，则在全局变量加前缀<code>g_</code>(表示 <em>global</em>)。</p>
-<pre><code>int g_how_many_people;    /* global variable */
-int g_how_much_money;     /* global variable*/
-</code></pre><h3 id="静态变量命名"><a href="#静态变量命名" class="headerlink" title="静态变量命名"></a>静态变量命名</h3><p>静态变量加前缀 <code>s_</code>(表示 <em>static</em>)。</p>
-<pre><code>void init(...)
-{
-    static int s_init_value;    /* static variable */
-    ...
-}
-</code></pre><h2 id="常量命名"><a href="#常量命名" class="headerlink" title="常量命名"></a>常量命名</h2><p>常量采用全大写加下划线的方式命名。</p>
-<ul>
-<li>const 常量</li>
-<li>宏定义常量</li>
-<li>枚举常量</li>
-</ul>
-<h2 id="函数、类型命名"><a href="#函数、类型命名" class="headerlink" title="函数、类型命名"></a>函数、类型命名</h2><p>函数、类型命名统一小写加下划线，和变量的命名方式相同。</p>
-<pre><code>void add_table_entry();
-int delete_url();
-struct complex_struct{
-    double x, y;
-};
-enum coordinate_type { RECTANGULAR, POLAR };
-</code></pre><blockquote>
-<p>Modern C++ 建议函数名的每个单词首字母大写, 没有下划线。<br>这种大小写混合的命名方式在c++代码中很普遍，称为 camelcase（驼峰命名法）。<br>因为这种命名方式有高有低像驼峰一样。</p>
-</blockquote>
-
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2017/07/30/macintosh-macos-reset-network/" data-toggle="tooltip" data-placement="top" title="Macintosh macOS 重置网络">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/07/28/CentOS7下安装网易云音乐/" data-toggle="tooltip" data-placement="top" title="CentOS 7 下安装网易云音乐">Next Post &rarr;</a>
+                            <a href="/2018/09/30/Apache-Maven-Generating-Project-in-Batch-Mode-Problem-Analyse-and-Solve/" data-toggle="tooltip" data-placement="top" title="Apache Maven "[INFO] Generating project in Batch mode" 问题分析及解决">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -295,7 +208,9 @@ enum coordinate_type { RECTANGULAR, POLAR };
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#C" title="C">C</a>
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
                         
                     </div>
                 </section>
@@ -581,6 +496,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
