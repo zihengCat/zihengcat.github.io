@@ -163,7 +163,11 @@
         </h3>
         <div class="post-content-preview">
             前言在使用CentOS 7 系统时候，遇到了自带拼音输入法（Pinyin Input Method）无法使用的问题。具体表现为：系统显示已经切换到了拼音输入法，但无法使用拼音输入。
-问题分析问题解决...
+问题分析与解决排除拼音输入法的设置问题，问题原因定位为：未正确设置 GTK Input Method 。
+解决方法：执行im-chooser，设置使用 IBus 输入方式。
+
+
+图：设置 GTK Input Me......
         </div>
     </a>
     <p class="post-meta">
