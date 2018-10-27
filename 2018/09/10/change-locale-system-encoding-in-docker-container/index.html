@@ -167,7 +167,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>默认情况下，我们使用 Docker 镜像启动 Docker 容器，容器 Linux 系统默认使用的<code>locale</code>系统编码为<code>POSIX</code>，有时候这会为开发工作带来极大的不便（不支持Unicode显示）。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>默认情况下，我们使用 Docker 镜像（Image）启动 Docker 容器，容器 Linux 系统默认使用的<code>locale</code>系统编码为<code>POSIX</code>，有时候这会为开发工作带来极大的不便（不支持 Unicode 显示）。</p>
 <pre><code>$ locale
 ...
 LANG=
@@ -196,6 +196,13 @@ ENV LC_ALL   en_US.UTF-8
 ...
 </code></pre><blockquote>
 <p>代码清单：在<code>Dockerfile</code>中指定<code>locale</code>系统编码为<code>en_US.UTF-8</code></p>
+</blockquote>
+<p>或者，我们可以在启动容器时，为该容器指定系统编码格式环境变量。</p>
+<pre><code>$ sudo docker run &lt;some_docker_image&gt; \
+       --env LC_ALL=en_US.UTF-8 \
+...
+</code></pre><blockquote>
+<p>代码清单：在容器启动时指定<code>locale</code>系统编码为<code>en_US.UTF-8</code></p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Stackoverflow「28405902」：<a href="https://stackoverflow.com/questions/28405902/how-to-set-the-locale-inside-a-ubuntu-docker-container" target="_blank" rel="noopener">https://stackoverflow.com/questions/28405902/how-to-set-the-locale-inside-a-ubuntu-docker-container</a></p>
