@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/10/20/centos7-ibus-pinyin-input-method-problem-and-solution/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/10/29/apache-airflow-1-10-0-released-highlights/">
     <title>
         
-          CentOS 7 IBus 拼音输入法问题及解决 - zihengCat
+          Apache Airflow 1.10.0 发布 | 高光特性 - zihengCat
         
     </title>
 
@@ -142,16 +142,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Apache" title="Apache">Apache</a>
                         
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                          <a class="tag" href="/tags/#Airflow" title="Airflow">Airflow</a>
                         
                     </div>
-                    <h1>CentOS 7 IBus 拼音输入法问题及解决</h1>
-                    <h2 class="subheading">CentOS 7 IBus Intelligent Pinyin Input Method Problem and Solution</h2>
+                    <h1>Apache Airflow 1.10.0 发布 | 高光特性</h1>
+                    <h2 class="subheading">Apache Airflow 1.10.0 Released | Highlights</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-10-20
+                        2018-10-29
                     </span>
                 </div>
             </div>
@@ -167,25 +167,26 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>个人在使用 CentOS 7 时，遇到了系统自带的智能拼音输入法（Intelligent Pinyin Input Method）无法使用的问题。具体表现为：<strong>系统显示已经切换到了智能拼音输入法，但无法使用拼音输入，输入的仍是英文。</strong></p>
-<h1 id="问题分析与解决"><a href="#问题分析与解决" class="headerlink" title="问题分析与解决"></a>问题分析与解决</h1><p>排除拼音输入法的设置问题，问题原因定位为：<strong>未正确设置 GTK Input Method 。</strong></p>
-<p>问题解决方法：<strong>命令行下执行<code>im-chooser</code>，在弹出的对话框中设置使用 IBus 输入方式，重新登陆图形界面，即可正常使用 IBus 智能拼音输入法。</strong></p>
-<p><img src="./setting-gtk-input-method.png" alt="setting-gtk-input-method"></p>
-<blockquote>
-<p>图：设置 GTK Input Method</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 8 个月漫长的等待后，<em>Apache Airflow 1.10.0</em> 终于发布了。</p>
+<h1 id="高光特性（Highlights）"><a href="#高光特性（Highlights）" class="headerlink" title="高光特性（Highlights）"></a>高光特性（Highlights）</h1><p>新 Role-Based Access Control (RBAC) 网页接口现已可用（in Beta）。Flask AppBuilder 取代 Flask Admin 成为新的 RBAC Web UI。这一改变将支持更多的、更智能的、开箱即用的认证后端，以及视图与 ORM 权限控制，简化 View 与 DAG 的权限控制等级。为了使用这一 Web UI，你需要在<code>airflow.cfg</code>配置文件中指定：</p>
+<pre><code>...
+rbac = True
+...
+</code></pre><blockquote>
+<p>代码清单：<code>airflow.cfg</code> RBAC 配置项</p>
 </blockquote>
-
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1>
                 <hr>
 <!--
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2018/10/29/apache-airflow-1-10-0-released-highlights/" data-toggle="tooltip" data-placement="top" title="Apache Airflow 1.10.0 发布 | 高光特性">&larr; Previous Post</a>
+                            <a href="/2018/10/29/Released/" data-toggle="tooltip" data-placement="top" title="Released">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2018/09/30/Apache-Maven-Generating-Project-in-Batch-Mode-Problem-Analyse-and-Solve/" data-toggle="tooltip" data-placement="top" title="Apache Maven "[INFO] Generating project in Batch mode" 问题分析及解决">Next Post &rarr;</a>
+                            <a href="/2018/10/20/centos7-ibus-pinyin-input-method-problem-and-solution/" data-toggle="tooltip" data-placement="top" title="CentOS 7 IBus 拼音输入法问题及解决">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -219,9 +220,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Apache" title="Apache">Apache</a>
                         
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                          <a class="tag" href="/tags/#Airflow" title="Airflow">Airflow</a>
                         
                     </div>
                 </section>
