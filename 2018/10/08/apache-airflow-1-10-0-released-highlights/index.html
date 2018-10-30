@@ -168,18 +168,18 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 8 个月漫长的等待后，<em>Apache Airflow 1.10.0</em> 终于发布了。</p>
-<h1 id="高光特性（Highlights）"><a href="#高光特性（Highlights）" class="headerlink" title="高光特性（Highlights）"></a>高光特性（Highlights）</h1><p>新 Role-Based Access Control (RBAC) 网页接口现已可用（in Beta）。Flask AppBuilder 取代 Flask Admin 成为新的 RBAC Web UI。这一改变将支持更多的、更智能的、开箱即用的认证后端，以及视图与 ORM 权限控制，简化 View 与 DAG 的权限控制等级。为了使用这一 Web UI，你需要在<code>airflow.cfg</code>配置文件中指定：</p>
+<h1 id="高光特性（Highlights）"><a href="#高光特性（Highlights）" class="headerlink" title="高光特性（Highlights）"></a>高光特性（Highlights）</h1><p>新 Role-Based Access Control (RBAC) 网页接口现已可用（in Beta）。Flask AppBuilder 取代 Flask Admin 成为新的 RBAC Web UI。这一改变将支持更多、更智能、开箱即用的认证后端，以及视图与 ORM 权限控制，简化 View 与 DAG 的权限控制等级。你可以在<code>airflow.cfg</code>配置文件中指定相关配置项来启用这一新特性。</p>
 <pre><code>...
 rbac = True
 ...
 </code></pre><blockquote>
 <p>代码清单：<code>airflow.cfg</code> RBAC 配置项</p>
 </blockquote>
-<p>新 <strong>Kubernetes Operator and Executor</strong> 现在已支持，使用 Kubernetes 原生API 。这使得开发者们更自由，更灵活的使用 Airflow。</p>
+<p>新 <strong>Kubernetes Operator and Executor</strong> 现在已支持，使用 Kubernetes 原生 API 实现。这使得开发者们可以更自由、更灵活的使用 Airflow。</p>
 <blockquote>
 <p>图：Airflow 操作 Kubernetes</p>
 </blockquote>
-<p>为大型 DAG 进行<strong>性能优化</strong>：包含大量子任务的 DAGs 如今会运行得更快更好。</p>
+<p>大型 DAG <strong>性能优化</strong>：包含大量子任务的 DAGs 如今会运行得更快、更好。</p>
 <blockquote>
 <p>感谢 PR 贡献：<a href="https://github.com/apache/incubator-airflow/pull/3116" target="_blank" rel="noopener">https://github.com/apache/incubator-airflow/pull/3116</a></p>
 </blockquote>
