@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2018/10/08/apache-airflow-1-10-0-released-highlights/">
     <title>
         
-          Apache Airflow 1.10.0 发布 | 高光特性 - zihengCat
+          Apache Airflow 1.10.0 新版发布 | 高光特性 - zihengCat
         
     </title>
 
@@ -147,7 +147,7 @@
                           <a class="tag" href="/tags/#Airflow" title="Airflow">Airflow</a>
                         
                     </div>
-                    <h1>Apache Airflow 1.10.0 发布 | 高光特性</h1>
+                    <h1>Apache Airflow 1.10.0 新版发布 | 高光特性</h1>
                     <h2 class="subheading">Apache Airflow 1.10.0 Released | Highlights</h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -183,24 +183,27 @@ rbac = True
 <blockquote>
 <p>感谢 PR 贡献：<a href="https://github.com/apache/incubator-airflow/pull/3116" target="_blank" rel="noopener">https://github.com/apache/incubator-airflow/pull/3116</a></p>
 </blockquote>
-<p><strong>时区支持</strong>，查看以下详细链接。</p>
+<p><strong>时区支持</strong>，参看以下详情链接。</p>
 <blockquote>
 <p><a href="https://github.com/apache/incubator-airflow/blob/master/docs/timezone.rst" target="_blank" rel="noopener">https://github.com/apache/incubator-airflow/blob/master/docs/timezone.rst</a></p>
 </blockquote>
 <p>增添 GCP（Google Kubernetes Engine）与 AWS（Amazon Web Service）智能化支持。</p>
-<p>大量 Bug 修复：详情参看以下详细链接。</p>
+<p>大量 Bug 修复：参看以下详情链接。</p>
 <blockquote>
 <p><a href="https://github.com/apache/incubator-airflow/blob/master/CHANGELOG.txt" target="_blank" rel="noopener">https://github.com/apache/incubator-airflow/blob/master/CHANGELOG.txt</a></p>
 </blockquote>
-<p>文档更新：查看最新 1.10.0 版本文档，请访问 <a href="https://airflow.apache.org/" target="_blank" rel="noopener">https://airflow.apache.org/</a></p>
-<h1 id="安装与更新（Installation-Upgrading）"><a href="#安装与更新（Installation-Upgrading）" class="headerlink" title="安装与更新（Installation / Upgrading）"></a>安装与更新（Installation / Upgrading）</h1><p>由于 GPL 协议许可的问题，最新版本的 Apache Airflow 更新了依赖库，在安装或更新时候，用户需要设置环境变量：<code>SLUGIFY_USES_TEXT_UNIDECODE=yes</code>或<code>AIRFLOW_GPL_UNIDECODE=yes</code>。Airflow 会按照顺序安装依赖项（<code>python-nvd3</code> -&gt; <code>python-slugify</code> -&gt; <code>unidecode</code>）。</p>
+<p>文档更新：查看最新 1.10.0 版本文档，请访问详情链接。</p>
+<blockquote>
+<p><a href="https://airflow.apache.org/" target="_blank" rel="noopener">https://airflow.apache.org/</a></p>
+</blockquote>
+<h1 id="安装与更新（Installation-Upgrading）"><a href="#安装与更新（Installation-Upgrading）" class="headerlink" title="安装与更新（Installation / Upgrading）"></a>安装与更新（Installation / Upgrading）</h1><p>由于 GPL 协议许可的问题，最新版本的 Apache Airflow 更新了依赖库，在安装或更新时候，用户需要设置环境变量：<code>SLUGIFY_USES_TEXT_UNIDECODE=yes</code>或<code>AIRFLOW_GPL_UNIDECODE=yes</code>。Airflow 会按照顺序选择安装依赖项（<code>python-nvd3</code> -&gt; <code>python-slugify</code> -&gt; <code>unidecode</code>）。</p>
 <pre><code class="bash">$ export AIRFLOW_GPL_UNIDECODE=yes
 ...
 $ export SLUGIFY_USES_TEXT_UNIDECODE=yes
 ...
 </code></pre>
 <blockquote>
-<p>代码清单：指定 Airflow 环境变量</p>
+<p>代码清单：设置 Airflow 环境变量</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Medium: <a href="https://medium.com/datareply/apache-airflow-1-10-0-released-highlights-6bbe7a37a8e1" target="_blank" rel="noopener">https://medium.com/datareply/apache-airflow-1-10-0-released-highlights-6bbe7a37a8e1</a></p>
