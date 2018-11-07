@@ -167,8 +167,9 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于红帽系（RedHat）的 Linux 系统而言，绝大多数使用<code>rpm</code>作为系统包管理工具（RPM Package Manager）。<br>我们可以使用命令<code>rpm -qlp</code>来查看一枚<code>rpm</code>包所包含的文件。那么，如何在不安装<code>rpm</code>包的情况下提取包中的文件呢？</p>
-<h1 id="提取rpm包内容"><a href="#提取rpm包内容" class="headerlink" title="提取rpm包内容"></a>提取<code>rpm</code>包内容</h1><p>为了提取<code>rpm</code>包中的文件，我们需要用到两款工具：<code>rpm2cpio</code>与<code>cpio</code>。<br>使用如下命令，可将<code>rpm</code>包内容（文件）提取出来：</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于红帽系（RedHat）的 Linux 系统而言，大多使用<code>rpm</code>作为系统包管理工具（RPM Package Manager）。</p>
+<p>我们可以使用命令<code>rpm -qlp</code>来查看一枚<code>rpm</code>包所包含的文件。那么如何在不安装<code>rpm</code>包的情况下提取包中的文件呢？</p>
+<h1 id="提取rpm包内容"><a href="#提取rpm包内容" class="headerlink" title="提取rpm包内容"></a>提取<code>rpm</code>包内容</h1><p>为了提取<code>rpm</code>包中的文件，我们需要用到两款工具：<code>rpm2cpio</code>与<code>cpio</code>。使用如下命令，可将<code>rpm</code>包内容（文件）提取出来：</p>
 <pre><code class="bash">$ rpm2cpio &lt;package_name.rpm&gt; | cpio -idmv
 </code></pre>
 <blockquote>
