@@ -76,16 +76,16 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -255,8 +255,24 @@ class Solution {
 <blockquote>
 <p>代码清单：<code>Java</code>实现<code>toLowerCase()</code></p>
 </blockquote>
-<pre><code class="python">
+<pre><code class="python">class Solution(object):
+    def toLowerCase(self, str):
+        &quot;&quot;&quot;
+        :type str: str
+        :rtype: str
+        &quot;&quot;&quot;
+        ret = &quot;&quot;
+        for c in str:
+            if(ord(c) &gt;= 65 and ord(c) &lt;= 90):
+                ret += chr(ord(c)+ 32)
+            else:
+                ret += c
+        return ret
 </code></pre>
+<blockquote>
+<p>代码清单：<code>Python</code>实现<code>toLowerCase()</code></p>
+</blockquote>
+<p>因为要遍历整个字符串，算法复杂度为：$O(n)$。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode：<a href="https://leetcode.com/problems/to-lower-case/" target="_blank" rel="noopener">https://leetcode.com/problems/to-lower-case/</a></li>
 </ul>
