@@ -68,8 +68,8 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -84,8 +84,8 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -202,8 +202,61 @@ int main(void) {
 }
 </code></pre>
 <blockquote>
-<p>代码清单：打印字母表</p>
+<p>代码清单：<code>C/C++</code>打印字母表</p>
 </blockquote>
+<p>明白了字母与数字之间的映射关系，字母大小写转换就非常容易了，加减空白符<code>32</code>即可实现字符大小写转换。</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+/* 定义宏函数 */
+#define IS_UPPER(c) \
+    ((c) &gt;= 65 &amp;&amp; (c) &lt;= 90)
+#define TO_LOWER(c) \
+    ((c) + 32)
+char* toLowerCase(char* str);
+char* toLowerCase(char* str) {
+    /* 分配字符串内存 */
+    char *p = (char*)malloc(sizeof(*str) * strlen(str) + 1);
+    char *i = NULL, *j = NULL;
+    /* 字符拷贝 */
+    for(i = str, j = p; *i != &#39;\0&#39;; ++i, ++j) {
+        if(IS_UPPER(*i)) {
+            *j = TO_LOWER(*i);
+        }
+        else {
+            *j = *i;
+        }
+    }
+    /* 添加字符串结束`\0` */
+    *j = &#39;\0&#39;;
+    return p;
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>C/C++</code>实现<code>toLowerCase()</code></p>
+</blockquote>
+<pre><code class="java">import java.lang.*;
+class Solution {
+    public String toLowerCase(String str) {
+        StringBuilder b = new StringBuilder();
+        for(Character c: str.toCharArray()) {
+            // is upper letter
+            if (c &gt;= 65 &amp;&amp; c &lt;= 90) {
+                // convert to lower letter
+                b.append((char)(c + 32));
+            } else {
+                b.append(c);
+            }
+        }
+        return b.toString();
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Java</code>实现<code>toLowerCase()</code></p>
+</blockquote>
+<pre><code class="python">
+</code></pre>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode：<a href="https://leetcode.com/problems/to-lower-case/" target="_blank" rel="noopener">https://leetcode.com/problems/to-lower-case/</a></li>
 </ul>
