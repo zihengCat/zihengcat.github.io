@@ -192,11 +192,11 @@ int main(void) {
     for(c = &#39;A&#39;; c != &#39;Z&#39; + 1; ++c) {
         printf(&quot;%c -&gt; %d\n&quot;, c, c);
     }
-    /* 打印小写字符及其数字表示 */
+    /* 打印小写字符及其数字形式 */
     for(c = &#39;a&#39;; c != &#39;z&#39; + 1; ++c) {
         printf(&quot;%c -&gt; %d\n&quot;, c, c);
     }
-    /* 打印大小写字符之差 */
+    /* 打印对应大小写字符之差 */
     printf(&quot;%c -&gt; %d\n&quot;, &#39;a&#39; - &#39;A&#39;, &#39;z&#39; - &#39;Z&#39;);
     return 0;
 }
@@ -213,7 +213,9 @@ int main(void) {
     ((c) &gt;= 65 &amp;&amp; (c) &lt;= 90)
 #define TO_LOWER(c) \
     ((c) + 32)
+/* 函数声明 */
 char* toLowerCase(char* str);
+/* 函数定义 */
 char* toLowerCase(char* str) {
     /* 分配字符串内存 */
     char *p = (char*)malloc(sizeof(*str) * strlen(str) + 1);
