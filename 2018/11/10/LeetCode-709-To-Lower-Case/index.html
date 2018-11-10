@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/10/20/centos7-ibus-pinyin-input-method-problem-and-solution/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/11/10/LeetCode-709-To-Lower-Case/">
     <title>
         
-          CentOS 7 IBus 拼音输入法问题及解决 - zihengCat
+          LeetCode - 709. 转换小写（To Lower Case） - zihengCat
         
     </title>
 
@@ -142,16 +142,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                     </div>
-                    <h1>CentOS 7 IBus 拼音输入法问题及解决</h1>
-                    <h2 class="subheading">CentOS 7 IBus Intelligent Pinyin Input Method Problem and Solution</h2>
+                    <h1>LeetCode - 709. 转换小写（To Lower Case）</h1>
+                    <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-10-20
+                        2018-11-10
                     </span>
                 </div>
             </div>
@@ -167,25 +167,34 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>个人在使用 CentOS 7 时，遇到了系统自带的智能拼音输入法（Intelligent Pinyin Input Method）无法使用的问题。具体表现为：<strong>系统显示已经切换到了智能拼音输入法，但无法使用拼音输入，输入的仍是英文。</strong></p>
-<h1 id="问题分析与解决"><a href="#问题分析与解决" class="headerlink" title="问题分析与解决"></a>问题分析与解决</h1><p>排除拼音输入法的设置问题，问题原因定位为：<strong>未正确设置 GTK Input Method 。</strong></p>
-<p>问题解决方法：<strong>命令行下执行<code>im-chooser</code>，在弹出的对话框中设置使用 IBus 输入方式，重新登陆图形界面，即可正常使用 IBus 智能拼音输入法。</strong></p>
-<p><img src="./setting-gtk-input-method.png" alt="setting-gtk-input-method"></p>
-<blockquote>
-<p>图：设置 GTK Input Method</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 709. 转换小写（To Lower Case）</em>问题。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>请你实现功能函数<code>ToLowerCase()</code>：接受一枚字符串参数，将该字符串转换为<strong>小写形式</strong>后返回。</p>
+<pre><code>Input: &quot;Hello&quot;
+Output: &quot;hello&quot;
+</code></pre><blockquote>
+<p>样例1</p>
 </blockquote>
+<pre><code>Input: &quot;here&quot;
+Output: &quot;here&quot;
+</code></pre><blockquote>
+<p>样例2</p>
+</blockquote>
+<pre><code>Input: &quot;LOVELY&quot;
+Output: &quot;lovely&quot;
+</code></pre><blockquote>
+<p>样例3</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>LeetCode：<a href="https://leetcode.com/problems/to-lower-case/" target="_blank" rel="noopener">https://leetcode.com/problems/to-lower-case/</a></li>
+</ul>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/11/10/LeetCode-709-To-Lower-Case/" data-toggle="tooltip" data-placement="top" title="LeetCode - 709. 转换小写（To Lower Case）">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/10/08/apache-airflow-1-10-0-released-highlights/" data-toggle="tooltip" data-placement="top" title="Apache Airflow 1.10.0 新版发布 | 高光特性">Next Post &rarr;</a>
+                            <a href="/2018/10/20/centos7-ibus-pinyin-input-method-problem-and-solution/" data-toggle="tooltip" data-placement="top" title="CentOS 7 IBus 拼音输入法问题及解决">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -219,9 +228,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                     </div>
                 </section>
