@@ -224,12 +224,11 @@ char* toLowerCase(char* str) {
     for(i = str, j = p; *i != &#39;\0&#39;; ++i, ++j) {
         if(IS_UPPER(*i)) {
             *j = TO_LOWER(*i);
-        }
-        else {
+        } else {
             *j = *i;
         }
     }
-    /* 添加字符串结束`\0` */
+    /* 添加字符串结束符`\0` */
     *j = &#39;\0&#39;;
     return p;
 }
