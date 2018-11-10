@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -172,17 +172,37 @@
 <pre><code>Input: &quot;Hello&quot;
 Output: &quot;hello&quot;
 </code></pre><blockquote>
-<p>样例1</p>
+<p>注：样例1</p>
 </blockquote>
 <pre><code>Input: &quot;here&quot;
 Output: &quot;here&quot;
 </code></pre><blockquote>
-<p>样例2</p>
+<p>注：样例2</p>
 </blockquote>
 <pre><code>Input: &quot;LOVELY&quot;
 Output: &quot;lovely&quot;
 </code></pre><blockquote>
-<p>样例3</p>
+<p>注：样例3</p>
+</blockquote>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>我们知道，计算机中的 ASCII 编码使用 8 位数字映射，大小写字母都有其数字的表示形式，大小写相应字母之差为<code>32</code>，正是空格符的数字映射。</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+int main(void) {
+    char c;
+    /* 打印大写字符及其数字表示 */
+    for(c = &#39;A&#39;; c != &#39;Z&#39; + 1; ++c) {
+        printf(&quot;%c -&gt; %d\n&quot;, c, c);
+    }
+    /* 打印小写字符及其数字表示 */
+    for(c = &#39;a&#39;; c != &#39;z&#39; + 1; ++c) {
+        printf(&quot;%c -&gt; %d\n&quot;, c, c);
+    }
+    /* 打印大小写字符之差 */
+    printf(&quot;%c -&gt; %d\n&quot;, &#39;a&#39; - &#39;A&#39;, &#39;z&#39; - &#39;Z&#39;);
+    return 0;
+}
+</code></pre>
+<blockquote>
+<p>代码清单：打印字母表</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode：<a href="https://leetcode.com/problems/to-lower-case/" target="_blank" rel="noopener">https://leetcode.com/problems/to-lower-case/</a></li>
