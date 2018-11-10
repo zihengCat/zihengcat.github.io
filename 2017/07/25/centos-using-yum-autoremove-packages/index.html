@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -168,8 +168,8 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录在<em>CentOS Linux</em>系统下如何使用<code>yum</code>命令<strong>干净</strong>卸载软件包（即: 连同该软件包的相关依赖包一并移除)。</p>
-<h1 id="使用yum干净移除软件包"><a href="#使用yum干净移除软件包" class="headerlink" title="使用yum干净移除软件包"></a>使用<code>yum</code>干净移除软件包</h1><p>对于大部分<em>RedHat</em>系Linux而言，我们习惯使用<code>yum</code>命令安装与卸载软件包。当我们使用<code>yum install</code>命令安装一枚软件包时，<code>yum</code>会将该软件包的所有依赖包一并安装到本机。但当我们使用<code>yum remove</code>命令卸载一枚已安装软件包时，<code>yum</code>默认只移除你所制定的那枚软件包，并不移除该包的依赖项。</p>
-<p>自从<em>Fedora 18</em>之后，我们便可以使用<code>yum autoremove</code>命令来干净卸载软件包。</p>
+<h1 id="使用yum干净移除软件包"><a href="#使用yum干净移除软件包" class="headerlink" title="使用yum干净移除软件包"></a>使用<code>yum</code>干净移除软件包</h1><p>对于大部分使用红帽系（RedHat）Linux系统的用户而言，我们习惯使用<code>yum</code>命令安装与卸载软件包。当我们使用<code>yum install</code>命令安装一枚软件包时，<code>yum</code>会将该软件包以及其所有依赖包一并安装到本机。但当我们使用<code>yum remove</code>命令卸载一枚已安装软件包时，<code>yum</code>默认只会移除你所指定的那枚软件包，并不会移除该包的相关依赖项。</p>
+<p>自从<em>Fedora 18</em>之后，我们便可以使用<code>yum autoremove</code>命令来干净的卸载软件包了。</p>
 <pre><code class="bash">$ sudo yum autoremove &lt;package&gt;
 </code></pre>
 <blockquote>
