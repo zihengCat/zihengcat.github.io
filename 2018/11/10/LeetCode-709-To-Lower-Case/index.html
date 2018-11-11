@@ -168,7 +168,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 709. 转换小写（To Lower Case）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>请你实现功能函数<code>toLowerCase()</code>：接受一枚字符串参数，将该字符串转换为<strong>小写形式</strong>后返回。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>请你实现功能函数<code>toLowerCase()</code>：接受一枚<strong>字符串</strong>参数，将该字符串转换为<strong>小写形式</strong>后返回。</p>
 <p>具体样例如下：</p>
 <pre><code>Input: &quot;Hello&quot;
 Output: &quot;hello&quot;
@@ -185,10 +185,10 @@ Output: &quot;lovely&quot;
 </code></pre><blockquote>
 <p>注：样例3</p>
 </blockquote>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>我们知道，计算机中的 ASCII 编码使用 8 位数字映射，英文大小写字符都是使用数字进行表示的，大小写相应字符之差为<code>32</code>，正是空格符的数字映射。</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>我们知道，计算机中 ASCII 编码使用 8 位数字映射，英文大小写字符都是使用数字进行表示的，大小写对应字符之差为<code>32</code>，正是空格符的数字映射。</p>
 <pre><code class="c">#include &lt;stdio.h&gt;
 int main(void) {
-    char c;
+    char c = 0;
     /* 打印大写字符及其数字形式 */
     for(c = &#39;A&#39;; c != &#39;Z&#39; + 1; ++c) {
         printf(&quot;%c -&gt; %d\n&quot;, c, c);
