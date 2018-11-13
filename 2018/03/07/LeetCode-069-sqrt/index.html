@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -168,7 +168,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 069. 求平方根（Sqrt）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>请你手动编程实现<code>int sqrt(int x)</code>函数：输入一个整型数，求该整数的平方根。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>请你手动编程实现<code>sqrt()</code>函数：输入一个整型数，求该整数的平方根。</p>
 <blockquote>
 <p>注：给出的整型数保证大于<code>0</code>。</p>
 </blockquote>
@@ -183,7 +183,7 @@
 </code></pre><blockquote>
 <p>注：样例2</p>
 </blockquote>
-<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p><code>sqrt</code>是最常用的数学函数之一，在这个问题中，需要我们手动实现<code>sqrt</code>函数，而不应使用语言标准库自带的数学函数。</p>
+<h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p><code>sqrt()</code>是最常用的数学函数之一，在这个问题中，需要我们手动实现<code>sqrt</code>函数，而不应使用语言标准库自带的数学函数。</p>
 <h2 id="二分求解法"><a href="#二分求解法" class="headerlink" title="二分求解法"></a>二分求解法</h2><p>第一个思路是使用<strong>二分法</strong>，猜测一个数，平方后与原数进行比对，确定一个精度范围后即可求解。</p>
 <pre><code>/* 绝对值函数 */
 #define ABS(x) \
