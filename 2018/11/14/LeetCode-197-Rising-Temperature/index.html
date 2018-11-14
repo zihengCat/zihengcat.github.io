@@ -168,7 +168,31 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 197. 上升温度（Rising Temperature）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出如下<code>Weather</code>表，请你写一条<code>SQL</code>查询语句，找出前一天温度比今天高的所有记录的<code>Id</code>号。</p>
+<pre><code class="plain">+---------+------------------+------------------+
+| Id(INT) | RecordDate(DATE) | Temperature(INT) |
++---------+------------------+------------------+
+|       1 |       2015-01-01 |               10 |
+|       2 |       2015-01-02 |               25 |
+|       3 |       2015-01-03 |               20 |
+|       4 |       2015-01-04 |               30 |
++---------+------------------+------------------+
+</code></pre>
+<blockquote>
+<p>注：<code>Weather</code>天气表</p>
+</blockquote>
+<p>举例说明，对于这张<code>SQL</code>表，查询语句的结果应该为：</p>
+<pre><code class="plain">+----+
+| Id |
++----+
+|  2 |
+|  4 |
++----+
+</code></pre>
+<blockquote>
+<p>注：<code>SQL Query</code>查询结果集</p>
+</blockquote>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/rising-temperature/" target="_blank" rel="noopener">https://leetcode.com/problems/rising-temperature/</a></li>
 </ul>
 
