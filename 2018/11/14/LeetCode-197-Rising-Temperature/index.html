@@ -196,7 +196,7 @@
 <pre><code class="sql">SELECT w1.Id
 FROM
     Weather AS w1,
-    Weather AS w2,
+    Weather AS w2
 WHERE
     w1.Temperature &gt; w2.Temperature
 AND
@@ -206,8 +206,10 @@ AND
 <p>代码清单：<code>SQL Query</code></p>
 </blockquote>
 <pre><code class="sql">SELECT w1.Id
-FROM Weather AS w1
-JOIN Weather AS w2
+FROM
+    Weather AS w1
+JOIN
+    Weather AS w2
 ON
     w1.Temperature &gt; w2.Temperature
 AND
