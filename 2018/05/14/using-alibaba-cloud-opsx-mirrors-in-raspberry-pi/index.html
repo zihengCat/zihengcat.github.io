@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2018/05/14/using-alibaba-cloud-opsx-mirrors-in-raspberry-pi/">
     <title>
         
-          Raspberry Pi 使用阿里云OPSX镜像 - zihengCat
+          Raspberry Pi 使用阿里云 OPSX 镜像 - zihengCat
         
     </title>
 
@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -147,7 +147,7 @@
                           <a class="tag" href="/tags/#Raspberry Pi" title="Raspberry Pi">Raspberry Pi</a>
                         
                     </div>
-                    <h1>Raspberry Pi 使用阿里云OPSX镜像</h1>
+                    <h1>Raspberry Pi 使用阿里云 OPSX 镜像</h1>
                     <h2 class="subheading">Using Alibaba Cloud OPSX Mirrors in Raspberry Pi</h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -175,7 +175,7 @@
 </blockquote>
 <p><img src="./opsx.png" alt="OPSX"></p>
 <blockquote>
-<p>图：阿里云开源镜像站LOGO图（取自OPSX官网）</p>
+<p>图：阿里云开源镜像站 LOGO 图（取自 OPSX 官网）</p>
 </blockquote>
 <h1 id="镜像仓库使用方法"><a href="#镜像仓库使用方法" class="headerlink" title="镜像仓库使用方法"></a>镜像仓库使用方法</h1><p>阿里云开源镜像站有提供树莓派「Raspberry Pi」的软件镜像。使用方法与 Debian 系统类似，修改<code>/etc/apt/source.list</code>即可（<strong>使用前请先备份原配置文件</strong>）。</p>
 <p>编辑<code>/etc/apt/source.list</code>文件，将 Raspbian 官方源地址注释掉，添加上阿里云的镜像地址。注意，镜像地址应使用<code>https://mirrors.aliyun.com/raspbian/raspbian/</code>而不是<code>https://mirrors.aliyun.com/raspbian/</code>。</p>
@@ -186,7 +186,7 @@
 # Aliyun OPSX Mirror
 deb https://mirrors.aliyun.com/raspbian/raspbian/ stretch main contrib non-free rpi
 </code></pre><blockquote>
-<p>注：<br><code>stretch</code> =&gt; Raspbian系统版本（根据实际系统填写）<br><code>main contrib non-free rpi</code> =&gt; 启用的软件仓库（类别）</p>
+<p>注：<br><code>stretch</code> -&gt; Raspbian系统版本（根据实际系统填写）<br><code>main contrib non-free rpi</code> -&gt; 启用的软件仓库（类别）</p>
 </blockquote>
 <p>修改完成后，使用<code>apt</code>命令清理缓存文件，重建软件包索引，树莓派「Raspberry Pi」就可以正常使用阿里云镜像地址了。</p>
 <pre><code>$ sudo apt clean all
@@ -194,6 +194,9 @@ $ sudo apt update
 </code></pre><blockquote>
 <p>代码清单：<code>apt</code>更新「Raspberry Pi」系统软件包</p>
 </blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>Alibaba OPSX: <a href="https://opsx.alibaba.com/" target="_blank" rel="noopener">https://opsx.alibaba.com/</a></li>
+</ul>
 
                 <hr>
 <!--
