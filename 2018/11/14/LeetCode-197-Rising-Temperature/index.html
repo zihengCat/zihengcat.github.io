@@ -181,7 +181,7 @@
 <blockquote>
 <p>注：<code>Weather</code>天气表</p>
 </blockquote>
-<p>举例说明，对于这张<code>SQL</code>表，查询语句的结果应该为：</p>
+<p>举例说明，对于这张<code>SQL</code>表，查询语句执行的结果应为：</p>
 <pre><code class="plain">+----+
 | Id |
 +----+
@@ -192,7 +192,32 @@
 <blockquote>
 <p>注：<code>SQL Query</code>查询结果集</p>
 </blockquote>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>为了解决这道SQL问题，我们需要使用<code>SQL</code>表的自关联功能。</p>
+<pre><code class="sql">SELECT w1.Id
+FROM
+    Weather AS w1,
+    Weather AS w2,
+WHERE
+    w1.Temperature &gt; w2.Temperature
+AND
+    DATEDIFF(w1.RecordDate, w2.RecordDate) = 1;
+</code></pre>
+<blockquote>
+<p>代码清单：<code>SQL Query</code></p>
+</blockquote>
+<pre><code class="sql">SELECT w1.Id
+FROM Weather AS w1
+JOIN Weather AS w2
+ON
+    w1.Temperature &gt; w2.Temperature
+AND
+    DATEDIFF(w1.RecordDate, w2.RecordDate) = 1;
+</code></pre>
+<blockquote>
+<p>代码清单：<code>SQL Query</code></p>
+</blockquote>
+<p>自关联表，为两张表分别取别名，同时满足（AND）两个筛选条件为：温度更高、日期之差为<code>1</code>日。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/rising-temperature/" target="_blank" rel="noopener">https://leetcode.com/problems/rising-temperature/</a></li>
 </ul>
 
