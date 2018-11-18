@@ -179,13 +179,16 @@
 </blockquote>
 <h1 id="镜像仓库使用方法"><a href="#镜像仓库使用方法" class="headerlink" title="镜像仓库使用方法"></a>镜像仓库使用方法</h1><p>阿里云开源镜像站有提供树莓派「Raspberry Pi」的软件镜像。使用方法与 Debian 系统类似，修改<code>/etc/apt/source.list</code>即可（<strong>使用前请先备份原配置文件</strong>）。</p>
 <p>编辑<code>/etc/apt/source.list</code>文件，将 Raspbian 官方源地址注释掉，添加上阿里云的镜像地址。注意，镜像地址应使用<code>https://mirrors.aliyun.com/raspbian/raspbian/</code>而不是<code>https://mirrors.aliyun.com/raspbian/</code>。</p>
-<pre><code># Raspbian Official
+<pre><code class="plain"># Raspbian Official
 #deb http://raspbian.raspberrypi.org/raspbian/ stretch main contrib non-free rpi
+
 # Uncomment line below then &#39;apt-get update&#39; to enable &#39;apt-get source&#39;
 #deb-src http://raspbian.raspberrypi.org/raspbian/ stretch main contrib non-free rpi
+
 # Aliyun OPSX Mirror
 deb https://mirrors.aliyun.com/raspbian/raspbian/ stretch main contrib non-free rpi
-</code></pre><blockquote>
+</code></pre>
+<blockquote>
 <p>注：<br><code>stretch</code> -&gt; Raspbian系统版本（根据实际系统填写）<br><code>main contrib non-free rpi</code> -&gt; 启用的软件仓库（类别）</p>
 </blockquote>
 <p>修改完成后，使用<code>apt</code>命令清理缓存文件，重建软件包索引，树莓派「Raspberry Pi」就可以正常使用阿里云镜像地址了。</p>
