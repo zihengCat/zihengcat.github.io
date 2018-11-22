@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -169,7 +169,17 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>正常情况下，我们使用<code>Ctrl + D</code>分离<code>Screen</code>会话（Session），使用<code>screen -r &lt;session_id&gt;</code>恢复一枚<code>Screen</code>会话。</p>
+<p>但是，当一枚 Screen Session 的状态为<code>Attached</code>时，我们不能简单的通过<code>-r</code>选项恢复它。</p>
+<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>出现这一问题的原因是：上一用户仍留存在 Screen Session 中，未正常退出。</p>
+<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>使用<code>screen -D -r &lt;session_id&gt;</code>命令即可正常恢复会话。</p>
+<blockquote>
+<p>注：<code>-D</code>选项表示强制踢出上一用户。</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>Screen Manual: <code>man screen</code></li>
+</ul>
+
                 <hr>
 <!--
                 <ul class="pager">
