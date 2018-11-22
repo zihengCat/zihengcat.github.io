@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -170,7 +170,8 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 434. 统计字符串数据段（Number of Segments in a String）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><pre><code class="c">#define IS_WHITE_CHARS(c) \
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><pre><code class="c">/* Micro */
+#define IS_WHITE_CHARS(c) \
     ((c) == &#39; &#39;)
 int countSegments(char* s) {
     int i = 0, count  = 0;
