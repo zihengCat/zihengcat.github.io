@@ -8,7 +8,7 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2017/07/24/Linux下提取RPM包内容/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/24/linux-os-extract-rpm-package-contents/">
     <title>
         
           Linux 系统下提取 RPM 包内容 - zihengCat
@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -168,29 +168,27 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于红帽系（RedHat）的 Linux 系统而言，大多使用<code>rpm</code>作为系统包管理工具（RPM Package Manager）。</p>
-<p>我们可以使用命令<code>rpm -qlp</code>来查看一枚<code>rpm</code>包所包含的文件。那么如何在不安装<code>rpm</code>包的情况下提取包中的文件呢？</p>
-<h1 id="提取rpm包内容"><a href="#提取rpm包内容" class="headerlink" title="提取rpm包内容"></a>提取<code>rpm</code>包内容</h1><p>为了提取<code>rpm</code>包中的文件，我们需要用到两款工具：<code>rpm2cpio</code>与<code>cpio</code>。使用如下命令，可将<code>rpm</code>包内容（文件）提取出来：</p>
-<pre><code class="bash">$ rpm2cpio &lt;package_name.rpm&gt; | cpio -idmv
+<p>我们可以使用命令<code>rpm -qlp</code>来查看一枚<code>rpm</code>包所包含的文件。那么，如何在不安装<code>rpm</code>包的情况下提取出包中的文件呢？</p>
+<h1 id="提取rpm包内容"><a href="#提取rpm包内容" class="headerlink" title="提取rpm包内容"></a>提取<code>rpm</code>包内容</h1><p>为了提取<code>rpm</code>包中的文件，我们需要用到两款工具：<code>rpm2cpio</code>与<code>cpio</code>。使用如下命令，可将<code>rpm</code>包内容（文件）提取出来。</p>
+<pre><code class="bash">$ rpm2cpio &lt;RPM_PACKAGE.rpm&gt; | cpio -idmv
 </code></pre>
 <blockquote>
-<p>代码清单：提取<code>rpm</code>包中的文件</p>
+<p>代码清单：提取<code>rpm</code>包文件</p>
 </blockquote>
-<p>接下来，对命令含义做简要的描述。</p>
+<p><code>rpm</code>包默认使用<code>cpio</code>格式进行归档打包，<code>rpm2cpio</code>工具可以将<code>rpm</code>包转换为<code>cpio</code>归档，该命令默认将内容直接输出到<strong>标准输出<code>stdout</code></strong>。</p>
+<p><code>cpio</code>工具主要用来建立或者还原备份归档，可直接读取处理标准输入流<code>stdin</code>，与<code>tar</code>工具类似。</p>
 <ul>
-<li><code>rpm2cpio</code></li>
-</ul>
-<p><code>rpm</code>包默认使用<code>cpio</code>格式进行归档打包，此工具就是将<code>rpm</code>包转换为<code>cpio</code>归档，命令默认直接输出到<strong>标准输出（stdout）</strong>。</p>
-<ul>
-<li><code>cpio</code><br><code>cpio</code>工具主要用来建立或者还原备份归档，与<code>tar</code>工具类似。<ul>
-<li><code>-i</code><br>extract，导出文件。</li>
-<li><code>-d</code><br>make-directories，建立新目录存放导出文件。</li>
-<li><code>-m</code><br>保持文件的更新时间。</li>
-<li><code>-v</code><br>verbose，显示详情。</li>
-</ul>
+<li><p><code>-i</code><br>extract，导出文件。</p>
+</li>
+<li><p><code>-d</code><br>make-directories，建立新目录存放导出文件。</p>
+</li>
+<li><p><code>-m</code><br>保持文件的更新时间。</p>
+</li>
+<li><p><code>-v</code><br>verbose，显示命令详情。</p>
 </li>
 </ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>RPM Package Manager：<a href="http://rpm.org/" target="_blank" rel="noopener">http://rpm.org/</a></li>
+<li>RPM Package Manager: <a href="http://rpm.org/" target="_blank" rel="noopener">http://rpm.org/</a></li>
 </ul>
 
                 <hr>
