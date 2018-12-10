@@ -167,7 +167,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有时候，我们在编写<code>Spark</code>任务（Job）时，希望传递命令行参数（Command Line Arguments）进任务脚本（Scrpits）。大多数情况下，我们可以利用指定<strong>环境变量</strong>实现这一目的。实际上，我们仍有更优雅的实现方法。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有时，我们在编写<code>Spark</code>任务（Job）时，希望传递命令行参数（Command Line Arguments）进任务脚本（Scrpits）。大多数情况下，我们可以利用指定<strong>环境变量</strong>实现这一目的。实际上，我们仍有更优雅的实现方法。</p>
 <h1 id="为-Spark-任务传递命令行（CLI）参数"><a href="#为-Spark-任务传递命令行（CLI）参数" class="headerlink" title="为 Spark 任务传递命令行（CLI）参数"></a>为 Spark 任务传递命令行（CLI）参数</h1><p>为了传递命令行参数（Command Line Arguments）进<code>Spark</code>任务脚本（Scrpits），我们可以自定义一枚<code>SparkConf</code>键值对，在<code>spark-submit</code>提交任务时通过<code>--conf</code>选项传入该键值对。注意，这里的键（Key）可以自由定义，不要求固定为<code>spark.driver.args</code>。</p>
 <pre><code class="bash">$ spark-submit --conf spark.driver.args=&#39;arg1 arg2 arg3&#39; &lt;TARGET_SPARK_SCRIPTS&gt;
 ...
