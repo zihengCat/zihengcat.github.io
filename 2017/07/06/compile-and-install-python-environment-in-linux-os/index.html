@@ -168,7 +168,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在 Linux 操作系统下编译安装<code>Python</code>环境。</p>
-<p>在个人使用的 <em>CentOS7 Linux</em> 系统上，操作系统（OS）默认没有安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也并不是最新版本。</p>
+<p>个人使用的 <em>CentOS 7 Linux</em> 系统上，操作系统（OS）默认没有安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也并不是最新版本。</p>
 <p>系统自带一枚旧版本<code>Python2</code>，为一些系统组件提供支持，不能随意更动，不然会出现各种各样的Bugs（<code>yum</code>无法正常使用什么的…）。</p>
 <p>手动编译安装<code>Python</code>，是 Linux 下搭建 Python 环境的最佳途径。</p>
 <h1 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 - 编译环境"></a>Step 1 - 编译环境</h1><p>首先，我们需要在本机安装「基础编译工具链」，这是编译<code>Python</code>源码所必需的。</p>
@@ -227,7 +227,7 @@ $ git checkout &lt;tag_version&gt;
 <tr>
 <td style="text-align:center">LZMA</td>
 <td style="text-align:left"><code>xz-devel</code></td>
-<td style="text-align:left"><code>libxz-dev</code></td>
+<td style="text-align:left"><code>liblzma-dev</code></td>
 </tr>
 <tr>
 <td style="text-align:center">UUID</td>
@@ -267,7 +267,7 @@ $ git checkout &lt;tag_version&gt;
 </tbody>
 </table>
 <blockquote>
-<p>表：Linux系统下<code>Python</code>依赖库表</p>
+<p>表：Linux 系统下<code>Python</code>依赖库表</p>
 </blockquote>
 <pre><code class="bash">#/bin/bash
 # ------------------------------
@@ -293,7 +293,7 @@ done
 exit ${?}
 </code></pre>
 <blockquote>
-<p>代码清单：RedHat Linux 下安装 Python 依赖库脚本</p>
+<p>代码清单：Red Hat Linux 下安装 Python 依赖库脚本</p>
 </blockquote>
 <p>手写一支<code>shell</code>脚本，把依赖包全部装好。对于<code>Debian</code>系的系统，可以使用<code>apt</code>命令安装相应的依赖包。</p>
 <h1 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 - 编译安装"></a>Step 4 - 编译安装</h1><p>依赖包都安装好之后，接下来，我们就按照<code>README</code>的指引，编译安装<code>Python</code>。请确保在 Python 源代码目录下执行以下操作：</p>
