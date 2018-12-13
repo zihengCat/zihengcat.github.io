@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -180,7 +180,7 @@
 <p>本机安装好<code>gcc</code>，<code>make</code>等基础编译工具，用来编译<code>Python</code>源码（Python语言的官方实现是<em>CPython</em>）。</p>
 <h1 id="Step-2-获取源码"><a href="#Step-2-获取源码" class="headerlink" title="Step 2 - 获取源码"></a>Step 2 - 获取源码</h1><p>接下来，前往Python官方网站，下载最新的Python3「源码包」。注意要下载源码包<code>source tarball</code>。</p>
 <blockquote>
-<p>Python官网：<a href="https://www.python.org" target="_blank" rel="noopener">https://www.python.org</a></p>
+<p><code>Python</code>官网：<a href="https://www.python.org" target="_blank" rel="noopener">https://www.python.org</a></p>
 </blockquote>
 <pre><code class="bash">$ wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
 </code></pre>
@@ -209,7 +209,7 @@ $ git checkout &lt;tag_version&gt;
 <thead>
 <tr>
 <th style="text-align:center">依赖库</th>
-<th style="text-align:left">RedHat</th>
+<th style="text-align:left">Red Hat</th>
 <th style="text-align:left">Debian</th>
 </tr>
 </thead>
@@ -342,7 +342,7 @@ $ sudo make install
 <pre><code class="bash">$ echo &#39;export PATH=${PATH}:&lt;path/to/python/bin&gt;&#39; &gt;&gt; ~/.bashrc
 </code></pre>
 <blockquote>
-<p>代码清单：加入<code>Python</code>到系统路径</p>
+<p>代码清单：加入<code>Python</code>至系统<code>PATH</code>路径</p>
 </blockquote>
 <h1 id="Step-5-检验安装"><a href="#Step-5-检验安装" class="headerlink" title="Step 5 - 检验安装"></a>Step 5 - 检验安装</h1><p>命令行下直接启动 Python，如果「安装与配置」都没有问题，会正常进入 Python 交互式环境。</p>
 <pre><code class="bash">$ python3
