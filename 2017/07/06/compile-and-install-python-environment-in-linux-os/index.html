@@ -215,12 +215,12 @@ $ git checkout &lt;tag_version&gt;
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">zlib</td>
+<td style="text-align:center">ZLib</td>
 <td style="text-align:left"><code>zlib-devel</code></td>
 <td style="text-align:left"><code>zlib1g-dev</code></td>
 </tr>
 <tr>
-<td style="text-align:center">bzip2</td>
+<td style="text-align:center">BZip2</td>
 <td style="text-align:left"><code>bzip2-devel</code></td>
 <td style="text-align:left"><code>libbz2-dev</code></td>
 </tr>
@@ -240,7 +240,7 @@ $ git checkout &lt;tag_version&gt;
 <td style="text-align:left"><code>libssl-dev</code></td>
 </tr>
 <tr>
-<td style="text-align:center">Raedline</td>
+<td style="text-align:center">RaedLine</td>
 <td style="text-align:left"><code>readline-devel</code></td>
 <td style="text-align:left"><code>libreadline-dev</code></td>
 </tr>
@@ -255,14 +255,19 @@ $ git checkout &lt;tag_version&gt;
 <td style="text-align:left"><code>libsqlite3-dev</code></td>
 </tr>
 <tr>
+<td style="text-align:center">FFI</td>
+<td style="text-align:left"><code>libffi-devel</code></td>
+<td style="text-align:left"><code>libffi-dev</code></td>
+</tr>
+<tr>
+<td style="text-align:center">GDBM</td>
+<td style="text-align:left"><code>gdbm-devel</code></td>
+<td style="text-align:left"><code>libgdbm-dev</code></td>
+</tr>
+<tr>
 <td style="text-align:center">Tcl/Tk</td>
 <td style="text-align:left"><code>tk-devel</code></td>
 <td style="text-align:left"><code>tk-dev</code></td>
-</tr>
-<tr>
-<td style="text-align:center">gdbm</td>
-<td style="text-align:left"><code>gdbm-devel</code></td>
-<td style="text-align:left"><code>libgdbm-dev</code></td>
 </tr>
 </tbody>
 </table>
@@ -281,9 +286,10 @@ deps=&quot;zlib-devel \
       readline-devel \
       ncurses-devel \
       sqlite-devel \
+      libffi-devel \
+      gdbm-devel \
       tcl-devel \
-      tk-devel \
-      gdbm-devel&quot;
+      tk-devel&quot;
 
 for i in ${deps}
 do
