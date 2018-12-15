@@ -189,6 +189,17 @@ StrictHostKeyChecking
 <p>当<code>StrictHostKeyChecking=yes</code>时，SSH 执行严格公钥检查模式，拒绝连接没有记录在<code>/etc/ssh/ssh_known_hosts</code>列表中的远程主机。</p>
 <p>当<code>StrictHostKeyChecking=ask</code>时，SSH 执行默认公钥检查模式，当用户连接远程主机时，会检查主机的公钥。如果用户是第一次连接该主机，会显示出该远程主机的公钥摘要，并提示用户是否信任该远程主机。选择接受，则将该远程主机的公钥追加到文件<code>~/.ssh/known_hosts</code>中，用户下次再连接时，就不会出现提示信息了。</p>
 <p>当<code>StrictHostKeyChecking=no</code>时，SSH 执行宽松公钥检查模式，自动将连接的远程主机的公钥追加到文件<code>~/.ssh/known_hosts</code>中，不出现提示信息提示用户信任该远程主机。</p>
+<h1 id="禁用SSH公钥检查（StrictHostKeyChecking）"><a href="#禁用SSH公钥检查（StrictHostKeyChecking）" class="headerlink" title="禁用SSH公钥检查（StrictHostKeyChecking）"></a>禁用<code>SSH</code>公钥检查（StrictHostKeyChecking）</h1><p>确认中间人劫持攻击风险较小的情况下（如：内网环境），我们可以禁用 SSH 公钥检查。这是基于 SSH 协议的自动化任务常用的手段。</p>
+<p>SSH 客户端提供一个<code>UserKnownHostsFile</code>配置项，允许用户指定<code>known_hosts</code>文件，利用这一配置项，就不会出现公钥冲突导致连接中断的情况了。</p>
+<pre><code class="bash">$ ssh -o StrictHostKeyChecking=no \
+      -o UserKnownHostsFile=/dev/null \
+      -p &lt;PORT&gt; \
+      &lt;USER&gt;@&lt;HOST&gt;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：禁用<code>SSH</code>公钥检查（StrictHostKeyChecking）</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><code>ssh_config</code>说明文档：<code>man ssh_config</code></li>
 </ul>
