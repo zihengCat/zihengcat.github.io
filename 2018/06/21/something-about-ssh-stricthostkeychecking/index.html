@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -166,7 +166,26 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>SSH 公钥检查（StrictHostKeyChecking）是 SSH 的一个重要的安全机制，可以有效防范中间人劫持等黑客攻击。但是在某些特定场景下，严格 SSH 公钥检查会破坏一些依赖 SSH 协议的自动化任务（CI Tasks），我们需要一种手段能够绕过 SSH 公钥检查。</p>
-<h1 id="关于SSH公钥检查（StrictHostKeyChecking）"><a href="#关于SSH公钥检查（StrictHostKeyChecking）" class="headerlink" title="关于SSH公钥检查（StrictHostKeyChecking）"></a>关于<code>SSH</code>公钥检查（StrictHostKeyChecking）</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<h1 id="关于SSH公钥检查（StrictHostKeyChecking）"><a href="#关于SSH公钥检查（StrictHostKeyChecking）" class="headerlink" title="关于SSH公钥检查（StrictHostKeyChecking）"></a>关于<code>SSH</code>公钥检查（StrictHostKeyChecking）</h1><pre><code class="bash">$ man ssh_config
+...
+StrictHostKeyChecking
+            If this flag is set to yes, ssh(1) will never automatically add host keys to
+            the ~/.ssh/known_hosts file, and refuses to connect to hosts whose host key has
+            changed.  This provides maximum protection against trojan horse attacks, though
+            it can be annoying when the /etc/ssh/ssh_known_hosts file is poorly maintained
+            or when connections to new hosts are frequently made.  This option forces the
+            user to manually add all new hosts.  If this flag is set to no, ssh will auto‐
+            matically add new host keys to the user known hosts files.  If this flag is set
+            to ask (the default), new host keys will be added to the user known host files
+            only after the user has confirmed that is what they really want to do, and ssh
+            will refuse to connect to hosts whose host key has changed.  The host keys of
+            known hosts will be verified automatically in all cases.
+...
+</code></pre>
+<blockquote>
+<p>代码清单：关于<code>SSH</code>公钥检查（StrictHostKeyChecking）说明</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><code>ssh_config</code>说明文档：<code>man ssh_config</code></li>
 </ul>
 
