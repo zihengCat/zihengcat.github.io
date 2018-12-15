@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -213,13 +213,16 @@ def do_webhooks()
     target_branch = data[&#39;ref&#39;][data[&#39;ref&#39;].rfind(&#39;/&#39;) + 1 : ]
     # 提取分支状态（创建新分支，删除已有分支）
     target_status = (data[&#39;created&#39;], data[&#39;deleted&#39;])
-    # 将目标参数传入脚本执行Git操作
+    # 将目标参数传入脚本执行`git`操作
     r = subprocess.run([&#39;bash&#39;, &#39;./git_process.sh&#39;,
-                         target_branch, str(target_status[0]), str(target_status[1])],
-                         stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+                         target_branch,
+                         str(target_status[0]),
+                         str(target_status[1])],
+                         stdout = subprocess.PIPE,
+                         stderr = subprocess.PIPE)
     # 打时间戳
-    return &quot;callback status: done&quot; + &#39;\r\n&#39; + \
-           &quot;server timestamp: &quot; + \
+    return &quot;Callback Status: Done!&quot; + &#39;\r\n&#39; + \
+           &quot;Server Timestamp: &quot; + \
             time.asctime(time.localtime(time.time()))
 ...
 </code></pre>
