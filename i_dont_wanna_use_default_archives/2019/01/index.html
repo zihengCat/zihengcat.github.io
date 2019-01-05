@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/12/07/passing-command-line-arguments-to-spark-tasks/">
+    <link rel="canonical" href="https://zihengcat.github.io/i_dont_wanna_use_default_archives/2019/01/">
     <title>
         
-          为 Spark 任务传递命令行（CLI）参数 - zihengCat
+          zihengCat
         
     </title>
 
@@ -125,185 +125,7 @@
     }
 </script>
 
-    <!-- Post Header -->
-<style type="text/css">
-    header.intro-header {
-        position: relative;
-        background-image: url('/img/home-bg-o.jpg');
-    }
-
-</style>
-<header class="intro-header" >
-<!-- Header Image Mask -->
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#Big Data" title="Big Data">Big Data</a>
-                        
-                          <a class="tag" href="/tags/#Spark" title="Spark">Spark</a>
-                        
-                    </div>
-                    <h1>为 Spark 任务传递命令行（CLI）参数</h1>
-                    <h2 class="subheading">Passing Command Line Arguments to Spark Tasks</h2>
-                    <span class="meta">
-                        Posted by zihengCat on
-                        2018-12-07
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-<!-- Post Container -->
-            <div class="
-                 col-lg-8 col-lg-offset-2
-                 col-md-10 col-md-offset-1
-                 post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有时，我们在编写<code>Spark</code>任务（Job）时，希望传递命令行参数（Command Line Arguments）进任务脚本（Scrpits）。大多数情况下，我们可以利用指定<strong>环境变量</strong>实现这一目的。实际上，我们仍有更优雅的实现方法。</p>
-<h1 id="为-Spark-任务传递命令行（CLI）参数"><a href="#为-Spark-任务传递命令行（CLI）参数" class="headerlink" title="为 Spark 任务传递命令行（CLI）参数"></a>为 Spark 任务传递命令行（CLI）参数</h1><p>为了传递命令行参数（Command Line Arguments）进<code>Spark</code>任务脚本（Scrpits），我们可以自定义一枚<code>SparkConf</code>配置项键值对，在<code>spark-submit</code>提交任务时通过<code>--conf</code>选项传入该键值对。注意，这里的键（Key）可以自由定义，不要求固定为<code>spark.driver.args</code>。</p>
-<pre><code class="bash">$ spark-submit --conf spark.driver.args=&#39;arg1 arg2 arg3&#39; &lt;TARGET_SPARK_SCRIPTS&gt;
-...
-</code></pre>
-<blockquote>
-<p>代码清单：通过<code>SparkConf</code>传递命令行参数</p>
-</blockquote>
-<p>在<code>Spark</code>任务脚本中，通过<code>get()</code>方法即可获取到目标<code>SparkConf</code>键值对。</p>
-<pre><code class="scala">val sc = new SparkConf()
-val args = sc.getConf.get(&quot;spark.driver.args&quot;).split(&quot;\s+&quot;)
-val param1 = args(0)
-val param2 = args(1)
-val param3 = args(2)
-println(&quot;param1 passed from shell : &quot; + param1)
-println(&quot;param2 passed from shell : &quot; + param2)
-println(&quot;param3 passed from shell : &quot; + param3)
-System.exit(0)
-</code></pre>
-<blockquote>
-<p>代码清单：<code>Scala</code>获取<code>SparkConf</code>命令行参数</p>
-</blockquote>
-<pre><code class="python">if __name__ == &quot;__main__&quot;:
-    sc = SparkConf()
-    args = sc.getConf().get(&quot;spark.driver.args&quot;).split(&quot;\s+&quot;)
-    print(args)
-</code></pre>
-<blockquote>
-<p>代码清单：<code>Python</code>获取<code>SparkConf</code>命令行参数</p>
-</blockquote>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>StackOverflow: <a href="https://stackoverflow.com/questions/29928999/" target="_blank" rel="noopener">https://stackoverflow.com/questions/29928999/</a></p>
-</li>
-<li><p>Script(s) by Ganesh: <a href="https://www.gchandra.com/hadoop/spark/spark-scala-command-line-arguments.html" target="_blank" rel="noopener">https://www.gchandra.com/hadoop/spark/spark-scala-command-line-arguments.html</a></p>
-</li>
-</ul>
-
-                <hr>
-<!--
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2019/01/06/configure-timezone-in-docker-container/" data-toggle="tooltip" data-placement="top" title="配置 Docker 容器系统时区">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2018/11/23/unable-to-connect-screen-in-attached-status-problem-analyse-and-solve/" data-toggle="tooltip" data-placement="top" title="Linux 下 Screen 状态 Attached 无法连接 - 问题分析及解决">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
--->
-            </div>
-<!-- Side Catalog Container -->
-        
-            <div class="
-                col-lg-2 col-lg-offset-0
-                visible-lg-block
-                sidebar-container
-                catalog-container">
-                <div class="side-catalog">
-                    <hr class="hidden-sm hidden-xs">
-                    <h5>
-                        <a class="catalog-toggle" href="#">CATALOG</a>
-                    </h5>
-                    <ul class="catalog-body"></ul>
-                </div>
-            </div>
-        
-<!-- Sidebar Container -->
-            <div class="
-                 col-lg-8 col-lg-offset-2
-                 col-md-10 col-md-offset-1
-                 sidebar-container">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#Big Data" title="Big Data">Big Data</a>
-                        
-                          <a class="tag" href="/tags/#Spark" title="Spark">Spark</a>
-                        
-                    </div>
-                </section>
-                
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </div>
-</article>
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
-    function() {
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
+    <!-- Default Archive layout, we use archives.ejs instead. -->
 
     <!-- Footer -->
 <footer>
@@ -536,56 +358,6 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
-
-<script type="text/javascript">
-    function generateCatalog (selector) {
-        // init
-        var _containerSelector = 'div.post-container';
-        var P = $(_containerSelector),a,n,t,l,i,c;
-        a = P.find('h1,h2,h3,h4,h5,h6');
-        // clean
-        $(selector).html('')
-        // appending
-        a.each(function () {
-            n = $(this).prop('tagName').toLowerCase();
-            i = "#"+$(this).prop('id');
-            t = $(this).text();
-            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
-            l = $('<li class="'+n+'_nav"></li>').append(c);
-            $(selector).append(l);
-        });
-        return true;
-    }
-
-    generateCatalog(".catalog-body");
-
-    // toggle side catalog
-    $(".catalog-toggle").click((function(e){
-        e.preventDefault();
-        $('.side-catalog').toggleClass("fold")
-    }))
-
-    /*
-     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
-     * Fork by Hux to support padding
-     */
-	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
-    function () {
-        $('.catalog-body').onePageNav({
-            currentClass: "deactive",
-            changeHash: !1,
-            easing: "swing",
-            filter: "",
-            scrollSpeed: 700,
-            scrollOffset: 0,
-            scrollThreshold: .2,
-            begin: null,
-            end: null,
-            scrollChange: null,
-            padding: 80
-        });
-    });
-</script>
 
 
 </body>
