@@ -68,8 +68,8 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -84,8 +84,8 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -167,10 +167,10 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在 Linux 操作系统下编译安装<code>Python</code>环境。</p>
-<p>个人使用的 <em>CentOS 7 Linux</em> 系统上，操作系统（OS）默认没有安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也并不是最新版本。</p>
-<p>系统自带一枚旧版本<code>Python2</code>，为一些系统组件提供支持，不能随意更动，不然会出现各种各样的Bugs（<code>yum</code>无法正常使用什么的…）。</p>
-<p>手动编译安装<code>Python</code>，是 Linux 下搭建 Python 环境的最佳途径。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在 Linux 操作系统下编译安装 Python 环境。</p>
+<p>个人使用的 <em>CentOS 7 Linux</em> 系统上，操作系统（OS）默认没有安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也并非最新版本。</p>
+<p>系统自带一枚旧版本<code>Python2</code>（Python 2.7.5），为一些系统组件提供支持，不能随意更动，不然会出现各种各样的Bugs（如：<code>yum</code>无法正常使用…）。</p>
+<p>手动编译安装最新版<code>Python</code>，是 Linux 下搭建 Python 环境的最佳选择。</p>
 <h1 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 - 编译环境"></a>Step 1 - 编译环境</h1><p>首先，我们需要在本机安装「基础编译工具链」，这是编译<code>Python</code>源码所必需的。</p>
 <pre><code class="bash">$ sudo yum install gcc make
 </code></pre>
@@ -182,7 +182,7 @@
 <blockquote>
 <p><code>Python</code>官网：<a href="https://www.python.org" target="_blank" rel="noopener">https://www.python.org</a></p>
 </blockquote>
-<pre><code class="bash">$ wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
+<pre><code class="bash">$ curl -O https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
 </code></pre>
 <blockquote>
 <p>代码清单：获取<code>Python</code>源码包</p>
@@ -195,13 +195,17 @@ $ tar -xv -f ./Python-3.6.1.tar
 <p>代码清单：解压缩<code>Python</code>源码包</p>
 </blockquote>
 <p>亦或者，我们也可以直接把 GitHub 上的<code>cpython</code>镜像仓库克隆到本地。</p>
-<pre><code class="bash">$ git clone https://github.com/python/cpython.git
+<pre><code class="bash"># 克隆`cpython`源码仓库
+$ git clone https://github.com/python/cpython.git
+# 进入`cpython`源码目录
 $ cd cpython
+# 查看`cpython`版本号
 $ git tag
+# 检出适合`cpython`版本
 $ git checkout &lt;tag_version&gt;
 </code></pre>
 <blockquote>
-<p>代码清单：使用<code>git</code>获取源代码</p>
+<p>代码清单：使用<code>git</code>获取Python`源代码</p>
 </blockquote>
 <h1 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 - 安装依赖"></a>Step 3 - 安装依赖</h1><p><code>cd</code>进入<code>Python</code>源码目录，我们可以先看一下<code>README.rst</code>这个文件，上面告诉了我们编译安装的具体步骤。</p>
 <p>在编译安装之前，我们需要先安装一些Python依赖包，这是<code>README</code>上没有提到的（会在<code>./configure</code>检查依赖项时告诉你…）。为了省去后续查找安装依赖的麻烦，这里把所需要的依赖包全部列出。</p>
