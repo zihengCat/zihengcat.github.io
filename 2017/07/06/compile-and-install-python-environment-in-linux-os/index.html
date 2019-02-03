@@ -279,31 +279,29 @@ $ git checkout &lt;tag_version&gt;
 <p>表：Linux 系统下<code>Python</code>依赖库表</p>
 </blockquote>
 <pre><code class="bash">#/bin/bash
-# ------------------------------
-# 自动化脚本 - 安装 Python 依赖库
-# ------------------------------
-deps=&quot;zlib-devel \
-      bzip2-devel \
-      xz-devel \
-      uuid-devel \
-      openssl-devel \
-      readline-devel \
-      ncurses-devel \
-      sqlite-devel \
-      libffi-devel \
-      gdbm-devel \
-      tcl-devel \
-      tk-devel&quot;
-
-for i in ${deps}
+# --------------------------
+PYTHON_DEPS=&quot;zlib-devel \
+             bzip2-devel \
+             xz-devel \
+             uuid-devel \
+             openssl-devel \
+             readline-devel \
+             ncurses-devel \
+             sqlite-devel \
+             libffi-devel \
+             gdbm-devel \
+             tcl-devel \
+             tk-devel&quot;
+# --------------------------
+for i in ${PYTHON_DEPS}
 do
     sudo yum -y install ${i}
 done
-
-exit ${?}
+# --------------------------
+echo ${?}
 </code></pre>
 <blockquote>
-<p>代码清单：Red Hat Linux 下安装 Python 依赖库脚本</p>
+<p>代码清单：Red Hat Linux 下安装 Python 依赖库自动化脚本</p>
 </blockquote>
 <p>手写一支<code>shell</code>脚本，把依赖包全部装好。对于<code>Debian</code>系的系统，可以使用<code>apt</code>命令安装相应的依赖包。</p>
 <h1 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 - 编译安装"></a>Step 4 - 编译安装</h1><p>依赖包都安装好之后，接下来，我们就按照<code>README</code>的指引，编译安装<code>Python</code>。请确保在 Python 源代码目录下执行以下操作：</p>
@@ -324,7 +322,7 @@ exit ${?}
 <tbody>
 <tr>
 <td style="text-align:center"><code>--prefix</code></td>
-<td style="text-align:center">自定义安装路径，默认在<code>/usr/local</code>，个人习惯单独指定一个安装目录，这样管理起来比较方便。</td>
+<td style="text-align:center">自定义安装路径，默认在<code>/usr/local</code>，个人习惯单独指定安装路径，这样管理起来比较方便。</td>
 </tr>
 <tr>
 <td style="text-align:center"><code>--enable-optimizations</code></td>
@@ -336,13 +334,15 @@ exit ${?}
 <p>表：自定义编译选项表</p>
 </blockquote>
 <pre><code class="bash">$ make
+...
 $ sudo make install
+...
 </code></pre>
 <blockquote>
 <p>代码清单：<code>make</code>编译安装</p>
 </blockquote>
 <p><code>make</code>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。</p>
-<p>如果使用<code>--prefix</code>编译选项自定义了安装目录，安装完成后不要忘记了将安装路径加入<code>PATH</code>环境变量中，并将<code>Python3</code>软链接到<code>/usr/bin/</code>下。</p>
+<p>如果使用<code>--prefix</code>编译选项自定义了安装目录，安装完成后不要忘记了将安装路径加入<code>PATH</code>环境变量中，并将 Python3 软链接到<code>/usr/bin/</code>下。</p>
 <pre><code class="bash">$ echo &#39;export PATH=${PATH}:&lt;path/to/python/bin&gt;&#39; &gt;&gt; ~/.bashrc
 </code></pre>
 <blockquote>
