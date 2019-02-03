@@ -168,16 +168,15 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在 Linux 操作系统下编译安装 Python 环境。</p>
-<p>个人使用的 <em>CentOS 7 Linux</em> 系统上，操作系统（OS）默认没有安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也并非最新版本。</p>
-<p>系统自带一枚旧版本<code>Python2</code>（Python 2.7.5），为一些系统组件提供支持，不能随意更动，不然会出现各种各样的Bugs（如：<code>yum</code>无法正常使用…）。</p>
-<p>手动编译安装最新版<code>Python</code>，是 Linux 下搭建 Python 环境的最佳选择。</p>
-<h1 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 - 编译环境"></a>Step 1 - 编译环境</h1><p>首先，我们需要在本机安装「基础编译工具链」，这是编译<code>Python</code>源码所必需的。</p>
+<p>个人使用的 <em>CentOS 7 Linux</em> 系统上，操作系统（OS）默认没有安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也并非最新版本。系统自带一枚旧版本<code>Python2</code>（Python 2.7.5），为一些系统组件提供支持，不能随意更动，不然会出现各种各样的Bugs（如：<code>yum</code>无法正常使用…）。</p>
+<p>手动编译安装最新版 Python ，是 Linux 下搭建 Python 环境的最佳选择。</p>
+<h1 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 - 编译环境"></a>Step 1 - 编译环境</h1><p>首先，我们需要在本机安装「基础编译工具链」，这是编译 Python 源码所必需的。</p>
 <pre><code class="bash">$ sudo yum install gcc make
 </code></pre>
 <blockquote>
 <p>代码清单：安装「基础编译工具」</p>
 </blockquote>
-<p>本机安装好<code>gcc</code>，<code>make</code>等基础编译工具，用来编译<code>Python</code>源码（Python语言的官方实现是<em>CPython</em>）。</p>
+<p>本机安装好<code>gcc</code>，<code>make</code>等基础编译工具，用来编译 Python 源码（Python语言的官方实现是<em>CPython</em>）。</p>
 <h1 id="Step-2-获取源码"><a href="#Step-2-获取源码" class="headerlink" title="Step 2 - 获取源码"></a>Step 2 - 获取源码</h1><p>接下来，前往Python官方网站，下载最新的Python3「源码包」。注意要下载源码包<code>source tarball</code>。</p>
 <blockquote>
 <p><code>Python</code>官网：<a href="https://www.python.org" target="_blank" rel="noopener">https://www.python.org</a></p>
@@ -213,7 +212,7 @@ $ git checkout &lt;tag_version&gt;
 <thead>
 <tr>
 <th style="text-align:center">依赖库</th>
-<th style="text-align:left">Red Hat</th>
+<th style="text-align:left">RedHat</th>
 <th style="text-align:left">Debian</th>
 </tr>
 </thead>
@@ -301,7 +300,7 @@ done
 echo ${?}
 </code></pre>
 <blockquote>
-<p>代码清单：Red Hat Linux 下安装 Python 依赖库自动化脚本</p>
+<p>代码清单：RedHat Linux 下安装 Python 依赖库自动化脚本</p>
 </blockquote>
 <p>手写一支<code>shell</code>脚本，把依赖包全部装好。对于<code>Debian</code>系的系统，可以使用<code>apt</code>命令安装相应的依赖包。</p>
 <h1 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 - 编译安装"></a>Step 4 - 编译安装</h1><p>依赖包都安装好之后，接下来，我们就按照<code>README</code>的指引，编译安装<code>Python</code>。请确保在 Python 源代码目录下执行以下操作：</p>
@@ -315,17 +314,17 @@ echo ${?}
 <table>
 <thead>
 <tr>
-<th style="text-align:left">编译选项</th>
+<th style="text-align:center">编译选项</th>
 <th style="text-align:left">解释说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left"><code>--prefix</code></td>
+<td style="text-align:center"><code>--prefix</code></td>
 <td style="text-align:left">自定义安装路径，默认在<code>/usr/local</code>，个人习惯单独指定安装路径，这样管理起来比较方便。</td>
 </tr>
 <tr>
-<td style="text-align:left"><code>--enable-optimizations</code></td>
+<td style="text-align:center"><code>--enable-optimizations</code></td>
 <td style="text-align:left">开启编译优化选项，增加编译时间，换取性能提升，这是非常值得的。</td>
 </tr>
 </tbody>
@@ -342,7 +341,7 @@ $ sudo make install
 <p>代码清单：<code>make</code>编译安装</p>
 </blockquote>
 <p><code>make</code>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。</p>
-<p>如果使用<code>--prefix</code>编译选项自定义了安装目录，安装完成后不要忘记了将安装路径加入<code>PATH</code>环境变量中，并将 Python3 软链接到<code>/usr/bin/</code>下。</p>
+<p>如果使用<code>--prefix</code>编译选项自定义了安装目录，安装完成后不要忘记了将安装路径加入<code>PATH</code>环境变量中，并将 Python 软链接到<code>/usr/bin/</code>目录下。</p>
 <pre><code class="bash">$ echo &#39;export PATH=${PATH}:&lt;path/to/python/bin&gt;&#39; &gt;&gt; ~/.bashrc
 </code></pre>
 <blockquote>
