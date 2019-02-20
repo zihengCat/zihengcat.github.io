@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2017/08/01/Linux下hosts配置/">
     <title>
         
-          Linux下hosts配置 - zihengCat
+          Linux 下 hosts 配置 - zihengCat
         
     </title>
 
@@ -145,7 +145,7 @@
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
                     </div>
-                    <h1>Linux下hosts配置</h1>
+                    <h1>Linux 下 hosts 配置</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -165,7 +165,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍Linux下<code>hosts</code>文件的相关配置。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍 Linux 下<code>hosts</code>文件的相关配置。</p>
 <h1 id="hosts-文件"><a href="#hosts-文件" class="headerlink" title="hosts 文件"></a>hosts 文件</h1><p>hosts: <em>The static table lookup for host name（主机名查询静态表）</em></p>
 <p>hosts文件(域名解析文件)是一个用于储存计算机网络中各节点信息的计算机文件。这个文件负责将主机名称映射到相应的IP地址。hosts文件通常用于补充或取代网络中DNS的功能。和DNS不同的是，计算机的用户可以直接对hosts文件进行控制。<strong>hosts文件请求优先于DNS解析。</strong><br>在Linux系统下，hosts文件以ASCII格式保存在<code>/etc/hosts</code>。</p>
 <h1 id="hosts-文件格式"><a href="#hosts-文件格式" class="headerlink" title="hosts 文件格式"></a>hosts 文件格式</h1><p>一般情况下，hosts文件以行为单位作解析。每行由三部份组成，每个部份以空白符隔开。其中<code>#</code>开头的行是注释，不会被系统解释。</p>
@@ -178,20 +178,24 @@
 <pre><code># 注释
 IP地址    主机名/域名    别名(可省略)
 </code></pre><blockquote>
-<p>域名与主机名无需过于区分，<br>习惯而已…</p>
+<p>域名与主机名无需过于区分，</p>
 <ul>
 <li>在局域网中称主机名。</li>
 <li>在互联网中称域名。</li>
 </ul>
 </blockquote>
-<h1 id="规避-DNS-污染"><a href="#规避-DNS-污染" class="headerlink" title="规避 DNS 污染"></a>规避 DNS 污染</h1><p>由于hosts文件请求优先于DNS解析，我们可以修改本地hosts文件来规避部分DNS污染。<br><a href="https://github.com/racaljk/hosts" target="_blank" rel="noopener">hosts 开源项目</a><br>有好心的朋友整理了一些可用的IP地址，放置在GitHub上，我们可以使用。<br>将<code>hosts</code>文件下载下来，替换掉<code>/etc/hosts</code>文件就可以啦。</p>
-<pre><code>#!/bin/bash
+<h1 id="规避-DNS-污染"><a href="#规避-DNS-污染" class="headerlink" title="规避 DNS 污染"></a>规避 DNS 污染</h1><p>由于<code>hosts</code>文件请求优先于<code>DNS</code>解析，我们可以修改本地<code>hosts</code>文件来规避部分<code>DNS</code>污染。</p>
+<blockquote>
+<p><code>hosts</code>开源项目: <a href="https://github.com/racaljk/hosts" target="_blank" rel="noopener">https://github.com/racaljk/hosts</a></p>
+</blockquote>
+<p>有好心的朋友整理了一些可用的IP地址，放置在 GitHub 上，我们可以使用。</p>
+<p>将<code>hosts</code>文件下载下来，替换掉<code>/etc/hosts</code>文件即可。</p>
+<pre><code class="bash">#!/bin/bash
 # Update hosts file from GitHub
-update_hosts(){
-
+function update_hosts() {
     HOSTS_LINK=&#39;https://raw.githubusercontent.com/racaljk/hosts/master/hosts&#39;
     # mirror link
-    # HOSTS_LINK=&quot;https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts&quot; 
+    # HOSTS_LINK=&quot;https://coding.net/u/scaffrey/p/hosts/git/raw/master/hosts&quot;
     HOSTS_TMP=&#39;hosts.tmp&#39;
     HOSTS_SRC=&#39;/etc/hosts&#39;
 
@@ -212,10 +216,11 @@ update_hosts(){
     fi
 }
 update_host
-</code></pre><blockquote>
-<p>GitHub 地址不能用就改用国内镜像</p>
+</code></pre>
+<blockquote>
+<p>代码清单：更新<code>hosts</code>文件</p>
 </blockquote>
-<p>虽然有项目有提供自动化工具，子恒喵还是喜欢手写脚本啦:)<br>这样配置下来，Google 是可以正常使用啦，YouTube 当然是看不了的啦23333</p>
+<p>这样配置下来，Google 是可以正常使用的，YouTube 还是看不了的。</p>
 
                 <hr>
 <!--
