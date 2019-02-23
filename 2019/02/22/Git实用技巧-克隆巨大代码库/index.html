@@ -165,8 +165,37 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当我们使用<code>git clone</code>指令克隆<strong>容量巨大</strong>的代码仓库时，经常会出现连接超时等问题，导致代码库拉取失败。而实际上，我们往往并不需要该代码库的所以历史变更记录，只需要主分支或者某一分支的最新代码即可，用作源码编译。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当我们使用<code>git clone</code>指令克隆<strong>容量巨大</strong>的代码仓库时，经常会出现连接超时等问题，导致代码库拉取失败。而实际上，我们往往并不需要该代码库的所以历史变更记录，只需要主分支或者某一分支的最新代码即可，常用作源码编译。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>我们可以在使用<code>git clone</code>命令时，附加上<code>--depth</code>与<code>--branch</code>即可解决克隆<strong>容量巨大</strong>代码仓库代码拉取失败的问题。</p>
+<pre><code class="bash">$ git clone --branch master \
+            --depth=1 \
+            https://github/project/repo.git
+</code></pre>
+<blockquote>
+<p>代码清单：克隆 Git 仓库最近一次提交的代码</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--depth</code></td>
+<td>指定克隆深度，为<code>1</code>即表示只克隆最近一次提交（commit）</td>
+</tr>
+<tr>
+<td><code>--branch</code></td>
+<td>指定具体的克隆分支（如：<code>master</code>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表：<code>git</code>命令选项表</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><code>Git</code>官方文档: <a href="https://git-scm.com/docs/git-clone" target="_blank" rel="noopener">https://git-scm.com/docs/git-clone</a></li>
 </ul>
 
