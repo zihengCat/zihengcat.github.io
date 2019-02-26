@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2018/07/06/Git实用技巧-删除无用远程分支/">
     <title>
         
-          Git实用技巧 - 删除无用远程分支 - zihengCat
+          Git 实用技巧 - 删除无用远程分支 - zihengCat
         
     </title>
 
@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -145,7 +145,7 @@
                           <a class="tag" href="/tags/#Git" title="Git">Git</a>
                         
                     </div>
-                    <h1>Git实用技巧 - 删除无用远程分支</h1>
+                    <h1>Git 实用技巧 - 删除无用远程分支</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -165,13 +165,14 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用<code>Git</code>工作流「Git Workflow」时，我们有时会遇到这样的情况：远程分支已被删除，但在本地<code>Git</code>仓库中仍然保留着指向改远程分支的引用「References」，我们需要手动清除这些留在本地的无用远程分支。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用<code>Git</code>工作流「Git Workflow」时，我们有时会遇到这样的情况：远程分支已被删除，但在本地<code>Git</code>仓库中仍然保留着指向改远程分支的引用「References」，我们需要手动清除这些仍留在本地的无用远程分支。</p>
 <h1 id="Git删除无用远程分支"><a href="#Git删除无用远程分支" class="headerlink" title="Git删除无用远程分支"></a><code>Git</code>删除无用远程分支</h1><p>实际上，<code>Git</code>的开发者们也早已经考虑到了这样的使用场景，并提供了一枚方便的命令来帮助我们做这件事。</p>
 <pre><code class="bash">$ git remote prune &lt;name&gt;
 </code></pre>
 <blockquote>
-<p>代码清单：使用<code>prune</code>删除无用远程分支<br>注：加入<code>-n, --dry-run</code>选项，只打印无用远程分支而不真正执行删除操作。</p>
+<p>代码清单：使用<code>prune</code>删除无用远程分支</p>
 </blockquote>
+<p>加入<code>-n, --dry-run</code>选项，只打印无用远程分支而不真正执行删除操作。</p>
 <p>使用<code>git remote prune</code>命令，即可方便地删除无用远程分支，使得本地与远程分支状态保持一致。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><code>Git</code>官方文档：<a href="https://git-scm.com/docs/git-remote#git-remote-empruneem" target="_blank" rel="noopener">https://git-scm.com/docs/git-remote#git-remote-empruneem</a></li>
