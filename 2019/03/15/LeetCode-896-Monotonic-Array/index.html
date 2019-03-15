@@ -146,6 +146,8 @@
                         
                           <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
+                          <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
+                        
                           <a class="tag" href="/tags/#Array" title="Array">Array</a>
                         
                     </div>
@@ -177,7 +179,7 @@
 <li><p>单调递减数组：对于任意<code>i &lt;= j</code>，均有<code>A[i] &gt;= A[j]</code>。</p>
 </li>
 </ul>
-<p>相关条件如下：</p>
+<p>相关限定条件如下：</p>
 <ul>
 <li><p><code>1 &lt;= A.length &lt;= 50000</code></p>
 </li>
@@ -200,6 +202,58 @@ Output: true
 Output: false
 </code></pre><blockquote>
 <p>注：样例 3</p>
+</blockquote>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>该问题的解法简单直接，遍历数组，对比数组前后元素的数值，判断数组是否单调。共有3种情况：非单调，单调递增，单调递减。</p>
+<pre><code class="c">bool isMonotonic(int* A, int ASize) {
+    /* Set origin status to `true`
+       in order to operate `&amp;=` */
+    bool isIncreasing = true,
+         isDecreasing = true;
+    for (int i = 1; i &lt; ASize; ++i) {
+        isIncreasing &amp;= A[i - 1] &lt;= A[i],
+        isDecreasing &amp;= A[i - 1] &gt;= A[i];
+    }
+    /* Only three options */
+    return isIncreasinginc || isDecreasing;
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>C</code>实现</p>
+</blockquote>
+<pre><code class="c++">class Solution {
+public:
+    bool isMonotonic(vector&lt;int&gt; A) {
+        bool isIncreasing = true,
+             isDecreasing = true;
+        for (int i = 1; i &lt; A.size(); ++i) {
+            isIncreasing &amp;= A[i - 1] &lt;= A[i],
+            isDecreasing &amp;= A[i - 1] &gt;= A[i];
+        }
+        /* Only three options */
+        return isIncreasinginc || isDecreasing;
+    }
+};
+</code></pre>
+<blockquote>
+<p>代码清单：<code>C++</code>实现</p>
+</blockquote>
+<pre><code class="java">class Solution {
+    public boolean isMonotonic(int[] A) {
+        /* Set origin status to `true`
+           in order to operate `&amp;=` */
+        boolean isIncreasing = true,
+                isDecreasing = true;
+        for (int i = 1; i &lt; A.length; ++i) {
+            isIncreasing &amp;= A[i - 1] &lt;= A[i],
+            isDecreasing &amp;= A[i - 1] &gt;= A[i];
+        }
+        /* Only three options */
+        return isIncreasinginc || isDecreasing;
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Java</code>实现</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/monotonic-array/" target="_blank" rel="noopener">https://leetcode.com/problems/monotonic-array/</a></li>
@@ -248,6 +302,8 @@ Output: false
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
                           <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        
+                          <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
                         
                           <a class="tag" href="/tags/#Array" title="Array">Array</a>
                         
