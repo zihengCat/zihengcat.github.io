@@ -142,9 +142,9 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
-                        
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                           <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
                         
@@ -257,6 +257,18 @@ public:
 <blockquote>
 <p>代码清单：<code>Java</code>实现</p>
 </blockquote>
+<pre><code class="python">class Solution:
+    def isMonotonic(self, A: List[int]) -&gt; bool:
+        isIncreasing: bool = True
+        isDecreasing: bool = True
+        for i in range(1, len(A)):
+            isIncreasing &amp;= A[i - 1] &lt;= A[i]
+            isDecreasing &amp;= A[i - 1] &gt;= A[i]
+        return isIncreasing or isDecreasing
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Python</code>实现</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/monotonic-array/" target="_blank" rel="noopener">https://leetcode.com/problems/monotonic-array/</a></li>
 </ul>
@@ -301,9 +313,9 @@ public:
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
-                        
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                           <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
                         
