@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2019/01/10/Screen-screenrc-文件分析与配置/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/01/20/java-examples-for-language-basics-hello-world/">
     <title>
         
-          Screen .screenrc 文件分析与配置 - zihengCat
+          Java 基础教程系列 - Hello, World - zihengCat
         
     </title>
 
@@ -142,16 +142,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
-                          <a class="tag" href="/tags/#Screen" title="Screen">Screen</a>
+                          <a class="tag" href="/tags/#Java Tutorial" title="Java Tutorial">Java Tutorial</a>
                         
                     </div>
-                    <h1>Screen .screenrc 文件分析与配置</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>Java 基础教程系列 - Hello, World</h1>
+                    <h2 class="subheading">Java examples for Language Basics - Hello, World</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2019-01-10
+                        2019-01-20
                     </span>
                 </div>
             </div>
@@ -167,18 +167,80 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1>
+                <h1 id="第一个-Java-程序：打印文本"><a href="#第一个-Java-程序：打印文本" class="headerlink" title="第一个 Java 程序：打印文本"></a>第一个 Java 程序：打印文本</h1><pre><code class="java">public class Main {
+   /* main method begins execution of Java application */
+   public static void main(String args[]) {
+       System.out.println(&quot;Hello, world. Welcome to Java Programming!&quot;);
+   }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 打印文本</p>
+</blockquote>
+<h1 id="Java-打印多行文本"><a href="#Java-打印多行文本" class="headerlink" title="Java 打印多行文本"></a>Java 打印多行文本</h1><pre><code class="java">public class Main {
+   public static void main(String args[]) {
+       System.out.println(&quot;Hello, world!&quot;);
+       System.out.println(&quot;Welcome to Java Programming!&quot;);
+   }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 打印文本</p>
+</blockquote>
+<h1 id="Java-使用转义字符打印文本"><a href="#Java-使用转义字符打印文本" class="headerlink" title="Java 使用转义字符打印文本"></a>Java 使用转义字符打印文本</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">转义字符</th>
+<th style="text-align:left">解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>\n</code></td>
+<td style="text-align:left">换行符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\r</code></td>
+<td style="text-align:left">回车符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\t</code></td>
+<td style="text-align:left">制表符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\\</code></td>
+<td style="text-align:left">反斜杠</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\&quot;</code></td>
+<td style="text-align:left">双引号</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表：转义字符说明表</p>
+</blockquote>
+<pre><code class="java">public class Main {
+   public static void main(String args[]) {
+       System.out.println(&quot;Welcome\nto\nJava\nProgramming!&quot;);
+   }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 使用转义字符打印文本</p>
+</blockquote>
+
                 <hr>
 <!--
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/01/20/java-examples-for-language-basics-hello-world/" data-toggle="tooltip" data-placement="top" title="Java 基础教程系列 - Hello, World">&larr; Previous Post</a>
+                            <a href="/2019/01/26/configure-npm-registry-mirrors/" data-toggle="tooltip" data-placement="top" title="NPM 包管理工具 Registry 镜像配置">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/01/06/configure-timezone-in-docker-container/" data-toggle="tooltip" data-placement="top" title="配置 Docker 容器系统时区">Next Post &rarr;</a>
+                            <a href="/2019/01/10/Screen-screenrc-文件分析与配置/" data-toggle="tooltip" data-placement="top" title="Screen .screenrc 文件分析与配置">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -212,9 +274,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
-                          <a class="tag" href="/tags/#Screen" title="Screen">Screen</a>
+                          <a class="tag" href="/tags/#Java Tutorial" title="Java Tutorial">Java Tutorial</a>
                         
                     </div>
                 </section>
