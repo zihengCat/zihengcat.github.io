@@ -181,6 +181,19 @@
 <blockquote>
 <p>代码清单：Java 字符串连接操作</p>
 </blockquote>
+<p>Java 字符串连接操作符不仅可以作用于两枚字符串，还可以用来连接字符串与其他类型（基本类型、引用类型），其他类型先会被转换为字符串形式，再进行连接。</p>
+<pre><code class="java">public class Main {
+    public static void main(String args[]) {
+        int num = 123;
+        String str1 = &quot;abc&quot;;
+        String str2 = num + str1;
+        System.out.println(str2);
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 字符串与其他类型连接操作</p>
+</blockquote>
 <h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><ul>
 <li><p>The Java Language Environment (HTML): <a href="https://www.oracle.com/technetwork/java/langenv-140151.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/langenv-140151.html</a></p>
 </li>
