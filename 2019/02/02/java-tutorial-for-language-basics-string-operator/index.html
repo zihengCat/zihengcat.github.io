@@ -167,7 +167,21 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-字符串连接操作符"><a href="#Java-字符串连接操作符" class="headerlink" title="Java 字符串连接操作符"></a>Java 字符串连接操作符</h1><h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><ul>
+                <h1 id="Java-字符串连接操作符"><a href="#Java-字符串连接操作符" class="headerlink" title="Java 字符串连接操作符"></a>Java 字符串连接操作符</h1><p>在 Java 中，字符串<code>java.lang.String</code>的<code>+</code>操作符被重载（Overload）了。</p>
+<p>两枚字符串，如<code>&quot;abc&quot;</code>和<code>&quot;xyz&quot;</code>，可以使<code>+</code>操作符连接起来，生成一枚新的字符串<code>&quot;abcxyz&quot;</code>。</p>
+<pre><code class="java">public class Main {
+    public static void main(String args[]) {
+        String str1 = &quot;abc&quot;;
+        String str2 = &quot;xyz&quot;;
+        String str3 = str1 + str2;
+        System.out.println(str3);
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 字符串连接操作</p>
+</blockquote>
+<h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><ul>
 <li><p>The Java Language Environment (HTML): <a href="https://www.oracle.com/technetwork/java/langenv-140151.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/langenv-140151.html</a></p>
 </li>
 <li><p>The Java Language Environment (PDF): <a href="https://tech-insider.org/java/research/acrobat/9505.pdf" target="_blank" rel="noopener">https://tech-insider.org/java/research/acrobat/9505.pdf</a></p>
