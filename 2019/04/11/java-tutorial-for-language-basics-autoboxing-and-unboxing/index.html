@@ -220,35 +220,35 @@
 <li><p>使用<code>valueOf()</code>工厂方法</p>
 </li>
 </ul>
-<p>每个数值型包装类提供至少两枚构造方法：对应基本类型构造、字符串构造，字符型（Character）包装类提供一枚构造方法：接受一枚字符构造。</p>
+<p>每个数值型包装类提供至少两枚构造方法：对应基本类型构造、字符串构造。字符型（Character）包装类提供一枚构造方法：接受一枚字符进行构造。</p>
 <pre><code class="java">public class Main {
-    public static void main(String[] args) {
-        // Creates an Integer object from an int
+    public static void main(String args[]) {
+        /* Creates an Integer object from an int */
         Integer intObj1 = new Integer(100);
 
-        // Creates an Integer object from a String
+        /* Creates an Integer object from a String */
         Integer intObj2 = new Integer(&quot;1234&quot;);
 
-        // Creates a Double object from a double
+        /* Creates a Double object from a double */
         Double doubleObj1 = new Double(10.45);
 
-        // Creates a Double object from a String
+        /* Creates a Double object from a String */
         Double doubleObj2 = new Double(&quot;1234.56&quot;);
 
-        // Creates a Character object from a char
+        /* Creates a Character object from a char */
         Character charObj1 = new Character(&#39;A&#39;);
 
-        // Creates a Boolean object from a boolean
+        /* Creates a Boolean object from a boolean */
         Boolean booleanObj1 = new Boolean(true);
 
-        // Creates Boolean objects from Strings
+        /* Creates Boolean objects from Strings */
         Boolean booleanTrue = new Boolean(&quot;true&quot;);
         Boolean booleanFalse = new Boolean(&quot;false&quot;);
     }
 }
 </code></pre>
 <blockquote>
-<p>代码清单：Java 包装类型构造方法</p>
+<p>代码清单：Java 包装类型构造方法示例</p>
 </blockquote>
 
                 <hr>
