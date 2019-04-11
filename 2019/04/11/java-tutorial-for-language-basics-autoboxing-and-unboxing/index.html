@@ -217,10 +217,10 @@
 <ul>
 <li><p>使用构造方法（Constructors）</p>
 </li>
-<li><p>使用<code>valueOf()</code>工厂方法</p>
+<li><p>使用<code>valueOf()</code>静态工厂方法</p>
 </li>
 </ul>
-<p>每个数值型包装类提供至少两枚构造方法：对应基本类型构造、字符串构造。字符型（Character）包装类提供一枚构造方法：接受一枚字符进行构造。</p>
+<p>数值型包装类提供至少两枚构造方法：相应基本类型构造、字符串构造。字符型（Character）包装类提供一枚构造方法：接受一枚字符进行构造。</p>
 <pre><code class="java">public class Main {
     public static void main(String args[]) {
         /* Creates an Integer object from an int */
@@ -253,11 +253,27 @@
 <p>静态工厂方法<code>valueOf()</code>是另一种创建包装类的方式。</p>
 <pre><code class="java">public class Main {
     public static void main(String[] args) {
+        /* Creates an Integer object from an int */
         Integer intObj1 = Integer.valueOf(100);
+
+        /* Creates an Integer object from a String */
         Integer intObj2 = Integer.valueOf(&quot;1234&quot;);
+
+        /* Creates a Double object from a double */
         Double doubleObj1 = Double.valueOf(10.45);
+
+        /* Creates a Double object from a String */
         Double doubleObj2 = Double.valueOf(&quot;1234.60&quot;);
+
+        /* Creates a Character object from a char */
         Character charObj1 = Character.valueOf(&#39;A&#39;);
+
+        /* Creates a Boolean object from a boolean */
+        Boolean booleanObj1 = Boolean.valueOf(true);
+
+        /* Creates Boolean objects from Strings */
+        Boolean booleanTrue = Boolean.valueOf(&quot;true&quot;);
+        Boolean booleanFalse = Boolean.valueOf(&quot;false&quot;);
     }
 }
 </code></pre>
