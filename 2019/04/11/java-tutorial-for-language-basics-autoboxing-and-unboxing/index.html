@@ -264,14 +264,14 @@
 <blockquote>
 <p>代码清单：Java 包装类型静态工厂方法示例</p>
 </blockquote>
-<p>为了取得更好的空间与时间效率，JDK 9 以后，官方建议我们使用静态工厂方法<code>valueOf()</code>创建基本类型包装类。</p>
+<p>为了取得更好的空间与时间效率，JDK 9 以后，官方建议我们使用静态工厂方法<code>valueOf()</code>创建基本类型包装类，并将包装类型的构造方法都标注上了<code>@Deprecated(since=&quot;9&quot;)</code>。</p>
 <pre><code class="plain">Deprecated:
 It is rarely appropriate to use this constructor.
 The static factory valueOf(int) is generally a better choice,
 as it is likely to yield significantly better space and time performance.
 </code></pre>
 <blockquote>
-<p>注：JDK 9 Javadoc</p>
+<p>注：JDK 9 对于包装类构造方法的说明</p>
 </blockquote>
 
                 <hr>
