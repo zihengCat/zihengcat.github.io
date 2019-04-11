@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -249,6 +249,20 @@
 </code></pre>
 <blockquote>
 <p>代码清单：Java 包装类型构造方法示例</p>
+</blockquote>
+<p>静态工厂方法<code>valueOf()</code>是另一种创建包装类的方式。</p>
+<pre><code class="java">public class Main {
+    public static void main(String[] args) {
+        Integer intObj1 = Integer.valueOf(100);
+        Integer intObj2 = Integer.valueOf(&quot;1234&quot;);
+        Double doubleObj1 = Double.valueOf(10.45);
+        Double doubleObj2 = Double.valueOf(&quot;1234.60&quot;);
+        Character charObj1 = Character.valueOf(&#39;A&#39;);
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 包装类型静态工厂方法示例</p>
 </blockquote>
 
                 <hr>
