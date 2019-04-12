@@ -289,8 +289,43 @@ as it is likely to yield significantly better space and time performance.
 <blockquote>
 <p>注：<code>JDK 9</code>对于包装类构造方法（Constructors）的说明</p>
 </blockquote>
-<h1 id="Java-数值类型包装类（Numeric-Wrapper-Classes）"><a href="#Java-数值类型包装类（Numeric-Wrapper-Classes）" class="headerlink" title="Java 数值类型包装类（Numeric Wrapper Classes）"></a>Java 数值类型包装类（Numeric Wrapper Classes）</h1><p>Java 基本类型包装类中，<code>Byte</code>，<code>Short</code>，<code>Integer</code>，<code>Long</code>，<code>Float</code>，<code>Double</code>被称为数值类型包装类（Numeric Wrapper Classes）。它们都继承自<code>java.lang</code>包下的抽象类<code>Number</code>。</p>
-<p>所有 Java 数值类型包装类都包含了一些有用的常量（Constants）。<code>MIN_VALUE</code>与<code>MAX_VALUE</code>标示出该类型的上下界，例如：<code>Byte.MIN_VALUE</code>为<code>-128</code>，<code>Byte.MAX_VALUE</code>为<code>127</code>。<code>SIZE</code>标示出该类型所占用的比特（Bits）数，例如：<code>Byte.SIZE</code>为<code>8</code>，<code>Integer.SIZE</code>为<code>32</code>。</p>
+<h1 id="Java-数值类型包装类（Numeric-Wrapper-Classes）"><a href="#Java-数值类型包装类（Numeric-Wrapper-Classes）" class="headerlink" title="Java 数值类型包装类（Numeric Wrapper Classes）"></a>Java 数值类型包装类（Numeric Wrapper Classes）</h1><p>Java 基本类型包装类中，<code>Byte</code>、<code>Short</code>、<code>Integer</code>、<code>Long</code>、<code>Float</code>、<code>Double</code>被称为数值类型包装类（Numeric Wrapper Classes）。它们都继承自<code>java.lang</code>包下的抽象类<code>Number</code>。</p>
+<p>所有 Java 数值类型包装类都包含着一些有用的常量（Constants）。<code>MIN_VALUE</code>与<code>MAX_VALUE</code>标示出该类型的上下界，例如：<code>Byte.MIN_VALUE</code>为<code>-128</code>，<code>Byte.MAX_VALUE</code>为<code>127</code>。<code>SIZE</code>标示出该类型所占用的比特（Bits）数，例如：<code>Byte.SIZE</code>为<code>8</code>，<code>Integer.SIZE</code>为<code>32</code>。</p>
+<p>Java 数值类型包装类包含六个方法，形如<code>xxxValue()</code>，<code>xxx</code>是六种基本数值类型之一（<code>byte</code>、<code>short</code>、<code>int</code>、<code>long</code>、<code>float</code>、<code>double</code>），方法返回基本数值类型。例如：<code>byteValue()</code>返回一枚<code>byte</code>，<code>intValue()</code>返回一枚<code>int</code>。</p>
+<pre><code class="java">public class Main {
+    public static void main(String[] args) {
+        /* Creates an Integer object */
+        Integer intObj = Integer.valueOf(100);
+
+        /* Gets byte from Integer */
+        byte b = intObj.byteValue();
+
+        /* Gets double from Integer */
+        double dd = intObj.doubleValue();
+        System.out.println(&quot;intObj = &quot; + intObj);
+        System.out.println(&quot;byte from intObj = &quot; + b);
+        System.out.println(&quot;double from intObj = &quot; + dd);
+
+        /* Creates a Double object */
+        Double doubleObj = Double.valueOf(&quot;12345.67&quot;);
+
+        /* Gets different types of primitive values from Double */
+        double d = doubleObj.doubleValue();
+        float f = doubleObj.floatValue();
+        int i = doubleObj.intValue();
+        long l = doubleObj.longValue();
+
+        System.out.println(&quot;doubleObj = &quot; + doubleObj);
+        System.out.println(&quot;double from doubleObj = &quot; + d);
+        System.out.println(&quot;float from doubleObj = &quot; + f);
+        System.out.println(&quot;int from doubleObj = &quot; + i);
+        System.out.println(&quot;long from doubleObj = &quot; + l);
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 数值类型包装类方法示例</p>
+</blockquote>
 
                 <hr>
 <!--
