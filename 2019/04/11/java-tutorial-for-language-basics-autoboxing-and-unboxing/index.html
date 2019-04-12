@@ -326,7 +326,23 @@ as it is likely to yield significantly better space and time performance.
 <blockquote>
 <p>代码清单：Java 数值类型包装类方法示例</p>
 </blockquote>
-<h1 id="Java-自动装箱与拆箱（Autoboxing-and-Unboxing）"><a href="#Java-自动装箱与拆箱（Autoboxing-and-Unboxing）" class="headerlink" title="Java 自动装箱与拆箱（Autoboxing and Unboxing）"></a>Java 自动装箱与拆箱（Autoboxing and Unboxing）</h1>
+<h1 id="Java-自动装箱与拆箱（Autoboxing-and-Unboxing）"><a href="#Java-自动装箱与拆箱（Autoboxing-and-Unboxing）" class="headerlink" title="Java 自动装箱与拆箱（Autoboxing and Unboxing）"></a>Java 自动装箱与拆箱（Autoboxing and Unboxing）</h1><p>Java 自动装箱与拆箱（Autoboxing and Unboxing）作用于基本类型与其对应的包装类。将基本类型自动转换为其对应的包装类型，被称为自动装箱；将包装类型自动转换为其对应的基本类型，被称为自动拆箱。</p>
+<p>Java 编译器会将代码语句转换为其对应方法形式。</p>
+<pre><code class="java">public class Main {
+    public static void main(String[] args) {
+        Integer intObj = 200; /* Boxing */
+        /* Integer intObj = Integer.valueOf(200); */
+        int intVal = intObj;  /* Unboxing*/
+        /* int intVal = intObj.intValue(); */
+        System.out.println(&quot;intObj = &quot; + intObj);
+        System.out.println(&quot;intVal = &quot; + intVal);
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 自动装箱与拆箱示例</p>
+</blockquote>
+
                 <hr>
 <!--
                 <ul class="pager">
