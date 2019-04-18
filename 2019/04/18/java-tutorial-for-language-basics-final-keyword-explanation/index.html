@@ -167,11 +167,19 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-final-关键字"><a href="#Java-final-关键字" class="headerlink" title="Java final 关键字"></a>Java <code>final</code> 关键字</h1><p><code>final</code>是 Java 语言的关键字之一，<code>final</code>关键字可用于多个场景，在不同场景下具有不同的作用。</p>
+                <h1 id="Java-语言-final-关键字"><a href="#Java-语言-final-关键字" class="headerlink" title="Java 语言 final 关键字"></a>Java 语言 <code>final</code> 关键字</h1><p><code>final</code>是 Java 语言的关键字之一，<code>final</code>关键字可用于多个场景，在不同场景下具有不同的作用。</p>
 <p><img src="./final.png" alt="final"></p>
 <blockquote>
-<p>图：<code>final</code>几个使用场景</p>
+<p>图：<code>final</code>关键字几个使用场景</p>
 </blockquote>
+<ul>
+<li><p><code>final</code>修饰<strong>变量</strong>：被修饰变量必须先被初始化（赋值），初始化后不能修改值（常量）</p>
+</li>
+<li><p><code>final</code>修饰<strong>方法</strong>：被修饰方法无法被其子类重写或覆写</p>
+</li>
+<li><p><code>final</code>修饰<strong>类</strong>：被修饰类无法被继承，类中所有成员方法会被隐式地指定为<code>final</code>方法，成员变量不变</p>
+</li>
+</ul>
 
                 <hr>
 <!--
