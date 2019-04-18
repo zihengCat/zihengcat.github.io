@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2019/04/11/java-tutorial-for-language-basics-autoboxing-and-unboxing/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/04/18/java-tutorial-for-language-basics-final-keyword-explanation/">
     <title>
         
-          Java 基础教程系列 - 自动装箱与拆箱 - zihengCat
+          Java 基础教程系列 - final 关键字详解 - zihengCat
         
     </title>
 
@@ -147,11 +147,11 @@
                           <a class="tag" href="/tags/#Java Tutorial" title="Java Tutorial">Java Tutorial</a>
                         
                     </div>
-                    <h1>Java 基础教程系列 - 自动装箱与拆箱</h1>
-                    <h2 class="subheading">Java Tutorial for Language Basics - Autoboxing and Unboxing</h2>
+                    <h1>Java 基础教程系列 - final 关键字详解</h1>
+                    <h2 class="subheading">Java Tutorial for Language Basics - final Keyword Explanation</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2019-04-11
+                        2019-04-18
                     </span>
                 </div>
             </div>
@@ -167,195 +167,19 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-基本类型包装类（Primitive-Wrapper-Classes）"><a href="#Java-基本类型包装类（Primitive-Wrapper-Classes）" class="headerlink" title="Java 基本类型包装类（Primitive Wrapper Classes）"></a>Java 基本类型包装类（Primitive Wrapper Classes）</h1><p>在 Java 中，一切皆对象。Java 类库提供了基本类型（Primitive Types）的对象包装类（Primitive Wrapper Classes），位于<code>java.lang</code>包中。</p>
-<table>
-<thead>
-<tr>
-<th>基本类型（Primitive Type）</th>
-<th>包装类型（Wrapper Class）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>byte</code></td>
-<td><code>Byte</code></td>
-</tr>
-<tr>
-<td><code>short</code></td>
-<td><code>Short</code></td>
-</tr>
-<tr>
-<td><code>int</code></td>
-<td><code>Integer</code></td>
-</tr>
-<tr>
-<td><code>long</code></td>
-<td><code>Long</code></td>
-</tr>
-<tr>
-<td><code>float</code></td>
-<td><code>Float</code></td>
-</tr>
-<tr>
-<td><code>double</code></td>
-<td><code>Double</code></td>
-</tr>
-<tr>
-<td><code>char</code></td>
-<td><code>Character</code></td>
-</tr>
-<tr>
-<td><code>boolean</code></td>
-<td><code>Boolean</code></td>
-</tr>
-</tbody>
-</table>
+                <h1 id="Java-final-关键字"><a href="#Java-final-关键字" class="headerlink" title="Java final 关键字"></a>Java <code>final</code> 关键字</h1><p><code>final</code>是 Java 语言的关键字之一，<code>final</code>关键字可用于多个场景，在不同场景下具有不同的作用。</p>
+<p><img src="./final.png" alt="final"></p>
 <blockquote>
-<p>表：Java 基本类型包装类型对照表</p>
-</blockquote>
-<p>所有包装类型都是不可变类型（Immutable），有两种创建包装类型的方式。</p>
-<ul>
-<li><p>使用构造方法（Constructors）</p>
-</li>
-<li><p>使用<code>valueOf()</code>静态工厂方法</p>
-</li>
-</ul>
-<p>数值型包装类提供至少两枚构造方法：相应基本类型构造、字符串构造。字符型（Character）包装类提供一枚构造方法：接受一枚字符进行构造。</p>
-<pre><code class="java">public class Main {
-    public static void main(String args[]) {
-        /* Creates an Integer object from an int */
-        Integer intObj1 = new Integer(100);
-
-        /* Creates an Integer object from a String */
-        Integer intObj2 = new Integer(&quot;1234&quot;);
-
-        /* Creates a Double object from a double */
-        Double doubleObj1 = new Double(10.45);
-
-        /* Creates a Double object from a String */
-        Double doubleObj2 = new Double(&quot;1234.56&quot;);
-
-        /* Creates a Character object from a char */
-        Character charObj1 = new Character(&#39;A&#39;);
-
-        /* Creates a Boolean object from a boolean */
-        Boolean booleanObj1 = new Boolean(true);
-
-        /* Creates Boolean objects from Strings */
-        Boolean booleanTrue = new Boolean(&quot;true&quot;);
-        Boolean booleanFalse = new Boolean(&quot;false&quot;);
-    }
-}
-</code></pre>
-<blockquote>
-<p>代码清单：Java 包装类型构造方法示例</p>
-</blockquote>
-<p>静态工厂方法<code>valueOf()</code>是另一种创建包装类的方式。</p>
-<pre><code class="java">public class Main {
-    public static void main(String[] args) {
-        /* Creates an Integer object from an int */
-        Integer intObj1 = Integer.valueOf(100);
-
-        /* Creates an Integer object from a String */
-        Integer intObj2 = Integer.valueOf(&quot;1234&quot;);
-
-        /* Creates a Double object from a double */
-        Double doubleObj1 = Double.valueOf(10.45);
-
-        /* Creates a Double object from a String */
-        Double doubleObj2 = Double.valueOf(&quot;1234.60&quot;);
-
-        /* Creates a Character object from a char */
-        Character charObj1 = Character.valueOf(&#39;A&#39;);
-
-        /* Creates a Boolean object from a boolean */
-        Boolean booleanObj1 = Boolean.valueOf(true);
-
-        /* Creates Boolean objects from Strings */
-        Boolean booleanTrue = Boolean.valueOf(&quot;true&quot;);
-        Boolean booleanFalse = Boolean.valueOf(&quot;false&quot;);
-    }
-}
-</code></pre>
-<blockquote>
-<p>代码清单：Java 包装类型静态工厂方法示例</p>
-</blockquote>
-<p>为了取得更好的空间与时间效率，<code>JDK 9</code>以后，官方建议我们使用静态工厂方法<code>valueOf()</code>创建基本类型包装类，并将包装类型的构造方法（Constructors）都标注上了<code>@Deprecated(since=&quot;9&quot;)</code>。</p>
-<pre><code class="plain">Deprecated:
-It is rarely appropriate to use this constructor.
-The static factory valueOf(int) is generally a better choice,
-as it is likely to yield significantly better space and time performance.
-</code></pre>
-<blockquote>
-<p>注：<code>JDK 9</code>对于包装类构造方法（Constructors）的说明</p>
-</blockquote>
-<h1 id="Java-数值类型包装类（Numeric-Wrapper-Classes）"><a href="#Java-数值类型包装类（Numeric-Wrapper-Classes）" class="headerlink" title="Java 数值类型包装类（Numeric Wrapper Classes）"></a>Java 数值类型包装类（Numeric Wrapper Classes）</h1><p>Java 基本类型包装类中，<code>Byte</code>、<code>Short</code>、<code>Integer</code>、<code>Long</code>、<code>Float</code>、<code>Double</code>被称为数值类型包装类（Numeric Wrapper Classes）。它们都继承自<code>java.lang</code>包下的抽象类<code>Number</code>。</p>
-<p>所有 Java 数值类型包装类都包含着一些有用的常量（Constants）。<code>MIN_VALUE</code>与<code>MAX_VALUE</code>标示出该类型的上下界，例如：<code>Byte.MIN_VALUE</code>为<code>-128</code>，<code>Byte.MAX_VALUE</code>为<code>127</code>。<code>SIZE</code>标示出该类型所占用的比特（Bits）数，例如：<code>Byte.SIZE</code>为<code>8</code>，<code>Integer.SIZE</code>为<code>32</code>。</p>
-<p>Java 数值类型包装类包含六个方法，形如<code>xxxValue()</code>，<code>xxx</code>是六种基本数值类型之一（<code>byte</code>、<code>short</code>、<code>int</code>、<code>long</code>、<code>float</code>、<code>double</code>），方法返回基本数值类型。例如：<code>byteValue()</code>返回一枚<code>byte</code>，<code>intValue()</code>返回一枚<code>int</code>。</p>
-<pre><code class="java">public class Main {
-    public static void main(String[] args) {
-        /* Creates an Integer object */
-        Integer intObj = Integer.valueOf(100);
-
-        /* Gets byte from Integer */
-        byte b = intObj.byteValue();
-
-        /* Gets double from Integer */
-        double dd = intObj.doubleValue();
-        System.out.println(&quot;intObj = &quot; + intObj);
-        System.out.println(&quot;byte from intObj = &quot; + b);
-        System.out.println(&quot;double from intObj = &quot; + dd);
-
-        /* Creates a Double object */
-        Double doubleObj = Double.valueOf(&quot;12345.67&quot;);
-
-        /* Gets different types of primitive values from Double */
-        double d = doubleObj.doubleValue();
-        float f = doubleObj.floatValue();
-        int i = doubleObj.intValue();
-        long l = doubleObj.longValue();
-
-        System.out.println(&quot;doubleObj = &quot; + doubleObj);
-        System.out.println(&quot;double from doubleObj = &quot; + d);
-        System.out.println(&quot;float from doubleObj = &quot; + f);
-        System.out.println(&quot;int from doubleObj = &quot; + i);
-        System.out.println(&quot;long from doubleObj = &quot; + l);
-    }
-}
-</code></pre>
-<blockquote>
-<p>代码清单：Java 数值类型包装类方法示例</p>
-</blockquote>
-<h1 id="Java-自动装箱与拆箱（Autoboxing-and-Unboxing）"><a href="#Java-自动装箱与拆箱（Autoboxing-and-Unboxing）" class="headerlink" title="Java 自动装箱与拆箱（Autoboxing and Unboxing）"></a>Java 自动装箱与拆箱（Autoboxing and Unboxing）</h1><p>Java 自动装箱与拆箱（Autoboxing and Unboxing）作用于基本类型与其对应的包装类。将基本类型自动转换为其对应的包装类型，被称为自动装箱；将包装类型自动转换为其对应的基本类型，被称为自动拆箱。</p>
-<p>Java 编译器会将代码语句转换为其对应方法形式。</p>
-<pre><code class="java">public class Main {
-    public static void main(String[] args) {
-        Integer intObj = 200; /* Boxing */
-        /* Integer intObj = Integer.valueOf(200); */
-
-        int intVal = intObj;  /* Unboxing*/
-        /* int intVal = intObj.intValue(); */
-
-        System.out.println(&quot;intObj = &quot; + intObj);
-        System.out.println(&quot;intVal = &quot; + intVal);
-    }
-}
-</code></pre>
-<blockquote>
-<p>代码清单：Java 自动装箱与拆箱示例</p>
+<p>图：<code>final</code>几个使用场景</p>
 </blockquote>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/04/18/java-tutorial-for-language-basics-final-keyword-explanation/" data-toggle="tooltip" data-placement="top" title="Java 基础教程系列 - final 关键字详解">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/03/15/LeetCode-896-Monotonic-Array/" data-toggle="tooltip" data-placement="top" title="LeetCode - 896. 单调数组（Monotonic Array）">Next Post &rarr;</a>
+                            <a href="/2019/04/11/java-tutorial-for-language-basics-autoboxing-and-unboxing/" data-toggle="tooltip" data-placement="top" title="Java 基础教程系列 - 自动装箱与拆箱">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
