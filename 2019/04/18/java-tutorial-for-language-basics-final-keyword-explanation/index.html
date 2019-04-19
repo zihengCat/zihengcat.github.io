@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -184,9 +184,10 @@
 <p><code>final</code>变量必须被初始化，否则编译器将抛出编译时错误，且只能被初始化一次。</p>
 <p>C++ <code>const</code> 变量与 Java <code>final</code> 变量的异同：C++ 中的<code>const</code>变量必须在声明时赋值，而 Java 中的<code>final</code>变量可以先声明，稍后赋值，但只能赋值一次，两者赋值后都不能再修改变量值。</p>
 <h1 id="final-修饰方法"><a href="#final-修饰方法" class="headerlink" title="final 修饰方法"></a><code>final</code> 修饰方法</h1><p>使用<code>final</code>方法的原因有两个：一是将方法锁定，防止继承类修改；二是运行效率。</p>
-<p>当使用<code>final</code>关键字修饰方法时，该方法被称为<code>final</code>方法。<code>final</code>方法无法被覆盖（重写），如果你不希望继承类修改某方法的实现时，可声明此方法为<code>final</code>方法。</p>
+<p>当使用<code>final</code>关键字修饰方法时，该方法被称为<code>final</code>方法。<code>final</code>方法无法被覆盖（重写），如果你不希望继承类修改某方法的实现时，可声明此方法为<code>final</code>方法。类中的私有方法（private）隐式为<code>final</code>方法，无需添加关键字。<code>final</code>与<code>abstract</code>关键字永远不会在类或方法中同时出现。</p>
 <p>关于高效，JVM 早期实现中，如果将一个方法声明为<code>final</code>，即同意编译器将针对该方法的调用都转化为内联调用。而现代 JVM 设计实现（HotSpot）中，可以根据具体情况自动优化选择是否进行函数内联，这取决于编译器的编译优化策略。</p>
-<h1 id="final-修饰类"><a href="#final-修饰类" class="headerlink" title="final 修饰类"></a><code>final</code> 修饰类</h1>
+<h1 id="final-修饰类"><a href="#final-修饰类" class="headerlink" title="final 修饰类"></a><code>final</code> 修饰类</h1><p>当使用<code>final</code>关键字修饰一个类时，该类被称为<code>final</code>类。<code>final</code>类无法被继承，对象创建后也不可变（即：不可变类）。</p>
+
                 <hr>
 <!--
                 <ul class="pager">
