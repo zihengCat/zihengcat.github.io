@@ -182,7 +182,7 @@
 </ul>
 <h1 id="final-修饰变量"><a href="#final-修饰变量" class="headerlink" title="final 修饰变量"></a><code>final</code> 修饰变量</h1><p>当使用<code>final</code>关键字修饰类成员变量或局部变量后，变量值就不能被再次修改，<strong>如果<code>final</code>修饰引用变量，则表示该变量无法重新绑定到新的对象，但是可以更改该引用变量指向对象的内部状态。</strong> <code>final</code>与<code>static</code>配合使用，可以创建<strong>类常量</strong>。</p>
 <p><code>final</code>变量必须被初始化，否则编译器将抛出编译时错误，且只能被初始化一次。</p>
-<p>C++ <code>const</code> 变量与 Java <code>final</code> 变量的异同：C++ 中的<code>const</code>变量必须在声明时赋值，而 Java 中的<code>final</code>变量，可以先声明，稍后赋值，但只能赋值一次，赋值后都不能修改变量值。</p>
+<p>C++ <code>const</code> 变量与 Java <code>final</code> 变量的异同：C++ 中的<code>const</code>变量必须在声明时赋值，而 Java 中的<code>final</code>变量可以先声明，稍后赋值，但只能赋值一次，两者赋值后都不能再修改变量值。</p>
 <h1 id="final-修饰方法"><a href="#final-修饰方法" class="headerlink" title="final 修饰方法"></a><code>final</code> 修饰方法</h1><p>使用<code>final</code>方法的原因有两个：一是将方法锁定，防止继承类修改；二是运行效率。</p>
 <p>当使用<code>final</code>关键字修饰方法时，该方法被称为<code>final</code>方法。<code>final</code>方法无法被覆盖（重写），如果你不希望继承类修改某方法的实现时，可声明此方法为<code>final</code>方法。</p>
 <p>关于高效，JVM 早期实现中，如果将一个方法声明为<code>final</code>，即同意编译器将针对该方法的调用都转化为内联调用。而现代 JVM 设计实现（HotSpot）中，可以根据具体情况自动优化选择是否进行函数内联，这取决于编译器的编译优化策略。</p>
