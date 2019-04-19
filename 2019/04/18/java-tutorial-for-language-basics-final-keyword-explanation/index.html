@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/tags/">
                                 Tags
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/about/">
                                 About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -187,6 +187,16 @@
 <p>当使用<code>final</code>关键字修饰方法时，该方法被称为<code>final</code>方法。<code>final</code>方法无法被覆盖（重写），如果你不希望继承类修改某方法的实现时，可声明此方法为<code>final</code>方法。类中的私有方法（private）隐式为<code>final</code>方法，无需添加关键字。<code>final</code>与<code>abstract</code>关键字永远不会在类或方法中同时出现。</p>
 <p>关于高效，JVM 早期实现中，如果将一个方法声明为<code>final</code>，即同意编译器将针对该方法的调用都转化为内联调用。而现代 JVM 设计实现（HotSpot）中，可以根据具体情况自动优化选择是否进行函数内联，这取决于编译器的编译优化策略。</p>
 <h1 id="final-修饰类"><a href="#final-修饰类" class="headerlink" title="final 修饰类"></a><code>final</code> 修饰类</h1><p>当使用<code>final</code>关键字修饰一个类时，该类被称为<code>final</code>类。<code>final</code>类无法被继承，对象创建后也不可变（即：不可变类）。</p>
+<p>Java 语言中所有的包装类都是<code>final</code>类，字符串<code>String</code>类也是<code>final</code>类。</p>
+<h1 id="final-优化编码"><a href="#final-优化编码" class="headerlink" title="final 优化编码"></a><code>final</code> 优化编码</h1><p>使用<code>final</code>关键字在效率上的作用可以总结为以下三点：</p>
+<ul>
+<li><p>缓存：<code>final</code>配合<code>static</code>关键字形成常量，提高代码性能。</p>
+</li>
+<li><p>同步：<code>final</code>变量或对象是只读的，可以安全的在多线程环境下进行共享，不需要额外的同步开销。</p>
+</li>
+<li><p>内联：JVM 可显式对<code>final</code>关键字修饰的变量、方法及类进行内联优化。</p>
+</li>
+</ul>
 
                 <hr>
 <!--
