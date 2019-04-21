@@ -211,9 +211,22 @@ class Test {
 }
 </code></pre>
 <blockquote>
-<p>代码清单：使用「类型字面量」创建 <code>Class</code> 类实例</p>
+<p>代码清单：使用「类型字面量」创建<code>Class</code>类实例</p>
 </blockquote>
 <p>Java 父类<code>java.lang.Object</code>有一枚<code>getClass()</code>方法，对于某个类对象，可以使用<code>getClass()</code>获取<code>Class</code>类实例。</p>
+<pre><code class="java">class Test {
+    // ...
+}
+public class Main {
+    public static void main(String[] args) {
+        Test testRef = new Test();
+        Class testClass = testRef.getClass();
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：使用「<code>getClass()</code>方法」创建<code>Class</code>类实例</p>
+</blockquote>
 
                 <hr>
 <!--
