@@ -229,6 +229,12 @@ public class Main {
 <p>代码清单：使用「<code>getClass()</code>方法」创建<code>Class</code>类实例</p>
 </blockquote>
 <p><code>Class</code>类静态方法<code>forName()</code>接受类全名，JVM 加载类后返回<code>Class</code>类实例的引用，如果该类已经被 JVM 加载，则直接返回<code>Class</code>类实例。</p>
+<pre><code class="plain">Class&lt;?&gt; forName(String className)
+Class&lt;?&gt; forName(String name, boolean initialize, ClassLoader loader)
+</code></pre>
+<blockquote>
+<p>代码清单：<code>forName()</code>重载方法</p>
+</blockquote>
 <pre><code class="java">class TestClass {
     static {
         System.out.println(&quot;Loading class TestClass...&quot;);
