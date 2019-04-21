@@ -167,8 +167,18 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <p>Java 类<code>java.lang.Class</code></p>
-
+                <h1 id="Class-类"><a href="#Class-类" class="headerlink" title="Class 类"></a><code>Class</code> 类</h1><p>Java 类<code>java.lang.Class</code>是对 JVM 载入类的抽象，一枚<code>Class</code>类实例即表示程序运行时 JVM 载入的某个类，<code>Class</code>类是 Java 反射机制（Reflection）的核心。</p>
+<p><code>Class</code>类是一个泛型（Generics）类，接受一个类型参数，例如：<code>Class&lt;Boolean&gt;</code>表示<code>Boolean</code>对象的类型信息，<code>Class&lt;?&gt;</code>表示某未知类型信息。</p>
+<p>创建<code>Class</code>实例一般有如下三种方式：</p>
+<ul>
+<li><p>使用类型字面量</p>
+</li>
+<li><p>使用<code>getClass()</code>方法（对象）</p>
+</li>
+<li><p>使用<code>forName()</code>方法（类）</p>
+</li>
+</ul>
+<h1 id="创建Class类实例"><a href="#创建Class类实例" class="headerlink" title="创建Class类实例"></a>创建<code>Class</code>类实例</h1>
                 <hr>
 <!--
                 <ul class="pager">
