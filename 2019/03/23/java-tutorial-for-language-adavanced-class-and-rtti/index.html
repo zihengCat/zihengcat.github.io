@@ -178,7 +178,42 @@
 <li><p>使用<code>forName()</code>方法（类）</p>
 </li>
 </ul>
-<h1 id="创建Class类实例"><a href="#创建Class类实例" class="headerlink" title="创建Class类实例"></a>创建<code>Class</code>类实例</h1>
+<h1 id="创建-Class-类实例"><a href="#创建-Class-类实例" class="headerlink" title="创建 Class 类实例"></a>创建 <code>Class</code> 类实例</h1><p>每一个类都持有其对应的<code>Class</code>类的对象引用，我们可以直接使用<code>类型.class</code>获取某类的<code>Class</code>类实例。</p>
+<pre><code class="java">public class Main {
+    public static void main(String[] args) {
+        Class&lt;?&gt; c = null;
+        /* Get Class object
+           using class literal */
+        c = void.class;
+        c = Void.TYPE;
+        c = boolean.class;
+        c = Boolean.TYPE;
+        c = char.class;
+        c = Character.TYPE;
+        c = byte.class;
+        c = Byte.TYPE;
+        c = short.class;
+        c = Short.TYPE ;
+        c = int.class;
+        c = Integer.TYPE;
+        c = long.class;
+        c = Long.TYPE;
+        c = float.class;
+        c = Float.TYPE;
+        c = double.class;
+        c = Double.TYPE;
+        c = Test.class;
+        System.out.println(c);
+    }
+}
+class Test {
+    // ...
+}
+</code></pre>
+<blockquote>
+<p>代码清单：使用类型字面量创建 <code>Class</code> 类实例</p>
+</blockquote>
+
                 <hr>
 <!--
                 <ul class="pager">
