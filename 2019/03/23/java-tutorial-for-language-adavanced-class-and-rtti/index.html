@@ -221,11 +221,40 @@ public class Main {
     public static void main(String[] args) {
         Test testRef = new Test();
         Class testClass = testRef.getClass();
+        System.out.println(testClass);
     }
 }
 </code></pre>
 <blockquote>
 <p>代码清单：使用「<code>getClass()</code>方法」创建<code>Class</code>类实例</p>
+</blockquote>
+<p><code>Class</code>类静态方法<code>forName()</code>接受类全名，JVM 加载类后返回<code>Class</code>类实例的引用，如果该类已经被 JVM 加载，则直接返回<code>Class</code>类实例。</p>
+<pre><code class="java">class TestClass {
+    static {
+        System.out.println(&quot;Loading class TestClass...&quot;);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        try {
+            /*
+            String className = &quot;TestClass&quot;;
+            Boolean initialize = false;
+            ClassLoader classLoader = Main.class.getClassLoader();
+            Class c = Class.forName(className, initialize, classLoader);
+            */
+            System.out.println(&quot;About to load...&quot;);
+            /* Will load and initialize the class */
+            c = Class.forName(className);
+            System.out.println(c);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：使用「<code>forName()</code>方法」创建<code>Class</code>类实例</p>
 </blockquote>
 
                 <hr>
