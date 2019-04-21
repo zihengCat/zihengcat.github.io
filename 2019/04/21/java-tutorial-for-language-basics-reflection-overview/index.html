@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2019/04/18/java-tutorial-for-language-basics-final-keyword-explanation/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/04/21/java-tutorial-for-language-basics-reflection-overview/">
     <title>
         
-          Java 基础教程系列 - final 关键字详解 - zihengCat
+          Java 基础教程系列 - 反射概览 - zihengCat
         
     </title>
 
@@ -147,11 +147,11 @@
                           <a class="tag" href="/tags/#Java Tutorial" title="Java Tutorial">Java Tutorial</a>
                         
                     </div>
-                    <h1>Java 基础教程系列 - final 关键字详解</h1>
-                    <h2 class="subheading">Java Tutorial for Language Basics - final Keyword Explanation</h2>
+                    <h1>Java 基础教程系列 - 反射概览</h1>
+                    <h2 class="subheading">Java Tutorial for Language Basics - Reflection Overview</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2019-04-18
+                        2019-04-21
                     </span>
                 </div>
             </div>
@@ -167,34 +167,64 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-语言-final-关键字"><a href="#Java-语言-final-关键字" class="headerlink" title="Java 语言 final 关键字"></a>Java 语言 <code>final</code> 关键字</h1><p><code>final</code>是 Java 语言的关键字之一，<code>final</code>关键字可用于多个场景，在不同场景下具有不同的作用。</p>
-<p><img src="./final.png" alt="final"></p>
+                <h1 id="什么是反射（Reflection）"><a href="#什么是反射（Reflection）" class="headerlink" title="什么是反射（Reflection）"></a>什么是反射（Reflection）</h1><p>反射机制（Reflection）是一种在程序运行时查看或修改程序运行状态的方法。</p>
+<p>传统意义上，我们认为 Java 是一门静态语言，但是 Java 提供了反射机制，可以在程序运行时（Runtime）动态获取某个类的相关信息：字段（Fields）、修饰符（Modifiers）、方法（Methods）、父类（Superclass）等。</p>
+<p>我们可以使用 Java 反射机制动态创建类实例，调用方法，获取/设置字段。但是我们不能改变类的数据结构（例：运行时为某类添加新字段），也不能改变类的方法实现（例：运行时为某类添加新方法）。</p>
+<h1 id="反射-API（Reflection-API）"><a href="#反射-API（Reflection-API）" class="headerlink" title="反射 API（Reflection API）"></a>反射 API（Reflection API）</h1><p>Java 语言的反射机制以一系列反射 API 的形式提供给开发者使用，大部分反射 API 类/接口 位于<code>java.lang.reflect</code>包中，核心<code>Class</code>类位于<code>java.lang</code>包中。</p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>java.lang.Class</code></td>
+<td>表示 JVM 加载的某个类</td>
+</tr>
+<tr>
+<td><code>java.lang.reflect.Field</code></td>
+<td>表示类/接口字段</td>
+</tr>
+<tr>
+<td><code>java.lang.reflect.Constructor</code></td>
+<td>表示类构造器</td>
+</tr>
+<tr>
+<td><code>java.lang.reflect.Method</code></td>
+<td>表示类/接口方法</td>
+</tr>
+<tr>
+<td><code>java.lang.reflect.Modifier</code></td>
+<td>表示类成员修饰符</td>
+</tr>
+<tr>
+<td><code>java.lang.reflect.Array</code></td>
+<td>运行时创建数组</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>图：<code>final</code>关键字几个使用场景</p>
+<p>表：Java 常用反射 API 类</p>
 </blockquote>
+<h1 id="反射的使用场景"><a href="#反射的使用场景" class="headerlink" title="反射的使用场景"></a>反射的使用场景</h1><p>使用 Java 反射机制，我们可以做到很多事情。</p>
 <ul>
-<li><p><code>final</code>修饰<strong>变量</strong>：被修饰变量必须先被初始化（赋值），初始化后不能修改值（常量）。</p>
+<li><p>获取对象的类名</p>
 </li>
-<li><p><code>final</code>修饰<strong>方法</strong>：被修饰方法无法被其子类重写或覆写。</p>
+<li><p>获取类全名，访问修饰符等</p>
 </li>
-<li><p><code>final</code>修饰<strong>类</strong>：被修饰类无法被继承，类中所有成员方法会被隐式指定为<code>final</code>方法，成员变量不变。</p>
+<li><p>获取类字段</p>
 </li>
-</ul>
-<h1 id="final-修饰变量"><a href="#final-修饰变量" class="headerlink" title="final 修饰变量"></a><code>final</code> 修饰变量</h1><p>当使用<code>final</code>关键字修饰类成员变量或局部变量后，变量值就不能被再次修改，<strong>如果<code>final</code>修饰引用变量，则表示该变量无法重新绑定到新的对象，但是可以更改该引用变量指向对象的内部状态。</strong> <code>final</code>与<code>static</code>配合使用，可以创建<strong>类常量</strong>。</p>
-<p><code>final</code>变量必须被初始化，否则编译器将抛出编译时错误，且只能被初始化一次。</p>
-<p>C++ 中<code>const</code>变量与 Java 中<code>final</code>变量的异同：C++ 中的<code>const</code>变量必须在声明时赋值，而 Java 中的<code>final</code>变量可以先声明，稍后赋值，但只能赋值一次，两者赋值后都不能再修改变量值。</p>
-<h1 id="final-修饰方法"><a href="#final-修饰方法" class="headerlink" title="final 修饰方法"></a><code>final</code> 修饰方法</h1><p>使用<code>final</code>方法的原因有两个：一是将方法锁定，防止继承类修改；二是运行效率。</p>
-<p>当使用<code>final</code>关键字修饰方法时，该方法被称为<code>final</code>方法。<code>final</code>方法无法被覆盖（重写），如果你不希望继承类修改某方法的实现时，可声明此方法为<code>final</code>方法。类中的私有方法（private）隐式为<code>final</code>方法，无需添加关键字。<code>final</code>与<code>abstract</code>关键字永远不会在类或方法中同时出现。</p>
-<p>关于高效，JVM 早期实现中，如果将一个方法声明为<code>final</code>，即同意编译器将针对该方法的调用都转化为内联调用。而现代 JVM 设计实现（HotSpot）中，可以根据具体情况自动优化选择是否进行函数内联，这取决于编译器的编译优化策略。</p>
-<h1 id="final-修饰类"><a href="#final-修饰类" class="headerlink" title="final 修饰类"></a><code>final</code> 修饰类</h1><p>当使用<code>final</code>关键字修饰一个类时，该类被称为<code>final</code>类。<code>final</code>类无法被继承，对象创建后也不可变（即：不可变类）。</p>
-<p>Java 语言中所有的包装类都是<code>final</code>类，字符串<code>String</code>类也是<code>final</code>类。</p>
-<h1 id="final-优化编码"><a href="#final-优化编码" class="headerlink" title="final 优化编码"></a><code>final</code> 优化编码</h1><p>使用<code>final</code>关键字在效率上的作用可以总结为以下三点：</p>
-<ul>
-<li><p>缓存：<code>final</code>配合<code>static</code>关键字形成常量，提高代码性能。</p>
+<li><p>获取类方法，方法的参数、返回值类型、参数名（JDK 8）等</p>
 </li>
-<li><p>同步：<code>final</code>变量或对象是只读的，可以安全的在多线程环境下进行共享，不需要额外的同步开销。</p>
+<li><p>获取类所有构造方法</p>
 </li>
-<li><p>内联：JVM 可显式对<code>final</code>关键字修饰的变量、方法及类进行内联优化。</p>
+<li><p>调用类构造方法创建类实例</p>
+</li>
+<li><p>调用类方法</p>
+</li>
+<li><p>运行时动态创建数组对象，修改数组元素</p>
 </li>
 </ul>
 
@@ -202,13 +232,9 @@
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/04/21/java-tutorial-for-language-basics-reflection-overview/" data-toggle="tooltip" data-placement="top" title="Java 基础教程系列 - 反射概览">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/04/11/java-tutorial-for-language-basics-autoboxing-and-unboxing/" data-toggle="tooltip" data-placement="top" title="Java 基础教程系列 - 自动装箱与拆箱">Next Post &rarr;</a>
+                            <a href="/2019/04/18/java-tutorial-for-language-basics-final-keyword-explanation/" data-toggle="tooltip" data-placement="top" title="Java 基础教程系列 - final 关键字详解">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
