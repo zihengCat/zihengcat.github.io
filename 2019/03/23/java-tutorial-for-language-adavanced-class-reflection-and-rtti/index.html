@@ -264,7 +264,7 @@ public class Main {
 </blockquote>
 <h1 id="Class-类反射-API"><a href="#Class-类反射-API" class="headerlink" title="Class 类反射 API"></a><code>Class</code> 类反射 API</h1><p>了解如何创建<code>Class</code>类实例后，我们来看一看<code>Class</code>类自带的反射 API 方法。</p>
 <p>我们可以使用<code>Class</code>类反射 API 方法获取到类信息，如：类全名、类访问修饰符等等。</p>
-<p>使用<code>getName()</code>方法可以获取某个类的类全名，使用<code>getSimpleName()</code>方法可以获取某个类的简单类名。</p>
+<p>使用<code>getName()</code>方法可以获取某个类的类全名，使用<code>getSimpleName()</code>方法可以获取某个类的直接类名。</p>
 <p>使用<code>getSuperclass()</code>方法可以获取某个类的父类，由于 Java 不支持多继承，一个类只能继承一个父类，单继承上推直至<code>java.lang.Object</code>，对<code>Object</code>类运用此方法，会返回<code>null</code>。</p>
 <p>使用<code>getModifiers()</code>方法获取类修饰符（例：<code>final</code>、<code>abstract</code>、<code>public</code>），<code>getModifiers()</code>方法的返回值是整型（Integer），可以使用<code>java.lang.reflect.Modifier.toString(int mod)</code>方法取得修饰符的文本表示形式。</p>
 <p>使用<code>getInterfaces()</code>方法获取某个类实现的所有接口（Interfaces），返回值为<code>Class[]</code>。</p>
