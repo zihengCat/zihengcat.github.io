@@ -264,10 +264,123 @@ public class Main {
 </blockquote>
 <h1 id="Class-类反射-API-方法"><a href="#Class-类反射-API-方法" class="headerlink" title="Class 类反射 API 方法"></a><code>Class</code> 类反射 API 方法</h1><p>了解如何创建<code>Class</code>类实例后，我们来看一看<code>Class</code>类自带的反射 API 方法。</p>
 <p>我们可以使用<code>Class</code>类反射 API 方法获取到类信息，如：类全名、类访问修饰符等等。</p>
-<p>使用<code>getSimpleName()</code>方法可以获取类名。</p>
+<p>使用<code>getSimpleName()</code>方法可以获取某个类的类名。</p>
 <p>使用<code>getSuperclass()</code>方法可以获取某个类的父类，由于 Java 不支持多继承，一个类只能继承一个父类，单继承上推直至<code>java.lang.Object</code>，对<code>Object</code>类运用此方法，则返回<code>null</code>。</p>
-<p>使用<code>getModifiers()</code>方法获取类修饰符（例：<code>final</code>、<code>abstract</code>、<code>public</code>），<code>getModifiers()</code>方法返回值是整型（Integer），可以使用<code>java.lang.reflect.Modifier.toString(int mod)</code>取得修饰符的文本表示形式。</p>
-<p>使用<code>getInterfaces()</code>方法获取该类实现的所有接口（Interfaces），返回值为<code>Class[]</code>。</p>
+<p>使用<code>getModifiers()</code>方法获取类修饰符（例：<code>final</code>、<code>abstract</code>、<code>public</code>），<code>getModifiers()</code>方法返回值是整型（Integer），可以使用<code>java.lang.reflect.Modifier.toString(int mod)</code>方法取得修饰符的文本表示形式。</p>
+<p>使用<code>getInterfaces()</code>方法获取某个类实现的所有接口（Interfaces），返回值为<code>Class[]</code>。</p>
+<p>以下实例展示了如何使用反射机制动态获取运行时类型信息（RTTI）。</p>
+<pre><code class="java">import java.lang.Cloneable;
+import java.io.Serializable;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.TypeVariable;
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(getClassDescription(TestInterface.class));
+        System.out.println(getClassDescription(TestClass.class));
+    }
+    public static String getClassDescription(Class cls) {
+        StringBuilder classDesciption = new StringBuilder();
+        Integer modifierBits = 0;
+        String typeKeyword = &quot;&quot;;
+        if (cls.isInterface()) {
+            modifierBits =
+            cls.getModifiers() &amp; Modifier.interfaceModifiers();
+            if (cls.isAnnotation()) {
+                typeKeyword = &quot;@interface&quot;;
+            } else {
+                typeKeyword = &quot;interface&quot;;
+            }
+        } else if (cls.isEnum()) {
+            modifierBits =
+            cls.getModifiers() &amp; Modifier.classModifiers();
+            typeKeyword = &quot;enum&quot;;
+        } else {
+            modifierBits =
+            cls.getModifiers() &amp; Modifier.classModifiers();
+            typeKeyword = &quot;class&quot;;
+        }
+        /* Detect class Modifiers */
+        String modifiers = Modifier.toString(modifierBits);
+        classDesciption.append(modifiers);
+        /* Detect class Type Keyword */
+        classDesciption.append(&quot; &quot; + typeKeyword);
+        /* Detect class Simple Name */
+        String simpleName = cls.getSimpleName();
+        classDesciption.append(&quot; &quot; + simpleName);
+        /* Detect class Generic Parms */
+        String genericParms = getGenericTypeParams(cls);
+        classDesciption.append(genericParms);
+        /* Detect class Super Class */
+        Class superClass = cls.getSuperclass();
+        if (superClass != null) {
+            String superClassSimpleName = superClass.getSimpleName();
+            classDesciption.append(&quot; extends &quot; + superClassSimpleName);
+        }
+        /* Detect class Interfaces */
+        String interfaces = getClassInterfaces(cls);
+        if (interfaces != null) {
+            classDesciption.append(
+                interfaces.equals(&quot;&quot;) ?
+                interfaces : &quot; implements &quot; + interfaces
+            );
+        }
+        /* RTTI about class */
+        return classDesciption.toString();
+    }
+    public static String getGenericTypeParams(Class cls) {
+        StringBuilder sb = new StringBuilder();
+        TypeVariable&lt;?&gt;[] typeParms = cls.getTypeParameters();
+        if (typeParms.length &gt; 0) {
+            String[] paramNames = new String[typeParms.length];
+            for (int i = 0; i &lt; typeParms.length; i++) {
+                paramNames[i] = typeParms[i].getTypeName();
+            }
+            sb.append(&#39;&lt;&#39;);
+            String parmsList = String.join(&quot;,&quot;, paramNames);
+            sb.append(parmsList);
+            sb.append(&#39;&gt;&#39;);
+        }
+        return sb.toString();
+    }
+    public static String getClassInterfaces(Class cls) {
+        Class[] interfaces = cls.getInterfaces();
+        String interfacesList = &quot;&quot;;
+        if (interfaces.length &gt; 0) {
+            String[] interfaceNames = new String[interfaces.length];
+            for (int i = 0; i &lt; interfaces.length; i++) {
+                interfaceNames[i] = interfaces[i].getSimpleName();
+            }
+            interfacesList = String.join(&quot;, &quot;, interfaceNames);
+        }
+        return interfacesList;
+    }
+}
+abstract interface TestInterface&lt;T&gt; {
+    public Integer id = -1;
+    public T sayHello(String str);
+}
+final class TestClass&lt;K, V&gt; implements Cloneable, Serializable {
+    private Integer id = -1;
+    private String name = &quot;Unknown&quot;;
+    public TestClass(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+    public String toString() {
+        return &quot;TestClass: id=&quot; + this.id + &quot;, name=&quot; + this.name;
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 反射动态获取类型信息（RTTI）</p>
+</blockquote>
 
                 <hr>
 <!--
