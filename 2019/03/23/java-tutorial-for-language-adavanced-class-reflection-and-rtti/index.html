@@ -167,7 +167,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Class-类"><a href="#Class-类" class="headerlink" title="Class 类"></a><code>Class</code> 类</h1><p>Java 类<code>java.lang.Class</code>是对 JVM 载入类的抽象，一枚<code>Class</code>类实例即表示程序运行时 JVM 载入的某个类，<code>Class</code>类是 Java 反射机制（Reflection）的核心。</p>
+                <h1 id="Class-类"><a href="#Class-类" class="headerlink" title="Class 类"></a><code>Class</code> 类</h1><p>Java 类<code>java.lang.Class</code>是对 Java 虚拟机（JVM）载入类型信息的抽象，一枚<code>Class</code>类实例即表示程序运行时 JVM 载入的某个类，<code>Class</code>类是 Java 反射机制（Reflection）的核心。</p>
 <p><code>Class</code>类是一个泛型（Generics）类，接受一个类型参数，例如：<code>Class&lt;Boolean&gt;</code>表示<code>Boolean</code>对象的类型信息，<code>Class&lt;?&gt;</code>表示某未知类型信息。</p>
 <p>创建<code>Class</code>实例一般有如下三种方式：</p>
 <ul>
@@ -178,7 +178,7 @@
 <li><p>使用<code>forName()</code>方法（类）</p>
 </li>
 </ul>
-<h1 id="创建-Class-类实例"><a href="#创建-Class-类实例" class="headerlink" title="创建 Class 类实例"></a>创建 <code>Class</code> 类实例</h1><p>每一个类都持有其对应的<code>Class</code>类的对象引用，我们可以直接使用<code>类型.class</code>获取某类的<code>Class</code>类实例。</p>
+<h1 id="创建-Class-类实例"><a href="#创建-Class-类实例" class="headerlink" title="创建 Class 类实例"></a>创建 <code>Class</code> 类实例</h1><p>每一个类都持有其对应的<code>Class</code>类的对象引用，我们可以直接使用<code>类型名.class</code>获取某类的<code>Class</code>类实例。</p>
 <pre><code class="java">public class Main {
     public static void main(String[] args) {
         Class&lt;?&gt; c = null;
