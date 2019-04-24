@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -151,6 +151,27 @@
          col-xs-12
          post-container">
     <!-- Main Content -->
+
+<div class="post-preview">
+
+    <a href="/2017/08/26/Git实用技巧-配置credential-helper/">
+        <h2 class="post-title">
+            Git 实用技巧 - 配置 credential.helper
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言Git的数据交换协议有SSH与HTTP。使用ssh协议，我们需要在本地配置ssh key，这样一来，每次与服务器代码同步就不需要输入用户名和密码了。使用http不需要配置，但在每次代码同步时需要我们手动输入用户名和密码，操作比较繁琐。我们可以使用git credential helper来简化用户名和密码的输入过程。
+GitHub 免用户名密码同步我们以最常用的GitHub为例，配置Gi......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2017-08-26
+    </p>
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -361,36 +382,6 @@ macOS系统网络配置文件路径：/L......
     <p class="post-meta">
         Posted by zihengCat on
         2017-07-30
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/07/29/C知识汇总-代码风格/">
-        <h2 class="post-title">
-            C知识汇总-代码风格
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            空白与缩进空白
-关键字if、while、for与其后的控制表达式的(括号之间插入一个空格分隔，但括号内的表达式应紧贴括号。while (1);
-
-双目运算符的两侧各插入一个空格分隔，单目运算符和操作数之间不加空格。i = i + 1;
-++i;
-!(i &lt; 1);
--x; 
-&amp;a[1];
-
-后缀运算符和操作数之间不加空格。s.a           /* 取结构体成员 */
-f......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-07-29
     </p>
 </div>
 <hr>

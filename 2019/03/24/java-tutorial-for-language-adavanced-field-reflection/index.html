@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2019/03/04/spark-sql-savemode-overview/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/03/24/java-tutorial-for-language-adavanced-field-reflection/">
     <title>
         
-          Spark SQL 存储模式（SaveMode）概览 - zihengCat
+          Java 高级教程系列 - 类字段反射 - zihengCat
         
     </title>
 
@@ -142,16 +142,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#BigData" title="BigData">BigData</a>
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
-                          <a class="tag" href="/tags/#Spark" title="Spark">Spark</a>
+                          <a class="tag" href="/tags/#Java Tutorial" title="Java Tutorial">Java Tutorial</a>
                         
                     </div>
-                    <h1>Spark SQL 存储模式（SaveMode）概览</h1>
-                    <h2 class="subheading">Spark SQL SaveMode Overview</h2>
+                    <h1>Java 高级教程系列 - 类字段反射</h1>
+                    <h2 class="subheading">Java Tutorial for Language Adavanced - Field Reflection</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2019-03-04
+                        2019-03-24
                     </span>
                 </div>
             </div>
@@ -167,52 +167,35 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文对 Spark SQL 几种存储模式（SaveMode）做整理。</p>
-<h1 id="Spark-SQL-存储模式（SaveMode）"><a href="#Spark-SQL-存储模式（SaveMode）" class="headerlink" title="Spark SQL 存储模式（SaveMode）"></a>Spark SQL 存储模式（SaveMode）</h1><p>Spark SQL 存储模式（SaveMode）枚举类型（Enum）位于<code>org.apache.spark.sql.SaveMode</code>中，有4种模式，默认为<code>ErrorIfExists</code>模式。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">存储模式</th>
-<th>解释说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>ErrorIfExists</code></td>
-<td>默认模式，如果表已存在，直接报错</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>Append</code></td>
-<td>追加模式，如果表已存在，追加数据至该表中；如果表不存在，则先创建表，再写入数据</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>Overwrite</code></td>
-<td>覆写模式，如果表已存在，删除已有表及其数据，重新创建该表，写入新数据</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>Ignore</code></td>
-<td>跳过模式，如果表已存在，则不写入新数据，不报错</td>
-</tr>
-</tbody>
-</table>
+                <h1 id="类字段反射（Field-Reflection）"><a href="#类字段反射（Field-Reflection）" class="headerlink" title="类字段反射（Field Reflection）"></a>类字段反射（Field Reflection）</h1><p>我们可以使用<code>java.lang.reflect.Field</code>反射取得某个类中的字段（Field）信息。</p>
+<p>Java 核心<code>Class</code>类提供的字段类型信息的反射 API 如下所示。</p>
+<pre><code class="plain">Field[] getFields()
+Field[] getDeclaredFields()
+Field getField(String name)
+Field getDeclaredField(String name)
+</code></pre>
 <blockquote>
-<p>表：Spark SQL 存储模式（SaveMode）概览</p>
+<p>代码清单：<code>Class</code>字段（Field）信息反射 API</p>
 </blockquote>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>Spark Java Doc: <a href="http://spark.apache.org/docs/latest/api/java/index.html?org/apache/spark/sql/SaveMode.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/api/java/index.html?org/apache/spark/sql/SaveMode.html</a></li>
-</ul>
+<p><code>getFields()</code>方法返回类中声明的访问属性为<code>public</code>的字段，包括从父类继承的公开字段，返回值为字段对象数组<code>Field[]</code>。<code>getDeclaredFields()</code>方法返回类中所有声明的字段（<code>public</code>、private、<code>protected</code>），但<strong>不包括</strong>从父类继承的字段，返回值为字段对象数组<code>Field[]</code>。<code>getField(String name)</code>和<code>getDeclaredField(String name)</code>即按字段名获取单个字段对象<code>Field</code>，如果字段不存在，则抛出<code>NoSuchFieldException</code>异常。</p>
+<pre><code class="java">
+
+</code></pre>
+<blockquote>
+<p>代码清单：类字段（Field）反射示例</p>
+</blockquote>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/03/15/LeetCode-896-Monotonic-Array/" data-toggle="tooltip" data-placement="top" title="LeetCode - 896. 单调数组（Monotonic Array）">&larr; Previous Post</a>
+                            <a href="/2019/04/11/java-tutorial-for-language-basics-autoboxing-and-unboxing/" data-toggle="tooltip" data-placement="top" title="Java 基础教程系列 - 自动装箱与拆箱">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/02/22/Git实用技巧-克隆巨大代码库/" data-toggle="tooltip" data-placement="top" title="Git 实用技巧 - 克隆巨大代码仓库">Next Post &rarr;</a>
+                            <a href="/2019/03/23/java-tutorial-for-language-adavanced-class-reflection-and-rtti/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - 反射 Class 类型信息">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -246,9 +229,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#BigData" title="BigData">BigData</a>
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
-                          <a class="tag" href="/tags/#Spark" title="Spark">Spark</a>
+                          <a class="tag" href="/tags/#Java Tutorial" title="Java Tutorial">Java Tutorial</a>
                         
                     </div>
                 </section>
