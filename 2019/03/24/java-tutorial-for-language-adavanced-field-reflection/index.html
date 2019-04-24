@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -177,7 +177,9 @@ Field getDeclaredField(String name)
 <blockquote>
 <p>代码清单：<code>Class</code>字段（Field）信息反射 API</p>
 </blockquote>
-<p><code>getFields()</code>方法返回类中声明的访问属性为<code>public</code>的字段，包括从父类继承的公开字段，返回值为字段对象数组<code>Field[]</code>。<code>getDeclaredFields()</code>方法返回类中所有声明的字段（<code>public</code>、private、<code>protected</code>），但<strong>不包括</strong>从父类继承的字段，返回值为字段对象数组<code>Field[]</code>。<code>getField(String name)</code>和<code>getDeclaredField(String name)</code>即按字段名获取单个字段对象<code>Field</code>，如果字段不存在，则抛出<code>NoSuchFieldException</code>异常。</p>
+<p><code>getFields()</code>方法返回类中声明的访问属性为<code>public</code>的字段，包括从父类继承的公开字段，返回值为字段对象数组<code>Field[]</code>。</p>
+<p><code>getDeclaredFields()</code>方法返回类中所有声明的字段（<code>public</code>、private、<code>protected</code>），但<strong>不包括</strong>从父类继承的字段，返回值为字段对象数组<code>Field[]</code>。</p>
+<p><code>getField(String name)</code>和<code>getDeclaredField(String name)</code>即按字段名获取单个字段对象<code>Field</code>，如果目标字段不存在，则抛出<code>NoSuchFieldException</code>异常。</p>
 <pre><code class="java">
 
 </code></pre>
