@@ -180,8 +180,29 @@ Field getDeclaredField(String name)
 <p><code>getFields()</code>方法返回类中声明的访问属性为<code>public</code>的字段，包括从父类继承的公开字段，返回值为字段对象数组<code>Field[]</code>。</p>
 <p><code>getDeclaredFields()</code>方法返回类中所有声明的字段（<code>public</code>、<code>private</code>、<code>protected</code>），但<strong>不包括</strong>从父类继承的字段，返回值为字段对象数组<code>Field[]</code>。</p>
 <p><code>getField(String name)</code>与<code>getDeclaredField(String name)</code>按照字段名获取单个字段对象<code>Field</code>，如果目标字段不存在，则抛出<code>NoSuchFieldException</code>异常。</p>
-<pre><code class="java">
-
+<pre><code class="java">import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+class MySuperClass {
+    public int super_id = -1;
+    public String super_name = &quot;Unknown&quot;;
+}
+class MyClass extends MySuperClass {
+    public int id = -1;
+    public String name = &quot;Unknown&quot;;
+}
+public class Main {
+    public static void main(String[] args) {
+        Class&lt;MyClass&gt; cls = MyClass.class;
+        System.out.println(&quot;Declared Fields: &quot;);
+        for (Field field : cls.getDeclaredFields()) {
+            System.out.println(field);
+        }
+        System.out.println(&quot;Accessible Fields: &quot;);
+        for (Field field : cls.getFields()) {
+            System.out.println(field);
+        }
+    }
+}
 </code></pre>
 <blockquote>
 <p>代码清单：类字段（Field）反射示例</p>
