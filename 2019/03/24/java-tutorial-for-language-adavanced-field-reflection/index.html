@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -277,7 +277,7 @@ implements Member
 <p>代码清单：<code>Field</code>类反射 API 运用示例</p>
 </blockquote>
 <h1 id="规避可访问性检查（Accessibility-Check）"><a href="#规避可访问性检查（Accessibility-Check）" class="headerlink" title="规避可访问性检查（Accessibility Check）"></a>规避可访问性检查（Accessibility Check）</h1><p>Java 语言中使用可访问性标识符（<code>public</code>、<code>private</code>、<code>protected</code>）限定各类元素（类、接口、方法、字段）的可访问性，但 Java 只在编译阶段进行访问控制检查，不会在<code>*.class</code>文件中留下任何痕迹，通过反射的手段，可以规避可访问性检查。</p>
-<p>使用<code>setAccessible(boolean flag)</code>方法（继承自<code>AccessibleObject</code>类），将字段可访问性设置为<code>true</code>，即可以访问标识为私有<code>private</code>的字段。</p>
+<p>使用<code>setAccessible(boolean flag)</code>方法（继承自<code>AccessibleObject</code>类），将字段可访问性设置为<code>true</code>，即可以访问标识为私有<code>private</code>的字段，不设置可访问性直接访问私有变量，会报出<code>IllegalAccessException</code>异常。</p>
 <pre><code class="java">import java.lang.reflect.Field;
 class MyClass {
     private String name = &quot;Unknown&quot;;
