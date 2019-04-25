@@ -276,6 +276,46 @@ implements Member
 <blockquote>
 <p>代码清单：<code>Field</code>类反射 API 运用示例</p>
 </blockquote>
+<h1 id="规避可访问性检查（Accessibility-Check）"><a href="#规避可访问性检查（Accessibility-Check）" class="headerlink" title="规避可访问性检查（Accessibility Check）"></a>规避可访问性检查（Accessibility Check）</h1><p>Java 语言中使用可访问性标识符（<code>public</code>、<code>private</code>、<code>protected</code>）限定各类元素（类、接口、方法、字段）的可访问性，但 Java 只在编译阶段进行访问控制检查，不会在<code>*.class</code>文件中留下任何痕迹，通过反射的手段，可以规避可访问性检查。</p>
+<p>使用<code>setAccessible(boolean flag)</code>方法（继承自<code>AccessibleObject</code>类），将字段可访问性设置为<code>true</code>，即可以访问标识为私有<code>private</code>的字段。</p>
+<pre><code class="java">import java.lang.reflect.Field;
+class MyClass {
+    private String name = &quot;Unknown&quot;;
+    public MyClass() {
+        //...
+    }
+    public String toString() {
+        return &quot;MyClass: name = &quot; + this.name;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Class&lt;MyClass&gt; cls = MyClass.class;
+        try {
+            MyClass obj = cls.newInstance();
+            Field nameField = cls.getDeclaredField(&quot;name&quot;);
+            /* Bypassing accessibility check */
+            nameField.setAccessible(true);
+            String nameValue = (String) nameField.get(obj);
+            System.out.println(&quot;Before: &quot; + nameValue);
+            nameField.set(obj, &quot;zihengCat&quot;);
+            nameValue = (String) nameField.get(obj);
+            System.out.println(&quot;After: &quot; + nameValue);
+        } catch (
+            InstantiationException |
+            IllegalAccessException |
+            NoSuchFieldException |
+            SecurityException |
+            IllegalArgumentException e) {
+            //e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：使用反射规避可访问性检查</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenJDK 8 官方文档：<a href="https://devdocs.io/openjdk~8/java/lang/reflect/field" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/lang/reflect/field</a></li>
 </ul>
