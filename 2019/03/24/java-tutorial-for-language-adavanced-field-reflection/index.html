@@ -182,6 +182,7 @@ Field getDeclaredField(String name)
 <p><code>getField(String name)</code>与<code>getDeclaredField(String name)</code>按照字段名获取单个字段对象<code>Field</code>，如果目标字段不存在，则抛出<code>NoSuchFieldException</code>异常。</p>
 <pre><code class="java">import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.util.ArrayList;
 class MySuperClass {
     public int super_id = -1;
     public String super_name = &quot;Unknown&quot;;
@@ -194,18 +195,51 @@ public class Main {
     public static void main(String[] args) {
         Class&lt;MyClass&gt; cls = MyClass.class;
         System.out.println(&quot;Declared Fields: &quot;);
-        for (Field field : cls.getDeclaredFields()) {
-            System.out.println(field);
-        }
+        System.out.println(
+            getDeclaredFieldsArray(cls)
+        );
         System.out.println(&quot;Accessible Fields: &quot;);
-        for (Field field : cls.getFields()) {
-            System.out.println(field);
+        System.out.println(
+            getFieldsArray(cls)
+        );
+    }
+    public static ArrayList&lt;String&gt; getDeclaredFieldsArray(Class cls) {
+        ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
+        for (Field field : cls.getDeclaredFields()) {
+            try {
+                //System.out.println(field);
+                list.add(field.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+        return list;
+    }
+    public static ArrayList&lt;String&gt; getFieldsArray(Class cls) {
+        ArrayList&lt;String&gt; list = new ArrayList&lt;String&gt;();
+        for (Field field : cls.getFields()) {
+            try {
+                //System.out.println(field);
+                list.add(field.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
     }
 }
 </code></pre>
 <blockquote>
 <p>代码清单：类字段（Field）反射示例</p>
+</blockquote>
+<h1 id="Java-Field-类"><a href="#Java-Field-类" class="headerlink" title="Java Field 类"></a>Java <code>Field</code> 类</h1><p><code>java.lang.reflect.Field</code>类提供相关类字段信息的动态访问。反射的字段可以是类字段（静态）或实例字段。</p>
+<p><code>Field</code>类声明如下所示。</p>
+<pre><code class="java">public final class Field
+extends AccessibleObject
+implements Member
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Field</code>类声明</p>
 </blockquote>
 
                 <hr>
