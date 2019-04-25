@@ -184,12 +184,19 @@ Field getDeclaredField(String name)
 import java.lang.reflect.Modifier;
 import java.lang.util.ArrayList;
 class MySuperClass {
-    public int super_id = -1;
+    public Integer super_id = -1;
     public String super_name = &quot;Unknown&quot;;
 }
 class MyClass extends MySuperClass {
-    public int id = -1;
+    public Integer id = -1;
     public String name = &quot;Unknown&quot;;
+    MyClass(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+    public String toString() {
+        return &quot;MyClass: id = &quot; + this.id + &quot;, name = &quot; + this.name;
+    }
 }
 public class Main {
     public static void main(String[] args) {
@@ -232,7 +239,7 @@ public class Main {
 <blockquote>
 <p>代码清单：类字段（Field）反射示例</p>
 </blockquote>
-<h1 id="Java-Field-类"><a href="#Java-Field-类" class="headerlink" title="Java Field 类"></a>Java <code>Field</code> 类</h1><p><code>java.lang.reflect.Field</code>类提供相关类字段信息的动态访问。反射的字段可以是类字段（静态）或实例字段。</p>
+<h1 id="Java-Field-类"><a href="#Java-Field-类" class="headerlink" title="Java Field 类"></a>Java <code>Field</code> 类</h1><p><code>java.lang.reflect.Field</code>类提供关联类字段信息的动态访问。反射的字段可以是类字段（静态）或实例字段。</p>
 <p><code>Field</code>类声明如下所示。</p>
 <pre><code class="java">public final class Field
 extends AccessibleObject
@@ -241,6 +248,37 @@ implements Member
 <blockquote>
 <p>代码清单：<code>Field</code>类声明</p>
 </blockquote>
+<p>对于字段（Field）信息，最主要的操作便是获取与设置，<code>Field</code>类提供了<code>get/set</code>方法，可以便捷地获取/设置字段信息。</p>
+<p><code>Field.get(Object obj)</code>方法用于获取某个类实例目标字段的值，<code>Field.set(Object obj, Object value)</code>方法用于设置某个类实例目标字段的值。</p>
+<pre><code class="java">...
+    public static void main(String[] args) {
+        Class&lt;MyClass&gt; cls = MyClass.class;
+        MyClass obj = new MyClass(1, &quot;zihengCat&quot;);
+        /* Get field value from a class instance */
+        try {
+            System.out.println(cls.getField(&quot;id&quot;).get(obj));
+            System.out.println(cls.getField(&quot;name&quot;).get(obj));
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        /* Set field value for a class instance */
+        System.out.println(&quot;Before: &quot; + obj);
+        try {
+            cls.getField(&quot;id&quot;).set(obj, 2);
+            cls.getField(&quot;name&quot;).set(obj, &quot;ziheng&quot;);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        System.out.println(&quot;After: &quot; + obj);
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Field</code>类反射 API 运用示例</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>OpenJDK 8 官方文档：<a href="https://devdocs.io/openjdk~8/java/lang/reflect/field" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/lang/reflect/field</a></li>
+</ul>
 
                 <hr>
 <!--
