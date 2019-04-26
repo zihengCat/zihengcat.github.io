@@ -179,6 +179,36 @@ Method getDeclaredMethod(String name, Class&lt;?&gt;... parameterTypes)
 <p><code>getMethods()</code>返回类中所有公开方法（<code>public</code>），包括从父类继承的公开方法，返回值为方法对象数组<code>Method[]</code>。</p>
 <p><code>getDeclaredMethods()</code>方法返回类中所有方法（<code>public</code>、<code>private</code>、<code>protected</code>），但<strong>不包括</strong>从父类继承的方法，返回值为方法对象数组<code>Method[]</code>。</p>
 <p><code>getMethod(String name, Class&lt;?&gt;... parameterTypes)</code>与<code>getDeclaredMethod(String name, Class&lt;?&gt;... parameterTypes)</code>根据<strong>方法名</strong>与<strong>参数类型</strong>取得目标方法对象<code>Method</code>，如果目标字段不存在，则抛出<code>NoSuchMethodException</code>异常。</p>
+<pre><code class="java">import java.lang.reflect.Constructor;
+import java.lang.reflect.Executable;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Parameter;
+public class Main {
+    public static void main(String[] args) {
+        // ...
+    }
+}
+class TestSuperClass {
+    public TestSuperClass() {
+        // ...
+    }
+    public void sayHello() {
+        System.out.println(&quot;Hello!&quot;);
+    }
+}
+class TestClass&lt;T&gt; extends TestSuperClass {
+    public TestClass() {
+        // ...
+    }
+    public TestClass(T t) {
+        // ...
+    }
+    public static Integer getInt(String s) throws Exception {
+        return Integer.valueOf(s);
+    }
+}
+</code></pre>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenJDK 8 官方文档：<a href="https://devdocs.io/openjdk~8/java/lang/reflect/method" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/lang/reflect/method</a></li>
 </ul>
