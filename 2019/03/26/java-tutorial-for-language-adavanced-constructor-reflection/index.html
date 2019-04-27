@@ -234,6 +234,44 @@ Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)
             );
         }
     }
+    public static String getParameterString(Constructor c) {
+        StringBuilder sb = new StringBuilder();
+        for (Parameter p : c.getParameters()) {
+            sb.append(
+                p.getType().getSimpleName()
+            );
+            sb.append(&quot; &quot;);
+            sb.append(
+                p.getName()
+            );
+            sb.append(&quot;, &quot;);
+        }
+        return sb.toString();
+    }
+    public static String getExceptionString(Constructor c) {
+        StringBuilder sb = new StringBuilder();
+        for (Class&lt;?&gt; cls : c.getExceptionTypes()) {
+            sb.append(cls.getSimpleName());
+            sb.append(&quot;, &quot;);
+        }
+        return sb.toString();
+    }
+}
+class TestSuperClass {
+    public TestSuperClass() {
+        // ...
+    }
+    public void sayHello() {
+        System.out.println(&quot;Hello!&quot;);
+    }
+}
+class TestClass&lt;T&gt; extends TestSuperClass {
+    public TestClass() throws Exception {
+        // ...
+    }
+    public TestClass(T t) {
+        // ...
+    }
 }
 </code></pre>
 <blockquote>
