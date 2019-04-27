@@ -167,7 +167,14 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="构造器反射（Constructor-Reflection）"><a href="#构造器反射（Constructor-Reflection）" class="headerlink" title="构造器反射（Constructor Reflection）"></a>构造器反射（Constructor Reflection）</h1><pre><code class="java">Constructor&lt;?&gt;[] getConstructors()
+                <h1 id="构造器反射（Constructor-Reflection）"><a href="#构造器反射（Constructor-Reflection）" class="headerlink" title="构造器反射（Constructor Reflection）"></a>构造器反射（Constructor Reflection）</h1><p>Java 类<code>java.lang.reflect.Constructor</code>实例是对类构造器（Constructor）的反射。<code>Constructor</code>类继承自通用抽象父类<code>Executable</code>，其自身是不可变（Immutable）类。</p>
+<pre><code class="java">public final class Constructor&lt;T&gt;
+extends Executable
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Constructor</code>类声明</p>
+</blockquote>
+<pre><code class="java">Constructor&lt;?&gt;[] getConstructors()
 Constructor&lt;?&gt;[] getDeclaredConstructors()
 Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)
 Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)
