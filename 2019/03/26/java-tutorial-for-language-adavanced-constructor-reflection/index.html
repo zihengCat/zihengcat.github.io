@@ -212,6 +212,9 @@ Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)
 <blockquote>
 <p>表：构造器（Constructor）反射 API 表</p>
 </blockquote>
+<p><code>getConstructors()</code>方法返回目标类中所有公开（<code>public</code>）构造方法，返回值为构造器对象数组<code>Constructor&lt;?&gt;[]</code>。</p>
+<p><code>getDeclaredConstructors()</code>方法返回目标类中所有（<code>public</code>、<code>private</code>、<code>protected</code>、<code>default</code>）构造方法，返回值为构造器对象数组<code>Constructor&lt;?&gt;[]</code>。</p>
+<p><code>getConstructor(Class&lt;?&gt;... parameterTypes)</code>与<code>getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)</code>方法根据构造方法名与参数类型取得目标构造方法对象<code>Constructor</code>，如果构造方法不存在，则抛出<code>NoSuchMethodException</code>异常。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenJDK 8 官方文档：<a href="https://devdocs.io/openjdk~8/java/lang/reflect/constructor" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/lang/reflect/constructor</a></li>
 </ul>
