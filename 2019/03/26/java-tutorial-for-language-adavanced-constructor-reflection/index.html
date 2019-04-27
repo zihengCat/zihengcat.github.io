@@ -266,8 +266,14 @@ class TestSuperClass {
     }
 }
 class TestClass&lt;T&gt; extends TestSuperClass {
+    private static Integer _id = 0;
     public TestClass() throws Exception {
-        // ...
+        this._id++;
+        System.out.println(&quot;Constructor Void Called: &quot; + this._id);
+    }
+    public TestClass(Integer i) {
+        this._id = i;
+        System.out.println(&quot;Constructor Integer Called: &quot; + this._id);
     }
     public TestClass(T t) {
         // ...
