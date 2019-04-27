@@ -197,13 +197,13 @@ Method getDeclaredMethod(String name, Class&lt;?&gt;... parameterTypes)
 <td>根据方法名与参数类型取得目标方法对象。</td>
 </tr>
 <tr>
-<td>`Method getDeclaredMethod(String name, Class… parameterTypes)</td>
+<td><code>Method getDeclaredMethod(String name, Class... parameterTypes)</code></td>
 <td>根据方法名与参数类型取得目标方法对象，不包括从父类继承的方法。</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>表：方法（Method）信息反射 API 表</p>
+<p>表：方法（Method）反射 API 表</p>
 </blockquote>
 <p><code>getMethods()</code>返回类中所有公开方法（<code>public</code>），包括从父类继承的公开方法，返回值为方法对象数组<code>Method[]</code>。</p>
 <p><code>getDeclaredMethods()</code>方法返回类中所有方法（<code>public</code>、<code>private</code>、<code>protected</code>），但<strong>不包括</strong>从父类继承的方法，返回值为方法对象数组<code>Method[]</code>。</p>
