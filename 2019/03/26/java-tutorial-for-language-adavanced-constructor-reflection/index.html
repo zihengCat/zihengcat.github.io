@@ -167,7 +167,15 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+                <h1 id="构造器反射（Constructor-Reflection）"><a href="#构造器反射（Constructor-Reflection）" class="headerlink" title="构造器反射（Constructor Reflection）"></a>构造器反射（Constructor Reflection）</h1><pre><code class="java">Constructor&lt;?&gt;[] getConstructors()
+Constructor&lt;?&gt;[] getDeclaredConstructors()
+Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)
+Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)
+</code></pre>
+<blockquote>
+<p>代码清单：构造器（Constructor）信息反射 API</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenJDK 8 官方文档：<a href="https://devdocs.io/openjdk~8/java/lang/reflect/constructor" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/lang/reflect/constructor</a></li>
 </ul>
 
