@@ -215,7 +215,11 @@ Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)
 <p><code>getConstructors()</code>方法返回目标类中所有公开（<code>public</code>）构造方法，返回值为构造器对象数组<code>Constructor&lt;?&gt;[]</code>。</p>
 <p><code>getDeclaredConstructors()</code>方法返回目标类中所有（<code>public</code>、<code>private</code>、<code>protected</code>、<code>default</code>）构造方法，返回值为构造器对象数组<code>Constructor&lt;?&gt;[]</code>。</p>
 <p><code>getConstructor(Class&lt;?&gt;... parameterTypes)</code>与<code>getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)</code>方法根据构造方法名与参数类型取得目标构造方法对象<code>Constructor</code>，如果构造方法不存在，则抛出<code>NoSuchMethodException</code>异常。</p>
-<pre><code class="java">public class Main {
+<pre><code class="java">import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Parameter;
+public class Main {
     public static void main(String[] args) {
         for (Constructor c : TestClass.class.getDeclaredConstructors()) {
             System.out.printf(
@@ -268,22 +272,81 @@ class TestSuperClass {
 class TestClass&lt;T&gt; extends TestSuperClass {
     private static Integer _id = 0;
     public TestClass() throws Exception {
-        this._id++;
-        System.out.println(&quot;Constructor Void Called: &quot; + this._id);
+        _id++;
+        System.out.println(&quot;Public constructor Void called: &quot; + _id);
     }
     public TestClass(Integer i) {
-        this._id = i;
-        System.out.println(&quot;Constructor Integer Called: &quot; + this._id);
+        _id = i;
+        System.out.println(&quot;Public constructor Integer called: &quot; + _id);
     }
     public TestClass(T t) {
         // ...
     }
+    private TestClass(Double d) {
+        _id = d.intValue();
+        System.out.println(&quot;Private constructor Double called: &quot; + _id);
+    }
 }
 </code></pre>
 <blockquote>
-<p>代码清单：反射获取构造器（Constructor）信息</p>
+<p>代码清单：反射获取类构造器（Constructor）信息</p>
 </blockquote>
-<h1 id="反射调用构造器生成类实例"><a href="#反射调用构造器生成类实例" class="headerlink" title="反射调用构造器生成类实例"></a>反射调用构造器生成类实例</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<h1 id="反射生成类实例"><a href="#反射生成类实例" class="headerlink" title="反射生成类实例"></a>反射生成类实例</h1><p>对于构造器（Constructor）反射，我们主要关心如何调用构造方法创建类实例。我们可以使用反射动态创建类实例，有以下两种方式。</p>
+<ul>
+<li><p>使用无参构造函数</p>
+</li>
+<li><p>使用有参构造函数</p>
+</li>
+</ul>
+<p>如果已有一枚<code>Class</code>对象，我们可以使用<code>newInstance()</code>方法创建类实例，该方法参数列表置空，等同于使用<code>new</code>操作符调用类无参构造方法创建类实例。</p>
+<pre><code class="java">public T newInstance(Object... initargs)
+throws InstantiationException,
+       IllegalAccessException,
+       IllegalArgumentException,
+       InvocationTargetException
+</code></pre>
+<blockquote>
+<p>代码清单：<code>newInstance()</code>方法声明</p>
+</blockquote>
+<pre><code class="java">...
+    public static void main(String[] args) {
+        try {
+            /* Create class instance using `new` operator */
+            TestClass t1 = new TestClass();
+            System.out.println(t1);
+            /* Create class instance using `Constructor` reflection
+             * without arguments.
+             */
+            TestClass t2 = TestClass.class
+                                    .getDeclaredConstructor()
+                                    .newInstance();
+            System.out.println(t2);
+            /* Create class instance using `Constructor` reflection
+             * with arguments.
+             */
+            TestClass t3 = TestClass.class
+                                    .getDeclaredConstructor(Integer.class)
+                                    .newInstance(100);
+            System.out.println(t3);
+            /* Create class instance using `Constructor` reflection
+             * with private constructor.
+             */
+            Constructor&lt;TestClass&gt; doubleConstructor =
+                TestClass.class.getDeclaredConstructor(Double.class);
+            doubleConstructor.setAccessible(true);
+            TestClass t4 = doubleConstructor
+                .newInstance(Double.valueOf(1.414));
+            System.out.println(t4);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：使用<code>newInstance()</code>方法动态创建对象</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenJDK 8 官方文档：<a href="https://devdocs.io/openjdk~8/java/lang/reflect/constructor" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/lang/reflect/constructor</a></li>
 </ul>
 
