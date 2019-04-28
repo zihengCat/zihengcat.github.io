@@ -175,7 +175,36 @@ Field getField(String name)
 Field getDeclaredField(String name)
 </code></pre>
 <blockquote>
-<p>代码清单：<code>Class</code>字段（Field）信息反射 API</p>
+<p>代码清单：字段（Field）信息反射 API</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Field[] getFields()</code></td>
+<td>返回目标类中所有公开的字段，包括从父类继承的字段。</td>
+</tr>
+<tr>
+<td><code>Field[] getDeclaredFields()</code></td>
+<td>返回目标类中所有的字段，不包括从父类继承的字段。</td>
+</tr>
+<tr>
+<td><code>Field getField(String name)</code></td>
+<td>根据字段名获取公开字段对象。</td>
+</tr>
+<tr>
+<td><code>Field getDeclaredField(String name)</code></td>
+<td>根据字段名获取目标字段对象。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表：字段（Field）反射 API 表</p>
 </blockquote>
 <p><code>getFields()</code>方法返回类中声明的访问属性为<code>public</code>的字段，包括从父类继承的公开字段，返回值为字段对象数组<code>Field[]</code>。</p>
 <p><code>getDeclaredFields()</code>方法返回类中所有声明的字段（<code>public</code>、<code>private</code>、<code>protected</code>），但<strong>不包括</strong>从父类继承的字段，返回值为字段对象数组<code>Field[]</code>。</p>
