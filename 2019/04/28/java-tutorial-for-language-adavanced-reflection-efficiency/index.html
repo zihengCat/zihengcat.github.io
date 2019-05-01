@@ -195,7 +195,7 @@
 <blockquote>
 <p>代码清单：反射测试类</p>
 </blockquote>
-<p>接下来编写测试主类，测试<strong>直接构造/反射构造</strong>、<strong>直接调用/反射调用</strong>各自的运行时间。</p>
+<p>接下来编写测试主类，迭代1亿次，测试<strong>直接构造/反射构造</strong>、<strong>直接调用/反射调用</strong>各自的运行时间。</p>
 <pre><code class="java">import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 public class Main {
@@ -273,7 +273,25 @@ public class Main {
 <blockquote>
 <p>代码清单：反射主类</p>
 </blockquote>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1>
+<p>测试结果显示，反射调用的确比直接调用慢，运行效率相差有 4 ~ 6 倍。</p>
+<pre><code class="plain">Common constructor: 329ms
+Reflection constructor: 2059ms
+Common method: 485ms
+Reflection method: 1693ms
+</code></pre>
+<blockquote>
+<p>注：测试代码运行结果</p>
+</blockquote>
+<h1 id="提高反射效率"><a href="#提高反射效率" class="headerlink" title="提高反射效率"></a>提高反射效率</h1><p>有一些方法可以用来提升反射的效率，缓存<code>Class</code>、<code>Field</code>、<code>Constructor</code>、<code>Method</code>对象，避免每次反射操作重复获取；设置<code>setAccessible(true)</code>关闭安全访问检查；如果对性能极致追求，可以考虑使用第三方库，直接操作字节码。</p>
+<ul>
+<li><p>缓存<code>Class</code>、<code>Field</code>、<code>Constructor</code>、<code>Method</code>对象</p>
+</li>
+<li><p>设置<code>setAccessible(true)</code>关闭安全访问检查</p>
+</li>
+<li><p>使用第三方库（如：ReflectASM）</p>
+</li>
+</ul>
+
                 <hr>
 <!--
                 <ul class="pager">
