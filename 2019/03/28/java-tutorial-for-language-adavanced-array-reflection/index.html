@@ -215,8 +215,22 @@ Object newInstance(Class&lt;?&gt; componentType, int... dimensions)
 <p>表：数组（Array）反射 API 表</p>
 </blockquote>
 <pre><code class="java">import java.lang.reflect.Array;
+import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
+        /* Create an array of int of length 2 */
+        int[] arrayOfInt = (int[])Array.newInstance(int.class, 2);
+        /* Print the values in array element
+           Default values will be zero */
+        System.out.println(Arrays.toString(arrayOfInt));
+        int a_0 = (int)Array.get(arrayOfInt, 0);
+        int a_1 = (int)Array.get(arrayOfInt, 1);
+        System.out.printf(&quot;a[0] = %d, a[1] = %d\n&quot;, a_0, a_1);
+        /* Set the values for array */
+        Array.set(arrayOfInt, 0, 101);
+        Array.set(arrayOfInt, 1, 102);
+        /* Print the values in array element again */
+        System.out.println(Arrays.toString(arrayOfInt));
     }
 }
 </code></pre>
