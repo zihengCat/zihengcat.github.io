@@ -167,12 +167,61 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="数组反射（Array-Reflection）"><a href="#数组反射（Array-Reflection）" class="headerlink" title="数组反射（Array Reflection）"></a>数组反射（Array Reflection）</h1><p>数组（Array）是 Java 语言中一个比较特殊的存在，但其仍是对象。对于数组对象的反射操作，主要由<code>java.lang.reflect.Array</code>提供。<code>Array</code>类提供一系列静态方法允许我们动态创建与操作 Java 数组。</p>
+                <h1 id="数组反射（Array-Reflection）"><a href="#数组反射（Array-Reflection）" class="headerlink" title="数组反射（Array Reflection）"></a>数组反射（Array Reflection）</h1><p>数组（Array）是 Java 语言中一个比较特殊的存在，但其仍是对象。对于数组对象的反射操作，主要由<code>java.lang.reflect.Array</code>提供。<code>Array</code>类提供一系列静态方法允许我们动态创建与操作 Java 数组，注意，<code>Array</code>类中的所有方法都是静态方法。</p>
 <pre><code class="java">public final class Array
 extends Object
 </code></pre>
 <blockquote>
 <p>代码清单：<code>Array</code>类声明</p>
+</blockquote>
+<p>通过反射动态创建数组对象，我们需要使用<code>Array</code>类的<code>newInstance()</code>重载方法，该方法有两个版本，分别用来创建一维数组与多维数组。<code>Class</code>类提供<code>isArray()</code>方法检测反射类是否为数组类型。</p>
+<pre><code class="plain">Object newInstance(Class&lt;?&gt; componentType, int length)
+Object newInstance(Class&lt;?&gt; componentType, int... dimensions)
+</code></pre>
+<blockquote>
+<p>代码清单：数组（Array）类<code>newInstance()</code>重载方法声明</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Object newInstance(Class&lt;?&gt; componentType, int length)</code></td>
+<td>根据元素类型与长度动态创建数组对象。</td>
+</tr>
+<tr>
+<td><code>Object newInstance(Class&lt;?&gt; componentType, int... dimensions)</code></td>
+<td>根据元素类型与维度动态创建多维数组对象。</td>
+</tr>
+<tr>
+<td><code>int getLength(Object array)</code></td>
+<td>获取目标数组的长度。</td>
+</tr>
+<tr>
+<td><code>Object get(Object array, int index)</code></td>
+<td>获取目标数组下标元素。</td>
+</tr>
+<tr>
+<td><code>void set(Object array, int index, Object value)</code></td>
+<td>设置目标数组下标元素。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表：数组（Array）反射 API 表</p>
+</blockquote>
+<pre><code class="java">import java.lang.reflect.Array;
+public class Main {
+    public static void main(String[] args) {
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Array</code>类反射运用示例</p>
 </blockquote>
 
                 <hr>
