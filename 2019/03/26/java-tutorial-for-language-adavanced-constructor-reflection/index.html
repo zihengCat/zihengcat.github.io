@@ -346,6 +346,7 @@ throws InstantiationException,
 <blockquote>
 <p>代码清单：使用<code>newInstance()</code>方法动态创建对象</p>
 </blockquote>
+<p>另外，在<code>JDK 9</code>之后，<code>Class</code>类的<code>newInstance()</code>方法被弃用（Deprecated），因其无法很好捕捉无参构造时发生的异常，我们应该使用<code>Constructor.newInstance()</code>方法替换。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenJDK 8 官方文档：<a href="https://devdocs.io/openjdk~8/java/lang/reflect/constructor" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/lang/reflect/constructor</a></li>
 </ul>
