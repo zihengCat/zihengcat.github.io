@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2019/03/26/java-tutorial-for-language-adavanced-constructor-reflection/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/03/28/java-tutorial-for-language-adavanced-array-reflection/">
     <title>
         
-          Java 高级教程系列 - 构造器反射 - zihengCat
+          Java 高级教程系列 - 数组反射 - zihengCat
         
     </title>
 
@@ -147,11 +147,11 @@
                           <a class="tag" href="/tags/#Java Tutorial" title="Java Tutorial">Java Tutorial</a>
                         
                     </div>
-                    <h1>Java 高级教程系列 - 构造器反射</h1>
-                    <h2 class="subheading">Java Tutorial for Language Adavanced - Constructor Reflection</h2>
+                    <h1>Java 高级教程系列 - 数组反射</h1>
+                    <h2 class="subheading">Java Tutorial for Language Adavanced - Array Reflection</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2019-03-26
+                        2019-03-28
                     </span>
                 </div>
             </div>
@@ -167,201 +167,25 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="构造器反射（Constructor-Reflection）"><a href="#构造器反射（Constructor-Reflection）" class="headerlink" title="构造器反射（Constructor Reflection）"></a>构造器反射（Constructor Reflection）</h1><p>Java 类<code>java.lang.reflect.Constructor</code>实例是对类构造器（Constructor）的反射。<code>Constructor</code>类继承自通用抽象父类<code>Executable</code>，其自身是不可变（Immutable）类。</p>
-<pre><code class="java">public final class Constructor&lt;T&gt;
-extends Executable
+                <h1 id="数组反射（Array-Reflection）"><a href="#数组反射（Array-Reflection）" class="headerlink" title="数组反射（Array Reflection）"></a>数组反射（Array Reflection）</h1><p>数组（Array）是 Java 语言中一个比较特殊的存在，但其仍是对象。对于数组对象的反射操作，主要由类<code>java.lang.reflect.Array</code>提供。<code>Array</code>类提供一系列静态方法去动态创建与操作 Java 数组。</p>
+<pre><code class="java">public final class Array
+extends Object
 </code></pre>
 <blockquote>
-<p>代码清单：<code>Constructor</code>类声明</p>
+<p>代码清单：<code>Array</code>类声明</p>
 </blockquote>
-<p><code>Class</code>类提供了获取类构造器的方法，如下所示。</p>
-<pre><code class="plain">Constructor&lt;?&gt;[] getConstructors()
-Constructor&lt;?&gt;[] getDeclaredConstructors()
-Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)
-Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)
-</code></pre>
-<blockquote>
-<p>代码清单：构造器（Constructor）反射 API</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Constructor&lt;?&gt;[] getConstructors()</code></td>
-<td>返回目标类中所有公开的构造方法。</td>
-</tr>
-<tr>
-<td><code>Constructor&lt;?&gt;[] getDeclaredConstructors()</code></td>
-<td>返回目标类中所有构造方法。</td>
-</tr>
-<tr>
-<td><code>Constructor&lt;T&gt; getConstructor(Class&lt;?&gt;... parameterTypes)</code></td>
-<td>根据参数类型获取公开构造方法。</td>
-</tr>
-<tr>
-<td><code>Constructor&lt;T&gt; getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)</code></td>
-<td>根据参数类型获取构造方法。</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>表：构造器（Constructor）反射 API 表</p>
-</blockquote>
-<p><code>getConstructors()</code>方法返回目标类中所有公开（<code>public</code>）构造方法，返回值为构造器对象数组<code>Constructor&lt;?&gt;[]</code>。</p>
-<p><code>getDeclaredConstructors()</code>方法返回目标类中所有（<code>public</code>、<code>private</code>、<code>protected</code>、<code>default</code>）构造方法，返回值为构造器对象数组<code>Constructor&lt;?&gt;[]</code>。</p>
-<p><code>getConstructor(Class&lt;?&gt;... parameterTypes)</code>与<code>getDeclaredConstructor(Class&lt;?&gt;... parameterTypes)</code>方法根据构造方法名与参数类型取得目标构造方法对象<code>Constructor</code>，如果构造方法不存在，则抛出<code>NoSuchMethodException</code>异常。</p>
-<pre><code class="java">import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Parameter;
-public class Main {
-    public static void main(String[] args) {
-        for (Constructor c : TestClass.class.getDeclaredConstructors()) {
-            System.out.printf(
-                /*
-                 * Modifier
-                 * ConstructorName(Parameter arg0, Parameter arg1, ...)
-                 * throws Exception
-                 */
-                &quot;%s %s %s(%s) %s\n&quot;,
-                Modifier.toString(c.getModifiers()),
-                &quot; &quot;,
-                c.getName(),
-                getParameterString(c),
-                getExceptionString(c).equals(&quot;&quot;) ?
-                getExceptionString(c) : &quot;throws &quot; + getExceptionString(c)
-            );
-        }
-    }
-    public static String getParameterString(Constructor c) {
-        StringBuilder sb = new StringBuilder();
-        for (Parameter p : c.getParameters()) {
-            sb.append(
-                p.getType().getSimpleName()
-            );
-            sb.append(&quot; &quot;);
-            sb.append(
-                p.getName()
-            );
-            sb.append(&quot;, &quot;);
-        }
-        return sb.toString();
-    }
-    public static String getExceptionString(Constructor c) {
-        StringBuilder sb = new StringBuilder();
-        for (Class&lt;?&gt; cls : c.getExceptionTypes()) {
-            sb.append(cls.getSimpleName());
-            sb.append(&quot;, &quot;);
-        }
-        return sb.toString();
-    }
-}
-class TestSuperClass {
-    public TestSuperClass() {
-        // ...
-    }
-    public void sayHello() {
-        System.out.println(&quot;Hello!&quot;);
-    }
-}
-class TestClass&lt;T&gt; extends TestSuperClass {
-    private static Integer _id = 0;
-    public TestClass() throws Exception {
-        _id++;
-        System.out.println(&quot;Public constructor Void called: &quot; + _id);
-    }
-    public TestClass(Integer i) {
-        _id = i;
-        System.out.println(&quot;Public constructor Integer called: &quot; + _id);
-    }
-    public TestClass(T t) {
-        // ...
-    }
-    private TestClass(Double d) {
-        _id = d.intValue();
-        System.out.println(&quot;Private constructor Double called: &quot; + _id);
-    }
-}
-</code></pre>
-<blockquote>
-<p>代码清单：反射获取类构造器（Constructor）信息</p>
-</blockquote>
-<h1 id="反射生成类实例"><a href="#反射生成类实例" class="headerlink" title="反射生成类实例"></a>反射生成类实例</h1><p>对于构造器（Constructor）反射，我们主要关心如何调用构造方法创建类实例。我们可以使用反射动态创建类实例，有以下两种方式。</p>
-<ul>
-<li><p>使用无参构造函数</p>
-</li>
-<li><p>使用有参构造函数</p>
-</li>
-</ul>
-<p>如果已有一枚<code>Class</code>对象，我们可以使用<code>newInstance()</code>方法创建类实例，该方法参数列表置空，等同于使用<code>new</code>操作符调用类无参构造方法创建类实例。</p>
-<pre><code class="java">public T newInstance(Object... initargs)
-throws InstantiationException,
-       IllegalAccessException,
-       IllegalArgumentException,
-       InvocationTargetException
-</code></pre>
-<blockquote>
-<p>代码清单：<code>newInstance()</code>方法声明</p>
-</blockquote>
-<pre><code class="java">...
-    public static void main(String[] args) {
-        try {
-            /* Create class instance using `new` operator */
-            TestClass t1 = new TestClass();
-            System.out.println(t1);
-            /* Create class instance using `Constructor` reflection
-             * without arguments.
-             */
-            TestClass t2 = TestClass.class
-                                    .getDeclaredConstructor()
-                                    .newInstance();
-            System.out.println(t2);
-            /* Create class instance using `Constructor` reflection
-             * with arguments.
-             */
-            TestClass t3 = TestClass.class
-                                    .getDeclaredConstructor(Integer.class)
-                                    .newInstance(100);
-            System.out.println(t3);
-            /* Create class instance using `Constructor` reflection
-             * with private constructor.
-             */
-            Constructor&lt;TestClass&gt; doubleConstructor =
-                TestClass.class.getDeclaredConstructor(Double.class);
-            doubleConstructor.setAccessible(true);
-            TestClass t4 = doubleConstructor
-                .newInstance(Double.valueOf(1.414));
-            System.out.println(t4);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-...
-</code></pre>
-<blockquote>
-<p>代码清单：使用<code>newInstance()</code>方法动态创建对象</p>
-</blockquote>
-<p>另外，在<code>JDK 9</code>之后，<code>Class</code>类的<code>newInstance()</code>方法被弃用（Deprecated），因其无法很好捕捉无参构造时发生的异常，我们应该使用<code>Constructor.newInstance()</code>方法替换。</p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>OpenJDK 8 官方文档：<a href="https://devdocs.io/openjdk~8/java/lang/reflect/constructor" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/lang/reflect/constructor</a></li>
-</ul>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/03/28/java-tutorial-for-language-adavanced-array-reflection/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - 数组反射">&larr; Previous Post</a>
+                            <a href="/2019/04/11/java-tutorial-for-language-basics-autoboxing-and-unboxing/" data-toggle="tooltip" data-placement="top" title="Java 基础教程系列 - 自动装箱与拆箱">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2019/03/25/java-tutorial-for-language-adavanced-method-reflection/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - 方法反射">Next Post &rarr;</a>
+                            <a href="/2019/03/26/java-tutorial-for-language-adavanced-constructor-reflection/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - 构造器反射">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
