@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2019/05/01/java-tutorial-for-language-adavanced-collection-framework-overview/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/05/02/java-tutorial-for-language-adavanced-collection-interface/">
     <title>
         
-          Java 高级教程系列 - 集合框架概览 - zihengCat
+          Java 高级教程系列 - Collection 接口 - zihengCat
         
     </title>
 
@@ -147,11 +147,11 @@
                           <a class="tag" href="/tags/#Java Tutorial" title="Java Tutorial">Java Tutorial</a>
                         
                     </div>
-                    <h1>Java 高级教程系列 - 集合框架概览</h1>
-                    <h2 class="subheading">Java Tutorial for Language Adavanced - Collection Framework Overview</h2>
+                    <h1>Java 高级教程系列 - Collection 接口</h1>
+                    <h2 class="subheading">Java Tutorial for Language Adavanced - Collection Interface</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2019-05-01
+                        2019-05-02
                     </span>
                 </div>
             </div>
@@ -167,57 +167,37 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-集合框架"><a href="#Java-集合框架" class="headerlink" title="Java 集合框架"></a>Java 集合框架</h1><p>集合（Collection）又被称为容器（Container），是一种可以存储与操作对象的对象，存放在集合中的对象被称为集合元素（Element）。</p>
-<p>Java 语言标准库设计并实现了一系列集合类型，统称为 Java 集合框架（Java Collection Framework）。Java 集合框架由三部分核心组件构成，位于<code>java.util</code>包下。</p>
+                <h1 id="Java-Collection-接口"><a href="#Java-Collection-接口" class="headerlink" title="Java Collection 接口"></a>Java <code>Collection</code> 接口</h1><p>Java 接口<code>java.util.Collection</code>是 Java 集合框架的根接口，它是一枚泛型接口。</p>
+<p><code>Collection</code>接口定义了对序列数据类型的一系列基本操作。如：</p>
 <ul>
-<li><p>集合接口（Collection Interfaces）</p>
+<li><p>获取集合容器内元素数量</p>
 </li>
-<li><p>实现类（Implementation Classes）</p>
+<li><p>添加新元素到集合容器内</p>
 </li>
-<li><p>算法类（Algorithm Classes）</p>
+<li><p>移除集合容器内的元素</p>
+</li>
+<li><p>检查元素是否在集合容器内</p>
+</li>
+<li><p>检查集合容器是否为空</p>
+</li>
+<li><p>…</p>
 </li>
 </ul>
-<p>下图是对 Java 集合框架的概览。</p>
-<p><img src="./java-collection-framework-overview.png" alt="java-collection-framework-overview"></p>
+<p>对<code>Collection</code>接口定义的方法作一个整理。</p>
+<pre><code class="java">public interface Collection&lt;E&gt;
+extends Iterable&lt;E&gt;
+</code></pre>
 <blockquote>
-<p>图：Java 集合框架概览</p>
+<p>代码清单：<code>Collection</code>接口声明</p>
 </blockquote>
-<h2 id="集合接口（Collection-Interfaces）"><a href="#集合接口（Collection-Interfaces）" class="headerlink" title="集合接口（Collection Interfaces）"></a>集合接口（Collection Interfaces）</h2><p>一种接口代表对一种集合类型统一操作方式。</p>
-<ul>
-<li><p><code>List</code>接口表示<strong>序列</strong>数据类型</p>
-</li>
-<li><p><code>Set</code>接口表示<strong>集合</strong>数据类型</p>
-</li>
-<li><p><code>Map</code>接口表示<strong>关联</strong>数据类型</p>
-</li>
-</ul>
-<h2 id="实现类（Implementation-Classes）"><a href="#实现类（Implementation-Classes）" class="headerlink" title="实现类（Implementation Classes）"></a>实现类（Implementation Classes）</h2><p>Java 集合框架提供对集合接口的实现类，如：<code>ArrayList</code>实现了<code>List</code>接口。同一接口可以有多种实现，不同的实现适用于不同的使用场景。</p>
-<h2 id="算法类（Algorithm-Classes）"><a href="#算法类（Algorithm-Classes）" class="headerlink" title="算法类（Algorithm Classes）"></a>算法类（Algorithm Classes）</h2><p>算法类可以从外部对集合类型做出各种操作，如：</p>
-<ul>
-<li><p>搜索，在集合类型中查找目标元素</p>
-</li>
-<li><p>排序，对集合按照规则排序</p>
-</li>
-<li><p>转换，将一种集合类型转换为另一种集合类型</p>
-</li>
-<li><p>拷贝，从集合中拷贝元素</p>
-</li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>Runoob：<a href="http://www.runoob.com/java/java-collections.html" target="_blank" rel="noopener">http://www.runoob.com/java/java-collections.html</a></li>
-</ul>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/05/02/java-tutorial-for-language-adavanced-collection-interface/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - Collection 接口">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/04/28/java-tutorial-for-language-adavanced-reflection-efficiency/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - 反射效率">Next Post &rarr;</a>
+                            <a href="/2019/05/01/java-tutorial-for-language-adavanced-collection-framework-overview/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - 集合框架概览">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
