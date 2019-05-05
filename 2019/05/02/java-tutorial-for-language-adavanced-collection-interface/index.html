@@ -318,6 +318,8 @@ public class Main {
 </blockquote>
 <h1 id="遍历-Collection-集合"><a href="#遍历-Collection-集合" class="headerlink" title="遍历 Collection 集合"></a>遍历 <code>Collection</code> 集合</h1><p>有如下几种方式可以用来遍历<code>Collection</code>集合元素。</p>
 <ul>
+<li><p>转换为数组对象（Array）</p>
+</li>
 <li><p>使用迭代器（Iterator）</p>
 </li>
 <li><p>使用<code>for-each</code>循环</p>
@@ -325,6 +327,42 @@ public class Main {
 <li><p>使用<code>forEach()</code>方法</p>
 </li>
 </ul>
+<p>以下代码示例展示了遍历<code>Collection</code>集合元素的几种方式。</p>
+<pre><code class="java">import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+public class Main {
+    public static void main(String[] args) {
+        /* Create a collection of strings */
+        Collection&lt;String&gt; c = new ArrayList&lt;String&gt;();
+        /* Add some elements to collection */
+        c.add(&quot;Java&quot;);
+        c.add(&quot;Python&quot;);
+        c.add(&quot;JavaScript&quot;);
+        c.add(&quot;C/C++&quot;);
+        /* Iterator traversal */
+        System.out.println(&quot;Iterator traversal: &quot;);
+        Iterator&lt;String&gt; it = c.iterator();
+        while(it.hasNext()) {
+            String e = it.next();
+            System.out.println(e);
+        }
+        /* for-each traversal */
+        System.out.println(&quot;for-each traversal: &quot;);
+        for(String e : c) {
+            System.out.println(e);
+        }
+        /* forEach() traversal */
+        System.out.println(&quot;forEach() traversal: &quot;);
+        c.forEach(System.out::println);
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：遍历<code>Collection</code>集合元素</p>
+</blockquote>
+<p>需要注意的是，虽然这几种方式在写法上各不相同，但其本质都是<strong>使用迭代器进行遍历</strong>，殊途同归。</p>
+<p>Java 迭代器<code>Iterator&lt;E&gt;</code>是个一次性对象，如果需要对集合进行多次遍历，每一次都需要调用<code>iterator()</code>方法重新获取迭代器。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Open JDK：<a href="https://devdocs.io/openjdk~8/java/util/collection" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/collection</a></li>
 </ul>
