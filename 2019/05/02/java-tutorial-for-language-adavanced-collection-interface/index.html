@@ -167,7 +167,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-Collection-接口"><a href="#Java-Collection-接口" class="headerlink" title="Java Collection 接口"></a>Java <code>Collection</code> 接口</h1><p>Java 接口<code>java.util.Collection</code>是 Java 集合框架的根接口，它是一枚泛型接口。</p>
+                <h1 id="Java-集合-Collection-接口"><a href="#Java-集合-Collection-接口" class="headerlink" title="Java 集合 Collection 接口"></a>Java 集合 <code>Collection</code> 接口</h1><p>Java 接口<code>java.util.Collection</code>是 Java 集合框架的根接口，它是一枚泛型接口。</p>
 <p><code>Collection</code>接口定义了对序列数据类型的一系列基本操作。如：</p>
 <ul>
 <li><p>获取集合容器内元素数量</p>
@@ -219,6 +219,10 @@ extends Iterable&lt;E&gt;
 <td>集合容器转换为数组。</td>
 </tr>
 <tr>
+<td><code>String toString()</code></td>
+<td>返回集合容器字符串形式。</td>
+</tr>
+<tr>
 <td><code>void clear()</code></td>
 <td>清空集合容器。</td>
 </tr>
@@ -255,6 +259,66 @@ extends Iterable&lt;E&gt;
 <blockquote>
 <p>表：<code>Collection</code>接口方法表</p>
 </blockquote>
+<h1 id="Java-集合-Collection-使用示例"><a href="#Java-集合-Collection-使用示例" class="headerlink" title="Java 集合 Collection 使用示例"></a>Java 集合 <code>Collection</code> 使用示例</h1><p>我们通过一个 Demo 示例来熟悉<code>Collection</code>接口。</p>
+<pre><code class="java">import java.util.ArrayList;
+import java.util.Collection;
+public class Main {
+    public static void main(String[] args) {
+        /* Create a collection of strings */
+        Collection&lt;String&gt; c = new ArrayList&lt;String&gt;();
+        /* Print collection details */
+        System.out.printf(
+            &quot;After creation: Size = %d, Elements = %s&quot; +
+            System.getProperty(&quot;line.separator&quot;),
+            c.size(),
+            c.toString()
+        );
+        /* Add some strings to collection */
+        c.add(&quot;Java&quot;);
+        c.add(&quot;Python&quot;);
+        c.add(&quot;JavaScript&quot;);
+        c.add(&quot;C/C++&quot;);
+        /* Print collection details */
+        System.out.printf(
+            &quot;After adding elements: Size = %d, Elements = %s&quot; +
+            System.getProperty(&quot;line.separator&quot;),
+            c.size(),
+            c.toString()
+        );
+        /* Check element in collection */
+        System.out.printf(
+            &quot;Collection contains: Element %s -&gt; %s, Element %s -&gt; %s&quot; +
+            System.getProperty(&quot;line.separator&quot;),
+            &quot;Java&quot;, c.contains(&quot;Java&quot;),
+            &quot;java&quot;, c.contains(&quot;java&quot;)
+        );
+        /* Remove element from collection */
+        c.remove(&quot;JavaScript&quot;);
+        /* Print collection details */
+        System.out.printf(
+            &quot;After remove elements: Size = %d, Elements = %s&quot; +
+            System.getProperty(&quot;line.separator&quot;),
+            c.size(),
+            c.toString()
+        );
+        /* Clear all elements */
+        c.clear();
+        /* Print collection details */
+        System.out.printf(
+            &quot;After clear elements: Size = %d, Elements = %s&quot; +
+            System.getProperty(&quot;line.separator&quot;),
+            c.size(),
+            c.toString()
+        );
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Collection</code>使用示例</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>Open JDK：<a href="https://devdocs.io/openjdk~8/java/util/collection" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/collection</a></li>
+</ul>
 
                 <hr>
 <!--
