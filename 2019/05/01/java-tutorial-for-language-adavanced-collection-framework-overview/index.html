@@ -177,10 +177,59 @@
 <li><p>算法类（Algorithm Classes）</p>
 </li>
 </ul>
-<p>下图是对 Java 集合框架的概览。</p>
+<p>以下图表是对 Java 集合框架的概览。</p>
 <p><img src="./java-collection-framework-overview.png" alt="java-collection-framework-overview"></p>
 <blockquote>
 <p>图：Java 集合框架概览</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>Interface</strong></th>
+<th><strong>Hash Table</strong></th>
+<th><strong>Resizable Array</strong></th>
+<th><strong>Balanced Tree</strong></th>
+<th><strong>Linked List</strong></th>
+<th><strong>Hash Table + Linked List</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>Set</code></strong></td>
+<td><code>HashSet</code></td>
+<td></td>
+<td><code>TreeSet</code></td>
+<td></td>
+<td><code>LinkedHashSet</code></td>
+</tr>
+<tr>
+<td><strong><code>List</code></strong></td>
+<td></td>
+<td><code>ArrayList</code></td>
+<td></td>
+<td><code>LinkedList</code></td>
+<td></td>
+</tr>
+<tr>
+<td><strong><code>Deque</code></strong></td>
+<td></td>
+<td><code>ArrayDeque</code></td>
+<td></td>
+<td>LinkedList`</td>
+<td></td>
+</tr>
+<tr>
+<td><strong><code>Map</code></strong></td>
+<td><code>HashMap</code></td>
+<td></td>
+<td><code>TreeMap</code></td>
+<td></td>
+<td><code>LinkedHashMap</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表：Java 集合框架概览表</p>
 </blockquote>
 <h2 id="集合接口（Collection-Interfaces）"><a href="#集合接口（Collection-Interfaces）" class="headerlink" title="集合接口（Collection Interfaces）"></a>集合接口（Collection Interfaces）</h2><p>一种接口代表对一种集合类型统一操作方式。</p>
 <ul>
