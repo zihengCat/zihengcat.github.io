@@ -167,9 +167,9 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-集合-Set-接口"><a href="#Java-集合-Set-接口" class="headerlink" title="Java 集合 Set 接口"></a>Java 集合 <code>Set</code> 接口</h1><p>Java 集合框架存在<code>Set</code>接口，其模型正如数学上对集合的定义：<strong>由一个或多个确定不重复元素所构成的整体。</strong></p>
+                <h1 id="Java-集合-Set-接口"><a href="#Java-集合-Set-接口" class="headerlink" title="Java 集合 Set 接口"></a>Java 集合 <code>Set</code> 接口</h1><p>Java 集合框架存在<code>Set</code>接口，其模型正如数学上对<em>集合</em>的定义：<strong>由一个或多个确定不重复元素所构成的整体。</strong></p>
 <p>Java 集合容器不允许包含重复的元素，允许存在至多一个<code>null</code>元素，不保证集合内元素的排列顺序。</p>
-<p>Java 集合容器以其内部对象的<code>equals()</code>方法判定两个元素是否相等。如果我们试图将重复元素加入到集合容器中，集合容器会静默忽略（Ignored Silently）。</p>
+<p>Java 集合容器以其内部存储对象的<code>equals()</code>方法判定两个元素是否相等。如果我们试图将重复元素加入到集合容器中，集合容器会静默忽略（Ignored Silently）。</p>
 <pre><code class="java">public interface Set&lt;E&gt;
 extends Collection&lt;E&gt;
 </code></pre>
