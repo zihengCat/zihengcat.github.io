@@ -224,9 +224,67 @@ public class Main {
 <blockquote>
 <p>代码清单：<code>Set</code>使用示例</p>
 </blockquote>
-<h1 id="Set-交集、并集与补集"><a href="#Set-交集、并集与补集" class="headerlink" title="Set 交集、并集与补集"></a><code>Set</code> 交集、并集与补集</h1><p><img src="./set-operations.png" alt="set-operations"></p>
+<h1 id="Set-交集、并集与补集"><a href="#Set-交集、并集与补集" class="headerlink" title="Set 交集、并集与补集"></a><code>Set</code> 交集、并集与补集</h1><p><code>Set</code>集合支持交集、并集与补集操作，还可以使用<code>a.containsAll(b)</code>检查某集合是否为另一集合的子集。需要注意的是，集合操作会改变原集合的状态，在运用集合操作之前，可以备份原集合。</p>
+<p><img src="./set-operations.png" alt="set-operations"></p>
 <blockquote>
 <p>图：<code>Set</code>交集、并集与补集</p>
+</blockquote>
+<pre><code class="java">import java.util.HashSet;
+import java.util.Set;
+public class Main {
+    public static void main(String[] args) {
+        /* Create a set */
+        Set&lt;String&gt; s1 = new HashSet&lt;String&gt;();
+        /* Add a few elements to set */
+        s1.add(&quot;Java&quot;);
+        s1.add(&quot;Python&quot;);
+        s1.add(&quot;JavaScript&quot;);
+        s1.add(&quot;C/C++&quot;);
+        /* Create another set */
+        Set&lt;String&gt; s2 = new HashSet&lt;String&gt;();
+        /* Add a few elements to set */
+        s2.add(&quot;Java&quot;);
+        s2.add(&quot;Python&quot;);
+        s2.add(&quot;Golang&quot;);
+        s2.add(&quot;ASM&quot;);
+        /* Print sets details */
+        showSet(&quot;s1&quot;, s1);
+        showSet(&quot;s2&quot;, s2);
+        /* Union Set */
+        showSet(&quot;UnionSet&quot;, doUnionSet(s1, s2));
+        /* Intersection Set */
+        showSet(&quot;IntersectionSet&quot;, doIntersectionSet(s1, s2));
+        /* Subtraction Set */
+        showSet(&quot;SubtractionSet&quot;, doSubtractionSet(s1, s2));
+    }
+    public static &lt;T&gt; Set&lt;T&gt; doSubtractionSet(Set&lt;T&gt; s1, Set&lt;T&gt; s2) {
+        Set&lt;T&gt; s1Copy = new HashSet&lt;T&gt;(s1);
+        s1Copy.removeAll(s2);
+        return s1Copy;
+    }
+    public static &lt;T&gt; Set&lt;T&gt; doIntersectionSet(Set&lt;T&gt; s1, Set&lt;T&gt; s2) {
+        Set&lt;T&gt; s1Copy = new HashSet&lt;T&gt;(s1);
+        s1Copy.retainAll(s2);
+        return s1Copy;
+    }
+    public static &lt;T&gt; Set&lt;T&gt; doUnionSet(Set&lt;T&gt; s1, Set&lt;T&gt; s2) {
+        Set&lt;T&gt; s1Copy = new HashSet&lt;T&gt;(s1);
+        s1Copy.addAll(s2);
+        return s1Copy;
+    }
+    public static &lt;T&gt; void showSet(String name, Set&lt;T&gt; s) {
+        System.out.printf(
+            &quot;%s(%s): %s&quot; +
+            System.getProperty(&quot;line.separator&quot;),
+            name,
+            s.size(),
+            s.toString()
+        );
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Set</code>交集、并集与补集</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenJDK Documents：<a href="https://devdocs.io/openjdk~8/java/util/set" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/set</a></li>
