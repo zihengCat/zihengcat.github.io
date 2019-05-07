@@ -168,12 +168,66 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="Java-集合框架-List-接口"><a href="#Java-集合框架-List-接口" class="headerlink" title="Java 集合框架 List 接口"></a>Java 集合框架 <code>List</code> 接口</h1><p>Java 集合框架存在<code>List</code>接口，表示元素有序排列的集合序列（Sequence），也被称为线性表、列表。线性表内的元素可以重复出现。</p>
-<p>Java 集合框架<code>List</code>接口继承自<code>Collection</code>接口，并添加了对列表元素以索引方式访问的方法，你可以将一枚元素添加到列表的指定位置，列表索引从零开始（Zero-Based）。</p>
+<p>Java 集合框架<code>List</code>接口继承自<code>Collection</code>接口，并添加了对列表元素以<strong>索引方式</strong>访问的方法，你可以将一枚元素添加到列表的指定位置，列表索引从零开始（Zero-Based）。</p>
 <pre><code class="java">public interface List&lt;E&gt;
 extends Collection&lt;E&gt;
 </code></pre>
 <blockquote>
 <p>代码清单：<code>List</code>接口声明</p>
+</blockquote>
+<p>以下对<code>List</code>接口方法作一个整理。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>void add(int index, E element)</code></td>
+<td>将新元素插入到列表指定位置，列表元素后移。</td>
+</tr>
+<tr>
+<td><code>E remove(int index)</code></td>
+<td>移除指定索引位置的列表元素。</td>
+</tr>
+<tr>
+<td><code>boolean addAll(int index, Collection&lt;? extends E&gt; c)</code></td>
+<td>将新元素序列插入到列表指定位置，列表元素后移。</td>
+</tr>
+<tr>
+<td><code>E get(int index)</code></td>
+<td>取得指定索引位置的列表元素。</td>
+</tr>
+<tr>
+<td><code>E set(int index, E element)</code></td>
+<td>将指定位置的列表元素设为新值，返回旧值。</td>
+</tr>
+<tr>
+<td><code>int indexOf(Object o)</code></td>
+<td>顺序查询指定元素的索引位置，不存在则返回<code>-1</code>。</td>
+</tr>
+<tr>
+<td><code>int lastIndexOf(Object o)</code></td>
+<td>逆序查询指定元素的索引位置，不存在则返回<code>-1</code>。</td>
+</tr>
+<tr>
+<td><code>ListIterator&lt;E&gt; listIterator()</code></td>
+<td>返回列表迭代器。</td>
+</tr>
+<tr>
+<td><code>ListIterator&lt;E&gt; listIterator(int index)</code></td>
+<td>返回指定索引位置的列表迭代器。</td>
+</tr>
+<tr>
+<td><code>List&lt;E&gt; subList(int fromIndex, int toIndex)</code></td>
+<td>返回指定索引子列表视图，包含上界，不包含下界。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表：<code>List</code>接口方法表</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenJDK Documents：<a href="https://devdocs.io/openjdk~8/java/util/list" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/list</a></li>
