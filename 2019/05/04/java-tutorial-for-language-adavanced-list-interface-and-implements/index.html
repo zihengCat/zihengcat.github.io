@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -238,19 +238,26 @@ extends Collection&lt;E&gt;
 </ul>
 <p>这两种实现各有优劣，<code>ArrayList</code>在随机存/取元素（<code>get/set</code>）方面性能优异，但在添加/移除（<code>add/remove</code>）元素方面速度较慢；<code>LinkedList</code>在添加/移除（<code>add/remove</code>）元素方面性能出色，在随机存/取元素（<code>get/set</code>）方面速度较慢。</p>
 <h1 id="Java-集合-List-使用示例"><a href="#Java-集合-List-使用示例" class="headerlink" title="Java 集合 List 使用示例"></a>Java 集合 <code>List</code> 使用示例</h1><p>我们通过一个 Demo 代码示例来熟悉<code>List</code>接口。</p>
-<pre><code class="java">import java.util.List;
-import java.util.ArrayList;
+<pre><code class="java">import java.util.ArrayList;
+import java.util.List;
 public class Main {
     public static void main(String[] args) {
+        /* Create a list of strings */
         List&lt;String&gt; aList = new ArrayList&lt;String&gt;();
+        /* Print list details */
         showList(&quot;List&quot;, aList);
+        /* Add a few elements to list */
         aList.add(&quot;Java&quot;);
         aList.add(&quot;Python&quot;);
         aList.add(&quot;JavaScript&quot;);
         aList.add(&quot;C/C++&quot;);
+        /* Print list details */
         showList(&quot;List&quot;, aList);
-        aList.add(0, &quot;ASM&quot;);
+        /* Add an element at index 1 */
+        aList.add(1, &quot;Ruby&quot;);
+        /* Print list details */
         showList(&quot;List&quot;, aList);
+        /* Get list index and element */
         for (int i = 0; i &lt; aList.size(); ++i) {
             System.out.printf(
                 &quot;Index = %d, Element = %s&quot; +
@@ -259,7 +266,9 @@ public class Main {
                 aList.get(i)
             );
         }
+        /* Change element at index 0 */
         aList.set(0, &quot;Golang&quot;);
+        /* Print list details */
         showList(&quot;List&quot;, aList);
     }
     public static &lt;T&gt; void showList(String name, List&lt;T&gt; l) {
