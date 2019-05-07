@@ -229,6 +229,20 @@ extends Collection&lt;E&gt;
 <blockquote>
 <p>表：<code>List</code>接口方法表</p>
 </blockquote>
+<h1 id="List-接口实现类"><a href="#List-接口实现类" class="headerlink" title="List 接口实现类"></a><code>List</code> 接口实现类</h1><p>Java 集合框架对<code>List</code>接口有两类实现：数组与链表。</p>
+<ul>
+<li><p><code>ArrayList</code>：数组实现</p>
+</li>
+<li><p><code>LinkedList</code>：链表实现</p>
+</li>
+</ul>
+<p>这两种实现各有优劣，<code>ArrayList</code>在随机存/取元素（<code>get/set</code>）方面性能优异，但在添加/移除（<code>add/remove</code>）元素方面速度较慢；<code>LinkedList</code>在添加/移除（<code>add/remove</code>）元素方面性能出色，在随机存/取元素（<code>get/set</code>）方面速度较慢。</p>
+<p>An ArrayList performs better if you get and set the elements of the list frequently.</p>
+<p>Accessing elements in an ArrayList is faster.</p>
+<p>Adding or removing elements from ArrayList performs slower, unless done from the end.</p>
+<p>LinkedList performs better for adding and removing elements from the middle of the list.</p>
+<p>It is slower for accessing elements of the list, unless at the head of the list.</p>
+<p>You can create and add some elements to a list as follows: </p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenJDK Documents：<a href="https://devdocs.io/openjdk~8/java/util/list" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/list</a></li>
 </ul>
