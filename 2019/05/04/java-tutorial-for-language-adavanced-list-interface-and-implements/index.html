@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -237,12 +237,45 @@ extends Collection&lt;E&gt;
 </li>
 </ul>
 <p>这两种实现各有优劣，<code>ArrayList</code>在随机存/取元素（<code>get/set</code>）方面性能优异，但在添加/移除（<code>add/remove</code>）元素方面速度较慢；<code>LinkedList</code>在添加/移除（<code>add/remove</code>）元素方面性能出色，在随机存/取元素（<code>get/set</code>）方面速度较慢。</p>
-<p>An ArrayList performs better if you get and set the elements of the list frequently.</p>
-<p>Accessing elements in an ArrayList is faster.</p>
-<p>Adding or removing elements from ArrayList performs slower, unless done from the end.</p>
-<p>LinkedList performs better for adding and removing elements from the middle of the list.</p>
-<p>It is slower for accessing elements of the list, unless at the head of the list.</p>
-<p>You can create and add some elements to a list as follows: </p>
+<h1 id="Java-集合-List-使用示例"><a href="#Java-集合-List-使用示例" class="headerlink" title="Java 集合 List 使用示例"></a>Java 集合 <code>List</code> 使用示例</h1><p>我们通过一个 Demo 代码示例来熟悉<code>List</code>接口。</p>
+<pre><code class="java">import java.util.List;
+import java.util.ArrayList;
+public class Main {
+    public static void main(String[] args) {
+        List&lt;String&gt; aList = new ArrayList&lt;String&gt;();
+        showList(&quot;List&quot;, aList);
+        aList.add(&quot;Java&quot;);
+        aList.add(&quot;Python&quot;);
+        aList.add(&quot;JavaScript&quot;);
+        aList.add(&quot;C/C++&quot;);
+        showList(&quot;List&quot;, aList);
+        aList.add(0, &quot;ASM&quot;);
+        showList(&quot;List&quot;, aList);
+        for (int i = 0; i &lt; aList.size(); ++i) {
+            System.out.printf(
+                &quot;Index = %d, Element = %s&quot; +
+                System.getProperty(&quot;line.separator&quot;),
+                i,
+                aList.get(i)
+            );
+        }
+        aList.set(0, &quot;Golang&quot;);
+        showList(&quot;List&quot;, aList);
+    }
+    public static &lt;T&gt; void showList(String name, List&lt;T&gt; l) {
+        System.out.printf(
+            &quot;%s(%s): %s&quot; +
+            System.getProperty(&quot;line.separator&quot;),
+            name,
+            l.size(),
+            l.toString()
+        );
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>List</code>使用示例</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>OpenJDK Documents：<a href="https://devdocs.io/openjdk~8/java/util/list" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/list</a></li>
 </ul>
