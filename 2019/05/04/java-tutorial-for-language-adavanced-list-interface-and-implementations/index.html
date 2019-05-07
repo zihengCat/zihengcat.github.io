@@ -288,7 +288,13 @@ public class Main {
 <blockquote>
 <p>代码清单：<code>List</code>使用示例</p>
 </blockquote>
-<h1 id="ListIterator-列表迭代器"><a href="#ListIterator-列表迭代器" class="headerlink" title="ListIterator 列表迭代器"></a><code>ListIterator</code> 列表迭代器</h1><pre><code class="plain">Element(0)   Element(1)   Element(2)   ... Element(n-1)   Element(n)
+<h1 id="ListIterator-列表迭代器"><a href="#ListIterator-列表迭代器" class="headerlink" title="ListIterator 列表迭代器"></a><code>ListIterator</code> 列表迭代器</h1><pre><code class="plain">public interface ListIterator&lt;E&gt;
+extends Iterator&lt;E&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：<code>ListIterator</code>列表迭代器声明</p>
+</blockquote>
+<pre><code class="plain">Element(0)   Element(1)   Element(2)   ... Element(n-1)   Element(n)
 cursor positions:  ^            ^                ^              ^
 </code></pre>
 <blockquote>
