@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -314,7 +314,7 @@ public class Main {
         aList.add(&quot;C/C++&quot;);
         /* Get the list iterator */
         ListIterator&lt;String&gt; it = aList.listIterator();
-        System.out.println(&quot;List Iterator in forward direction:&quot;);
+        System.out.println(&quot;List Iterator in forward direction: &quot;);
         while (it.hasNext()) {
             Integer i = it.nextIndex();
             String s = it.next();
@@ -325,7 +325,7 @@ public class Main {
             );
         }
         //it = aList.listIterator();
-        System.out.println(&quot;List Iterator in backward direction:&quot;);
+        System.out.println(&quot;List Iterator in backward direction: &quot;);
         /* Reuse the iterator to iterate from the end to the beginning */
         while (it.hasPrevious()) {
             Integer i = it.previousIndex();
