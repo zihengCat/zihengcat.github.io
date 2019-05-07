@@ -270,6 +270,10 @@ public class Main {
         aList.set(0, &quot;Golang&quot;);
         /* Print list details */
         showList(&quot;List&quot;, aList);
+        /* Remove an element at index 3 */
+        aList.remove(3);
+        /* Print list details */
+        showList(&quot;List&quot;, aList);
     }
     public static &lt;T&gt; void showList(String name, List&lt;T&gt; l) {
         System.out.printf(
