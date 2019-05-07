@@ -274,6 +274,8 @@ public class Main {
         aList.remove(3);
         /* Print list details */
         showList(&quot;List&quot;, aList);
+        /* Get a sublist by indexes */
+        showList(&quot;SubList[1:3]&quot;, aList.subList(1, 3));
     }
     public static &lt;T&gt; void showList(String name, List&lt;T&gt; l) {
         System.out.printf(
