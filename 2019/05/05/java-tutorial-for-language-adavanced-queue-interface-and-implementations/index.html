@@ -174,10 +174,17 @@
 </li>
 <li><p>从队头移出元素（出队）</p>
 </li>
-<li><p>查看队头首元素（审查）</p>
+<li><p>查看队头首元素（检查）</p>
 </li>
 </ul>
 <p>Java 集合框架<code>Queue</code>接口定义了<code>FIFO</code>队列的基本操作方法，并为每项操作分别定义两种方法：一种方法在会在操作失败时抛出异常，另一方法则会在操作失败时返回一个特殊值（<code>false</code>或<code>null</code>）标识操作失败。</p>
+<pre><code class="java">public interface Queue&lt;E&gt;
+extends Collection&lt;E&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Queue</code>接口声明</p>
+</blockquote>
+<p>下面对<code>Queue</code>接口方法作一个整理。</p>
 <table>
 <thead>
 <tr>
@@ -208,12 +215,12 @@
 <td>从队头取出一枚元素，失败或队列为空时返回<code>null</code>。</td>
 </tr>
 <tr>
-<td>审查</td>
+<td>检查</td>
 <td><code>E element()</code></td>
 <td>查看队头元素，失败或队列为空时抛出异常。</td>
 </tr>
 <tr>
-<td>审查</td>
+<td>检查</td>
 <td><code>E peek()</code></td>
 <td>查看队头元素，失败或队列为空时返回<code>null</code>。</td>
 </tr>
@@ -222,11 +229,58 @@
 <blockquote>
 <p>表：<code>Queue</code>接口方法表</p>
 </blockquote>
-<pre><code class="java">public interface Queue&lt;E&gt;
-extends Collection&lt;E&gt;
+<h1 id="Queue-接口实现类"><a href="#Queue-接口实现类" class="headerlink" title="Queue 接口实现类"></a><code>Queue</code> 接口实现类</h1><p>Java 集合框架对<code>Queue</code>接口有几类实现：数组（Resizable Array）、链表（Linked List）、堆（Heap）。</p>
+<ul>
+<li><p><code>ArrayDeque</code>：数组实现</p>
+</li>
+<li><p><code>LinkedList</code>：链表实现</p>
+</li>
+<li><p><code>PriorityQueue</code>：堆实现</p>
+</li>
+</ul>
+<h1 id="Java-集合-Queue-使用示例"><a href="#Java-集合-Queue-使用示例" class="headerlink" title="Java 集合 Queue 使用示例"></a>Java 集合 <code>Queue</code> 使用示例</h1><pre><code class="java">import java.util.Queue;
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+public class Main {
+    public static void main(String[] args) {
+        /* Create a queue of strings */
+        Queue&lt;String&gt; aQueue = new LinkedList&lt;String&gt;();
+        /* Print queue details */
+        showQueue(&quot;Queue&quot;, aQueue);
+        /* offer() work the same as add() */
+        aQueue.offer(&quot;Java&quot;);
+        aQueue.offer(&quot;Python&quot;);
+        aQueue.offer(&quot;JavaScript&quot;);
+        aQueue.offer(&quot;C/C++&quot;);
+        /* Print queue details */
+        showQueue(&quot;Queue&quot;, aQueue);
+        /* Remove element from queue head */
+        aQueue.poll();
+        /* Print queue details */
+        showQueue(&quot;Queue&quot;, aQueue);
+        /* Add element from queue tail */
+        aQueue.offer(&quot;Golang&quot;);
+        /* Print queue details */
+        showQueue(&quot;Queue&quot;, aQueue);
+        System.out.println(&quot;Queue.peek(): &quot;);
+        /* Use queue peek() method */
+        while (!aQueue.isEmpty()) {
+            String e = aQueue.peek();
+            System.out.println(e);
+            aQueue.poll();
+        }
+    }
+    public static &lt;T&gt; void showQueue(String name, Queue&lt;T&gt; queue) {
+        System.out.printf(
+            &quot;%s(%d): %s&quot; +
+            System.getProperty(&quot;line.separator&quot;),
+            name, queue.size(), queue.toString()
+        );
+    }
+}
 </code></pre>
 <blockquote>
-<p>代码清单：<code>Queue</code>接口声明</p>
+<p>代码清单：<code>Queue</code>使用示例</p>
 </blockquote>
 <h1 id="关联内容（Related-Topics）"><a href="#关联内容（Related-Topics）" class="headerlink" title="关联内容（Related Topics）"></a>关联内容（Related Topics）</h1><ul>
 <li><a href="https://zihengcat.github.io/2019/05/02/java-tutorial-for-language-adavanced-collection-and-iterator/">Java 高级教程系列 - Collection 接口与 Iterator 迭代器</a></li>
