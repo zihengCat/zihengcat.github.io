@@ -167,7 +167,67 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-集合框架-Queue-接口"><a href="#Java-集合框架-Queue-接口" class="headerlink" title="Java 集合框架 Queue 接口"></a>Java 集合框架 <code>Queue</code> 接口</h1><p>Java 集合框架中的<code>Queue</code>接口，模拟数据结构中的队列。队列有入点（Entry Point）与出点（Exit Point），队列的入点被称为队尾（Tail），队列的出点被称为队头（Head），队列元素从队尾进入，从队头流出，队列是个<strong>先进先出（FIFO）</strong>的线性表数据结构。</p>
+                <h1 id="Java-集合框架-Queue-接口"><a href="#Java-集合框架-Queue-接口" class="headerlink" title="Java 集合框架 Queue 接口"></a>Java 集合框架 <code>Queue</code> 接口</h1><p>Java 集合框架中的<code>Queue</code>接口，模拟数据结构中的队列。队列有入点（Entry Point）与出点（Exit Point），队列的入点被称为队尾（Tail），队列的出点被称为队头（Head），队列元素从队尾进入，从队头流出，队列是一种<strong>先进先出（FIFO）</strong>的线性表数据结构。</p>
+<p>队列一般包含三项基本操作：</p>
+<ul>
+<li><p>从队尾添加元素（入队）</p>
+</li>
+<li><p>从队头移出元素（出队）</p>
+</li>
+<li><p>查看队头首元素（审查）</p>
+</li>
+</ul>
+<p>Java 集合框架<code>Queue</code>接口定义了<code>FIFO</code>队列的基本操作方法，并为每项操作分别定义两种方法：一种方法在会在操作失败时抛出异常，另一方法则会在操作失败时返回一个特殊值（<code>false</code>或<code>null</code>）标识操作失败。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入队</td>
+<td><code>boolean add(E e)</code></td>
+<td>将一枚元素添加到队尾，失败抛出异常。</td>
+</tr>
+<tr>
+<td>入队</td>
+<td><code>boolean offer(E e)</code></td>
+<td>将一枚元素添加到队尾，失败返回<code>false</code>。</td>
+</tr>
+<tr>
+<td>出队</td>
+<td><code>E remove()</code></td>
+<td>从队头取出一枚元素，失败抛出异常。</td>
+</tr>
+<tr>
+<td>出队</td>
+<td><code>E poll()</code></td>
+<td>从队头取出一枚元素，失败或队列为空时返回<code>null</code>。</td>
+</tr>
+<tr>
+<td>审查</td>
+<td><code>E element()</code></td>
+<td>查看队头元素，失败或队列为空时抛出异常。</td>
+</tr>
+<tr>
+<td>审查</td>
+<td><code>E peek()</code></td>
+<td>查看队头元素，失败或队列为空时返回<code>null</code>。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表：<code>Queue</code>接口方法表</p>
+</blockquote>
+<pre><code class="java">public interface Queue&lt;E&gt;
+extends Collection&lt;E&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Queue</code>接口声明</p>
+</blockquote>
 <h1 id="关联内容（Related-Topics）"><a href="#关联内容（Related-Topics）" class="headerlink" title="关联内容（Related Topics）"></a>关联内容（Related Topics）</h1><ul>
 <li><a href="https://zihengcat.github.io/2019/05/02/java-tutorial-for-language-adavanced-collection-and-iterator/">Java 高级教程系列 - Collection 接口与 Iterator 迭代器</a></li>
 </ul>
