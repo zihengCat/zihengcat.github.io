@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2019/05/05/java-tutorial-for-language-adavanced-queue-interface-and-implementations/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/05/06/java-tutorial-for-language-adavanced-deque-interface-and-implementations/">
     <title>
         
-          Java 高级教程系列 - Queue 接口及其实现 - zihengCat
+          Java 高级教程系列 - Deque 接口及其实现 - zihengCat
         
     </title>
 
@@ -147,11 +147,11 @@
                           <a class="tag" href="/tags/#Java Tutorial" title="Java Tutorial">Java Tutorial</a>
                         
                     </div>
-                    <h1>Java 高级教程系列 - Queue 接口及其实现</h1>
-                    <h2 class="subheading">Java Tutorial for Language Adavanced - Queue Interface and Implementations</h2>
+                    <h1>Java 高级教程系列 - Deque 接口及其实现</h1>
+                    <h2 class="subheading">Java Tutorial for Language Adavanced - Deque Interface and Implementations</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2019-05-05
+                        2019-05-06
                     </span>
                 </div>
             </div>
@@ -167,139 +167,23 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-集合框架-Queue-接口"><a href="#Java-集合框架-Queue-接口" class="headerlink" title="Java 集合框架 Queue 接口"></a>Java 集合框架 <code>Queue</code> 接口</h1><p>Java 集合框架中的<code>Queue</code>接口，模拟数据结构中的队列。队列有入点（Entry Point）与出点（Exit Point），队列的入点被称为队尾（Tail），队列的出点被称为队头（Head），队列元素从队尾进入，从队头流出，队列是一种<strong>先进先出（FIFO）</strong>的线性表数据结构。</p>
-<p>队列一般包含三项基本操作：</p>
-<ul>
-<li><p>从队尾添加元素（入队）</p>
+                <h1 id="Java-集合框架-Deque-接口"><a href="#Java-集合框架-Deque-接口" class="headerlink" title="Java 集合框架 Deque 接口"></a>Java 集合框架 <code>Deque</code> 接口</h1><h1 id="关联内容（Related-Topics）"><a href="#关联内容（Related-Topics）" class="headerlink" title="关联内容（Related Topics）"></a>关联内容（Related Topics）</h1><ul>
+<li><p><a href="https://zihengcat.github.io/2019/05/05/java-tutorial-for-language-adavanced-queue-interface-and-implementations/">Java 高级教程系列 - Queue 接口及其实现</a></p>
 </li>
-<li><p>从队头移出元素（出队）</p>
+<li><p><a href="https://zihengcat.github.io/2019/05/02/java-tutorial-for-language-adavanced-collection-and-iterator/">Java 高级教程系列 - Collection 接口与 Iterator 迭代器</a></p>
 </li>
-<li><p>查看队头首元素（检查）</p>
-</li>
-</ul>
-<p>Java 集合框架<code>Queue</code>接口定义了<code>FIFO</code>队列的基本操作方法，并为每项操作分别定义两种方法：一种方法在会在操作失败时抛出异常，另一方法则会在操作失败时返回一个特殊值（<code>false</code>或<code>null</code>）标识操作失败。</p>
-<pre><code class="java">public interface Queue&lt;E&gt;
-extends Collection&lt;E&gt;
-</code></pre>
-<blockquote>
-<p>代码清单：<code>Queue</code>接口声明</p>
-</blockquote>
-<p>下面对<code>Queue</code>接口方法作一个整理。</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>方法</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>入队</td>
-<td><code>boolean add(E e)</code></td>
-<td>将一枚元素添加到队尾，失败抛出异常。</td>
-</tr>
-<tr>
-<td>入队</td>
-<td><code>boolean offer(E e)</code></td>
-<td>将一枚元素添加到队尾，失败返回<code>false</code>。</td>
-</tr>
-<tr>
-<td>出队</td>
-<td><code>E remove()</code></td>
-<td>从队头取出一枚元素，失败抛出异常。</td>
-</tr>
-<tr>
-<td>出队</td>
-<td><code>E poll()</code></td>
-<td>从队头取出一枚元素，失败或队列为空时返回<code>null</code>。</td>
-</tr>
-<tr>
-<td>检查</td>
-<td><code>E element()</code></td>
-<td>查看队头元素，失败或队列为空时抛出异常。</td>
-</tr>
-<tr>
-<td>检查</td>
-<td><code>E peek()</code></td>
-<td>查看队头元素，失败或队列为空时返回<code>null</code>。</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>表：<code>Queue</code>接口方法表</p>
-</blockquote>
-<h1 id="Queue-接口实现类"><a href="#Queue-接口实现类" class="headerlink" title="Queue 接口实现类"></a><code>Queue</code> 接口实现类</h1><p>Java 集合框架对<code>Queue</code>接口有几类实现：数组（Resizable Array）、链表（Linked List）、堆（Heap）。</p>
-<ul>
-<li><p><code>ArrayDeque</code>：数组实现</p>
-</li>
-<li><p><code>LinkedList</code>：链表实现</p>
-</li>
-<li><p><code>PriorityQueue</code>：堆实现</p>
-</li>
-</ul>
-<h1 id="Java-集合-Queue-使用示例"><a href="#Java-集合-Queue-使用示例" class="headerlink" title="Java 集合 Queue 使用示例"></a>Java 集合 <code>Queue</code> 使用示例</h1><pre><code class="java">import java.util.Queue;
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-public class Main {
-    public static void main(String[] args) {
-        /* Create a queue of strings */
-        Queue&lt;String&gt; aQueue = new LinkedList&lt;String&gt;();
-        /* Print queue details */
-        showQueue(&quot;Queue&quot;, aQueue);
-        /* offer() work the same as add() */
-        aQueue.offer(&quot;Java&quot;);
-        aQueue.offer(&quot;Python&quot;);
-        aQueue.offer(&quot;JavaScript&quot;);
-        aQueue.offer(&quot;C/C++&quot;);
-        /* Print queue details */
-        showQueue(&quot;Queue&quot;, aQueue);
-        /* Remove element from queue head */
-        aQueue.poll();
-        /* Print queue details */
-        showQueue(&quot;Queue&quot;, aQueue);
-        /* Add element from queue tail */
-        aQueue.offer(&quot;Golang&quot;);
-        /* Print queue details */
-        showQueue(&quot;Queue&quot;, aQueue);
-        System.out.println(&quot;Queue.peek(): &quot;);
-        /* Use queue peek() method */
-        while (!aQueue.isEmpty()) {
-            String e = aQueue.peek();
-            System.out.println(e);
-            aQueue.poll();
-        }
-    }
-    public static &lt;T&gt; void showQueue(String name, Queue&lt;T&gt; queue) {
-        System.out.printf(
-            &quot;%s(%d): %s&quot; +
-            System.getProperty(&quot;line.separator&quot;),
-            name, queue.size(), queue.toString()
-        );
-    }
-}
-</code></pre>
-<blockquote>
-<p>代码清单：<code>Queue</code>使用示例</p>
-</blockquote>
-<h1 id="关联内容（Related-Topics）"><a href="#关联内容（Related-Topics）" class="headerlink" title="关联内容（Related Topics）"></a>关联内容（Related Topics）</h1><ul>
-<li><a href="https://zihengcat.github.io/2019/05/02/java-tutorial-for-language-adavanced-collection-and-iterator/">Java 高级教程系列 - Collection 接口与 Iterator 迭代器</a></li>
 </ul>
 <h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><ul>
-<li>OpenJDK Documents for <code>Queue</code>: <a href="https://devdocs.io/openjdk~8/java/util/queue" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/queue</a></li>
+<li>OpenJDK Documents for <code>Deque</code>: <a href="https://devdocs.io/openjdk~8/java/util/deque" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/deque</a></li>
 </ul>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/05/06/java-tutorial-for-language-adavanced-deque-interface-and-implementations/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - Deque 接口及其实现">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/05/04/java-tutorial-for-language-adavanced-list-interface-and-implementations/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - List 接口及其实现">Next Post &rarr;</a>
+                            <a href="/2019/05/05/java-tutorial-for-language-adavanced-queue-interface-and-implementations/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - Queue 接口及其实现">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
