@@ -168,6 +168,9 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="Java-集合框架-Deque-接口"><a href="#Java-集合框架-Deque-接口" class="headerlink" title="Java 集合框架 Deque 接口"></a>Java 集合框架 <code>Deque</code> 接口</h1><p>Java 集合框架中的<code>Deque</code>接口，其模型定义为：<strong>一种支持从双端插入或移除元素的线性表数据结构</strong>，是对队列结构的扩展，一般被称为双端队列（Double Ended Queue），简称 <em>Deque</em> 。</p>
+<blockquote>
+<p>注：<code>Deque</code>读音为 <em>deck</em> ，不为 <em>de queue</em> 。</p>
+</blockquote>
 <pre><code class="java">public interface Deque&lt;E&gt;
 extends Queue&lt;E&gt;
 </code></pre>
@@ -303,7 +306,23 @@ import java.util.ArrayDeque;
 import java.util.LinkedList;
 public class Main {
     public static void main(String[] args) {
-        /* Create a deque of strings */
+        /* Create a stack of strings based on deque */
+        Deque&lt;String&gt; aStack = new LinkedList&lt;String&gt;();
+        /* Push elements to stack */
+        aStack.push(&quot;Java&quot;);
+        aStack.push(&quot;Python&quot;);
+        aStack.push(&quot;JavaScript&quot;);
+        aStack.push(&quot;C/C++&quot;);
+        aStack.push(&quot;Golang&quot;);
+        /* Print stack details */
+        showDeque(&quot;Stack&quot;, aStack);
+        /* Pop elements from stack */
+        while (!aStack.isEmpty()) {
+            String e = aStack.pop();
+            System.out.println(e);
+        }
+        /* Print stack details */
+        showDeque(&quot;Stack&quot;, aStack);
     }
 }
 </code></pre>
