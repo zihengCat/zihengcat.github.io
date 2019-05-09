@@ -324,6 +324,13 @@ public class Main {
         /* Print stack details */
         showDeque(&quot;Stack&quot;, aStack);
     }
+    public static &lt;T&gt; void showDeque(String name, Deque&lt;T&gt; deque) {
+        System.out.printf(
+            &quot;%s(%d): %s&quot; +
+            System.getProperty(&quot;line.separator&quot;),
+            name, deque.size(), deque.toString()
+        );
+    }
 }
 </code></pre>
 <blockquote>
