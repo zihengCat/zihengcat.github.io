@@ -272,6 +272,44 @@ public class Main {
 <blockquote>
 <p>代码清单：<code>Deque</code>使用示例</p>
 </blockquote>
+<h1 id="Deque-用作-Stack"><a href="#Deque-用作-Stack" class="headerlink" title="Deque 用作 Stack"></a><code>Deque</code> 用作 <code>Stack</code></h1><p><code>Deque</code>数据结构也可以被用作<code>Stack</code>栈（LIFO），Java 官方也建议开发者使用<code>Deque</code>取代旧版<code>Stack</code>类。当<code>Deque</code>被当作栈使用时，元素都从队头（Head）出入栈。<code>Deque</code>也定义了栈的基本操作方法。</p>
+<table>
+<thead>
+<tr>
+<th><code>Stack</code> Method</th>
+<th>Equivalent <code>Deque</code> Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>push(e)</code></td>
+<td><code>addFirst(e)</code></td>
+</tr>
+<tr>
+<td><code>pop()</code></td>
+<td><code>removeFirst()</code></td>
+</tr>
+<tr>
+<td><code>peek()</code></td>
+<td><code>peekFirst()</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表：<code>Deque</code>与<code>Stack</code>方法比较表</p>
+</blockquote>
+<pre><code class="java">import java.util.Deque;
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+public class Main {
+    public static void main(String[] args) {
+        /* Create a deque of strings */
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Deque</code>用作<code>Stack</code>使用示例</p>
+</blockquote>
 <h1 id="关联内容（Related-Topics）"><a href="#关联内容（Related-Topics）" class="headerlink" title="关联内容（Related Topics）"></a>关联内容（Related Topics）</h1><ul>
 <li><p><a href="https://zihengcat.github.io/2019/05/05/java-tutorial-for-language-adavanced-queue-interface-and-implementations/">Java 高级教程系列 - Queue 接口及其实现</a></p>
 </li>
