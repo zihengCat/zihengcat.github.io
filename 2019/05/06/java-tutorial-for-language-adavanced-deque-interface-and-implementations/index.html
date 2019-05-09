@@ -167,14 +167,14 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-集合框架-Deque-接口"><a href="#Java-集合框架-Deque-接口" class="headerlink" title="Java 集合框架 Deque 接口"></a>Java 集合框架 <code>Deque</code> 接口</h1><p>Java 集合框架中的<code>Deque</code>接口，其模型定义为：<strong>一种支持从双端插入或移除元素的线性表数据结构</strong>，是对队列结构的扩展，一般被称为双端队列（Double Ended Queue），简称<em>Deque</em>。</p>
-<p>Java 集合<code>Deque</code>支持从队尾（Tail）或队头（Head）插入/移除元素，定义了操作双端队列的基本方法，为每项操作分别定义两种方法：一种方法在会在操作失败时抛出异常，另一种则会在操作失败时返回一个特殊值（false或null）标识操作失败。</p>
+                <h1 id="Java-集合框架-Deque-接口"><a href="#Java-集合框架-Deque-接口" class="headerlink" title="Java 集合框架 Deque 接口"></a>Java 集合框架 <code>Deque</code> 接口</h1><p>Java 集合框架中的<code>Deque</code>接口，其模型定义为：<strong>一种支持从双端插入或移除元素的线性表数据结构</strong>，是对队列结构的扩展，一般被称为双端队列（Double Ended Queue），简称 <em>Deque</em> 。</p>
 <pre><code class="java">public interface Deque&lt;E&gt;
 extends Queue&lt;E&gt;
 </code></pre>
 <blockquote>
 <p>代码清单：<code>Deque</code>接口声明</p>
 </blockquote>
+<p>Java 集合<code>Deque</code>支持从队尾（Tail）或队头（Head）插入/移除元素，定义了操作双端队列的基本方法，为每项操作分别定义两种方法：一种方法在会在操作失败时抛出异常，另一种则会在操作失败时返回一个特殊值（false或null）标识操作失败。</p>
 <p>下面对<code>Deque</code>接口方法作一个整理。</p>
 <p><img src="./summary-of-deque-methods.png" alt="summary-of-deque-methods"></p>
 <blockquote>
