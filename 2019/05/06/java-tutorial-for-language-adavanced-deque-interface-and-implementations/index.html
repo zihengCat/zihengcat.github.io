@@ -167,7 +167,27 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-集合框架-Deque-接口"><a href="#Java-集合框架-Deque-接口" class="headerlink" title="Java 集合框架 Deque 接口"></a>Java 集合框架 <code>Deque</code> 接口</h1><h1 id="关联内容（Related-Topics）"><a href="#关联内容（Related-Topics）" class="headerlink" title="关联内容（Related Topics）"></a>关联内容（Related Topics）</h1><ul>
+                <h1 id="Java-集合框架-Deque-接口"><a href="#Java-集合框架-Deque-接口" class="headerlink" title="Java 集合框架 Deque 接口"></a>Java 集合框架 <code>Deque</code> 接口</h1><p>Java 集合框架中的<code>Deque</code>接口，其模型定义为：<strong>一种支持从双端插入或移除元素的线性表数据结构</strong>，是对队列结构的扩展，一般被称为双端队列（Double Ended Queue），简称<em>Deque</em>。</p>
+<p>Java 集合<code>Deque</code>支持从队尾（Tail）或队头（Head）插入/移除元素，定义了操作双端队列的基本方法，为每项操作分别定义两种方法：一种方法在会在操作失败时抛出异常，另一种则会在操作失败时返回一个特殊值（false或null）标识操作失败。</p>
+<pre><code class="java">public interface Deque&lt;E&gt;
+extends Queue&lt;E&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Deque</code>接口声明</p>
+</blockquote>
+<p>下面对<code>Deque</code>接口方法作一个整理。</p>
+<p><img src="./summary-of-deque-methods.png" alt="summary-of-deque-methods"></p>
+<blockquote>
+<p>表：<code>Deque</code>接口方法表</p>
+</blockquote>
+<h1 id="Deque接口实现类"><a href="#Deque接口实现类" class="headerlink" title="Deque接口实现类"></a><code>Deque</code>接口实现类</h1><p>Java 集合框架对<code>Deque</code>接口有几类实现：数组（Resizable Array）、链表（Linked List）。</p>
+<ul>
+<li><p><code>ArrayDeque</code>：数组实现</p>
+</li>
+<li><p><code>LinkedList</code>：链表实现</p>
+</li>
+</ul>
+<h1 id="Java-集合-Deque-使用示例"><a href="#Java-集合-Deque-使用示例" class="headerlink" title="Java 集合 Deque 使用示例"></a>Java 集合 <code>Deque</code> 使用示例</h1><h1 id="关联内容（Related-Topics）"><a href="#关联内容（Related-Topics）" class="headerlink" title="关联内容（Related Topics）"></a>关联内容（Related Topics）</h1><ul>
 <li><p><a href="https://zihengcat.github.io/2019/05/05/java-tutorial-for-language-adavanced-queue-interface-and-implementations/">Java 高级教程系列 - Queue 接口及其实现</a></p>
 </li>
 <li><p><a href="https://zihengcat.github.io/2019/05/02/java-tutorial-for-language-adavanced-collection-and-iterator/">Java 高级教程系列 - Collection 接口与 Iterator 迭代器</a></p>
