@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2019/05/06/java-tutorial-for-language-adavanced-deque-interface-and-implementations/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/05/07/java-tutorial-for-language-adavanced-map-interface-and-implementations/">
     <title>
         
-          Java 高级教程系列 - Deque 接口及其实现 - zihengCat
+          Java 高级教程系列 - Map 接口及其实现 - zihengCat
         
     </title>
 
@@ -147,11 +147,11 @@
                           <a class="tag" href="/tags/#Java Tutorial" title="Java Tutorial">Java Tutorial</a>
                         
                     </div>
-                    <h1>Java 高级教程系列 - Deque 接口及其实现</h1>
-                    <h2 class="subheading">Java Tutorial for Language Adavanced - Deque Interface and Implementations</h2>
+                    <h1>Java 高级教程系列 - Map 接口及其实现</h1>
+                    <h2 class="subheading">Java Tutorial for Language Adavanced - Map Interface and Implementations</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2019-05-06
+                        2019-05-07
                     </span>
                 </div>
             </div>
@@ -167,196 +167,23 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-集合框架-Deque-接口"><a href="#Java-集合框架-Deque-接口" class="headerlink" title="Java 集合框架 Deque 接口"></a>Java 集合框架 <code>Deque</code> 接口</h1><p>Java 集合框架中的<code>Deque</code>接口，其模型定义为：<strong>一种支持从双端插入或移除元素的线性表数据结构</strong>，是对队列结构的扩展，一般被称为双端队列（Double Ended Queue），简称 <em>Deque</em> 。</p>
-<blockquote>
-<p>注：<code>Deque</code>读音为 <em>deck</em> ，不为 <em>de queue</em> 。</p>
-</blockquote>
-<pre><code class="java">public interface Deque&lt;E&gt;
-extends Queue&lt;E&gt;
-</code></pre>
-<blockquote>
-<p>代码清单：<code>Deque</code>接口声明</p>
-</blockquote>
-<p>Java 集合<code>Deque</code>支持从队尾（Tail）或队头（Head）插入/移除元素，定义了操作双端队列的基本方法，为每项操作分别定义两种方法：一种方法在会在操作失败时抛出异常，另一种则会在操作失败时返回一个特殊值（false或null）标识操作失败。</p>
-<p>下面对<code>Deque</code>接口方法作一个整理，以及对<code>Deque</code>与<code>Queue</code>方法作个比较。</p>
-<p><img src="./summary-of-deque-methods.png" alt="summary-of-deque-methods"></p>
-<blockquote>
-<p>表：<code>Deque</code>接口方法表</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th><code>Queue</code> Method</th>
-<th>Equivalent <code>Deque</code> Method</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>add(e)</code></td>
-<td><code>addLast(e)</code></td>
-</tr>
-<tr>
-<td><code>offer(e)</code></td>
-<td><code>offerLast(e)</code></td>
-</tr>
-<tr>
-<td><code>remove()</code></td>
-<td><code>removeFirst()</code></td>
-</tr>
-<tr>
-<td><code>poll()</code></td>
-<td><code>pollFirst()</code></td>
-</tr>
-<tr>
-<td><code>element()</code></td>
-<td><code>getFirst()</code></td>
-</tr>
-<tr>
-<td><code>peek()</code></td>
-<td><code>peekFirst()</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>表：<code>Deque</code>与<code>Queue</code>方法比较表</p>
-</blockquote>
-<h1 id="Deque接口实现类"><a href="#Deque接口实现类" class="headerlink" title="Deque接口实现类"></a><code>Deque</code>接口实现类</h1><p>Java 集合框架对<code>Deque</code>接口有几类实现：数组（Resizable Array）、链表（Linked List）。</p>
-<ul>
-<li><p><code>ArrayDeque</code>：数组实现</p>
-</li>
-<li><p><code>LinkedList</code>：链表实现</p>
-</li>
-</ul>
-<h1 id="Java-集合-Deque-使用示例"><a href="#Java-集合-Deque-使用示例" class="headerlink" title="Java 集合 Deque 使用示例"></a>Java 集合 <code>Deque</code> 使用示例</h1><p>我们通过一个 <em>Demo</em> 代码示例来熟悉<code>Deque</code>的操作。</p>
-<pre><code class="java">import java.util.Deque;
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-public class Main {
-    public static void main(String[] args) {
-        /* Create a deque of strings */
-        Deque&lt;String&gt; aDeque = new LinkedList&lt;String&gt;();
-        /* Print deque details */
-        showDeque(&quot;Deque&quot;, aDeque);
-        /* Add a few elements to deque */
-        aDeque.add(&quot;Java&quot;);
-        aDeque.add(&quot;Python&quot;);
-        /* Print deque details */
-        showDeque(&quot;Deque&quot;, aDeque);
-        /* Insert element from deque head */
-        aDeque.offerFirst(&quot;JavaScript&quot;);
-        showDeque(&quot;Deque&quot;, aDeque);
-        /* Insert element from deque tail */
-        aDeque.offerLast(&quot;C/C++&quot;);
-        showDeque(&quot;Deque&quot;, aDeque);
-        /* Use deque peek() and poll() method */
-        while (!aDeque.isEmpty()) {
-            String head = aDeque.peekFirst();
-            String tail = aDeque.peekLast();
-            System.out.printf(
-                &quot;Head = %s, Tail = %s&quot; +
-                System.getProperty(&quot;line.separator&quot;),
-                head, tail
-            );
-            aDeque.pollFirst();
-            aDeque.pollLast();
-        }
-        /* Print deque details */
-        showDeque(&quot;Deque&quot;, aDeque);
-    }
-    public static &lt;T&gt; void showDeque(String name, Deque&lt;T&gt; deque) {
-        System.out.printf(
-            &quot;%s(%d): %s&quot; +
-            System.getProperty(&quot;line.separator&quot;),
-            name, deque.size(), deque.toString()
-        );
-    }
-}
-</code></pre>
-<blockquote>
-<p>代码清单：<code>Deque</code>使用示例</p>
-</blockquote>
-<h1 id="Deque-用作-Stack"><a href="#Deque-用作-Stack" class="headerlink" title="Deque 用作 Stack"></a><code>Deque</code> 用作 <code>Stack</code></h1><p><code>Deque</code>数据结构也可以被用作<code>Stack</code>栈（LIFO），Java 官方也建议开发者使用<code>Deque</code>取代旧版<code>Stack</code>类。当<code>Deque</code>被当作栈使用时，元素都从队头（Head）出入栈。<code>Deque</code>也定义了栈的基本操作方法。</p>
-<table>
-<thead>
-<tr>
-<th><code>Stack</code> Method</th>
-<th>Equivalent <code>Deque</code> Method</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>push(e)</code></td>
-<td><code>addFirst(e)</code></td>
-</tr>
-<tr>
-<td><code>pop()</code></td>
-<td><code>removeFirst()</code></td>
-</tr>
-<tr>
-<td><code>peek()</code></td>
-<td><code>peekFirst()</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>表：<code>Deque</code>与<code>Stack</code>方法比较表</p>
-</blockquote>
-<pre><code class="java">import java.util.Deque;
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-public class Main {
-    public static void main(String[] args) {
-        /* Create a stack of strings based on deque */
-        Deque&lt;String&gt; aStack = new LinkedList&lt;String&gt;();
-        /* Push elements to stack */
-        aStack.push(&quot;Java&quot;);
-        aStack.push(&quot;Python&quot;);
-        aStack.push(&quot;JavaScript&quot;);
-        aStack.push(&quot;C/C++&quot;);
-        aStack.push(&quot;Golang&quot;);
-        /* Print stack details */
-        showDeque(&quot;Stack&quot;, aStack);
-        /* Pop elements from stack */
-        while (!aStack.isEmpty()) {
-            String e = aStack.pop();
-            System.out.println(e);
-        }
-        /* Print stack details */
-        showDeque(&quot;Stack&quot;, aStack);
-    }
-    public static &lt;T&gt; void showDeque(String name, Deque&lt;T&gt; deque) {
-        System.out.printf(
-            &quot;%s(%d): %s&quot; +
-            System.getProperty(&quot;line.separator&quot;),
-            name, deque.size(), deque.toString()
-        );
-    }
-}
-</code></pre>
-<blockquote>
-<p>代码清单：<code>Deque</code>用作<code>Stack</code>使用示例</p>
-</blockquote>
-<h1 id="关联内容（Related-Topics）"><a href="#关联内容（Related-Topics）" class="headerlink" title="关联内容（Related Topics）"></a>关联内容（Related Topics）</h1><ul>
-<li><p><a href="https://zihengcat.github.io/2019/05/05/java-tutorial-for-language-adavanced-queue-interface-and-implementations/">Java 高级教程系列 - Queue 接口及其实现</a></p>
-</li>
-<li><p><a href="https://zihengcat.github.io/2019/05/02/java-tutorial-for-language-adavanced-collection-and-iterator/">Java 高级教程系列 - Collection 接口与 Iterator 迭代器</a></p>
-</li>
+                <h1 id="Java-集合框架-Map-接口"><a href="#Java-集合框架-Map-接口" class="headerlink" title="Java 集合框架 Map 接口"></a>Java 集合框架 <code>Map</code> 接口</h1><h1 id="关联内容（Related-Topics）"><a href="#关联内容（Related-Topics）" class="headerlink" title="关联内容（Related Topics）"></a>关联内容（Related Topics）</h1><ul>
+<li><a href="https://zihengcat.github.io/2019/05/01/java-tutorial-for-language-adavanced-collection-framework-overview/">Java 高级教程系列 - 集合框架概览</a></li>
 </ul>
 <h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><ul>
-<li>OpenJDK Documents for <code>Deque</code>: <a href="https://devdocs.io/openjdk~8/java/util/deque" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/deque</a></li>
+<li><p>OpenJDK Documents for <code>Map</code>: <a href="https://devdocs.io/openjdk~8/java/util/map" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/map</a></p>
+</li>
+<li><p>OpenJDK Documents for <code>Map.Entry</code>: <a href="https://devdocs.io/openjdk~8/java/util/map.entry" target="_blank" rel="noopener">https://devdocs.io/openjdk~8/java/util/map.entry</a></p>
+</li>
 </ul>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/05/07/java-tutorial-for-language-adavanced-map-interface-and-implementations/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - Map 接口及其实现">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/05/05/java-tutorial-for-language-adavanced-queue-interface-and-implementations/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - Queue 接口及其实现">Next Post &rarr;</a>
+                            <a href="/2019/05/06/java-tutorial-for-language-adavanced-deque-interface-and-implementations/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - Deque 接口及其实现">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
