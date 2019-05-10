@@ -246,6 +246,57 @@
 <li><p><code>LinkedHashMap</code>：哈希表 + 双向链表实现</p>
 </li>
 </ul>
+<h1 id="Java-集合-Map-使用示例"><a href="#Java-集合-Map-使用示例" class="headerlink" title="Java 集合 Map 使用示例"></a>Java 集合 <code>Map</code> 使用示例</h1><p>我们通过一个 <em>Demo</em> 代码示例来熟悉<code>Map</code>的操作。</p>
+<pre><code class="java">import java.util.Set;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
+public class Main {
+    public static void main(String[] args) {
+        /* Create a map of string and string */
+        Map&lt;String, String&gt; aMap = new HashMap&lt;String, String&gt;();
+        /* Print map details */
+        showMap(&quot;Map&quot;, aMap);
+        /* Put some &lt;K, V&gt; pairs to map */
+        aMap.put(&quot;1&quot;, &quot;Java&quot;);
+        aMap.put(&quot;2&quot;, &quot;Python&quot;);
+        aMap.put(&quot;3&quot;, &quot;JavaScript&quot;);
+        aMap.put(&quot;4&quot;, &quot;C/C++&quot;);
+        /* Print map details */
+        showMap(&quot;Map&quot;, aMap);
+        /* Iterate map */
+        for (String key : aMap.keySet()) {
+            System.out.printf(
+                &quot;Key = %s, Value = %s&quot; +
+                System.getProperty(&quot;line.separator&quot;),
+                key, aMap.get(key)
+            );
+        }
+        /* Change a pair in map */
+        aMap.put(&quot;4&quot;, &quot;Golang&quot;);
+        /* Print map details */
+        showMap(&quot;Map&quot;, aMap);
+        /* Copy map keySet to avoid ConcurrentModificationException */
+        Set&lt;String&gt; mapKeySet = new HashSet&lt;String&gt;(aMap.keySet());
+        /* Remove all &lt;K, V&gt; pairs in map */
+        for (String key : mapKeySet) {
+            aMap.remove(key);
+        }
+        /* Print map details */
+        showMap(&quot;Map&quot;, aMap);
+    }
+    public static &lt;K, V&gt; void showMap(String name, Map&lt;K, V&gt; map) {
+        System.out.printf(
+            &quot;%s(%d): %s&quot; +
+            System.getProperty(&quot;line.separator&quot;),
+            name, map.size(), map.toString()
+        );
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Map</code>使用示例</p>
+</blockquote>
 <h1 id="关联文章（Related-Topics）"><a href="#关联文章（Related-Topics）" class="headerlink" title="关联文章（Related Topics）"></a>关联文章（Related Topics）</h1><ul>
 <li><a href="https://zihengcat.github.io/2019/05/01/java-tutorial-for-language-adavanced-collection-framework-overview/">Java 高级教程系列 - 集合框架概览</a></li>
 </ul>
