@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -258,7 +258,7 @@ class Solution:
 </blockquote>
 <p>我们来分析一下算法复杂度。</p>
 <ul>
-<li><p><strong>时间复杂度</strong>：设$n$为字符串数组的长度（字符串数量），$k$为数组中最长字符串的长度。最外层循环遍历字符串数组复杂度$O(n)$，字符串排序复杂度为$O(k \cdot log(k))$，算法整体时间复杂度为$O(n \cdot k \cdot log(k))$。</p>
+<li><p><strong>时间复杂度</strong>：设$n$为字符串数组的长度（字符串数量），$k$为数组中最长字符串的长度。最外层遍历字符串数组的复杂度为$O(n)$，内部字符串排序的复杂度为$O(k \cdot log(k))$，算法整体时间复杂度为$O(n \cdot k \cdot log(k))$。</p>
 </li>
 <li><p><strong>空间复杂度</strong>：设$n$为字符串数组的长度（字符串数量），$k$为数组中最长字符串的长度。所占用空间即为哈希表所存储的全部内容，空间复杂度为$O(n \cdot k)$。</p>
 </li>
