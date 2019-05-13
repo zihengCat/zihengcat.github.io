@@ -193,7 +193,12 @@ Output:
 <li><p>输出归类数组排列顺序无关紧要</p>
 </li>
 </ul>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><pre><code class="java">import java.util.Arrays;
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>解这个问题，我们需要使用键值对（Key-Value）哈希表数据结构。题目要求我们按照<strong>相同字母异序词</strong>归类，被归为同一类的字符串都具有相同特征：<strong>排序后字母顺序相同</strong>，利用这个特征可以构建出哈希表键，哈希表的值为字符串列表。</p>
+<p><img src="./049_group_anagrams_1.png" alt="049_group_anagrams_1"></p>
+<blockquote>
+<p>图：算法图解</p>
+</blockquote>
+<pre><code class="java">import java.util.Arrays;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
@@ -235,6 +240,19 @@ class Solution {
 </code></pre>
 <blockquote>
 <p>代码清单：相同字母异序词归类（<code>Java</code>实现）</p>
+</blockquote>
+<pre><code class="python">class Solution:
+    def groupAnagrams(self, strs: List[str]) -&gt; List[List[str]]:
+        ans = dict()
+        for s in strs:
+            key = &quot;&quot;.join(sorted(s))
+            if(ans.get(key) == None):
+                ans[key] = list()
+            ans[key].append(s)
+        return list(v for v in ans.values())
+</code></pre>
+<blockquote>
+<p>代码清单：相同字母异序词归类（<code>Python3</code>实现）</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/group-anagrams/" target="_blank" rel="noopener">https://leetcode.com/problems/group-anagrams/</a></li>
