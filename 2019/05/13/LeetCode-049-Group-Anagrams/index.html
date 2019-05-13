@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -193,7 +193,7 @@ Output:
 <li><p>输出归类数组排列顺序无关紧要</p>
 </li>
 </ul>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>解这个问题，我们需要使用键值对（Key-Value）哈希表数据结构。题目要求我们按照<strong>相同字母异序词</strong>归类，被归为同一类的字符串都具有相同特征：<strong>排序后字母顺序相同</strong>，利用这个特征可以构建出哈希表键，哈希表的值为字符串列表。</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>解决这个问题，我们需要使用到键值对（Key-Value）哈希表数据结构。输入字符串数组，要求我们按照<strong>相同字母异序词</strong>将字符串归类，能被归为一类的字符串都具有相同的特征：<strong>排序后字母顺序相同</strong>，利用这一特性，就可以很容易构建出哈希表键，哈希表的值即为字符串列表。</p>
 <p><img src="./049_group_anagrams_1.png" alt="049_group_anagrams_1"></p>
 <blockquote>
 <p>图：算法图解</p>
@@ -206,14 +206,15 @@ import java.util.HashMap;
 class Solution {
     public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) {
         /* Return empty List&lt;List&lt;String&gt;&gt;
-           if string array is null or empty */
+           if input strings array is null or empty */
         if (strs == null || strs.length == 0) {
             return new LinkedList&lt;List&lt;String&gt;&gt;();
         }
         /* Using a HashMap data structure */
         Map&lt;String, List&lt;String&gt;&gt; hashMap =
             new HashMap&lt;String, List&lt;String&gt;&gt;();
-        /* For each string in string array, do as following... */
+        /* For each string in strings array
+           do as following... */
         for (String s : strs) {
             /* Convert string to char array */
             char[] chArr = s.toCharArray();
