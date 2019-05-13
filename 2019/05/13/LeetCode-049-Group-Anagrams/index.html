@@ -184,7 +184,7 @@ Output:
 ]
 </code></pre>
 <blockquote>
-<p>注：样例</p>
+<p>注：输入输出样例</p>
 </blockquote>
 <p>注意：</p>
 <ul>
@@ -193,7 +193,45 @@ Output:
 <li><p>输出归类数组排列顺序无关紧要</p>
 </li>
 </ul>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><pre><code class="java">import java.util.Arrays;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
+class Solution {
+    public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) {
+        /* Using a HashMap data structure */
+        Map&lt;String, List&lt;String&gt;&gt; hashMap =
+            new HashMap&lt;String, List&lt;String&gt;&gt;();
+        /* For each string in string array, do as following... */
+        for (String s : strs) {
+            /* Convert string to char array */
+            char[] chArr = s.toCharArray();
+            /* Sort char array in order to get unique HashMap keys */
+            Arrays.sort(chArr);
+            /* Reconvert sorted char array to HashMap string key */
+            String key = new String(chArr);
+            if (hashMap.containsKey(key)) {
+                /* Found the key -&gt;
+                   Add to target list */
+                hashMap.get(key).add(s);
+            } else {
+                /* Not found key -&gt;
+                   Build a new list of strings and put it to HashMap */
+                List&lt;String&gt; aStringList = new LinkedList&lt;String&gt;();
+                aStringList.add(s);
+                hashMap.put(key, aStringList);
+            }
+        }
+        /* Convert HashMap values to List&lt;List&lt;String&gt;&gt; */
+        return new LinkedList&lt;List&lt;String&gt;&gt;(hashMap.values());
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：相同字母异序词归类（<code>Java</code>实现）</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/group-anagrams/" target="_blank" rel="noopener">https://leetcode.com/problems/group-anagrams/</a></li>
 </ul>
 
