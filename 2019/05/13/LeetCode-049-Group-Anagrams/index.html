@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -241,11 +241,12 @@ class Solution {
 <blockquote>
 <p>代码清单：相同字母异序词归类（<code>Java</code>实现）</p>
 </blockquote>
-<pre><code class="python">class Solution:
+<pre><code class="python">from typing import List, Dict
+class Solution:
     def groupAnagrams(self, strs: List[str]) -&gt; List[List[str]]:
-        ans = dict()
+        ans: Dict[str, List[str]] = dict()
         for s in strs:
-            key = &quot;&quot;.join(sorted(s))
+            key: str = &quot;&quot;.join(sorted(s))
             if(ans.get(key) == None):
                 ans[key] = list()
             ans[key].append(s)
