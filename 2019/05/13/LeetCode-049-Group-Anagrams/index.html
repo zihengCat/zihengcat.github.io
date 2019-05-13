@@ -200,6 +200,11 @@ import java.util.Map;
 import java.util.HashMap;
 class Solution {
     public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) {
+        /* Return empty List&lt;List&lt;String&gt;&gt;
+           if string array is null or empty */
+        if (strs == null || strs.length == 0) {
+            return new LinkedList&lt;List&lt;String&gt;&gt;();
+        }
         /* Using a HashMap data structure */
         Map&lt;String, List&lt;String&gt;&gt; hashMap =
             new HashMap&lt;String, List&lt;String&gt;&gt;();
