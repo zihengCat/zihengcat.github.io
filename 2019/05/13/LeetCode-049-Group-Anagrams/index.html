@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/02/25/LeetCode-657-路线判断/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/05/13/LeetCode-049-Group-Anagrams/">
     <title>
         
-          LeetCode - 657. 路线判断（Judge Route Circle） - zihengCat
+          LeetCode - 049. 相同字母异序词归类 - zihengCat
         
     </title>
 
@@ -148,12 +148,16 @@
                         
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
+                          <a class="tag" href="/tags/#Array" title="Array">Array</a>
+                        
+                          <a class="tag" href="/tags/#HashMap" title="HashMap">HashMap</a>
+                        
                     </div>
-                    <h1>LeetCode - 657. 路线判断（Judge Route Circle）</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>LeetCode - 049. 相同字母异序词归类</h1>
+                    <h2 class="subheading">LeetCode - 049. Group Anagrams</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-02-25
+                        2019-05-13
                     </span>
                 </div>
             </div>
@@ -169,64 +173,38 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 657. 路线判断（Judge Route Circle）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>一个机器人初始位置在$(0, 0)$。输入一系列移动指令使机器人移动起来。判断机器人最终是否回到了初始位置。<br>输入的移动命令是一串字符串。每个移动指令是一个字符。机器人只按照<code>R</code>（右），<code>L</code>（左），<code>U</code>（上），<code>D</code>（下）四个合法指令移动。输出为一个布尔值，判断机器人是否走回到了原点（<code>true</code>/<code>false</code>）。</p>
-<p><strong>样例1：</strong></p>
-<pre><code>输入: &quot;UD&quot;
-输出: true
-</code></pre><p><strong>样例2：</strong></p>
-<pre><code>输入: &quot;LL&quot;
-输出: false
-</code></pre><h1 id="问题解法"><a href="#问题解法" class="headerlink" title="问题解法"></a>问题解法</h1><p>设置初始坐标为$(0, 0)$，遍历输入指令字符串，如果是合法指令就改变坐标，指令结束后判断改变后再坐标与$（0, 0）$点是否相等即可。</p>
-<pre><code>/*
- *
- * 输入：指令字符串
- * 输出：布尔值
- */
-bool judgeCircle(char* moves) {
-    int posX = 0, posY = 0;
-    while(*moves) {
-        switch(*moves) {
-            case &#39;R&#39;:
-                posX += 1;
-                break;
-            case &#39;L&#39;:
-                posX -= 1;
-                break;
-            case &#39;U&#39;:
-                posY += 1;
-                break;
-            case &#39;D&#39;:
-                posY -= 1;
-                break;
-            default:
-                break;
-        }
-        moves++;
-    }
-    return posX == 0 &amp;&amp; posY == 0;
-}
-</code></pre><blockquote>
-<p>代码清单：C/C++ 代码</p>
-</blockquote>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录 <em>LeetCode - 049. 相同字母异序词归类</em> 问题。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>LeetCode: <a href="https://leetcode.com/problems/group-anagrams/" target="_blank" rel="noopener">https://leetcode.com/problems/group-anagrams/</a></li>
+</ul>
 
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/02/26/LeetCode-231-2的幂次/" data-toggle="tooltip" data-placement="top" title="LeetCode - 231. 2的幂次（Power of Two）">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/02/24/LeetCode-461-汉明距离/" data-toggle="tooltip" data-placement="top" title="LeetCode - 461. 汉明距离（Hamming distance）">Next Post &rarr;</a>
+                            <a href="/2019/05/12/understanding-multithreading-technology/" data-toggle="tooltip" data-placement="top" title="了解「多线程」技术">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -245,6 +223,10 @@ bool judgeCircle(char* moves) {
                           <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
                         
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Array" title="Array">Array</a>
+                        
+                          <a class="tag" href="/tags/#HashMap" title="HashMap">HashMap</a>
                         
                     </div>
                 </section>
@@ -530,6 +512,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
