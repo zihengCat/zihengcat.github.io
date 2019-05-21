@@ -395,10 +395,43 @@
         return tail.getElem();
     }
 ...
-
 </code></pre>
 <blockquote>
 <p>代码清单：单链表<code>getFirst()</code>与<code>getLast()</code>方法实现</p>
+</blockquote>
+<p>上述实现代码段其实已经涉及到了<code>isEmpty()</code>与<code>size()</code>接口方法，现在我们来实现这两个方法。</p>
+<p><code>size()</code>实现：遍历链表元素并计数，计算链表存储元素数量；<code>isEmpty()</code>实现：判断链表是否为空，则可以借用<code>size()</code>方法，链表存储元素数量为<code>0</code>则表示链表为空，也可以直接判断头结点指针域是否为空。</p>
+<pre><code class="java">...
+    /**
+     * 计算链表存储元素数量。
+     * @param void
+     * @return Size of elements in {@code LinkedList}.
+     */
+    public int size() {
+        int cnt = 0;
+        for (Node&lt;E&gt; n = head; n.getNext() != null; n = n.getNext()) {
+            ++cnt;
+        }
+        return cnt;
+    }
+    /**
+     * 检查链表是否为空。
+     * @return Boolean {@code true} or {@code false}.
+     */
+    public boolean isEmpty() {
+        return head.getNext() == null ? true : false;
+    }
+    /**
+     * 检查链表是否为空。
+     * @return Boolean {@code true} or {@code false}.
+     */
+    public boolean _isEmpty() {
+        return this.size() &gt; 0 ? false : true;
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>isEmpty()</code>与<code>size()</code>方法实现</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Linked_list" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Linked_list</a></p>
