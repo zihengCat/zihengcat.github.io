@@ -297,11 +297,36 @@
 <blockquote>
 <p>代码清单：单链表（Linked List）</p>
 </blockquote>
+<p>单链表<code>addFirst()</code>方法向链表头部添加一个新的元素，插入的新元素总是位于链表头部（头节点指向的节点），这种插入元素的方式称为头插法，通过以下3步，即可完成向链表头部插入元素。</p>
+<ol>
+<li><p>根据新元素构建一枚新节点</p>
+</li>
+<li><p>将新节点指针域置为头节点指向的节点</p>
+</li>
+<li><p>头节点指向新节点</p>
+</li>
+</ol>
 <pre><code class="java">...
+    /**
+     * 向链表头部添加一个新的元素（头插法）。
+     * @param element
+     * @return void
+     */
+    public void addFirst(E element) {
+        Node&lt;E&gt; node = new Node&lt;E&gt;(element, null);
+        node.setNext(head.getNext());
+        head.setNext(node);
+    }
 ...
 </code></pre>
 <blockquote>
 <p>代码清单：单链表<code>addFirst()</code>头插法</p>
+</blockquote>
+<pre><code class="java">...
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>addLast()</code>尾插法</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Linked_list" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Linked_list</a></p>
