@@ -400,7 +400,12 @@
 <p>代码清单：单链表<code>getFirst()</code>与<code>getLast()</code>方法实现</p>
 </blockquote>
 <p>上述实现代码段其实已经涉及到了<code>isEmpty()</code>与<code>size()</code>接口方法，现在我们来实现这两个方法。</p>
-<p><code>size()</code>实现：遍历链表元素并计数，计算链表存储元素数量；<code>isEmpty()</code>实现：判断链表是否为空，则可以借用<code>size()</code>方法，链表存储元素数量为<code>0</code>则表示链表为空，也可以直接判断头结点指针域是否为空。</p>
+<ul>
+<li><p><code>size()</code>：遍历链表元素并计数，计算链表存储元素数量。</p>
+</li>
+<li><p><code>isEmpty()</code>：判断链表是否为空，可以借用<code>size()</code>方法（链表存储元素数量为<code>0</code>则表示链表为空），也可以直接判断头结点指针域是否为空。</p>
+</li>
+</ul>
 <pre><code class="java">...
     /**
      * 计算链表存储元素数量。
