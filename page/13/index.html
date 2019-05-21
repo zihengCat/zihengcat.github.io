@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -151,6 +151,30 @@
          col-xs-12
          post-container">
     <!-- Main Content -->
+
+<div class="post-preview">
+
+    <a href="/2017/06/21/C-学习笔记-有趣的const/">
+        <h2 class="post-title">
+            C++学习笔记-有趣的const
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            有趣的const在C中，用const关键字修饰变量或者形式参数时，表明该变量不可修改。然而，C中的const更多只是一种”约定”，表明程序不会修改变量值的一种约定。我们是有办法修改const的变量的。
+#include &lt;stdio.h&gt;
+int main(void){
+    const int num = 10;     /* const 修饰整型变量 */
+    int ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2017-06-21
+    </p>
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -377,31 +401,6 @@ size_t类型size_t实际上是无符号整型，它并不是一个全新的数�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/06/01/Linux命令学习-pwd/">
-        <h2 class="post-title">
-            Linux命令学习-pwd
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            pwdpwd命令是一个相当常用的命令，它告诉我们shell当前工作目录。pwd是Print working directory的意思。pwd是一个shell内置指令(shell builtin)。
-$ type pwd
-pwd is a shell builtin
-详解$ help pwd
-pwd: pwd [-LP]
-    Print the name of the current wo......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-06-01
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 <ul class="pager">
@@ -437,9 +436,9 @@ pwd: pwd [-LP]
                     <div class="tags">
                         
                             
-                            <a href="/tags/#Java" title="Java" rel="21">Java</a>
-                            
                         
+                            
+                            <a href="/tags/#Java" title="Java" rel="22">Java</a>
                             
                         
                             
