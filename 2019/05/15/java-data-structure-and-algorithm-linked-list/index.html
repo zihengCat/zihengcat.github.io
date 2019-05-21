@@ -510,6 +510,26 @@
 <blockquote>
 <p>代码清单：单链表<code>removeLast()</code>方法实现</p>
 </blockquote>
+<p>我们来考虑单链表的<code>contains(E e)</code>方法，检查链表中是否包含指定元素。我们使用<code>equals()</code>比较方法判断两个元素是否相等，因此，存入链表的数据类型必须实现<code>equals()</code>比较方法，方法实现为：遍历链表，比较每个元素，找到即返回<code>true</code>，找不到则返回<code>false</code>。</p>
+<pre><code class="java">...
+    /**
+     * 检查链表中是否包含目标元素。
+     * @param element
+     * @return Boolean
+     */
+    public boolean contains(E element) {
+        for (Node&lt;E&gt; n = head; n.getNext() != null; n = n.getNext()) {
+            if (element.equals(n.getElem())) {
+                return true;
+            }
+        }
+        return false;
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>contains()</code>方法实现</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Linked_list" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Linked_list</a></p>
 </li>
