@@ -250,7 +250,7 @@
 <p>表：链表数据结构接口方法表</p>
 </blockquote>
 <h1 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h1><p>我们使用 Java 语言实现一枚简单的<strong>单向链表</strong>。顾名思义，单向链表只能做单向遍历（头节点 -&gt; 尾节点），因为单向链表的节点（Node）只包含数据域和一个指针域（指向下一个节点）。</p>
-<p>我们来定义出单链表中节点（Node）的数据结构，使用泛型类提高节点存储数据的灵活性。节点数据结构包含构造方法，两个私有变量：数据域和指针域，及其对应的<code>getter/setter</code>公开方法。</p>
+<p>我们来定义出单链表中节点（Node）的数据结构，使用泛型类提高节点存储数据的灵活性。节点数据结构包含<strong>构造方法</strong>，两个私有变量：<strong>数据域和指针域</strong>，及其<strong>对应的<code>getter/setter</code>公开方法</strong>。</p>
 <pre><code class="java">class Node&lt;E&gt; {
     /**
      * 数据域
@@ -291,7 +291,7 @@
 <blockquote>
 <p>代码清单：单链表节点（Node）</p>
 </blockquote>
-<p>实现出单链表数据结构：单链表包含一枚头节点（Head），头结点不存储数据，而是指向第一个实际存储数据的节点；尾节点可以被定义为指针域为<code>null</code>的最后一枚节点。构造方法即为单链表初始化：构造一枚数据域和指针域均为空的头节点。</p>
+<p>实现出单链表数据结构：<strong>单链表包含一枚头节点（Head），头结点不存储数据，而是指向第一个实际存储数据的节点；尾节点可以被定义为指针域为<code>null</code>的最后一枚节点。</strong>构造方法即为单链表初始化：<strong>构造一枚数据域和指针域均为空的头节点。</strong></p>
 <pre><code class="java">public class LinkedList&lt;E&gt; {
     /**
      * 链表头节点
@@ -364,7 +364,7 @@
 <blockquote>
 <p>代码清单：单链表<code>addLast()</code>尾插法</p>
 </blockquote>
-<p>理解了<code>addFirst()</code>与<code>addLast()</code>方法实现后，实现<code>getFirst()</code>与<code>getLast()</code>方法就非常简单了，返回头/尾节点数据域中存储的元素即可，但是需要考虑到链表为空的情况：直接抛出<code>NoSuchElementException</code>异常。</p>
+<p>理解了<code>addFirst()</code>与<code>addLast()</code>方法实现后，实现<code>getFirst()</code>与<code>getLast()</code>方法就非常简单了，返回头/尾节点数据域中存储的数据即可，但是需要考虑到<strong>链表为空</strong>的情况：直接抛出<code>NoSuchElementException</code>异常。</p>
 <pre><code class="java">...
     /**
      * 取得链表头部第一个元素，链表为空则抛出异常。
@@ -510,7 +510,7 @@
 <blockquote>
 <p>代码清单：单链表<code>removeLast()</code>方法实现</p>
 </blockquote>
-<p>我们来考虑单链表的<code>contains(E e)</code>方法，检查链表中是否包含指定元素。我们使用<code>equals()</code>比较方法判断两个元素是否相等，因此，存入链表的数据类型必须实现<code>equals()</code>比较方法，方法实现为：遍历链表，比较每个元素，找到即返回<code>true</code>，找不到则返回<code>false</code>。</p>
+<p>我们来考虑单链表的<code>contains(E e)</code>方法，检查链表中是否包含指定元素。我们使用<code>equals()</code>比较方法判断两个元素是否相等，因此，存入链表的数据类型必须实现<code>equals()</code>比较方法，方法实现为：<strong>遍历链表，比较每个元素，找到即返回<code>true</code>，找不到则返回<code>false</code>。</strong></p>
 <pre><code class="java">...
     /**
      * 检查链表中是否包含目标元素。
