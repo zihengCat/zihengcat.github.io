@@ -171,7 +171,7 @@
                  post-container">
                 <h1 id="链表（Linked-List）数据结构概览"><a href="#链表（Linked-List）数据结构概览" class="headerlink" title="链表（Linked List）数据结构概览"></a>链表（Linked List）数据结构概览</h1><p>链表（Linked List）是线性表的一种（线性表包含顺序表与链表），通过指针将一系列位于不连续的内存空间中的元素连接起来，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理，但也失去了快速随机存取的优点，同时增大了内存开销（存储指针域）。</p>
 <p>链表数据结构由一连串节点（Node）组成，每个节点包含数据域（Data Fields）和一或两个用来指向上一个/或下一个节点位置的指针域（Pointer Fields）。链表可以方便地插入或移除表中任意位置的节点，但是随机存取效率不高。链表有很多种不同的类型：单向链表，双向链表以及循环链表。</p>
-<h1 id="链表（Linked-List）数据结构操作接口"><a href="#链表（Linked-List）数据结构操作接口" class="headerlink" title="链表（Linked List）数据结构操作接口"></a>链表（Linked List）数据结构操作接口</h1><p>我们将要使用 Java 语言手写一枚链表数据结构。首先，明确链表结构所具有的操作方法接口。</p>
+<h1 id="链表（Linked-List）数据结构操作接口"><a href="#链表（Linked-List）数据结构操作接口" class="headerlink" title="链表（Linked List）数据结构操作接口"></a>链表（Linked List）数据结构操作接口</h1><p>我们将要使用 Java 语言手写一枚链表数据结构。首先，明确链表数据结构所具有的操作接口方法。</p>
 <table>
 <thead>
 <tr>
@@ -252,16 +252,28 @@
 <h1 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h1><p>我们使用 Java 语言实现一枚简单的<strong>单向链表</strong>。顾名思义，单向链表只能做单向遍历（头节点 -&gt; 尾节点），因为单向链表的节点（Node）只包含数据域和一个指针域（指向下一个节点）。</p>
 <p>我们来定义出单链表中节点（Node）的数据结构，使用泛型类提高节点存储数据的灵活性。节点数据结构包含构造方法，两个私有变量：数据域和指针域，及其对应的<code>getter/setter</code>公开方法。</p>
 <pre><code class="java">class Node&lt;E&gt; {
+    /**
+     * 数据域
+     */
     private E       elem;
+    /**
+     * 指针域
+     */
     private Node&lt;E&gt; next;
+    /**
+     * 构造方法
+     */
     public Node(E element, Node&lt;E&gt; next) {
         this.elem = element;
         this.next = next;
     }
+    /**
+     * 无参构造方法
+     */
     public Node() {
-        this.elem = null;
-        this.next = null;
+        this(null, null);
     }
+    /* Setter &amp; Getter */
     public void setElem(E element) {
         this.elem = element;
     }
