@@ -533,7 +533,7 @@
 <p>代码清单：单链表<code>contains()</code>方法实现</p>
 </blockquote>
 <p>链表使用链式存储结构，存储的数据在内存空间中不连续，不能做到像数组一般高效的直接随即访问。我们来实现<code>indexOf(E e)</code>方法，返回指定元素所在链表的索引，元素不存在则返回<code>-1</code>，若存在多个相同元素，则返回第一次出现的索引。<strong>注意，我们将链表索引下标从<code>0</code>计起，与数组保持一致。</strong></p>
-<p><code>indexOf()</code>方法实现与<code>contains()</code>方法相似，加入一枚索引计数器即可。</p>
+<p><strong><code>indexOf()</code>方法实现与<code>contains()</code>方法相似，加入一枚索引下标计数器即可。</strong></p>
 <pre><code class="java">...
     /**
      * 返回指定元素所在链表的下标索引。
