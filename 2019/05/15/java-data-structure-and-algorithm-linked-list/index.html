@@ -606,6 +606,42 @@
 <blockquote>
 <p>代码清单：单链表<code>set()</code>方法实现</p>
 </blockquote>
+<p>我们使用<code>remove(int index)</code>方法移除链表中指定索引位置的元素，具体步骤如下。如果索引下标越界，则抛出<code>IndexOutOfBoundsException</code>异常。</p>
+<ol>
+<li><p>找到链表指定索引下标的待删除节点及其前后节点</p>
+</li>
+<li><p>保存待移除节点数据</p>
+</li>
+<li><p>将指定索引下标节点的前后节点使用指针连接起来</p>
+</li>
+<li><p>返回已移除节点数据</p>
+</li>
+</ol>
+<pre><code class="java">...
+    /**
+     * 移除链表指定索引下标节点。
+     * @param index
+     * @return Removed element
+     * @throws IndexOutOfBoundsException
+     */
+    public E remove(int index) throws IndexOutOfBoundsException {
+        if (index &lt; 0 || index &gt;= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        Node&lt;E&gt; prev = head.getNext();
+        while (index - 1  &gt; 0) {
+            prev = prev.getNext();
+            --index;
+        }
+        Node&lt;E&gt; current = prev.getNext();
+        prev.setNext(current.getNext());
+        return current.getElem();
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>remove()</code>方法实现</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Linked_list" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Linked_list</a></p>
 </li>
