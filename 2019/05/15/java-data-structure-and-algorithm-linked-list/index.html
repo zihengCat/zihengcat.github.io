@@ -535,9 +535,10 @@
 <p>链表使用链式存储结构，存储的数据在内存空间中不连续，不能做到像数组一般高效的直接随即访问。我们来实现<code>indexOf(E e)</code>方法，返回指定元素所在链表的索引，元素不存在则返回<code>-1</code>，若存在多个相同元素，则返回第一次出现的索引。<strong>注意，我们将链表索引下标从<code>0</code>计起，与数组保持一致。<code>indexOf()</code>方法实现与<code>contains()</code>方法相似，加入一枚索引下标计数器即可。</strong></p>
 <pre><code class="java">...
     /**
-     * 返回指定元素所在链表的下标索引。
+     * 返回指定元素所在链表的索引。
      * @param element
-     * @return Index of element
+     * @return The index of element in {@code LinkedList},
+     *  retuen {@code -1} if element does not found.
      */
     public int indexOf(E element) {
         int index = 0;
@@ -549,7 +550,8 @@
                 }
                 ++index;
         }
-        return -1
+        return -1;
+    }
 ...
 </code></pre>
 <blockquote>
@@ -606,15 +608,13 @@
 <blockquote>
 <p>代码清单：单链表<code>set()</code>方法实现</p>
 </blockquote>
-<p>我们使用<code>remove(int index)</code>方法移除链表中指定索引位置的元素，具体步骤如下。如果索引下标越界，则抛出<code>IndexOutOfBoundsException</code>异常。</p>
+<p>我们使用<code>remove(int index)</code>方法移除链表中指定索引下标位置的元素，具体步骤如下。如果索引下标越界，则抛出<code>IndexOutOfBoundsException</code>异常。</p>
 <ol>
-<li><p>找到链表指定索引下标的待删除节点及其前后节点</p>
-</li>
-<li><p>保存待移除节点数据</p>
+<li><p>找到链表中指定索引下标的待移除节点及其前后节点</p>
 </li>
 <li><p>将指定索引下标节点的前后节点使用指针连接起来</p>
 </li>
-<li><p>返回已移除节点数据</p>
+<li><p>返回节点数据</p>
 </li>
 </ol>
 <pre><code class="java">...
@@ -628,13 +628,15 @@
         if (index &lt; 0 || index &gt;= size()) {
             throw new IndexOutOfBoundsException();
         }
-        Node&lt;E&gt; prev = head.getNext();
-        while (index - 1  &gt; 0) {
+        index -= 1;
+        Node&lt;E&gt; prev = head;
+        while (index &gt;= 0) {
             prev = prev.getNext();
             --index;
         }
         Node&lt;E&gt; current = prev.getNext();
-        prev.setNext(current.getNext());
+        Node&lt;E&gt; next = current.getNext();
+        prev.setNext(next);
         return current.getElem();
     }
 ...
