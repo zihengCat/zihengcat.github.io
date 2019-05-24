@@ -579,6 +579,33 @@
 <blockquote>
 <p>代码清单：单链表<code>get()</code>方法实现</p>
 </blockquote>
+<p>我们使用<code>set(int index, E element)</code>方法为链表中指定索引位置的元素设新值，如果索引越界，抛出<code>IndexOutOfBoundsException</code>异常。</p>
+<pre><code class="java">...
+    /**
+     * 为链表指定索引位置的元素设新值。
+     * @param index
+     * @param element
+     * @return Previous element in the index.
+     * @throws IndexOutOfBoundsException
+     */
+    public E set(int index, E element) throws IndexOutOfBoundsException {
+        if (index &lt; 0 || index &gt;= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        Node&lt;E&gt; n = head.getNext();
+        while (index &gt; 0) {
+            n = n.getNext();
+            --index;
+        }
+        E oldValue = n.getElem();
+        n.setElem(element);
+        return oldValue;
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>set()</code>方法实现</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Linked_list" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Linked_list</a></p>
 </li>
