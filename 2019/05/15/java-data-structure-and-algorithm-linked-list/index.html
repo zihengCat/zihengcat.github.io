@@ -510,18 +510,20 @@
 <blockquote>
 <p>代码清单：单链表<code>removeLast()</code>方法实现</p>
 </blockquote>
-<p>我们来考虑单链表的<code>contains(E e)</code>方法，检查链表中是否包含指定元素。我们使用<code>equals()</code>比较方法判断两个元素是否相等，因此，存入链表的数据类型必须实现<code>equals()</code>比较方法，方法实现为：<strong>遍历链表，比较每个元素，找到即返回<code>true</code>，找不到则返回<code>false</code>。</strong></p>
+<p>我们来考虑单链表的<code>contains(E e)</code>方法，检查链表中是否包含指定元素。我们使用<code>equals()</code>比较方法判断两个元素是否相等，因此，存入链表的数据类型必须实现<code>equals()</code>比较方法。</p>
+<p><code>contains(E e)</code>方法具体实现为：<strong>遍历链表，比较每个元素，找到即返回<code>true</code>，找不到则返回<code>false</code>。</strong></p>
 <pre><code class="java">...
     /**
-     * 检查链表中是否包含目标元素。
+     * 检查链表中是否包含目标元素，
+     * 元素相等使用 {@code o.equals(obj)} 判断。
      * @param element
      * @return Boolean
      */
     public boolean contains(E element) {
-        for (Node&lt;E&gt; current = head;
+        for (Node&lt;E&gt; current = head.getNext();
             current != null;
             current = current.getNext()) {
-            if (element.equals(n.getElem())) {
+            if (element.equals(current.getElem())) {
                 return true;
             }
         }
@@ -538,7 +540,7 @@
      * 返回指定元素所在链表的索引。
      * @param element
      * @return The index of element in {@code LinkedList},
-     *  retuen {@code -1} if element does not found.
+     *  return {@code -1} if element does not found.
      */
     public int indexOf(E element) {
         int index = 0;
