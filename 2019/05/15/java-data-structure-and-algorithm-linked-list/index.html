@@ -710,7 +710,27 @@
 </code></pre><blockquote>
 <p>代码清单：单链表<code>insert()</code>方法实现</p>
 </blockquote>
-<p>链表提供<code>clear()</code>方法，用于清空数组。</p>
+<p>链表提供<code>clear()</code>方法，用于清空链表元素。由于 Java 语言的自动垃圾回收机制，直接将头节点（Head）置空即表示清空链表，但是为了帮助垃圾收集器更好地做内存回收工作，这里我们选择<strong>显式清空每一个节点</strong>。</p>
+<pre><code class="java">...
+    /**
+     * 清空链表。
+     * @param void
+     * @return void
+     */
+    public void clear() {
+        while (head != null) {
+            Node&lt;E&gt; n = head;
+            head = head.getNext();
+            n.setElem(null);
+            n.setNext(null);
+        }
+        head = new Node&lt;E&gt;();
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>clear()</code>方法实现</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Linked_list" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Linked_list</a></p>
 </li>
