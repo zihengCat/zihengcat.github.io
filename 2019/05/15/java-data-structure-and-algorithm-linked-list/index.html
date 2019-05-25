@@ -731,6 +731,26 @@
 <blockquote>
 <p>代码清单：单链表<code>clear()</code>方法实现</p>
 </blockquote>
+<p>最后，我们来覆写链表<code>toString()</code>方法，更加方便地查看链表元素。</p>
+<pre><code class="java">...
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(&#39;[&#39;);
+        for (Node&lt;E&gt; current = head.getNext();
+            current != null;
+            current = current.getNext()) {
+                sb.append(current.getElem().toString());
+                sb.append(&quot;, &quot;);
+        }
+        sb.append(&#39;]&#39;);
+        return sb.toString();
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>toString()</code>方法实现</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Linked_list" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Linked_list</a></p>
 </li>
