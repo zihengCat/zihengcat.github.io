@@ -710,7 +710,7 @@
 </code></pre><blockquote>
 <p>代码清单：单链表<code>insert()</code>方法实现</p>
 </blockquote>
-<p>链表提供<code>clear()</code>方法，用于清空链表元素。由于 Java 语言的自动垃圾回收机制，直接将头节点（Head）置空即表示清空链表，但是为了帮助垃圾收集器更好地做内存回收工作，这里我们选择<strong>显式清空每一个节点</strong>。</p>
+<p>我们为链表提供一枚<code>clear()</code>方法，用于清空链表元素。由于 Java 语言的自动垃圾回收机制，直接将头节点（Head）置空即可表示清空链表，不用担心内存泄露问题，但是为了帮助垃圾收集器更好地做内存回收工作，这里我们选择<strong>显式清空每一个节点</strong>。</p>
 <pre><code class="java">...
     /**
      * 清空链表。
