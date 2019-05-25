@@ -225,6 +225,10 @@
 <td>移除链表指定索引的元素。</td>
 </tr>
 <tr>
+<td><code>boolean remove(E element)</code></td>
+<td>移除链表指定的元素。</td>
+</tr>
+<tr>
 <td><code>int indexOf(E element)</code></td>
 <td>返回指定元素所在链表的索引，元素不存在则返回<code>-1</code>，若存在多个相同元素，则返回第一次出现的索引。</td>
 </tr>
@@ -644,7 +648,25 @@
 ...
 </code></pre>
 <blockquote>
-<p>代码清单：单链表<code>remove()</code>方法实现</p>
+<p>代码清单：单链表<code>remove(int index)</code>方法实现</p>
+</blockquote>
+<p>移除元素<code>remove()</code>方法还有另一种形式：<code>boolean remove(E element)</code>，移除链表中的指定元素。我们可以使用<code>indexOf(E element)</code>配合<code>remove(int index)</code>实现，先获取指定元素在链表中的索引下标，再移除掉，操作成功返回<code>true</code>，如果不存在目标元素，则返回<code>false</code>。</p>
+<pre><code class="java">...
+    /**
+     * 移除链表指定元素，
+     * 操作成功返回{@code true}，不存在目标元素则返回{@code false}。
+     * @param element
+     * @return Boolean
+     */
+    public boolean remove(E element) {
+        int index = indexOf(element);
+        return index == -1 ?
+        false : element.equals(remove(index));
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>remove(E element)</code>方法实现</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Linked_list" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Linked_list</a></p>
