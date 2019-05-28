@@ -181,7 +181,7 @@
 </ul>
 <p><img src="./stack-overview.png" alt="Stack-Overview"></p>
 <blockquote>
-<p>图：栈结构示意图</p>
+<p>图：栈（Stack）结构示意图</p>
 </blockquote>
 <h1 id="栈（Stack）数据结构操作接口"><a href="#栈（Stack）数据结构操作接口" class="headerlink" title="栈（Stack）数据结构操作接口"></a>栈（Stack）数据结构操作接口</h1><p>我们将使用 Java 语言手写栈（Stack）数据结构，首先，定义好栈所具有的操作接口方法（Interface）。</p>
 <table>
@@ -279,7 +279,7 @@ public class StackOverflowException extends Exception {
 <blockquote>
 <p>代码清单：<code>StackOverflowException</code>异常定义</p>
 </blockquote>
-<h1 id="Java-顺序栈（数组实现）"><a href="#Java-顺序栈（数组实现）" class="headerlink" title="Java 顺序栈（数组实现）"></a>Java 顺序栈（数组实现）</h1><p>栈（Stack）数据结构通常有一维数组与链表两种实现。使用数组实现的栈被称为<strong>顺序栈</strong>，因为数组元素在内存中的排列方式是连续紧挨的。我们先使用数组实现 Java 顺序栈。</p>
+<h1 id="Java-顺序栈（数组实现）"><a href="#Java-顺序栈（数组实现）" class="headerlink" title="Java 顺序栈（数组实现）"></a>Java 顺序栈（数组实现）</h1><p>栈（Stack）数据结构通常有一维数组与链表两种实现方式。使用数组实现的栈被称为<strong>顺序栈</strong>，因为数组元素在内存中的排列方式是连续紧挨的。我们先使用数组实现 Java 顺序栈。</p>
 <p>Java 顺序栈将数据存储在连续的数组中，定义一枚<strong>一维数组</strong>，作为存放栈元素的空间，为了简单起见，我们暂时将栈容量固定，不考虑数组扩容的情况。栈还需要一枚<strong>栈顶指针</strong>，指向栈顶元素，我们以<strong>数组索引下标</strong>作为栈顶指针。</p>
 <pre><code class="java">import Stack;
 import StackEmptyException;
@@ -326,7 +326,7 @@ public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {
 <blockquote>
 <p>代码清单：Java 顺序栈<code>isEmpty()</code>与<code>size()</code>方法实现</p>
 </blockquote>
-<p>元素入栈的操作分为如下三个步骤，元素入栈后，会堆叠在栈顶位置，栈顶指针也前移为新元素所在的索引下标。</p>
+<p>元素入栈的操作分为如下三个步骤，元素入栈后，会<strong>堆叠在栈顶位置</strong>，<strong>栈顶指针也前移为新元素所在的索引下标</strong>。</p>
 <ol>
 <li><p>检查数组可用容量</p>
 </li>
@@ -355,7 +355,7 @@ public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {
 <blockquote>
 <p>代码清单：Java 顺序栈<code>push()</code>方法实现</p>
 </blockquote>
-<p>元素出栈的操作分为如下步骤，元素出栈后，栈顶指针后移。由于 Java 顺序栈使用数组实现，没有必要将栈顶元素置空，直接后移栈顶指针即可，元素入栈会自动覆盖先前已出栈的元素位置。</p>
+<p>元素出栈的操作分为如下步骤，元素出栈后，<strong>栈顶指针后移</strong>。由于 Java 顺序栈使用数组实现，没有必要将栈顶元素置空，直接后移栈顶指针即可，元素入栈会自动覆盖先前已出栈的元素位置。</p>
 <ol>
 <li><p>检查栈是否为空</p>
 </li>
@@ -386,7 +386,7 @@ public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {
 <blockquote>
 <p>代码清单：Java 顺序栈<code>pop()</code>方法实现</p>
 </blockquote>
-<p>使用<code>peek()</code>方法可以查看当前栈顶元素，方法实现与元素出栈相似，只是不需要移动栈顶指针。</p>
+<p>使用<code>peek()</code>方法可以查看当前栈顶元素，方法实现与元素出栈相似，只是<strong>不需要移动栈顶指针</strong>。</p>
 <pre><code class="java">...
     /**
      * 查看当前栈顶元素。
@@ -406,7 +406,7 @@ public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {
 <blockquote>
 <p>代码清单：Java 顺序栈<code>peek()</code>方法实现</p>
 </blockquote>
-<p>我们为顺序栈提供一枚<code>clear()</code>方法，用于清空栈元素。方法具体实现为：重新创建数组，重置栈顶指针。为了帮助 Java 垃圾收集器更好地做内存回收工作，这里我们显式遍历旧数组，置空旧数组中存在的元素。</p>
+<p>我们为顺序栈提供一枚<code>clear()</code>方法，用于清空栈元素。方法具体实现为：<strong>重新创建数组，重置栈顶指针</strong>。为了帮助 Java 垃圾收集器更好地做内存回收工作，这里我们显式遍历旧数组，置空旧数组中存在的元素。</p>
 <pre><code class="java">...
     /**
      * 清空栈。
@@ -444,7 +444,10 @@ public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {
 <blockquote>
 <p>代码清单：Java 顺序栈<code>toString()</code>方法实现</p>
 </blockquote>
-<h1 id="Java-链式栈（链表实现）"><a href="#Java-链式栈（链表实现）" class="headerlink" title="Java 链式栈（链表实现）"></a>Java 链式栈（链表实现）</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<h1 id="Java-链式栈（链表实现）"><a href="#Java-链式栈（链表实现）" class="headerlink" title="Java 链式栈（链表实现）"></a>Java 链式栈（链表实现）</h1><p>栈（Stack）数据结构的另一种实现方式是链表（Linked List），使用链表存储栈元素，使用链表实现的栈被称为<strong>链式栈</strong>，因为链表节点在内存中的排列方式是分散的，各个节点之间使用指针相连。现在，我们使用链表实现 Java 链式栈。</p>
+<p>在 <em>Java 数据结构与算法 - 链表</em> 中，我们已经学习了如何手写一枚 Java 链表，现在我们使用自己写的链表来实现 Java 链式栈，实现思路为：<strong>只允许从链表一端添加/删除元素，链表另一端封闭</strong>。</p>
+<h1 id="关联文章（Related-Topics）"><a href="#关联文章（Related-Topics）" class="headerlink" title="关联文章（Related Topics）"></a>关联文章（Related Topics）</h1><p><a href="https://zihengcat.github.io/2019/05/15/java-data-structure-and-algorithm-linked-list/">Java 数据结构与算法 - 链表</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Stack_(abstract_data_type)</a></p>
 </li>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Stack_overflow" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Stack_overflow</a></p>
