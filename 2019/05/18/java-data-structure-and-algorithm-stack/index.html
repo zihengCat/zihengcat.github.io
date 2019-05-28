@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -277,7 +277,31 @@ public class StackOverflowException extends Exception {
 <blockquote>
 <p>代码清单：<code>StackOverflowException</code>异常定义</p>
 </blockquote>
-<h1 id="Java-顺序栈（数组实现）"><a href="#Java-顺序栈（数组实现）" class="headerlink" title="Java 顺序栈（数组实现）"></a>Java 顺序栈（数组实现）</h1><h1 id="Java-链式栈（链表实现）"><a href="#Java-链式栈（链表实现）" class="headerlink" title="Java 链式栈（链表实现）"></a>Java 链式栈（链表实现）</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<h1 id="Java-顺序栈（数组实现）"><a href="#Java-顺序栈（数组实现）" class="headerlink" title="Java 顺序栈（数组实现）"></a>Java 顺序栈（数组实现）</h1><p>栈（Stack）数据结构通常有一维数组与链表两种实现。使用数组实现的栈被称为<strong>顺序栈</strong>，因为数组元素在内存中的排列方式是连续紧挨的。我们先使用数组实现 Java 顺序栈。</p>
+<p>Java 顺序栈将数据存储在连续的数组中，定义一枚<strong>一维数组</strong>，作为存放栈元素的空间，为了简单起见，我们暂时将栈容量固定，不考虑数组扩容的情况。栈还需要一枚<strong>栈顶指针</strong>，指向栈顶元素，我们以<strong>数组索引下标</strong>作为栈顶指针。</p>
+<pre><code class="java">import Stack;
+import StackEmptyException;
+import StackOverflowException;
+public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {
+    private static final int DEFAULT_CAPACITY = 1024;
+    private int capacity;
+    private E[] data;
+    private int top;
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public ArrayStack(int capacity) {
+        this.capacity = capacity;
+        this.data = (E[]) new Object[capacity];
+        this.top = -1;
+    }
+    public ArrayStack() {
+        this(DEFAULT_CAPACITY);
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 顺序栈（数组实现）</p>
+</blockquote>
+<h1 id="Java-链式栈（链表实现）"><a href="#Java-链式栈（链表实现）" class="headerlink" title="Java 链式栈（链表实现）"></a>Java 链式栈（链表实现）</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Stack_(abstract_data_type)</a></p>
 </li>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Stack_overflow" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Stack_overflow</a></p>
