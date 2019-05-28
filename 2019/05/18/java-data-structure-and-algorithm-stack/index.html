@@ -353,6 +353,37 @@ public class ArrayStack&lt;E&gt; implements Stack&lt;E&gt; {
 <blockquote>
 <p>代码清单：Java 顺序栈<code>push()</code>方法实现</p>
 </blockquote>
+<p>元素出栈的操作分为如下步骤，元素出栈后，栈顶指针后移。由于 Java 顺序栈使用数组实现，没有必要将栈顶元素置空，直接后移栈顶指针即可，元素入栈会自动覆盖先前已出栈的元素位置。</p>
+<ol>
+<li><p>检查栈是否为空</p>
+</li>
+<li><p>取得栈顶元素</p>
+</li>
+<li><p>栈顶指针后移</p>
+</li>
+<li><p>返回栈顶元素</p>
+</li>
+</ol>
+<pre><code class="java">...
+    /**
+     * 将栈顶元素出栈。
+     * @param void
+     * @return Element at the top.
+     * @throws StackEmptyException
+     */
+    public E pop()
+    throws StackEmptyException {
+        if (isEmpty()) {
+            throw new StackEmptyException();
+        }
+        --top;
+        return data[top + 1];
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：Java 顺序栈<code>pop()</code>方法实现</p>
+</blockquote>
 <h1 id="Java-链式栈（链表实现）"><a href="#Java-链式栈（链表实现）" class="headerlink" title="Java 链式栈（链表实现）"></a>Java 链式栈（链表实现）</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Stack_(abstract_data_type)</a></p>
 </li>
