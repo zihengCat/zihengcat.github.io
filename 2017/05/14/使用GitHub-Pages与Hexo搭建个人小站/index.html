@@ -144,9 +144,13 @@
                         
                           <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
                         
+                          <a class="tag" href="/tags/#Node.js" title="Node.js">Node.js</a>
+                        
+                          <a class="tag" href="/tags/#GitHub" title="GitHub">GitHub</a>
+                        
                     </div>
                     <h1>使用 GitHub Pages + Hexo 搭建个人小站</h1>
-                    <h2 class="subheading"></h2>
+                    <h2 class="subheading">Building Your Personal Blog Using GitHub Pages and Hexo</h2>
                     <span class="meta">
                         Posted by zihengCat on
                         2017-05-14
@@ -165,22 +169,30 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>此篇教程讲解如何使用 GitHub Pages + Hexo 搭建个人独立博客。<br><img src="./blog-hexo.png" alt="blog-hexo"></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>子恒喵并不是一只擅长写东西的喵，一直也没有写博客的习惯。更不是大牛，没啥有用的干货可以输出，建立个人小站只是因为想在学习代码的路上记录一些个人学习心得体会。<br>这是子恒喵博客的第一篇, <strong>Hello, World!</strong></p>
-<h2 id="为什么选择-GitHub-Pages-Hexo"><a href="#为什么选择-GitHub-Pages-Hexo" class="headerlink" title="为什么选择 GitHub Pages + Hexo"></a>为什么选择 GitHub Pages + Hexo</h2><p>现如今，自媒体非常发达，能写东西的地方也非常的多（简书，知乎专栏…）, 为什么子恒喵会选择 GitHub Pages + Hexo 呢？</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>此篇文章将指导你如何使用<code>GitHub Pages</code>与<code>Hexo</code>搭建个人独立博客。</p>
+<p><img src="./blog-hexo.png" alt="Blog-Hexo"></p>
+<h2 id="为什么选择-GitHub-Pages-Hexo"><a href="#为什么选择-GitHub-Pages-Hexo" class="headerlink" title="为什么选择 GitHub Pages + Hexo"></a>为什么选择 GitHub Pages + Hexo</h2><p>如今，自媒体行业繁荣，能写东西的地方非常之多（例如：今日头条、简书、知乎专栏…），这些大平台往往可以提供足够的流量与曝光率，那么我们要选择 GitHub Pages + Hexo 手动搭建个人博客写作平台呢？</p>
 <ul>
-<li>数据可控</li>
-<li>支持 Markdown 书写</li>
-<li>适用 Git WorkFlow, 与 GitHub 完美搭配</li>
-<li>个人 Node.js 稍懂一点</li>
+<li><p>数据可控</p>
+</li>
+<li><p>支持 Markdown 书写，可扩展性强</p>
+</li>
+<li><p>适用 Git WorkFlow, 与 GitHub 完美契合</p>
+</li>
+<li><p>Geek 精神</p>
+</li>
 </ul>
-<p>以上几点只是子恒喵个人的情况，你完全可以选择自己熟悉的平台&amp;工具，但是这篇教程是讲解 GitHub Pages + Hexo 这套组合。</p>
-<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>首先，我们需要为GitHub Pages 与 Hexo 搭建起相应的环境啦。不然它们可是跑不起来的。</p>
-<h2 id="Git环境搭建"><a href="#Git环境搭建" class="headerlink" title="Git环境搭建"></a><code>Git</code>环境搭建</h2><p><a href="https://git-scm.com/" target="_blank" rel="noopener"><strong>Git官网</strong></a></p>
-<p>前往Git官方网站, 根据计算机架构，选择系统下载安装Git，按照提示即可。</p>
 <blockquote>
-<p>如果进不去，科学上网嘛<br>希望大家养成下载软件去官网的好习惯。<br>子恒喵用的是CentOS Linux系统，一条<code>yum</code>命令就装好啦。</p>
+<p>注：以上几点总结只是个人的一些浅显理解。</p>
 </blockquote>
+<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>首先，我们需要在本机搭建起 GitHub Pages 与 Hexo 的运行环境，任何软件都需要与其相对应的运行环境。</p>
+<h2 id="Git环境搭建"><a href="#Git环境搭建" class="headerlink" title="Git环境搭建"></a><code>Git</code>环境搭建</h2><p><a href="https://git-scm.com/" target="_blank" rel="noopener"><strong>Git官网</strong></a></p>
+<p>前往<code>Git</code>官方网站, 根据你使用的计算机架构，选择系统下载安装<code>Git</code>，按照提示即可。</p>
+<blockquote>
+<p>注：如果<code>Git</code>官网无法访问，建议使用代理工具尝试。</p>
+</blockquote>
+<p>希望大家养成下载软件去官网的好习惯。</p>
+<p>子恒喵用的是CentOS Linux系统，一条<code>yum</code>命令就装好啦。</p>
 <h2 id="Node-js环境搭建"><a href="#Node-js环境搭建" class="headerlink" title="Node.js环境搭建"></a><code>Node.js</code>环境搭建</h2><p><a href="https://nodejs.org/" target="_blank" rel="noopener"><strong>Node.js官网</strong></a></p>
 <p>前往Node.js官网, 根据计算机架构，选择合适的版本下载安装Node.js。<br>可以直接下载预编译的二进制包，也可以下载源代码手动编译安装。<br>子恒喵是手动编译安装的。</p>
 <h2 id="检验安装"><a href="#检验安装" class="headerlink" title="检验安装"></a>检验安装</h2><p>添加安装路径到<code>PATH</code>环境变量中，打开命令行工具（Windows下<code>CMD</code>），执行命令。</p>
@@ -281,6 +293,20 @@ $ git push origin source
             </div>
 <!-- Side Catalog Container -->
         
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
 <!-- Sidebar Container -->
             <div class="
                  col-lg-8 col-lg-offset-2
@@ -294,6 +320,10 @@ $ git push origin source
                     <div class="tags">
                        
                           <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
+                        
+                          <a class="tag" href="/tags/#Node.js" title="Node.js">Node.js</a>
+                        
+                          <a class="tag" href="/tags/#GitHub" title="GitHub">GitHub</a>
                         
                     </div>
                 </section>
@@ -579,6 +609,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
