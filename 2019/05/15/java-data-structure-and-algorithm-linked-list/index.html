@@ -256,7 +256,7 @@
 <p>表：链表（Linked List）数据结构接口方法表</p>
 </blockquote>
 <h1 id="单向链表（Single-Linked-List）"><a href="#单向链表（Single-Linked-List）" class="headerlink" title="单向链表（Single Linked List）"></a>单向链表（Single Linked List）</h1><p>我们使用 Java 语言实现一枚简单的<strong>单向链表</strong>。顾名思义，单向链表只能做单向遍历（头节点 -&gt; 尾节点），因为单向链表的节点（Node）只包含数据域和一个指针域（指向下一个节点）。</p>
-<p>我们来定义出单链表中节点（Node）的数据结构，使用泛型类提高节点存储数据的灵活性。节点数据结构包含<strong>构造方法</strong>，两个私有变量：<strong>数据域和指针域</strong>，及其<strong>对应的<code>getter/setter</code>公开方法</strong>。</p>
+<p>我们来定义出单链表中节点（Node）的数据结构，使用泛型类提高节点存储数据的灵活性。节点数据结构包含<strong>构造方法</strong>，两个私有变量：<strong>数据域和指针域</strong>，及其<strong>对应的<code>Getter/Setter</code>公开方法</strong>。</p>
 <pre><code class="java">class Node&lt;E&gt; {
     /**
      * 数据域
