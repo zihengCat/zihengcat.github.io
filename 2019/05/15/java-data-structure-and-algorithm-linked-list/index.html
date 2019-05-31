@@ -791,10 +791,10 @@
 <blockquote>
 <p>代码清单：双向链表节点（DLNode）</p>
 </blockquote>
-<p>我们考虑双向链表数据结构：<strong>双向链表包含一枚头节点<code>head</code>与一枚尾节点<code>tail</code>，头尾结点均不存储数据，而是指向实际存储数据的节点；头节点前驱节点为空，尾节点后继节点为空。</strong></p>
+<p>我们考虑双向链表数据结构：<strong>双向链表包含一枚头节点<code>head</code>与一枚尾节点<code>tail</code>，头尾结点均不存储数据，而是指向实际存储数据的节点；头节点前驱节点为<code>null</code>，尾节点后继节点为<code>null</code>。</strong></p>
 <p>双向链表的初始化过程为：<strong>构造头尾节点，并将头尾节点相连。</strong></p>
-<p>双向链表的优势在于：<strong>无论是头插法还是尾插法，算法复杂度均为$O(1)$，而单链表尾插法的算法复杂度为$O(n)$。</strong></p>
-<p>以下 Java 代码给出了双向链表<code>DoubleLinkedList</code>完整实现。</p>
+<p>双向链表的优势在于：<strong>支持双向遍历，「头插法」和「尾插法」的算法复杂度均为$O(1)$，而单链表「尾插法」的算法复杂度为$O(n)$。</strong></p>
+<p>以下 Java 代码给出双向链表<code>DoubleLinkedList</code>完整实现。</p>
 <pre><code class="java">import java.util.NoSuchElementException;
 import DLNode;
 public class DoubleLinkedList&lt;E&gt; {
