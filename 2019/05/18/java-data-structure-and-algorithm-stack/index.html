@@ -536,6 +536,37 @@ public class LinkedStack&lt;E&gt; implements Stack&lt;E&gt; {
 <blockquote>
 <p>代码清单：Java 链式栈（链表实现）</p>
 </blockquote>
+<h1 id="栈测试（Stack-Test）"><a href="#栈测试（Stack-Test）" class="headerlink" title="栈测试（Stack Test）"></a>栈测试（Stack Test）</h1><p>我们来写个栈单元测试程序，检测栈能否正常工作。</p>
+<pre><code class="java">import Stack;
+import ArrayStack;
+import LinkedStack;
+public class StackTest {
+    public static void main(String[] args) {
+        Stack&lt;String&gt; aStack = new ArrayStack&lt;String&gt;();
+        System.out.println(&quot;[INFO]: Testing push()...&quot;);
+        for (int i = 0; i &lt; 10; ++i) {
+            try {
+                aStack.push(String.valueOf(i));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println(aStack);
+        }
+        System.out.println(&quot;[INFO]: Testing pop()...&quot;);
+        for (int i = 0; i &lt; 10; ++i) {
+            try {
+                aStack.pop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println(aStack);
+        }
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：栈单元测试（Stack Unit Test）</p>
+</blockquote>
 <h1 id="关联文章（Related-Topics）"><a href="#关联文章（Related-Topics）" class="headerlink" title="关联文章（Related Topics）"></a>关联文章（Related Topics）</h1><ul>
 <li><p><a href="https://zihengcat.github.io/2019/05/15/java-data-structure-and-algorithm-linked-list/">Java 数据结构与算法 - 链表</a></p>
 </li>
