@@ -299,7 +299,7 @@
 </blockquote>
 <p>我们考虑单链表数据结构：<strong>单链表包含一枚头节点（Head），头结点不存储数据，而是指向第一个实际存储数据的节点；尾节点可以被定义为指针域为<code>null</code>的最后一枚节点。</strong></p>
 <p>单链表的构造方法即为单链表初始化：<strong>构造一枚数据域和指针域均为空的头节点。</strong></p>
-<pre><code class="java">public class LinkedList&lt;E&gt; {
+<pre><code class="java">public class SingleLinkedList&lt;E&gt; {
     /**
      * 链表头节点
      */
@@ -308,13 +308,13 @@
      * 构造方法：创建空链表
      * @param void
      */
-    public LinkedList() {
+    public SingleLinkedList() {
         this.head = new Node&lt;E&gt;();
     }
 }
 </code></pre>
 <blockquote>
-<p>代码清单：单链表（Linked List）结构</p>
+<p>代码清单：单链表（Single Linked List）结构</p>
 </blockquote>
 <p>单链表<code>addFirst()</code>方法向链表头部添加一个新的元素，插入的新元素总是位于链表头部（头节点指向的节点），这种插入元素的方式称为<strong>头插法</strong>，通过以下3步，即可完成向链表头部插入元素。</p>
 <ol>
@@ -1095,6 +1095,81 @@ public class DoubleLinkedList&lt;E&gt; {
 </code></pre>
 <blockquote>
 <p>代码清单：双单链表<code>DoubleLinkedList</code></p>
+</blockquote>
+<h1 id="链表测试（Linked-List-Test）"><a href="#链表测试（Linked-List-Test）" class="headerlink" title="链表测试（Linked List Test）"></a>链表测试（Linked List Test）</h1><p>我们来写个链表单元测试程序，检测链表能否正常工作。</p>
+<pre><code class="java">import SingleLinkedList;
+import DoubleLinkedList;
+public class LinkedListTest {
+    public static void main(String[] args) {
+        System.out.println(&quot;[INFO]: Test DoubleLinkedList() ...&quot;);
+        DoubleLinkedList&lt;String&gt; aList = new DoubleLinkedList&lt;String&gt;();
+        for (int i = 0; i &lt; 10; ++i) {
+            aList.addLast(String.valueOf(i));
+        }
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.size(): &quot; +
+            aList.size()
+        );
+        System.out.println(
+            &quot;aList.contains(\&quot;2\&quot;): &quot; +
+            aList.contains(&quot;2&quot;)
+        );
+        System.out.println(
+            &quot;aList.contains(\&quot;10\&quot;): &quot; +
+            aList.contains(&quot;10&quot;)
+        );
+        System.out.println(
+            &quot;aList.addFirst(\&quot;Java\&quot;)&quot;
+        );
+        System.out.println(
+            &quot;aList.addLast(\&quot;Python\&quot;)&quot;
+        );
+        aList.addFirst(&quot;Java&quot;);
+        aList.addLast(&quot;Python&quot;);
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.remove(1): &quot; +
+            aList.remove(1)
+        );
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.remove(\&quot;8\&quot;): &quot; +
+            aList.remove(&quot;8&quot;)
+        );
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.get(0): &quot; +
+            aList.get(0)
+        );
+        System.out.println(
+            &quot;aList.set(1, \&quot;JavaScript\&quot;): &quot; +
+            aList.set(1, &quot;JavaScript&quot;)
+        );
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.indexOf(\&quot;Python\&quot;): &quot; +
+            aList.indexOf(&quot;Python&quot;)
+        );
+        System.out.println(
+            &quot;aList.indexOf(\&quot;C++\&quot;): &quot; +
+            aList.indexOf(&quot;C++&quot;)
+        );
+        System.out.println(
+            &quot;aList.insert(1, \&quot;Golang\&quot;): &quot; +
+            aList.insert(1, &quot;Golang&quot;)
+        );
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.clear()&quot;
+        );
+        aList.clear();
+        System.out.println(aList);
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：链表单元测试（Unit Test）</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Linked_list" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Linked_list</a></p>
