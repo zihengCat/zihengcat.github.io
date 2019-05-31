@@ -255,7 +255,7 @@
 <blockquote>
 <p>表：链表（Linked List）数据结构接口方法表</p>
 </blockquote>
-<h1 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h1><p>我们使用 Java 语言实现一枚简单的<strong>单向链表</strong>。顾名思义，单向链表只能做单向遍历（头节点 -&gt; 尾节点），因为单向链表的节点（Node）只包含数据域和一个指针域（指向下一个节点）。</p>
+<h1 id="单向链表（Single-Linked-List）"><a href="#单向链表（Single-Linked-List）" class="headerlink" title="单向链表（Single Linked List）"></a>单向链表（Single Linked List）</h1><p>我们使用 Java 语言实现一枚简单的<strong>单向链表</strong>。顾名思义，单向链表只能做单向遍历（头节点 -&gt; 尾节点），因为单向链表的节点（Node）只包含数据域和一个指针域（指向下一个节点）。</p>
 <p>我们来定义出单链表中节点（Node）的数据结构，使用泛型类提高节点存储数据的灵活性。节点数据结构包含<strong>构造方法</strong>，两个私有变量：<strong>数据域和指针域</strong>，及其<strong>对应的<code>getter/setter</code>公开方法</strong>。</p>
 <pre><code class="java">class Node&lt;E&gt; {
     /**
@@ -752,6 +752,345 @@
 </code></pre>
 <blockquote>
 <p>代码清单：单链表<code>toString()</code>方法实现</p>
+</blockquote>
+<h1 id="双向链表（Double-Linked-List）"><a href="#双向链表（Double-Linked-List）" class="headerlink" title="双向链表（Double Linked List）"></a>双向链表（Double Linked List）</h1><p>双向链表（Double Linked List）可以做到双向遍历（头节点 <--> 尾节点），因为双向链表的节点（DLNode）包含数据域和两个指针域（前驱与后继）。</--></p>
+<p>我们来定义出双向链表中节点（DLNode）数据结构，使用泛型类提高节点存储数据的灵活性。节点数据结构包含<strong>构造方法</strong>，三个私有变量：<strong>数据域和两枚指针域</strong>，及其<strong>对应的<code>Getter/Setter</code>方法</strong>。</p>
+<pre><code class="java">public class DLNode&lt;E&gt; {
+    private E elem;
+    private DLNode&lt;E&gt; prev;
+    private DLNode&lt;E&gt; next;
+    public DLNode(E elem, DLNode&lt;E&gt; prev, DLNode&lt;E&gt; next) {
+        this.elem = elem;
+        this.prev = prev;
+        this.next = next;
+    }
+    public DLNode() {
+        this(null, null, null);
+    }
+    public void setElem(E elem) {
+        this.elem = elem;
+    }
+    public void setPrev(DLNode&lt;E&gt; prev) {
+        this.prev = prev;
+    }
+    public void setNext(DLNode&lt;E&gt; next) {
+        this.next = next;
+    }
+    public E getElem() {
+        return this.elem;
+    }
+    public DLNode&lt;E&gt; getPrev() {
+        return this.prev;
+    }
+    public DLNode&lt;E&gt; getNext() {
+        return this.next;
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：双向链表节点（DLNode）</p>
+</blockquote>
+<p>我们考虑双向链表数据结构：<strong>双向链表包含一枚头节点<code>head</code>与一枚尾节点<code>tail</code>，头尾结点均不存储数据，而是指向实际存储数据的节点；头节点前驱节点为空，尾节点后继节点为空。</strong></p>
+<p>双向链表的初始化过程为：<strong>构造头尾节点，并将头尾节点相连。</strong></p>
+<pre><code class="java">import java.util.NoSuchElementException;
+import DLNode;
+public class DoubleLinkedList&lt;E&gt; {
+    /**
+     * 链表头节点
+     */
+    private DLNode&lt;E&gt; head;
+    /**
+     * 链表尾节点
+     */
+    private DLNode&lt;E&gt; tail;
+    /**
+     * 构造方法：创建空链表
+     * @param void
+     */
+    public DoubleLinkedList() {
+        this.head = new DLNode&lt;E&gt;();
+        this.tail = new DLNode&lt;E&gt;();
+        head.setNext(tail);
+        tail.setPrev(head);
+    }
+    public static void main(String[] args) {
+        // ...
+    }
+    /**
+     * 向双向链表指定索引位置插入一个新元素。
+     * @param index
+     * @param element
+     * @return Previous element
+     * @throws IndexOutOfBoundsException
+     */
+    public E insert(int index, E element)
+    throws IndexOutOfBoundsException {
+        if (index &lt; 0 || index &gt; size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        DLNode&lt;E&gt; current = head;
+        while (index &gt;= 0) {
+            current = current.getNext();
+            --index;
+        }
+        DLNode&lt;E&gt; node = new DLNode&lt;E&gt;(element, null, null);
+        node.setNext(current);
+        node.setPrev(current.getPrev());
+        current.getPrev().setNext(node);
+        current.setPrev(node);;
+        return current.getNext() == null ? null : current.getElem();
+    }
+    /**
+     * 移除双向链表指定元素，
+     * 操作成功返回{@code true}，不存在目标元素则返回{@code false}。
+     * @param element
+     * @return Boolean
+     */
+    public boolean remove(E element) {
+        int index = indexOf(element);
+        return index == -1 ?
+        false : element.equals(remove(index));
+    }
+    /**
+     * 移除双向链表指定索引下标元素。
+     * @param index
+     * @return Removed element
+     * @throws IndexOutOfBoundsException
+     */
+    public E remove(int index) throws IndexOutOfBoundsException {
+        if (index &lt; 0 || index &gt;= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        /* Input: 1 */
+        /* head &lt;--&gt; elem(1) &lt;--&gt; elem(2) &lt;--&gt; elem(3) &lt;--&gt; tail */
+        DLNode&lt;E&gt; node = head.getNext();
+        while (index &gt; 0) {
+            node = node.getNext();
+            --index;
+        }
+        node.getPrev().setNext(node.getNext());
+        node.getNext().setPrev(node.getPrev());
+        node.setPrev(null);
+        node.setNext(null);
+        return node.getElem();
+    }
+    /**
+     * 为双向链表指定索引位置的元素设新值。
+     * @param index
+     * @param element
+     * @return Previous element in the index.
+     * @throws IndexOutOfBoundsException
+     */
+    public E set(int index, E element) throws IndexOutOfBoundsException {
+        if (index &lt; 0 || index &gt;= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        DLNode&lt;E&gt; node = head.getNext();
+        while (index &gt; 0) {
+            node = node.getNext();
+            --index;
+        }
+        E oldElem = node.getElem();
+        node.setElem(element);
+        return oldElem;
+    }
+    /**
+     * 获取双向链表指定索引位置的元素。
+     * @param index
+     * @return element
+     * @throws IndexOutOfBoundsException
+     */
+    public E get(int index) throws IndexOutOfBoundsException {
+        if (index &lt; 0 || index &gt;= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        DLNode&lt;E&gt; node = head.getNext();
+        while (index &gt; 0) {
+            node = node.getNext();
+            --index;
+        }
+        return node.getElem();
+    }
+    /**
+     * 返回指定元素所在双向链表的索引位置。
+     * @param element
+     * @return The index of element in {@code DoubleLinkedList},
+     * return {@code -1} if element does not found.
+     */
+    public int indexOf(E element) {
+        int index = 0;
+        for (DLNode&lt;E&gt; current = head.getNext();
+            current.getNext() != null;
+            current = current.getNext()) {
+                if (element.equals(current.getElem())) {
+                    return index;
+                }
+                ++index;
+        }
+        return -1;
+    }
+    /**
+     * 检查双向链表中是否包含目标元素，
+     * 元素相等使用 {@code o.equals(obj)} 判断。
+     * @param element
+     * @return Boolean
+     */
+    public boolean contains(E element) {
+        for (DLNode&lt;E&gt; current = head.getNext();
+            current.getNext() != null;
+            current = current.getNext()) {
+            if (element.equals(current.getElem())) {
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * 移除并返回双向链表尾部最后一个元素。
+     * @param void
+     * @return Last element of this {@code DoubleLinkedList}.
+     * @throws NoSuchElementException
+     */
+    public E removeLast() throws NoSuchElementException {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        DLNode&lt;E&gt; node = tail.getPrev();
+        node.getPrev().setNext(tail);
+        tail.setPrev(node.getPrev());
+        node.setPrev(null);
+        node.setNext(null);
+        return node.getElem();
+    }
+    /**
+     * 移除并返回双向链表头部第一个元素。
+     * @param void
+     * @return First element of this {@code DoubleLinkedList}.
+     * @throws NoSuchElementException
+     */
+    public E removeFirst() throws NoSuchElementException {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        DLNode&lt;E&gt; node = head.getNext();
+        node.getNext().setPrev(head);
+        head.setNext(node.getNext());
+        node.setPrev(null);
+        node.setNext(null);
+        return node.getElem();
+    }
+    /**
+     * 向双向链表头部添加一个新元素。
+     * @param element
+     * @return void
+     */
+    public void addFirst(E element) {
+        DLNode&lt;E&gt; node = new DLNode&lt;E&gt;(element, null, null);
+        node.setPrev(head);
+        node.setNext(
+            head.getNext()
+        );
+        head.setNext(node);
+        head.getNext().setPrev(node);
+    }
+    /**
+     * 向双端链表尾部添加一个新元素。
+     * @param element
+     * @return void
+     */
+    public void addLast(E element) {
+        DLNode&lt;E&gt; node = new DLNode&lt;E&gt;(element, null, null);
+        node.setPrev(tail.getPrev());
+        node.setNext(tail);
+        tail.getPrev().setNext(node);
+        tail.setPrev(node);
+    }
+    /**
+     * 取得双向链表头部第一个元素，链表为空则抛出异常。
+     * @param void
+     * @return First element of {@code DoubleLinkedList}.
+     * @throws NoSuchElementException
+     */
+    public E getFirst() throws NoSuchElementException {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return head.getNext().getElem();
+    }
+    /**
+     * 取得双向链表尾部最后一个元素，链表为空则抛出异常。
+     * @param void
+     * @return Last element of {@code DoubleLinkedList}.
+     * @throws NoSuchElementException
+     */
+    public E getLast() throws NoSuchElementException {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return tail.getPrev().getElem();
+    }
+    /**
+     * 计算双向链表存储元素数量。
+     * @param void
+     * @return Size of {@code DoubleLinkedList}.
+     */
+    public int size() {
+        int cnt = 0;
+        for (DLNode&lt;E&gt; n = head.getNext();
+            n.getNext() != null;
+            n = n.getNext()) {
+            ++cnt;
+        }
+        return cnt;
+    }
+    /**
+     * 检查双向链表是否为空。
+     * @param void
+     * @return Boolean {@code true} or {@code false}.
+     */
+    public boolean isEmpty() {
+        return this.size() &gt; 0 ? false : true;
+    }
+    /**
+     * 清空双向链表。
+     * @param void
+     * @return void
+     */
+    public void clear() {
+        while (head.getNext() != null) {
+            DLNode&lt;E&gt; current = head;
+            head = head.getNext();
+            current.setElem(null);
+            current.setPrev(null);
+            current.setNext(null);
+        }
+        head = new DLNode&lt;E&gt;();
+        tail = new DLNode&lt;E&gt;();
+        head.setNext(tail);
+        tail.setPrev(head);
+    }
+    /**
+     * 返回双向链表字符串形式。
+     * @param void
+     * @return void
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(&#39;[&#39;);
+        for (DLNode&lt;E&gt; current = head.getNext();
+            current.getNext() != null;
+            current = current.getNext()) {
+                sb.append(current.getElem().toString());
+                sb.append(&quot;, &quot;);
+        }
+        sb.append(&#39;]&#39;);
+        return sb.toString();
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：双单链表<code>DoubleLinkedList</code></p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Linked_list" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Linked_list</a></p>
