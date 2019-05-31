@@ -297,7 +297,8 @@
 <blockquote>
 <p>代码清单：单链表节点（Node）</p>
 </blockquote>
-<p>实现出单链表数据结构：<strong>单链表包含一枚头节点（Head），头结点不存储数据，而是指向第一个实际存储数据的节点；尾节点可以被定义为指针域为<code>null</code>的最后一枚节点。</strong>构造方法即为单链表初始化：<strong>构造一枚数据域和指针域均为空的头节点。</strong></p>
+<p>我们考虑单链表数据结构：<strong>单链表包含一枚头节点（Head），头结点不存储数据，而是指向第一个实际存储数据的节点；尾节点可以被定义为指针域为<code>null</code>的最后一枚节点。</strong></p>
+<p>单链表的构造方法即为单链表初始化：<strong>构造一枚数据域和指针域均为空的头节点。</strong></p>
 <pre><code class="java">public class LinkedList&lt;E&gt; {
     /**
      * 链表头节点
@@ -792,6 +793,8 @@
 </blockquote>
 <p>我们考虑双向链表数据结构：<strong>双向链表包含一枚头节点<code>head</code>与一枚尾节点<code>tail</code>，头尾结点均不存储数据，而是指向实际存储数据的节点；头节点前驱节点为空，尾节点后继节点为空。</strong></p>
 <p>双向链表的初始化过程为：<strong>构造头尾节点，并将头尾节点相连。</strong></p>
+<p>双向链表的优势在于：<strong>无论是头插法还是尾插法，算法复杂度均为$O(1)$，而单链表尾插法的算法复杂度为$O(n)$。</strong></p>
+<p>以下 Java 代码给出了双向链表<code>DoubleLinkedList</code>完整实现。</p>
 <pre><code class="java">import java.util.NoSuchElementException;
 import DLNode;
 public class DoubleLinkedList&lt;E&gt; {
