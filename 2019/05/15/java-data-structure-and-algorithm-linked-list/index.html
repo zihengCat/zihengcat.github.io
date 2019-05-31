@@ -795,7 +795,8 @@
 <p>双向链表的初始化过程为：<strong>构造头尾节点，并将头尾节点相连。</strong></p>
 <p>双向链表的优势在于：<strong>支持双向遍历，「头插法」和「尾插法」的算法复杂度均为$O(1)$，而单链表「尾插法」的算法复杂度为$O(n)$。</strong></p>
 <p>以下 Java 代码给出双向链表<code>DoubleLinkedList</code>完整实现。</p>
-<pre><code class="java">import java.util.NoSuchElementException;
+<pre><code class="java">import java.lang.IndexOutOfBoundsException;
+import java.util.NoSuchElementException;
 import DLNode;
 public class DoubleLinkedList&lt;E&gt; {
     /**
