@@ -194,7 +194,81 @@ Explanation: 2 does not exist in nums so return -1
 <li><p>整型数组中元素的取值范围为：<code>[-9999, 9999]</code>。</p>
 </li>
 </ul>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>…</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>非常经典的二分查找问题，来复习一下二分查找法吧。</p>
+<pre><code class="java">class Solution {
+    public int search(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length - 1;
+        int mid, midVal;
+        while (low &lt;= high) {
+            mid = (low + high)/2;
+            midVal = nums[mid];
+            if (target &gt; midVal) {
+                low = mid + 1;
+            } else if (target &lt; midVal) {
+                high = mid - 1;
+            } else {
+                /* key found */
+                return mid;
+            }
+        }
+        /* key not found */
+        return -1;
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：二分查找（<code>Java</code>实现）</p>
+</blockquote>
+<pre><code class="c">int search(int* nums, int numsSize, int target) {
+    int low = 0, high = numsSize - 1, mid, midVal;
+    while (low &lt;= high) {
+        mid = (low + high)/2;
+        midVal = nums[mid];
+        if (target == midVal) {
+            /* Found */
+            return mid;
+        } else {
+            if (target &gt; midVal) {
+                low = mid + 1;
+            } else if (target &lt; midVal) {
+                high = mid - 1;
+            }
+        }
+    }
+    /* Not found */
+    return -1;
+}
+</code></pre>
+<blockquote>
+<p>代码清单：二分查找（<code>C/C++</code>实现）</p>
+</blockquote>
+<p>二分查找法还可以写成递归形式。</p>
+<pre><code class="c">int search(int* nums, int numsSize, int target) {
+    return searchRecursive(nums, 0, numsSize - 1, target);
+}
+int searchRecursive(int* nums, int startIndex, int endIndex, int target) {
+    if (startIndex &lt;= endIndex) {
+        int midIndex = startIndex + (endIndex - startIndex) / 2;
+        /* compare midElement with target */
+        if (nums[midIndex] == target) {
+            /* Found */
+            return midIndex;
+        } else if (nums[midIndex] &lt; target) {
+            /* midElement is too small - go right */
+            return searchRecursive(nums, midIndex+1, endIndex, target);
+        } else {
+            /* midElement is too big - go left */
+            return searchRecursive(nums, startIndex, midIndex-1, target);
+        }
+    }
+    /* Not found */
+    return -1;
+}
+</code></pre>
+<blockquote>
+<p>代码清单：递归二分查找（<code>C/C++</code>实现）</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/binary-search/" target="_blank" rel="noopener">https://leetcode.com/problems/binary-search/</a></li>
 </ul>
