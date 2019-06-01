@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -201,7 +201,7 @@ Explanation: 2 does not exist in nums so return -1
         int high = nums.length - 1;
         int mid, midVal;
         while (low &lt;= high) {
-            mid = (low + high)/2;
+            mid = (low + high) / 2;
             midVal = nums[mid];
             if (target &gt; midVal) {
                 low = mid + 1;
@@ -223,7 +223,7 @@ Explanation: 2 does not exist in nums so return -1
 <pre><code class="c">int search(int* nums, int numsSize, int target) {
     int low = 0, high = numsSize - 1, mid, midVal;
     while (low &lt;= high) {
-        mid = (low + high)/2;
+        mid = (low + high) / 2;
         midVal = nums[mid];
         if (target == midVal) {
             /* Found */
