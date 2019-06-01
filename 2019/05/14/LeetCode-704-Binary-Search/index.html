@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/08/26/using-cryptography-package-in-airflow/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/05/14/LeetCode-704-Binary-Search/">
     <title>
         
-          为 Airflow 加装 Cryptography 库 - zihengCat
+          LeetCode - 704. 二分查找 - zihengCat
         
     </title>
 
@@ -142,20 +142,18 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
-                          <a class="tag" href="/tags/#Apache" title="Apache">Apache</a>
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
-                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
-                        
-                          <a class="tag" href="/tags/#Airflow" title="Airflow">Airflow</a>
+                          <a class="tag" href="/tags/#Array" title="Array">Array</a>
                         
                     </div>
-                    <h1>为 Airflow 加装 Cryptography 库</h1>
-                    <h2 class="subheading">Using Cryptography Package in Airflow</h2>
+                    <h1>LeetCode - 704. 二分查找</h1>
+                    <h2 class="subheading">LeetCode - 704. Binary Search</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-08-26
+                        2019-05-14
                     </span>
                 </div>
             </div>
@@ -171,42 +169,34 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Apache Airflow</code>分布式任务调度框架默认将密码等敏感信息以<strong>明文形式</strong>存储到元数据（Metadata）库中，这会带来一定的安全隐患。Airbnb 官方也强烈建议开发者安装<code>cryptography</code>库以实现敏感信息的加密存储。</p>
-<p>另外，如果不安装<code>cryptography</code>加密库，Airflow 的许多高级功能都是无法使用的。</p>
-<h1 id="为Airflow加装cryptography库"><a href="#为Airflow加装cryptography库" class="headerlink" title="为Airflow加装cryptography库"></a>为<code>Airflow</code>加装<code>cryptography</code>库</h1><p>Apache Airflow 默认不会安装<code>cryptography</code>库，我们需要手动安装并配置。</p>
-<p>首先，使用<code>pip</code>命令来安装上<code>cryptography</code>库。</p>
-<pre><code class="bash">$ pip install apache-airflow[crypto]
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录 <em>LeetCode - 704. 二分查找</em> 问题。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>输入一个<strong>已排序（升序）</strong>的、<strong>拥有<code>n</code>个元素</strong>的整型数组<code>nums</code>与一个目标数<code>target</code>，请你实现一个函数，在整型数组中搜索目标数。如果该数存在，返回其在数组中的索引下标，不存在则返回<code>-1</code>。</p>
+<pre><code class="plain">Input: nums = [-1,0,3,5,9,12], target = 9
+Output: 4
+Explanation: 9 exists in nums and its index is 4
 </code></pre>
 <blockquote>
-<p>代码清单：<code>pip</code>安装<code>apache-airflow[crypto]</code></p>
+<p>注：样例-1</p>
 </blockquote>
-<p>第二步，使用<code>Python</code>代码生成一枚<code>fernet_key</code>。<code>fernet_key</code>的格式必须为<code>base64-encoded</code>，长度必须为<code>32-bytes</code>。</p>
-<pre><code class="bash">$ python -c &quot;from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())&quot;
-...
+<pre><code class="plain">Input: nums = [-1,0,3,5,9,12], target = 2
+Output: -1
+Explanation: 2 does not exist in nums so return -1
 </code></pre>
 <blockquote>
-<p>代码清单：<code>Python</code>生成<code>fernet_key</code></p>
+<p>注：样例-2</p>
 </blockquote>
-<p>然后，配置 Airflow 使用<code>fernet_key</code>。将第二步得到的<strong>秘钥</strong>写入到<strong>配置文件<code>airflow.cfg</code></strong>中，也可以额外设置一枚环境变量。</p>
-<pre><code class="bash">$ vim airflow.cfg
-...
-fernet_key = &lt;fernet_key&gt;
-...
-</code></pre>
-<blockquote>
-<p>代码清单：写<code>airflow.cfg</code>配置文件</p>
-</blockquote>
-<pre><code class="bash">$ export AIRFLOW__CORE__FERNET_KEY=&#39;&lt;fernet_key&gt;&#39;
-</code></pre>
-<blockquote>
-<p>代码清单：设置<code>AIRFLOW__CORE__FERNET_KEY</code>环境变量</p>
-</blockquote>
-<p>最后，重启 Airflow 服务「<code>scheduler</code>，<code>webserver</code>」即可。</p>
+<p>注意：</p>
+<ul>
+<li><p>可以假设数组中的元素都是唯一不重复的。</p>
+</li>
+<li><p><code>n</code>的取值范围为：<code>[1, 10000]</code>。</p>
+</li>
+<li><p>整型数组中元素的取值范围为：<code>[-9999, 9999]</code>。</p>
+</li>
+</ul>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>…</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p><code>Apache Airflow</code>官方文档：<a href="https://airflow.apache.org/howto/secure-connections.html" target="_blank" rel="noopener">https://airflow.apache.org/howto/secure-connections.html</a></p>
-</li>
-<li><p>为<code>Airflow</code>生成<code>fernet_key</code>：<a href="https://bcb.github.io/airflow/fernet-key" target="_blank" rel="noopener">https://bcb.github.io/airflow/fernet-key</a></p>
-</li>
+<li>LeetCode: <a href="https://leetcode.com/problems/binary-search/" target="_blank" rel="noopener">https://leetcode.com/problems/binary-search/</a></li>
 </ul>
 
                 <hr>
@@ -214,12 +204,12 @@ fernet_key = &lt;fernet_key&gt;
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2018/09/10/change-locale-system-encoding-in-docker-container/" data-toggle="tooltip" data-placement="top" title="修改 Docker 容器 locale 系统编码">&larr; Previous Post</a>
+                            <a href="/2019/05/15/java-data-structure-and-algorithm-linked-list/" data-toggle="tooltip" data-placement="top" title="Java 数据结构与算法 - 链表">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2018/08/02/simple-ways-to-set-macos-consecutive-input/" data-toggle="tooltip" data-placement="top" title="macOS 长按连续输入的简单设置方法">Next Post &rarr;</a>
+                            <a href="/2019/05/13/LeetCode-049-Group-Anagrams/" data-toggle="tooltip" data-placement="top" title="LeetCode - 049. 相同字母异序词归类">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -253,13 +243,11 @@ fernet_key = &lt;fernet_key&gt;
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
-                          <a class="tag" href="/tags/#Apache" title="Apache">Apache</a>
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
-                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
-                        
-                          <a class="tag" href="/tags/#Airflow" title="Airflow">Airflow</a>
+                          <a class="tag" href="/tags/#Array" title="Array">Array</a>
                         
                     </div>
                 </section>
