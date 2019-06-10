@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/03/08/排序算法-选择排序/">
+    <link rel="canonical" href="https://zihengcat.github.io/i_dont_wanna_use_default_archives/2018/03/page/2/">
     <title>
         
-          排序算法 - 选择排序（Selection Sort） - zihengCat
+          zihengCat
         
     </title>
 
@@ -76,16 +76,16 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -125,191 +125,7 @@
     }
 </script>
 
-    <!-- Post Header -->
-<style type="text/css">
-    header.intro-header {
-        position: relative;
-        background-image: url('/img/home-bg-o.jpg');
-    }
-
-</style>
-<header class="intro-header" >
-<!-- Header Image Mask -->
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
-                        
-                    </div>
-                    <h1>排序算法 - 选择排序（Selection Sort）</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by zihengCat on
-                        2018-03-08
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-<!-- Post Container -->
-            <div class="
-                 col-lg-8 col-lg-offset-2
-                 col-md-10 col-md-offset-1
-                 post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍<em>排序算法 - 选择排序（Selection Sort）</em>。</p>
-<h1 id="选择排序（Selection-Sort）"><a href="#选择排序（Selection-Sort）" class="headerlink" title="选择排序（Selection Sort）"></a>选择排序（Selection Sort）</h1><p>选择排序是常用的排序算法之一，该排序算法的核心思想是：<strong>将数组中最大/最小的数置换到最前位置，依次迭代。</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">迭代轮数</th>
-<th style="text-align:center">数组元素</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">[ 2, 1, 5, 6 ]</td>
-</tr>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">[ 6, 1, 5, 2 ]</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">[ 6, 5, 1, 2 ]</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">[ 6, 5, 2, 1 ]</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>表：选择排序（从大到小排序）</p>
-</blockquote>
-<p>可以看到，每次迭代后，就有一个数字就被放到了正确的位置上。</p>
-<pre><code>/*
- * 选择排序 (Selection Sort)
- * 参数: 待排序数组, 数组长度
- * 返回: 无
- */
-void selectionSort(int* array, int length) {
-    /* 每轮循环都有一个数被归位，下轮循环只需从下个位置开始即可 */
-    for(int i = 0; i &lt; length; i++) {
-        putLargestValue(array, length, i);
-    }
-}
-void putLargestValue(int* array, int length, int index) {
-    int largestValueIndex = index;
-    /* 找到当前数组中最大元素的下标 */
-    for(int i = index; i &lt; length; i++){
-        if(array[i] &gt; array[largestValueIndex]) {
-            largestValueIndex = i;
-        }
-    }
-    /* 将找到元素与数组最前元素进行交换 */
-    int tmp = array[index];
-    array[index] = array[largestValueIndex];
-    array[largestValueIndex] = tmp;
-}
-</code></pre><blockquote>
-<p>代码清单：选择排序（C/C++ 代码）</p>
-</blockquote>
-<p>可以看到，选择排序的算法复杂度为$O(n^2)$，并不算是一种很高效的排序算法。</p>
-
-                <hr>
-<!--
-                <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2018/03/24/Hexo博客添加MathJax支持/" data-toggle="tooltip" data-placement="top" title="Hexo博客添加MathJax支持">&larr; Previous Post</a>
-                        </li>
-                    
-                    
-                        <li class="next">
-                            <a href="/2018/03/07/LeetCode-069-sqrt/" data-toggle="tooltip" data-placement="top" title="LeetCode - 069. 求平方根（Sqrt）">Next Post &rarr;</a>
-                        </li>
-                    
-                </ul>
--->
-            </div>
-<!-- Side Catalog Container -->
-        
-<!-- Sidebar Container -->
-            <div class="
-                 col-lg-8 col-lg-offset-2
-                 col-md-10 col-md-offset-1
-                 sidebar-container">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
-                        
-                    </div>
-                </section>
-                
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                </ul>
-                
-            </div>
-        </div>
-    </div>
-</article>
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
-    function() {
-        anchors.options = {
-          visible: 'always',
-          placement: 'right',
-          icon: '#'
-        };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
-        }
-    }
-</style>
-
+    <!-- Default Archive layout, we use archives.ejs instead. -->
 
     <!-- Footer -->
 <footer>
