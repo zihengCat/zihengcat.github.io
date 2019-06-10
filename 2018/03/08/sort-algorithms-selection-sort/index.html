@@ -168,7 +168,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍<em>排序算法 - 选择排序（Selection Sort）</em>。</p>
-<h1 id="选择排序（Selection-Sort）"><a href="#选择排序（Selection-Sort）" class="headerlink" title="选择排序（Selection Sort）"></a>选择排序（Selection Sort）</h1><p>选择排序是常用的排序算法之一，该排序算法的核心思想是：<strong>选择数组中最大/最小的值置换到数组最前位置，依次迭代。</strong></p>
+<h1 id="选择排序（Selection-Sort）"><a href="#选择排序（Selection-Sort）" class="headerlink" title="选择排序（Selection Sort）"></a>选择排序（Selection Sort）</h1><p>选择排序是一种简单直观的排序算法，该排序算法的核心思想是：<strong>在未排序序列中寻找最大（小）的元素，置换到序列起始位置，依次迭代。</strong></p>
 <table>
 <thead>
 <tr>
@@ -205,7 +205,7 @@
  * 返回: 无
  */
 void selectionSort(int* array, int length) {
-    /* 每轮循环都有一个数被归位，下轮循环只需从下个位置开始即可 */
+    /* 每轮迭代都有一个数被归位，下一轮迭代从下个位置开始 */
     for (int i = 0; i &lt; length; ++i) {
         putLargestValue(array, length, i);
     }
@@ -221,6 +221,17 @@ void putLargestValue(int* array, int length, int index) {
     /* 将找到元素与数组最前位置元素进行交换 */
     swap(array, index, largestValueIndex)
 }
+void putSmallestValue(int* array, int length, int index) {
+    int smallestValueIndex = index;
+    /* 找到当前数组中最小元素的下标 */
+    for (int i = index; i &lt; length; ++i) {
+        if (array[i] &lt; array[smallestValueIndex]) {
+            smallestValueIndex = i;
+        }
+    }
+    /* 将找到元素与数组最前位置元素进行交换 */
+    swap(array, index, smallestValueIndex);
+}
 /**
  * 功能函数：交换数组指定索引位置元素
  */
@@ -231,9 +242,9 @@ void swap(int* arr, int i, int j) {
 }
 </code></pre>
 <blockquote>
-<p>代码清单：选择排序（<code>C/C++</code>代码）</p>
+<p>代码清单：选择排序（<code>C/C++</code>实现）</p>
 </blockquote>
-<h1 id="算法复杂度"><a href="#算法复杂度" class="headerlink" title="算法复杂度"></a>算法复杂度</h1><p>可以看到，选择排序的算法复杂度为：$O(n^2)$，并不算是一种很高效的排序算法。</p>
+<h1 id="算法复杂度"><a href="#算法复杂度" class="headerlink" title="算法复杂度"></a>算法复杂度</h1><p>可以看到，选择排序的时间复杂度为：$O(n^2)$，并不算是一种很高效的排序算法，当空间复杂度要求较高时，可以考虑选择排序，其实际适用的场景较少。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Fundamental Data Structures and Algorithms: <a href="https://www.bilibili.com/video/av52559737/" target="_blank" rel="noopener">https://www.bilibili.com/video/av52559737/</a></li>
 </ul>
