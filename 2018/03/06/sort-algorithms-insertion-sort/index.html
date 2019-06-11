@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/03/07/LeetCode-069-sqrt/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/03/06/sort-algorithms-insertion-sort/">
     <title>
         
-          LeetCode - 069. 求平方根（Sqrt） - zihengCat
+          排序算法 - 插入排序 - zihengCat
         
     </title>
 
@@ -142,16 +142,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
-                        
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
+                          <a class="tag" href="/tags/#Sort" title="Sort">Sort</a>
+                        
                     </div>
-                    <h1>LeetCode - 069. 求平方根（Sqrt）</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>排序算法 - 插入排序</h1>
+                    <h2 class="subheading">Sort Algorithms - Insertion Sort</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-03-07
+                        2018-03-06
                     </span>
                 </div>
             </div>
@@ -167,79 +167,53 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录<em>LeetCode - 069. 求平方根（Sqrt）</em>问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>请你手动编程实现<code>sqrt()</code>函数：输入一个整型数，求该整数的平方根。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文介绍<em>排序算法 - 插入排序（Insertion Sort）</em>。</p>
+<h1 id="插入排序（Insertion-Sort）"><a href="#插入排序（Insertion-Sort）" class="headerlink" title="插入排序（Insertion Sort）"></a>插入排序（Insertion Sort）</h1><p>插入排序（Insertion Sort）是常用的排序算法之一，该排序算法的核心思想是：<strong>构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。</strong></p>
+<p>插入排序与我们在手中排序扑克牌的过程相同。</p>
+<ul>
+<li><p>桌上的扑克牌：<code>[5, 2, 4, 6, 1, 3]</code></p>
+</li>
+<li><p>拿起第一张牌：<code>[5]</code></p>
+</li>
+<li><p>拿起第二张牌（将牌<code>2</code>插入到手牌）：<code>[2, 5]</code></p>
+</li>
+<li><p>拿起第三张牌（将牌<code>4</code>插入到手牌）：<code>[2, 4, 5]</code></p>
+</li>
+<li><p>拿起第四张牌（将牌<code>6</code>插入到手牌）：<code>[2, 4, 5, 6]</code></p>
+</li>
+<li><p>…</p>
+</li>
+</ul>
 <blockquote>
-<p>注：给出的整型数保证大于<code>0</code>。</p>
+<p>例：插入排序扑克牌（类比）</p>
 </blockquote>
-<pre><code>输入：4
-输出：2
-</code></pre><blockquote>
-<p>注：样例1</p>
-</blockquote>
-<pre><code>输入：8
-输出：2
-解释：8 的平方根为 2.82842... 取其整数部分。
-</code></pre><blockquote>
-<p>注：样例2</p>
-</blockquote>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>平方根函数<code>sqrt()</code>是最常用的数学函数之一，在这个问题中，需要我们手动实现<code>sqrt</code>函数，而不应使用语言标准库自带的数学函数。</p>
-<h2 id="二分求解法"><a href="#二分求解法" class="headerlink" title="二分求解法"></a>二分求解法</h2><p>第一个思路是使用<strong>二分法</strong>，猜测一个数，平方后与原数进行比对，确定一个精度范围后即可求解。</p>
-<pre><code>/* 绝对值函数 */
-#define ABS(x) \
-    ((x) &lt; 0 ? -(x) : (x))
-/* 设置精度 */
-#define LIMIT 0.01
-int mySqrt(int x) {
-    /* 处理非正数情况 */
-    if(x &lt;= 0) { return 0; }
-    double hig = double(x);
-    double low = 0;
-    double lst = 0;
-    double guess = (low + hig)/2;
-    do {
-       lst = guess;
-       if(guess * guess &gt; x) {
-           hig = guess;
-           guess = (low + hig)/2;
-       }
-       else if(guess * guess &lt; x) {
-           low = guess;
-           guess = (low + hig)/2;
-       }
-       else if(guess * guess == x) {
-           break;
-       }
-    } while(ABS(guess - lst) &gt; LIMIT);
-
-    return (int)guess;
-}
-</code></pre><blockquote>
-<p>代码清单：<code>C/C++</code>实现二分法</p>
-</blockquote>
-<h2 id="牛顿迭代法"><a href="#牛顿迭代法" class="headerlink" title="牛顿迭代法"></a>牛顿迭代法</h2><p>另一种方法就是使用<strong>牛顿迭代法</strong>，要求根号<code>n</code>的近似值，先随便猜测一个数<code>x</code>，然后<strong>不断令<code>x</code>等于<code>x</code>和<code>a/x</code>的平均数</strong>，迭代六七次后，结果就已经相当精确了。</p>
-<pre><code class="c">/* 绝对值函数 */
-#define ABS(x) \
-    ((x) &lt; 0 ? -(x) : (x))
-/* 设置精度 */
-#define LIMIT 0.01
-int mySqrt(int x) {
-    /* 处理非正数情况 */
-    if(x &lt;= 0) { return 0; }
-    double guess = x;
-    double last  = 0;
-    do {
-        last  = guess;
-        guess = (guess + guess/x)/2;
-    } while(ABS(guess - last) &gt; LIMIT);
-    return (int)guess;
+<pre><code class="c">/**
+ * 插入排序（Insertion Sort）
+ * 参数: 待排序数组, 数组长度
+ * 返回: 无
+ */
+void insertionSort(int* array, int length) {
+    for (int i = 0; i &lt; length; ++i) {
+        /* 取得待排序元素 */
+        int key = array[i];
+        /* 取得已排序数组索引 */
+        int j = i - 1;
+        /* 在已排序数组中从后向前扫描，找到相应索引位置 */
+        while (j &gt;= 0 &amp;&amp; array[j] &gt; key) {
+            array[j+1] = array[j];
+            --j;
+        }
+        /* 插入元素 */
+        array[j+1] = key;
+    }
 }
 </code></pre>
 <blockquote>
-<p>代码清单：<code>C/C++</code>实现牛顿迭代法</p>
+<p>代码清单：插入排序（<code>C/C++</code>实现）</p>
 </blockquote>
+<h1 id="算法复杂度"><a href="#算法复杂度" class="headerlink" title="算法复杂度"></a>算法复杂度</h1><p>平均而言，插入排序（Insertion Sort）算法复杂度为：$O(n^2)$，因而，插入排序不适合数据量较大的排序应用。但是如果需要排序的数据量较小，或若已知輸入元素大致上按照顺序排列，那么插入排序还是一个不错的选择。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>一个 sqrt 函数引发的血案: <a href="http://diducoder.com/sotry-about-sqrt.html" target="_blank" rel="noopener">http://diducoder.com/sotry-about-sqrt.html</a></li>
+<li>Fundamental Data Structures and Algorithms: <a href="https://www.bilibili.com/video/av52559737/" target="_blank" rel="noopener">https://www.bilibili.com/video/av52559737/</a></li>
 </ul>
 
                 <hr>
@@ -247,12 +221,12 @@ int mySqrt(int x) {
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2018/03/08/sort-algorithms-selection-sort/" data-toggle="tooltip" data-placement="top" title="排序算法 - 选择排序">&larr; Previous Post</a>
+                            <a href="/2018/03/07/LeetCode-069-sqrt/" data-toggle="tooltip" data-placement="top" title="LeetCode - 069. 求平方根（Sqrt）">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2018/03/06/sort-algorithms-insertion-sort/" data-toggle="tooltip" data-placement="top" title="排序算法 - 插入排序">Next Post &rarr;</a>
+                            <a href="/2018/03/06/sort-algorithms-bubble-sort/" data-toggle="tooltip" data-placement="top" title="排序算法 - 冒泡排序">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -272,9 +246,9 @@ int mySqrt(int x) {
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
-                        
                           <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Sort" title="Sort">Sort</a>
                         
                     </div>
                 </section>
