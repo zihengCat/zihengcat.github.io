@@ -265,7 +265,7 @@ CMD [&quot;redis-cli&quot;]
 <blockquote>
 <p>代码清单：<code>Redis</code>镜像<code>Dockerfile</code></p>
 </blockquote>
-<p>这里，我们使用一枚启动脚本<code>entrypoint.sh</code>作为容器入口点<code>ENTRYPOINT</code>，该脚本接受命令行参数并执行相应的命令。</p>
+<p>这里，我们使用一枚启动脚本<code>entrypoint.sh</code>作为容器入口点<code>ENTRYPOINT</code>，该脚本接受命令行参数并执行相应的命令。使用<code>CMD</code>指令为启动脚本提供默认参数<code>redis-cli</code>。</p>
 <pre><code class="bash">#!/bin/bash
 # -------------------------------
 set -e
