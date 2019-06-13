@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -187,7 +187,7 @@
 </li>
 </ul>
 <p>Docker <code>ENTRYPOINT</code> 指令的最佳实践是：准备一枚<code>entrypoint.sh</code>启动脚本，将程序运行的具体逻辑放到启动脚本之中。</p>
-<p>比如，Postgres 官方镜像<code>Dockerfile</code>中，就使用了一枚启动脚本作为<code>ENTRYPOINT</code>。</p>
+<p>例如，Postgres 官方镜像<code>Dockerfile</code>中，就使用了一枚启动脚本作为容器入口点<code>ENTRYPOINT</code>。</p>
 <pre><code class="plain">...
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT [&quot;/docker-entrypoint.sh&quot;]
