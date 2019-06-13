@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -176,7 +176,28 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Docker</code>指令<code>CMD</code>与<code>ENTRYPOINT</code>用于<strong>配置容器启动时的运行命令</strong>，通常写在<code>Dockerfile</code>文件中。本文讲解<code>CMD</code>与<code>ENTRYPOINT</code>这两条指令的异同，并通过一个实例指导如何在<code>Dockerfile</code>中使用它们。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Docker</code>指令<code>CMD</code>与<code>ENTRYPOINT</code>用于<strong>配置容器启动时的运行命令</strong>，通常写在<code>Dockerfile</code>文件中。本文讲解<code>CMD</code>与<code>ENTRYPOINT</code>这两条指令的异同，并通过一个实例指导你如何在<code>Dockerfile</code>中使用它们。</p>
+<h1 id="Docker-ENTRYPOINT-指令"><a href="#Docker-ENTRYPOINT-指令" class="headerlink" title="Docker ENTRYPOINT 指令"></a>Docker <code>ENTRYPOINT</code> 指令</h1><p><code>ENTRYPOINT</code>指令的语义为<strong>“容器入口点”</strong>，该指令用于设置容器首次启动时需要执行的命令（Command）及其参数（Parameters）。</p>
+<p>任何传递至<code>docker run &lt;image&gt;</code>的命令行参数都会被附加到<code>ENTRYPOINT</code>命令后，并覆盖原有<code>CMD</code>指令。</p>
+<p>Docker 规定，在<code>Dockerfile</code>中使用全大写字母的<code>ENTRYPOINT</code>指令，<code>ENTRYPOINT</code>有两种形式：<code>Exec</code>形式与<code>Shell</code>命令形式。</p>
+<ul>
+<li><p>ENTRYPOINT [“executable”, “param1”, “param2”]</p>
+</li>
+<li><p>ENTRYPOINT command param1 param2</p>
+</li>
+</ul>
+<p>Docker <code>ENTRYPOINT</code> 指令的最佳实践是：准备一枚<code>entrypoint.sh</code>启动脚本，将程序运行的具体逻辑放到启动脚本之中。</p>
+<p>比如，Postgres 官方镜像<code>Dockerfile</code>中，就使用了一枚启动脚本作为<code>ENTRYPOINT</code>。</p>
+<pre><code class="plain">...
+COPY ./docker-entrypoint.sh /
+ENTRYPOINT [&quot;/docker-entrypoint.sh&quot;]
+CMD [&quot;postgres&quot;]
+...
+</code></pre>
+<blockquote>
+<p>注：Postgres Official Image <code>Dockerfile</code></p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>…</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Docker’s Dockerfile Reference: <a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/builder/</a></li>
 </ul>
