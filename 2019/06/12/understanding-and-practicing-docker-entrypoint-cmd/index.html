@@ -327,7 +327,17 @@ sudo docker run -d -i -t \
 <blockquote>
 <p>代码清单：<code>Redis</code>镜像<code>docker run</code>启动命令</p>
 </blockquote>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>…</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Docker <code>CMD</code> 与 <code>ENTRYPOINT</code> 指令都可以定义容器启动时执行的命令，但它们有所不同。</p>
+<ul>
+<li><p><code>Dockerfile</code>中只应出现一条<code>CMD</code>或<code>ENTRYPOINT</code>指令</p>
+</li>
+<li><p><code>ENTRYPOINT</code>定义容器启动时的运行命令</p>
+</li>
+<li><p><code>CMD</code>为<code>ENTRYPOINT</code>提供默认参数，或提供一枚单次执行的<code>Ad-Hoc</code>命令</p>
+</li>
+<li><p><code>CMD</code>可以很容易地被容器运行时指定的命令行参数重载</p>
+</li>
+</ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Docker’s Dockerfile Reference: <a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/builder/</a></li>
 </ul>
