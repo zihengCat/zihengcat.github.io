@@ -198,7 +198,7 @@ CMD [&quot;postgres&quot;]
 <p>注：Postgres Official Image <code>Dockerfile</code></p>
 </blockquote>
 <p>Docker <code>ENTRYPOINT</code> 指令也是可以被重载的（虽然不常用），我们可以使用<code>docker run --entrypoint</code>重载<code>ENTRYPOINT</code>指令。</p>
-<h1 id="Docker-CMD-指令"><a href="#Docker-CMD-指令" class="headerlink" title="Docker CMD 指令"></a>Docker <code>CMD</code> 指令</h1><p>Docker <code>CMD</code> 指令也可以设置容器启动时需要执行的命令（Command）及其参数（Parameters），但<code>CMD</code>指令的主要目的提供可运行容器的默认命令，并为<code>ENTRYPOINT</code>指令提供默认参数。<code>CMD</code>指令会在<code>ENTRYPOINT</code>后执行。</p>
+<h1 id="Docker-CMD-指令"><a href="#Docker-CMD-指令" class="headerlink" title="Docker CMD 指令"></a>Docker <code>CMD</code> 指令</h1><p>Docker <code>CMD</code> 指令也可以设置容器启动时需要执行的命令（Command）及其参数（Parameters），但<code>CMD</code>指令的主要目的提供可运行容器的默认命令，并为<code>ENTRYPOINT</code>指令提供默认参数。<code>CMD</code>指令将会在<code>ENTRYPOINT</code>后执行。</p>
 <p><code>CMD</code>指令有三种形式，如果省略执行命令，<code>CMD</code>将为<code>ENTRYPOINT</code>提供默认参数。</p>
 <ul>
 <li><p>CMD [“executable”, “param1”, “param2”]</p>
@@ -212,6 +212,59 @@ CMD [&quot;postgres&quot;]
 <p>Docker <code>CMD</code> 指令的最佳实践为：为<code>ENTRYPOINT</code>指令提供默认参数。</p>
 <blockquote>
 <p>注：在<code>Dockerfile</code>中，只允许一条<code>CMD</code>指令出现，如果出现了多条，只有最后一条<code>CMD</code>指令生效。</p>
+</blockquote>
+<h1 id="实例：构建Redis镜像"><a href="#实例：构建Redis镜像" class="headerlink" title="实例：构建Redis镜像"></a>实例：构建<code>Redis</code>镜像</h1><p>接下来，我们将手写一枚<code>Redis</code>镜像<code>Dockerfile</code>，实践<code>CMD</code>与<code>ENTRYPOINT</code>。</p>
+<pre><code class="Dockerfile"># -------------------------
+#  Dockerfile - Redis 5.0.5
+# -------------------------
+# ================================
+# Using Base OS -&gt; CentOS 7 Latest
+# ================================
+FROM       docker.io/centos:latest
+# =============================================
+# LABEL following the standard set of labels by
+# The Open Containers Initiative (OCI)
+# =============================================
+LABEL      org.opencontainers.image.title=&quot;DockerImage - Redis&quot; \
+           org.opencontainers.image.description=&quot;A docker image contains latest compiled Redis based on CentOS 7 Linux.&quot; \
+           org.opencontainers.image.authors=&quot;zihengCat&quot; \
+           org.opencontainers.image.version=&quot;1.0.0&quot; \
+           org.opencontainers.image.licenses=&quot;MIT&quot; \
+           org.opencontainers.image.url=&quot;https://github.com/zihengCat/docker-container-by-zihengcat&quot;
+# ==============================================================
+RUN        PKG_BASE_DEPS=&quot;epel-release \
+                          make \
+                          gcc \
+                          gcc-c++&quot; &amp;&amp; \
+           REDIS_PKG_PATH=&quot;/root/redis-5.0.5.tar.gz&quot; &amp;&amp; \
+           REDIS_PKG_ROOT=&quot;/root/redis-5.0.5/&quot; &amp;&amp; \
+           REDIS_PKG_INSTALLED=&quot;/opt/redis_5.0.5/&quot; &amp;&amp; \
+           REDIS_PKG_URL=&quot;http://download.redis.io/releases/redis-5.0.5.tar.gz&quot; &amp;&amp; \
+           cp &quot;/usr/share/zoneinfo/Asia/Shanghai&quot; &quot;/etc/localtime&quot; &amp;&amp; \
+           echo &quot;Asia/Shanghai&quot; &gt; &quot;/etc/timezone&quot; &amp;&amp; \
+           yum -y install &quot;epel-release&quot; &amp;&amp; \
+           yum -y install ${PKG_BASE_DEPS} &amp;&amp; \
+           curl -o ${REDIS_PKG_PATH} ${REDIS_PKG_URL} &amp;&amp; \
+           cd &quot;/root/&quot; &amp;&amp; \
+           tar -xvz -f ${REDIS_PKG_PATH} &amp;&amp; \
+           cd ${REDIS_PKG_ROOT} &amp;&amp; \
+           make V=1 &amp;&amp; \
+           make PREFIX=${REDIS_PKG_INSTALLED} install &amp;&amp; \
+           rm -rf ${REDIS_PKG_ROOT} ${REDIS_PKG_PATH} &amp;&amp; \
+           yum -y autoremove ${PKG_BASE_DEPS} &amp;&amp; \
+           yum clean all
+# ======================================
+WORKDIR    /root/
+# ======================================
+# Using a Docker `entrypoint.sh`
+# ======================================
+COPY ./entrypoint.sh /root/
+ENTRYPOINT [&quot;sh&quot;, &quot;/root/entrypoint.sh&quot;]
+# ======================================
+# EOF
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Redis</code>镜像<code>Dockerfile</code></p>
 </blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>…</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
