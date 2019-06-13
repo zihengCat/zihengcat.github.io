@@ -254,15 +254,36 @@ RUN        PKG_BASE_DEPS=&quot;epel-release \
 # ======================================
 WORKDIR    /root/
 # ======================================
-# Using a Docker `entrypoint.sh`
+# Using a Docker `entrypoint.sh` and CMD
 # ======================================
 COPY ./entrypoint.sh /root/
 ENTRYPOINT [&quot;sh&quot;, &quot;/root/entrypoint.sh&quot;]
+CMD [&quot;redis-cli&quot;]
 # ======================================
 # EOF
 </code></pre>
 <blockquote>
 <p>代码清单：<code>Redis</code>镜像<code>Dockerfile</code></p>
+</blockquote>
+<p>启动脚本<code>entrypoint.sh</code>接受命令行参数并执行相应命令。</p>
+<pre><code class="bash">#!/bin/bash
+# -------------------------------
+set -e
+# -------------------------------
+REDIS_PATH=&#39;/opt/redis_5.0.5/bin&#39;
+# -------------------------------
+if [[ &quot;${1}&quot; != &quot;&quot; ]]
+then
+    ${REDIS_PATH}/${@}
+else
+    echo &#39;[ERROR]: No such Redis commands...&#39;
+    exit 1
+fi
+# -------------------------------
+# EOF
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Redis</code>镜像<code>entrypoint.sh</code></p>
 </blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>…</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
