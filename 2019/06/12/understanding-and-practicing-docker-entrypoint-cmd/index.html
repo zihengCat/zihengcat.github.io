@@ -226,11 +226,9 @@ FROM       docker.io/centos:latest
 # The Open Containers Initiative (OCI)
 # =============================================
 LABEL      org.opencontainers.image.title=&quot;DockerImage - Redis&quot; \
-           org.opencontainers.image.description=&quot;A docker image contains latest compiled Redis based on CentOS 7 Linux.&quot; \
            org.opencontainers.image.authors=&quot;zihengCat&quot; \
            org.opencontainers.image.version=&quot;1.0.0&quot; \
            org.opencontainers.image.licenses=&quot;MIT&quot; \
-           org.opencontainers.image.url=&quot;https://github.com/zihengCat/docker-container-by-zihengcat&quot;
 # ==============================================================
 RUN        PKG_BASE_DEPS=&quot;epel-release \
                           make \
