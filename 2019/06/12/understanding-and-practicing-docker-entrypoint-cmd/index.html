@@ -179,7 +179,7 @@
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>Docker</code>指令<code>CMD</code>与<code>ENTRYPOINT</code>用于<strong>配置容器启动时的运行命令</strong>，通常写在<code>Dockerfile</code>文件中。本文讲解<code>CMD</code>与<code>ENTRYPOINT</code>这两条指令的异同，并通过一个实例指导你如何在<code>Dockerfile</code>中使用它们。</p>
 <h1 id="Docker-ENTRYPOINT-指令"><a href="#Docker-ENTRYPOINT-指令" class="headerlink" title="Docker ENTRYPOINT 指令"></a>Docker <code>ENTRYPOINT</code> 指令</h1><p><code>ENTRYPOINT</code>指令的语义为<strong>“容器入口点”</strong>，该指令用于设置容器首次启动时需要执行的命令（Command）及其参数（Parameters）。</p>
 <p>任何传递至<code>docker run &lt;image&gt; ...</code>的命令行参数都会被附加到<code>ENTRYPOINT</code>命令后，并覆盖原有<code>CMD</code>指令。</p>
-<p>Docker 规定，在<code>Dockerfile</code>中使用全大写字母的<code>ENTRYPOINT</code>指令，<code>ENTRYPOINT</code>有两种形式：<code>Exec</code>形式与<code>Shell</code>命令形式。</p>
+<p>Docker 规定，在<code>Dockerfile</code>中使用全大写字母的<code>ENTRYPOINT</code>指令，<code>ENTRYPOINT</code>有两种形式：<em>exec</em>形式与<em>shell</em>命令形式。</p>
 <ul>
 <li><p>ENTRYPOINT [“executable”, “param1”, “param2”]</p>
 </li>
@@ -198,6 +198,21 @@ CMD [&quot;postgres&quot;]
 <p>注：Postgres Official Image <code>Dockerfile</code></p>
 </blockquote>
 <p>Docker <code>ENTRYPOINT</code> 指令也是可以被重载的（虽然不常用），我们可以使用<code>docker run --entrypoint</code>重载<code>ENTRYPOINT</code>指令。</p>
+<h1 id="Docker-CMD-指令"><a href="#Docker-CMD-指令" class="headerlink" title="Docker CMD 指令"></a>Docker <code>CMD</code> 指令</h1><p>Docker <code>CMD</code> 指令也可以设置容器启动时需要执行的命令（Command）及其参数（Parameters），但<code>CMD</code>指令的主要目的提供可运行容器的默认命令，并为<code>ENTRYPOINT</code>指令提供默认参数。<code>CMD</code>指令会在<code>ENTRYPOINT</code>后执行。</p>
+<p><code>CMD</code>指令有三种形式，如果省略执行命令，<code>CMD</code>将为<code>ENTRYPOINT</code>提供默认参数。</p>
+<ul>
+<li><p>CMD [“executable”, “param1”, “param2”]</p>
+</li>
+<li><p>CMD [“param1”, “param2”]</p>
+</li>
+<li><p>CMD command param1 param2</p>
+</li>
+</ul>
+<p>使用<code>docker run &lt;image&gt; ...</code>启动容器，传递至<code>docker run &lt;image&gt; ...</code>的命令行参数会覆盖掉原有<code>CMD</code>指令。</p>
+<p>Docker <code>CMD</code> 指令的最佳实践为：为<code>ENTRYPOINT</code>指令提供默认参数。</p>
+<blockquote>
+<p>注：在<code>Dockerfile</code>中，只允许一条<code>CMD</code>指令出现，如果出现了多条，只有最后一条<code>CMD</code>指令生效。</p>
+</blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>…</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Docker’s Dockerfile Reference: <a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/builder/</a></li>
