@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -213,7 +213,7 @@ CMD [&quot;postgres&quot;]
 <blockquote>
 <p>注：在<code>Dockerfile</code>中，只允许一条<code>CMD</code>指令出现，如果出现了多条，只有最后一条<code>CMD</code>指令生效。</p>
 </blockquote>
-<h1 id="实例：构建-Redis-镜像"><a href="#实例：构建-Redis-镜像" class="headerlink" title="实例：构建 Redis 镜像"></a>实例：构建 <code>Redis</code> 镜像</h1><p>接下来，我们将手写一枚<code>Redis</code>镜像<code>Dockerfile</code>，实践<code>CMD</code>与<code>ENTRYPOINT</code>。</p>
+<h1 id="实例：构建-Redis-镜像"><a href="#实例：构建-Redis-镜像" class="headerlink" title="实例：构建 Redis 镜像"></a>实例：构建 <code>Redis</code> 镜像</h1><p>接下来，我们手写一枚<code>Redis</code>镜像<code>Dockerfile</code>，来理解与实践<code>CMD</code>与<code>ENTRYPOINT</code>。</p>
 <pre><code class="Dockerfile"># -------------------------
 #  Dockerfile - Redis 5.0.5
 # -------------------------
