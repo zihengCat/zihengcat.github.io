@@ -270,13 +270,24 @@ CMD [&quot;redis-cli&quot;]
 # -------------------------------
 set -e
 # -------------------------------
+REDIS_FLAG=false
 REDIS_PATH=&#39;/opt/redis_5.0.5/bin&#39;
+REDIS_COMMANDS=&quot;redis-cli \
+                redis-server&quot;
 # -------------------------------
-if [[ &quot;${1}&quot; != &quot;&quot; ]]
+for redis_cmd in ${REDIS_COMMANDS}
+do
+    if [[ ${1} == ${redis_cmd} ]]
+    then
+        REDIS_FLAG=true
+    fi
+done
+# -------------------------------
+if [[ ${REDIS_FLAG} == true ]]
 then
     ${REDIS_PATH}/${@}
 else
-    echo &#39;[ERROR]: No such Redis commands...&#39;
+    echo &#39;[ERROR]: No such Redis command...&#39;
     exit 1
 fi
 # -------------------------------
@@ -284,6 +295,37 @@ fi
 </code></pre>
 <blockquote>
 <p>代码清单：<code>Redis</code>镜像<code>entrypoint.sh</code></p>
+</blockquote>
+<p>使用<code>docker build</code>构建起<code>Redis</code>镜像后，可在<code>docker run</code>后附加容器需执行的<code>Redis</code>命令及其参数。</p>
+<pre><code class="bash">#!/bin/bash
+# ------------------------------
+REDIS_COMMAND=&quot;redis-server&quot;
+REDIS_OPTIONS=&quot;--loglevel verbose \
+               --bind 0.0.0.0 \
+               --port 6379 \
+               --requirepass foobar123 \
+               --maxclients 10000 \
+               --timeout 0 \
+               --tcp-keepalive 300 \
+               --daemonize no \
+               --supervised no \
+               --pidfile none \
+               --databases 32 \
+               --always-show-logo yes \
+               --appendonly no \
+               --appendfsync no&quot;
+# ------------------------------
+sudo docker run -d -i -t \
+                --env LC_ALL=en_US.UTF-8 \
+                --name redis_test \
+                -p 0.0.0.0:6379:6379 \
+                ziheng/redis:latest \
+                ${REDIS_COMMAND} ${REDIS_OPTIONS}
+# ------------------------------
+# EOF
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Redis</code>镜像<code>docker run</code>启动命令</p>
 </blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>…</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
