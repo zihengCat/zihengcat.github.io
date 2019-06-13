@@ -190,7 +190,33 @@ Output: [5, 6]
 <li><p>输出数组排列顺序无关紧要</p>
 </li>
 </ul>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>…</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>这个问题需要我们寻找对比完整数组<code>[1, n]</code>（<code>n</code>为数组长度），给定数组中缺失的数。</p>
+<p>但是给定数组中某些数出现了多次（两次），这会影响我们的判断，使用<code>Set</code>数据结构过滤给定数组中多次出现的元素，再将其与完整数组作对比，即可找到给定数组中缺失的数。</p>
+<p>另外需要注意的一点是，完整数组的取值范围从<code>1</code>到<code>n</code>（<code>n</code>为数组长度），遍历时索引下标从<code>1</code>开始。</p>
+<pre><code class="java">import java.util.List;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.HashSet;
+public class Solution {
+    public List&lt;Integer&gt; findDisappearedNumbers(int[] nums) {
+        List&lt;Integer&gt; list = new LinkedList&lt;Integer&gt;();
+        Set&lt;Integer&gt; set = new HashSet&lt;Integer&gt;();
+        /* Filter array of integer using a Set&lt;Integer&gt; */
+        for (int i = 0; i &lt; nums.length; ++i) {
+            set.add(nums[i]);
+        }
+        /* Compare to full array of integer, find missing numbers */
+        for (int i = 1; i &lt;= nums.length; ++i) {
+            if (!set.contains(i)) {
+                list.add(i);
+            }
+        }
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：寻找数组中消失的数（<code>Java</code>实现）</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/" target="_blank" rel="noopener">https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/</a></li>
 </ul>
