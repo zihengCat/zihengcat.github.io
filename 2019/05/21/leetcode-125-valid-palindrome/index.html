@@ -194,7 +194,17 @@ Output: true
 <blockquote>
 <p>注：样例3</p>
 </blockquote>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>…</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><pre><code class="java">class Solution {
+    public boolean isPalindrome(String s) {
+        String actual = s.replaceAll(&quot;[^A-Za-z0-9]&quot;, &quot;&quot;).toLowerCase();
+        String reversed = new StringBuffer(actual).reverse().toString();
+        return actual.equals(reversed);
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：判断回文串（<code>Java</code>实现）</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/valid-palindrome/" target="_blank" rel="noopener">https://leetcode.com/problems/valid-palindrome/</a></li>
 </ul>
