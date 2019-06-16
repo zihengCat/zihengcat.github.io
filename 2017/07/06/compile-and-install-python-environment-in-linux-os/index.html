@@ -193,7 +193,7 @@ $ tar -xv -f ./Python-3.6.1.tar
 <blockquote>
 <p>代码清单：解压缩<code>Python</code>源码包</p>
 </blockquote>
-<p>亦或者，我们也可以直接把 GitHub 上的<code>cpython</code>镜像仓库克隆到本地。</p>
+<p>亦或者，我们也可以直接克隆 GitHub 上<code>cpython</code>代码仓库至本地。</p>
 <pre><code class="bash"># 克隆`cpython`源码仓库
 $ git clone https://github.com/python/cpython.git
 # 进入`cpython`源码目录
@@ -204,10 +204,10 @@ $ git tag
 $ git checkout &lt;tag_version&gt;
 </code></pre>
 <blockquote>
-<p>代码清单：使用<code>git</code>获取Python`源代码</p>
+<p>代码清单：使用<code>git</code>获取 Python 源代码</p>
 </blockquote>
-<h1 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 - 安装依赖"></a>Step 3 - 安装依赖</h1><p><code>cd</code>进入<code>Python</code>源码目录，我们可以先看一下<code>README.rst</code>这个文件，上面告诉了我们编译安装的具体步骤。</p>
-<p>在编译安装之前，我们需要先安装一些Python依赖包，这是<code>README</code>上没有提到的（会在<code>./configure</code>检查依赖项时告诉你…）。为了省去后续查找安装依赖的麻烦，这里把所需要的依赖包全部列出。</p>
+<h1 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 - 安装依赖"></a>Step 3 - 安装依赖</h1><p><code>cd</code>进入<code>Python</code>源码目录，我们可以先浏览一下<code>README.rst</code>文件，该文档指导我们编译安装 Python 的具体步骤。</p>
+<p>在编译安装之前，我们需要先安装一些 Python 依赖包，这是<code>README</code>上没有提到的（但是会在<code>./configure</code>检查依赖项时告知）。为了省去后续查找安装依赖的麻烦，这里把 Python 所需要的依赖包全部列出。</p>
 <table>
 <thead>
 <tr>
@@ -340,7 +340,7 @@ $ sudo make install
 <blockquote>
 <p>代码清单：<code>make</code>编译安装</p>
 </blockquote>
-<p><code>make</code>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。</p>
+<p>运行<code>make</code>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。</p>
 <p>如果使用<code>--prefix</code>编译选项自定义了安装目录，安装完成后不要忘记了将安装路径加入<code>PATH</code>环境变量中，并将 Python 软链接到<code>/usr/bin/</code>目录下。</p>
 <pre><code class="bash">$ echo &#39;export PATH=${PATH}:&lt;path/to/python/bin&gt;&#39; &gt;&gt; ~/.bashrc
 </code></pre>
