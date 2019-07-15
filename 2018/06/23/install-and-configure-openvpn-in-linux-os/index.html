@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2018/06/23/install-and-configure-openvpn-in-linux-os/">
     <title>
         
-          Linux 下使用 OpenVPN 连接远程网络 - zihengCat
+          Linux 下使用 OpenVPN 连接远程虚拟专有网络 - zihengCat
         
     </title>
 
@@ -156,8 +156,8 @@
                           <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
                         
                     </div>
-                    <h1>Linux 下使用 OpenVPN 连接远程网络</h1>
-                    <h2 class="subheading">Install And Configure OpenVPN in Linux OS</h2>
+                    <h1>Linux 下使用 OpenVPN 连接远程虚拟专有网络</h1>
+                    <h2 class="subheading">Install and Configure OpenVPN in Linux OS</h2>
                     <span class="meta">
                         Posted by zihengCat on
                         2018-06-23
@@ -178,9 +178,15 @@
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>VPN (Virtual Private Network) 虚拟专有网络通过在公网上创建一个专用且加密的Tunnel（网络隧道）进行通讯。在实际的应用中，VPN可以帮助远程用户、公司分支机构、商业伙伴及供应商等之间建立一个安全可信的网络连接。</p>
 <p><img src="./openvpn.png" alt="OpenVPN"></p>
-<p><code>OpenVPN</code>是一款全功能的 VPN 软件，包含了客户端与服务端，它使用行业标准<code>SSL/TLS</code>协议实现 OSI 第 2 层或第 3 层安全网络扩展，支持电子证书，公开密钥，用户名/密码等多种灵活客户端认证方式，并允许用户使用防火墙规则应用于 VPN 虚拟接口的组专用访问控制策略，具有<strong>开源、跨平台、易于使用、稳定性与安全性</strong>的特点。<code>OpenVPN</code>是一款开源软件，以<code>GPLv2</code>开源协议释出。</p>
 <blockquote>
-<p>OpenVPN 官网：<a href="http://openvpn.net" target="_blank" rel="noopener">http://openvpn.net</a><br>GitHub 地址：<a href="https://github.com/OpenVPN/openvpn" target="_blank" rel="noopener">https://github.com/OpenVPN/openvpn</a></p>
+<p>图：OpenVPN LOGO</p>
+</blockquote>
+<p><code>OpenVPN</code>是一款全功能的 VPN 软件，包含了客户端与服务端，它使用行业标准<code>SSL/TLS</code>协议实现 OSI 第 2 层或第 3 层安全网络扩展，支持电子证书，公开密钥，用户名/密码等多种灵活客户端认证方式，并允许用户使用防火墙规则应用于 VPN 虚拟接口的组专用访问控制策略，具有<strong>开源、跨平台、易于使用、稳定、安全</strong>等特点。<code>OpenVPN</code>是一款开源软件，以<code>GPLv2</code>开源协议释出。</p>
+<blockquote>
+<p>OpenVPN 官网：<a href="http://openvpn.net" target="_blank" rel="noopener">http://openvpn.net</a></p>
+</blockquote>
+<blockquote>
+<p>GitHub 地址：<a href="https://github.com/OpenVPN/openvpn" target="_blank" rel="noopener">https://github.com/OpenVPN/openvpn</a></p>
 </blockquote>
 <h1 id="Linux下安装OpenVPN（编译安装）"><a href="#Linux下安装OpenVPN（编译安装）" class="headerlink" title="Linux下安装OpenVPN（编译安装）"></a>Linux下安装<code>OpenVPN</code>（编译安装）</h1><p>Windows与macOS下都已经有了优秀的<code>OpenVPN</code>图形化（GUI）工具，安装配置起来都非常简单方便。</p>
 <table>
@@ -207,12 +213,18 @@
 <blockquote>
 <p>表：<code>OpenVPN</code>图形化（GUI）工具</p>
 </blockquote>
-<p>对于Linux系统，手动编译安装是使用<code>OpenVPN</code>的极佳方法。当然，使用系统级包管理器（<code>apt</code>，<code>yum</code>）直接安装也未尝不可。本文讲解从源码手动编译安装<code>OpenVPN</code>。</p>
-<p><code>OpenVPN</code>的源代码托管在了GitHub上，我们可以非常方便地使用<code>git</code>拉取到源码。也可以前往<code>OpenVPN</code>源代码下载页面，下载到源码包。</p>
+<p>而对于 Linux 系统，手动编译安装是使用<code>OpenVPN</code>的极佳方法。当然，使用系统级包管理器（<code>apt</code>，<code>yum</code>）直接安装也未尝不可。本文讲解从源码手动编译安装<code>OpenVPN</code>。</p>
+<p><code>OpenVPN</code>的源代码托管在了 GitHub 上，我们可以非常方便地使用<code>git</code>拉取源码。也可以前往<code>OpenVPN</code>源代码下载页面，获取源码包。</p>
 <blockquote>
-<p>源码包下载地址：<a href="https://openvpn.net/index.php/download/community-downloads.html" target="_blank" rel="noopener">https://openvpn.net/index.php/download/community-downloads.html</a><br>GitHub Releases：<a href="https://github.com/OpenVPN/openvpn/releases" target="_blank" rel="noopener">https://github.com/OpenVPN/openvpn/releases</a><br>注：源码包下载地址国内访问不畅「需要翻墙」。</p>
+<p>源码包下载地址：<a href="https://openvpn.net/index.php/download/community-downloads.html" target="_blank" rel="noopener">https://openvpn.net/index.php/download/community-downloads.html</a></p>
 </blockquote>
-<p>不管使用哪种方法，只要能拿到源码即可。下载源码包后使用<code>tar -xvz -f</code>解压缩<code>*.tar.gz</code>。</p>
+<blockquote>
+<p>GitHub Releases：<a href="https://github.com/OpenVPN/openvpn/releases" target="_blank" rel="noopener">https://github.com/OpenVPN/openvpn/releases</a></p>
+</blockquote>
+<blockquote>
+<p>注：<code>OpenVPN</code>源码包下载地址国内访问不畅，需翻墙。</p>
+</blockquote>
+<p>无论使用哪种方法，获取源码都是我们编译安装软件的第一步。下载到源码包后，使用<code>tar -xvz -f</code>解压缩解包<code>*.tar.gz</code>。</p>
 <pre><code class="bash"># 克隆源代码仓库
 $ git clone https://github.com/OpenVPN/openvpn.git
 ...
@@ -228,8 +240,8 @@ $ git checkout v2.4.6
 <blockquote>
 <p>代码清单：使用<code>git</code>取得<code>OpenVPN</code>源代码</p>
 </blockquote>
-<p><code>OpenVPN</code>与其他Linux开源软件的编译安装方式大同小异，主要都是分为三步走：<code>configure</code> -&gt; <code>make</code> -&gt; <code>make install</code>。</p>
-<p>有所不同的是，<code>OpenVPN</code>要先使用<code>autoconf</code>生成一份<code>configure</code>配置脚本。请确保你的系统已经安装上了GNU基础编译套件（<code>gcc</code>，<code>make</code>，<code>autoconf</code>…）。</p>
+<p><code>OpenVPN</code>与其他 Linux 开源软件的编译安装方式大同小异，主要都是分为三步走：<code>configure</code> -&gt; <code>make</code> -&gt; <code>make install</code>。</p>
+<p>有所不同的是，<code>OpenVPN</code>需要先使用<code>autoconf</code>生成一份<code>configure</code>配置脚本。请确保你的操作系统已经安装上了 GNU 基础编译套件：<code>gcc</code>，<code>make</code>，<code>autoconf</code>…</p>
 <pre><code class="bash"># 使用`autoconf`生成`configure`配置脚本
 $ autoreconf -i -v -f
 ...
@@ -243,38 +255,38 @@ $ sudo make install
 <blockquote>
 <p>代码清单：编译安装<code>OpenVPN</code>流程</p>
 </blockquote>
-<p>下表总结了编译<code>OpenVPN</code>所需要的依赖库，可以通过系统包管理工具安装上。如果系统没有依赖库，执行<code>./configure</code>会有报错提示。</p>
+<p>下表总结了编译<code>OpenVPN</code>所需要的依赖库，可以通过系统包管理工具安装上，不同系统包名略有差异。如果系统缺失依赖库，执行<code>./configure</code>配置检查时会有报错提示。</p>
 <table>
 <thead>
 <tr>
 <th style="text-align:center">依赖库</th>
-<th style="text-align:center"><code>deb</code>包（apt）</th>
-<th style="text-align:center"><code>rpm</code>包（yum）</th>
+<th><code>deb</code>包（<code>apt</code>安装）</th>
+<th style="text-align:center"><code>rpm</code>包（<code>yum</code>安装）</th>
 <th style="text-align:left">简述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center">OpenSSL</td>
-<td style="text-align:center">libssl-dev</td>
+<td>libssl-dev</td>
 <td style="text-align:center">openssl-devel</td>
 <td style="text-align:left"><code>SSL/TLS</code>开源实现库</td>
 </tr>
 <tr>
 <td style="text-align:center">Route</td>
-<td style="text-align:center">net-tools</td>
+<td>net-tools</td>
 <td style="text-align:center">net-tools</td>
 <td style="text-align:left">基础网络工具<code>route</code></td>
 </tr>
 <tr>
 <td style="text-align:center">LZO</td>
-<td style="text-align:center">liblzo2-dev</td>
+<td>liblzo2-dev</td>
 <td style="text-align:center">lzo-devel</td>
 <td style="text-align:left">一种致力于解压速度的数据压缩无损算法</td>
 </tr>
 <tr>
 <td style="text-align:center">PAM</td>
-<td style="text-align:center">libpam0g-dev</td>
+<td>libpam0g-dev</td>
 <td style="text-align:center">pam-devel</td>
 <td style="text-align:left">本地认证模块</td>
 </tr>
@@ -291,9 +303,9 @@ $ openvpn --version
 <blockquote>
 <p>代码清单：检验<code>OpenVPN</code>安装</p>
 </blockquote>
-<h1 id="OpenVPN客户端连接远程VPN网络"><a href="#OpenVPN客户端连接远程VPN网络" class="headerlink" title="OpenVPN客户端连接远程VPN网络"></a><code>OpenVPN</code>客户端连接远程VPN网络</h1><p>安装完成后，我们就可以使用<code>OpenVPN</code>来连接远程VPN网络了。</p>
-<p>一般来说，企业VPN服务端的运维人员会给需要登录到远程网络的客户端一份<code>*.ovpn</code>配置文件。该配置文件记录了用户登录该VPN所需的必要信息（认证方式，加密证书，使用协议…）。拿到这份配置文件，我们就可以使用<code>OpenVPN</code>来登录了。</p>
-<pre><code class="bash"># 连接VPN需要使用`sudo`管理员权限（系统操作）
+<h1 id="OpenVPN客户端连接远程VPN网络"><a href="#OpenVPN客户端连接远程VPN网络" class="headerlink" title="OpenVPN客户端连接远程VPN网络"></a><code>OpenVPN</code>客户端连接远程VPN网络</h1><p>安装完成后，我们就可以使用<code>OpenVPN</code>来连接远程 VPN 网络了。</p>
+<p>一般来说，企业 VPN 服务端的运维人员会给需要登录到远程网络的客户端一份<code>*.ovpn</code>配置文件。该配置文件记录了用户登录该 VPN 所需的必要信息（认证方式，加密证书，使用协议…）。拿到这份配置文件，我们就可以使用<code>OpenVPN</code>登录远程 VPN 了。</p>
+<pre><code class="bash"># 连接 VPN 需要使用`sudo`管理员权限（属于系统操作）
 $ sudo openvpn --config &lt;path/to/your/*.ovpn&gt;
 ...
 </code></pre>
