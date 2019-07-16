@@ -195,7 +195,7 @@ Output: true
 <p>注：样例3</p>
 </blockquote>
 <h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>回文字符串（英文：Palindrome）的含义为：从头至尾遍历（顺序）和从头至尾遍历（逆序）都相同的字符串。</p>
-<p>该题让我们判断，输入字符串是否为回文串，我们只需要按照<strong>回文串的定义</strong>来判断即可。但是要考虑到，输入字符串中包含一些非字母数字字符，也要忽略字母大小写，所以在回文判断之前，需要先过滤清洗输入字符串。</p>
+<p>该题让我们判断，输入字符串是否为回文串，我们只需要按照<strong>回文串定义</strong>进行判断即可。但是需要考虑到的是，输入字符串中可能包含一些非字母数字字符，也要忽略字母大小写，所以执行实际回文判断之前，我们需要先<strong>过滤清洗</strong>输入字符串。</p>
 <pre><code class="java">class Solution {
     public boolean isPalindrome(String s) {
         String actual = s.replaceAll(&quot;[^A-Za-z0-9]&quot;, &quot;&quot;).toLowerCase();
@@ -219,11 +219,9 @@ Output: true
             cTail = arr[tail];
             if (!Character.isLetterOrDigit(cHead)) {
                 ++head;
-            }
-            else if (!Character.isLetterOrDigit(cTail)) {
+            } else if (!Character.isLetterOrDigit(cTail)) {
                 --tail;
-            }
-            else {
+            } else {
                 if (Character.toLowerCase(cHead) !=
                     Character.toLowerCase(cTail)) {
                     return false;
