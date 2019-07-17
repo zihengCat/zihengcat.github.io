@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/archives/">
-                                Archives
                             </a>
                         </li>
                         
@@ -216,6 +216,15 @@ public class MyRunnable implements Runnable {
 </code></pre>
 <blockquote>
 <p>代码清单：实现<code>Runnable</code>接口</p>
+</blockquote>
+<p><code>Runnable</code>接口非常简单，只有一个待实现的抽象<code>run()</code>方法。</p>
+<pre><code class="java">@FunctionalInterface
+public interface Runnable {
+    public abstract void run();
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Runnable</code>接口</p>
 </blockquote>
 <h1 id="实现Callable接口"><a href="#实现Callable接口" class="headerlink" title="实现Callable接口"></a>实现<code>Callable</code>接口</h1><p>…</p>
 <h1 id="Thread源码观察"><a href="#Thread源码观察" class="headerlink" title="Thread源码观察"></a><code>Thread</code>源码观察</h1><p>我们观察<code>Thread</code>类源码，可以看到，</p>
