@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -198,7 +198,7 @@ public class MyThread extends Thread {
 <blockquote>
 <p>代码清单：继承<code>Thread</code>类</p>
 </blockquote>
-<h1 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现<code>Runnable</code>接口</h1><p>实现<code>Runnable</code>接口，实现接口<code>run()</code>方法体，是另一种创建线程的方式。在创建线程时，向<code>Thread</code>类构造函数传递<code>Runnable</code>实例。</p>
+<h1 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现<code>Runnable</code>接口</h1><p>直接继承<code>Thread</code>类创建线程，可能会受限于 Java 仅支持单继承的特性，不够灵活。实现<code>Runnable</code>接口，实现接口<code>run()</code>方法体，是另一种创建线程的方式。在创建线程时，向<code>Thread</code>类构造函数传递一枚<code>Runnable</code>实例。</p>
 <pre><code class="java">import java.lang.String;
 import java.lang.Runnable;
 public class MyRunnable implements Runnable {
@@ -224,9 +224,39 @@ public interface Runnable {
 }
 </code></pre>
 <blockquote>
-<p>代码清单：<code>Runnable</code>接口</p>
+<p>代码清单：<code>Runnable</code>接口源码</p>
 </blockquote>
-<h1 id="实现Callable接口"><a href="#实现Callable接口" class="headerlink" title="实现Callable接口"></a>实现<code>Callable</code>接口</h1><p>…</p>
+<h1 id="实现Callable接口"><a href="#实现Callable接口" class="headerlink" title="实现Callable接口"></a>实现<code>Callable</code>接口</h1><p><code>Runnable</code>接口</p>
+<pre><code class="java">import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
+import java.util.concurrent.RunnableFuture;
+import java.util.concurrent.FutureTask;
+public class MyCallable implements Callable&lt;String&gt; {
+    public static void main(String[] args) {
+        FutureTask&lt;String&gt; futureTask = new FutureTask&lt;String&gt;(
+            new MyCallable()
+        );
+        Thread myCallable = new Thread(futureTask);
+        myCallable.start();
+        try {
+            String result = futureTask.get();
+            System.out.println(&quot;[INFO]: myCallable result -&gt; &quot; + result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public String call() throws Exception {
+        for (int i = 0; i &lt; 10; ++i) {
+            System.out.println(&quot;[INFO]: MyCallable -&gt; &quot; + String.valueOf(i));
+        }
+        return &quot;MyCallable-&quot; + String.valueOf(this.hashCode());
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：实现<code>Callable</code>接口</p>
+</blockquote>
 <p><code>Callable</code>接口是一枚泛型接口，有一个待实现<code>call()</code>方法。如果线程正常退出，该方法可带回线程执行结果，如果线程执行出错，则抛出异常。</p>
 <pre><code class="java">@FunctionalInterface
 public interface Callable&lt;V&gt; {
@@ -234,7 +264,20 @@ public interface Callable&lt;V&gt; {
 }
 </code></pre>
 <blockquote>
-<p>代码清单：<code>Callable</code>接口</p>
+<p>代码清单：<code>Callable</code>接口源码</p>
+</blockquote>
+<p><code>Future</code>接口是一枚泛型接口，提供了<code>Callable</code>线程任务的一些调用方法，如：获取计算结果、取消线程任务、判断任务是否完成…</p>
+<pre><code class="java">public interface Future&lt;V&gt; {
+    boolean cancel(boolean mayInterruptIfRunning);
+    boolean isCancelled();
+    boolean isDone();
+    V get() throws InterruptedException, ExecutionException;
+    V get(long timeout, TimeUnit unit)
+        throws InterruptedException, ExecutionException, TimeoutException;
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Future</code>接口源码</p>
 </blockquote>
 <h1 id="Thread源码观察"><a href="#Thread源码观察" class="headerlink" title="Thread源码观察"></a><code>Thread</code>源码观察</h1><p>我们观察<code>Thread</code>类源码，可以看到，</p>
 <pre><code class="java">...
