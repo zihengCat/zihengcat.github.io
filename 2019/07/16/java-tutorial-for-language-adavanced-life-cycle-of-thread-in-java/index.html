@@ -168,6 +168,44 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="Java-线程生命周期（Life-Cycle）"><a href="#Java-线程生命周期（Life-Cycle）" class="headerlink" title="Java 线程生命周期（Life Cycle）"></a>Java 线程生命周期（Life Cycle）</h1><p>…</p>
+<p>A thread state. A thread can be in one of the following states:</p>
+<table>
+<thead>
+<tr>
+<th>States</th>
+<th>Descriptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEW</code></td>
+<td>A thread that has not yet started is in this state.</td>
+</tr>
+<tr>
+<td><code>RUNNABLE</code></td>
+<td>A thread executing in the Java virtual machine is in this state.</td>
+</tr>
+<tr>
+<td><code>BLOCKED</code></td>
+<td>A thread that is blocked waiting for a monitor lock is in this state.</td>
+</tr>
+<tr>
+<td><code>WAITING</code></td>
+<td>A thread that is waiting indefinitely for another thread to perform a particular action is in this state.</td>
+</tr>
+<tr>
+<td><code>TIMED_WAITING</code></td>
+<td>A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.</td>
+</tr>
+<tr>
+<td><code>TERMINATED</code></td>
+<td>A thread that has exited is in this state.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表：Java 线程状态表</p>
+</blockquote>
 <p><img src="./thread_lifecycle_in_java.jpg" alt="Thread_LifeCycle_in_Java"></p>
 <blockquote>
 <p>图：Java 线程生命周期（Life Cycle）示意图</p>
