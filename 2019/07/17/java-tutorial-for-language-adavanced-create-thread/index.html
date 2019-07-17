@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -227,6 +227,15 @@ public interface Runnable {
 <p>代码清单：<code>Runnable</code>接口</p>
 </blockquote>
 <h1 id="实现Callable接口"><a href="#实现Callable接口" class="headerlink" title="实现Callable接口"></a>实现<code>Callable</code>接口</h1><p>…</p>
+<p><code>Callable</code>接口是一枚泛型接口，有一个待实现<code>call()</code>方法。如果线程正常退出，该方法可带回线程执行结果，如果线程执行出错，则抛出异常。</p>
+<pre><code class="java">@FunctionalInterface
+public interface Callable&lt;V&gt; {
+    V call() throws Exception;
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Callable</code>接口</p>
+</blockquote>
 <h1 id="Thread源码观察"><a href="#Thread源码观察" class="headerlink" title="Thread源码观察"></a><code>Thread</code>源码观察</h1><p>我们观察<code>Thread</code>类源码，可以看到，</p>
 <pre><code class="java">...
     /**
