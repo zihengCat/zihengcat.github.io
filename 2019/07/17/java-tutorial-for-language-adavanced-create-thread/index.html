@@ -196,7 +196,7 @@ public class MyThread extends Thread {
 <blockquote>
 <p>代码清单：继承<code>Thread</code>类</p>
 </blockquote>
-<h1 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现<code>Runnable</code>接口</h1><p>直接继承<code>Thread</code>类创建线程，可能会受限于 Java 仅支持单继承的特性，不够灵活。实现<code>Runnable</code>接口，实现接口<code>run()</code>方法体，是另一种创建线程的方式。在创建线程时，向<code>Thread</code>类构造函数传递一枚<code>Runnable</code>实例。</p>
+<h1 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现<code>Runnable</code>接口</h1><p>直接继承<code>Thread</code>类创建线程，可能会受限于 Java 仅支持单继承的局限性，不够灵活。实现<code>Runnable</code>接口，实现接口<code>run()</code>方法体，是另一种创建线程的方式。在创建线程时，向<code>Thread</code>类构造函数传递一枚<code>Runnable</code>实例。</p>
 <pre><code class="java">import java.lang.String;
 import java.lang.Runnable;
 public class MyRunnable implements Runnable {
