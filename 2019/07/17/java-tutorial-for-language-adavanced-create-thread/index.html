@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -168,7 +168,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="Java-多线程"><a href="#Java-多线程" class="headerlink" title="Java 多线程"></a>Java 多线程</h1><p>Java 并发编程以多线程（Multithreading）为基础。Java 屏蔽了不同操作系统之间多线程 API 的差异，抽象出一套统一的多线程编程范式，为程序员减轻多线程开发的难度。</p>
-<p>在 Java 中，线程创建有如下几种方式：</p>
+<p>在 Java 中，线程被抽象为了<code>Thread</code>类，一个类实例即为一个操作系统线程。线程创建有如下几种方式：</p>
 <ul>
 <li><p>继承<code>Thread</code>类</p>
 </li>
@@ -179,6 +179,70 @@
 <li><p>使用线程池</p>
 </li>
 </ul>
+<h1 id="继承Thread类"><a href="#继承Thread类" class="headerlink" title="继承Thread类"></a>继承<code>Thread</code>类</h1><p>继承<code>Thread</code>类，覆写其<code>run()</code>方法，即可创建线程。</p>
+<pre><code class="java">import java.lang.String;
+import java.lang.Thread;
+public class MyThread extends Thread {
+    public static void main(String[] args) {
+        MyThread myThread = new MyThread();
+        myThread.start();
+    }
+    @Override
+    public void run() {
+        for (int i = 0; i &lt; 10; ++i) {
+            System.out.println(&quot;[INFO]: MyThread -&gt; &quot; + String.valueOf(i));
+        }
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：继承<code>Thread</code>类</p>
+</blockquote>
+<h1 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现<code>Runnable</code>接口</h1><p>实现<code>Runnable</code>接口，实现接口<code>run()</code>方法体，是另一种创建线程的方式。在创建线程时，向<code>Thread</code>类构造函数传递<code>Runnable</code>实例。</p>
+<pre><code class="java">import java.lang.String;
+import java.lang.Runnable;
+public class MyRunnable implements Runnable {
+    public static void main(String[] args) {
+        Thread thread = new Thread(new MyRunnable());
+        thread.start();
+    }
+    @Override
+    public void run() {
+        for (int i = 0; i &lt; 10; ++i) {
+            System.out.println(&quot;[INFO]: MyRunnable -&gt; &quot; + String.valueOf(i));
+        }
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：实现<code>Runnable</code>接口</p>
+</blockquote>
+<h1 id="实现Callable接口"><a href="#实现Callable接口" class="headerlink" title="实现Callable接口"></a>实现<code>Callable</code>接口</h1><p>…</p>
+<h1 id="Thread源码观察"><a href="#Thread源码观察" class="headerlink" title="Thread源码观察"></a><code>Thread</code>源码观察</h1><p>我们观察<code>Thread</code>类源码，可以看到，</p>
+<pre><code class="java">...
+    /**
+     * If this thread was constructed using a separate
+     * {@code Runnable} run object, then that
+     * {@code Runnable} object&#39;s {@code run} method is called;
+     * otherwise, this method does nothing and returns.
+     * &lt;p&gt;
+     * Subclasses of {@code Thread} should override this method.
+     *
+     * @see     #start()
+     * @see     #stop()
+     * @see     #Thread(ThreadGroup, Runnable, String)
+     */
+    @Override
+    public void run() {
+        if (target != null) {
+            target.run();
+        }
+    }
+...
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Thread</code>类<code>run()</code>方法源码</p>
+</blockquote>
 <h1 id="关联文章（Related-Topics）"><a href="#关联文章（Related-Topics）" class="headerlink" title="关联文章（Related Topics）"></a>关联文章（Related Topics）</h1><ul>
 <li><a href="https://zihengcat.github.io/2019/05/12/understanding-multithreading-technology/">了解「多线程」技术</a></li>
 </ul>
