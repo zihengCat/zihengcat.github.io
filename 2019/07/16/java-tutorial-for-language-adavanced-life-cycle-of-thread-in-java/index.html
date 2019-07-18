@@ -167,7 +167,49 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Java-线程生命周期（Life-Cycle）"><a href="#Java-线程生命周期（Life-Cycle）" class="headerlink" title="Java 线程生命周期（Life Cycle）"></a>Java 线程生命周期（Life Cycle）</h1><pre><code class="java">...
+                <h1 id="Java-线程生命周期（Life-Cycle）"><a href="#Java-线程生命周期（Life-Cycle）" class="headerlink" title="Java 线程生命周期（Life Cycle）"></a>Java 线程生命周期（Life Cycle）</h1><p>在 Java 中，一枚线程可处于如下几种状态。</p>
+<table>
+<thead>
+<tr>
+<th>States</th>
+<th>Descriptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NEW</code></td>
+<td>A thread that has not yet started is in this state.</td>
+</tr>
+<tr>
+<td><code>RUNNABLE</code></td>
+<td>A thread executing in the Java virtual machine is in this state.</td>
+</tr>
+<tr>
+<td><code>BLOCKED</code></td>
+<td>A thread that is blocked waiting for a monitor lock is in this state.</td>
+</tr>
+<tr>
+<td><code>WAITING</code></td>
+<td>A thread that is waiting indefinitely for another thread to perform a particular action is in this state.</td>
+</tr>
+<tr>
+<td><code>TIMED_WAITING</code></td>
+<td>A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.</td>
+</tr>
+<tr>
+<td><code>TERMINATED</code></td>
+<td>A thread that has exited is in this state.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>表：Java 线程状态表</p>
+</blockquote>
+<p><img src="./thread_lifecycle_in_java.jpg" alt="Thread_LifeCycle_in_Java"></p>
+<blockquote>
+<p>图：Java 线程生命周期（Life Cycle）示意图</p>
+</blockquote>
+<pre><code class="java">...
     public enum State {
         /**
          * Thread state for a thread which has not yet started.
@@ -236,47 +278,6 @@
 </code></pre>
 <blockquote>
 <p>代码清单：<code>Thread.States</code>源码</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>States</th>
-<th>Descriptions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>NEW</code></td>
-<td>A thread that has not yet started is in this state.</td>
-</tr>
-<tr>
-<td><code>RUNNABLE</code></td>
-<td>A thread executing in the Java virtual machine is in this state.</td>
-</tr>
-<tr>
-<td><code>BLOCKED</code></td>
-<td>A thread that is blocked waiting for a monitor lock is in this state.</td>
-</tr>
-<tr>
-<td><code>WAITING</code></td>
-<td>A thread that is waiting indefinitely for another thread to perform a particular action is in this state.</td>
-</tr>
-<tr>
-<td><code>TIMED_WAITING</code></td>
-<td>A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.</td>
-</tr>
-<tr>
-<td><code>TERMINATED</code></td>
-<td>A thread that has exited is in this state.</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>表：Java 线程状态表</p>
-</blockquote>
-<p><img src="./thread_lifecycle_in_java.jpg" alt="Thread_LifeCycle_in_Java"></p>
-<blockquote>
-<p>图：Java 线程生命周期（Life Cycle）示意图</p>
 </blockquote>
 <h1 id="关联文章（Related-Topics）"><a href="#关联文章（Related-Topics）" class="headerlink" title="关联文章（Related Topics）"></a>关联文章（Related Topics）</h1><ul>
 <li><p><a href="https://zihengcat.github.io/2019/05/12/understanding-multithreading-technology/">了解「多线程」技术</a></p>
