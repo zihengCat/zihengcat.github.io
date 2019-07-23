@@ -68,8 +68,8 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -84,8 +84,8 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -190,7 +190,27 @@ Explanation: 1 的二进制表示形式为1（无前导0），其补数为 0，�
 <li><p>可以假定整型数的二进制形式无前导<code>0</code>。</p>
 </li>
 </ul>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>…</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><pre><code class="java">class Solution {
+    public int findComplement(int num) {
+        String binaryNumString = Integer.toBinaryString(num);
+        char[] binaryNumStringCharArray = binaryNumString.toCharArray();
+        for (int i = 0; i &lt; binaryNumStringCharArray.length; ++i) {
+            if (binaryNumStringCharArray[i] == &#39;0&#39;) {
+                binaryNumStringCharArray[i] = &#39;1&#39;;
+            } else if (binaryNumStringCharArray[i] == &#39;1&#39;) {
+                binaryNumStringCharArray[i] = &#39;0&#39;;
+            }
+        }
+        //System.out.println(String.valueOf(binaryNumStringCharArray));
+        return Integer.parseInt(
+            String.valueOf(binaryNumStringCharArray), 2
+        );
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码请单：寻找补数（<code>Java</code>实现）</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/number-complement/" target="_blank" rel="noopener">https://leetcode.com/problems/number-complement/</a></li>
 </ul>
