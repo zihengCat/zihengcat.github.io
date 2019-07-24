@@ -190,7 +190,7 @@ Explanation: 1 的二进制表示形式为1（无前导0），其补数为 0，�
 <li><p>可以假定整型数的二进制形式无前导<code>0</code>。</p>
 </li>
 </ul>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>解决该问题的第一种思路是：整数二进制形式与字符串之间的转换，先将输入整数转化为二进制字符串形式，反转字符串中的比特位，最后将修改后的字符串再转回二进制整数。</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>解决该问题的第一种思路是：将整数二进制形式与字符串之间来回转换。先将输入整数转化为二进制字符串形式，反转字符串中的比特位，最后将修改后的字符串再转回二进制整数。</p>
 <pre><code class="java">class Solution {
     public int findComplement(int num) {
         String binaryNumString = Integer.toBinaryString(num);
