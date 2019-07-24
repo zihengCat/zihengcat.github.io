@@ -168,7 +168,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录 <em>LeetCode - 476. 寻找补数（Number Complement）</em> 问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个正整数，请你寻找它的补数。某数的补数可以定义为：其每个比特位都相反的正整数。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个正整数，请你寻找它的补数。某数的补数可以定义为：比特位反转的正整数。</p>
 <pre><code class="plain">Input: 5
 Output: 2
 Explanation: 5 的二进制表示形式为 101（无前导0），其补数为 010，输出即 2。
@@ -190,7 +190,8 @@ Explanation: 1 的二进制表示形式为1（无前导0），其补数为 0，�
 <li><p>可以假定整型数的二进制形式无前导<code>0</code>。</p>
 </li>
 </ul>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><pre><code class="java">class Solution {
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>解决该问题的第一种思路是：整数二进制形式与字符串之间的转换，先将输入整数转化为二进制字符串形式，反转字符串中的比特位，最后将修改后的字符串再转回二进制整数。</p>
+<pre><code class="java">class Solution {
     public int findComplement(int num) {
         String binaryNumString = Integer.toBinaryString(num);
         char[] binaryNumStringCharArray = binaryNumString.toCharArray();
@@ -201,7 +202,6 @@ Explanation: 1 的二进制表示形式为1（无前导0），其补数为 0，�
                 binaryNumStringCharArray[i] = &#39;0&#39;;
             }
         }
-        //System.out.println(String.valueOf(binaryNumStringCharArray));
         return Integer.parseInt(
             String.valueOf(binaryNumStringCharArray), 2
         );
@@ -209,7 +209,7 @@ Explanation: 1 的二进制表示形式为1（无前导0），其补数为 0，�
 }
 </code></pre>
 <blockquote>
-<p>代码请单：寻找补数（<code>Java</code>实现）</p>
+<p>代码请单：寻找补数（Number Complement）<code>Java</code>实现</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/number-complement/" target="_blank" rel="noopener">https://leetcode.com/problems/number-complement/</a></li>
