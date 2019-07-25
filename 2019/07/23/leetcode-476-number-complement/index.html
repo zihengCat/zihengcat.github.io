@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -205,6 +205,24 @@ Explanation: 1 的二进制表示形式为1（无前导0），其补数为 0，�
         return Integer.parseInt(
             String.valueOf(binaryNumStringCharArray), 2
         );
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码请单：寻找补数（Number Complement）<code>Java</code>实现</p>
+</blockquote>
+<p>另一种思路是：使用位操作。取得输入整数的最高比特位（<code>LEFTMOST</code> bit of <code>1</code>），减<code>1</code>获得掩码（Mask），再将原数按位取反后与掩码做一个按位与<code>&amp;</code>操作，即可得到结果补数。</p>
+<pre><code class="plain">num(5)  -&gt; 00000101            = 00000101
+mask(5) -&gt; 00000100 - 00000001 = 00000011
+~num(5)                        = 11111010
+~num(5) &amp; mask(5)              = 00000010
+</code></pre>
+<blockquote>
+<p>注：位操作寻找补数（以<code>5</code>为例）</p>
+</blockquote>
+<pre><code class="java">class Solution {
+    public int findComplement(int num) {
+        return ~num &amp; (Integer.highestOneBit(num) - 1);
     }
 }
 </code></pre>
