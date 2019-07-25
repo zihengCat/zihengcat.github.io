@@ -190,7 +190,7 @@ Explanation: 1 的二进制表示形式为1（无前导0），其补数为 0，�
 <li><p>可以假定整型数的二进制形式无前导<code>0</code>。</p>
 </li>
 </ul>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>解决该问题的第一种思路是：将整数二进制形式与字符串之间来回转换。先将输入整数转化为二进制字符串形式，反转字符串中的比特位，最后将修改后的字符串再转回二进制整数。</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>解决该问题的第一种思路是：<strong>将整数二进制形式与字符串之间来回转换。</strong>先将输入整数转化为二进制字符串形式，反转字符串中的比特位，最后将修改后的字符串再转回二进制整数。</p>
 <pre><code class="java">class Solution {
     public int findComplement(int num) {
         String binaryNumString = Integer.toBinaryString(num);
@@ -211,7 +211,7 @@ Explanation: 1 的二进制表示形式为1（无前导0），其补数为 0，�
 <blockquote>
 <p>代码请单：寻找补数（Number Complement）<code>Java</code>实现</p>
 </blockquote>
-<p>另一种思路是：使用位操作。取得输入整数的最高比特位（<code>LEFTMOST</code> bit of <code>1</code>），减<code>1</code>获得掩码（Mask），再将原数按位取反后与掩码做一个按位与<code>&amp;</code>操作，即可得到结果补数。毫无疑问，使用位操作算法效率更高。</p>
+<p>另一种思路是：<strong>使用位操作。</strong>取得输入整数的最高比特位（<code>LEFTMOST</code> bit of <code>1</code>），减<code>1</code>获得掩码（Mask），再将原数按位取反后与掩码做一个按位与<code>&amp;</code>操作，即可得到结果补数。毫无疑问，使用位操作算法效率更高。</p>
 <pre><code class="plain">num(5)  -&gt; 00000101            = 00000101
 mask(5) -&gt; 00000100 - 00000001 = 00000011
 ~num(5)                        = 11111010
