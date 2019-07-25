@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -211,7 +211,7 @@ Explanation: 1 的二进制表示形式为1（无前导0），其补数为 0，�
 <blockquote>
 <p>代码请单：寻找补数（Number Complement）<code>Java</code>实现</p>
 </blockquote>
-<p>另一种思路是：使用位操作。取得输入整数的最高比特位（<code>LEFTMOST</code> bit of <code>1</code>），减<code>1</code>获得掩码（Mask），再将原数按位取反后与掩码做一个按位与<code>&amp;</code>操作，即可得到结果补数。</p>
+<p>另一种思路是：使用位操作。取得输入整数的最高比特位（<code>LEFTMOST</code> bit of <code>1</code>），减<code>1</code>获得掩码（Mask），再将原数按位取反后与掩码做一个按位与<code>&amp;</code>操作，即可得到结果补数。毫无疑问，使用位操作算法效率更高。</p>
 <pre><code class="plain">num(5)  -&gt; 00000101            = 00000101
 mask(5) -&gt; 00000100 - 00000001 = 00000011
 ~num(5)                        = 11111010
