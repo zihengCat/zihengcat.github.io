@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -224,6 +224,26 @@ class Solution {
 </code></pre>
 <blockquote>
 <p>代码清单：判断对称二叉树（Symmetric Tree）<code>Java</code>实现</p>
+</blockquote>
+<pre><code class="python"># Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def isSymmetric(self, root: TreeNode) -&gt; bool:
+        return root == None or self.isSymmetric0(root.left, root.right)
+    def isSymmetric0(self, leftNode: TreeNode, rightNode: TreeNode) -&gt; bool:
+        if (leftNode == None or rightNode == None):
+            return leftNode == rightNode
+        if (leftNode.val != rightNode.val):
+            return False
+        return self.isSymmetric0(leftNode.left, rightNode.right) and \
+               self.isSymmetric0(leftNode.right, rightNode.left)
+</code></pre>
+<blockquote>
+<p>代码清单：判断对称二叉树（Symmetric Tree）<code>Python</code>实现</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode: <a href="https://leetcode.com/problems/symmetric-tree/" target="_blank" rel="noopener">https://leetcode.com/problems/symmetric-tree/</a></li>
