@@ -208,30 +208,30 @@
 <p>上述代码中，我们将单例实例实现为在<strong>第一次被使用</strong>时构建，称之为「懒汉方式」，可以节约内存。</p>
 <p>但是，无论是饿汉方式还是懒汉方式实现单例，都没有考虑到多线程的问题，上述代码在单线程环境下可以正常工作，但在多线程环境下会遇到并发问题，我们可以添加「对象锁」对线程进行同步。</p>
 <pre><code class="java">public class Singleton extends Object {
+    private static Singleton INSTANCE;
     private Singleton() {}
-    private static Singleton instance;
     public static synchronized Singleton getInstance() {
-        if (null == instance) {
-            instance = new Singleton();
+        if (null == INSTANCE) {
+            INSTANCE = new Singleton();
         }
-        return instance;
+        return INSTANCE;
     }
 }
 </code></pre>
 <blockquote>
 <p>代码清单：Java 单例模式（多线程）</p>
 </blockquote>
-<p>加入「对象锁」对线程进行同步可以解决多线程环境下的并发问题，但是效率不高，我们将对象锁加入到代码块中，减少锁粒度。</p>
+<p>加入「对象锁」对线程进行同步可以解决多线程环境下的并发问题，但是效率不高，我们将对象锁加入到语句块中，减少「锁粒度」。</p>
 <pre><code class="java">public class Singleton extends Object {
     private Singleton() {}
-    private static Singleton instance;
+    private static Singleton INSTANCE;
     public static Singleton getInstance() {
         synchronized(Singleton.class) {
-            if (null == instance) {
-                instance = new Singleton();
+            if (null == INSTANCE) {
+                INSTANCE = new Singleton();
             }
         }
-        return instance;
+        return INSTANCE;
     }
 }
 </code></pre>
