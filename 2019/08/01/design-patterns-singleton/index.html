@@ -171,7 +171,7 @@
 <p>单例模式的实现思路是：一个类能返回实例对象一个引用（永远是同一个）和一个获得该实例的方法（必须是静态方法，通常使用<code>getInstance()</code>名称）；当我们调用这个方法时，如果类持有的引用不为空则返回这个引用，如果类保持的引用为空就创建该类的实例并将实例的引用赋予该类保持的引用；同时我们还将该类的构造函数定义为私有方法，这样其他处的代码就无法通过调用该类的构造函数来实例化该类的对象，只有通过该类提供的静态方法来得到该类的唯一实例。</p>
 <h1 id="Java-实现单例模式"><a href="#Java-实现单例模式" class="headerlink" title="Java 实现单例模式"></a>Java 实现单例模式</h1><p>单例模式是软件设计模式中较为简单的一种。我们依据单例模式的实现思路，可以很容易地写出单例设计模式实现代码。</p>
 <pre><code class="java">public class Singleton extends Object {
-    private Singleton(){}
+    private Singleton() {}
     private static final Singleton INSTANCE = new Singleton();
     public static Singleton getInstance() {
         return INSTANCE;
