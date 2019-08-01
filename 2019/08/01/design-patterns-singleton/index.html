@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/archives/">
                                 Archives
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/tags/">
-                                Tags
                             </a>
                         </li>
                         
@@ -142,9 +142,9 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
-                        
                           <a class="tag" href="/tags/#Design Patterns" title="Design Patterns">Design Patterns</a>
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
                     </div>
                     <h1>设计模式 - 单例</h1>
@@ -169,7 +169,7 @@
                  post-container">
                 <h1 id="关于单例模式（Singleton）"><a href="#关于单例模式（Singleton）" class="headerlink" title="关于单例模式（Singleton）"></a>关于单例模式（Singleton）</h1><p>单例模式（Singleton）是一种常用的软件设计模式。单例对象的类必须保证<strong>只有一个实例存在</strong>。</p>
 <p>单例模式的实现思路是：一个类能返回实例对象一个引用（永远是同一个）和一个获得该实例的方法（必须是静态方法，通常使用<code>getInstance()</code>名称）；当我们调用这个方法时，如果类持有的引用不为空则返回这个引用，如果类保持的引用为空就创建该类的实例并将实例的引用赋予该类保持的引用；同时我们还将该类的构造函数定义为私有方法，这样其他处的代码就无法通过调用该类的构造函数来实例化该类的对象，只有通过该类提供的静态方法来得到该类的唯一实例。</p>
-<h1 id="Java-实现单例模式"><a href="#Java-实现单例模式" class="headerlink" title="Java 实现单例模式"></a>Java 实现单例模式</h1><p>单例模式是软件设计模式中较为简单的一种。我们依据单例模式的实现思路，可以很容易地写出单例设计模式实现代码。</p>
+<h1 id="单例模式-Java-实现"><a href="#单例模式-Java-实现" class="headerlink" title="单例模式 Java 实现"></a>单例模式 Java 实现</h1><p>单例模式是软件设计模式中较为简单的一种。我们依据单例模式的实现思路，可以很容易地写出单例设计模式实现代码。</p>
 <pre><code class="java">public class Singleton extends Object {
     private Singleton() {}
     private static final Singleton INSTANCE = new Singleton();
@@ -179,25 +179,57 @@
 }
 </code></pre>
 <blockquote>
-<p>代码清单：Java 实现单例模式（饿汉方式）</p>
+<p>代码清单：Java 单例模式（饿汉方式）</p>
 </blockquote>
 <p>上述代码中，全局的单例实例是在<strong>类装载</strong>时构建的，称之为「饿汉方式」。</p>
 <p>饿汉方式实现单例会有些浪费内存，因为单例实例在类装载时构建，我们可以优化为：用时加载。</p>
 <pre><code class="java">public class Singleton extends Object {
     private Singleton() {}
-    private static Singleton INSTANCE = null;
+    private static Singleton instance;
     public static Singleton getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Singleton()
+        if (null == instance) {
+            instance = new Singleton();
         }
-        return INSTANCE;
+        return instance;
     }
 }
 </code></pre>
 <blockquote>
-<p>代码清单：Java 实现单例模式（懒汉方式）</p>
+<p>代码清单：Java 单例模式（懒汉方式）</p>
 </blockquote>
-<p>上述代码中，我们将单例实例实现为在<strong>第一次被使用</strong>时构建，称之为「懒汉方式」。</p>
+<p>上述代码中，我们将单例实例实现为在<strong>第一次被使用</strong>时构建，称之为「懒汉方式」，可以节约内存。</p>
+<p>但是，无论是饿汉方式还是懒汉方式实现单例，都没有考虑到多线程的问题，上述代码在单线程环境下可以正常工作，但在多线程环境下会遇到并发问题，我们可以添加「对象锁」对线程进行同步。</p>
+<pre><code class="java">public class Singleton extends Object {
+    private Singleton() {}
+    private static Singleton instance;
+    public static synchronized Singleton getInstance() {
+        if (null == instance) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 单例模式（多线程）</p>
+</blockquote>
+<p>加入「对象锁」对线程进行同步可以解决多线程环境下的并发问题，但是效率不高，我们将对象锁加入到代码块中，减少锁粒度。</p>
+<pre><code class="java">public class Singleton extends Object {
+    private Singleton() {}
+    private static Singleton instance;
+    public static Singleton getInstance() {
+        synchronized(Singleton.class) {
+            if (null == instance) {
+                instance = new Singleton();
+            }
+        }
+        return instance;
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 单例模式（减少锁粒度）</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>SourceMaking: <a href="https://sourcemaking.com/design_patterns/singleton/java/1" target="_blank" rel="noopener">https://sourcemaking.com/design_patterns/singleton/java/1</a></li>
 </ul>
@@ -242,9 +274,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
-                        
                           <a class="tag" href="/tags/#Design Patterns" title="Design Patterns">Design Patterns</a>
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
                     </div>
                 </section>
