@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/archives/">
                                 Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -142,9 +142,9 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Design Patterns" title="Design Patterns">Design Patterns</a>
-                        
                           <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Design Patterns" title="Design Patterns">Design Patterns</a>
                         
                     </div>
                     <h1>设计模式 - 单例</h1>
@@ -181,7 +181,23 @@
 <blockquote>
 <p>代码清单：Java 实现单例模式（饿汉方式）</p>
 </blockquote>
-<p>在上述代码中，全局的单例实例是在<strong>类装载</strong>时构建的，称之为「饿汉方式」。</p>
+<p>上述代码中，全局的单例实例是在<strong>类装载</strong>时构建的，称之为「饿汉方式」。</p>
+<p>饿汉方式实现单例会有些浪费内存，因为单例实例在类装载时构建，我们可以优化为：用时加载。</p>
+<pre><code class="java">public class Singleton extends Object {
+    private Singleton() {}
+    private static Singleton INSTANCE = null;
+    public static Singleton getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Singleton()
+        }
+        return INSTANCE;
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 实现单例模式（懒汉方式）</p>
+</blockquote>
+<p>上述代码中，我们将单例实例实现为在<strong>第一次被使用</strong>时构建，称之为「懒汉方式」。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>SourceMaking: <a href="https://sourcemaking.com/design_patterns/singleton/java/1" target="_blank" rel="noopener">https://sourcemaking.com/design_patterns/singleton/java/1</a></li>
 </ul>
@@ -226,9 +242,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Design Patterns" title="Design Patterns">Design Patterns</a>
-                        
                           <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Design Patterns" title="Design Patterns">Design Patterns</a>
                         
                     </div>
                 </section>
