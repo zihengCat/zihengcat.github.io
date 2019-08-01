@@ -179,8 +179,8 @@
 </ol>
 <h1 id="单例模式-Java-实现"><a href="#单例模式-Java-实现" class="headerlink" title="单例模式 Java 实现"></a>单例模式 Java 实现</h1><p>单例模式是软件设计模式中较为简单的一种。我们依据单例模式的实现思路，可以很容易地写出单例设计模式实现代码。</p>
 <pre><code class="java">public class Singleton extends Object {
-    private Singleton() {}
     private static final Singleton INSTANCE = new Singleton();
+    private Singleton() {}
     public static Singleton getInstance() {
         return INSTANCE;
     }
@@ -192,13 +192,13 @@
 <p>上述代码中，全局的单例实例是在<strong>类装载</strong>时构建的，称之为「饿汉方式」。</p>
 <p>饿汉方式实现单例会有些浪费内存，因为单例实例在类装载时构建，我们可以优化为：用时加载。</p>
 <pre><code class="java">public class Singleton extends Object {
+    private static Singleton INSTANCE;
     private Singleton() {}
-    private static Singleton instance;
     public static Singleton getInstance() {
-        if (null == instance) {
-            instance = new Singleton();
+        if (null == INSTANCE) {
+            INSTANCE = new Singleton();
         }
-        return instance;
+        return INSTANCE;
     }
 }
 </code></pre>
