@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -151,6 +151,29 @@
          col-xs-12
          post-container">
     <!-- Main Content -->
+
+<div class="post-preview">
+
+    <a href="/2018/11/23/unable-to-connect-screen-in-attached-status-problem-analyse-and-solve/">
+        <h2 class="post-title">
+            Linux 下 Screen 状态 Attached 无法连接 - 问题分析及解决
+        </h2>
+        <h3 class="post-subtitle">
+            Unable to Connect Screen in Attached Status - Problem Analyse and Solve
+        </h3>
+        <div class="post-content-preview">
+            前言正常情况下，我们使用Ctrl + D分离 Screen 会话（Session），使用screen -r &lt;session_id&gt;恢复一枚 Screen 会话。
+但是，当一枚 Screen Session 状态为Attached时，我们不能简单的通过-r选项恢复会话。
+问题分析出现这一问题的原因是：上一用户仍留存在 Screen Session 中，未正常退出。
+问题解决使用s......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-11-23
+    </p>
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -371,27 +394,6 @@ LC_TIME=&quo......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2018/07/20/output-buffering-in-realtime-question-and-solution/">
-        <h2 class="post-title">
-            实时输出流打印 - 缓冲问题与解决方案
-        </h2>
-        <h3 class="post-subtitle">
-            Output Buffering in Realtime - Question and Solution
-        </h3>
-        <div class="post-content-preview">
-            前言现代程序设计语言（尤其是动态脚本语言）的IO库在设计时，大多会针对输出流「Output Stream」做缓冲「Buffering」机制。其目的是为了最小化「Minimize」IO操作。众所周知，IO操作是非常慢、非常费时的，例如：读写磁盘，访问网络，打印信息到控制台「Console」。
-缓冲「Buffering」机制在执行IO操作时，程序会在内存中开辟出一块合适的空间，用作缓存「Buff......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2018-07-20
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 <ul class="pager">
@@ -432,14 +434,6 @@ LC_TIME=&quo......
                             <a href="/tags/#Linux" title="Linux" rel="30">Linux</a>
                             
                         
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Java" title="Java" rel="25">Java</a>
                             
                         
                             
@@ -489,9 +483,19 @@ LC_TIME=&quo......
                             
                         
                             
+                            <a href="/tags/#Java" title="Java" rel="26">Java</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
                         
                             
                             <a href="/tags/#Java Tutorial" title="Java Tutorial" rel="21">Java Tutorial</a>
+                            
+                        
                             
                         
                             
