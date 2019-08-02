@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2019/08/01/design-patterns-singleton/">
     <title>
         
-          设计模式 - 单例 - zihengCat
+          设计模式 - 单例模式 - zihengCat
         
     </title>
 
@@ -68,8 +68,8 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -84,8 +84,8 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -142,12 +142,12 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
-                        
                           <a class="tag" href="/tags/#Design Patterns" title="Design Patterns">Design Patterns</a>
                         
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
                     </div>
-                    <h1>设计模式 - 单例</h1>
+                    <h1>设计模式 - 单例模式</h1>
                     <h2 class="subheading">Design Patterns - Singleton</h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -205,7 +205,7 @@
 <blockquote>
 <p>代码清单：Java 单例模式（懒汉方式）</p>
 </blockquote>
-<p>上述代码中，我们将单例实例实现为在<strong>第一次被使用</strong>时构建，称之为「懒汉方式」，可以节约内存。</p>
+<p>上述代码中，我们将单例实例实现为在<strong>首次被使用</strong>时构建，称之为「懒汉方式」，可以节省内存。</p>
 <p>但是，无论是饿汉方式还是懒汉方式实现单例，都没有考虑到多线程的问题，上述代码在单线程环境下可以正常工作，但在多线程环境下会遇到并发问题，我们可以添加「对象锁」对线程进行同步。</p>
 <pre><code class="java">public class Singleton extends Object {
     private static Singleton INSTANCE;
@@ -221,7 +221,7 @@
 <blockquote>
 <p>代码清单：Java 单例模式（多线程）</p>
 </blockquote>
-<p>加入「对象锁」对线程进行同步可以解决多线程环境下的并发问题，但是效率不高，我们将对象锁加入到语句块中，减少「锁粒度」。</p>
+<p>加入「对象锁」对线程进行同步，可以解决多线程环境下的并发问题，但是效率并不高，我们将对象锁加入到语句块中，减少「锁粒度」。</p>
 <pre><code class="java">public class Singleton extends Object {
     private Singleton() {}
     private static Singleton INSTANCE;
@@ -238,6 +238,26 @@
 <blockquote>
 <p>代码清单：Java 单例模式（减少锁粒度）</p>
 </blockquote>
+<p>上述代码中，虽然我们将对象锁加入到了语句块中减少了锁粒度，但在每次<code>getInstance()</code>时，都有获取/释放锁的操作，效率依旧不高。有没有更高效的实现方式呢？</p>
+<pre><code class="java">public class Singleton extends Object {
+    private Singleton() {}
+    private static Singleton INSTANCE;
+    public static Singleton getInstance() {
+        if (null == INSTANCE) {
+            synchronized(Singleton.class) {
+                if (null == INSTANCE) {
+                    INSTANCE = new Singleton();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：Java 单例模式（双重检查锁）</p>
+</blockquote>
+<p>上述代码是单例模式的「双重检查锁」实现</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>SourceMaking: <a href="https://sourcemaking.com/design_patterns/singleton/java/1" target="_blank" rel="noopener">https://sourcemaking.com/design_patterns/singleton/java/1</a></li>
 </ul>
@@ -282,9 +302,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
-                        
                           <a class="tag" href="/tags/#Design Patterns" title="Design Patterns">Design Patterns</a>
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
                         
                     </div>
                 </section>
