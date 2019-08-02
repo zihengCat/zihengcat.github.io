@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -190,7 +190,7 @@
 <p>代码清单：Java 单例模式（饿汉方式）</p>
 </blockquote>
 <p>上述代码中，全局的单例实例是在<strong>类装载</strong>时构建的，称之为「饿汉方式」。</p>
-<p>饿汉方式实现单例会有些浪费内存，因为单例实例在类装载时构建，我们可以优化为：用时加载。</p>
+<p>饿汉方式实现单例会有些浪费内存，因为单例类实例在类装载时就已经构建完成，我们可以优化为：用时加载。</p>
 <pre><code class="java">public class Singleton extends Object {
     private static Singleton INSTANCE;
     private Singleton() {}
