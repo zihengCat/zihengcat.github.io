@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -219,7 +219,7 @@
 }
 </code></pre>
 <blockquote>
-<p>代码清单：Java 单例模式（多线程）</p>
+<p>代码清单：Java 单例模式（多线程对象锁）</p>
 </blockquote>
 <p>加入「对象锁」对线程进行同步，可以解决多线程环境下的并发问题，但是效率并不高，我们将对象锁加入到语句块中，减少「锁粒度」。</p>
 <pre><code class="java">public class Singleton extends Object {
@@ -257,7 +257,7 @@
 <blockquote>
 <p>代码清单：Java 单例模式（双重检查锁）</p>
 </blockquote>
-<p>这个世界上总是不缺聪明人，有人就想出使用「双重检查锁」方法规避加减锁操作，提高运行效率。如上述代码所示，在同步语句块的上层再加入<code>if</code>判断，由于大部分<code>getInstance()</code>发生在单例创建完成后，加入双重检查后便可以直接获取到单例，绕过对象锁，而创建单例时的并发问题也可以在内层对象锁中得到解决。</p>
+<p>这个世界上总是不缺聪明人，有人就想出使用「双重检查锁」（Double-Checked Locking）方法规避加减锁操作，提高运行效率。如上述代码所示，在同步语句块的上层再加入<code>if</code>判断，由于大部分<code>getInstance()</code>操作都发生在单例创建完成后，加入双重检查后便可以直接获取到实例，绕过对象锁，而创建单例时的并发问题也可以在内层对象锁中得到解决。</p>
 <p>实际上，上述「双重检查锁」代码在并发场景下仍存在问题，根据 Java 内存模型的规则，对单例<code>INSTANCE</code>的赋值操作可能无法及时从线程内存回刷至主内存，JVM 也可能对语句进行重排序，解决方案是：使用<code>volatile</code>修饰单例，禁止指令重排序，保证变量可见性。</p>
 <pre><code class="java">public class Singleton extends Object {
     private Singleton() {}
@@ -277,7 +277,7 @@
 <blockquote>
 <p>代码清单：Java 单例模式（双重检查锁修正）</p>
 </blockquote>
-<p>另一种实现单例的方法是使用「静态内部类」，利用 Java 类加载机制保证单实例，使用内部静态类既可以实现懒加载（Lazy-Loading）又规避了线程并发问题，效率较高，是一种很不错的单例实现方法。</p>
+<p>另一种实现单例的方法是使用「静态内部类」，利用 <strong>Java 类加载机制</strong>保证单实例，使用内部静态类既可以实现懒加载（Lazy-Loading）又规避了线程并发问题，效率较高，是一种不错的单例实现方法。</p>
 <pre><code class="java">public class Singleton extends Object {
     private Singleton() {}
     private static class SingletonHolder {
