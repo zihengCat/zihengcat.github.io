@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -257,7 +257,7 @@
 <blockquote>
 <p>代码清单：Java 单例模式（双重检查锁）</p>
 </blockquote>
-<p>这个世界上总是不缺聪明人，有人就想出，使用「双重检查锁」规避获取/释放锁操作，提高执行效率。</p>
+<p>这个世界上总是不缺聪明人，有人就想出使用「双重检查锁」方法规避加减锁操作，提高运行效率。如上述代码所示，在同步语句块的上层再加入<code>if</code>判断，由于大部分<code>getInstance()</code>发生在单例创建完成后，在加入双重检查后便可以直接获取到单例，绕过对象锁，而创建单例时的并发问题也可以在内层对象锁中很好地解决。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>SourceMaking: <a href="https://sourcemaking.com/design_patterns/singleton" target="_blank" rel="noopener">https://sourcemaking.com/design_patterns/singleton</a></li>
 </ul>
