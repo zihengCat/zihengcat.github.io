@@ -277,7 +277,7 @@
 <blockquote>
 <p>代码清单：Java 单例模式（双重检查锁修正）</p>
 </blockquote>
-<p>另一种实现单例的方法是使用「静态内部类」，利用 <strong>Java 类加载机制</strong>保证单实例，使用内部静态类既可以实现懒加载（Lazy-Loading）又规避了线程并发问题，效率较高，是一种不错的单例实现方法。</p>
+<p>另一种实现单例的方法是使用「静态内部类」，利用 <strong>Java 类加载机制</strong>保证单实例，使用静态内部类既可以实现懒加载（Lazy-Loading）又规避了线程并发问题，效率较高，是一种不错的单例实现方法。</p>
 <pre><code class="java">public class Singleton extends Object {
     private Singleton() {}
     private static class SingletonHolder {
