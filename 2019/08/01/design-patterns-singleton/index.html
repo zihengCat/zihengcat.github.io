@@ -238,7 +238,7 @@
 <blockquote>
 <p>代码清单：Java 单例模式（减少锁粒度）</p>
 </blockquote>
-<p>上述代码中，虽然我们将对象锁加入到了语句块中减少了锁粒度，但在每次<code>getInstance()</code>时，都有获取/释放锁的操作，效率依旧不高。有没有更高效的实现方式呢？</p>
+<p>上述代码中，虽然我们将对象锁加入到了语句块中减少了锁粒度，但在每次<code>getInstance()</code>时，都会有获取/释放锁的操作，效率依旧不高。有没有更高效的实现方式呢？</p>
 <pre><code class="java">public class Singleton extends Object {
     private Singleton() {}
     private static Singleton INSTANCE;
