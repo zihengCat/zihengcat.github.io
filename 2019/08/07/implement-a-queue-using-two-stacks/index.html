@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/tags/Hexo/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/08/07/implement-a-queue-using-two-stacks/">
     <title>
         
-          zihengCat
+          使用栈实现队列 - zihengCat
         
     </title>
 
@@ -125,7 +125,217 @@
     }
 </script>
 
-    <!-- Default Archive layout, we use archives.ejs instead. -->
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-o.jpg');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                    </div>
+                    <h1>使用栈实现队列</h1>
+                    <h2 class="subheading">Implement a Queue Using Two Stacks</h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2019-08-07
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="栈与队列"><a href="#栈与队列" class="headerlink" title="栈与队列"></a>栈与队列</h1><p>栈（Stack）与队列（Queue）都是我们熟悉的线性表数据结构，栈的性质：后进先出（LIFO），队列的性质：先进先出（FIFO），性质截然不同的两种数据结构。思考这样一个问题，能否使用栈结构实现一个队列呢？</p>
+<h1 id="使用栈实现队列"><a href="#使用栈实现队列" class="headerlink" title="使用栈实现队列"></a>使用栈实现队列</h1><p>实际上，使用栈结构实现队列的思路非常简单：维护两个栈，元素入队时，将元素压入一个栈中；元素出队时，将存放入队元素的栈元素全部弹出至另一个栈中，对另一个栈出栈，<strong>使用两次栈的后进先出（LIFO）操作后，元素顺序即变为队列的先进先出（FIFO）了</strong>。</p>
+<pre><code class="java">/* 使用标准库`Deque`接口与`LinkedList`实现类作为栈结构 */
+import java.util.Deque;
+import java.util.LinkedList;
+/**
+ * 栈实现队列 - 主类
+ * @param &lt;E&gt;
+ */
+public class StacksAsQueue&lt;E&gt; {
+    /* 入队元素栈 */
+    private Deque&lt;E&gt; inputStack = new LinkedList&lt;E&gt;();
+    /* 出队元素栈 */
+    private Deque&lt;E&gt; outputStack = new LinkedList&lt;E&gt;();
+    /**
+     * 元素入队
+     * @param e
+     * @return void
+     */
+    public void enqueue(E e) {
+        inputStack.push(e);
+    }
+    /**
+     * 元素出队
+     * @param void
+     * @return E
+     */
+    public E dequeue() {
+        /* 检查两个栈是否为空 */
+        if (inputStack.isEmpty() &amp;&amp; outputStack.isEmpty()) {
+            /* 两栈都为空 -&gt; 无数据，抛出错误或返回`null`值 */
+            //throw new RuntimeException(&quot;[ERROR]: Two stacks are empty!&quot;);
+            return null;
+        }
+        /* 出队元素栈为空 -&gt; 将入队元素栈中数据弹出至此栈 */
+        if (outputStack.isEmpty()) {
+            while (!inputStack.isEmpty()) {
+                outputStack.push(inputStack.pop());
+            }
+        }
+        /* 返回出队元素栈中最上层元素 */
+        return outputStack.pop();
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Java</code>使用栈实现队列</p>
+</blockquote>
+<pre><code class="java">import StacksAsQueue;
+public class StacksAsQueueTest {
+    public static void main(String[] args) {
+        StacksAsQueue&lt;Integer&gt; stacksAsQueue = new StacksAsQueue&lt;Integer&gt;();
+        for (int i = 0; i &lt; 10; ++i) {
+            System.out.println(&quot;Enqueue: &quot; + i);
+            stacksAsQueue.enqueue(i);
+        }
+        for (int i = 0; i &lt; 10; ++i) {
+            System.out.println(&quot;Dequeue: &quot; + stacksAsQueue.dequeue());
+        }
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Java</code>使用栈实现队列 - 测试代码</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>StackOverflow: <a href="https://stackoverflow.com/questions/69192/how-to-implement-a-queue-using-two-stacks" target="_blank" rel="noopener">https://stackoverflow.com/questions/69192/how-to-implement-a-queue-using-two-stacks</a></li>
+</ul>
+
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/08/01/design-patterns-singleton/" data-toggle="tooltip" data-placement="top" title="设计模式 - 单例模式">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
     <!-- Footer -->
 <footer>
@@ -358,6 +568,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
