@@ -175,21 +175,25 @@
                 s, getResult(s)
             );
         }
+        System.out.printf(
+            &quot;%s -&gt; %s&quot; + System.lineSeparator(),
+            &quot;five&quot;, getResult(&quot;five&quot;)
+        );
     }
     public static String getResult(String token) {
         String value = null;
         switch (token) {
             case &quot;one&quot;:
-                value = &quot;Token one identified&quot;;
+                value = &quot;Token [one] identified&quot;;
                 break;
             case &quot;two&quot;:
-                value = &quot;Token two identified&quot;;
+                value = &quot;Token [two] identified&quot;;
                 break;
             case &quot;three&quot;:
-                value = &quot;Token three identified&quot;;
+                value = &quot;Token [three] identified&quot;;
                 break;
             case &quot;four&quot;:
-                value = &quot;Token four identified&quot;;
+                value = &quot;Token [four] identified&quot;;
                 break;
             default:
                 value = &quot;No token was identified&quot;;
@@ -202,6 +206,16 @@
 <blockquote>
 <p>代码清单：Java <code>switch</code> 使用字符串</p>
 </blockquote>
+<p>该样例程序的输出如下所示。</p>
+<pre><code class="plain">one -&gt; Token [one] identified
+two -&gt; Token [two] identified
+three -&gt; Token [three] identified
+five -&gt; No token was identified
+</code></pre>
+<blockquote>
+<p>代码清单：Java <code>switch</code> 使用字符串 - 程序输出</p>
+</blockquote>
+<h1 id="原理剖析"><a href="#原理剖析" class="headerlink" title="原理剖析"></a>原理剖析</h1><p>…</p>
 <h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1>
                 <hr>
 <!--
