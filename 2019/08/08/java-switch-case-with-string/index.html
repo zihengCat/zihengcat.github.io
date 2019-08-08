@@ -206,7 +206,7 @@
 <blockquote>
 <p>代码清单：Java <code>switch</code> 使用字符串</p>
 </blockquote>
-<p>该样例程序的输出如下所示。</p>
+<p>该样例程序输出如下所示。</p>
 <pre><code class="plain">one -&gt; Token [one] identified
 two -&gt; Token [two] identified
 three -&gt; Token [three] identified
@@ -215,10 +215,103 @@ five -&gt; No token was identified
 <blockquote>
 <p>代码清单：Java <code>switch</code> 使用字符串 - 程序输出</p>
 </blockquote>
-<h1 id="原理剖析"><a href="#原理剖析" class="headerlink" title="原理剖析"></a>原理剖析</h1><p>在 JVM 技术规范中，规定了<code>switch</code>语句的字节码编译方式：<strong><code>switch</code>语句会被编译为<code>tableswitch</code>与<code>lookupswitch</code>两条字节码指令</strong>，之所以使用两条字节码指令，也是为执行效率考量。</p>
-<p><strong>JVM 字节码指令<code>tableswitch</code>与<code>lookupswitch</code>只能操作<code>int</code>类型的数据</strong>，而<code>byte</code>、<code>char</code>、<code>short</code>类型数据都可以宽化转换为<code>int</code>，其他数值类型数据必须显式窄化转换为<code>int</code>类型才可以被<code>switch</code>使用（Java 不允许隐式的窄化类型转换），这是<code>switch</code>语句无法直接使用<code>long</code>类型的原因。</p>
+<h1 id="原理剖析"><a href="#原理剖析" class="headerlink" title="原理剖析"></a>原理剖析</h1><p>在 JVM 技术规范中，规定了<code>switch</code>语句的编译方式：<strong><code>switch</code>语句会被编译为<code>tableswitch</code>与<code>lookupswitch</code>两条字节码指令</strong>，之所以要使用两条字节码指令，也是为执行效率考量。</p>
+<p><strong>JVM 字节码指令<code>tableswitch</code>与<code>lookupswitch</code>只能操作<code>int</code>类型的数据</strong>，而<code>byte</code>、<code>char</code>、<code>short</code>类型数据都可以宽化转换为<code>int</code>，其他数值类型必须显式窄化转换为<code>int</code>类型才可被<code>switch</code>使用（Java 不允许隐式窄化转换），这也是<code>switch</code>语句无法直接使用<code>long</code>类型的原因。</p>
+<p>在 Java 中，<code>String</code>是一个类，并不是基本数据类型，无法直接被<code>switch</code>语句使用。需要某种方法将<code>String</code>字符串映射为<code>int</code>类型，解决方案便是：<code>hashCode()</code>。</p>
+<p><code>hashCode()</code>方法返回对象实例的哈希值，返回值为<code>int</code>类型。<strong>Java 编译器在编译带<code>String</code>的<code>switch</code>语句时，会将<code>String</code>转换为哈希整型值，再在执行代码前加入一道<code>if</code>防卫式判断。</strong></p>
+<p>我们观察一下样例程序的字节码。</p>
+<pre><code class="plain">...
+  public static java.lang.String getResult(java.lang.String);
+    Code:
+       0: aconst_null
+       1: astore_1
+       2: aload_0
+       3: astore_2
+       4: iconst_m1
+       5: istore_3
+       6: aload_2
+       7: invokevirtual #12                 // Method java/lang/String.hashCode:()I
+      10: lookupswitch  { // 4
+                110182: 52
+                115276: 66
+               3149094: 94
+             110339486: 80
+               default: 105
+          }
+      52: aload_2
+      53: ldc           #13                 // String one
+      55: invokevirtual #14                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      58: ifeq          105
+      61: iconst_0
+      62: istore_3
+      63: goto          105
+      66: aload_2
+      67: ldc           #15                 // String two
+      69: invokevirtual #14                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      72: ifeq          105
+      75: iconst_1
+      76: istore_3
+      77: goto          105
+      80: aload_2
+      81: ldc           #16                 // String three
+      83: invokevirtual #14                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      86: ifeq          105
+      89: iconst_2
+      90: istore_3
+      91: goto          105
+      94: aload_2
+      95: ldc           #17                 // String four
+      97: invokevirtual #14                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     100: ifeq          105
+     103: iconst_3
+     104: istore_3
+     105: iload_3
+     106: tableswitch   { // 0 to 3
+                     0: 136
+                     1: 142
+                     2: 148
+                     3: 154
+               default: 160
+          }
+     136: ldc           #18                 // String Token [one] identified
+     138: astore_1
+     139: goto          163
+     142: ldc           #19                 // String Token [two] identified
+     144: astore_1
+     145: goto          163
+     148: ldc           #20                 // String Token [three] identified
+     150: astore_1
+     151: goto          163
+     154: ldc           #21                 // String Token [four] identified
+     156: astore_1
+     157: goto          163
+     160: ldc           #22                 // String No token was identified
+     162: astore_1
+     163: aload_1
+     164: areturn
+    LineNumberTable:
+      line 26: 0
+      line 27: 2
+      line 29: 136
+      line 30: 139
+      line 32: 142
+      line 33: 145
+      line 35: 148
+      line 36: 151
+      line 38: 154
+      line 39: 157
+      line 41: 160
+      line 44: 163
+...
+</code></pre>
+<blockquote>
+<p>代码清单：<code>javap</code>字节码反编译</p>
+</blockquote>
 <h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><ul>
-<li>Java Virtual Machine Specification: <a href="https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-3.html#jvms-3.10" target="_blank" rel="noopener">https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-3.html#jvms-3.10</a></li>
+<li><p>Java Virtual Machine Specification: <a href="https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-3.html#jvms-3.10" target="_blank" rel="noopener">https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-3.html#jvms-3.10</a></p>
+</li>
+<li><p>StackOverflow: <a href="https://stackoverflow.com/questions/10287700/difference-between-jvms-lookupswitch-and-tableswitch" target="_blank" rel="noopener">https://stackoverflow.com/questions/10287700/difference-between-jvms-lookupswitch-and-tableswitch</a></p>
+</li>
 </ul>
 
                 <hr>
