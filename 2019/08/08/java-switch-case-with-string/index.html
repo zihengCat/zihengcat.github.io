@@ -166,9 +166,37 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><code>switch</code>语句在 Java 诞生之初便已存在，但只支持<code>int</code>与<code>enum</code>类型。在 Java 7 之后，<code>switch</code>语句也可以支持<code>String</code>字符串类，方便了开发者。</p>
-<h1 id="Java-switch-使用字符串"><a href="#Java-switch-使用字符串" class="headerlink" title="Java switch 使用字符串"></a>Java <code>switch</code> 使用字符串</h1><p>我们来看一个实例，了解如何在<code>switch</code>语句中使用<code>String</code>字符串。</p>
-<pre><code class="java">public class StringInSwitch {
-    // ...
+<h1 id="Java-switch-使用字符串"><a href="#Java-switch-使用字符串" class="headerlink" title="Java switch 使用字符串"></a>Java <code>switch</code> 使用字符串</h1><p>我们通过一个实例，了解如何在<code>switch</code>语句中使用<code>String</code>字符串。</p>
+<pre><code class="java">public class StringSupportedInSwitchStatement {
+    public static void main(String[] args) {
+        for (String s : &quot;one two three&quot;.split(&quot; &quot;)) {
+            System.out.printf(
+                &quot;%s -&gt; %s&quot; + System.lineSeparator(),
+                s, getResult(s)
+            );
+        }
+    }
+    public static String getResult(String token) {
+        String value = null;
+        switch (token) {
+            case &quot;one&quot;:
+                value = &quot;Token one identified&quot;;
+                break;
+            case &quot;two&quot;:
+                value = &quot;Token two identified&quot;;
+                break;
+            case &quot;three&quot;:
+                value = &quot;Token three identified&quot;;
+                break;
+            case &quot;four&quot;:
+                value = &quot;Token four identified&quot;;
+                break;
+            default:
+                value = &quot;No token was identified&quot;;
+                break;
+        }
+        return value;
+    }
 }
 </code></pre>
 <blockquote>
