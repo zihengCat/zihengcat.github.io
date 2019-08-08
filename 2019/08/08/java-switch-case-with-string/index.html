@@ -215,8 +215,12 @@ five -&gt; No token was identified
 <blockquote>
 <p>代码清单：Java <code>switch</code> 使用字符串 - 程序输出</p>
 </blockquote>
-<h1 id="原理剖析"><a href="#原理剖析" class="headerlink" title="原理剖析"></a>原理剖析</h1><p>…</p>
-<h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1>
+<h1 id="原理剖析"><a href="#原理剖析" class="headerlink" title="原理剖析"></a>原理剖析</h1><p>在 JVM 技术规范中，规定了<code>switch</code>语句的字节码编译方式：<strong><code>switch</code>语句会被编译为<code>tableswitch</code>与<code>lookupswitch</code>两条字节码指令</strong>，之所以使用两条字节码指令，也是为执行效率考量。</p>
+<p><strong>JVM 字节码指令<code>tableswitch</code>与<code>lookupswitch</code>只能操作<code>int</code>类型的数据</strong>，而<code>byte</code>、<code>char</code>、<code>short</code>类型数据都可以宽化转换为<code>int</code>，其他数值类型数据必须显式窄化转换为<code>int</code>类型才可以被<code>switch</code>使用（Java 不允许隐式的窄化类型转换），这是<code>switch</code>语句无法直接使用<code>long</code>类型的原因。</p>
+<h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><ul>
+<li>Java Virtual Machine Specification: <a href="https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-3.html#jvms-3.10" target="_blank" rel="noopener">https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-3.html#jvms-3.10</a></li>
+</ul>
+
                 <hr>
 <!--
                 <ul class="pager">
