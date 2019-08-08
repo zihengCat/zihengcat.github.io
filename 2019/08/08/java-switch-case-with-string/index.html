@@ -219,7 +219,8 @@ five -&gt; No token was identified
 <p><strong>JVM 字节码指令<code>tableswitch</code>与<code>lookupswitch</code>只能操作<code>int</code>类型的数据</strong>，而<code>byte</code>、<code>char</code>、<code>short</code>类型数据都可以宽化转换为<code>int</code>，其他数值类型必须显式窄化转换为<code>int</code>类型才可被<code>switch</code>使用（Java 不允许隐式窄化转换），这也是<code>switch</code>语句无法直接使用<code>long</code>类型的原因。</p>
 <p>在 Java 中，<code>String</code>是一个类，并不是基本数据类型，无法直接被<code>switch</code>语句使用。需要某种方法将<code>String</code>字符串映射为<code>int</code>类型，解决方案便是：<code>hashCode()</code>。</p>
 <p><code>hashCode()</code>方法返回对象实例的哈希值，返回值为<code>int</code>类型。<strong>Java 编译器在编译带<code>String</code>的<code>switch</code>语句时，会将<code>String</code>转换为哈希整型值，再在执行代码前加入一道<code>if</code>防卫式判断。</strong></p>
-<p>我们观察一下样例程序的字节码。</p>
+<p>我们观察一下样例程序的反编译字节码，可以看到，带<code>String</code>的<code>switch</code>语句实际上是在比较<code>String</code>的哈希值，并额外加入一道<code>if</code>判断防止哈希冲突。</p>
+<p>实际上，带<code>String</code>的<code>switch</code>语句是 Java 编译器为我们提供的”语法糖”，在 JVM 虚拟机层面并没有做任何改变。</p>
 <pre><code class="plain">...
   public static java.lang.String getResult(java.lang.String);
     Code:
@@ -305,7 +306,7 @@ five -&gt; No token was identified
 ...
 </code></pre>
 <blockquote>
-<p>代码清单：<code>javap</code>字节码反编译</p>
+<p>代码清单：样例程序<code>javap</code>字节码反编译</p>
 </blockquote>
 <h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><ul>
 <li><p>Java Virtual Machine Specification: <a href="https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-3.html#jvms-3.10" target="_blank" rel="noopener">https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-3.html#jvms-3.10</a></p>
