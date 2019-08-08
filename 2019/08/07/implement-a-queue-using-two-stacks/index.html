@@ -76,16 +76,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -222,14 +222,17 @@ public class StacksAsQueue&lt;E&gt; {
 <blockquote>
 <p>代码清单：<code>Java</code>使用栈实现队列</p>
 </blockquote>
-<pre><code class="java">import StacksAsQueue;
+<pre><code class="java">/* 导入实现类 */
+import StacksAsQueue;
 public class StacksAsQueueTest {
     public static void main(String[] args) {
         StacksAsQueue&lt;Integer&gt; stacksAsQueue = new StacksAsQueue&lt;Integer&gt;();
+        /* 入队列 */
         for (int i = 0; i &lt; 10; ++i) {
             System.out.println(&quot;Enqueue: &quot; + i);
             stacksAsQueue.enqueue(i);
         }
+        /* 出队列 */
         for (int i = 0; i &lt; 10; ++i) {
             System.out.println(&quot;Dequeue: &quot; + stacksAsQueue.dequeue());
         }
