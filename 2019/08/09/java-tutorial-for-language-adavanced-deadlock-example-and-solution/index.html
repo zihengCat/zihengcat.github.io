@@ -168,7 +168,68 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>…</p>
-<h1 id="Java-死锁（Deadlock）"><a href="#Java-死锁（Deadlock）" class="headerlink" title="Java 死锁（Deadlock）"></a>Java 死锁（Deadlock）</h1><pre><code class="java">
+<h1 id="Java-死锁（Deadlock）"><a href="#Java-死锁（Deadlock）" class="headerlink" title="Java 死锁（Deadlock）"></a>Java 死锁（Deadlock）</h1><pre><code class="java">public class DeadLockExample {
+    public Object resourceA = new Object();
+    public Object resourceB = new Object();
+    public static void main(String[] args) {
+        DeadLockExample deadLockExample = new DeadLockExample();
+        Runnable runnableA = new Runnable() {
+            @Override
+            public void run() {
+                synchronized(deadLockExample.resourceA) {
+                    System.out.printf(
+                        &quot;[INFO]: %s get resourceA&quot; + System.lineSeparator(),
+                        Thread.currentThread().getName()
+                    );
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.printf(
+                        &quot;[INFO]: %s trying to get resourceB&quot; + System.lineSeparator(),
+                        Thread.currentThread().getName()
+                    );
+                    synchronized(deadLockExample.resourceB) {
+                        System.out.printf(
+                            &quot;[INFO]: %s get resourceB&quot; + System.lineSeparator(),
+                            Thread.currentThread().getName()
+                        );
+                    }
+                }
+            }
+        };
+        Runnable runnableB = new Runnable() {
+            @Override
+            public void run() {
+                synchronized(deadLockExample.resourceB) {
+                    System.out.printf(
+                        &quot;[INFO]: %s get resourceB&quot; + System.lineSeparator(),
+                        Thread.currentThread().getName()
+                    );
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.printf(
+                        &quot;[INFO]: %s trying to get resourceA&quot; + System.lineSeparator(),
+                        Thread.currentThread().getName()
+                    );
+                    synchronized(deadLockExample.resourceA) {
+                        System.out.printf(
+                            &quot;[INFO]: %s get resourceA&quot; + System.lineSeparator(),
+                            Thread.currentThread().getName()
+                        );
+                    }
+                }
+            }
+        };
+        new Thread(runnableA).start();
+        new Thread(runnableB).start();
+    }
+}
+/* EOF */
 </code></pre>
 <blockquote>
 <p>代码清单：Java 死锁（Deadlock）样例</p>
