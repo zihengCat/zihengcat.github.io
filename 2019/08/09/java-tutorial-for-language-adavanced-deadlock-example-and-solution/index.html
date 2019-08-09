@@ -68,8 +68,8 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -84,8 +84,8 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -168,7 +168,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解 Java 死锁的基本概念，并给出一个 Java 死锁的简单示例，也讲解如何发现死锁，解决死锁问题。</p>
-<h1 id="Java-死锁（Deadlock）"><a href="#Java-死锁（Deadlock）" class="headerlink" title="Java 死锁（Deadlock）"></a>Java 死锁（Deadlock）</h1><p>在 Java 中，死锁（Deadlock）情况是指：<strong>两个或两个以上的线程持有不同系统资源的锁，线程彼此都等待获取对方的锁来完成自己的任务，但是不让出自己持有的锁，线程就会无休止等待下去。</strong></p>
+<h1 id="Java-死锁（Deadlock）"><a href="#Java-死锁（Deadlock）" class="headerlink" title="Java 死锁（Deadlock）"></a>Java 死锁（Deadlock）</h1><p>在 Java 中，死锁（Deadlock）情况是指：<strong>两个或两个以上的线程持有不同系统资源的锁，线程彼此都等待获取对方的锁来完成自己的任务，但是没有让出自己持有的锁，线程就会无休止等待下去。线程竞争的资源可以是：锁、网络连接、通知事件，磁盘、带宽，以及一切可以被称作“资源”的东西。</strong></p>
 <p><img src="./java_deadlock.png" alt="java_deadlock"></p>
 <blockquote>
 <p>图：Java 死锁示意图</p>
@@ -257,8 +257,47 @@
 <blockquote>
 <p>代码清单：程序输出</p>
 </blockquote>
-<h1 id="关联文章（Related-Topics）"><a href="#关联文章（Related-Topics）" class="headerlink" title="关联文章（Related Topics）"></a>关联文章（Related Topics）</h1><p>…</p>
-<h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><p>…</p>
+<h1 id="Java-死锁侦测"><a href="#Java-死锁侦测" class="headerlink" title="Java 死锁侦测"></a>Java 死锁侦测</h1><p><code>JDK</code>自带了一些简单好用的工具，可以帮助我们检测死锁（如：<code>jstack</code>）。</p>
+<pre><code class="bash">$ jstack $(jps -l | grep &#39;DeadLockExample&#39; | cut -f1 -d &#39; &#39;)
+</code></pre>
+<blockquote>
+<p>代码清单：使用<code>jstack</code>侦测目标 JVM 进程</p>
+</blockquote>
+<pre><code class="plain">...
+Java stack information for the threads listed above:
+===================================================
+&quot;Thread-1&quot;:
+    at DeadLockExample$2.run(DeadLockExample.java:58)
+    - waiting to lock &lt;0x000000076ab660a0&gt; (a java.lang.Object)
+    - locked &lt;0x000000076ab660b0&gt; (a java.lang.Object)
+    at java.lang.Thread.run(Thread.java:748)
+&quot;Thread-0&quot;:
+    at DeadLockExample$1.run(DeadLockExample.java:28)
+    - waiting to lock &lt;0x000000076ab660b0&gt; (a java.lang.Object)
+    - locked &lt;0x000000076ab660a0&gt; (a java.lang.Object)
+    at java.lang.Thread.run(Thread.java:748)
+
+Found 1 deadlock.
+</code></pre>
+<blockquote>
+<p>代码清单：命令输出</p>
+</blockquote>
+<p>可以看到，<code>jstack</code>已经侦测出 JVM 进程中存在线程死锁的情况，并为我们打印出了相关信息。</p>
+<p>JVM 图形化分析工具<code>jconsole</code>也可以帮助我们分析死锁情况。</p>
+<h1 id="Java-死锁预防"><a href="#Java-死锁预防" class="headerlink" title="Java 死锁预防"></a>Java 死锁预防</h1><ol>
+<li><p>以确定的顺序获锁</p>
+</li>
+<li><p>超时放弃</p>
+</li>
+<li><p>死锁检测</p>
+</li>
+</ol>
+<h1 id="关联文章（Related-Topics）"><a href="#关联文章（Related-Topics）" class="headerlink" title="关联文章（Related Topics）"></a>关联文章（Related Topics）</h1><ul>
+<li><a href="https://zihengcat.github.io/2019/07/14/java-tutorial-for-language-adavanced-create-thread/">Java 高级教程系列 - 线程创建</a></li>
+</ul>
+<h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><ul>
+<li><a href="https://juejin.im/post/5aaf6ee76fb9a028d3753534" target="_blank" rel="noopener">https://juejin.im/post/5aaf6ee76fb9a028d3753534</a></li>
+</ul>
 
                 <hr>
 <!--
