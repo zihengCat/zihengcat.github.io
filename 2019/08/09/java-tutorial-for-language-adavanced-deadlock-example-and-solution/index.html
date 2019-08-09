@@ -167,8 +167,14 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>…</p>
-<h1 id="Java-死锁（Deadlock）"><a href="#Java-死锁（Deadlock）" class="headerlink" title="Java 死锁（Deadlock）"></a>Java 死锁（Deadlock）</h1><pre><code class="java">public class DeadLockExample {
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解 Java 死锁的基本概念，并给出一个 Java 死锁的简单示例，也讲解如何发现死锁，解决死锁问题。</p>
+<h1 id="Java-死锁（Deadlock）"><a href="#Java-死锁（Deadlock）" class="headerlink" title="Java 死锁（Deadlock）"></a>Java 死锁（Deadlock）</h1><p>在 Java 中，死锁（Deadlock）情况是指：<strong>两个或两个以上的线程持有不同系统资源的锁，线程彼此都等待获取对方的锁来完成自己的任务，但是不让出自己持有的锁，线程就会无休止等待下去。</strong></p>
+<p><img src="./java_deadlock.png" alt="java_deadlock"></p>
+<blockquote>
+<p>图：Java 死锁示意图</p>
+</blockquote>
+<p>如上图所示，<code>Thread-1</code>持有资源<code>Object1</code>但是需要资源<code>Object2</code>完成自身任务，同样的，<code>Thread-2</code>持有资源<code>Object2</code>但需要<code>Object1</code>，双方都在等待对方手中的资源但都不释放自己手中的资源，从而进入死锁。</p>
+<pre><code class="java">public class DeadLockExample {
     public Object resourceA = new Object();
     public Object resourceB = new Object();
     public static void main(String[] args) {
@@ -241,10 +247,6 @@
 </code></pre>
 <blockquote>
 <p>代码清单：样例程序输出</p>
-</blockquote>
-<p><img src="./java_deadlock.png" alt="java_deadlock"></p>
-<blockquote>
-<p>图：Java 死锁示意图</p>
 </blockquote>
 <h1 id="关联文章（Related-Topics）"><a href="#关联文章（Related-Topics）" class="headerlink" title="关联文章（Related Topics）"></a>关联文章（Related Topics）</h1><p>…</p>
 <h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><p>…</p>
