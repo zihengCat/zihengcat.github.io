@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -183,7 +183,7 @@
 </li>
 <li><p>Eden 区内存将要被填满时，会发生 Minor GC 垃圾回收，将该区域内所有存活对象移动至一块 Survivor（幸存者）区，并将对象的“年龄”增加1。</p>
 </li>
-<li><p>Minor GC 垃圾回收时还会检查 Survivor 区，将区域内所有存活对象移动至另一块 Survivor 区。所以在同一时刻，总是有一块 Survivor 区是空的。</p>
+<li><p>Minor GC 垃圾回收时还会检查 Survivor 区，将区域内所有存活对象移动至另一块 Survivor 区。所以在同一时刻，总是有一块 Survivor 区是空的。Hotspot 虚拟机默认 Eden 与 Survivor 比例是8-1，即每次可用整个新生代的90%，只有一个Survivor，即1/10的内存空间会被“浪费”。</p>
 </li>
 <li><p>经过多次 GC 周期（默认为 15 次）后，仍然存活下来的对象会被转移到年老代（Old Generation）内存空间。可以通过 JVM 年龄阈值参数<code>-XX:MaxTenuringThreshold</code>来指定年轻代提升至老年代的最大 GC 周期。</p>
 </li>
