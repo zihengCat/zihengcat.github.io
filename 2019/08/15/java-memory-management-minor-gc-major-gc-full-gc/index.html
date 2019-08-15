@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -168,10 +168,24 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于 Java 程序员而言，了解 JVM 内存管理机制是非常重要的。今天我们窥探 Java 内存管理机制，了解 JVM 内存模型各部分之间的区别与联系。</p>
-<h1 id="JVM-堆（Heap）内存模型"><a href="#JVM-堆（Heap）内存模型" class="headerlink" title="JVM 堆（Heap）内存模型"></a>JVM 堆（Heap）内存模型</h1><p><img src="./java-heap-memory-model.png" alt="java-heap-memory-model"></p>
+<h1 id="JVM-堆（Heap）内存模型"><a href="#JVM-堆（Heap）内存模型" class="headerlink" title="JVM 堆（Heap）内存模型"></a>JVM 堆（Heap）内存模型</h1><p>如图所示，JVM 将堆内存被划分为两块不同的部分：年轻代（Young Generation）与老年代（Old Generation）。</p>
+<p><img src="./java-heap-memory-model.png" alt="java-heap-memory-model"></p>
 <blockquote>
 <p>图：JVM 堆（Heap）内存模型 - 示意图</p>
 </blockquote>
+<h1 id="年轻代（Young-Generation）内存管理"><a href="#年轻代（Young-Generation）内存管理" class="headerlink" title="年轻代（Young Generation）内存管理"></a>年轻代（Young Generation）内存管理</h1><p>JVM 年轻代内存一般存放新出生的对象，也就是程序员们通过<code>new</code>运算符创建出来的新对象。当年轻代内存空间被用完时，垃圾回收器（GC）就会进行内存回收。这一垃圾回收的过程被称为：<strong>Minor GC。</strong></p>
+<p>年轻代又被划分为3个部分: <strong>Eden 区与两块 Survivor 区。</strong></p>
+<p>JVM 的年轻代内存空间有如下一些要点。</p>
+<ul>
+<li><p>大部分新生对象都存放在 Eden（伊甸园）区。</p>
+</li>
+<li><p>Eden 区内存将要被填满时，会发生 Minor GC 垃圾回收，将该区域内所有存活对象移动至其中一块 Survivor 区。</p>
+</li>
+<li><p>Minor GC 垃圾回收还会检查 Survivor 区，如果该区域内存快满了，就将区域内所有存活对象移动至另一块 Survivor 区。所以，在同一时刻，总有一块 Survivor 区是空的。</p>
+</li>
+<li><p>在经过多次 GC 周期后，仍然存活下来的对象会被转移到年老代（Old Generation）内存空间。可以通过设定 JVM 年龄阈值参数<code>-XX:MaxTenuringThreshold</code>来指定。</p>
+</li>
+</ul>
 <h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1>
                 <hr>
 <!--
