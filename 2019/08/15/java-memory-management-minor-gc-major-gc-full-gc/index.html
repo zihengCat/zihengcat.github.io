@@ -173,7 +173,7 @@
 <blockquote>
 <p>图：JVM 堆（Heap）内存模型 - 示意图</p>
 </blockquote>
-<h1 id="年轻代（Young-Generation）内存管理"><a href="#年轻代（Young-Generation）内存管理" class="headerlink" title="年轻代（Young Generation）内存管理"></a>年轻代（Young Generation）内存管理</h1><p>JVM 年轻代内存一般存放新出生的对象，也就是程序员们通过<code>new</code>运算符创建出来的新对象。当年轻代内存空间被用完时，垃圾回收器（GC）就会进行内存回收。这一垃圾回收的过程被称为：<strong>Minor GC。</strong></p>
+<h1 id="年轻代（Young-Generation）内存管理"><a href="#年轻代（Young-Generation）内存管理" class="headerlink" title="年轻代（Young Generation）内存管理"></a>年轻代（Young Generation）内存管理</h1><p>JVM 年轻代内存一般存放新出生的对象，也就是通过<code>new</code>运算符创建出来的新对象。当年轻代内存空间被用完时，垃圾回收器（GC）就会进行内存回收。这一垃圾回收的过程被称为：<strong>Minor GC。</strong></p>
 <p>年轻代又被划分为3个部分: <strong>Eden 区与两块 Survivor 区。</strong></p>
 <p>JVM 的年轻代内存空间有如下一些要点。</p>
 <ul>
