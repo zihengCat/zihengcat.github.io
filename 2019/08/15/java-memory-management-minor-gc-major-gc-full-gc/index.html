@@ -183,7 +183,7 @@
 </li>
 <li><p>Minor GC 垃圾回收还会检查 Survivor 区，如果该区域内存快满了，就将区域内所有存活对象移动至另一块 Survivor 区。所以，在同一时刻，总有一块 Survivor 区是空的。</p>
 </li>
-<li><p>在经过多次 GC 周期后，仍然存活下来的对象会被转移到年老代（Old Generation）内存空间。可以通过设定 JVM 年龄阈值参数<code>-XX:MaxTenuringThreshold</code>来指定。</p>
+<li><p>在经过多次 GC 周期后，仍然存活下来的对象会被转移到年老代（Old Generation）内存空间。可以通过 JVM 年龄阈值参数<code>-XX:MaxTenuringThreshold</code>来指定年轻代提升至老年代的最大 GC 周期。</p>
 </li>
 </ul>
 <h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1>
