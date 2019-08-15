@@ -167,7 +167,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于 Java 程序员而言，了解 JVM 内存管理机制是非常重要的。今天我们窥探 Java 内存管理机制，了解 JVM 内存模型各部分之间的区别与联系。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于 Java 程序员而言，了解 JVM 内存管理机制是非常重要的。今天，我们来了解 Minor GC，Major GC，Full GC 之间的区别与联系。</p>
 <h1 id="JVM-堆（Heap）内存模型"><a href="#JVM-堆（Heap）内存模型" class="headerlink" title="JVM 堆（Heap）内存模型"></a>JVM 堆（Heap）内存模型</h1><p>如图所示，JVM 将堆内存被划分为两块不同的部分：年轻代（Young Generation）与老年代（Old Generation）。</p>
 <p><img src="./java-heap-memory-model.png" alt="java-heap-memory-model"></p>
 <blockquote>
@@ -186,7 +186,18 @@
 <li><p>在经过多次 GC 周期后，仍然存活下来的对象会被转移到年老代（Old Generation）内存空间。可以通过 JVM 年龄阈值参数<code>-XX:MaxTenuringThreshold</code>来指定年轻代提升至老年代的最大 GC 周期。</p>
 </li>
 </ul>
-<h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1>
+<h1 id="老年代（Old-Generation）内存管理"><a href="#老年代（Old-Generation）内存管理" class="headerlink" title="老年代（Old Generation）内存管理"></a>老年代（Old Generation）内存管理</h1><p>老年代内存空间里包含了长期存活的对象与经过多次 Minor GC 依然存活下来的对象。在老年代内存被占满时，就会进行垃圾回收。在老年代区域发生的垃圾回收被称为：<strong>Major GC</strong>。这一 GC 过程通常也会花费更长的时间。</p>
+<h1 id="Major-GC-与-Full-GC"><a href="#Major-GC-与-Full-GC" class="headerlink" title="Major GC 与 Full GC"></a>Major GC 与 Full GC</h1><p>JVM 技术规范与垃圾收集领域内的论文都没有对 Major GC 与 Full GC 作出相关的定义或描述，这也启示我们，比起 GC 各阶段叫什么，我们更应该关注 GC 给应用程序带来的影响。</p>
+<ul>
+<li><p>Major GC：清理老年代内存空间。</p>
+</li>
+<li><p>Full GC：针对新生代、老生代、元空间（Metaspace，Java 8 版本取代 PermGen ）的全局范围 GC 。</p>
+</li>
+</ul>
+<h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><blockquote>
+<p>Minor GC vs Major GC vs Full GC: <a href="https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc" target="_blank" rel="noopener">https://plumbr.io/blog/garbage-collection/minor-gc-vs-major-gc-vs-full-gc</a></p>
+</blockquote>
+
                 <hr>
 <!--
                 <ul class="pager">
