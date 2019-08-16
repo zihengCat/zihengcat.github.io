@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -168,14 +168,14 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对于 Java 程序员而言，了解 JVM 内存管理机制是非常重要的。今天，我们来了解 Minor GC，Major GC，Full GC 之间的区别与联系。</p>
-<h1 id="JVM-堆（Heap）内存模型"><a href="#JVM-堆（Heap）内存模型" class="headerlink" title="JVM 堆（Heap）内存模型"></a>JVM 堆（Heap）内存模型</h1><p>如图所示，JVM 将堆内存被划分为两块不同的部分：年轻代（Young Generation）与老年代（Old Generation）。</p>
+<h1 id="JVM-堆（Heap）内存模型"><a href="#JVM-堆（Heap）内存模型" class="headerlink" title="JVM 堆（Heap）内存模型"></a>JVM 堆（Heap）内存模型</h1><p>如图所示，JVM 将堆内存被划分为两块不同的部分：新生代（Young Generation）与老年代（Old Generation）。</p>
 <p><img src="./java-heap-memory-model.png" alt="java-heap-memory-model"></p>
 <blockquote>
 <p>图：JVM 堆（Heap）内存模型 - 示意图</p>
 </blockquote>
-<h1 id="年轻代（Young-Generation）内存管理"><a href="#年轻代（Young-Generation）内存管理" class="headerlink" title="年轻代（Young Generation）内存管理"></a>年轻代（Young Generation）内存管理</h1><p>JVM 年轻代内存一般存放新出生的对象，也就是通过<code>new</code>运算符创建出来的新对象。当年轻代内存空间被用完时，垃圾回收器（GC）就会进行内存回收。这一垃圾回收的过程被称为：<strong>Minor GC。</strong></p>
-<p>年轻代又被划分为3个部分: <strong>Eden 区与两块 Survivor 区。</strong></p>
-<p>JVM 的年轻代内存空间有如下一些要点。</p>
+<h1 id="新生代（Young-Generation）内存管理"><a href="#新生代（Young-Generation）内存管理" class="headerlink" title="新生代（Young Generation）内存管理"></a>新生代（Young Generation）内存管理</h1><p>JVM 新生代内存一般存放新出生的对象，也就是通过<code>new</code>运算符创建出来的新对象。当新生代内存空间将要被用完时，垃圾回收器（GC）就会进行内存回收。这一垃圾回收的过程被称为：<strong>Minor GC。</strong></p>
+<p>新生代又被划分为3个部分: <strong>Eden 区与两块 Survivor 区。</strong></p>
+<p>JVM 的新生代内存空间有如下一些要点。</p>
 <ul>
 <li><p>大部分新生对象都存放在 Eden（伊甸园）区。</p>
 </li>
@@ -183,13 +183,13 @@
 </li>
 <li><p>Eden 区内存将要被填满时，会发生 Minor GC 垃圾回收，将该区域内所有存活对象移动至一块 Survivor（幸存者）区，并将对象的“年龄”增加1。</p>
 </li>
-<li><p>Minor GC 垃圾回收时还会检查 Survivor 区，将区域内所有存活对象移动至另一块 Survivor 区。所以在同一时刻，总是有一块 Survivor 区是空的。Hotspot 虚拟机默认 Eden 与 Survivor 比例是8-1，即每次可用整个新生代的90%，只有一个Survivor，即1/10的内存空间会被“浪费”。</p>
+<li><p>Minor GC 垃圾回收时还会检查 Survivor 区，将区域内所有存活对象移动至另一块 Survivor 区。所以在同一时刻，总是有一块 Survivor 区是空的。Hotspot 虚拟机默认 Eden 与 Survivor 比例是8-1，即每次可用整个新生代的90%，只有一个 Survivor，即1/10的内存空间会被“浪费”。</p>
 </li>
-<li><p>经过多次 GC 周期（默认为 15 次）后，仍然存活下来的对象会被转移到年老代（Old Generation）内存空间。可以通过 JVM 年龄阈值参数<code>-XX:MaxTenuringThreshold</code>来指定年轻代提升至老年代的最大 GC 周期。</p>
+<li><p>经过多次 GC 周期（默认为 15 次）后，仍然存活下来的对象会被转移到年老代（Old Generation）内存空间。可以通过 JVM 年龄阈值参数<code>-XX:MaxTenuringThreshold</code>来指定新生代提升至老年代的最大 GC 周期。</p>
 </li>
 </ul>
 <h1 id="老年代（Old-Generation）内存管理"><a href="#老年代（Old-Generation）内存管理" class="headerlink" title="老年代（Old Generation）内存管理"></a>老年代（Old Generation）内存管理</h1><p>老年代内存空间里包含了长期存活的对象与经过多次 Minor GC 依然存活下来的对象。在老年代内存被占满时，就会进行垃圾回收。在老年代区域发生的垃圾回收被称为：<strong>Major GC</strong>。这一 GC 过程通常也会花费更长的时间（慢 10 倍以上）。</p>
-<h1 id="Major-GC-与-Full-GC"><a href="#Major-GC-与-Full-GC" class="headerlink" title="Major GC 与 Full GC"></a>Major GC 与 Full GC</h1><p>JVM 技术规范与垃圾收集领域内的论文都没有对 Major GC 与 Full GC 作出相关的定义或描述，这也启示我们，比起 GC 各阶段叫什么，我们更应该关注 GC 给应用程序带来的影响。</p>
+<h1 id="Major-GC-与-Full-GC"><a href="#Major-GC-与-Full-GC" class="headerlink" title="Major GC 与 Full GC"></a>Major GC 与 Full GC</h1><p>JVM 技术规范与垃圾收集领域内的论文都没有对 Major GC 与 Full GC 作出相关的定义或描述，这也启示我们，比起 GC 各阶段分别叫什么，我们更应该关注 GC 垃圾回收给应用程序带来的影响。</p>
 <ul>
 <li><p>Major GC：清理老年代内存空间。</p>
 </li>
