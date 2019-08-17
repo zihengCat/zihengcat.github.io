@@ -184,10 +184,14 @@ import java.util.LinkedList;
  * @param &lt;E&gt;
  */
 public class StacksAsQueue&lt;E&gt; {
-    /* 入队元素栈 */
-    private Deque&lt;E&gt; inputStack = new LinkedList&lt;E&gt;();
-    /* 出队元素栈 */
-    private Deque&lt;E&gt; outputStack = new LinkedList&lt;E&gt;();
+    private Deque&lt;E&gt; inputStack;
+    private Deque&lt;E&gt; outputStack;
+    public StacksAsQueue() {
+        /* 入队元素栈 */
+        inputStack = new LinkedList&lt;E&gt;();
+        /* 出队元素栈 */
+        outputStack = new LinkedList&lt;E&gt;();
+    }
     /**
      * 元素入队
      * @param e
