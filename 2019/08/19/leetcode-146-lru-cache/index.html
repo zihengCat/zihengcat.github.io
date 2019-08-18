@@ -334,6 +334,7 @@ public class LRUCache {
         cache.put(node.getKey(), node);
     }
     private void removeTail() {
+        /* 移除链表尾部节点 */
         removeNode(tail.getPrev());
     }
 }
