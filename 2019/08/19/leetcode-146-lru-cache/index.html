@@ -323,7 +323,7 @@ public class LRUCache {
         head.getNext().setPrev(node);
         head.setNext(node);
         /* 插入或更新哈希表 */
-        cache.put(node.getKey(), node)
+        cache.put(node.getKey(), node);
     }
     private void popTail() {
         removeNode(tail.getPrev());
