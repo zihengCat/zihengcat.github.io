@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -202,7 +202,51 @@ cache.get(4);       // returns 4
 </blockquote>
 <h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>LRU（Least Recently Used，最近最少使用）是一种缓存算法，根据数据的历史访问记录来淘汰数据，其核心思想是：如果数据最近被访问过，那么将来被访问的几率也更高。</p>
 <p>该题要求我们设计一个 LRU 缓存，支持缓存数据的获取与设置，缓存容量达到上限时，淘汰<strong>最近最少使用</strong>的缓存数据。题目还要求，缓存数据的获取与设置算法复杂度均为$O(1)$。</p>
-<p>为了实现获取与设置算法复杂度均为$O(1)$的 LRU 缓存，需要用到<strong>双向链表（LinkedList）+ 哈希表（HashMap）</strong>两种数据结构配合，哈希表用于以$O(1)$的复杂度插入与获取数据，双向链表使原本无序的哈希表有序排列，最新插入与访问的数据移动到双向链表头部<code>head</code>，淘汰数据即淘汰链表尾部<code>tail</code>数据。</p>
+<p>为了实现获取与设置算法复杂度均为$O(1)$的 LRU 缓存，需要用到<strong>双向链表（LinkedList）+ 哈希表（HashMap）</strong>两种数据结构配合，哈希表用于以$O(1)$的算法复杂度获取与插入数据，双向链表使原本无序的哈希表有序排列，最新插入与访问的数据会被移动到双向链表头部<code>head</code>，淘汰数据即淘汰链表尾部<code>tail</code>数据。</p>
+<pre><code class="java">public class LRUCache {
+    /* 双向链表节点 */
+    private class DLNode {
+        private int key;
+        private int val;
+        private DLNode prev;
+        private DLNode next;
+        public DLNode() {}
+        public DLNode(int key, int val) {
+            this(key, val, null, null);
+        }
+        public DLNode(int key, int val, DLNode prev, DLNode next) {
+            this.key = key;
+            this.val = val;
+            this.prev = prev;
+            this.next = next;
+        }
+        public int getKey() {
+            return this.key;
+        }
+        public void setKey(int key) {
+            this.key = key;
+        }
+        public int getVal() {
+            return this.val;
+        }
+        public void setVal(int val) {
+            this.val = val;
+        }
+        public DLNode getPrev() {
+            return this.prev;
+        }
+        public void setPrev(DLNode prev) {
+            this.prev = prev;
+        }
+        public DLNode getNext() {
+            return this.next;
+        }
+        public void setNext(DLNode next) {
+            this.next = next;
+        }
+    }
+}
+</code></pre>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>「漫画：什么是LRU算法？」: <a href="https://www.tuicool.com/articles/yyu2quN" target="_blank" rel="noopener">https://www.tuicool.com/articles/yyu2quN</a></p>
 </li>
