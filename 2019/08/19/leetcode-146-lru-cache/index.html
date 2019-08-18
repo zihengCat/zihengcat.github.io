@@ -264,7 +264,10 @@ public class LRUCache {
     private DLNode head;
     /* 双向链表尾节点 */
     private DLNode tail;
-    /* 构造函数 */
+    /**
+     * 构造函数
+     * @param capacity
+     */
     public LRUCache(int capacity) {
         /* 初始化缓存容量 */
         this.capacity = capacity;
@@ -277,6 +280,11 @@ public class LRUCache {
         head.setNext(tail);
         tail.setPrev(head);
     }
+    /**
+     * 获取缓存值，缓存未命中返回{@code -1}。
+     * @param key
+     * @return value
+     */
     public int get(int key) {
         DLNode node = cache.get(key);
         if (null == node) {
@@ -288,6 +296,12 @@ public class LRUCache {
         /* 缓存命中 */
         return node.getVal();
     }
+    /**
+     * 设置/更新缓存。
+     * @param key
+     * @param value
+     * @return void
+     */
     public void put(int key, int value) {
         DLNode node = cache.get(key);
         /* 缓存节点已存在 -&gt; 更新数据
@@ -309,10 +323,20 @@ public class LRUCache {
             moveToHead(node);
         }
     }
+    /**
+     * 将缓存数据节点移动到链表头部。
+     * @param node
+     * @return void
+     */
     private void moveToHead(DLNode node) {
         removeNode(node);
         addToHead(node);
     }
+    /**
+     * 从链表/哈希表中移除缓存数据节点。
+     * @param node
+     * @return void
+     */
     private void removeNode(DLNode node) {
         /* 从双向链表中移除节点 */
         DLNode prev = node.getPrev();
@@ -324,6 +348,11 @@ public class LRUCache {
         /* 从哈希表中移除节点 */
         cache.remove(node.getKey());
     }
+    /**
+     * 将缓存数据节点加入到链表/哈希表。
+     * @param node
+     * @return void
+     */
     private void addToHead(DLNode node) {
         /* 插入到双向链表头部 */
         node.setPrev(head);
@@ -333,6 +362,11 @@ public class LRUCache {
         /* 插入或更新哈希表 */
         cache.put(node.getKey(), node);
     }
+    /**
+     * 移除链表尾部缓存数据节点。
+     * @param void
+     * @return void
+     */
     private void removeTail() {
         /* 移除链表尾部节点 */
         removeNode(tail.getPrev());
