@@ -200,9 +200,9 @@ cache.get(4);       // returns 4
 <blockquote>
 <p>例：样例说明</p>
 </blockquote>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>LRU（Least Recently Used，最近最少使用）是一种缓存算法，根据数据的历史访问记录来淘汰数据，其核心思想是：如果数据最近被访问过，那么将来被访问的几率也更高。</p>
-<p>该题要求我们设计一个 LRU 缓存，支持缓存数据的获取与设置，缓存容量达到上限时，淘汰<strong>最近最少使用</strong>的缓存数据。题目还要求，缓存数据的获取与设置算法复杂度均为$O(1)$。</p>
-<p>为了实现获取与设置算法复杂度均为$O(1)$的 LRU 缓存，需要用到<strong>双向链表（LinkedList）+ 哈希表（HashMap）</strong>两种数据结构配合，哈希表用于以$O(1)$的算法复杂度获取与插入数据，双向链表使原本无序的哈希表有序排列，最新插入与访问的数据会被移动到双向链表头部<code>head</code>，淘汰数据即淘汰链表尾部<code>tail</code>数据。</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>LRU（Least Recently Used，最近最少使用）是一种缓存算法，根据数据的历史访问记录来淘汰数据，其核心思想是：<strong>如果数据最近被访问过，那么将来被访问的几率也更高</strong>。</p>
+<p>该题要求我们设计一个 LRU 缓存，支持缓存数据的获取与设置，缓存容量达到上限时，淘汰<strong>最近最少使用</strong>的缓存数据。题目还要求，缓存数据的获取与设置算法复杂度应该为$O(1)$。</p>
+<p>为了实现获取与设置算法复杂度均为$O(1)$的 LRU 缓存，需要<strong>双向链表（LinkedList）+ 哈希表（HashMap）</strong>两种数据结构配合使用。哈希表用于以$O(1)$的算法复杂度获取与插入数据，双向链表使原本无序的哈希表有序排列，最新插入与访问的数据会被移动到双向链表头部<code>head</code>，缓存容量满时淘汰数据即淘汰链表尾部<code>tail</code>数据。</p>
 <pre><code class="java">import java.util.Map;
 import java.util.HashMap;
 /**
