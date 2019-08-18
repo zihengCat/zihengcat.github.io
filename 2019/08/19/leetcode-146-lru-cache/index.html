@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/archives/">
                                 Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -272,7 +272,7 @@ public class LRUCache {
         head.setNext(tail);
         tail.setPrev(head);
     }
-    public int get(key) {
+    public int get(int key) {
         DLNode node = cache.get(key);
         if (null == node) {
             /* 无缓存命中 */
@@ -288,13 +288,11 @@ public class LRUCache {
             /* 缓存容量已满，淘汰数据 */
             if (cache.size() &gt;= capacity) {
                 /* 移除哈希表/双向链表尾部数据节点 */
-                cache.remove(popTail().getKey());
+                popTail();
             }
             /* 建立新缓存数据节点 */
             DLNode newNode = new DLNode(key, value);
-            /* 加入到哈希表 */
-            cache.put(key, newNode);
-            /* 加入到双向链表 */
+            /* 加入到链表头部 */
             addToHead(newNode);
         } else {
             /* 更新节点数据 */
@@ -324,13 +322,11 @@ public class LRUCache {
         node.setNext(head.getNext());
         head.getNext().setPrev(node);
         head.setNext(node);
-        /* 插入/更新哈希表 */
+        /* 插入或更新哈希表 */
         cache.put(node.getKey(), node)
     }
-    private DLNode popTail() {
-        DLNode node = tail.getPrev();
-        removeNode(node);
-        return node;
+    private void popTail() {
+        removeNode(tail.getPrev());
     }
 }
 </code></pre>
