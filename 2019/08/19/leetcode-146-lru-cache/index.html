@@ -209,12 +209,17 @@ import java.util.HashMap;
  * LRU 缓存
  */
 public class LRUCache {
-    /* 缓存节点 */
+    /* 内部缓存节点 */
     private class DLNode {
+        /* 键值对 -&gt; 键 */
         private int key;
+        /* 键值对 -&gt; 值 */
         private int val;
+        /* 前驱节点 */
         private DLNode prev;
+        /* 后继节点 */
         private DLNode next;
+        /* 构造函数 */
         public DLNode() {}
         public DLNode(int key, int val) {
             this(key, val, null, null);
@@ -280,15 +285,18 @@ public class LRUCache {
         }
         /* 移动节点至双向链表头部 */
         moveToHead(node);
+        /* 缓存命中 */
         return node.getVal();
     }
     public void put(int key, int value) {
         DLNode node = cache.get(key);
+        /* 缓存节点已存在 -&gt; 更新数据
+           缓存节点不存在 -&gt; 插入数据 */
         if (null == node) {
             /* 缓存容量已满，淘汰数据 */
             if (cache.size() &gt;= capacity) {
-                /* 移除哈希表/双向链表尾部数据节点 */
-                popTail();
+                /* 移除哈希表/双向链表尾部缓存数据节点 */
+                removeTail();
             }
             /* 建立新缓存数据节点 */
             DLNode newNode = new DLNode(key, value);
@@ -325,7 +333,7 @@ public class LRUCache {
         /* 插入或更新哈希表 */
         cache.put(node.getKey(), node);
     }
-    private void popTail() {
+    private void removeTail() {
         removeNode(tail.getPrev());
     }
 }
