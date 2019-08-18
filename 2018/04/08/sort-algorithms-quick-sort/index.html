@@ -204,10 +204,26 @@
 /* EOF */
 </code></pre>
 <blockquote>
-<p>代码清单：快速排序（Quick Sort）<code>Java</code>实现</p>
+<p>代码清单：快速排序（Quick Sort）- <code>Java</code>实现</p>
+</blockquote>
+<pre><code class="java">import java.util.Arrays;
+import QuickSort;
+public class QuickSortTest {
+    public static void main(String[] args) {
+        int[] arr = new int[]{2, 3, 1, 6, 8, 9, 5, 0, 4, 7, 0};
+        QuickSort.qsort(arr, 0, arr.length - 1);
+        System.out.println(
+            Arrays.toString(arr)
+        );
+    }
+}
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码清单：快速排序（Quick Sort）- 测试代码</p>
 </blockquote>
 <h1 id="参考资料（References）"><a href="#参考资料（References）" class="headerlink" title="参考资料（References）"></a>参考资料（References）</h1><ul>
-<li><a href="https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html" target="_blank" rel="noopener">https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html</a></li>
+<li>极客学院：<a href="https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html" target="_blank" rel="noopener">https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html</a></li>
 </ul>
 
                 <hr>
