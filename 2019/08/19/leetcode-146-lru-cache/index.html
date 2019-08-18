@@ -245,6 +245,27 @@ cache.get(4);       // returns 4
             this.next = next;
         }
     }
+    /* 哈希表数据结构 */
+    private Map&lt;Integer, DLNode&gt; cache;
+    /* 缓存容量 */
+    private int capacity;
+    /* 双向链表头节点 */
+    private DLNode head;
+    /* 双向链表尾节点 */
+    private DLNode tail;
+    public LRUCache(int capacity) {
+        /* 初始化缓存容量 */
+        this.capacity = capacity;
+        /* 初始化哈希表 */
+        this.cache = new HashMap&lt;Integer, DLNode&gt;(capacity);
+        /* 初始化双向链表头尾节点 */
+        this.head = new DLNode();
+        this.tail = new DLNode();
+        /* 连接头尾节点 */
+        head.setNext(tail);
+        tail.setPrev(head);
+    }
+
 }
 </code></pre>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
