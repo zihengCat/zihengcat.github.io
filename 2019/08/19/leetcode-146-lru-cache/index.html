@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/archives/">
                                 Archives
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/tags/">
-                                Tags
                             </a>
                         </li>
                         
@@ -209,7 +209,7 @@ import java.util.HashMap;
  * LRU 缓存
  */
 public class LRUCache {
-    /* 双向链表节点 */
+    /* 缓存节点 */
     private class DLNode {
         private int key;
         private int val;
@@ -225,6 +225,7 @@ public class LRUCache {
             this.prev = prev;
             this.next = next;
         }
+        /* Setter &amp; Getter */
         public int getKey() {
             return this.key;
         }
@@ -286,10 +287,10 @@ public class LRUCache {
         if (null == node) {
             /* 缓存容量已满，淘汰数据 */
             if (cache.size() &gt;= capacity) {
-                /* 删除双向链表尾部数据节点 */
+                /* 移除哈希表/双向链表尾部数据节点 */
                 cache.remove(popTail().getKey());
             }
-            /* 建立新缓存节点 */
+            /* 建立新缓存数据节点 */
             DLNode newNode = new DLNode(key, value);
             /* 加入到哈希表 */
             cache.put(key, newNode);
@@ -302,8 +303,35 @@ public class LRUCache {
             moveToHead(node);
         }
     }
-
-
+    private void moveToHead(DLNode node) {
+        removeNode(node);
+        addToHead(node);
+    }
+    private void removeNode(DLNode node) {
+        /* 从双向链表中移除节点 */
+        DLNode prev = node.getPrev();
+        DLNode next = node.getNext();
+        prev.setNext(next);
+        next.setPrev(prev);
+        node.setPrev(null);
+        node.setNext(null);
+        /* 从哈希表中移除节点 */
+        cache.remove(node.getKey());
+    }
+    private void addToHead(DLNode node) {
+        /* 插入到双向链表头部 */
+        node.setPrev(head);
+        node.setNext(head.getNext());
+        head.getNext().setPrev(node);
+        head.setNext(node);
+        /* 插入/更新哈希表 */
+        cache.put(node.getKey(), node)
+    }
+    private DLNode popTail() {
+        DLNode node = tail.getPrev();
+        removeNode(node);
+        return node;
+    }
 }
 </code></pre>
 <blockquote>
