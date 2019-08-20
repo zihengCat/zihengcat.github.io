@@ -168,7 +168,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天看到一个面试问题：<strong>一个整型数如何转换为字符串，请手动实现一下</strong>。</p>
-<h1 id="整型数转换字符串"><a href="#整型数转换字符串" class="headerlink" title="整型数转换字符串"></a>整型数转换字符串</h1><p>整数转字符串正是<code>C</code>语言标准库的<code>itoa()</code>函数，要求不使用语言标准库，手写该函数。实现思路非常简单：<strong>整数对其基数取余得到余数，直至除尽；余数加上<code>&#39;0&#39;</code>（ASCII 码：48）转为字符型拼接即得到整数的字符串形式</strong>。</p>
+<h1 id="整型数转换字符串"><a href="#整型数转换字符串" class="headerlink" title="整型数转换字符串"></a>整型数转换字符串</h1><p>整数转字符串正是<code>C</code>语言标准库的<code>itoa()</code>函数，要求不使用语言标准库，手写实现该函数。思路非常简单：<strong>整数对其基数（Base）取余得到余数（Remainder），余数加上<code>&#39;0&#39;</code>（ASCII 码：48）转为字符型后拼接字符串，直至除尽。</strong>。</p>
 <pre><code class="java">public class IntegerToString {
     public static String itoa(int num, int base) {
         /* 处理`0`值 */
