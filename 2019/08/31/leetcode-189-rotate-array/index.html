@@ -290,7 +290,7 @@ k                               : 3
 <blockquote>
 <p>代码清单：三步翻转法（<code>Java</code>实现）</p>
 </blockquote>
-<p>说明一下<code>k = k % nums.length</code>语句的作用，当输入 <em>k</em> 大于等于数组长度时，会出现冗余操作。</p>
+<p>说明一下<code>k = k % nums.length</code>语句的作用，当输入 <em>k</em> 大于等于数组长度时，会出现冗余操作，而且过长的 <em>k</em> 值还会造成数组越界的情况出现。</p>
 <pre><code class="plain">Input [1,2,3], k=5:
 When k=0, it returns [1,2,3].
 When k=1, it returns [3,1,2].
