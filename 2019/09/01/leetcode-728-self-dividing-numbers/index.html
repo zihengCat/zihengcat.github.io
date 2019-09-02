@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -166,7 +166,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录 <em>LeetCode - 728. 自整除数（Self Dividing Numbers）</em> 问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>所谓自整除数（Self Dividing Numbers）是指对自身每一位都能整除的数。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>所谓自整除数（Self Dividing Numbers），是指对自身每一位都能整除的数。</p>
 <p>例如，128 就是一个自整除数，因为：<code>128 % 1 == 0</code>，<code>128 % 2 == 0</code>，<code>128 % 8 == 0</code>。</p>
 <p>当然，一个自整除数不允许含有0位（除数不能为<code>0</code>）。</p>
 <p>给出整数序列的上下边界（包含边界），输出该整数序列中所有的自整除数。</p>
@@ -178,7 +178,7 @@ Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]
 </blockquote>
 <p>注意：</p>
 <p>输入参数的上下边界为：<code>1 &lt;= left &lt;= right &lt;= 10000</code></p>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>比较简单的一道题，问题描述已经讲得很清楚了，代码实现出判断自整除数的逻辑，并注意输入参数的边界范围与除数为零的情况就可以啦。</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>比较简单的一道题，问题描述已经讲得很清楚了，代码实现出<strong>判断自整除数的逻辑</strong>，并注意<strong>输入参数的边界范围</strong>与<strong>除数为零</strong>的情况就可以啦。</p>
 <pre><code class="java">import java.util.List;
 import java.util.ArrayList;
 public class Solution {
