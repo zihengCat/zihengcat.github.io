@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/about/">
                                 About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/tags/">
-                                Tags
                             </a>
                         </li>
                         
@@ -191,7 +191,71 @@ Output:
 <blockquote>
 <p>图：展开单层双向链表</p>
 </blockquote>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>…</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>给出异化双向链表，链表节点可能指向另一子链表。解决该问题的核心思路：<strong>遍历父链表（最上层链表），一旦发现节点存在子链表，即将子链表与父链表连接起来</strong>。</p>
+<p>父子链表连接操作步骤：</p>
+<ol>
+<li><p>找到子链表尾节点</p>
+</li>
+<li><p>连接子链表[尾节点]与父链表[后继节点]</p>
+</li>
+<li><p>连接子链表[头节点]与父链表[当前节点]</p>
+</li>
+</ol>
+<pre><code class="java">/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public Node prev;
+    public Node next;
+    public Node child;
+
+    public Node() {}
+
+    public Node(int _val,Node _prev,Node _next,Node _child) {
+        val = _val;
+        prev = _prev;
+        next = _next;
+        child = _child;
+    }
+};
+*/
+public class Solution {
+    public Node flatten(Node head) {
+        if (head == null) {
+            return head;
+        }
+        /* Using a pointer */
+        Node p = head;
+        while (p != null) {
+            /* CASE: the node has child */
+            if (p.child != null) {
+                Node childNode = p.child;
+                /* Find the tail node of child doubly linked list */
+                while (childNode.next != null) {
+                    childNode = childNode.next;
+                }
+                /* Connect tail with p.next, if it is not null */
+                childNode.next = p.next;
+                if (p.next != null) {
+                    p.next.prev = childNode;
+                }
+                /* Connect p with p.child, and remove p.child */
+                p.next = p.child;
+                p.child.prev = p;
+                p.child = null;
+            } else {
+                /* CASE: if no child, just move forward */
+                p = p.next;
+            }
+        }
+        return head;
+    }
+}
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码清单：多层双向链表展开（<code>Java</code>实现）</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>「LeetCode（Flatten a Multilevel Doubly Linked List）」：<a href="https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/" target="_blank" rel="noopener">https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/</a></li>
 </ul>
