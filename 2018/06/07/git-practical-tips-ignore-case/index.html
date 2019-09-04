@@ -8,7 +8,7 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/06/07/Git实用技巧-区分文件名大小写/">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/06/07/git-practical-tips-ignore-case/">
     <title>
         
           Git 实用技巧 - 区分文件名大小写 - zihengCat
@@ -146,7 +146,7 @@
                         
                     </div>
                     <h1>Git 实用技巧 - 区分文件名大小写</h1>
-                    <h2 class="subheading"></h2>
+                    <h2 class="subheading">Git Practical Tips - Ignore Case</h2>
                     <span class="meta">
                         Posted by zihengCat on
                         2018-06-07
@@ -171,9 +171,18 @@
 <pre><code class="bash">$ git config core.ignorecase false
 </code></pre>
 <blockquote>
-<p>代码清单：在<code>git</code>中启用大小写敏感模式</p>
+<p>代码清单：<code>git</code>启用大小写敏感模式</p>
 </blockquote>
-<p>或者，在默认配置「文件名大小写不敏感」的情况下，使用<code>git mv</code>命令来修改文件名，也可以让<code>git</code>侦测到文件名称的变动。</p>
+<p>也可以加入<code>--global</code>参数将配置项写入<code>.gitconfig</code>全局配置文件中。</p>
+<pre><code class="plain">...
+[core]
+        ignorecase = false
+...
+</code></pre>
+<blockquote>
+<p>代码清单：<code>.gitconfig</code>大小写敏感模式</p>
+</blockquote>
+<p>在默认配置「文件名大小写不敏感」的情况下，使用<code>git mv</code>命令来修改文件名，也可以让<code>git</code>侦测到文件名称的变动。</p>
 <pre><code class="bash">$ git config core.ignorecase true
 $ git mv &lt;old_name&gt; &lt;new_name&gt;
 </code></pre>
