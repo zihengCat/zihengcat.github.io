@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/tags/">
                                 Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -151,6 +151,31 @@
          col-xs-12
          post-container">
     <!-- Main Content -->
+
+<div class="post-preview">
+
+    <a href="/2019/08/01/design-patterns-singleton/">
+        <h2 class="post-title">
+            设计模式 - 单例模式
+        </h2>
+        <h3 class="post-subtitle">
+            Design Patterns - Singleton
+        </h3>
+        <div class="post-content-preview">
+            关于单例模式（Singleton）单例模式（Singleton）是一种常用的软件设计模式（Design Patterns）。单例设计模式的对象类必须保证其有且仅有一个实例存在。
+单例模式的实现思路：
+
+一个类能返回实例对象一个引用（永远是同一个）和一个获得该实例的方法（静态方法，通常使用getInstance()命名）；
+
+当调用这个方法时，如果类持有的引用不为空，则返回这个引用，如果类保持......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-08-01
+    </p>
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -389,27 +414,6 @@ Input: [4, 3, 2, ......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/05/15/java-data-structure-and-algorithm-linked-list/">
-        <h2 class="post-title">
-            Java 数据结构与算法 - 链表
-        </h2>
-        <h3 class="post-subtitle">
-            Java Data Structure and Algorithm - Linked List
-        </h3>
-        <div class="post-content-preview">
-            链表（Linked List）数据结构概览链表（Linked List）是线性表的一种（线性表包含顺序表与链表），通过指针将一系列位于不连续的内存空间中的元素连接起来，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理，但也失去了快速随机存取的优点，同时增大了内存开销（存储指针域）。
-链表数据结构由一连串节点（Node）组成，每个节点包含数据域（Data Fields）和一或两个用来......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2019-05-15
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 <ul class="pager">
@@ -445,9 +449,9 @@ Input: [4, 3, 2, ......
                     <div class="tags">
                         
                             
-                            <a href="/tags/#Java" title="Java" rel="31">Java</a>
-                            
                         
+                            
+                            <a href="/tags/#Java" title="Java" rel="31">Java</a>
                             
                         
                             
