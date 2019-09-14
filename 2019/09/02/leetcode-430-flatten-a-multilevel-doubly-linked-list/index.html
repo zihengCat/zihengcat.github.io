@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/archives/">
                                 Archives
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/tags/">
-                                Tags
                             </a>
                         </li>
                         
@@ -185,13 +185,13 @@ Output:
 </blockquote>
 <p><img src="./multilevel_linkedlist.png" alt="MultilevelLinkedList"></p>
 <blockquote>
-<p>图：多层双向链表</p>
+<p>图：多层双向链表（输入）</p>
 </blockquote>
 <p><img src="./multilevel_linkedlist_flattened.png" alt="MultilevelLinkedListFlattened"></p>
 <blockquote>
-<p>图：展开单层双向链表</p>
+<p>图：展开后单层双向链表（输出）</p>
 </blockquote>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>输入的是一个异化双向链表，数据结构中额外增加一个孩子节点<code>child</code>，节点可能指向另一子链表。需要我们将链表展平为单层。</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>输入的是一个异化双向链表，在双向链表数据结构中额外增加一个孩子节点<code>child</code>，节点可能指向另一子链表，需要我们将多层双向链表展平为单层。</p>
 <p>解决该问题的核心思路：<strong>遍历父链表（最上层链表），一旦发现节点存在子链表，即将子链表与父链表连接起来</strong>。</p>
 <p>父子链表连接操作步骤已给出。连接完成后，父链表后继节点变为子链表头节点，子链表尾节点的后继节点变为父链表的原后继节点，遍历继续。</p>
 <ol>
@@ -213,13 +213,13 @@ class Node {
 
     public Node() {}
 
-    public Node(int _val,Node _prev,Node _next,Node _child) {
+    public Node(int _val, Node _prev, Node _next, Node _child) {
         val = _val;
         prev = _prev;
         next = _next;
         child = _child;
     }
-};
+}
 */
 public class Solution {
     public Node flatten(Node head) {
