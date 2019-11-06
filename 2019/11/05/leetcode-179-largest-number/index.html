@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/archives/">
                                 Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -186,17 +186,21 @@
 <p>注：示例 2</p>
 </blockquote>
 <p>注意：输出结果可能非常大，所以你需要返回一个字符串而不是整数。</p>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>…</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>解决该问题的核心思路是：对输入列表中的元素进行重排列，排序依据是两整数排列结果最大。</p>
 <pre><code class="java">import java.util.Arrays;
+import java.util.Comparator;
 public class Solution {
     public String largestNumber(int[] nums) {
+        /* 处理异常 */
         if (nums == null || nums.length == 0) {
             return &quot;&quot;;
         }
+        /* 整数转字符串 */
         String[] strNums = new String[nums.length];
         for (int i = 0; i &lt; nums.length; ++i) {
             strNums[i] = String.valueOf(nums[i]);
         }
+        /* 元素重排列 */
         Arrays.sort(strNums, new Comparator&lt;String&gt;() {
             @Override
             public int compare(String s1, String s2) {
@@ -219,9 +223,11 @@ public class Solution {
                 return len2 - len1;
             }
         });
+        /* 处理 0 值 */
         if (strNums[0].equals(&quot;0&quot;)) {
             return &quot;0&quot;;
         }
+        /* 拼接结果 */
         StringBuilder sb = new StringBuilder();
         for (String s : strNums) {
             sb.append(s);
