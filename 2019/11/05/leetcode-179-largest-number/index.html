@@ -173,7 +173,7 @@
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录 <em>LeetCode - 179. 最大数排列（Largest Number）</em> 问题。</p>
 <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一个只包含「非负整数」的列表，请将列表元素重新排列，使得排列后元素拼接出数字最大。</p>
-<p>注意：排列后拼接的结果可能会非常大，超出了整数范围，所以返回类型为字符串而非整数。</p>
+<p>注意：排列后拼接的结果可能会非常大，超出了整数范围，所以返回值类型为字符串而非整数。</p>
 <pre><code class="plain">Input: [10, 2]
 Output: &quot;210&quot;
 </code></pre>
@@ -187,6 +187,53 @@ Output: &quot;9534330&quot;
 <p>注：样例2</p>
 </blockquote>
 <h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>…</p>
+<pre><code class="java">import java.util.Arrays;
+public class Solution {
+    public String largestNumber(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return &quot;&quot;;
+        }
+        String[] strNums = new String[nums.length];
+        for (int i = 0; i &lt; nums.length; ++i) {
+            strNums[i] = String.valueOf(nums[i]);
+        }
+        Arrays.sort(strNums, new Comparator&lt;String&gt;() {
+            @Override
+            public int compare(String s1, String s2) {
+                String r1 = s1 + s2;
+                String r2 = s2 + s1;
+                char[] v1 = r1.toCharArray();
+                char[] v2 = r2.toCharArray();
+                int len1 = r1.length();
+                int len2 = r2.length();
+                int kim = Math.min(len1, len2);
+                int i = 0;
+                while (i &lt; kim) {
+                    char c1 = v1[i];
+                    char c2 = v2[i];
+                    if (c1 != c2) {
+                        return c2 - c1;
+                    }
+                    ++i;
+                }
+                return len2 - len1;
+            }
+        );
+        if (strNums[0].equals(&quot;0&quot;)) {
+            return &quot;0&quot;;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String s : strNums) {
+            sb.append(s);
+        }
+        return sb.toString();
+    }
+}
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码清单：最大数排列（<code>Java</code>实现）</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>「LeetCode - 179. 最大数排列（Largest Number）」：<a href="https://leetcode.com/problems/largest-number/" target="_blank" rel="noopener">https://leetcode.com/problems/largest-number/</a></li>
 </ul>
