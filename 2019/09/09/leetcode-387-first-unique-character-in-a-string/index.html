@@ -170,17 +170,20 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录 <em>LeetCode - 387. 字符串首个唯一字符（First Unique Character in a String）</em> 问题。</p>
-<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一枚字符串，请你寻找字符串中第一个不重复字符，返回该字符索引下标。如果字符不存在，则返回<code>-1</code>。</p>
-<p>注：可以假定输入字符串仅包含英文小写字符。</p>
-<pre><code class="plain">Input: &quot;leetcode&quot;
-Output: 0
-
-Input: &quot;loveleetcode&quot;
-Output: 2
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>给出一枚字符串，请寻找字符串中第一个不重复字符，返回该字符在字符串中的索引下标。如果字符不存在，返回<code>-1</code>。</p>
+<pre><code class="plain">输入: &quot;leetcode&quot;
+输出: 0
 </code></pre>
 <blockquote>
-<p>注：输入输出样例</p>
+<p>注：示例 1</p>
 </blockquote>
+<pre><code class="plain">输入: &quot;loveleetcode&quot;
+输出: 2
+</code></pre>
+<blockquote>
+<p>注：示例 2</p>
+</blockquote>
+<p>注意，可以假定输入字符串仅包含英文小写字符。</p>
 <h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>字符串问题，寻找字符串中第一个不重复字符。很容易想到的思路是：<strong>对于字符串中的每一个字符，再次遍历字符串判断该字符是否重复，无重复则返回字符索引下标</strong>。</p>
 <pre><code class="java">public class Solution {
     public int firstUniqChar(String s) {
@@ -207,7 +210,8 @@ Output: 2
 <blockquote>
 <p>代码清单：寻找字符串首个唯一字符（<code>Java</code>实现）</p>
 </blockquote>
-<p>遍历两次字符串的算法效率不高：$O(n^2)$。另一种实现思路是：<strong>引入「有序哈希表」，存储字符串中每个字符的出现次数，只需遍历字符串一遍，即可得到结果，算法复杂度为：$O(n + m)$</strong>。</p>
+<p>遍历两次字符串的算法效率不高：$O(n^2)$。</p>
+<p>另一种实现思路是：<strong>引入「有序哈希表」，存储字符串中每个字符的出现次数，只需遍历字符串一遍，即可得到结果，算法复杂度为：$O(n + m)$</strong>。</p>
 <pre><code class="java">import java.util.Map;
 import java.util.LinkedHashMap;
 public class Solution {
