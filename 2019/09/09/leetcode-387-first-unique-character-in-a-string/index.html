@@ -210,7 +210,7 @@
 <blockquote>
 <p>代码清单：寻找字符串首个唯一字符（<code>Java</code>实现）</p>
 </blockquote>
-<p>遍历两次字符串的算法效率不高：$O(n^2)$。</p>
+<p>但是，遍历两遍字符串的算法效率不高：$O(n^2)$。</p>
 <p>另一种实现思路是：<strong>引入「有序哈希表」，存储字符串中每个字符的出现次数，只需遍历字符串一遍，即可得到结果，算法复杂度为：$O(n + m)$</strong>。</p>
 <pre><code class="java">import java.util.Map;
 import java.util.LinkedHashMap;
