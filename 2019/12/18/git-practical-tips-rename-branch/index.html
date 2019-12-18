@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/page/17/">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/12/18/git-practical-tips-rename-branch/">
     <title>
         
-          zihengCat
+          Git 实用技巧 - 分支重命名 - zihengCat
         
     </title>
 
@@ -125,268 +125,164 @@
     }
 </script>
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg-o.jpg')">
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-o.jpg');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>ziheng&#39;s Blog</h1>
-                    <span class="subheading">zihengCat is here!</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Git" title="Git">Git</a>
+                        
+                    </div>
+                    <h1>Git 实用技巧 - 分支重命名</h1>
+                    <h2 class="subheading">Git Practical Tips - Rename Branch</h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2019-12-18
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-<!-- USE SIDEBAR -->
-  <!-- Post Container -->
-    <div class="
-         col-lg-8 col-lg-offset-1
-         col-md-8 col-md-offset-1
-         col-sm-12
-         col-xs-12
-         post-container">
-    <!-- Main Content -->
-
-<div class="post-preview">
-
-    <a href="/2017/05/19/C学习笔记-编译预处理指令/">
-        <h2 class="post-title">
-            C学习笔记-编译预处理指令
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            摘要本篇讲解C语言中的编译预处理指令。
-前言C代码的编译过程大致需要经过如下几个阶段:
-源代码 --&gt; 编译预处理 --&gt; 编译 --&gt; 汇编 --&gt; 链接 --&gt; 可执行文件
-其中，编译预处理是第一阶段，由编译预处理器完成。C语言在设计之初，并没有考虑设计机制满足如下需求:
-
-包含外部文件至源代码
-定义宏
-根据条件编译代码
-
-为了满足这些需求，诞生了编译预处理......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-05-19
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/05/14/使用GitHub-Pages与Hexo搭建个人小站/">
-        <h2 class="post-title">
-            使用 GitHub Pages + Hexo 搭建个人小站
-        </h2>
-        <h3 class="post-subtitle">
-            Building Your Personal Blog Using GitHub Pages and Hexo
-        </h3>
-        <div class="post-content-preview">
-            前言此篇文章将指导你如何使用GitHub Pages与Hexo搭建个人独立博客。
-
-为什么选择 GitHub Pages + Hexo如今，自媒体行业繁荣，能写东西的地方非常之多（例如：今日头条、简书、知乎专栏…），这些大平台往往可以提供足够的流量与曝光率，那么我们要选择 GitHub Pages + Hexo 手动搭建个人博客写作平台呢？
-
-数据可控
-
-支持 Markdown 书写，可扩展......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-05-14
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-<ul class="pager">
-    
-        <li class="previous">
-            <a href="/page/16/">&larr; Newer Posts</a>
-        </li>
-    
-    
-</ul>
-
-
-
-    </div>
-
-    <!-- Sidebar Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Git 工作流程中，重命名分支是一项常用操作。如果我们在建立分支时起了个不恰当的名字，还将该分支推送到了远端仓库，重命名分支操作就很有必要了。本文讲解如何快捷操作 Git 分支重命名。</p>
+<h1 id="Git-分支重命名"><a href="#Git-分支重命名" class="headerlink" title="Git 分支重命名"></a>Git 分支重命名</h1><p>对<strong>当前</strong>本地分支重命名。</p>
+<pre><code class="bash">$ git branch -m &lt;new-name&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：Git 重命名当前本地分支</p>
+</blockquote>
+<p>对<strong>任意</strong>本地分支重命名。</p>
+<pre><code class="bash">$ git branch -m &lt;old-name&gt; &lt;new-name&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：Git 重命名本地分支</p>
+</blockquote>
+<p>对于已经推送到远端仓库的分支，可以执行如下<em>快捷命令</em>进行重命名，等同于：先删除远端分支，再推送本地分支至远端仓库。</p>
+<pre><code class="bash">$ git push origin :&lt;old-name&gt; &lt;new-name&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：Git 重命名本地分支</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>Git 官方文档：<a href="https://git-scm.com/docs/git-branch" target="_blank" rel="noopener">https://git-scm.com/docs/git-branch</a></li>
+</ul>
+<!-- EOF -->
+
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/11/05/leetcode-179-largest-number/" data-toggle="tooltip" data-placement="top" title="LeetCode - 179. 最大数排列">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
                 sidebar-container
-            ">
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Java" title="Java" rel="31">Java</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#Git" title="Git">Git</a>
                         
                     </div>
                 </section>
                 
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.png" />
-                        
-
-                        
-                            <p>Hey, I&#39;m zihengCat, a student live in Hangzhou, China, Alibaba Group Intren, interested in AI &amp; Big Data. Learning coding now.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/zihengcat">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                        </ul>
-                    </div>
-                </section>
-
                 <!-- Friends Blog -->
                 
                 <hr>
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
-
                     
                 </ul>
                 
             </div>
-        
+        </div>
     </div>
-</div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
     <!-- Footer -->
 <footer>
@@ -619,6 +515,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
