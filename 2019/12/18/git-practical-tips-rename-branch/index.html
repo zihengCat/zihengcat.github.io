@@ -165,24 +165,24 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Git 工作流程中，重命名分支是一项常用操作。如果我们在建立分支时起了个不恰当的名字，还将该分支推送到了远端仓库，重命名分支操作就很有必要了。本文讲解如何快捷操作 Git 分支重命名。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在 Git 工作流程中，重命名分支是一项比较常用的操作。如果我们建立分支时起了个不恰当的名字，还将该分支推送到了远端仓库，这时候重命名分支就非常有必要了。本文讲解如何快捷重命名 Git 分支。</p>
 <h1 id="Git-分支重命名"><a href="#Git-分支重命名" class="headerlink" title="Git 分支重命名"></a>Git 分支重命名</h1><p>对<strong>当前</strong>本地分支重命名。</p>
-<pre><code class="bash">$ git branch -m &lt;new-name&gt;
+<pre><code class="bash">$ git branch -m &lt;new_name&gt;
 </code></pre>
 <blockquote>
 <p>代码清单：Git 重命名当前本地分支</p>
 </blockquote>
 <p>对<strong>任意</strong>本地分支重命名。</p>
-<pre><code class="bash">$ git branch -m &lt;old-name&gt; &lt;new-name&gt;
+<pre><code class="bash">$ git branch -m &lt;old_name&gt; &lt;new_name&gt;
 </code></pre>
 <blockquote>
 <p>代码清单：Git 重命名本地分支</p>
 </blockquote>
-<p>对于已经推送到远端仓库的分支，可以执行如下<em>快捷命令</em>进行重命名，等同于：先删除远端分支，再推送本地分支至远端仓库。</p>
-<pre><code class="bash">$ git push origin :&lt;old-name&gt; &lt;new-name&gt;
+<p>对于已经推送到远端仓库的分支，可以执行如下 <em>快捷命令</em> 进行重命名，命令逻辑等同于：先删除远端分支，再推送本地分支至远端仓库。</p>
+<pre><code class="bash">$ git push origin :&lt;old_name&gt; &lt;new_name&gt;
 </code></pre>
 <blockquote>
-<p>代码清单：Git 重命名远端分支</p>
+<p>代码清单：Git 重命名远端分支（注意<code>:</code>号）</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Git 官方文档：<a href="https://git-scm.com/docs/git-branch" target="_blank" rel="noopener">https://git-scm.com/docs/git-branch</a></li>
