@@ -8,7 +8,7 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2017/08/16/Git实用技巧-覆写上次提交/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/08/16/git-practical-tips-amend-commit/">
     <title>
         
           Git 实用技巧 - 覆写上次提交 - zihengCat
@@ -146,7 +146,7 @@
                         
                     </div>
                     <h1>Git 实用技巧 - 覆写上次提交</h1>
-                    <h2 class="subheading"></h2>
+                    <h2 class="subheading">Git Practical Tips - Amend Commit</h2>
                     <span class="meta">
                         Posted by zihengCat on
                         2017-08-16
@@ -165,23 +165,32 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我们在日常使用<code>Git</code>时，有时会遇到需要修改上次<code>commit</code>提交信息的情况。比如：修改上次提交信息中的错误内容，或者想为上次提交加入些新内容等等。</p>
-<h1 id="Git覆写上次提交「amend」"><a href="#Git覆写上次提交「amend」" class="headerlink" title="Git覆写上次提交「amend」"></a><code>Git</code>覆写上次提交「amend」</h1><p>我们可以使用<code>git commit</code>命令的<code>amend</code>选项来覆写上次提交。</p>
-<pre><code>$ git commit --amend
-</code></pre><blockquote>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在日常使用 Git 版本控制工具的时候，我们有时会遇到需要修改上次<code>commit</code>提交信息的情况，例如：修改上次提交信息中的错误内容，或者想为上次提交加入些新内容等等。</p>
+<h1 id="Git-覆写上次提交（amend）"><a href="#Git-覆写上次提交（amend）" class="headerlink" title="Git 覆写上次提交（amend）"></a>Git 覆写上次提交（amend）</h1><p>我们可以使用<code>git commit</code>命令的<code>amend</code>选项来覆写上次提交。</p>
+<pre><code class="bash">$ git commit --amend
+</code></pre>
+<blockquote>
 <p>代码清单：使用<code>--amend</code>选项覆写上次提交</p>
 </blockquote>
 <p>执行此命令后，<code>git</code>会自动弹出编辑界面，让你可以修改上次的<strong>提交信息</strong>。</p>
-<pre><code>$ git commit --amend -m &quot;an updated commit message&quot;
-</code></pre><blockquote>
-<p>代码清单：<code>git commit</code>使用<code>-m</code>选项快速修改</p>
+<pre><code class="bash">$ git commit --amend -m &quot;an updated commit message&quot;
+</code></pre>
+<blockquote>
+<p>代码清单：使用<code>-m</code>选项快速修改</p>
 </blockquote>
 <p>而使用<code>--no-edit</code>选项，表示不更动上次已经提交的信息。适用于添加新内容到上次提交的情况。</p>
-<pre><code>$ git commit --amend --no-edit
-</code></pre><blockquote>
-<p>代码清单：<code>git commit</code>使用<code>--no-edit</code>选项</p>
+<pre><code class="bash">$ git commit --amend --no-edit
+</code></pre>
+<blockquote>
+<p>代码清单：使用<code>--no-edit</code>选项追加内容</p>
 </blockquote>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><pre><code>--amend
+<p>而使用<code>--author</code>选项，则可以仅修改提交者信息。</p>
+<pre><code class="bash">$ git commit --amend --author=&#39;someone &lt;someone@example.com&gt;&#39;
+</code></pre>
+<blockquote>
+<p>代码清单：使用<code>--author</code>选项修改提交者</p>
+</blockquote>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><pre><code class="plain">--amend
 
     Replace the tip of the current branch by creating a new
     commit. The recorded tree is prepared as usual (including
@@ -206,16 +215,18 @@
     the &quot;RECOVERING FROM UPSTREAM REBASE&quot; section in git-
     rebase(1).)
 
-</code></pre><blockquote>
+</code></pre>
+<blockquote>
 <p>注：关于<code>--amend</code>的说明文档</p>
 </blockquote>
-<p>需要注意的是，<code>amend</code>选项不会<strong>直接修改</strong>上次的提交，而是会<strong>新创建</strong>出一枚提交，包含了上次提交的全部内容与新添加的内容，原提交会被”删除”。可以观察到，修改前后的提交<code>hash</code>值是不同的。</p>
-<p>所以，<strong>对于已经推送到远程仓库的提交</strong>，要谨慎使用<code>amend</code>选项。</p>
-<pre><code>$ git push &lt;remote&gt; &lt;branch&gt; --force
-</code></pre><blockquote>
+<p>需要注意的是：<code>amend</code>选项不会<strong>直接修改</strong>上次的提交，而是会<strong>新创建</strong>出一枚提交，包含了上次提交的全部内容与新添加的内容，原先的提交会被“删除”。可以观察到，修改前后的<code>commit</code>的<code>hash</code>值是不同的。</p>
+<p>所以，<strong>对于已经推送到远程仓库的提交</strong>，需谨慎使用<code>amend</code>。</p>
+<pre><code class="bash">$ git push &lt;remote&gt; &lt;branch&gt; --force
+</code></pre>
+<blockquote>
 <p>代码清单：<code>git</code>强制覆盖远程分支</p>
 </blockquote>
-<p>而对于已经推送到远程仓库的提交，可以使用<strong>强制推送</strong>来覆盖（谨慎使用）。</p>
+<p>对于已经推送到远程仓库的提交，可以使用<strong>强制推送</strong>来覆盖（谨慎使用）。</p>
 <p><img src="./amend-pic.svg" alt="amend-pic"></p>
 <blockquote>
 <p>图：<code>git commit --amend</code> 原理示意图「取自Atlassian」</p>
@@ -230,6 +241,7 @@
 <li><p>重写项目历史：<a href="https://github.com/geeeeeeeeek/git-recipes/wiki/2.7-%E9%87%8D%E5%86%99%E9%A1%B9%E7%9B%AE%E5%8E%86%E5%8F%B2" target="_blank" rel="noopener">https://github.com/geeeeeeeeek/git-recipes/wiki/2.7-%E9%87%8D%E5%86%99%E9%A1%B9%E7%9B%AE%E5%8E%86%E5%8F%B2</a></p>
 </li>
 </ul>
+<!-- EOF -->
 
                 <hr>
 <!--
@@ -340,7 +352,7 @@
         <p class="copyright text-muted">
             Copyright &copy;
             ziheng&#39;s Blog
-            2019
+            2020
             <br>
             Theme by Hux
 <!--
