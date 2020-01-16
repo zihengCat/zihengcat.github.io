@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/archives/">
                                 Archives
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/tags/">
                                 Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/about/">
-                                About
                             </a>
                         </li>
                         
@@ -172,6 +172,14 @@
                 <h1 id="关于工厂模式（Factory-Pattern）"><a href="#关于工厂模式（Factory-Pattern）" class="headerlink" title="关于工厂模式（Factory Pattern）"></a>关于工厂模式（Factory Pattern）</h1><p>工厂模式（Factory Pattern）是最常用的软件设计模式之一。这种类型的设计模式属于“创建型模式（Creational Pattern）”，它提供了一种创建对象的最佳方式。在工厂模式中，创建对象不会对客户端暴露创建逻辑，通过使用一个共同的接口来指向新创建的对象。工厂模式将一组对象的实现细节与它们的一般使用分离开来。</p>
 <p>工厂模式的实现思路：定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。</p>
 <h1 id="工厂模式-Java-实现"><a href="#工厂模式-Java-实现" class="headerlink" title="工厂模式 Java 实现"></a>工厂模式 Java 实现</h1><p>以 Shape 为例，我们将创建一个<code>Shape</code>接口和实现<code>Shape</code>接口实体类，并且定义工厂类<code>ShapeFactory</code>。</p>
+<pre><code class="java">public interface Shape {
+    public void draw();
+}
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Shape</code>接口</p>
+</blockquote>
 <!-- EOF -->
 
                 <hr>
