@@ -180,6 +180,65 @@
 <blockquote>
 <p>代码清单：<code>Shape</code>接口</p>
 </blockquote>
+<pre><code class="java">import Shape;
+public class Rectangle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println(&quot;Rectangle::draw()&quot;);
+    }
+}
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Shape</code>接口实现类 - <code>Rectangle</code>类</p>
+</blockquote>
+<pre><code class="java">import Shape;
+public class Triangle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println(&quot;Triangle::draw()&quot;);
+    }
+}
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Shape</code>接口实现类 - <code>Triangle</code>类</p>
+</blockquote>
+<pre><code class="java">import Shape;
+public class Circle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println(&quot;Circle::draw()&quot;);
+    }
+}
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Shape</code>接口实现类 - <code>Circle</code>类</p>
+</blockquote>
+<pre><code class="java">import Shape;
+import Triangle;
+import Rectangle;
+import Circle;
+public class ShapeFactory {
+    public Shape getShape(String type) {
+        if (type == null) {
+            return null;
+        }
+        switch(type) {
+            case &quot;Rectangle&quot;: return new Rectangle();
+            case &quot;Triangle&quot;: return new Triangle();
+            case &quot;Circle&quot;: return new Circle();
+            default: return null;
+        }
+        return null;
+    }
+}
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码清单：<code>ShapeFactory</code>工厂类</p>
+</blockquote>
 <!-- EOF -->
 
                 <hr>
