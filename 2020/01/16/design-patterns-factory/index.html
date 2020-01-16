@@ -239,6 +239,24 @@ public class ShapeFactory {
 <blockquote>
 <p>代码清单：<code>ShapeFactory</code>工厂类</p>
 </blockquote>
+<pre><code class="java">import Shape;
+import ShapeFactory;
+public class Main {
+    public static void main(String[] args) {
+        ShapeFactory shapeFactory = new ShapeFactory();
+        Shape aTriangle = shapeFactory.getShape(&quot;Triangle&quot;);
+        Shape aRectangle = shapeFactory.getShape(&quot;Rectangle&quot;);
+        Shape aCircle = shapeFactory.getShape(&quot;Circle&quot;);
+        aTriangle.draw();
+        aRectangle.draw();
+        aCircle.draw();
+    }
+}
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Main</code>主类</p>
+</blockquote>
 <!-- EOF -->
 
                 <hr>
