@@ -68,8 +68,8 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -84,8 +84,8 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -142,9 +142,9 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
-                        
                           <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
                     </div>
                     <h1>整型数转换字符串 - Java 实现</h1>
@@ -168,7 +168,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天看到一个面试问题：<strong>一个整型数如何转换为字符串，请手动实现一下</strong>。</p>
-<h1 id="整型数转换字符串"><a href="#整型数转换字符串" class="headerlink" title="整型数转换字符串"></a>整型数转换字符串</h1><p>整数转字符串正是<code>C</code>语言标准库的<code>itoa()</code>函数，要求不使用语言标准库，手写实现该函数。思路非常简单：<strong>整数对其基数（Base）取余得到余数（Remainder），余数加上<code>&#39;0&#39;</code>（ASCII 码：48）转为字符型后拼接字符串，直至除尽。</strong>。</p>
+<h1 id="整型数转换字符串"><a href="#整型数转换字符串" class="headerlink" title="整型数转换字符串"></a>整型数转换字符串</h1><p>整数转字符串正是<code>C</code>语言标准库<code>itoa()</code>函数，要求不使用语言标准库，手写实现该函数。思路非常简单：<strong>整数对其基数（Base）取余得到余数（Remainder），余数加上<code>&#39;0&#39;</code>（ASCII 码：48）转为字符型后拼接字符串，直至除尽。</strong></p>
 <pre><code class="java">public class IntegerToString {
     public static String itoa(int num, int base) {
         /* 处理`0`值 */
@@ -198,6 +198,7 @@
 <blockquote>
 <p>代码清单：整型数转字符串<code>itoa()</code> - <code>Java</code> 实现</p>
 </blockquote>
+<!-- EOF -->
 
                 <hr>
 <!--
@@ -243,9 +244,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
-                        
                           <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
                         
                     </div>
                 </section>
