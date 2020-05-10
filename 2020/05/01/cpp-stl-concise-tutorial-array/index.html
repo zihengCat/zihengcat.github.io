@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/archives/">
                                 Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -182,7 +182,12 @@ array&lt;int*, 3&gt; arrPointer = {NULL, NULL, NULL, };
 cout &lt;&lt; arr[0] &lt;&lt; endl;
 cout &lt;&lt; arr.at(0) &lt;&lt; endl;
 
-// 迭代访问
+// 迭代器
+for (int *iter = arr.begin(); iter != arr.end(); iter++) {
+    cout &lt;&lt; *iter &lt;&lt; endl;
+}
+
+// forEach 迭代
 for (int n : arr) {
     cout &lt;&lt; n &lt;&lt; endl;
 }
@@ -217,7 +222,7 @@ for (int n : arr) {
 </tr>
 <tr>
 <td><code>size</code></td>
-<td>获取容器元素数量</td>
+<td>获取容器容量</td>
 </tr>
 <tr>
 <td><code>fill</code></td>
