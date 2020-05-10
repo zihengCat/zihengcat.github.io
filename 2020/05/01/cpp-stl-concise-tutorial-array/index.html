@@ -68,6 +68,14 @@
                     
                         
                         <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -78,14 +86,6 @@
                         <li>
                             <a href="/archives/">
                                 Archives
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
-                            <a href="/tags/">
-                                Tags
                             </a>
                         </li>
                         
@@ -167,7 +167,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>C++ 标准模版库<code>std::array</code>是对 C 风格定长数组的容器化封装，于 C++ 11 被加入到 STL 中。</p>
+                <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>C++ 标准模版库<code>std::array</code>是对 C 原生定长数组的容器化封装，于 C++ 11 被加入到 STL 中。</p>
 <h1 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h1><pre><code class="cpp">#include &lt;array&gt;
 </code></pre>
 <h1 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h1><pre><code class="cpp">// 初始化列表
@@ -213,7 +213,7 @@ for (int n : arr) {
 </tr>
 <tr>
 <td><code>data</code></td>
-<td>获取 C 风格数组指针</td>
+<td>获取底层 C 数组指针</td>
 </tr>
 <tr>
 <td><code>size</code></td>
