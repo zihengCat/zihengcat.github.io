@@ -170,13 +170,13 @@
                 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>C++ 标准模版库<code>std::array</code>是对 C 风格定长数组的容器化封装，于 C++ 11 被加入到 STL 中。</p>
 <h1 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h1><pre><code class="cpp">#include &lt;array&gt;
 </code></pre>
-<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><pre><code class="cpp">// 初始化列表
+<h1 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h1><pre><code class="cpp">// 初始化列表
 array&lt;int, 3&gt; arrInt = {1, 2, 3, };
 array&lt;double, 3&gt; arrDouble = {1.0, 2.0, 3.0, };
 array&lt;string, 3&gt; arrStr = {std::string(&quot;a&quot;), &quot;b&quot;, &quot;c&quot;, };
 array&lt;int*, 3&gt; arrPointer = {NULL, NULL, NULL, };
 </code></pre>
-<h2 id="元素访问"><a href="#元素访问" class="headerlink" title="元素访问"></a>元素访问</h2><pre><code class="cpp">array&lt;int, 3&gt; arr = {1, 2, 3, };
+<h1 id="元素访问"><a href="#元素访问" class="headerlink" title="元素访问"></a>元素访问</h1><pre><code class="cpp">array&lt;int, 3&gt; arr = {1, 2, 3, };
 
 // 下标访问
 cout &lt;&lt; arr[0] &lt;&lt; endl;
@@ -187,7 +187,7 @@ for (int n : arr) {
     cout &lt;&lt; n &lt;&lt; endl;
 }
 </code></pre>
-<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><table>
+<h1 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h1><table>
 <thead>
 <tr>
 <th>方法</th>
