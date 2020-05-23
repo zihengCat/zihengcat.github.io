@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/04/21/Python数据科学导论2-2-列表索引/">
+    <link rel="canonical" href="https://zihengcat.github.io/2020/05/13/cpp-stl-concise-tutorial-pair/">
     <title>
         
-          Python数据科学导论2.2 - 列表索引 - zihengCat
+          C++ STL 简明教程：Pair - zihengCat
         
     </title>
 
@@ -142,14 +142,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                        
+                          <a class="tag" href="/tags/#STL" title="STL">STL</a>
                         
                     </div>
-                    <h1>Python数据科学导论2.2 - 列表索引</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>C++ STL 简明教程：Pair</h1>
+                    <h2 class="subheading">C++ STL Concise Tutorial - Pair</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-04-21
+                        2020-05-13
                     </span>
                 </div>
             </div>
@@ -165,111 +167,73 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是对<strong>[DAT208x]Python数据科学导论2.2 - 列表索引</strong>做的内容梳理。</p>
-<h1 id="课程视频（Bilibili源）"><a href="#课程视频（Bilibili源）" class="headerlink" title="课程视频（Bilibili源）"></a>课程视频（Bilibili源）</h1><p><a href="https://www.bilibili.com/video/av22252199/?p=5" target="_blank" rel="noopener">av22252199 - P5</a></p>
-<h1 id="课程小结"><a href="#课程小结" class="headerlink" title="课程小结"></a>课程小结</h1><p><strong>Python列表</strong></p>
-<p>有时候我们使用一枚枚变量来存储数据不太方便，我们可以Python List列表数据类型。列表是一种复合数据类型，表示一系列数据的集合。列表是有序的，我们可以通过下标/索引方便地取得列表中存储的数据。</p>
-<p>列表可以存储任何类型的数据，比如：列表中再嵌套子列表。</p>
-<p><strong>建立Python列表</strong></p>
-<p>我们可以使用一对方括号<code>[ ]</code>来建立Python列表。列表中的数据以逗号<code>,</code>分隔。</p>
-<h1 id="知识点考察"><a href="#知识点考察" class="headerlink" title="知识点考察"></a>知识点考察</h1><p>问：如果<code>fam</code>是一枚Python列表变量，则<code>type(fam)</code>的结果为？</p>
-<p>A =&gt; <code>pylist</code><br>B =&gt; <code>struct</code><br>C =&gt; <code>integer</code><br>D =&gt; <code>list</code></p>
+                <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>C++ 标准模版库 <code>std::pair</code> 是一个模版容器，可以将两个对象封装为一个独立单元，它是 <code>std::tuple</code> 的两元素特化版。</p>
+<h1 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h1><pre><code class="cpp">#include &lt;utility&gt;
+</code></pre>
+<h1 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h1><pre><code class="cpp">// 构造函数
+pair&lt;int, int&gt; aPair(1, 2);
+// 初始化列表
+pair&lt;int, double&gt; bPair = {1, 3,14, }
+// 模版函数
+pair&lt;const char*, void*&gt; cPair = make_pair(&quot;hello&quot;, (void*)NULL);
+</code></pre>
+<h1 id="元素访问"><a href="#元素访问" class="headerlink" title="元素访问"></a>元素访问</h1><pre><code class="cpp">pair&lt;int, int&gt; aPair = {1, 2, };
+// 成员访问
+cout &lt;&lt; aPair.first &lt;&lt; endl;
+cout &lt;&lt; aPair.second &lt;&lt; endl;
+</code></pre>
+<h1 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h1><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>operator=</code></td>
+<td>比较两枚 Pair 是否相等</td>
+</tr>
+<tr>
+<td><code>swap</code></td>
+<td>交换两枚 Pair 元素内容</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>解: D</p>
+<p>表：C++ STL <code>std::pair</code> 常用方法表</p>
 </blockquote>
-<p>问：以下构造Python列表语句中，不合法的是？</p>
-<p>A =&gt; <code>x = [&quot;this&quot;, &quot;is&quot;, &quot;a&quot; True &quot;list&quot;]</code><br>B =&gt; <code>x = [&quot;this&quot;, &quot;is&quot;, &quot;a&quot; True, &quot;list&quot;]</code><br>C =&gt; <code>x = [&quot;this&quot;, &quot;is&quot;,  1, True, &quot;list&quot;]</code><br>D =&gt; <code>x = [&quot;this&quot; + &quot;is&quot;,  1, True, &quot;list&quot;]</code></p>
-<blockquote>
-<p>解: A</p>
-</blockquote>
-<p>问：以下Python列表中存储的数据类型有？（多选）</p>
-<pre><code>x = [&quot;you&quot;, 2, &quot;are&quot;, &quot;so&quot;, True]
-</code></pre><p>A =&gt; <code>int</code><br>B =&gt; <code>float</code><br>C =&gt; <code>str</code><br>D =&gt; <code>bool</code><br>E =&gt; <code>list</code></p>
-<blockquote>
-<p>解: A, C, D</p>
-</blockquote>
-<h1 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h1><p>本节的编程练习，你将学习使用不同的方式创建Python列表，并探究Python列表的一些有趣特性。</p>
-<h2 id="创建列表"><a href="#创建列表" class="headerlink" title="创建列表"></a>创建列表</h2><p>不同于<code>int</code>，<code>bool</code>这样的基础数据类型，列表是一种复合数据类型。你可以将各种不同数据类型都装进一个列表里。</p>
-<p>我们来创建一个列表，按顺序将一系列变量都装入，再打印出列表看一看。</p>
-<pre><code># 一些表示面积的变量（单位：平方米）
-hall = 11.25
-kit = 18.0
-liv = 20.0
-bed = 10.75
-bath = 9.50
-
-# 创建列表`areas`
-areas = [hall, kit, liv, bed, bath, ]
-
-# 打印`areas`
-print(areas)
-</code></pre><blockquote>
-<p>代码清单: 创建列表练习</p>
-</blockquote>
-<h2 id="包含不同数据类型的列表"><a href="#包含不同数据类型的列表" class="headerlink" title="包含不同数据类型的列表"></a>包含不同数据类型的列表</h2><p>Python列表可以装入任何类型的数据，虽然这不太常用。在上一节编程练习中，我们将房间的面积装入了列表，现在我们将房间的名称也装进去。</p>
-<pre><code># 一些表示面积的变量（单位：平方米）
-hall = 11.25
-kit = 18.0
-liv = 20.0
-bed = 10.75
-bath = 9.50
-
-# 调整列表`areas`
-areas = [&quot;hallway&quot;, hall,
-         &quot;kitchen&quot;, kit,
-         &quot;living room&quot;, liv,
-         &quot;bedroom&quot;, bed,
-         &quot;bathroom&quot;, bath]
-
-# 打印`areas`
-print(areas)
-</code></pre><blockquote>
-<p>代码清单: 包含不同数据类型的列表练习</p>
-</blockquote>
-<h2 id="列表嵌套"><a href="#列表嵌套" class="headerlink" title="列表嵌套"></a>列表嵌套</h2><p>Python列表装入任何数据类型，当然也包括列表，列表是可以嵌套使用的。我们对上一节编程练习中的代码使用列表嵌套进一步改进。</p>
-<pre><code># 一些表示面积的变量（单位：平方米）
-hall = 11.25
-kit = 18.0
-liv = 20.0
-bed = 10.75
-bath = 9.50
-
-# 嵌套列表`areas`
-areas = [[ &quot;hallway&quot;, hall, ],
-         [ &quot;kitchen&quot;, kit, ],
-         [ &quot;living room&quot;, liv, ],
-         [ &quot;bedroom&quot;, bed, ],
-         [ &quot;bathroom&quot;, bath,]]
-
-# 打印`areas`
-print(areas)
-
-# 打印`areas`的类型
-print(type(areas))
-</code></pre><blockquote>
-<p>代码清单: 列表嵌套练习</p>
-</blockquote>
-<h1 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h1><ul>
-<li>Python列表与元组: <a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316724772904521142196b74a3f8abf93d8e97c6ee6000" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316724772904521142196b74a3f8abf93d8e97c6ee6000</a></li>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>C++ Reference: <a href="https://en.cppreference.com/w/cpp/utility/pair" target="_blank" rel="noopener">https://en.cppreference.com/w/cpp/utility/pair</a></li>
 </ul>
-
+<!-- EOF -->
                 <hr>
 <!--
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/04/22/Python数据科学导论2-3-列表操作/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论2.3 - 列表操作">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/04/20/Python数据科学导论2-1-列表数据类型/" data-toggle="tooltip" data-placement="top" title="Python数据科学导论2.1 - 列表数据类型">Next Post &rarr;</a>
+                            <a href="/2020/05/01/cpp-stl-concise-tutorial-array/" data-toggle="tooltip" data-placement="top" title="C++ STL 简明教程：Array">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
 -->
             </div>
 <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
         
 <!-- Sidebar Container -->
             <div class="
@@ -283,7 +247,9 @@ print(type(areas))
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                          <a class="tag" href="/tags/#C++" title="C++">C++</a>
+                        
+                          <a class="tag" href="/tags/#STL" title="STL">STL</a>
                         
                     </div>
                 </section>
@@ -569,6 +535,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
