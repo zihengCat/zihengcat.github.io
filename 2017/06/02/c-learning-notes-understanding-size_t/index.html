@@ -205,9 +205,9 @@ Hello, ziheng
 <blockquote>
 <p>代码清单：<code>size_t</code> 程序执行结果</p>
 </blockquote>
-<p>上述代码编译执行后，程序打印出`Hello, ziheng这似乎与我们预想的有些不同啊。</p>
-<p>实际上，这段代码的<code>if</code>条件比较中触发了 C 语言<strong>隐式自动类型转换</strong>机制，<code>size_t</code>实际类型为<code>unsigned long int</code>，而带符号整型变量<code>i</code>会被类型提升自动转换为无符号整型<code>unsigned int</code>，数值<code>-1</code>被转化为的无符号整型数是<code>4294967295</code>，远大于字符串长度<code>5</code>。</p>
-<p><strong>带符号数和无符号数之间的运算操作，请小心。</strong></p>
+<p>上述代码编译执行后，程序打印出了<code>else</code>分支语句<code>Hello, ziheng</code>，这似乎与预想的有些不同。</p>
+<p>实际上，这段代码的<code>if</code>条件比较中触发了 C 语言<strong>隐式自动类型转换</strong>机制，<code>size_t</code>实际类型为<code>unsigned long int</code>，而带符号整型变量<code>i</code>与<code>size_t</code>比较时会被类型提升自动转换为无符号整型<code>unsigned int</code>，数值<code>-1</code>转化无符号整型数是<code>4294967295</code>，远大于字符串长度<code>5</code>。</p>
+<p><strong>带符号数和无符号数之间的运算操作，请一定小心。</strong></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>官方文档: <a href="http://en.cppreference.com/w/c/types/size_t" target="_blank" rel="noopener">http://en.cppreference.com/w/c/types/size_t</a></p>
 </li>
