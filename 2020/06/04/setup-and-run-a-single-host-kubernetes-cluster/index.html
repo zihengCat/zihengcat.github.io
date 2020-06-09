@@ -372,10 +372,13 @@ $ rm -rf /var/lib/cni/
 $ rm -rf /var/lib/kubelet/
 $ rm -rf /run/flannel
 $ rm -rf /etc/cni/
-$ ip link list | grep cali | awk &#39;{print $2}&#39; | cut -c 1-15 | xargs -I {} ip link delete {}
-$ ip link list | grep flan | awk &#39;{print $2}&#39; | cut -c 1-15 | xargs -I {} ip link delete {}
+$ ip link list | grep cali | awk &#39;{print $2}&#39; | cut -c 1-15 \
+    | xargs -I {} ip link delete {}
+$ ip link list | grep flan | awk &#39;{print $2}&#39; | cut -c 1-15 \
+    | xargs -I {} ip link delete {}
 $ ip link delete cni0
 # 重启 Docker 容器运行时
+$ docker system prune -a -f
 $ systemctl restart docker
 </code></pre>
 <blockquote>
