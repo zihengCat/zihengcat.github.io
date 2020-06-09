@@ -368,10 +368,10 @@ $ systemctl stop kubelet
 # 重置 CNI 容器网络
 $ ip route flush proto bird
 $ modprobe -r ipip
-$ rm -rf /var/lib/cni/
-$ rm -rf /var/lib/kubelet/
+$ rm -rf /var/lib/cni
+$ rm -rf /var/lib/kubelet
 $ rm -rf /run/flannel
-$ rm -rf /etc/cni/
+$ rm -rf /etc/cni
 $ ip link list | grep cali | awk &#39;{print $2}&#39; | cut -c 1-15 \
     | xargs -I {} ip link delete {}
 $ ip link list | grep flan | awk &#39;{print $2}&#39; | cut -c 1-15 \
