@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2018/08/02/simple-ways-to-set-macos-consecutive-input/">
+    <link rel="canonical" href="https://zihengcat.github.io/2020/06/04/setup-and-run-a-single-host-kubernetes-cluster/">
     <title>
         
-          macOS 长按连续输入的简单设置方法 - zihengCat
+          快速搭建单主节点 Kubernetes 集群 - zihengCat
         
     </title>
 
@@ -142,16 +142,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                          <a class="tag" href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
                         
-                          <a class="tag" href="/tags/#Macintosh" title="Macintosh">Macintosh</a>
+                          <a class="tag" href="/tags/#Cloud Native" title="Cloud Native">Cloud Native</a>
                         
                     </div>
-                    <h1>macOS 长按连续输入的简单设置方法</h1>
-                    <h2 class="subheading">Simple Ways to Set macOS Consecutive Input</h2>
+                    <h1>快速搭建单主节点 Kubernetes 集群</h1>
+                    <h2 class="subheading">Setup and Run A Single-host Kubernetes Cluster</h2>
                     <span class="meta">
                         Posted by zihengCat on
-                        2018-08-02
+                        2020-06-04
                     </span>
                 </div>
             </div>
@@ -167,34 +167,192 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自<code>OS X Lion 10.7</code>以来，苹果对<code>OS X</code>系统自带输入法做出了许多更新与调整，这些改动大多延续至后续版本的<code>macOS</code>系统。其中就包括：在使用系统自带英文输入法的情况下，长按一个元音字母，系统会自动弹出元音音标提示框。</p>
-<p>苹果「Apple」设计此功能的初衷当然是为了提高输入便利性，优化用户输入体验。但是，这会对开发人员的日常工作（Coding）带来困扰，因为，我们不能<strong>长按连续输入字符</strong>了。</p>
-<p><img src="./img_consecutive_input.png" alt="consecutive_input_pic"></p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解如何在 x86_64 的 CentOS Linux 主机上快速搭建单主节点 Kubernetes 集群。</p>
+<h1 id="安装前配置"><a href="#安装前配置" class="headerlink" title="安装前配置"></a>安装前配置</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">主机</th>
+<th style="text-align:left">角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">172.16.1.4</td>
+<td style="text-align:left">master-node</td>
+</tr>
+<tr>
+<td style="text-align:left">172.16.1.5</td>
+<td style="text-align:left">worker-node1</td>
+</tr>
+<tr>
+<td style="text-align:left">172.16.1.6</td>
+<td style="text-align:left">worker-node2</td>
+</tr>
+<tr>
+<td style="text-align:left">172.16.1.7</td>
+<td style="text-align:left">worker-node3</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>图：<code>macOS</code>系统长按元音字母弹出提示框</p>
+<p>表：主机角色分配一览表</p>
 </blockquote>
-<h1 id="macOS长按连续输入的简单设置方法"><a href="#macOS长按连续输入的简单设置方法" class="headerlink" title="macOS长按连续输入的简单设置方法"></a><code>macOS</code>长按连续输入的简单设置方法</h1><p>实际上，苹果「Apple」已经在<strong>用户系统配置项「Mac OS X User Defaults System」</strong>里预留出了长按连续输入的设置选项。我们可以方便地<strong>使用<code>defaluts</code>命令行工具关闭<code>ApplePressAndHoldEnabled</code>功能</strong>，设置完成后，<strong>注销或重启使其生效</strong>即可。</p>
-<pre><code class="bash">$ defaults write -g ApplePressAndHoldEnabled -bool false
-# or
-$ defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false
+<h2 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h2><pre><code class="bash">$ sudo hostnamectl set-hostname &#39;master-node&#39;
 </code></pre>
 <blockquote>
-<p>代码清单：<code>defaults</code>全局<code>-g</code>设置长按连续输入</p>
+<p>代码清单：设置主机名</p>
 </blockquote>
-<p>甚至，我们还可以做到仅针对某个应用程序单独设置：</p>
-<pre><code class="bash">$ defaults write &#39;com.microsoft.VSCode&#39; ApplePressAndHoldEnabled -bool false
+<h2 id="添加-Hosts-映射信息"><a href="#添加-Hosts-映射信息" class="headerlink" title="添加 Hosts 映射信息"></a>添加 Hosts 映射信息</h2><pre><code class="bash">$ sudo vi /etc/hosts
+...
 </code></pre>
 <blockquote>
-<p>代码清单：<code>defaults</code>针对应用程序设置长按连续输入</p>
+<p>代码清单：设置 Hosts 映射信息</p>
 </blockquote>
-<p>我们也可以通过命令来查看当前系统<code>ApplePressAndHoldEnabled</code>配置的启用情况。</p>
-<pre><code class="bash">$ defaults read | grep ApplePressAndHoldEnabled
+<p>输入各节点 Host 信息：</p>
+<pre><code class="plain">172.16.1.4    master-node
+172.16.1.5    worker-node1
+172.16.1.6    worker-node2
+172.16.1.7    worker-node3
 </code></pre>
 <blockquote>
-<p>代码清单：检查<code>ApplePressAndHoldEnabled</code>启用情况</p>
+<p>代码清单：Hosts 映射信息</p>
+</blockquote>
+<h2 id="关闭-SELinux"><a href="#关闭-SELinux" class="headerlink" title="关闭 SELinux"></a>关闭 SELinux</h2><pre><code class="bash">$ sudo setenforce 0
+$ sudo sed -i &#39;s/^SELINUX=enforcing$/SELINUX=disabled/&#39; /etc/selinux/config
+</code></pre>
+<blockquote>
+<p>代码清单：关闭 SELinux</p>
+</blockquote>
+<h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><pre><code class="bash">$ sudo systemctl stop firewalld
+$ sudo systemctl disable firewalld
+</code></pre>
+<blockquote>
+<p>代码清单：关闭防火墙</p>
+</blockquote>
+<h2 id="关闭-swap-虚拟内存"><a href="#关闭-swap-虚拟内存" class="headerlink" title="关闭 swap 虚拟内存"></a>关闭 swap 虚拟内存</h2><pre><code class="bash">$ sudo swapoff -a
+$ sudo sed -i &#39;/swap/s/^\(.*\)$/#\1/g&#39; /etc/fstab
+</code></pre>
+<blockquote>
+<p>代码清单：关闭 swap 虚拟内存</p>
+</blockquote>
+<h2 id="修改内核参数"><a href="#修改内核参数" class="headerlink" title="修改内核参数"></a>修改内核参数</h2><pre><code class="bash"># 制作配置文件
+$ cat &gt; /etc/sysctl.d/kubernetes.conf &lt;&lt; EOF
+net.bridge.bridge-nf-call-iptables = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward = 1
+vm.swappiness = 0
+vm.overcommit_memory = 1
+vm.panic_on_oom = 0
+fs.inotify.max_user_watches = 89100
+EOF
+# 应用配置文件
+$ sysctl -p /etc/sysctl.d/kubernetes.conf
+</code></pre>
+<blockquote>
+<p>代码清单：修改内核参数</p>
+</blockquote>
+<h1 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h1><p>…</p>
+<h1 id="安装-Kubernetes"><a href="#安装-Kubernetes" class="headerlink" title="安装 Kubernetes"></a>安装 Kubernetes</h1><pre><code class="bash">$ cat &gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt; EOF
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+$ sudo yum install -y kubelet kubeadm kubectl
+...
+</code></pre>
+<blockquote>
+<p>代码清单：安装 Kubernetes</p>
+</blockquote>
+<h1 id="主节点初始化"><a href="#主节点初始化" class="headerlink" title="主节点初始化"></a>主节点初始化</h1><pre><code class="bash"># 在 master 节点执行
+# 替换 IP 为 master 节点实际 IP（使用内网 IP）
+# export 命令只在当前 Shell 会话中有效，
+# 开启新的 Shell 窗口后，如果要继续安装过程，请重新执行此处的 export 命令
+# 替换 APISERVER_NAME 为实际 DNS Name
+$ export MASTER_IP=&#39;172.16.1.4&#39;
+$ export APISERVER_NAME=&#39;master-node&#39;
+# Kubernetes 容器组所在的网段
+# 该网段安装完成后，由 kubernetes 创建，事先并不存在于物理网络中
+$ export POD_SUBNET=&#39;10.100.0.1/16&#39;
+# 安装 Kubernetes 版本号
+$ export K8S_VERSION=&#39;v1.18.3&#39;
+$ bash init_master.sh ${K8S_VERSION}
+</code></pre>
+<blockquote>
+<p>代码清单：主节点初始化</p>
+</blockquote>
+<pre><code class="bash">#!/bin/bash
+
+# 只在 master 节点执行
+
+# 脚本出错时终止执行
+set -e
+
+if [ ${#POD_SUBNET} -eq 0 ] || [ ${#APISERVER_NAME} -eq 0 ]; then
+    echo -e &quot;\033[31;1m请确保您已经设置了环境变量 POD_SUBNET 和 APISERVER_NAME \033[0m&quot;
+    echo &quot;当前POD_SUBNET=${POD_SUBNET}&quot;
+    echo &quot;当前APISERVER_NAME=${APISERVER_NAME}&quot;
+    exit 1
+fi
+
+# 查看完整配置选项 https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2
+rm -f ./kubeadm-config.yaml
+cat &lt;&lt; EOF &gt; ./kubeadm-config.yaml
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+kubernetesVersion: ${1}
+#imageRepository: registry.cn-hangzhou.aliyuncs.com/google_containers
+controlPlaneEndpoint: &quot;${APISERVER_NAME}:6443&quot;
+networking:
+  serviceSubnet: &quot;10.96.0.0/16&quot;
+  podSubnet: &quot;${POD_SUBNET}&quot;
+  dnsDomain: &quot;cluster.local&quot;
+EOF
+
+# kubeadm init
+# 根据服务器网速情况，需要 3 - 10 分钟
+kubeadm init \
+    --ignore-preflight-errors=NumCPU \
+    --config=kubeadm-config.yaml \
+    --upload-certs
+
+# 配置 kubectl
+rm -rf /root/.kube/
+mkdir /root/.kube/
+cp -i /etc/kubernetes/admin.conf /root/.kube/config
+
+# 安装 Calico 网络插件
+# 参考：https://docs.projectcalico.org/getting-started/kubernetes/quickstart
+echo &quot;安装 Calico CNI 网络插件...&quot;
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+</code></pre>
+<blockquote>
+<p>代码清单：主节点初始化<code>init_master.sh</code>脚本</p>
+</blockquote>
+<pre><code class="bash">$ kubeadm join master-node:6443 --token dm82sq.jzghsst2gbvjh8ol \
+    --discovery-token-ca-cert-hash sha256:9184e7612dfeb126c5d0de2452804a9be9b0e66998c449daaf4eaafedaffe534
+</code></pre>
+<blockquote>
+<p>代码清单：加入工作节点至 Kubernetes 集群</p>
+</blockquote>
+<pre><code class="bash">$ kubectl get node -owide
+NAME           STATUS   ROLES    AGE    VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                KERNEL-VERSION                CONTAINER-RUNTIME
+master-node    Ready    master   1h     v1.18.3   172.16.1.4    &lt;none&gt;        CentOS Linux 8 (Core)   4.18.0-147.8.1.el8_1.x86_64   docker://18.9.1
+worker-node1   Ready    &lt;none&gt;   9m10s  v1.18.3   172.16.1.5    &lt;none&gt;        CentOS Linux 8 (Core)   4.18.0-147.8.1.el8_1.x86_64   docker://18.9.1
+worker-node2   Ready    &lt;none&gt;   6m2s   v1.18.3   172.16.1.6    &lt;none&gt;        CentOS Linux 8 (Core)   4.18.0-147.8.1.el8_1.x86_64   docker://18.9.1
+worker-node3   Ready    &lt;none&gt;   3m6s   v1.18.3   172.16.1.7    &lt;none&gt;        CentOS Linux 8 (Core)   4.18.0-147.8.1.el8_1.x86_64   docker://18.9.1
+</code></pre>
+<blockquote>
+<p>代码清单：验证 Kubernetes 集群</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>知乎问答「20589636」：<a href="https://www.zhihu.com/question/20589636" target="_blank" rel="noopener">https://www.zhihu.com/question/20589636</a></li>
+<li><p>Kubernetes Documentation: <a href="https://kubernetes.io/docs/home/" target="_blank" rel="noopener">https://kubernetes.io/docs/home/</a></p>
+</li>
+<li><p>Quickstart for Calico on Kubernetes: <a href="https://docs.projectcalico.org/getting-started/kubernetes/quickstart" target="_blank" rel="noopener">https://docs.projectcalico.org/getting-started/kubernetes/quickstart</a></p>
+</li>
 </ul>
 <!-- EOF -->
                 <hr>
@@ -202,12 +360,12 @@ $ defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2018/08/26/using-cryptography-package-in-airflow/" data-toggle="tooltip" data-placement="top" title="为 Airflow 加装 Cryptography 库">&larr; Previous Post</a>
+                            <a href="/2020/06/06/modern-continuous-integration-using-jenkins-and-github-webhooks/" data-toggle="tooltip" data-placement="top" title="Modern Continuous Integration Using Jenkins and GitHub WebHooks">&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2018/07/20/output-buffering-in-realtime-question-and-solution/" data-toggle="tooltip" data-placement="top" title="实时输出流打印 - 缓冲问题与解决方案">Next Post &rarr;</a>
+                            <a href="/2020/05/13/cpp-stl-concise-tutorial-pair/" data-toggle="tooltip" data-placement="top" title="C++ STL 简明教程：Pair">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -241,9 +399,9 @@ $ defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Tips" title="Tips">Tips</a>
+                          <a class="tag" href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
                         
-                          <a class="tag" href="/tags/#Macintosh" title="Macintosh">Macintosh</a>
+                          <a class="tag" href="/tags/#Cloud Native" title="Cloud Native">Cloud Native</a>
                         
                     </div>
                 </section>
