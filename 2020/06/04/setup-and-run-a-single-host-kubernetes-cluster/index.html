@@ -319,20 +319,31 @@ EOF
 kubeadm init \
     --ignore-preflight-errors=NumCPU \
     --config=kubeadm-config.yaml \
-    --upload-certs
+    --upload-certs \
+    --token-ttl 0
 
 # 配置 kubectl
 rm -rf /root/.kube/
 mkdir /root/.kube/
 cp -i /etc/kubernetes/admin.conf /root/.kube/config
 
-# 安装 Calico 网络插件
+# 容器网络插件：Flannel, Calico, Canal, Weave
+
+# 安装 Flannel 容器网络插件
+# 参考：https://coreos.com/flannel/docs/latest/kubernetes.html
+echo &quot;安装 Flannel 容器网络插件...&quot;
+kubectl apply -f &#39;https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml&#39;
+
+# 安装 Calico 容器网络插件
 # 参考：https://docs.projectcalico.org/getting-started/kubernetes/quickstart
-echo &quot;安装 Calico CNI 网络插件...&quot;
-kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+#echo &quot;安装 Calico CNI 网络插件...&quot;
+#kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+# 完成
+echo &quot;All done!&quot;
 </code></pre>
 <blockquote>
-<p>代码清单：主节点初始化<code>init_master.sh</code>脚本</p>
+<p>代码清单：主节点初始化 <code>init_master.sh</code> 脚本</p>
 </blockquote>
 <pre><code class="bash">$ kubeadm join master-node:6443 --token dm82sq.jzghsst2gbvjh8ol \
     --discovery-token-ca-cert-hash sha256:9184e7612dfeb126c5d0de2452804a9be9b0e66998c449daaf4eaafedaffe534
@@ -349,6 +360,25 @@ worker-node3   Ready    &lt;none&gt;   3m6s   v1.18.3   172.16.1.7    &lt;none&g
 </code></pre>
 <blockquote>
 <p>代码清单：验证 Kubernetes 集群</p>
+</blockquote>
+<h1 id="完全重置-Kubernetes-集群"><a href="#完全重置-Kubernetes-集群" class="headerlink" title="完全重置 Kubernetes 集群"></a>完全重置 Kubernetes 集群</h1><pre><code class="bash"># 使用 kubeadm 重置 Kubernetes 集群
+$ kubeadm reset --force
+# 停止 kubelet
+$ systemctl stop kubelet
+# 重置 CNI 容器网络
+$ ip route flush proto bird
+$ modprobe -r ipip
+$ rm -rf /var/lib/cni/
+$ rm -rf /var/lib/kubelet/
+$ rm -rf /run/flannel
+$ rm -rf /etc/cni/
+$ ip link delete cni0
+$ ip link delete flannel.1
+# 重启 Docker 容器运行时
+$ systemctl restart docker
+</code></pre>
+<blockquote>
+<p>代码清单：完全重置 Kubernetes 集群</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>Kubernetes Documentation: <a href="https://kubernetes.io/docs/home/" target="_blank" rel="noopener">https://kubernetes.io/docs/home/</a></p>
