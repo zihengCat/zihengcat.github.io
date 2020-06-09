@@ -268,14 +268,14 @@ $ sudo yum install -y kubelet kubeadm kubectl
 <p>代码清单：安装 Kubernetes</p>
 </blockquote>
 <h1 id="主节点初始化"><a href="#主节点初始化" class="headerlink" title="主节点初始化"></a>主节点初始化</h1><pre><code class="bash"># 在 master 节点执行
-# 替换 IP 为 master 节点实际 IP（使用内网 IP）
-# export 命令只在当前 Shell 会话中有效，
+# export 命令只在当前 Shell 会话中有效
 # 开启新的 Shell 窗口后，如果要继续安装过程，请重新执行此处的 export 命令
-# 替换 APISERVER_NAME 为实际 DNS Name
+# 替换 IP 为 master 节点实际 IP（请使用内网 IP）
 $ export MASTER_IP=&#39;172.16.1.4&#39;
+# 替换 APISERVER_NAME 为实际 DNS Name
 $ export APISERVER_NAME=&#39;master-node&#39;
 # Kubernetes 容器组所在的网段
-# 该网段安装完成后，由 kubernetes 创建，事先并不存在于物理网络中
+# 该网段安装完成后由 kubernetes 主动创建，事先并不存在于物理网络中
 $ export POD_SUBNET=&#39;10.100.0.1/16&#39;
 # 当前 Kubernetes 版本号
 $ export K8S_VERSION=&#39;v1.18.3&#39;
@@ -291,14 +291,16 @@ $ bash init_master.sh ${K8S_VERSION}
 # 脚本出错时终止执行
 set -e
 
-if [ ${#POD_SUBNET} -eq 0 ] || [ ${#APISERVER_NAME} -eq 0 ]; then
+if [ ${#POD_SUBNET} -eq 0 ] || [ ${#APISERVER_NAME} -eq 0 ]
+then
     echo -e &quot;\033[31;1m请确保您已经设置了环境变量 POD_SUBNET 和 APISERVER_NAME \033[0m&quot;
     echo &quot;当前POD_SUBNET=${POD_SUBNET}&quot;
     echo &quot;当前APISERVER_NAME=${APISERVER_NAME}&quot;
     exit 1
 fi
 
-# 查看完整配置选项 https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2
+# 查看完整配置选项
+# https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2
 rm -f ./kubeadm-config.yaml
 cat &lt;&lt; EOF &gt; ./kubeadm-config.yaml
 apiVersion: kubeadm.k8s.io/v1beta2
