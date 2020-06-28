@@ -169,28 +169,34 @@
                  post-container">
                 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用 Linux 系统的小伙伴们一定知道 SSH（Secure Shell）远程登陆服务。</p>
 <p>我们每次使用 SSH 远程登陆到远端主机时，总是需要输入密码认证，服务器密码一般都设置得较为复杂，有的服务器配置不允许密码登录。此时，我们可以使用使用密钥认证的方式进行 SSH 远程登陆。</p>
-<h1 id="配置-SSH-密钥认证登陆（服务端）"><a href="#配置-SSH-密钥认证登陆（服务端）" class="headerlink" title="配置 SSH 密钥认证登陆（服务端）"></a>配置 SSH 密钥认证登陆（服务端）</h1><p>首先，我们需要确认远程主机的<code>sshd</code>开启了密钥认证功能。</p>
-<p>查看<code>sshd</code>配置文件，确认相关功能选项均已开启。修改<code>sshd</code>配置文件需要root权限。</p>
-<pre><code>$ sudo vi /etc/ssh/sshd_config
+<h1 id="配置-SSH-密钥认证登陆（服务端）"><a href="#配置-SSH-密钥认证登陆（服务端）" class="headerlink" title="配置 SSH 密钥认证登陆（服务端）"></a>配置 SSH 密钥认证登陆（服务端）</h1><p>首先，我们需要确认远程主机的<code>sshd</code>服务已经开启了密钥认证功能。</p>
+<p>查看<code>sshd</code>配置文件，确认相关功能选项均已开启。SSH 一般默认开启秘钥登陆，但还是确认一下比较稳妥。如未开启，修改配置文件并重启服务。</p>
+<pre><code class="bash">$ sudo vi /etc/ssh/sshd_config
 ...
 SAAuthentication yes
 PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
 ...
-</code></pre><blockquote>
-<p>注：<code>ssh</code>默认开启密钥认证功能，但还是确认一下比较稳妥。</p>
+$ sudo systemctl restart sshd
+</code></pre>
+<blockquote>
+<p>代码清单：开启 SSH 密钥认证登陆</p>
 </blockquote>
-<p>修改完配置选项后，重启sshd服务。</p>
 <p>接下来，我们需要生成一对密钥，在<strong>客户端（client）</strong>使用<code>ssh-keygen</code>命令来完成。</p>
-<pre><code>$ ssh-keygen
-</code></pre><p>该命令会提示3条语句，一般情况下，我们回车跳过即可（更多选项可参看命令<code>man</code>文档）。</p>
-<ul>
+<pre><code class="bash">$ ssh-keygen
+...
+</code></pre>
+<blockquote>
+<p>代码清单：生成密钥</p>
+</blockquote>
+<p>该命令提示3条语句，一般情况下，我们回车跳过即可（更多选项可参看命令<code>man</code>文档）。</p>
+<ol>
 <li>密钥对存放位置</li>
 <li>输入控制密码</li>
 <li>再输入（确认）控制密码</li>
-</ul>
-<p>该命令生成了一对RSA密钥，放在用户家目录<code>~/.ssh</code>下，文件名是<code>id_rsa</code>，<code>id_rsa.pub</code>。带<code>.pub</code>后缀的是公钥，不带后缀的是私钥。</p>
-<p>然后，我们把公钥上传到<strong>服务端（server）</strong>远端主机上完成相关配置。</p>
+</ol>
+<p>该命令生成了一对 RSA 密钥，默认存放在用户家目录<code>~/.ssh</code>下<code>id_rsa</code>、<code>id_rsa.pub</code>。带<code>.pub</code>后缀的是公钥，不带后缀的是私钥。</p>
+<p>然后，我们把公钥上传到<strong>服务端（server）</strong>远端主机上完成后续配置。</p>
 <pre><code>$ ssh-copy-id &lt;user&gt;@&lt;hostname&gt;
 </code></pre><p>我们既可以使用<code>ssh-copy-id</code>命令自动完成配置，也可以手动操作。</p>
 <pre><code>$ scp -P &lt;port&gt; ~/.ssh/id_rsa.pub &lt;user&gt;@&lt;hostname&gt;:~
