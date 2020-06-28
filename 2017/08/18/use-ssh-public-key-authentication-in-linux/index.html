@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/2017/08/18/Linux系统SSH密钥方式登陆/">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/08/18/use-ssh-public-key-authentication-in-linux/">
     <title>
         
-          Linux系统配置SSH密钥登陆（免密码） - zihengCat
+          Linux 操作系统配置 SSH 免密码公钥登陆 - zihengCat
         
     </title>
 
@@ -68,14 +68,6 @@
                     
                         
                         <li>
-                            <a href="/tags/">
-                                Tags
-                            </a>
-                        </li>
-                        
-                    
-                        
-                        <li>
                             <a href="/about/">
                                 About
                             </a>
@@ -86,6 +78,14 @@
                         <li>
                             <a href="/archives/">
                                 Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
                             </a>
                         </li>
                         
@@ -144,9 +144,11 @@
                         
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
+                          <a class="tag" href="/tags/#SSH" title="SSH">SSH</a>
+                        
                     </div>
-                    <h1>Linux系统配置SSH密钥登陆（免密码）</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>Linux 操作系统配置 SSH 免密码公钥登陆</h1>
+                    <h2 class="subheading">Use SSH Public Key Authentication in Linux</h2>
                     <span class="meta">
                         Posted by zihengCat on
                         2017-08-18
@@ -165,8 +167,10 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用Linux系统的小伙伴们一定知道SSH（Secure Shell），知名的远程登陆服务。<br>我们每次使用SSH远程登陆到远端主机时，总是要输入密码，如果是服务器的话，密码一般都设得很复杂（或者不允许密码登录）。SSH还可以使用密钥认证的方式进行远程登陆。</p>
-<h1 id="配置SSH密钥认证登陆（服务端）"><a href="#配置SSH密钥认证登陆（服务端）" class="headerlink" title="配置SSH密钥认证登陆（服务端）"></a>配置SSH密钥认证登陆（服务端）</h1><p>首先，我们需要确认远程主机的<strong>sshd服务</strong>开启了密钥认证功能。<br>查看<code>sshd</code>配置文件，确认相关功能选项均已开启。修改<code>sshd</code>配置文件需要root权限。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用 Linux 系统的小伙伴们一定知道 SSH（Secure Shell）远程登陆服务。</p>
+<p>我们每次使用 SSH 远程登陆到远端主机时，总是需要输入密码认证，服务器密码一般都设置得较为复杂，有的服务器配置不允许密码登录。此时，我们可以使用使用密钥认证的方式进行 SSH 远程登陆。</p>
+<h1 id="配置-SSH-密钥认证登陆（服务端）"><a href="#配置-SSH-密钥认证登陆（服务端）" class="headerlink" title="配置 SSH 密钥认证登陆（服务端）"></a>配置 SSH 密钥认证登陆（服务端）</h1><p>首先，我们需要确认远程主机的<code>sshd</code>开启了密钥认证功能。</p>
+<p>查看<code>sshd</code>配置文件，确认相关功能选项均已开启。修改<code>sshd</code>配置文件需要root权限。</p>
 <pre><code>$ sudo vi /etc/ssh/sshd_config
 ...
 SAAuthentication yes
@@ -198,20 +202,23 @@ $ rm ~/id_rsa.pub
 <blockquote>
 <p>注：<br><code>.ssh</code>目录权限：<code>0700</code><br><code>id_rsa</code>秘钥权限：<code>0600</code></p>
 </blockquote>
-<p>OK，配置完成！现在我们已经可以从客户端无密码登陆远程目标主机了。</p>
+<p>配置完成后，我们就可以从客户端使用秘钥认证登陆远程目标主机了。</p>
 <h1 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h1><p>SSH免密码登陆是使用密钥加解密认证取代原先了的密码认证。</p>
 <p><img src="./ssh-key-auth-flow.png" alt="ssh-key-auth-flow"></p>
 <blockquote>
 <p>图：SSH 密钥认证流程图（取自 DigitalOcean）</p>
 </blockquote>
-<p>首先初始化连接，服务端发送一段随机字符串给客户端，客户端使用私钥加密后发回，客户端再使用公钥解密，如果解密后的内容可以正确配对，则认证通过，允许远程登陆。<br>关于加解密的过程，子恒喵没学过密码学，也不是很懂…但是，SSH远程登陆不用输密码啦，还是很方便的。</p>
+<p>首先初始化连接，服务端发送一段随机字符串给客户端，客户端使用私钥加密后发回，客户端再使用公钥解密，如果解密后的内容可以正确配对，则认证通过，允许远程登陆。</p>
+<p>关于加解密的过程，使用的是非对称加密算法，个人也没学过密码学，不是很懂…但是，SSH远程登陆不用输密码，还是很方便的。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><p>RedHat官方教程：<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-ssh-configuration-keypairs.html" target="_blank" rel="noopener">https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-ssh-configuration-keypairs.html</a></p>
+<li><p>RedHat 官方教程：<a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-ssh-configuration-keypairs.html" target="_blank" rel="noopener">https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-ssh-configuration-keypairs.html</a></p>
 </li>
-<li><p>Debian官方教程：<a href="https://debian-administration.org/article/530/SSH_with_authentication_key_instead_of_password" target="_blank" rel="noopener">https://debian-administration.org/article/530/SSH_with_authentication_key_instead_of_password</a></p>
+<li><p>Debian 官方教程：<a href="https://debian-administration.org/article/530/SSH_with_authentication_key_instead_of_password" target="_blank" rel="noopener">https://debian-administration.org/article/530/SSH_with_authentication_key_instead_of_password</a></p>
+</li>
+<li><p>ServerPilot：<a href="https://serverpilot.io/docs/how-to-use-ssh-public-key-authentication" target="_blank" rel="noopener">https://serverpilot.io/docs/how-to-use-ssh-public-key-authentication</a></p>
 </li>
 </ul>
-
+<!-- EOF -->
                 <hr>
 <!--
                 <ul class="pager">
@@ -243,6 +250,8 @@ $ rm ~/id_rsa.pub
                     <div class="tags">
                        
                           <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#SSH" title="SSH">SSH</a>
                         
                     </div>
                 </section>
