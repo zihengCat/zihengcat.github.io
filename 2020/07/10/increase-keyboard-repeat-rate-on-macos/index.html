@@ -169,11 +169,27 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用苹果计算机的程序员可能会感到 macOS 系统对长按连续输入的响应有些迟缓，即使修改了<code>System Preferences &gt;&gt; Keyboard</code>中关于按键输入响应的系统配置项也还是不尽如人意。我们还有更妙的方法可以提高 macOS 按键连续输入速率。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用苹果计算机的程序员可能会感到 macOS 系统对长按连续输入的响应有些迟缓，即使修改了<code>System Preferences &gt;&gt; Keyboard</code>中关于按键输入响应的系统配置项也还是不尽如人意。</p>
+<p>我们还有更妙的方法可以提高 macOS 按键连续输入速率。</p>
 <p><img src="./keyboard-repeat-preference.png" alt="keyboard-repeat-preference"></p>
 <blockquote>
 <p>图：<code>System Preferences &gt;&gt; Keyboard</code>系统配置项</p>
 </blockquote>
+<h1 id="macOS-设置提高按键连续输入速率"><a href="#macOS-设置提高按键连续输入速率" class="headerlink" title="macOS 设置提高按键连续输入速率"></a>macOS 设置提高按键连续输入速率</h1><p>打开命令行终端 Terminal，键入如下命令，重启/重新登陆。</p>
+<pre><code class="bash">$ defaults write -g KeyRepeat -int 1
+$ defaults write -g InitialKeyRepeat -int 10
+</code></pre>
+<blockquote>
+<p>代码清单：macOS 设置提高按键连续输入速率</p>
+</blockquote>
+<p>原理：通过系统 UI 与命令行 CLI 修改的是同一份系统配置，通过命令行强行写入比系统默认值更低的按键响应参数。</p>
+<ul>
+<li><p><code>KeyRepeat</code>：字符连续输入间隔，此处为<code>1</code>（15ms），系统默认最低值<code>2</code>（30ms）。</p>
+</li>
+<li><p><code>InitialKeyRepeat</code>：响应连续输入的等待时间，此处为<code>10</code>（150ms），系统默认最低值<code>15</code>（225ms）。</p>
+</li>
+</ul>
+<p>当然，每个人都有适合自己的按键输入速率，可以根据自身实际情况调整参数。按键响应速度快，写起代码来更得心应手。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>StackExchange: <a href="https://apple.stackexchange.com/questions/10467/how-to-increase-keyboard-key-repeat-rate-on-os-x" target="_blank" rel="noopener">https://apple.stackexchange.com/questions/10467/how-to-increase-keyboard-key-repeat-rate-on-os-x</a></li>
 </ul>
