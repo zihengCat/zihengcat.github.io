@@ -184,12 +184,12 @@ $ defaults write -g InitialKeyRepeat -int 10
 </blockquote>
 <p>原理：通过系统 UI 与命令行 CLI 修改的是同一份系统配置，通过命令行强行写入比系统默认值更低的按键响应参数。</p>
 <ul>
-<li><p><code>KeyRepeat</code>：字符连续输入间隔，此处为<code>1</code>（15ms），系统默认最低值<code>2</code>（30ms）。</p>
+<li><p><code>KeyRepeat</code>：<strong>字符连续输入间隔</strong>，此处为<code>1</code>（15ms），系统默认最低值<code>2</code>（30ms）。</p>
 </li>
-<li><p><code>InitialKeyRepeat</code>：响应连续输入的等待时间，此处为<code>10</code>（150ms），系统默认最低值<code>15</code>（225ms）。</p>
+<li><p><code>InitialKeyRepeat</code>：<strong>响应连续输入的等待时间</strong>，此处为<code>10</code>（150ms），系统默认最低值<code>15</code>（225ms）。</p>
 </li>
 </ul>
-<p>当然，每个人都有适合自己的按键输入速率，可以根据自身实际情况调整参数。按键响应速度快，写起代码来更得心应手。</p>
+<p>当然，每个人都有适合自己的按键输入速率，可以根据自身实际情况调整参数。按键响应速度快，写起代码来更加得心应手。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>StackExchange: <a href="https://apple.stackexchange.com/questions/10467/how-to-increase-keyboard-key-repeat-rate-on-os-x" target="_blank" rel="noopener">https://apple.stackexchange.com/questions/10467/how-to-increase-keyboard-key-repeat-rate-on-os-x</a></li>
 </ul>
