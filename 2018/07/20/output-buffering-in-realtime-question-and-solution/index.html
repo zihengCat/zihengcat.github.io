@@ -169,9 +169,9 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现代程序设计语言（尤其是动态脚本语言）的<code>IO</code>库在设计时，大多会针对输出流「Output Stream」做缓冲「Buffering」机制。其目的是为了最小化「Minimize」<code>IO</code>操作。众所周知，<code>IO</code>操作是非常慢、非常费时的，例如：读写磁盘，访问网络，打印信息到控制台「Console」。</p>
-<h1 id="缓冲「Buffering」机制"><a href="#缓冲「Buffering」机制" class="headerlink" title="缓冲「Buffering」机制"></a>缓冲「Buffering」机制</h1><p>在执行<code>IO</code>操作时，程序会在内存中开辟出一块合适的空间，用作缓存「Buffer」，在缓存区域收到一定数据量或触发事件<code>flush()</code>前，不会真正执行磁盘读写<code>IO</code>操作。</p>
-<h1 id="不同语言下的实时输出流"><a href="#不同语言下的实时输出流" class="headerlink" title="不同语言下的实时输出流"></a>不同语言下的实时输出流</h1><p><code>IO</code>缓冲机制无疑是优秀的设计，但有时候，这一机制也会我们带来一定的麻烦（比如，无法实时查看<code>jenkins</code>持续集成CI系统下的控制台信息输出）。我们需要某些方法能做到实时输出流打印。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现代程序设计语言（尤其是动态脚本语言）的<code>I/O</code>库在设计时，大多会针对输出流「Output Stream」做缓冲「Buffering」机制。其目的是为了最小化「Minimize」<code>I/O</code>操作。众所周知，<code>I/O</code>操作是非常慢、非常费时的，例如：读写磁盘，访问网络，打印信息到控制台「Console」。</p>
+<h1 id="缓冲「Buffering」机制"><a href="#缓冲「Buffering」机制" class="headerlink" title="缓冲「Buffering」机制"></a>缓冲「Buffering」机制</h1><p>在执行<code>I/O</code>操作时，程序会在内存中开辟出一块合适的空间，用作缓存「Buffer」，在缓存区域收到一定数据量或触发事件<code>flush()</code>前，不会真正执行磁盘读写<code>I/O</code>操作。</p>
+<h1 id="不同语言下的实时输出流"><a href="#不同语言下的实时输出流" class="headerlink" title="不同语言下的实时输出流"></a>不同语言下的实时输出流</h1><p><code>I/O</code>缓冲机制无疑是优秀的设计，但有时候，这一机制也会我们带来一定的麻烦（比如，无法实时查看<code>Jenkins</code>持续集成 CI 系统下的控制台信息输出）。我们需要某些方法能做到实时输出流打印。</p>
 <h2 id="Python语言"><a href="#Python语言" class="headerlink" title="Python语言"></a><code>Python</code>语言</h2><p>在<code>Python</code>中，做到实时输出的方法还是很多的。</p>
 <p>使用Python解释器提供的<code>-u</code>参数。</p>
 <pre><code>$ python -u &lt;script.py&gt;
@@ -209,7 +209,7 @@ sys.stdout.flush()
 <li>StackOverflow 问答[107705]：<a href="https://stackoverflow.com/questions/107705/disable-output-buffering" target="_blank" rel="noopener">https://stackoverflow.com/questions/107705/disable-output-buffering</a></li>
 <li>StackOverflow 问答[11631951]：<a href="https://stackoverflow.com/questions/11631951/jenkins-console-output-not-in-realtime" target="_blank" rel="noopener">https://stackoverflow.com/questions/11631951/jenkins-console-output-not-in-realtime</a></li>
 </ul>
-
+<!-- EOF -->
                 <hr>
 <!--
                 <ul class="pager">
