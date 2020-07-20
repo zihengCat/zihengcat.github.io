@@ -142,6 +142,8 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                        
                           <a class="tag" href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
                         
                           <a class="tag" href="/tags/#Cloud Native" title="Cloud Native">Cloud Native</a>
@@ -251,7 +253,39 @@ $ sysctl -p /etc/sysctl.d/kubernetes.conf
 <blockquote>
 <p>代码清单：修改内核参数</p>
 </blockquote>
-<h1 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h1><p>…</p>
+<h1 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h1><pre><code class="bash"># 安装 Docker 依赖包
+$ yum install -y yum-utils device-mapper-persistent-data lvm2
+# 添加 Docker CE 仓库
+$ yum-config-manager --add-repo \
+  &#39;https://download.docker.com/linux/centos/docker-ce.repo&#39;
+# 安装 Docker CE 
+# yum search --showduplicates 查看历史版本
+$ yum install -y docker-ce
+# 创建 Docker CE 配置目录
+$ mkdir /etc/docker
+# 配置 Docker CE 服务
+$ cat &gt; /etc/docker/daemon.json &lt;&lt; EOF
+{
+  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
+  &quot;log-driver&quot;: &quot;json-file&quot;,
+  &quot;log-opts&quot;: {
+    &quot;max-size&quot;: &quot;100m&quot;
+  },
+  &quot;storage-driver&quot;: &quot;overlay2&quot;,
+  &quot;storage-opts&quot;: [
+    &quot;overlay2.override_kernel_check=true&quot;
+  ]
+}
+EOF
+# 启动 Docker CE 服务
+$ systemctl enable docker
+$ systemctl restart docker
+# 添加当前用户至 Docker 用户组
+$ sudo usermod -aG docker $USER
+</code></pre>
+<blockquote>
+<p>代码清单：安装 Docker CE</p>
+</blockquote>
 <h1 id="安装-Kubernetes"><a href="#安装-Kubernetes" class="headerlink" title="安装 Kubernetes"></a>安装 Kubernetes</h1><pre><code class="bash">$ cat &gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt; EOF
 [kubernetes]
 name=Kubernetes
@@ -435,6 +469,8 @@ $ systemctl restart docker
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                        
                           <a class="tag" href="/tags/#Kubernetes" title="Kubernetes">Kubernetes</a>
                         
                           <a class="tag" href="/tags/#Cloud Native" title="Cloud Native">Cloud Native</a>
