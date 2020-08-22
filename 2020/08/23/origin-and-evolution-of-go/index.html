@@ -8,10 +8,10 @@
     <meta name="keyword" content="blog">
     <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="canonical" href="https://zihengcat.github.io/about/">
+    <link rel="canonical" href="https://zihengcat.github.io/2020/08/23/origin-and-evolution-of-go/">
     <title>
         
-          About - zihengCat
+          Go 语言的起源与发展 - zihengCat
         
     </title>
 
@@ -125,260 +125,158 @@
     }
 </script>
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg-d.png')">
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-d.png');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <span class="subheading">Hey, this is zihengCat.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Go" title="Go">Go</a>
+                        
+                    </div>
+                    <h1>Go 语言的起源与发展</h1>
+                    <h2 class="subheading">Origin and Evolution of Go</h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2020-08-23
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-<!-- USE SIDEBAR -->
-  <!-- Post Container -->
-    <div class="
-         col-lg-8 col-lg-offset-1
-         col-md-8 col-md-offset-1
-         col-sm-12
-         col-xs-12
-         post-container">
-    <h1 id="关于我-About-Me"><a href="#关于我-About-Me" class="headerlink" title="关于我 - About Me"></a>关于我 - About Me</h1><p>你好，欢迎光临小站！这里是子恒，坐标「杭州」。这是我的博客小站，记录下个人学习成长的轨迹。欢迎留言，也欢迎直接与我联系交流。<br>Hi, Welcome! This is zihengCat, a student live in Hangzhou, China, OpenSource enthusiast. Learning coding now. Welcome to leave messages or contact to me directly.</p>
-<h1 id="联系我-Contact-Me"><a href="#联系我-Contact-Me" class="headerlink" title="联系我 - Contact Me"></a>联系我 - Contact Me</h1><ul>
-<li><p>Email: <a href="mailto:zihenglv@gmail.com" target="_blank" rel="noopener">zihenglv@gmail.com</a></p>
-</li>
-<li><p>GitHub: <a href="https://github.com/zihengcat" target="_blank" rel="noopener">https://github.com/zihengcat</a></p>
-</li>
-<li><p>LeetCode: <a href="https://leetcode.com/zihengcat" target="_blank" rel="noopener">https://leetcode.com/zihengcat</a></p>
-</li>
-<li><p>Zhihu: <a href="https://www.zhihu.com/people/zihengcat" target="_blank" rel="noopener">https://www.zhihu.com/people/zihengcat</a></p>
-</li>
-<li><p>Bilibili: <a href="https://space.bilibili.com/1584633" target="_blank" rel="noopener">https://space.bilibili.com/1584633</a></p>
-</li>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="Go-简介"><a href="#Go-简介" class="headerlink" title="Go 简介"></a>Go 简介</h1><p><img src="./GoHeader.jpg" alt="GoHeader"></p>
+<p>Go（有时也被称为：Golang）是一门新兴的程序设计语言，诞生于 2007 年，并于 2009 年正式对外发布。Go 是一门<strong>开源</strong>的程序设计语言，其初衷是为了让开发者可以更为方便地开发<strong>简单、可靠、高效</strong>的应用软件。Go 是一门<strong>静态类型编译型语言</strong>，静态类型意味着变量类型需要显式声明并在编译时刻确定，编译型语言则意味着程序执行前需要将源代码编译为平台相关的二进制机器码。Go 项目的领导者是三位鼎鼎大名的 IT 工程师：<em>Robert Griesemer，Rob Pike，Ken Thompson</em>。</p>
+<ul>
+<li>Robert Griesemer：参与开发 Java HotSpot 虚拟机。</li>
+<li>Rob Pike：贝尔实验室 Unix 团队成员，参与开发 Plan 9 操作系统和 Limbo 语言。</li>
+<li>Ken Thompson：贝尔实验室 Unix 团队成员，C 语言、Unix 和 Plan 9 操作系统创始人之一，与 Rob Pike 共同开发了 UTF-8 字符集规范。</li>
+</ul>
+<p>Go 首次公开发布是在 2009 年，以 BSD 许可证开放源代码释出，支持 Unix、Linux、MacOS 平台，同年也增加了对 Windows 平台的支持。Go 1.0（首个生产可用版）于 2012 年 3 月发布，如今，Go 语言已经迭代到了 1.15 版本（2020 年 8 月），而 Go 2.0 也正在路上！</p>
+<p><img src="./GoDevelopmentTimeline.png" alt="GoDevelopmentTimeline"></p>
+<blockquote>
+<p>图：Go 语言时间线</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>The Way to Go</li>
 </ul>
 <!-- EOF -->
-
-
-
-<hr>
-<!-- Gitment Begin -->
-<div id="gitment_container">
-  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js">
-  </script>
-  <script>
-    var gitment = new Gitment({
-      id:    'hexo_gitment',        // 可选 默认为 location.href
-      owner: 'zihengcat',           // 你的 GitHub ID
-      repo:  'zihengcat.github.io', // 存储 Repo
-      oauth: {
-        // 你的 client ID
-        client_id: 'f039815621dd7dfd694e',
-        // 你的 client secret
-        client_secret: 'fbd18887ac773d1d7a16a91054c3c996a18eb4fe'
-      }
-    });
-    gitment.render(document.getElementById('gitment_container'));
-  </script>
-</div>
-<!-- Gitment End -->
-
-    </div>
-
-    <!-- Sidebar Container -->
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/07/10/increase-keyboard-repeat-rate-on-macos/" data-toggle="tooltip" data-placement="top" title="macOS 小技巧 - 提高按键连续输入速率">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
             <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
                 sidebar-container
-            ">
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
                 <!-- Featured Tags -->
                 
                 <section>
-                    <!-- no hr -->
+                    <!-- No hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Java" title="Java" rel="32">Java</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#Go" title="Go">Go</a>
                         
                     </div>
                 </section>
                 
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/img/avatar.png" />
-                        
-
-                        
-                            <p>Hi, this is zihengCat, a student live in Hangzhou, China. Learning coding now, SDE I.</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/zihengcat">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                        </ul>
-                    </div>
-                </section>
-
                 <!-- Friends Blog -->
+                <hr>
                 <!--
                 
-                <hr>
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
-
                     
                 </ul>
                 
                 -->
             </div>
-        
+        </div>
     </div>
-</div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
     <!-- Footer -->
 <footer>
@@ -611,6 +509,56 @@ if($('#tag_cloud').length !== 0) {
 </script>
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 </body>
