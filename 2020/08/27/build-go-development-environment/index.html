@@ -226,7 +226,11 @@ windows/arm
 <blockquote>
 <p>图：Go 预编译二进制包</p>
 </blockquote>
-<h1 id="Go-源代码编译安装"><a href="#Go-源代码编译安装" class="headerlink" title="Go 源代码编译安装"></a>Go 源代码编译安装</h1><p>…</p>
+<h1 id="Go-源代码编译安装"><a href="#Go-源代码编译安装" class="headerlink" title="Go 源代码编译安装"></a>Go 源代码编译安装</h1><p>从源代码编译安装 Go 是搭建 Go 开发环境最佳方式。Go 作为一门标准的编译型图灵完备程序设计语言，其开发团队在工程技术层面实现了语言的<strong>自举（Bootstrapping）</strong>，即：编译 Go 的工具链是使用 Go 编写的。</p>
+<p>当然，新语言诞生之初的第一版编译器总是会使用低阶语言（如：C、汇编）实现，Go 也不例外。早期版本的 Go 编译器使用 C 编写，因此从源代码编译安装 Go 时，我们需要使用最后一个 C 语言实现的 Go 发行版<code>go1.4-bootstrap-20171003</code>，先使用 C 编译器编译出 Go 1.4 版，再使用 Go 1.4 编译出 Go 最新版，链路：<code>C -&gt; Go 1.4 Bootstrap -&gt; Go Latest</code>。</p>
+<blockquote>
+<p>Go 1.4 Bootstrap: <a href="https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz" target="_blank" rel="noopener">https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz</a></p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Go Minimum Requirements: <a href="https://github.com/golang/go/wiki/MinimumRequirements" target="_blank" rel="noopener">https://github.com/golang/go/wiki/MinimumRequirements</a></li>
 <li>GoDoc - Installing Go: <a href="https://golang.org/doc/install" target="_blank" rel="noopener">https://golang.org/doc/install</a></li>
