@@ -228,7 +228,7 @@ windows/arm
 </blockquote>
 <h1 id="Go-源代码编译安装"><a href="#Go-源代码编译安装" class="headerlink" title="Go 源代码编译安装"></a>Go 源代码编译安装</h1><p>从源代码编译安装 Go 是搭建 Go 开发环境最佳方式。Go 作为一门标准的编译型图灵完备程序设计语言，其开发团队在工程技术层面实现了语言的<strong>自举（Bootstrapping）</strong>，即：编译 Go 的工具链是使用 Go 编写的。</p>
 <p>当然，新语言诞生之初的第一版编译器总是会使用低阶语言（如：C、汇编）实现，Go 也不例外。早期版本的 Go 编译器使用 C 编写，因此，从源代码编译安装 Go 时，我们需要使用最后一个 C 语言实现的 Go 发行版：<code>go1.4-bootstrap</code>，先使用 C 编译器编译出 Go 1.4 版，再使用 Go 1.4 编译出 Go 最新版，链路如下：<code>C -&gt; Go 1.4 Bootstrap -&gt; Go Latest</code>。</p>
-<h2 id="编译-Go-1-4（Bootstrap）"><a href="#编译-Go-1-4（Bootstrap）" class="headerlink" title="编译 Go 1.4（Bootstrap）"></a>编译 Go 1.4（Bootstrap）</h2><p>本机安装 C 编译工具链（如：GCC、LLVM），使用 git 拉取 Go 源码树，切换至<code>release-branch.go1.4</code>分支或直接下载<code>go1.4-bootstrap-20171003.tar.gz</code>源代码包，进入<code>src</code>源码目录，运行<code>all.bash</code>脚本执行编译。</p>
+<h2 id="编译-Go-1-4（Bootstrap）"><a href="#编译-Go-1-4（Bootstrap）" class="headerlink" title="编译 Go 1.4（Bootstrap）"></a>编译 Go 1.4（Bootstrap）</h2><p>本机安装 C 编译工具链（如：GCC、LLVM），使用<code>git</code>拉取 Go 源码库，切换至<code>release-branch.go1.4</code>分支，也可以直接下载解压缩<code>go1.4-bootstrap-20171003.tar.gz</code>源代码包，进入<code>src</code>源码目录，运行<code>all.bash</code>脚本启动编译。</p>
 <blockquote>
 <p>Go 1.4 Bootstrap: <a href="https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz" target="_blank" rel="noopener">https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz</a></p>
 </blockquote>
@@ -270,8 +270,8 @@ go version go1.4-bootstrap-20170531 linux/amd64
 <blockquote>
 <p>代码清单：Go 1.4（Bootstrap）编译验证</p>
 </blockquote>
-<h2 id="编译-Go-1-15（Latest）"><a href="#编译-Go-1-15（Latest）" class="headerlink" title="编译 Go 1.15（Latest）"></a>编译 Go 1.15（Latest）</h2><p>有了 Go 1.4 Bootstrap，我们就可以用来编译 Go 最新版本了，当前 Go 最新版为 1.15。指定<code>GOROOT_BOOTSTRAP</code>环境变量为上一步编译完成的 Go 1.4 Bootstrap 目录，运行<code>all.bash</code>脚本执行编译，编译测试完成后，我们就得到了编译好的 Go 最新版。</p>
-<pre><code class="bash"># git 拉取 Go 源码仓库
+<h2 id="编译-Go-1-15（Latest）"><a href="#编译-Go-1-15（Latest）" class="headerlink" title="编译 Go 1.15（Latest）"></a>编译 Go 1.15（Latest）</h2><p>有了 Go 1.4 Bootstrap，我们就可以用来编译 Go 最新版本了，当前 Go 最新版为 1.15。指定<code>GOROOT_BOOTSTRAP</code>环境变量为上一步编译完成的 Go 1.4 Bootstrap 目录，运行<code>all.bash</code>脚本执行编译，编译、测试流程走完后，我们就得到了编译好的 Go 最新版二进制包。</p>
+<pre><code class="bash"># git 拉取 Go 源码库
 $ git clone &#39;https://github.com/golang/go.git&#39;
 $ cd go
 # 切换至最新分支
