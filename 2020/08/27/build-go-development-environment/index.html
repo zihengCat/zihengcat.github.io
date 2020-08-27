@@ -297,8 +297,8 @@ go version go1.15 linux/amd64
 <blockquote>
 <p>代码清单：Go 1.5（Latest）编译验证</p>
 </blockquote>
-<h2 id="裁减-Go-编译中间文件"><a href="#裁减-Go-编译中间文件" class="headerlink" title="裁减 Go 编译中间文件"></a>裁减 Go 编译中间文件</h2><p>通过源代码编译得到的 Go 二进制包相比于官方提供的 Go 预编译二进制包，文件体积大了许多。这是因为在编译过程中生成了体积巨大的<code>obj</code>编译中间文件，裁减掉这部分编译中间文件，可以有效地缩小 Go 二进制包的体积。Go 编译中间文件位置：<code>${GOROOT}/pkg/obj</code>。</p>
-<pre><code class="bash"># 源代码根目录下
+<h2 id="裁减-Go-编译中间文件"><a href="#裁减-Go-编译中间文件" class="headerlink" title="裁减 Go 编译中间文件"></a>裁减 Go 编译中间文件</h2><p>我们通过源代码编译得到的 Go 二进制包相比于官方的 Go 预编译二进制包，文件体积大了许多。这是因为在编译过程中生成了体积巨大的<code>obj</code>编译中间文件，裁减掉这部分编译中间文件，可以有效地缩小 Go 二进制包的体积。Go 编译中间文件位置：<code>${GOROOT}/pkg/obj</code>。</p>
+<pre><code class="bash"># 源代码目录下
 $ rm -rf pkg/obj
 </code></pre>
 <blockquote>
