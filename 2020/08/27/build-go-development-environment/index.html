@@ -270,7 +270,7 @@ go version go1.4-bootstrap-20170531 linux/amd64
 <blockquote>
 <p>代码清单：Go 1.4（Bootstrap）编译验证</p>
 </blockquote>
-<h2 id="编译-Go-1-15（Latest）"><a href="#编译-Go-1-15（Latest）" class="headerlink" title="编译 Go 1.15（Latest）"></a>编译 Go 1.15（Latest）</h2><p>有了 Go 1.4 Bootstrap，我们就可以用来编译 Go 最新版本了，当前 Go 最新版为 1.15。指定<code>GOROOT_BOOTSTRAP</code>环境变量为上一步编译完成的 Go 1.4 Bootstrap 目录。</p>
+<h2 id="编译-Go-1-15（Latest）"><a href="#编译-Go-1-15（Latest）" class="headerlink" title="编译 Go 1.15（Latest）"></a>编译 Go 1.15（Latest）</h2><p>有了 Go 1.4 Bootstrap，我们就可以用来编译 Go 最新版本了，当前 Go 最新版为 1.15。指定<code>GOROOT_BOOTSTRAP</code>环境变量为上一步编译完成的 Go 1.4 Bootstrap 目录，运行<code>all.bash</code>脚本执行编译，编译测试完成后，我们就得到了编译好的 Go 最新版。</p>
 <pre><code class="bash"># git 拉取 Go 源码仓库
 $ git clone &#39;https://github.com/golang/go.git&#39;
 $ cd go
