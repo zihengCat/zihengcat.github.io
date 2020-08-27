@@ -228,7 +228,7 @@ windows/arm
 </blockquote>
 <h1 id="Go-源代码编译安装"><a href="#Go-源代码编译安装" class="headerlink" title="Go 源代码编译安装"></a>Go 源代码编译安装</h1><p>从源代码编译安装 Go 是搭建 Go 开发环境最佳方式。Go 作为一门标准的编译型图灵完备程序设计语言，其开发团队在工程技术层面实现了语言的<strong>自举（Bootstrapping）</strong>，即：编译 Go 的工具链是使用 Go 编写的。</p>
 <p>当然，新语言诞生之初的第一版编译器总是会使用低阶语言（如：C、汇编）实现，Go 也不例外。早期版本的 Go 编译器使用 C 编写，因此，从源代码编译安装 Go 时，我们需要使用最后一个 C 语言实现的 Go 发行版：<code>go1.4-bootstrap</code>，先使用 C 编译器编译出 Go 1.4 版，再使用 Go 1.4 编译出 Go 最新版，链路如下：<code>C -&gt; Go 1.4 Bootstrap -&gt; Go Latest</code>。</p>
-<h1 id="编译-Go-1-4-Bootstrap"><a href="#编译-Go-1-4-Bootstrap" class="headerlink" title="编译 Go 1.4 (Bootstrap)"></a>编译 Go 1.4 (Bootstrap)</h1><p>本机安装 C 编译工具链（如：GCC、LLVM），使用 git 拉取 Go 源码树，切换至<code>release-branch.go1.4</code>分支或直接下载<code>go1.4-bootstrap-20171003.tar.gz</code>源代码包，进入<code>src</code>源码目录，运行<code>all.bash</code>脚本执行编译。</p>
+<h1 id="编译-Go-1-4（Bootstrap）"><a href="#编译-Go-1-4（Bootstrap）" class="headerlink" title="编译 Go 1.4（Bootstrap）"></a>编译 Go 1.4（Bootstrap）</h1><p>本机安装 C 编译工具链（如：GCC、LLVM），使用 git 拉取 Go 源码树，切换至<code>release-branch.go1.4</code>分支或直接下载<code>go1.4-bootstrap-20171003.tar.gz</code>源代码包，进入<code>src</code>源码目录，运行<code>all.bash</code>脚本执行编译。</p>
 <blockquote>
 <p>Go 1.4 Bootstrap: <a href="https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz" target="_blank" rel="noopener">https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz</a></p>
 </blockquote>
@@ -247,18 +247,18 @@ $ bash &#39;all.bash&#39;
 ...
 </code></pre>
 <blockquote>
-<p>代码清单：编译 Go 1.4 (Bootstrap)</p>
+<p>代码清单：编译 Go 1.4（Bootstrap）流程</p>
 </blockquote>
 <p>编译脚本会自动侦测出当前操作系统与处理机架构（如：<code>linux/amd64</code>）并执行编译，编译完成后 Go 还会执行测试流程进行检验，如果一切正常，编译、测试都没有出错，则会给出如下提示信息。</p>
 <pre><code class="plain">ALL TESTS PASSED
 
 ---
-Installed Go for linux/amd64 in /home/ziheng/go_temp/go
-Installed commands in /home/ziheng/go_temp/go/bin
-*** You need to add /home/ziheng/go_temp/go/bin to your PATH.
+Installed Go for linux/amd64 in /home/ziheng/go_temp/go_1.4_bootstrap
+Installed commands in /home/ziheng/go_temp/go_1.4_bootstrap/bin
+*** You need to add /home/ziheng/go_temp/go_1.4_bootstrap/bin to your PATH.
 </code></pre>
 <blockquote>
-<p>代码清单：Go 1.4 (Bootstrap) 编译提示信息</p>
+<p>代码清单：Go 1.4（Bootstrap）编译提示信息</p>
 </blockquote>
 <p>执行<code>bin/go</code>命令查看当前编译完成的 Go 版本，验证一下。</p>
 <pre><code class="bash"># 回退上级目录
@@ -268,9 +268,24 @@ $ bin/go version
 go version go1.4-bootstrap-20170531 linux/amd64
 </code></pre>
 <blockquote>
-<p>代码清单：Go 1.4 (Bootstrap) 编译验证</p>
+<p>代码清单：Go 1.4（Bootstrap）编译验证</p>
 </blockquote>
-<h1 id="编译-Go-1-15-Latest"><a href="#编译-Go-1-15-Latest" class="headerlink" title="编译 Go 1.15 (Latest)"></a>编译 Go 1.15 (Latest)</h1><p>…</p>
+<h1 id="编译-Go-1-15（Latest）"><a href="#编译-Go-1-15（Latest）" class="headerlink" title="编译 Go 1.15（Latest）"></a>编译 Go 1.15（Latest）</h1><p>有了 Go 1.4 Bootstrap，我们就可以用来编译 Go 最新版本了，当前 Go 最新版为 1.15。</p>
+<pre><code class="bash"># git 拉取 Go 源码仓库
+$ git clone &#39;https://github.com/golang/go.git&#39;
+# 切换至最新分支
+$ git checkout &#39;release-branch.go1.15&#39; 
+# 指定 Go 1.4 Bootstrap 路径
+$ export GOROOT_BOOTSTRAP=&#39;/home/ziheng/go_temp/go_1.4_bootstrap&#39;
+# 进入`src`目录
+$ cd src
+# 执行编译脚本
+$ bash &#39;all.bash&#39;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：编译 Go 1.15（Latest）流程</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>Go Minimum Requirements: <a href="https://github.com/golang/go/wiki/MinimumRequirements" target="_blank" rel="noopener">https://github.com/golang/go/wiki/MinimumRequirements</a></li>
 <li>GoDoc - Installing Go: <a href="https://golang.org/doc/install" target="_blank" rel="noopener">https://golang.org/doc/install</a></li>
