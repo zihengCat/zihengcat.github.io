@@ -220,7 +220,7 @@ windows/arm
 </blockquote>
 <h1 id="Go-安装预编译二进制包"><a href="#Go-安装预编译二进制包" class="headerlink" title="Go 安装预编译二进制包"></a>Go 安装预编译二进制包</h1><p>安装 Go 预编译二进制包是搭建 Go 开发环境最简便的方式，Go 开发团队提供了主流 <em>Windows</em> / <em>macOS</em> / <em>Linux</em> 操作系统的预编译二进制包，前往 Golang Downloads 页面，选择对应的安装包下载安装即可。</p>
 <blockquote>
-<p>Golang Downloads: <a href="https://golang.org/dl/" target="_blank" rel="noopener">https://golang.org/dl/</a></p>
+<p>Golang Downloads 地址：<a href="https://golang.org/dl/" target="_blank" rel="noopener">https://golang.org/dl/</a></p>
 </blockquote>
 <p><img src="./Go-Precompiled-Binary-Packages.png" alt="GoPrecompiledBinaryPackages"></p>
 <blockquote>
@@ -230,7 +230,7 @@ windows/arm
 <p>当然，新语言诞生之初，第一版编译器总是会选用低阶语言（如：C、汇编）实现，Go 也不例外。早期版本的 Go 编译器使用 C 编写，因此，从源代码编译安装 Go 时，我们需要使用最后一个 C 语言实现的 Go 发行版：<code>go1.4-bootstrap</code>，先使用 C 编译器编译出 Go 1.4 版，再使用 Go 1.4 编译出 Go 最新版，链路如下：<code>C -&gt; Go 1.4 Bootstrap -&gt; Go Latest</code>。</p>
 <h2 id="编译-Go-1-4（Bootstrap）"><a href="#编译-Go-1-4（Bootstrap）" class="headerlink" title="编译 Go 1.4（Bootstrap）"></a>编译 Go 1.4（Bootstrap）</h2><p>本机安装 C 编译工具链（如：GCC、LLVM），使用<code>git</code>工具拉取 Go 源码库，切换至<code>release-branch.go1.4</code>分支，也可以直接下载解压缩<code>go1.4-bootstrap-20171003.tar.gz</code>源代码包，进入<code>src</code>源码目录，运行<code>all.bash</code>脚本启动编译。</p>
 <blockquote>
-<p>Go 1.4 Bootstrap: <a href="https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz" target="_blank" rel="noopener">https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz</a></p>
+<p>Go 1.4 Bootstrap 下载地址：<a href="https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz" target="_blank" rel="noopener">https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz</a></p>
 </blockquote>
 <pre><code class="bash"># 取得 Go 1.4 Bootstrap 源码包
 $ curl -O &#39;https://dl.google.com/go/go1.4-bootstrap-20171003.tar.gz&#39;
@@ -304,7 +304,7 @@ $ rm -rf pkg/obj
 <blockquote>
 <p>代码清单：裁减 Go 编译中间文件</p>
 </blockquote>
-<h1 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello, world!"></a>Hello, world!</h1><p>编写<code>Hello, world!</code>程序是程序员接触一门新的语言的时候传统，上手编写 Go 的<code>Hello, world!</code>程序吧。</p>
+<h1 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello, world!"></a>Hello, world!</h1><p>编写<code>Hello, world!</code>程序是程序员接触一门新语言时的传统，上手编写 Go 的<code>Hello, world!</code>程序吧。</p>
 <pre><code class="go">package main
 
 import &quot;fmt&quot;
@@ -380,7 +380,7 @@ Hello, world!
 <li>Go Minimum Requirements: <a href="https://github.com/golang/go/wiki/MinimumRequirements" target="_blank" rel="noopener">https://github.com/golang/go/wiki/MinimumRequirements</a></li>
 <li>GoDoc - Installing Go: <a href="https://golang.org/doc/install" target="_blank" rel="noopener">https://golang.org/doc/install</a></li>
 <li>GoDoc - Installing Go from source: <a href="https://golang.org/doc/install/source" target="_blank" rel="noopener">https://golang.org/doc/install/source</a></li>
-<li>The Way to Go</li>
+<li>Book:《The Way to Go》</li>
 </ul>
 <!-- EOF -->
 
