@@ -297,6 +297,16 @@ go version go1.15 linux/amd64
 <blockquote>
 <p>代码清单：Go 1.5（Latest）编译验证</p>
 </blockquote>
+<p>最后，不要忘记添加 Go 安装路径到全局环境变量<code>$PATH</code>之中，使得 Go 命令全局可调用。</p>
+<pre><code class="bash"># 添加 Go 安装路径至 PATH 环境变量
+$ cat &gt;&gt; ~/.bashrc &lt;&lt; &#39;EOF&#39;
+export GOROOT=&#39;/path/to/your/go/install&#39;
+PATH=&quot;${PATH}:${GOROOT}/bin&quot;
+EOF
+</code></pre>
+<blockquote>
+<p>代码清单：添加 Go 安装路径至<code>$PATH</code>环境变量</p>
+</blockquote>
 <h2 id="裁减-Go-编译中间文件"><a href="#裁减-Go-编译中间文件" class="headerlink" title="裁减 Go 编译中间文件"></a>裁减 Go 编译中间文件</h2><p>我们通过源代码编译得到的 Go 二进制包相比于官方的 Go 预编译二进制包，文件体积大了许多。这是因为在编译过程中生成了体积巨大的<code>obj</code>编译中间文件，裁减掉这部分编译中间文件，可以有效地缩小 Go 二进制包的体积。Go 编译中间文件位置：<code>${GOROOT}/pkg/obj</code>。</p>
 <pre><code class="bash"># 源代码目录下
 $ rm -rf pkg/obj
