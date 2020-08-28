@@ -304,8 +304,30 @@ $ rm -rf pkg/obj
 <blockquote>
 <p>代码清单：裁减 Go 编译中间文件</p>
 </blockquote>
-<h1 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello, world!"></a>Hello, world!</h1><p>…</p>
-<h1 id="代码编辑器与集成开发环境"><a href="#代码编辑器与集成开发环境" class="headerlink" title="代码编辑器与集成开发环境"></a>代码编辑器与集成开发环境</h1><p>俗话说，工欲善其事，必先利其器。随着 Go 的流行，诸多厂商、开发者开发了支持 Go 的集成开发环境（IDE）与编辑器插件，这些优秀的开发工具帮助我们更具效率地开发 Go 。</p>
+<h1 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello, world!"></a>Hello, world!</h1><p>编写<code>Hello, world!</code>程序是程序员接触一门新的语言的时候传统，上手编写 Go 的<code>Hello, world!</code>程序吧。</p>
+<pre><code class="go">package main
+
+import &quot;fmt&quot;
+
+func main() {
+    fmt.Println(&quot;Hello, world!&quot;)
+    fmt.Println(&quot;你好，世界！&quot;)
+}
+// EOF
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Hello, world</code> in Go</p>
+</blockquote>
+<p>编译，运行 Go <code>Hello, world!</code>程序。</p>
+<pre><code class="bash">$ go build main.go
+$ ./main
+Hello, world!
+你好，世界！
+</code></pre>
+<blockquote>
+<p>代码清单：编译运行 Go <code>Hello, world</code>程序</p>
+</blockquote>
+<h1 id="代码编辑器与集成开发环境"><a href="#代码编辑器与集成开发环境" class="headerlink" title="代码编辑器与集成开发环境"></a>代码编辑器与集成开发环境</h1><p>俗话说得好，工欲善其事，必先利其器。随着 Go 的流行，诸多厂商、开发者开发了支持 Go 的集成开发环境（IDE）与编辑器插件，优秀的开发工具帮助我们更具效率地开发 Go 。</p>
 <table>
 <thead>
 <tr>
