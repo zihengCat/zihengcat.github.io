@@ -238,7 +238,7 @@ identifier = newValue
 <p>声明在顶层，函数体之外的变量应用全局作用域。全局作用域内的变量为其包内所有所有源文件可见可用，全局作用域也被称为包作用域（Package Scope）。</p>
 <p>声明在函数体内部的变量应用本地作用域。本地作用域内的变量只在当前函数体内可用。</p>
 <p>Go 的作用域规则与 C/C++ 相似，在内层作用域可以访问并修改外层作用域的变量，反之则不行，在内层作用域声明同名变量会覆盖外层作用域变量（Variable Shadowing）。</p>
-<h2 id="变量与作用域代码实例"><a href="#变量与作用域代码实例" class="headerlink" title="变量与作用域代码实例"></a>变量与作用域代码实例</h2><p>观察以下 Go 程序，判读结果。</p>
+<h2 id="变量与作用域代码实例"><a href="#变量与作用域代码实例" class="headerlink" title="变量与作用域代码实例"></a>变量与作用域代码实例</h2><p>观察以下 Go 程序代码，判读结果。</p>
 <pre><code class="go">package main
 import &quot;fmt&quot;
 var v int = 0
