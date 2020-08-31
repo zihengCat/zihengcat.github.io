@@ -238,7 +238,7 @@ n = v2
 <p>声明在顶层，函数体之外的变量应用全局作用域。全局作用域内的变量为其包内所有所有源文件可见可用，全局作用域也被称为包作用域（Package Scope）。</p>
 <p>声明在函数体内部的变量应用本地作用域。本地作用域内的变量只在当前函数体内可用。</p>
 <p>Go 的作用域规则与 C/C++ 相似，在内层作用域可以访问并修改外层作用域的变量，反之则不行，在内层作用域声明同名变量会覆盖外层作用域变量（Variable Shadowing）。</p>
-<h2 id="变量与作用域代码实例"><a href="#变量与作用域代码实例" class="headerlink" title="变量与作用域代码实例"></a>变量与作用域代码实例</h2><p>观察以下 Go 程序代码，判读结果。</p>
+<h2 id="变量作用域代码实例"><a href="#变量作用域代码实例" class="headerlink" title="变量作用域代码实例"></a>变量作用域代码实例</h2><p>观察以下 Go 程序代码，判读结果。</p>
 <pre><code class="go">package main
 import &quot;fmt&quot;
 var v int = 0
@@ -259,16 +259,16 @@ func print(v int) {
 }
 </code></pre>
 <blockquote>
-<p>代码清单：Go 变量与作用域代码实例</p>
+<p>代码清单：Go 变量作用域代码实例</p>
 </blockquote>
 <h1 id="Go-常量"><a href="#Go-常量" class="headerlink" title="Go 常量"></a>Go 常量</h1><p>在程序运行期间值不可被改变的量被称为常量。在 Go 中常量使用<code>const</code>关键字，且能被用作常量的数据类型只能是布尔型、整型、浮点型、字符串。</p>
+<blockquote>
+<p>注：常量命名规范推荐遵循全大写字母并以下划线<code>_</code>分隔。</p>
+</blockquote>
 <pre><code class="go">const identifier type = value
 </code></pre>
 <blockquote>
 <p>代码清单：Go 常量</p>
-</blockquote>
-<blockquote>
-<p>注：常量命名规范推荐遵循全大写字母并以下划线<code>_</code>分隔。</p>
 </blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>A Tour of Go</p>
