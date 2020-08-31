@@ -206,7 +206,39 @@
 <blockquote>
 <p>表：Go 数据类型</p>
 </blockquote>
-<h1 id="Go-变量"><a href="#Go-变量" class="headerlink" title="Go 变量"></a>Go 变量</h1><h1 id="Go-常量"><a href="#Go-常量" class="headerlink" title="Go 常量"></a>Go 常量</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<h1 id="Go-变量"><a href="#Go-变量" class="headerlink" title="Go 变量"></a>Go 变量</h1><p>变量在程序运行期间其值可以被改变。在 Go 中声明变量使用<code>var</code>关键字：</p>
+<pre><code class="go">var identifier type 
+</code></pre>
+<blockquote>
+<p>代码清单：Go 声明变量</p>
+</blockquote>
+<p>以<code>var</code>关键字开头，<code>identifier</code>是变量名，变量类型<code>type</code>跟在变量名的后头。当一个变量被声明时，变量的内存空间即被被初始化，该变量带有默认零值：整型<code>0</code>，浮点型<code>0.0</code>，布尔型<code>false</code>，字符串型<code>&quot;&quot;</code>，指针<code>nil</code>，空结构体…</p>
+<blockquote>
+<p>注：Go 变量命名规范遵循驼峰命名法（camelCase），变量导出首字母大写。</p>
+</blockquote>
+<h2 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h2><p>将一个值赋予一个变量的操作被称为变量赋值。在 Go 中变量赋值使用<code>=</code>操作符：</p>
+<pre><code class="go">var identifier type = initialValue
+identifier = newValue
+</code></pre>
+<blockquote>
+<p>代码清单：Go 变量赋值</p>
+</blockquote>
+<h2 id="短变量声明-操作符"><a href="#短变量声明-操作符" class="headerlink" title="短变量声明 := 操作符"></a>短变量声明 <code>:=</code> 操作符</h2><p>Go 语言编译器足够智能，可以自动推导变量类型。在应用自动类型推导的情况下，原先变量声明赋值的写法就显得有些冗余了，因此 Go 提供了一种简洁的变量声明赋值写法：即<code>:=</code>操作符，关键字<code>var</code>与变量类型<code>type</code>都可以被忽略掉。</p>
+<pre><code class="go">identifier := value
+</code></pre>
+<blockquote>
+<p>代码清单：Go 短变量声明</p>
+</blockquote>
+<p>注意，Go 的短变量声明写法<code>:=</code>只能在<strong>函数体（Function）内</strong>使用。</p>
+<h2 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h2><p>Go 中存在两种变量变量作用域：</p>
+<ul>
+<li>全局作用域（Global Scope）</li>
+<li>本地作用域（Local Scope）</li>
+</ul>
+<p>声明在顶层，函数体之外的变量应用全局作用域。全局作用域内的变量为其包内所有所有源文件可见可用，全局作用域也被称为包作用域（Package Scope）。</p>
+<p>声明在函数体内部的变量应用本地作用域。本地作用域内的变量只在当前函数体内可用。</p>
+<p>Go 的作用域规则与 C/C++ 相似，在内层作用域可以访问并修改外层作用域的变量，反之则不行，在内层作用域声明同名变量会覆盖外层作用域变量（Variable Shadowing）。</p>
+<h1 id="Go-常量"><a href="#Go-常量" class="headerlink" title="Go 常量"></a>Go 常量</h1><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li><p>A Tour of Go</p>
 </li>
 <li><p>Book:《The Way to Go》</p>
