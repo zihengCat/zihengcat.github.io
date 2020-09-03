@@ -174,6 +174,11 @@
 </blockquote>
 <p>In modern cloud architecture, applications are decoupled into smaller, independent building blocks that are easier to develop, deploy and maintain. Message queues provide communication and coordination for these distributed applications. Message queues can significantly simplify coding of decoupled applications, while improving performance, reliability and scalability.</p>
 <p>Message queues allow different parts of a system to communicate and process operations asynchronously. A message queue provides a lightweight buffer which temporarily stores messages, and endpoints that allow software components to connect to the queue in order to send and receive messages. The messages are usually small, and can be things like requests, replies, error messages, or just plain information. To send a message, a component called a producer adds a message to the queue. The message is stored on the queue until another component called a consumer retrieves the message and does something with it.</p>
+<p>Publish/subscribe messaging, or pub/sub messaging, is a form of asynchronous service-to-service communication used in serverless and microservices architectures. In a pub/sub model, any message published to a topic is immediately received by all of the subscribers to the topic. Pub/sub messaging can be used to enable event-driven architectures, or to decouple applications in order to increase performance, reliability and scalability.</p>
+<p><img src="./Message-Queue-Pub-Sub.png" alt="MessageQueuePubSub"></p>
+<blockquote>
+<p>Figure: Message Queue Pub-sub</p>
+</blockquote>
 <p>Some widely used message queues nowadays:</p>
 <ul>
 <li>Apache Kafka</li>
