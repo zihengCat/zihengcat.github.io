@@ -215,6 +215,14 @@
 <p>Figure: Azure Service Bus Topic</p>
 </blockquote>
 <h1 id="Advanced-Features"><a href="#Advanced-Features" class="headerlink" title="Advanced Features"></a>Advanced Features</h1><h2 id="Transportation-Protocols"><a href="#Transportation-Protocols" class="headerlink" title="Transportation Protocols"></a>Transportation Protocols</h2><p>Service Bus supports standard <strong>AMQP 1.0</strong> and <strong>HTTP/REST</strong> protocols.</p>
+<ul>
+<li>Advanced Message Queuing Protocol (AMQP)</li>
+<li>Service Bus Messaging Protocol (SBMP)</li>
+<li>Hypertext Transfer Protocol (HTTP)</li>
+</ul>
+<blockquote>
+<p>Note: The SBMP is only available for .NET Framework. </p>
+</blockquote>
 <h2 id="Client-Libraries"><a href="#Client-Libraries" class="headerlink" title="Client Libraries"></a>Client Libraries</h2><p>Service Bus supports multiple client libraries such as .NET, Java, and JMS.</p>
 <ul>
 <li>.NET</li>
@@ -277,8 +285,45 @@
 <h2 id="Autodelete"><a href="#Autodelete" class="headerlink" title="Autodelete"></a>Autodelete</h2><p>Autodelete on idle enables you to specify an idle interval after which a queue is automatically deleted. The minimum duration is 5 minutes. </p>
 <h2 id="Batching"><a href="#Batching" class="headerlink" title="Batching"></a>Batching</h2><p>Client-side batching enables a queue or topic client to delay sending a message for a certain period of time. If the client sends additional messages during this time period, it transmits the messages in a single batch. For more information, see Client-side batching.</p>
 <h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><p>Service Bus supports security protocols such as Shared Access Signatures (SAS), Azure role-based access control (Azure RBAC) and Managed identities for Azure resources.</p>
+<h1 id="Key-Indicators"><a href="#Key-Indicators" class="headerlink" title="Key Indicators"></a>Key Indicators</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">Criteria</th>
+<th style="text-align:left">Quota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Maximum Queue Size</td>
+<td style="text-align:left">1 GB to 80 GB (defined upon creation of a queue and enabling partitioning)</td>
+</tr>
+<tr>
+<td style="text-align:left">Maximum Message Size</td>
+<td style="text-align:left">256 KB or 1 MB (including both header and body, maximum header size: 64 KB)</td>
+</tr>
+<tr>
+<td style="text-align:left">Maximum Message TTL</td>
+<td style="text-align:left">Infinite <code>Int64.MaxValue</code></td>
+</tr>
+<tr>
+<td style="text-align:left">Concurrency</td>
+<td style="text-align:left">1,000 concurrent connections to an <strong><em>entity</em></strong>, each subscription can support up to 1,000 concurrent connections for TCP based protocol;Alternatively, access the queue via the HTTP protocol.</td>
+</tr>
+<tr>
+<td style="text-align:left">Queues per Namespace</td>
+<td style="text-align:left">10,000</td>
+</tr>
+<tr>
+<td style="text-align:left">Subscriptions per Topic</td>
+<td style="text-align:left">2,000</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Table: Service Bus Key Indicators</p>
+</blockquote>
 <h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p>…</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
 <li>AWS Message Queue: <a href="https://aws.amazon.com/message-queue/" target="_blank" rel="noopener">https://aws.amazon.com/message-queue/</a></li>
 <li>Azure Service Bus: <a href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/azure/service-bus-messaging/</a></li>
 </ul>
