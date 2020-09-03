@@ -181,10 +181,13 @@
 </blockquote>
 <p>Some widely used message queues nowadays:</p>
 <ul>
-<li>Apache Kafka</li>
-<li>Apache RocketMQ</li>
-<li>RabbitMQ</li>
-<li>ZeroMQ</li>
+<li><a href="https://kafka.apache.org/" target="_blank" rel="noopener">Apache Kafka</a></li>
+<li><a href="https://rocketmq.apache.org/" target="_blank" rel="noopener">Apache RocketMQ</a></li>
+<li><a href="http://activemq.apache.org/" target="_blank" rel="noopener">Apache ActiveMQ</a></li>
+<li><a href="https://www.rabbitmq.com/" target="_blank" rel="noopener">RabbitMQ</a></li>
+<li><a href="https://zeromq.org/" target="_blank" rel="noopener">ZeroMQ</a></li>
+<li><a href="https://tubemq.apache.org/en-us/" target="_blank" rel="noopener">TubeMQ</a></li>
+<li><a href="https://nsq.io/" target="_blank" rel="noopener">NSQ</a></li>
 <li>…</li>
 </ul>
 <h1 id="What-is-Azure-Service-Bus"><a href="#What-is-Azure-Service-Bus" class="headerlink" title="What is Azure Service Bus"></a>What is Azure Service Bus</h1><p>Microsoft Azure Service Bus is a <strong>fully managed</strong> enterprise integration message broker. Service Bus can decouple applications and services. Service Bus offers a reliable and secure platform for asynchronous transfer of data and state.</p>
@@ -200,7 +203,8 @@
 <blockquote>
 <p>Figure: Azure Service Bus</p>
 </blockquote>
-<h1 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts"></a>Key Concepts</h1><h2 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h2><p>A namespace is a <strong>Container</strong> for <em>all messaging components</em>. Multiple queues and topics can be in a single namespace, and namespaces often serve as application containers.</p>
+<h1 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts"></a>Key Concepts</h1><p>Some key concepts about Service Bus.</p>
+<h2 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h2><p>A namespace is a <strong>Container</strong> for <em>all messaging components</em>. Multiple queues and topics can be in a single namespace, and namespaces often serve as application containers.</p>
 <h2 id="Queues"><a href="#Queues" class="headerlink" title="Queues"></a>Queues</h2><p>Messages are sent to and received from <em>queues</em>. Queues store messages until the receiving application is available to receive and process them.</p>
 <p>Messages in queues are ordered and timestamped on arrival. Once accepted, the message is held safely in redundant storage. Messages are delivered in <em>pull</em> mode, only delivering messages when requested.</p>
 <p><img src="./Service-Bus-Queue.png" alt="ServiceBusQueue"></p>
@@ -214,7 +218,8 @@
 <blockquote>
 <p>Figure: Azure Service Bus Topic</p>
 </blockquote>
-<h1 id="Advanced-Features"><a href="#Advanced-Features" class="headerlink" title="Advanced Features"></a>Advanced Features</h1><h2 id="Transportation-Protocols"><a href="#Transportation-Protocols" class="headerlink" title="Transportation Protocols"></a>Transportation Protocols</h2><p>Service Bus supports standard <strong>AMQP 1.0</strong> and <strong>HTTP/REST</strong> protocols.</p>
+<h1 id="Advanced-Features"><a href="#Advanced-Features" class="headerlink" title="Advanced Features"></a>Advanced Features</h1><p>Microsoft Azure Service Bus provides following advanced features.</p>
+<h2 id="Transportation-Protocols"><a href="#Transportation-Protocols" class="headerlink" title="Transportation Protocols"></a>Transportation Protocols</h2><p>Service Bus supports standard <strong>AMQP 1.0</strong> and <strong>HTTP/REST</strong> protocols.</p>
 <ul>
 <li>Advanced Message Queuing Protocol (AMQP)</li>
 <li>Service Bus Messaging Protocol (SBMP)</li>
@@ -315,7 +320,7 @@
 </tr>
 <tr>
 <td style="text-align:left">Queues per Namespace</td>
-<td style="text-align:left">10,000 (Premium Tier: 1,000 * 4)</td>
+<td style="text-align:left">10,000</td>
 </tr>
 <tr>
 <td style="text-align:left">Subscriptions per Topic</td>
