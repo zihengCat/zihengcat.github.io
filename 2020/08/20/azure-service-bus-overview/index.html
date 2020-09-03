@@ -200,7 +200,84 @@
 <blockquote>
 <p>Figure: Azure Service Bus</p>
 </blockquote>
-<h1 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts"></a>Key Concepts</h1><h2 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h2><h2 id="Queues"><a href="#Queues" class="headerlink" title="Queues"></a>Queues</h2><h2 id="Topics"><a href="#Topics" class="headerlink" title="Topics"></a>Topics</h2><h1 id="Advanced-Features"><a href="#Advanced-Features" class="headerlink" title="Advanced Features"></a>Advanced Features</h1><h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p>…</p>
+<h1 id="Key-Concepts"><a href="#Key-Concepts" class="headerlink" title="Key Concepts"></a>Key Concepts</h1><h2 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h2><p>A namespace is a <strong>Container</strong> for <em>all messaging components</em>. Multiple queues and topics can be in a single namespace, and namespaces often serve as application containers.</p>
+<h2 id="Queues"><a href="#Queues" class="headerlink" title="Queues"></a>Queues</h2><p>Messages are sent to and received from <em>queues</em>. Queues store messages until the receiving application is available to receive and process them.</p>
+<p>Messages in queues are ordered and timestamped on arrival. Once accepted, the message is held safely in redundant storage. Messages are delivered in <em>pull</em> mode, only delivering messages when requested.</p>
+<p><img src="./Service-Bus-Queue.png" alt="ServiceBusQueue"></p>
+<blockquote>
+<p>Figure: Azure Service Bus Queues</p>
+</blockquote>
+<h2 id="Topics"><a href="#Topics" class="headerlink" title="Topics"></a>Topics</h2><p>Service Bus can also use <em>topics</em> to send and receive messages. While a queue is often used for point-to-point communication, topics are useful in publish/subscribe scenarios.</p>
+<p>Topics can have multiple, independent subscriptions. A subscriber to a topic can receive a copy of each message sent to that topic. Subscriptions are named entities. Subscriptions persist, but can expire or autodelete.</p>
+<p>You may not want individual subscriptions to receive all messages sent to a topic. If so, you can use rules and filters to define conditions that trigger optional actions. You can filter specified messages and set or modify message properties. For more information, see Topic filters and actions.</p>
+<p><img src="./Service-Bus-Topic.png" alt="ServiceBusTopic"></p>
+<blockquote>
+<p>Figure: Azure Service Bus Topic</p>
+</blockquote>
+<h1 id="Advanced-Features"><a href="#Advanced-Features" class="headerlink" title="Advanced Features"></a>Advanced Features</h1><h2 id="Transportation-Protocols"><a href="#Transportation-Protocols" class="headerlink" title="Transportation Protocols"></a>Transportation Protocols</h2><p>Service Bus supports standard <strong>AMQP 1.0</strong> and <strong>HTTP/REST</strong> protocols.</p>
+<h2 id="Client-Libraries"><a href="#Client-Libraries" class="headerlink" title="Client Libraries"></a>Client Libraries</h2><p>Service Bus supports multiple client libraries such as .NET, Java, and JMS.</p>
+<ul>
+<li>.NET</li>
+<li>Java</li>
+<li>Python</li>
+<li>Node.js</li>
+<li>PHP</li>
+<li>Ruby</li>
+<li>Go</li>
+<li>PowerShell</li>
+<li>REST</li>
+<li>…</li>
+</ul>
+<h2 id="Message-Sessions"><a href="#Message-Sessions" class="headerlink" title="Message Sessions"></a>Message Sessions</h2><p>Microsoft Azure Service Bus sessions enable joint and ordered handling of unbounded sequences of related messages. Sessions can be used in first in, first out (FIFO) and request-response patterns. </p>
+<p>Sessions provide concurrent <em>de-multiplexing</em> of interleaved message streams while preserving and guaranteeing ordered delivery.</p>
+<p><img src="./Service-Bus-Sessions.png" alt="ServiceBusSessions"></p>
+<blockquote>
+<p>Figure: Azure Service Bus Sessions</p>
+</blockquote>
+<h2 id="Dead-letter-Queue-DLQ"><a href="#Dead-letter-Queue-DLQ" class="headerlink" title="Dead-letter Queue (DLQ)"></a>Dead-letter Queue (DLQ)</h2><p>Service Bus supports a dead-letter queue (DLQ). A DLQ holds messages that can’t be delivered to any receiver. It holds messages that can’t be processed. Service Bus lets you remove messages from the DLQ and inspect them. For more information, see Overview of Service Bus dead-letter queues.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">DeadLetterReason</th>
+<th style="text-align:left">DeadLetterErrorDescription</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">HeaderSizeExceeded</td>
+<td style="text-align:left">The size quota for this stream has been exceeded.</td>
+</tr>
+<tr>
+<td style="text-align:left">TTLExpiredException</td>
+<td style="text-align:left">The message expired and was dead lettered. See the Exceeding TimeToLive section for details.</td>
+</tr>
+<tr>
+<td style="text-align:left">SessionIdIsNull</td>
+<td style="text-align:left">Session enabled entity doesn’t allow a message whose session identifier is null.</td>
+</tr>
+<tr>
+<td style="text-align:left">MaxTransferHopCountExceeded</td>
+<td style="text-align:left">The maximum number of allowed hops when forwarding between queues. Value is set to 4.</td>
+</tr>
+<tr>
+<td style="text-align:left">MaxDeliveryCountExceeded</td>
+<td style="text-align:left">Message could not be consumed after maximum delivery attempts. See the Exceeding MaxDeliveryCount section for details.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Table: Service Bus Dead Letter Reason</p>
+</blockquote>
+<h2 id="Scheduled-Delivery"><a href="#Scheduled-Delivery" class="headerlink" title="Scheduled Delivery"></a>Scheduled Delivery</h2><p>You can submit messages to a queue or topic for delayed processing. You can schedule a job to become available for processing by a system at a certain time. </p>
+<h2 id="Message-Deferral"><a href="#Message-Deferral" class="headerlink" title="Message Deferral"></a>Message Deferral</h2><p>A queue or subscription client can defer retrieval of a message until a later time. This deferral might be because of special circumstances in the application. The message remains in the queue or subscription, but it’s set aside.</p>
+<p>In order for a message to be deferred it must have been received using the PeekLock message mode, and not have been completed or abandoned. Once a message is deferred it can only be received again using the <em>SequenceNumber</em> value for the message. The receiving application must retrieve this value from the message and store it before the message is deferred. If the SequenceNumber for a deferred message is lost the deferred message will remain in the queue until it expires. The receiving application is responsible for the reliable storage of SequenceNumbers for messages it has deferred.</p>
+<h2 id="Duplicate-Detection"><a href="#Duplicate-Detection" class="headerlink" title="Duplicate Detection"></a>Duplicate Detection</h2><p>An error could cause the client to have a doubt about the outcome of a send operation. Duplicate detection enables the sender to resend the same message. Another option is for the queue or topic to discard any duplicate copies.</p>
+<p>In scenarios where client code is unable to resubmit a message with the same MessageId as before, it is important to design messages which can be safely re-processed. This blog post about idempotence describes various techniques for how to do that.</p>
+<h2 id="Autoforwarding"><a href="#Autoforwarding" class="headerlink" title="Autoforwarding"></a>Autoforwarding</h2><p>The Service Bus <em>autoforwarding</em> feature enables you to chain a queue or subscription to another queue or topic that is part of the same namespace. When autoforwarding is enabled, Service Bus automatically removes messages that are placed in the first queue or subscription (source) and puts them in the second queue or topic (destination). It is still possible to send a message to the destination entity directly.</p>
+<h2 id="Autodelete"><a href="#Autodelete" class="headerlink" title="Autodelete"></a>Autodelete</h2><p>Autodelete on idle enables you to specify an idle interval after which a queue is automatically deleted. The minimum duration is 5 minutes. </p>
+<h2 id="Batching"><a href="#Batching" class="headerlink" title="Batching"></a>Batching</h2><p>Client-side batching enables a queue or topic client to delay sending a message for a certain period of time. If the client sends additional messages during this time period, it transmits the messages in a single batch. For more information, see Client-side batching.</p>
+<h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><p>Service Bus supports security protocols such as Shared Access Signatures (SAS), Azure role-based access control (Azure RBAC) and Managed identities for Azure resources.</p>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><p>…</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li>AWS Message Queue: <a href="https://aws.amazon.com/message-queue/" target="_blank" rel="noopener">https://aws.amazon.com/message-queue/</a></li>
 <li>Azure Service Bus: <a href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/azure/service-bus-messaging/</a></li>
