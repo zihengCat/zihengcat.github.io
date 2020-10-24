@@ -165,8 +165,8 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Go-范围迭代-range"><a href="#Go-范围迭代-range" class="headerlink" title="Go 范围迭代 range"></a>Go 范围迭代 <code>range</code></h1><p>Go 语言提供了一种<code>for</code>循环以外的集合数据迭代方式：范围迭代，使用关键字<code>range</code>，其等同于其他程序设计语言中的<code>forEach</code>迭代。范围迭代<code>range</code>可应用于多种 Go 内置数据结构：字符串、数组/切片、哈希表、通道。</p>
-<h1 id="数组-切片的范围迭代"><a href="#数组-切片的范围迭代" class="headerlink" title="数组/切片的范围迭代"></a>数组/切片的范围迭代</h1><p>Go 范围迭代 <code>range</code>应用于数组/切片时，可以获取数组/切片的索引与元素，以下代码示例展示了使用<code>range</code>范围迭代遍历数组/切片时的几种使用方式：</p>
+                <h1 id="Go-范围迭代-range"><a href="#Go-范围迭代-range" class="headerlink" title="Go 范围迭代 range"></a>Go 范围迭代 <code>range</code></h1><p>Go 语言提供了一种<code>for</code>循环以外的集合数据迭代方式：范围迭代，使用关键字<code>range</code>表示，其等同于其他程序设计语言中的<code>forEach</code>迭代。范围迭代<code>range</code>可应用于多种 Go 内置数据结构：字符串、数组/切片、哈希表、通道。</p>
+<h1 id="数组-切片的范围迭代"><a href="#数组-切片的范围迭代" class="headerlink" title="数组/切片的范围迭代"></a>数组/切片的范围迭代</h1><p>Go 范围迭代<code>range</code>应用于数组/切片时，可以获取数组/切片的索引与元素。以下代码示例展示了使用<code>range</code>范围迭代遍历数组/切片时的几种使用方式：</p>
 <ul>
 <li>不关心索引与元素</li>
 <li>遍历并获取索引</li>
@@ -179,7 +179,7 @@ import &quot;fmt&quot;
 func main() {
     s := []int{1, 2, 3,}
     for range s {
-        fmt.Println(&quot;for-range&quot;)
+        fmt.Println(s)
     }
     for idx := range s {
         fmt.Println(&quot;idx:&quot;, idx)
@@ -192,6 +192,29 @@ func main() {
 <blockquote>
 <p>代码示例：Go 数组/切片的范围迭代</p>
 </blockquote>
+<h1 id="字符串的范围迭代"><a href="#字符串的范围迭代" class="headerlink" title="字符串的范围迭代"></a>字符串的范围迭代</h1><p>Go 字符串类型可以看作不可变 UTF-8 字节数组，字符串的<code>range</code>范围迭代与数组/切片类似，可以获取字符串当前字符的字节索引与字符值（<code>rune</code>类型）。</p>
+<pre><code class="go">package main
+
+import &quot;fmt&quot;
+
+func main() {
+    s := &quot;Golang&quot;
+    for range s {
+        fmt.Println(s)
+    }
+    for idx := range s {
+        fmt.Println(&quot;idx:&quot;, idx)
+    }
+    for idx, r := range s {
+        fmt.Println(&quot;idx:&quot;, idx, &quot;rune:&quot;, r)
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码示例：Go 字符串的范围迭代</p>
+</blockquote>
+<h1 id="哈希表的范围迭代"><a href="#哈希表的范围迭代" class="headerlink" title="哈希表的范围迭代"></a>哈希表的范围迭代</h1><p>…</p>
+<h1 id="通道的范围迭代"><a href="#通道的范围迭代" class="headerlink" title="通道的范围迭代"></a>通道的范围迭代</h1><p>…</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>A Tour of Go</li>
 <li>《Go 语言设计与实现》：<a href="https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-for-range" target="_blank" rel="noopener">https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-for-range</a></li>
