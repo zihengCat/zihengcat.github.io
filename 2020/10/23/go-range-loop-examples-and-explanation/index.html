@@ -244,7 +244,7 @@ func main() {
 <blockquote>
 <p>代码示例：Go 哈希表 Range 范围迭代</p>
 </blockquote>
-<h2 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h2><p>使用<code>range</code>迭代遍历通道（Channel）也是 Go 中较为常见的写法，一个通道范围迭代语句<code>for v := range ch {}</code>最终会被编译器转换为等价三段<code>for</code>循环的形式：使用<code>&lt;-ch</code>阻塞通道并获值，根据通道返回的布尔值<code>hb</code>判断当前通道是否被关闭，如果未关闭则赋值<code>hv</code>并执行循环体，重新陷入阻塞等待新数据。</p>
+<h2 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h2><p>使用<code>range</code>迭代遍历通道（Channel）也是 Go 中较为常见的写法，一个通道范围迭代语句<code>for v := range ch {}</code>最终会被编译器转换为等价三段<code>for</code>循环的形式：使用<code>&lt;-ch</code>阻塞通道并获值，根据返回的布尔值<code>hb</code>判断当前通道是否被关闭，如果未关闭则赋值<code>hv</code>并执行循环体，而后重新陷入阻塞等待新数据。</p>
 <pre><code class="go">// for v := range ch {}
 for hv, hb := &lt;-ch; hb; hv, hb = &lt;-ch {
     // ...
