@@ -190,9 +190,9 @@ func main() {
 }
 </code></pre>
 <blockquote>
-<p>代码示例：Go 数组/切片的范围迭代</p>
+<p>代码示例：Go 数组/切片范围迭代</p>
 </blockquote>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>Go 字符串类型可以看作不可变 UTF-8 字节数组，字符串的<code>range</code>范围迭代与数组/切片类似，可以获取字符串当前字符的字节索引与字符值（<code>rune</code>类型）。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>Go 字符串类型可以看作不可变 UTF-8 字节数组，字符串的<code>range</code>范围迭代与数组/切片类似，可以获取字符串当前字符的起始字节索引与 Unicode 码点（<code>rune</code>类型）。</p>
 <pre><code class="go">package main
 
 import &quot;fmt&quot;
@@ -211,10 +211,53 @@ func main() {
 }
 </code></pre>
 <blockquote>
-<p>代码示例：Go 字符串的范围迭代</p>
+<p>代码示例：Go 字符串范围迭代</p>
 </blockquote>
-<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>…</p>
-<h2 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h2><p>…</p>
+<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>Go 哈希表<code>map</code>是最为常用的容器类型，哈希表的遍历操作也是最为基本的操作之一。可以使用<code>range</code>遍历哈希表，并获取当前遍历的键值对。</p>
+<ul>
+<li>不关心键与值</li>
+<li>遍历并获取键</li>
+<li>遍历并获取键与对应值</li>
+</ul>
+<p>需要注意的是，Go 哈希表遍历是无序的，Go 团队在设计哈希表的遍历操作时特意引入了随机数以保证遍历的随机性，也是为了告诉 Go 程序员，程序不要依赖于哈希表的有序遍历。</p>
+<pre><code class="go">package main
+
+import &quot;fmt&quot;
+
+func main() {
+    m := map[string]string{
+        &quot;k1&quot;: &quot;v1&quot;,
+        &quot;k2&quot;: &quot;v2&quot;,
+        &quot;k3&quot;: &quot;v3&quot;,
+    }
+    for range m {
+        fmt.Println(m)
+    }
+    for k := range m {
+        fmt.Println(&quot;key:&quot;, k)
+    }
+    for k, v := range m {
+        fmt.Println(&quot;key:&quot;, k, &quot;value&quot;, v)
+    }
+}
+</code></pre>
+<blockquote>
+<p>代码示例：Go 哈希表范围迭代</p>
+</blockquote>
+<h2 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h2><p>使用<code>range</code>遍历通道（Channel）也是 Go 中较为常见的写法，一个通道范围迭代语句<code>for v := range ch {}</code>最终会被编译器转换为等价三段<code>for</code>循环的形式：使用<code>&lt;-ch</code>阻塞通道并获取值，根据通道返回的布尔值<code>hb</code>判断当前通道是否被关闭，如果通道未关闭则取值赋给<code>hv</code>，重新陷入阻塞等待新数据。</p>
+<pre><code class="go">for hv, hb := &lt;-ch; hb; hv, hb = &lt;-ch {
+    // ...
+}
+</code></pre>
+<blockquote>
+<p>代码示例：Go 通道范围迭代等价转换</p>
+</blockquote>
+<h1 id="Go-范围迭代注意事项"><a href="#Go-范围迭代注意事项" class="headerlink" title="Go 范围迭代注意事项"></a>Go 范围迭代注意事项</h1><p>使用 Go 范围迭代<code>range</code>时有一些事项需要特别注意。</p>
+<ul>
+<li>范围迭代变量均为<strong>值拷贝</strong>。</li>
+<li>数组/切片的范围迭代在<strong>编译时刻</strong>就已确定。</li>
+<li>范围迭代时修改迭代对象会发生<strong>不可预期行为</strong>。</li>
+</ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>A Tour of Go</li>
 <li>《Go 语言设计与实现》：<a href="https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-for-range" target="_blank" rel="noopener">https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-for-range</a></li>
