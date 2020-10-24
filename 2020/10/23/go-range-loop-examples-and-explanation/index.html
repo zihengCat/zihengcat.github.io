@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2020/10/23/go-range-loop-examples-and-explanation/">
     <title>
         
-          Go 范围迭代 - 示例与解释 - zihengCat
+          Go 范围迭代（Range）示例与解释 - zihengCat
         
     </title>
 
@@ -145,8 +145,8 @@
                           <a class="tag" href="/tags/#Go" title="Go">Go</a>
                         
                     </div>
-                    <h1>Go 范围迭代 - 示例与解释</h1>
-                    <h2 class="subheading">Go Range Loop - Examples and Explanation</h2>
+                    <h1>Go 范围迭代（Range）示例与解释</h1>
+                    <h2 class="subheading">Go Range Loop Examples and Explanation</h2>
                     <span class="meta">
                         Posted by zihengCat on
                         2020-10-23
@@ -166,7 +166,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="Go-语言-Range-范围迭代"><a href="#Go-语言-Range-范围迭代" class="headerlink" title="Go 语言 Range 范围迭代"></a>Go 语言 Range 范围迭代</h1><p>Go 语言提供了一种<code>for</code>循环以外的集合数据迭代方式：Range 范围迭代，使用关键字<code>range</code>表示，其等同于其他程序设计语言中的<code>forEach</code>迭代。范围迭代<code>range</code>可应用于多种 Go 内置数据结构：字符串、数组/切片、哈希表、通道。</p>
-<h2 id="数组-切片"><a href="#数组-切片" class="headerlink" title="数组/切片"></a>数组/切片</h2><p>Go 范围迭代<code>range</code>应用于数组/切片时，可以获取数组/切片的索引与对应元素值。以下代码示例展示了使用<code>range</code>范围迭代遍历数组/切片时的几种使用方式：</p>
+<h2 id="数组-切片"><a href="#数组-切片" class="headerlink" title="数组 / 切片"></a>数组 / 切片</h2><p>Go 范围迭代<code>range</code>应用于数组/切片时，可以获取数组/切片的索引与对应元素值。以下代码示例展示了使用<code>range</code>范围迭代遍历数组/切片时的几种使用方式：</p>
 <ul>
 <li>不关心索引与元素</li>
 <li>遍历获取索引</li>
@@ -245,7 +245,8 @@ func main() {
 <p>代码示例：Go 哈希表 Range 范围迭代</p>
 </blockquote>
 <h2 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h2><p>使用<code>range</code>迭代遍历通道（Channel）也是 Go 中较为常见的写法，一个通道范围迭代语句<code>for v := range ch {}</code>最终会被编译器转换为等价三段<code>for</code>循环的形式：使用<code>&lt;-ch</code>阻塞通道并获取值，根据通道返回的布尔值<code>hb</code>判断当前通道是否被关闭，如果通道未关闭则取值赋给<code>hv</code>，重新陷入阻塞等待新数据。</p>
-<pre><code class="go">for hv, hb := &lt;-ch; hb; hv, hb = &lt;-ch {
+<pre><code class="go">// for v := range ch {}
+for hv, hb := &lt;-ch; hb; hv, hb = &lt;-ch {
     // ...
 }
 </code></pre>
