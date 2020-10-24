@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://zihengcat.github.io/2020/10/23/go-range-loop-examples-and-explanation/">
     <title>
         
-          Go 范围迭代 range - 示例与解释 - zihengCat
+          Go 范围迭代 - 示例与解释 - zihengCat
         
     </title>
 
@@ -145,7 +145,7 @@
                           <a class="tag" href="/tags/#Go" title="Go">Go</a>
                         
                     </div>
-                    <h1>Go 范围迭代 range - 示例与解释</h1>
+                    <h1>Go 范围迭代 - 示例与解释</h1>
                     <h2 class="subheading">Go Range Loop - Examples and Explanation</h2>
                     <span class="meta">
                         Posted by zihengCat on
@@ -165,8 +165,14 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Go-范围迭代-range"><a href="#Go-范围迭代-range" class="headerlink" title="Go 范围迭代 range"></a>Go 范围迭代 <code>range</code></h1><p>Go 语言提供了一种<code>for</code>循环以外的集合数据迭代方式：范围迭代<code>range</code>，等同于其他语言中的<code>forEach</code>迭代。范围迭代<code>range</code>可应用于多种 Go 内置数据结构：字符串、数组/切片、哈希表、通道。</p>
-<h1 id="Go-数组-切片的范围迭代"><a href="#Go-数组-切片的范围迭代" class="headerlink" title="Go 数组/切片的范围迭代"></a>Go 数组/切片的范围迭代</h1><pre><code class="go">package main
+                <h1 id="Go-范围迭代-range"><a href="#Go-范围迭代-range" class="headerlink" title="Go 范围迭代 range"></a>Go 范围迭代 <code>range</code></h1><p>Go 语言提供了一种<code>for</code>循环以外的集合数据迭代方式：范围迭代，使用关键字<code>range</code>，其等同于其他程序设计语言中的<code>forEach</code>迭代。范围迭代<code>range</code>可应用于多种 Go 内置数据结构：字符串、数组/切片、哈希表、通道。</p>
+<h1 id="数组-切片的范围迭代"><a href="#数组-切片的范围迭代" class="headerlink" title="数组/切片的范围迭代"></a>数组/切片的范围迭代</h1><p>Go 范围迭代 <code>range</code>应用于数组/切片时，可以获取数组/切片的索引与元素，以下代码示例展示了使用<code>range</code>范围迭代遍历数组/切片时的几种使用方式：</p>
+<ul>
+<li>不关心索引与元素</li>
+<li>遍历并获取索引</li>
+<li>遍历并获取索引与对应元素</li>
+</ul>
+<pre><code class="go">package main
 
 import &quot;fmt&quot;
 
@@ -176,10 +182,10 @@ func main() {
         fmt.Println(&quot;for-range&quot;)
     }
     for idx := range s {
-        fmt.Println(&quot;idx: &quot;, idx)
+        fmt.Println(&quot;idx:&quot;, idx)
     }
     for idx, elem := range s {
-        fmt.Println(&quot;idx: &quot;, idx, &quot;elem: &quot;, elem)
+        fmt.Println(&quot;idx:&quot;, idx, &quot;elem:&quot;, elem)
     }
 }
 </code></pre>
