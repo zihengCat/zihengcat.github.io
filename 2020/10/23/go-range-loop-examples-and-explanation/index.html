@@ -165,7 +165,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Go-语言-Range-范围迭代"><a href="#Go-语言-Range-范围迭代" class="headerlink" title="Go 语言 Range 范围迭代"></a>Go 语言 Range 范围迭代</h1><p>Go 语言提供了一种经典<code>for</code>循环以外的集合数据迭代方式：Range 范围迭代，使用关键字<code>range</code>表示，其等同于其他程序设计语言中的<code>forEach</code>迭代。范围迭代<code>range</code>可应用于多种 Go 内置数据结构：字符串、数组/切片、哈希表、通道。</p>
+                <h1 id="Go-语言-Range-范围迭代"><a href="#Go-语言-Range-范围迭代" class="headerlink" title="Go 语言 Range 范围迭代"></a>Go 语言 Range 范围迭代</h1><p>Go 语言提供了一种经典<code>for</code>循环以外的集合数据迭代方式：Range 范围迭代，使用关键字<code>range</code>表示，其等同于其他程序设计语言中的<code>forEach</code>迭代。范围迭代<code>range</code>可应用于多种 Go 内置数据结构：字符串、数组、切片、哈希表、通道。</p>
 <h2 id="数组-切片"><a href="#数组-切片" class="headerlink" title="数组 / 切片"></a>数组 / 切片</h2><p>Go 范围迭代<code>range</code>应用于数组/切片时，可以获取数组/切片的索引与对应元素值。以下代码示例展示了使用<code>range</code>范围迭代遍历数组/切片时的几种使用方式：</p>
 <ul>
 <li>不关心索引与元素</li>
@@ -213,13 +213,13 @@ func main() {
 <blockquote>
 <p>代码示例：Go 字符串 Range 范围迭代</p>
 </blockquote>
-<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>Go 哈希表<code>map</code>是最为常用的容器类型，哈希表的遍历操作也是最为基本的操作之一。可以使用<code>range</code>遍历哈希表，并获取当前遍历的键值对。</p>
+<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p>Go 哈希表<code>map</code>是最为常用的容器类型，哈希表遍历操作也是最为基本的操作之一。可以使用<code>range</code>遍历哈希表，并获取当前遍历的键值对。</p>
 <ul>
 <li>不关心键与值</li>
 <li>遍历获取键</li>
 <li>遍历获取键与对应值</li>
 </ul>
-<p>需要注意的是，Go 哈希表遍历是<strong>无序</strong>的，Go 团队在设计哈希表的遍历操作时特意引入了随机数以保证遍历的随机性，也是为了告诉 Go 程序员，程序不要依赖于哈希表的有序遍历。</p>
+<p>需要注意的是，Go 哈希表遍历是<strong>无序</strong>的，Go 团队在设计哈希表的遍历操作时特意引入了随机数以保证遍历的随机性，也是为了告诉 Go 程序员，程序不应依赖于哈希表的有序遍历。</p>
 <pre><code class="go">package main
 
 import &quot;fmt&quot;
@@ -244,7 +244,7 @@ func main() {
 <blockquote>
 <p>代码示例：Go 哈希表 Range 范围迭代</p>
 </blockquote>
-<h2 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h2><p>使用<code>range</code>迭代遍历通道（Channel）也是 Go 中较为常见的写法，一个通道范围迭代语句<code>for v := range ch {}</code>最终会被编译器转换为等价三段<code>for</code>循环的形式：使用<code>&lt;-ch</code>阻塞通道并获值，根据返回的布尔值<code>hb</code>判断当前通道是否被关闭，如果未关闭则赋值<code>hv</code>并执行循环体，而后重新陷入阻塞等待新数据。</p>
+<h2 id="通道"><a href="#通道" class="headerlink" title="通道"></a>通道</h2><p>使用<code>range</code>迭代遍历通道（Channel）也是 Go 中较为常见的写法，通道范围迭代语句<code>for v := range ch {}</code>最终会被编译器转换为等价三段<code>for</code>循环的形式：使用<code>&lt;-ch</code>阻塞通道并获值，根据返回的布尔值<code>hb</code>判断当前通道是否被关闭，如果未关闭则赋值<code>hv</code>并执行循环体，而后重新陷入阻塞等待新数据。</p>
 <pre><code class="go">// for v := range ch {}
 for hv, hb := &lt;-ch; hb; hv, hb = &lt;-ch {
     // ...
