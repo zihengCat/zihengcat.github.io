@@ -176,7 +176,7 @@
 <blockquote>
 <p>代码示例：Go 切片 Slice 数据结构</p>
 </blockquote>
-<h1 id="切片作为函数入参"><a href="#切片作为函数入参" class="headerlink" title="切片作为函数入参"></a>切片作为函数入参</h1><p>许多 Go 开发者对使用切片作为函数入参的习惯性认知是：<strong>传递切片，等同于传递指针，函数内部对切片的修改，将会影响到函数外部的切片。</strong>这一习惯性认知在大部分情况下都是正确的。如以下代码所示：在<code>modify</code>函数修改切片，外部<code>main</code>函数中的切片受到影响。</p>
+<h1 id="切片作为函数入参"><a href="#切片作为函数入参" class="headerlink" title="切片作为函数入参"></a>切片作为函数入参</h1><p>许多 Go 开发者对使用切片作为函数入参的习惯性认知是：<strong>传递切片，等同于传递指针，函数内部对切片的修改，将会影响到函数外部的切片。</strong>这一习惯性认知在大部分情况下都是正确的。如以下代码所示：在<code>modify</code>函数中修改切片，外部<code>main</code>函数的切片受到影响。</p>
 <pre><code class="go">package main
 
 import (
