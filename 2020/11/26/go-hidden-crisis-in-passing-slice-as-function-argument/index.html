@@ -165,8 +165,8 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Go-中的切片（Slice）"><a href="#Go-中的切片（Slice）" class="headerlink" title="Go 中的切片（Slice）"></a>Go 中的切片（Slice）</h1><p>Go 中常用的切片数据结构是一枚动态数组，提供方便的局部索引功能，切片的长度并不固定，会在容量不足时自动扩容。</p>
-<p>切片本质上是对一个底层数据的抽象视图，由 Go 运行时维护。运行时切片由如下的<code>SliceHeader</code>结构体表示，其中<code>Data</code>字段是指向底层数组的指针，<code>Len</code>表示当前切片的长度，而<code>Cap</code>表示当前切片的容量，也就是<code>Data</code>数组的大小。</p>
+                <h1 id="Go-中的切片数据结构"><a href="#Go-中的切片数据结构" class="headerlink" title="Go 中的切片数据结构"></a>Go 中的切片数据结构</h1><p>Go 中常用的切片（Slice）数据结构是一枚动态数组，提供方便的局部索引功能，切片的长度并不固定，并且会在容量不足时自动扩容。</p>
+<p>切片实质上是对一个底层数组的抽象视图，由 Go 运行时维护。在运行时，切片由如下的<code>SliceHeader</code>结构体表示，其中<code>Data</code>字段是指向底层数组的指针，<code>Len</code>表示当前切片的长度，而<code>Cap</code>表示当前切片的容量，也就是<code>Data</code>数组的大小。</p>
 <pre><code class="go">type SliceHeader struct {
     Data uintptr
     Len  int
@@ -205,7 +205,7 @@ Inner: [b b]
 After: [b b]
 </code></pre>
 <blockquote>
-<p>代码示例：程序输出</p>
+<p>代码示例：Go 切片作为函数入参 - 程序输出</p>
 </blockquote>
 <p>我们对示例代码做一些修改，在内部函数中<strong>触发切片的扩容机制</strong>，事情看起来就很有趣了，函数内部对切片的修改没有影响到函数外部的切片。</p>
 <pre><code class="go">func modify(s []string) {
@@ -224,10 +224,37 @@ Inner: [b b b]
 After: [a1 a2]
 </code></pre>
 <blockquote>
-<p>代码示例：程序输出</p>
+<p>代码示例：Go 切片作为函数入参（切片扩容）- 程序输出</p>
 </blockquote>
+<h1 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h1><p>Go 函数参数传递机制为<strong>值拷贝</strong>。</p>
+<p>将切片作为函数参数传递时，实际上是拷贝了<code>SliceHeader</code>结构体传入函数，结构体包含一枚指向底层数组的指针，在函数内修改切片，操作的底层数组是相同的。</p>
+<p>但是如果函数内的切片操作触发了切片的扩容机制（如：使用<code>append</code>追加元素），Go 运行时会为切片分配一块新的内存空间并将原切片的所有元素拷贝过去，函数内部切片的底层数组指针指向了新分配的内存空间，而函数外部切片底层数组指针仍指向分配前的地址空间，由此出现了内外切片不一致的有趣情形。</p>
+<p>我们可以通过一个简单的方法验证扩容前后切片的变化，打印出扩容前后切片数组的地址，显然数组地址是不同的。</p>
+<pre><code class="go">func modify(s []string) {
+    fmt.Printf(&quot;Before grow slice, &amp;s[0]: %p\n&quot;, &amp;s[0])
+    s = append(s, &quot;b&quot;)
+    for i := 0; i &lt; len(s); i++ {
+        s[i] = &quot;b&quot;
+    }
+    fmt.Println(&quot;Inner:&quot;, s)
+    fmt.Printf(&quot;After grow slice, &amp;s[0]: %p\n&quot;, &amp;s[0])
+}
+</code></pre>
+<blockquote>
+<p>代码示例：打印扩容前后切片数组地址（首元素地址）</p>
+</blockquote>
+<h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><p>理解了 Go 中切片作为函数参数传递的内部原理后，如何正确在代码中运用切片传参也就显而易见了。</p>
+<ul>
+<li><p>函数操作不涉及切片容量变化，直接传递切片。</p>
+</li>
+<li><p>函数操作涉及切片容量变化，且需要反馈给外部调用方，传递切片指针。</p>
+</li>
+</ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li>Arrays, slices (and strings): The mechanics of ‘append’: <a href="https://blog.golang.org/slices" target="_blank" rel="noopener">https://blog.golang.org/slices</a></li>
+<li><p>Arrays, slices (and strings): The mechanics of ‘append’：<a href="https://blog.golang.org/slices" target="_blank" rel="noopener">https://blog.golang.org/slices</a></p>
+</li>
+<li><p>Go 语言设计与实现：<a href="https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-array-and-slice/" target="_blank" rel="noopener">https://draveness.me/golang/docs/part2-foundation/ch03-datastructure/golang-array-and-slice/</a></p>
+</li>
 </ul>
 <!-- EOF -->
 
