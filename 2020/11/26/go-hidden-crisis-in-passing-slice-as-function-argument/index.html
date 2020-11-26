@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -207,7 +207,7 @@ After: [b b]
 <blockquote>
 <p>代码示例：程序输出</p>
 </blockquote>
-<p>我们对示例代码做一些修改，在内部函数中触发切片的扩容机制，情况看起来很有趣了，函数内部对切片的修改没有影响到函数外部的切片。</p>
+<p>我们对示例代码做一些修改，在内部函数中<strong>触发切片的扩容机制</strong>，事情看起来就很有趣了，函数内部对切片的修改没有影响到函数外部的切片。</p>
 <pre><code class="go">func modify(s []string) {
     s = append(s, &quot;b&quot;)
     for i := 0; i &lt; len(s); i++ {
