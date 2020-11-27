@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -162,9 +162,9 @@
             The Hidden Crisis in Passing Slice as Function Argument
         </h3>
         <div class="post-content-preview">
-            Go 中的切片数据结构Go 中常用的切片（Slice）数据结构是一枚动态数组，提供方便的局部索引功能，切片的长度并不固定，并且会在容量不足时自动扩容。
+            Go 切片数据结构Go 中常用的切片（Slice）数据结构是一枚动态数组，提供方便的局部索引功能，切片长度并不固定，并且会在容量不足时自动扩容。
 切片实质上是对一个底层数组的抽象视图，由 Go 运行时维护。在运行时，切片由如下的SliceHeader结构体表示，其中Data字段是指向底层数组的指针，Len表示当前切片的长度，而Cap表示当前切片的容量，也就是Data数组的大小。
-typ......
+type S......
         </div>
     </a>
     <p class="post-meta">

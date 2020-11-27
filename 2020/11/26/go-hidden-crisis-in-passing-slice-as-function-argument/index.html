@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -165,7 +165,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="Go-中的切片数据结构"><a href="#Go-中的切片数据结构" class="headerlink" title="Go 中的切片数据结构"></a>Go 中的切片数据结构</h1><p>Go 中常用的切片（Slice）数据结构是一枚动态数组，提供方便的局部索引功能，切片的长度并不固定，并且会在容量不足时自动扩容。</p>
+                <h1 id="Go-切片数据结构"><a href="#Go-切片数据结构" class="headerlink" title="Go 切片数据结构"></a>Go 切片数据结构</h1><p>Go 中常用的切片（Slice）数据结构是一枚动态数组，提供方便的局部索引功能，切片长度并不固定，并且会在容量不足时自动扩容。</p>
 <p>切片实质上是对一个底层数组的抽象视图，由 Go 运行时维护。在运行时，切片由如下的<code>SliceHeader</code>结构体表示，其中<code>Data</code>字段是指向底层数组的指针，<code>Len</code>表示当前切片的长度，而<code>Cap</code>表示当前切片的容量，也就是<code>Data</code>数组的大小。</p>
 <pre><code class="go">type SliceHeader struct {
     Data uintptr
@@ -208,8 +208,8 @@ After: [b b]
 <p>代码示例：Go 切片作为函数入参 - 程序输出</p>
 </blockquote>
 <p>我们对示例代码做一些修改，在内部函数中<strong>触发切片的扩容机制</strong>，事情看起来就很有趣了，函数内部对切片的修改没有影响到函数外部的切片。</p>
-<pre><code class="go">func modify(s []string) {
-    s = append(s, &quot;b&quot;)
+<pre><code class="diff">func modify(s []string) {
++   s = append(s, &quot;b&quot;)
     for i := 0; i &lt; len(s); i++ {
         s[i] = &quot;b&quot;
     }
@@ -230,14 +230,14 @@ After: [a1 a2]
 <p>将切片作为函数参数传递，实际上是拷贝了<code>SliceHeader</code>结构体传入函数，结构体包含一枚指向底层数组的指针，在函数内修改切片，操作的底层数组是相同的。</p>
 <p>但是如果函数内的切片操作触发了切片的扩容机制（如：使用<code>append</code>追加元素），Go 运行时会为切片分配一块新的内存空间并将原切片的所有元素拷贝过去，函数内部切片的底层数组指针指向了新分配的内存空间，而函数外部切片底层数组指针仍指向分配前的地址空间，由此出现了内外切片不一致的有趣情形。</p>
 <p>我们可以通过一个简单的方式验证扩容前后切片的变化，打印出扩容前后切片数组的地址，而在函数外部打印切片的数组地址，会发现其与扩容前地址相同。</p>
-<pre><code class="go">func modify(s []string) {
-    fmt.Printf(&quot;Before grow slice, &amp;s[0]: %p\n&quot;, &amp;s[0])
+<pre><code class="diff">func modify(s []string) {
++   fmt.Printf(&quot;Before grow slice, &amp;s[0]: %p\n&quot;, &amp;s[0])
     s = append(s, &quot;b&quot;)
     for i := 0; i &lt; len(s); i++ {
         s[i] = &quot;b&quot;
     }
     fmt.Println(&quot;Inner:&quot;, s)
-    fmt.Printf(&quot;After grow slice, &amp;s[0]: %p\n&quot;, &amp;s[0])
++   fmt.Printf(&quot;After grow slice, &amp;s[0]: %p\n&quot;, &amp;s[0])
 }
 </code></pre>
 <blockquote>
