@@ -166,7 +166,7 @@
                  col-md-10 col-md-offset-1
                  post-container">
                 <h1 id="Go-切片数据结构"><a href="#Go-切片数据结构" class="headerlink" title="Go 切片数据结构"></a>Go 切片数据结构</h1><p>Go 中常用的切片（Slice）数据结构是一枚动态数组，提供方便的局部索引功能，切片长度并不固定，并且会在容量不足时自动扩容。</p>
-<p>切片实质上是对一个底层数组的抽象视图，由 Go 运行时维护。在运行时，切片由如下的<code>SliceHeader</code>结构体表示，其中<code>Data</code>字段是指向底层数组的指针，<code>Len</code>表示当前切片的长度，而<code>Cap</code>表示当前切片的容量，也就是<code>Data</code>数组的大小。</p>
+<p>切片实质上是对一个底层数组的<strong>抽象视图</strong>，由 Go 运行时维护。在运行时，切片由如下的<code>SliceHeader</code>结构体表示，其中<code>Data</code>字段是指向底层数组的指针，<code>Len</code>表示当前切片的长度，而<code>Cap</code>表示当前切片的容量，也就是<code>Data</code>数组的大小。</p>
 <pre><code class="go">type SliceHeader struct {
     Data uintptr
     Len  int
@@ -176,7 +176,7 @@
 <blockquote>
 <p>代码示例：Go 切片 Slice 数据结构</p>
 </blockquote>
-<h1 id="切片作为函数入参"><a href="#切片作为函数入参" class="headerlink" title="切片作为函数入参"></a>切片作为函数入参</h1><p>许多 Go 开发者对使用切片作为函数入参的习惯性认知是：<strong>传递切片，等同于传递指针，函数内部对切片的修改，将会影响到函数外部的切片。</strong>这一习惯性认知在大部分情况下都是正确的。如以下代码所示：在<code>modify</code>函数中修改切片，外部<code>main</code>函数的切片受到影响。</p>
+<h1 id="切片作为函数入参"><a href="#切片作为函数入参" class="headerlink" title="切片作为函数入参"></a>切片作为函数入参</h1><p>许多 Go 开发者对传递切片作为函数入参的习惯性认知是：<strong>传递切片，等同于传递指针，函数内部对切片的修改，将会影响到函数外部的切片。</strong>这一习惯性认知在大部分情况下都是正确的。如以下代码所示：在<code>modify</code>函数中修改切片，外部<code>main</code>函数中的切片受到了影响。</p>
 <pre><code class="go">package main
 
 import (
@@ -207,7 +207,7 @@ After: [b b]
 <blockquote>
 <p>代码示例：Go 切片作为函数入参 - 程序输出</p>
 </blockquote>
-<p>我们对示例代码做一些修改，在内部函数中<strong>触发切片的扩容机制</strong>，事情看起来就很有趣了，函数内部对切片的修改没有影响到函数外部的切片。</p>
+<p>我们对示例代码做一些修改，在内部函数中<strong>触发切片的扩容机制</strong>，事情看起来就非常有趣了：函数内部对切片的修改并没有影响到函数外部的切片。</p>
 <pre><code class="diff">func modify(s []string) {
 +   s = append(s, &quot;b&quot;)
     for i := 0; i &lt; len(s); i++ {
@@ -227,9 +227,9 @@ After: [a1 a2]
 <p>代码示例：Go 切片作为函数入参（切片扩容）- 程序输出</p>
 </blockquote>
 <h1 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h1><p>在 Go 中，函数参数传递机制为<strong>值拷贝</strong>。</p>
-<p>将切片作为函数参数传递，实际上是拷贝了<code>SliceHeader</code>结构体传入函数，结构体包含一枚指向底层数组的指针，在函数内修改切片，操作的底层数组是相同的。</p>
-<p>但是如果函数内的切片操作触发了切片的扩容机制（如：使用<code>append</code>追加元素），Go 运行时会为切片分配一块新的内存空间并将原切片的所有元素拷贝过去，函数内部切片的底层数组指针指向了新分配的内存空间，而函数外部切片底层数组指针仍指向分配前的地址空间，由此出现了内外切片不一致的有趣情形。</p>
-<p>我们可以通过一个简单的方式验证扩容前后切片的变化，打印出扩容前后切片数组的地址，而在函数外部打印切片的数组地址，会发现其与扩容前地址相同。</p>
+<p>将切片作为函数参数传递，实际上是拷贝了<code>SliceHeader</code>结构体传入函数，结构体包含一枚指向底层数组的指针，因此在函数内修改切片，操作的底层数组是相同的。</p>
+<p>但是如果函数内的切片操作触发了切片扩容（如：使用<code>append</code>追加元素），Go 运行时会为切片分配一块新的内存空间并将原切片的所有元素拷贝过去，函数内部切片的底层数组指针指向了新分配的内存空间，而函数外部切片底层数组指针仍指向分配前的地址空间，由此出现了内外切片不一致的有趣情形。</p>
+<p>我们可以通过一个简单的方式验证扩容前后切片的变化，即：打印出扩容前后切片数组的地址。而我们在函数外部打印切片的数组地址，会发现其与扩容前地址相同。</p>
 <pre><code class="diff">func modify(s []string) {
 +   fmt.Printf(&quot;Before grow slice, &amp;s[0]: %p\n&quot;, &amp;s[0])
     s = append(s, &quot;b&quot;)
@@ -243,11 +243,11 @@ After: [a1 a2]
 <blockquote>
 <p>代码示例：打印扩容前后切片数组地址（首元素地址）</p>
 </blockquote>
-<h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><p>理解了 Go 中切片作为函数参数传递的内部原理后，如何正确在代码中正确运用切片传参也就显而易见了。</p>
+<h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><p>理解了 Go 中切片作为函数参数传递的内部原理后，如何在代码中正确运用切片传参也就比较明晰了。</p>
 <ul>
-<li><p>不涉及切片容量变化，直接传递切片。</p>
+<li><p><strong>操作不涉及切片容量变化，直接传递切片。</strong></p>
 </li>
-<li><p>涉及切片容量变化，且需要反馈给调用方，传递切片指针。</p>
+<li><p><strong>操作涉及切片容量变化，且需要反馈给调用方，传递切片指针。</strong></p>
 </li>
 </ul>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
