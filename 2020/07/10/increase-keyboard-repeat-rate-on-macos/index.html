@@ -68,16 +68,16 @@
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
@@ -169,8 +169,8 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有些使用苹果计算机的程序员们可能会感到 macOS 系统长按连续输入响应有些迟缓，即使修改了<code>System Preferences &gt;&gt; Keyboard</code>中按键输入响应的系统配置项，也还是不尽如人意。</p>
-<p>我们还有更巧妙的方法可以提高 macOS 按键连续输入速率。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>使用苹果计算机（Macintosh）进行日常开发的程序员们可能会感觉到 macOS 系统的<em>长按输入响应</em>与<em>光标移动速度</em>有些迟缓，即便是修改了<code>System Preferences &gt;&gt; Keyboard</code>中关于按键输入的系统配置项，也还是不尽如人意。</p>
+<p>实际上，我们还有更巧妙的方法可以提高 macOS 按键连续输入速率。</p>
 <p><img src="./keyboard-repeat-preference.png" alt="keyboard-repeat-preference"></p>
 <blockquote>
 <p>图：<code>System Preferences &gt;&gt; Keyboard</code>系统配置项</p>
@@ -182,7 +182,7 @@ $ defaults write -g InitialKeyRepeat -int 10
 <blockquote>
 <p>代码清单：macOS 设置提高按键连续输入速率</p>
 </blockquote>
-<p>原理：通过系统 UI 与命令行 CLI 修改的是同一份系统配置，通过命令行强行写入比系统默认值更低的按键响应参数。</p>
+<p>原理：<strong>通过系统 UI 与命令行 CLI 修改的是同一份系统配置，通过命令行强行写入比系统默认值更低的按键响应参数。</strong></p>
 <ul>
 <li><p><code>KeyRepeat</code>：<strong>字符连续输入间隔</strong>，此处为<code>1</code>（15ms），系统默认最低值<code>2</code>（30ms）。</p>
 </li>
@@ -193,6 +193,8 @@ $ defaults write -g InitialKeyRepeat -int 10
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>StackExchange: <a href="https://apple.stackexchange.com/questions/10467/how-to-increase-keyboard-key-repeat-rate-on-os-x" target="_blank" rel="noopener">https://apple.stackexchange.com/questions/10467/how-to-increase-keyboard-key-repeat-rate-on-os-x</a></li>
 </ul>
+<!-- Begin -->
+<!-- End -->
 <!-- EOF -->
 
                 <hr>
