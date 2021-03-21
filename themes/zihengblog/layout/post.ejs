@@ -1,0 +1,155 @@
+---
+layout: layout
+---
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('<%= page["header-img"] || config.root + config["header-img"] %>');
+    }
+<% if(page['header-mask']) { %>
+    header.intro-header .header-mask {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0, 0, 0, <%= page["header-mask"] %>);
+    }
+<% } %>
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+<% if(page['header-mask']) { %>
+    <div class="header-mask"></div>
+<% } %>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        <% page.tags.forEach(function(tag){ %>
+                          <a class="tag" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"><%= tag.name %></a>
+                        <% }) %>
+                    </div>
+                    <h1><%= page.title %></h1>
+                    <h2 class="subheading"><%= page.subtitle || "" %></h2>
+                    <span class="meta">
+                        Posted by <%- page.author || config.author %> on
+                        <%= page.date.format(config.date_format) %>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <%- page.content %>
+                <hr>
+<!--
+                <ul class="pager">
+                    <% if (page.prev){ %>
+                        <li class="previous">
+                            <a href="<%- config.root %><%- page.prev.path %>" data-toggle="tooltip" data-placement="top" title="<%- page.prev.title %>">&larr; Previous Post</a>
+                        </li>
+                    <% } %>
+                    <% if (page.next){ %>
+                        <li class="next">
+                            <a href="<%- config.root %><%- page.next.path %>" data-toggle="tooltip" data-placement="top" title="<%- page.next.title %>">Next Post &rarr;</a>
+                        </li>
+                    <% } %>
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        <% if (page.catalog) { %>
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        <% } %>
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
+                <!-- Featured Tags -->
+                <% if(config['featured-tags']) { %>
+                <section>
+                    <!-- No hr -->
+                    <h5><a href="<%= config.root %>tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       <% page.tags.forEach(function(tag){ %>
+                          <a class="tag" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"><%= tag.name %></a>
+                        <% }) %>
+                    </div>
+                </section>
+                <% }%>
+                <!-- Friends Blog -->
+                <hr>
+                <!--
+                <% if(config.friends) { %>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    <% config.friends.forEach(function(friend){ %>
+                        <li><a href="<%= friend.href %>" target="_blank"><%= friend.title %></a></li>
+                    <% }); %>
+                </ul>
+                <% }%>
+                -->
+            </div>
+        </div>
+    </div>
+</article>
+
+<% if(config['anchorjs']) { %>
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+<% } %>
