@@ -20,7 +20,7 @@ tags: ["GitHub", "Node.js", "Hexo"]
 
 - 数据可控
 
-- 支持`Markdown`格式书写
+- 支持 Markdown 格式书写
 
 - 自定义博客主题，可扩展性强
 
@@ -115,19 +115,17 @@ $ npm install
 
 ## 博客预览
 
-执行以下命令启动一个Web服务器。
+想要预览博客，可以执行命令启动预览 Web 服务器，默认情况下访问地址为：`http://localhost:4000/`，端口号可手动指定。打开浏览器，键入访问地址就可以看到生成博客的样子了。
+
 ```
 $ hexo server
+...
 ```
-
-> 默认情况下，访问网址为：`http://localhost:4000/`。
-> 端口号可手动指定。
-
-打开浏览器，键入`http://localhost:4000/`，就可以看到我们的博客了。
+> 注：启动 Hexo 博客预览 Web 服务器
 
 ## Hexo 更多
 
-更多有关Hexo的信息，我们可以去查阅官方文档。
+更多关于 Hexo 的使用方式，我们可以查阅官方文档。
 
 > Hexo Docs：https://hexo.io/docs/
 
@@ -137,26 +135,23 @@ $ hexo server
 
 > Websites for you and your projects.
 
-GitHub Pages 是GitHub 为广大开发者们提供的一个`静态站点托管服务`。
+GitHub Pages 是 GitHub 为广大开发者们提供的一个**静态站点托管服务**。
 
-- GitHub 提供 1GB 仓库容量, 超过会有限制
-- 每月 100GB 的带宽流量和10万次请求
-- 开发者项目与站点紧密相关
+- GitHub 为每个GitHub Pages 仓库项目提供 1GB 仓库容量, 超过会有限制
 
-注意，只托管静态网站哦（不支持动态性）。
-如果你的博客配有大量高清图片, 推荐使用CDN。
+- 每月 100GB 的带宽流量和 10 万次请求
 
-[**GitHub Pages 官方教程**](https://pages.github.com/)
+- 开发者项目与展示站点紧密相关
 
-官方教程写得简洁明了，熟悉Git的你一定能轻松上手。
+GitHub Pages 官方教程写得简单明了，直接参看操作即可。需要注意的是，GitHub Pages 只托管静态网站，不支持动态性。
 
-# 发布网站
+为了节省资源，如果博客配有大量高清图片资源，推荐使用 CDN 图床。
 
-现在，我们已经在GitHub上建立了自己的GitHub Pages：`yourname.github.io`。
-也在本地跑起来了我们的Hexo博客小站：`http://localhost:4000`。
-最后一步，我们要把本地的站点托管到GitHub Pages上。
+> GitHub Pages 官方教程：https://pages.github.com/
 
-由于GitHub Pages不支持动态网站，我们需要生成**静态网页文件**再托管到GitHub上。Hexo可以轻松完成这项任务。
+## 发布静态博客到 GitHub Pages
+
+目前，我们已经在 GitHub 上建立了自己的 GitHub Pages 仓库：`yourname.github.io`，也在本地跑起了我们的 Hexo 静态博客站：`http://localhost:4000/`。最后一个步骤，便是将本地的博客站点托管到 GitHub Pages 上。由于 GitHub Pages 不支持动态网站，我们需要生成**静态网页文件**再上传到 GitHub 中。Hexo 提供了快捷指令可以轻松完成这项任务。
 
 ```
 $ hexo generate
