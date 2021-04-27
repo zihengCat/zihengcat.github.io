@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/page/12/">
+    <title>
+        
+          zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/home-bg-d.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>ziheng&#39;s Blog</h1>
+                    <span class="subheading">zihengCat is here!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+<!-- USE SIDEBAR -->
+  <!-- Post Container -->
+    <div class="
+         col-lg-8 col-lg-offset-1
+         col-md-8 col-md-offset-1
+         col-sm-12
+         col-xs-12
+         post-container">
+    <!-- Main Content -->
+
+<div class="post-preview">
+
+    <a href="/2018/03/01/LeetCode-504-转换7进制/">
+        <h2 class="post-title">
+            LeetCode - 504. 转换7进制（Base 7）
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录LeetCode - 504. 转换7进制（Base 7）问题。
+问题描述输入一个10进制整型数，将该数的7进制以字符串形式返回。
+例1：
+输入: 100
+输出: &quot;202&quot;
+
+例2：
+输入: -7
+输出: &quot;-10&quot;
+
+注：输入数字的范围是*[-1e7, 1e7]*。
+问题解法进制转换的问题，算法就是整除取余数。
+例如：
+1: 101 /......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-01
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/02/27/using-socks5-proxy-in-unix-terminal/">
+        <h2 class="post-title">
+            设置 UNIX 终端 Socks5 代理连接
+        </h2>
+        <h3 class="post-subtitle">
+            Using Socks5 Proxy in UNIX Terminal
+        </h3>
+        <div class="post-content-preview">
+            前言终端工具（Terminal）是每一位程序员的好伙伴，但是由于「GFW」的原因，国内恶劣的网络环境让程序员们有时只能看着 CLI 提示信息「连接断开，下载失败…」欲哭无泪。
+本文介绍 UNIX 系统下，设置终端网络程序走socks5代理连接的方法，适用于 UNIX、Linux、macOS。
+终端「Terminal」设置在终端下，设置环境变量ALL_PROXY为本地socks5代理连接。
+$......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-02-27
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/02/26/LeetCode-231-2的幂次/">
+        <h2 class="post-title">
+            LeetCode - 231. 2的幂次（Power of Two）
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录LeetCode - 231. 2的幂次（Power of Two）问题。
+问题描述给出一个整型数，判断该数是否是2的幂次。
+注：只考虑是否为2的非负整数次幂即可。
+例：
+输入: 4
+输出: true
+
+输入: 6
+输出: false
+
+注: 4为2^2。
+
+问题解法常规解法只需考虑是否为2的非负整数次幂，大大简化了问题。
+2的幂次形如：2 * 2 * 2...* 2，均可被2无......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-02-26
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/02/25/LeetCode-657-路线判断/">
+        <h2 class="post-title">
+            LeetCode - 657. 路线判断（Judge Route Circle）
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录LeetCode - 657. 路线判断（Judge Route Circle）问题。
+问题描述一个机器人初始位置在$(0, 0)$。输入一系列移动指令使机器人移动起来。判断机器人最终是否回到了初始位置。输入的移动命令是一串字符串。每个移动指令是一个字符。机器人只按照R（右），L（左），U（上），D（下）四个合法指令移动。输出为一个布尔值，判断机器人是否走回到了原点（true/f......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-02-25
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/02/24/LeetCode-461-汉明距离/">
+        <h2 class="post-title">
+            LeetCode - 461. 汉明距离（Hamming distance）
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录LeetCode - 461. 汉明距离（Hamming distance）问题。
+两个等长字符串之间的汉明距离（英语：Hamming distance）是指两个字符串对应位置不同字符的个数。
+
+维基百科：https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB
+
+问题描述两个整型数的汉明距离是指：这两个......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-02-24
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/02/04/Shell学习笔记-Bash常用快捷键/">
+        <h2 class="post-title">
+            Shell学习笔记 - Bash常用快捷键
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录一下Linux下Bash操作的一些常用快捷键。
+Bash 常用快捷键自动补全
+
+
+快捷键
+含义
+
+
+
+Tab
+命令/文件名自动补全
+
+
+历史命令
+
+
+快捷键
+含义
+
+
+
+history
+查看历史命令
+
+
+!n
+执行第n条历史命令
+
+
+Ctrl + p
+遍历上一条历史命令
+
+
+Ctrl + n
+遍历下一条历史命令
+
+
+
+p –&gt; previousn –&gt; next
+
+光......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-02-04
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/02/01/Linux学习笔记-目录结构/">
+        <h2 class="post-title">
+            Linux学习笔记 - 目录结构
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文简单记录下Linux系统的目录结构。
+
+目录结构应遵循FHS（Filesystem Hierarchy Standard）规范。
+
+Linux 目录结构
+
+图片取自琴99思的博客。
+
+参考资料
+FHS：http://www.pathname.com/fhs/
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-02-01
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/01/26/Python学习笔记-使用Python3虚拟环境/">
+        <h2 class="post-title">
+            Python学习笔记 - 使用Python虚拟环境
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言在项目开发中，我们有时会希望项目有一个专属环境（项目自有目录，特定Python版本，安装指定第三方软件包等），而与系统环境区分开来。
+
+不同应用开发环境相互独立
+环境升级不影响其他应用，也不影响全局Python环境
+有效防止软件包混乱与软件版本冲突
+
+
+使用Python虚拟环境的优点
+
+Python3 虚拟环境Python3 提供了venv模块，可以为我们创建出轻量级的虚拟环境。该虚拟环......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-01-26
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/01/03/Vim学习笔记-常用查找替换命令/">
+        <h2 class="post-title">
+            Vim学习笔记 - 常用查找替换命令
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录Vim下一些常用的查找与替换操作。
+查找（Search）查找模式通过/或?开启，输入查找字符串后按&lt;Enter&gt;回车键进入即可查找，按&lt;Esc&gt;退出键退出查找模式。如果查找到多个匹配项，可通过查找下一个n与查找上一个N来回跳转。查找后，查找到的字符串会高亮反显出来（默认，可通过配置文件修改），输入:noh或再搜索一枚文件中不存在的字符串就可以取消高亮。在查......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-01-03
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2017/12/06/Microsoft-Excel-会计账目自动化核对/">
+        <h2 class="post-title">
+            Microsoft Excel 会计账目自动化核对
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言昨天，有位会计系的同学拜托子恒喵，希望我能帮他解决一个关于会计账目核对的问题，这是他兼职淘宝店会计时碰到的实际问题。问题不难，解决问题后，子恒喵觉得这个实例挺有代表性，值得记录一下。
+问题描述现有淘宝女装店铺某月销售记录表，退换货记录表(两张Excel表格)。每一条退换货记录都有一条销售记录与之对应，但是由于各种原因，会有退换货记录与销售记录不匹配的情况(客户名，商品名，商品价格不匹配)......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2017-12-06
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/page/11/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/page/13/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+    </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                            <a href="/tags/#Java" title="Java" rel="32">Java</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="/img/avatar.png" />
+                        
+
+                        
+                            <p>Hi, this is zihengCat, a student live in Hangzhou, China. Learning coding now, SDE I.</p>
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                                <li>
+                                    <a target="_blank"  href="https://github.com/zihengcat">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Friends Blog -->
+                <!--
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+                -->
+            </div>
+        
+    </div>
+</div>
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+</body>
+</html>

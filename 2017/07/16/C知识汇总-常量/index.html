@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/16/C知识汇总-常量/">
+    <title>
+        
+          C知识汇总-常量 - zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-d.png');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#C" title="C">C</a>
+                        
+                    </div>
+                    <h1>C知识汇总-常量</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-07-16
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h1><p>常量，顾名思义，就是在程序运行期间，固定不变的量，这些固定的值，又被称做<strong>字面量</strong>。<br>常量可以是任何的基本数据类型，包括整型数字、浮点数字、字符、字符串和布尔值。<br>程序运行期间，内存中有一块不可写区域用来存放常量。</p>
+<h1 id="常量分类"><a href="#常量分类" class="headerlink" title="常量分类"></a>常量分类</h1><table>
+<thead>
+<tr>
+<th align="center">常量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">整型常量</td>
+<td>1, 2, 3, 4 之类的常量，默认为10进制，可以8进制<code>0</code>或16进制<code>0x</code>表示，默认以<code>int</code>存储。</td>
+</tr>
+<tr>
+<td align="center">长整型常量</td>
+<td>以<code>l</code>或<code>L</code>结尾的整数，以<code>long</code>存储。</td>
+</tr>
+<tr>
+<td align="center">无符号整型常量</td>
+<td>以<code>u</code>或<code>U</code>结尾的整型常量。</td>
+</tr>
+<tr>
+<td align="center">浮点型常量</td>
+<td>带小数点的数或以科学计数法表示的数，默认以<code>double</code>存储，可带<code>f</code>/<code>F</code>或<code>l</code>/<code>L</code>后缀改变其存储形式。</td>
+</tr>
+<tr>
+<td align="center">字符型常量</td>
+<td>以单引号<code>&#39;</code>包括的单个字符，以<code>char</code>存储。</td>
+</tr>
+<tr>
+<td align="center">字符串常量</td>
+<td>以双引号<code>&quot;</code>包括的一串字符序列。</td>
+</tr>
+<tr>
+<td align="center">枚举常量</td>
+<td>整型常量值列表。</td>
+</tr>
+</tbody></table>
+<h1 id="字符常量"><a href="#字符常量" class="headerlink" title="字符常量"></a>字符常量</h1><p>一个字符常量是一个整数，书写时将一个字符括在单引号中，如，‘x’。字符在机器字符集中的数值就是字符常量的值。字符常量一般用来与其他字符进行比较，但也可以像其他整数一样参与数值运算。<br>某些字符可以通过转义字符序列（例如换行符\n）表示为字符和字符串常量。转义字符序列看起来像两个字符，但只表示一个字符。另外，我们可以用<code>\ooo</code>表示 任意的字节大小的位模式 。其中，ooo代表1~3个八进制数字[0-7]。这种位模式还可以用<code>\xhhh</code>表示，其中，hh是一个或多个十六进制数字[0-9, a-f, A-F]。</p>
+<p>ANSI C语言的转义字符：</p>
+<table>
+<thead>
+<tr>
+<th align="center">转义字符</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>\a</code></td>
+<td align="left">响铃符</td>
+</tr>
+<tr>
+<td align="center"><code>\b</code></td>
+<td align="left">退格符</td>
+</tr>
+<tr>
+<td align="center"><code>\f</code></td>
+<td align="left">换页符</td>
+</tr>
+<tr>
+<td align="center"><code>\n</code></td>
+<td align="left">换行符</td>
+</tr>
+<tr>
+<td align="center"><code>\r</code></td>
+<td align="left">回车符</td>
+</tr>
+<tr>
+<td align="center"><code>\t</code></td>
+<td align="left">水平制表符</td>
+</tr>
+<tr>
+<td align="center"><code>\v</code></td>
+<td align="left">纵向制表符</td>
+</tr>
+<tr>
+<td align="center"><code>\\</code></td>
+<td align="left">反斜杠</td>
+</tr>
+<tr>
+<td align="center"><code>\?</code></td>
+<td align="left">问号</td>
+</tr>
+<tr>
+<td align="center"><code>\&#39;</code></td>
+<td align="left">单引号</td>
+</tr>
+<tr>
+<td align="center"><code>\&quot;</code></td>
+<td align="left">双引号</td>
+</tr>
+<tr>
+<td align="center"><code>\ooo</code></td>
+<td align="left">八进制数</td>
+</tr>
+<tr>
+<td align="center"><code>\xhh</code></td>
+<td align="left">十六进制数</td>
+</tr>
+<tr>
+<td align="center"><code>\0</code></td>
+<td align="left">空字符</td>
+</tr>
+</tbody></table>
+<h1 id="字符串常量"><a href="#字符串常量" class="headerlink" title="字符串常量"></a>字符串常量</h1><p>字符串常量也叫字符串字面量，是用双引号<code>&quot;</code>括起来的0或多个字符组成的字符序列。<br><strong>编译时，相邻的多个字符串常量会被自动拼接起来。</strong></p>
+<pre><code>&quot;hello,&quot;        &quot; world&quot;
+</code></pre>
+<p>等价于：</p>
+<pre><code>&quot;hello, world&quot;
+</code></pre>
+<p>字符串常量就是字符数组。字符串内部使用一个空字符<code>\0</code>作为串的结尾，因此，存储字符串的物理存储单元数比括在双引号中的字符数多1个 。<br>C语言对字符串的长度没有限制，但程序必须扫描完整个字符串后才能确定字符串的长度。标准库函数<code>strlen</code>可以返回字符串参数的长度，长度不包括末尾的<code>\0</code>。<br>注意搞清楚字符常量与仅包含一个字符的字符串之间的区别：<code>&#39;x&#39;</code>与<code>&quot;x&quot;</code>是不同的。前者是一个整数，其值是字母x在机器字符集中对应的数值（内部表示值）；后者是一个包含一个字符（即字母x）以及一个结束符<code>\0</code>的字符数组。</p>
+<h1 id="枚举常量"><a href="#枚举常量" class="headerlink" title="枚举常量"></a>枚举常量</h1><p>枚举是一个常量整型值的列表，例如：</p>
+<pre><code>enum boolean &#123;TRUE, FALSE&#125;;
+</code></pre>
+<p>在没有显式说明的情况下，enum 类型中第一个枚举量的值为0，第二个为1，依此递增。如果只指定了部分枚举名的值，那么未指定的枚举名的值将依着最后一个指定值向后递增。</p>
+<ul>
+<li><strong>枚举中枚举量的名字必须互不相同。</strong></li>
+<li><strong>但不同的名字的枚举量可以具有相同的值。</strong></li>
+</ul>
+<h2 id="枚举常量与-define常量"><a href="#枚举常量与-define常量" class="headerlink" title="枚举常量与#define常量"></a>枚举常量与<code>#define</code>常量</h2><p>枚举为建立常量值与名字之间的关联提供了一种便利的方式。<br>相对于<code>#define</code>常量来说，枚举常量的优势在于常量值可以自动生成。<br>可以声明enum类型的变量，但编译器不检查变量中存储的值是否为该枚举的有效值。<br>在调试程序可以以符号形式打印出枚举变量的值，这是枚举常量的优势之一。</p>
+<h1 id="const限定符"><a href="#const限定符" class="headerlink" title="const限定符"></a>const限定符</h1><p>任何变量在声明时都可以用<code>const</code>限定符限定。该限定符表示变量的值不能被修改。对数组而言，<code>const</code>限定符指定数组所有元素的值都不能被修改。<br><code>const</code>限定符也可配合函数参数使用，表明该函数不修改传入变量的值。</p>
+<ul>
+<li><strong>在C中，以const限定的变量，仍可以通过特殊方法修改变量的值。</strong></li>
+<li><strong>在C++中，const具有更加严格的限定性，可以放心当作常量使用。</strong></li>
+</ul>
+<p>试图修改const限定符限定的值，是未定义行为(undefined behavior)。</p>
+
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/07/17/C知识汇总-控制流/" data-toggle="tooltip" data-placement="top" title="C知识汇总-控制流">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/07/14/C知识汇总-复合数据类型/" data-toggle="tooltip" data-placement="top" title="C知识汇总-复合数据类型">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- No hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#C" title="C">C</a>
+                        
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                <hr>
+                <!--
+                
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+                
+                -->
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+</body>
+</html>

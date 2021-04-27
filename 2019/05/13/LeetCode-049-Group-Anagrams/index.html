@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/05/13/LeetCode-049-Group-Anagrams/">
+    <title>
+        
+          LeetCode - 049. 相同字母异序词归类 - zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-d.png');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        
+                          <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Array" title="Array">Array</a>
+                        
+                          <a class="tag" href="/tags/#HashMap" title="HashMap">HashMap</a>
+                        
+                    </div>
+                    <h1>LeetCode - 049. 相同字母异序词归类</h1>
+                    <h2 class="subheading">LeetCode - 049. Group Anagrams</h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2019-05-13
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文记录 <em>LeetCode - 049. 相同字母异序词归类</em> 问题。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>输入一个字符串数组，请你将数组中的字符串按<strong>相同字母异序词</strong>归类并输出。</p>
+<pre><code class="plain">Input: [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]
+Output:
+[
+  [&quot;ate&quot;,&quot;eat&quot;,&quot;tea&quot;],
+  [&quot;nat&quot;,&quot;tan&quot;],
+  [&quot;bat&quot;]
+]
+</code></pre>
+<blockquote>
+<p>注：输入输出样例</p>
+</blockquote>
+<p>注意：</p>
+<ul>
+<li><p>输入字符串均为小写形式</p>
+</li>
+<li><p>输出归类数组排列顺序无关紧要</p>
+</li>
+</ul>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>解决这个问题，我们需要使用到键值对（Key-Value）哈希表数据结构。输入字符串数组，要求我们按照<strong>相同字母异序词</strong>将字符串归类，能被归为一类的字符串都具有相同的特征：<strong>排序后字母顺序相同</strong>，利用这一特征，可以很容易构建出哈希表键，哈希表的值即为对应的字符串列表。</p>
+<p><img src="./049_group_anagrams_1.png" alt="049_group_anagrams_1"></p>
+<blockquote>
+<p>图：算法图解</p>
+</blockquote>
+<pre><code class="java">import java.util.Arrays;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
+class Solution &#123;
+    public List&lt;List&lt;String&gt;&gt; groupAnagrams(String[] strs) &#123;
+        /* Return empty List&lt;List&lt;String&gt;&gt;
+           if input strings array is null or empty */
+        if (strs == null || strs.length == 0) &#123;
+            return new LinkedList&lt;List&lt;String&gt;&gt;();
+        &#125;
+        /* Using a HashMap data structure */
+        Map&lt;String, List&lt;String&gt;&gt; hashMap =
+            new HashMap&lt;String, List&lt;String&gt;&gt;();
+        /* For each string in strings array
+           do as following... */
+        for (String s : strs) &#123;
+            /* Convert string to char array */
+            char[] chArr = s.toCharArray();
+            /* Sort char array in order to get unique HashMap keys */
+            Arrays.sort(chArr);
+            /* Reconvert sorted char array to HashMap string key */
+            String key = new String(chArr);
+            if (hashMap.containsKey(key)) &#123;
+                /* Found the key -&gt;
+                   Add to target list */
+                hashMap.get(key).add(s);
+            &#125; else &#123;
+                /* Not found key -&gt;
+                   Build a new list of strings and put it to HashMap */
+                List&lt;String&gt; aStringList = new LinkedList&lt;String&gt;();
+                aStringList.add(s);
+                hashMap.put(key, aStringList);
+            &#125;
+        &#125;
+        /* Convert HashMap values to List&lt;List&lt;String&gt;&gt; */
+        return new LinkedList&lt;List&lt;String&gt;&gt;(hashMap.values());
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>代码清单：相同字母异序词归类（<code>Java</code>实现）</p>
+</blockquote>
+<pre><code class="python">from typing import List, Dict
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -&gt; List[List[str]]:
+        ans: Dict[str, List[str]] = dict()
+        for s in strs:
+            key: str = &quot;&quot;.join(sorted(s))
+            if(ans.get(key) == None):
+                ans[key] = list()
+            ans[key].append(s)
+        return list(v for v in ans.values())
+</code></pre>
+<blockquote>
+<p>代码清单：相同字母异序词归类（<code>Python3</code>实现）</p>
+</blockquote>
+<p>我们来分析一下算法复杂度。</p>
+<ul>
+<li><p><strong>时间复杂度</strong>：设$n$为字符串数组的长度（字符串数量），$k$为数组中最长字符串的长度。最外层遍历字符串数组的复杂度为$O(n)$，内部字符串排序的复杂度为$O(k \cdot log(k))$，算法整体时间复杂度为$O(n \cdot k \cdot log(k))$。</p>
+</li>
+<li><p><strong>空间复杂度</strong>：设$n$为字符串数组的长度（字符串数量），$k$为数组中最长字符串的长度。所占用空间即为哈希表所存储的全部内容，空间复杂度为$O(n \cdot k)$。</p>
+</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>LeetCode: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/group-anagrams/">https://leetcode.com/problems/group-anagrams/</a></li>
+</ul>
+
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/05/14/LeetCode-704-Binary-Search/" data-toggle="tooltip" data-placement="top" title="LeetCode - 704. 二分查找">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/05/12/understanding-multithreading-technology/" data-toggle="tooltip" data-placement="top" title="了解「多线程」技术">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- No hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        
+                          <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#Array" title="Array">Array</a>
+                        
+                          <a class="tag" href="/tags/#HashMap" title="HashMap">HashMap</a>
+                        
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                <hr>
+                <!--
+                
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+                
+                -->
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+</body>
+</html>

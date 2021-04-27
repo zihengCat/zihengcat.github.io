@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/05/15/java-data-structure-and-algorithm-linked-list/">
+    <title>
+        
+          Java 数据结构与算法 - 链表 - zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-d.png');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#LinkedList" title="LinkedList">LinkedList</a>
+                        
+                    </div>
+                    <h1>Java 数据结构与算法 - 链表</h1>
+                    <h2 class="subheading">Java Data Structure and Algorithm - Linked List</h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2019-05-15
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="链表（Linked-List）数据结构概览"><a href="#链表（Linked-List）数据结构概览" class="headerlink" title="链表（Linked List）数据结构概览"></a>链表（Linked List）数据结构概览</h1><p>链表（Linked List）是线性表的一种（线性表包含顺序表与链表），通过指针将一系列位于不连续的内存空间中的元素连接起来，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理，但也失去了快速随机存取的优点，同时增大了内存开销（存储指针域）。</p>
+<p>链表数据结构由一连串节点（Node）组成，每个节点包含数据域（Data Fields）和一或两个用来指向上一个/或下一个节点位置的指针域（Pointer Fields）。链表可以方便地插入或移除表中任意位置的节点，但是随机存取效率不高。链表有很多种不同的类型：单向链表，双向链表以及循环链表。</p>
+<h1 id="链表（Linked-List）数据结构操作接口"><a href="#链表（Linked-List）数据结构操作接口" class="headerlink" title="链表（Linked List）数据结构操作接口"></a>链表（Linked List）数据结构操作接口</h1><p>我们将要使用 Java 语言手写一枚链表数据结构。首先，明确链表数据结构所具有的操作接口方法。</p>
+<table>
+<thead>
+<tr>
+<th>接口方法</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>void addFirst(E element)</code></td>
+<td>向链表头部添加一个新的元素。</td>
+</tr>
+<tr>
+<td><code>void addLast(E element)</code></td>
+<td>向链表尾部添加一个新的元素。</td>
+</tr>
+<tr>
+<td><code>E removeFirst()</code></td>
+<td>移除链表头部第一个元素。</td>
+</tr>
+<tr>
+<td><code>E removeLast()</code></td>
+<td>移除链表尾部最后一个元素。</td>
+</tr>
+<tr>
+<td><code>E getFirst()</code></td>
+<td>返回链表头部第一个元素。</td>
+</tr>
+<tr>
+<td><code>E getLast()</code></td>
+<td>返回链表尾部最后一个元素。</td>
+</tr>
+<tr>
+<td><code>boolean contains(E element)</code></td>
+<td>检查链表中是否包含指定元素。</td>
+</tr>
+<tr>
+<td><code>E insert(int index, E element)</code></td>
+<td>向链表指定索引位置插入新元素。</td>
+</tr>
+<tr>
+<td><code>E get(int index)</code></td>
+<td>返回链表中指定索引的元素。</td>
+</tr>
+<tr>
+<td><code>E set(int index, E element)</code></td>
+<td>为链表中指定索引的元素设新值。</td>
+</tr>
+<tr>
+<td><code>E remove(int index)</code></td>
+<td>移除链表中指定索引的元素。</td>
+</tr>
+<tr>
+<td><code>boolean remove(E element)</code></td>
+<td>移除链表中指定的元素。</td>
+</tr>
+<tr>
+<td><code>int indexOf(E element)</code></td>
+<td>返回指定元素所在链表的索引，元素不存在则返回<code>-1</code>，若存在多个相同元素，则返回第一次出现的索引下标。</td>
+</tr>
+<tr>
+<td><code>int size()</code></td>
+<td>返回链表存储元素数量。</td>
+</tr>
+<tr>
+<td><code>boolean isEmpty()</code></td>
+<td>检查链表是否为空。</td>
+</tr>
+<tr>
+<td><code>void clear()</code></td>
+<td>清空链表。</td>
+</tr>
+<tr>
+<td><code>String toString()</code></td>
+<td>返回链表的字符串形式。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>表：链表（Linked List）数据结构接口方法表</p>
+</blockquote>
+<h1 id="单向链表（Single-Linked-List）"><a href="#单向链表（Single-Linked-List）" class="headerlink" title="单向链表（Single Linked List）"></a>单向链表（Single Linked List）</h1><p>我们使用 Java 语言实现一枚简单的<strong>单向链表</strong>。顾名思义，单向链表只能做单向遍历（头节点 -&gt; 尾节点），因为单向链表的节点（Node）只包含数据域和一个指针域（指向下一个节点）。</p>
+<p>我们来定义出单链表中节点（Node）的数据结构，使用泛型类提高节点存储数据的灵活性。节点数据结构包含<strong>构造方法</strong>，两个私有变量：<strong>数据域和指针域</strong>，及其<strong>对应的<code>Getter/Setter</code>公开方法</strong>。</p>
+<pre><code class="java">class Node&lt;E&gt; &#123;
+    /**
+     * 数据域
+     */
+    private E elem;
+    /**
+     * 指针域
+     */
+    private Node&lt;E&gt; next;
+    /**
+     * 构造方法
+     */
+    public Node(E element, Node&lt;E&gt; next) &#123;
+        this.elem = element;
+        this.next = next;
+    &#125;
+    /**
+     * 无参构造方法
+     */
+    public Node() &#123;
+        this(null, null);
+    &#125;
+    /* Setter &amp; Getter */
+    public void setElem(E element) &#123;
+        this.elem = element;
+    &#125;
+    public E getElem() &#123;
+        return this.elem;
+    &#125;
+    public void setNext(Node&lt;E&gt; next) &#123;
+        this.next = next;
+    &#125;
+    public Node&lt;E&gt; getNext() &#123;
+        return this.next;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>代码清单：单链表节点（Node）</p>
+</blockquote>
+<p>我们考虑单链表数据结构：<strong>单链表包含一枚头节点（Head），头结点不存储数据，而是指向第一个实际存储数据的节点；尾节点可以被定义为指针域为<code>null</code>的最后一枚节点。</strong></p>
+<p>单链表的构造方法即为单链表初始化：<strong>构造一枚数据域和指针域均为空的头节点。</strong></p>
+<pre><code class="java">public class SingleLinkedList&lt;E&gt; &#123;
+    /**
+     * 链表头节点
+     */
+    private Node&lt;E&gt; head;
+    /**
+     * 构造方法：创建空链表
+     * @param void
+     */
+    public SingleLinkedList() &#123;
+        this.head = new Node&lt;E&gt;();
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>代码清单：单链表（Single Linked List）结构</p>
+</blockquote>
+<p>单链表<code>addFirst()</code>方法向链表头部添加一个新的元素，插入的新元素总是位于链表头部（头节点指向的节点），这种插入元素的方式称为<strong>头插法</strong>，通过以下3步，即可完成向链表头部插入元素。</p>
+<ol>
+<li><p>根据新元素构建一枚新节点</p>
+</li>
+<li><p>将新节点指针域置为头节点指向的节点</p>
+</li>
+<li><p>头节点指向新节点</p>
+</li>
+</ol>
+<pre><code class="java">...
+    /**
+     * 向链表头部添加一个新的元素（头插法）。
+     * @param element
+     * @return void
+     */
+    public void addFirst(E element) &#123;
+        Node&lt;E&gt; node = new Node&lt;E&gt;(element, null);
+        node.setNext(head.getNext());
+        head.setNext(node);
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>addFirst()</code>头插法</p>
+</blockquote>
+<p>单链表<code>addLast()</code>方法向链表尾部添加一个新的元素，插入的新元素总是位于链表尾部（指针域为空的尾节点），这种插入元素的方式称为<strong>尾插法</strong>，通过以下4步，即可完成向链表尾部插入元素。</p>
+<ol>
+<li><p>根据新元素构建一枚新节点</p>
+</li>
+<li><p>将新节点指针域置空</p>
+</li>
+<li><p>遍历链表找到尾节点（指针域为空的节点）</p>
+</li>
+<li><p>尾节点指向新节点</p>
+</li>
+</ol>
+<pre><code class="java">...
+    /**
+     * 向链表尾部添加一个新的元素（尾插法）。
+     * @param element
+     * @return void
+     */
+    public void addLast(E element) &#123;
+        Node&lt;E&gt; node = new Node&lt;E&gt;(element, null);
+        Node&lt;E&gt; tail = head;
+        while (tail.getNext() != null) &#123;
+            tail = tail.getNext();
+        &#125;
+        tail.setNext(node);
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>addLast()</code>尾插法</p>
+</blockquote>
+<p>理解了<code>addFirst()</code>与<code>addLast()</code>方法实现后，实现<code>getFirst()</code>与<code>getLast()</code>方法就非常简单了，返回头/尾节点数据域中存储的数据即可，但是需要考虑到<strong>链表为空</strong>的情况：直接抛出<code>NoSuchElementException</code>异常。</p>
+<pre><code class="java">...
+    /**
+     * 取得链表头部第一个元素，链表为空则抛出异常。
+     * @param void
+     * @return First element of &#123;@code LinkedList&#125;.
+     * @throws NoSuchElementException if this &#123;@code LinkedList&#125; is empty.
+     */
+    public E getFirst() throws NoSuchElementException &#123;
+        if (head.getNext() == null) &#123;
+            throw new NoSuchElementException();
+        &#125;
+        return head.getNext().getElem();
+    &#125;
+    /**
+     * 取得链表尾部最后一个元素，链表为空则抛出异常。
+     * @param void
+     * @return Last element of &#123;@code LinkedList&#125;.
+     * @throws NoSuchElementException if this &#123;@code LinkedList&#125; is empty.
+     */
+    public E getLast() throws NoSuchElementException &#123;
+        Node&lt;E&gt; tail = head;
+        while (tail.getNext() != null) &#123;
+            tail = tail.getNext();
+        &#125;
+        if (tail == head) &#123;
+            throw new NoSuchElementException();
+        &#125;
+        return tail.getElem();
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>getFirst()</code>与<code>getLast()</code>方法实现</p>
+</blockquote>
+<p>上述实现代码段其实已经涉及到了<code>isEmpty()</code>与<code>size()</code>接口方法，现在我们来实现这两个方法。</p>
+<ul>
+<li><p><code>size()</code>：遍历链表元素并计数，计算链表存储元素数量。</p>
+</li>
+<li><p><code>isEmpty()</code>：判断链表是否为空，可以借用<code>size()</code>方法（链表存储元素数量为<code>0</code>则表示链表为空），也可以直接判断头结点指针域是否为空。</p>
+</li>
+</ul>
+<pre><code class="java">...
+    /**
+     * 计算链表存储元素数量。
+     * @param void
+     * @return Size of elements in &#123;@code LinkedList&#125;.
+     */
+    public int size() &#123;
+        int cnt = 0;
+        for (Node&lt;E&gt; n = head; n.getNext() != null; n = n.getNext()) &#123;
+            ++cnt;
+        &#125;
+        return cnt;
+    &#125;
+    /**
+     * 检查链表是否为空。
+     * @param void
+     * @return Boolean &#123;@code true&#125; or &#123;@code false&#125;.
+     */
+    public boolean isEmpty() &#123;
+        return head.getNext() == null ? true : false;
+    &#125;
+    /**
+     * 检查链表是否为空。
+     * @param void
+     * @return Boolean &#123;@code true&#125; or &#123;@code false&#125;.
+     */
+    public boolean _isEmpty() &#123;
+        return this.size() &gt; 0 ? false : true;
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>isEmpty()</code>与<code>size()</code>方法实现</p>
+</blockquote>
+<p>单链表<code>removeFirst()</code>方法返回并移除链表第一个元素，通过以下步骤完成。</p>
+<ol>
+<li><p>检查链表是否为空</p>
+</li>
+<li><p>获取链表首元素节点</p>
+</li>
+<li><p>头节点指向第二元素节点（首元素节点的下一个节点）</p>
+</li>
+<li><p>返回首元素节点数据域</p>
+</li>
+</ol>
+<pre><code class="java">...
+    /**
+     * 返回并移除链表头部第一个元素。
+     * @param void
+     * @return First element of this &#123;@code Linked List&#125;.
+     * @throws NoSuchElementException
+     */
+    public E removeFirst() throws NoSuchElementException &#123;
+        if (this.isEmpty()) &#123;
+            throw new NoSuchElementException();
+        &#125;
+        Node&lt;E&gt; first = head.getNext();
+        head.setNext(
+            first.getNext()
+        );
+        return first.getElem();
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>removeFirst()</code>方法实现</p>
+</blockquote>
+<p>单链表<code>removeLast()</code>方法返回并移除链表最后一个元素，通过以下步骤完成。</p>
+<ol>
+<li><p>检查链表是否为空</p>
+</li>
+<li><p>获取链表倒数第二元素节点（尾元素前一节点）</p>
+</li>
+<li><p>获取链表尾元素节点</p>
+</li>
+<li><p>将链表倒数第二元素节点指针域置空</p>
+</li>
+<li><p>返回尾元素节点数据域</p>
+</li>
+</ol>
+<pre><code class="java">...
+    /**
+     * 返回并移除链表尾部最后一个元素。
+     * @param void
+     * @return Last element of this &#123;@code Linked List&#125;.
+     * @throws NoSuchElementException
+     */
+    public E removeLast() throws NoSuchElementException &#123;
+        if (this.isEmpty()) &#123;
+            throw new NoSuchElementException();
+        &#125;
+        Node&lt;E&gt; prev = head;
+        while (prev.getNext().getNext() != null) &#123;
+            prev = prev.getNext();
+        &#125;
+        Node&lt;E&gt; last = prev.getNext();
+        prev.setNext(null);
+        return last.getElem();
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>removeLast()</code>方法实现</p>
+</blockquote>
+<p>我们来考虑单链表的<code>contains(E e)</code>方法，检查链表中是否包含指定元素。我们使用<code>equals()</code>比较方法判断两个元素是否相等，因此，存入链表的数据类型必须实现<code>equals()</code>比较方法。</p>
+<p><code>contains(E e)</code>方法具体实现为：<strong>遍历链表，比较每个元素，找到即返回<code>true</code>，找不到则返回<code>false</code>。</strong></p>
+<pre><code class="java">...
+    /**
+     * 检查链表中是否包含目标元素，
+     * 元素相等使用 &#123;@code o.equals(obj)&#125; 判断。
+     * @param element
+     * @return Boolean
+     */
+    public boolean contains(E element) &#123;
+        for (Node&lt;E&gt; current = head.getNext();
+            current != null;
+            current = current.getNext()) &#123;
+            if (element.equals(current.getElem())) &#123;
+                return true;
+            &#125;
+        &#125;
+        return false;
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>contains()</code>方法实现</p>
+</blockquote>
+<p>链表使用链式存储结构，存储的数据在内存空间中不连续，不能做到像数组一般高效的直接随即访问。我们来实现<code>indexOf(E e)</code>方法，返回指定元素所在链表的索引，元素不存在则返回<code>-1</code>，若存在多个相同元素，则返回第一次出现的索引。<strong>注意，我们将链表索引下标从<code>0</code>计起，与数组保持一致。<code>indexOf()</code>方法实现与<code>contains()</code>方法相似，加入一枚索引下标计数器即可。</strong></p>
+<pre><code class="java">...
+    /**
+     * 返回指定元素所在链表的索引。
+     * @param element
+     * @return The index of element in &#123;@code LinkedList&#125;,
+     *  return &#123;@code -1&#125; if element does not found.
+     */
+    public int indexOf(E element) &#123;
+        int index = 0;
+        for (Node&lt;E&gt; current = head.getNext();
+            current != null;
+            current = current.getNext()) &#123;
+                if (element.equals(current.getElem())) &#123;
+                    return index;
+                &#125;
+                ++index;
+        &#125;
+        return -1;
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>indexOf()</code>方法实现</p>
+</blockquote>
+<p>我们使用<code>get(int index)</code>方法获取链表中指定索引的元素，如果索引越界，抛出<code>IndexOutOfBoundsException</code>异常。</p>
+<pre><code class="java">...
+    /**
+     * 获取链表指定索引的元素。
+     * @param index
+     * @return element
+     * @throws IndexOutOfBoundsException
+     */
+    public E get(int index) throws IndexOutOfBoundsException &#123;
+        if (index &lt; 0 || index &gt;= size()) &#123;
+            throw new IndexOutOfBoundsException();
+        &#125;
+        Node&lt;E&gt; n = head.getNext();
+        while (index &gt; 0) &#123;
+            n = n.getNext();
+            --index;
+        &#125;
+        return n.getElem();
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>get()</code>方法实现</p>
+</blockquote>
+<p>我们使用<code>set(int index, E element)</code>方法为链表中指定索引位置的元素设新值，如果索引越界，抛出<code>IndexOutOfBoundsException</code>异常。</p>
+<pre><code class="java">...
+    /**
+     * 为链表指定索引位置的元素设新值。
+     * @param index
+     * @param element
+     * @return Previous element in the index.
+     * @throws IndexOutOfBoundsException
+     */
+    public E set(int index, E element) throws IndexOutOfBoundsException &#123;
+        if (index &lt; 0 || index &gt;= size()) &#123;
+            throw new IndexOutOfBoundsException();
+        &#125;
+        Node&lt;E&gt; n = head.getNext();
+        while (index &gt; 0) &#123;
+            n = n.getNext();
+            --index;
+        &#125;
+        E oldValue = n.getElem();
+        n.setElem(element);
+        return oldValue;
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>set()</code>方法实现</p>
+</blockquote>
+<p>我们使用<code>remove(int index)</code>方法移除链表中指定索引下标位置的元素，具体步骤如下。如果索引下标越界，则抛出<code>IndexOutOfBoundsException</code>异常。</p>
+<ol>
+<li><p>找到链表中指定索引下标的待移除节点及其前驱、后继节点</p>
+</li>
+<li><p>将指定索引下标节点的前后节点使用指针连接起来</p>
+</li>
+<li><p>返回移除节点数据域</p>
+</li>
+</ol>
+<pre><code class="java">...
+    /**
+     * 移除链表指定索引下标元素。
+     * @param index
+     * @return Removed element
+     * @throws IndexOutOfBoundsException
+     */
+    public E remove(int index) throws IndexOutOfBoundsException &#123;
+        if (index &lt; 0 || index &gt;= size()) &#123;
+            throw new IndexOutOfBoundsException();
+        &#125;
+        index -= 1;
+        Node&lt;E&gt; prev = head;
+        while (index &gt;= 0) &#123;
+            prev = prev.getNext();
+            --index;
+        &#125;
+        Node&lt;E&gt; current = prev.getNext();
+        Node&lt;E&gt; next = current.getNext();
+        prev.setNext(next);
+        return current.getElem();
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>remove(int index)</code>方法实现</p>
+</blockquote>
+<p>移除元素<code>remove()</code>方法还有另一种形式：<code>boolean remove(E element)</code>，移除链表中的指定元素。我们可以使用<code>indexOf(E element)</code>配合<code>remove(int index)</code>实现，先获取指定元素在链表中的索引下标，再移除掉，操作成功返回<code>true</code>，如果不存在目标元素，则返回<code>false</code>。</p>
+<pre><code class="java">...
+    /**
+     * 移除链表指定元素，
+     * 操作成功返回&#123;@code true&#125;，不存在目标元素则返回&#123;@code false&#125;。
+     * @param element
+     * @return Boolean
+     */
+    public boolean remove(E element) &#123;
+        int index = indexOf(element);
+        return index == -1 ?
+        false : element.equals(remove(index));
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>remove(E element)</code>方法实现</p>
+</blockquote>
+<p>链表数据结构的优势在于其插入元素的开销比起数组要小很多，我们来实现链表插入元素<code>insert()</code>方法，具体步骤如下所示。如果索引下标越界，则抛出<code>IndexOutOfBoundsException</code>异常。</p>
+<ol>
+<li><p>找到链表中指定索引下标节点（当前节点）及其前驱节点</p>
+</li>
+<li><p>创建一枚新节点</p>
+</li>
+<li><p>新节点指向当前节点</p>
+</li>
+<li><p>前驱节点指向新节点</p>
+</li>
+<li><p>返回当前节点数据域</p>
+</li>
+</ol>
+<pre><code>...
+    /**
+     * 向列表指定位置插入一个新的元素。
+     * @param index
+     * @param element
+     * @return Previous element
+     * @throws IndexOutOfBoundsException
+     */
+    public E insert(int index, E element)
+    throws IndexOutOfBoundsException &#123;
+        if (index &lt; 0 || index &gt; size()) &#123;
+            throw new IndexOutOfBoundsException();
+        &#125;
+        index -= 1;
+        Node&lt;E&gt; prev = head;
+        while (index &gt;= 0) &#123;
+            prev = prev.getNext();
+            --index;
+        &#125;
+        Node&lt;E&gt; current = prev.getNext();
+        Node&lt;E&gt; node = new Node&lt;E&gt;(element, null);
+        node.setNext(current);
+        prev.setNext(node);
+        return current == null ? null : current.getElem();
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>insert()</code>方法实现</p>
+</blockquote>
+<p>我们为链表提供一枚<code>clear()</code>方法，用于清空链表元素。由于 Java 语言的自动垃圾回收机制，直接将头节点（Head）置空即可表示清空链表，不用担心内存泄露问题，但是为了帮助垃圾收集器更好地做内存回收工作，这里我们选择<strong>显式清空每一个节点</strong>。</p>
+<pre><code class="java">...
+    /**
+     * 清空链表。
+     * @param void
+     * @return void
+     */
+    public void clear() &#123;
+        while (head != null) &#123;
+            Node&lt;E&gt; n = head;
+            head = head.getNext();
+            n.setElem(null);
+            n.setNext(null);
+        &#125;
+        head = new Node&lt;E&gt;();
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>clear()</code>方法实现</p>
+</blockquote>
+<p>最后，我们来覆写链表<code>toString()</code>方法，更加方便地查看链表元素。</p>
+<pre><code class="java">...
+    @Override
+    public String toString() &#123;
+        StringBuilder sb = new StringBuilder();
+        sb.append(&#39;[&#39;);
+        for (Node&lt;E&gt; current = head.getNext();
+            current != null;
+            current = current.getNext()) &#123;
+                sb.append(current.getElem().toString());
+                sb.append(&quot;, &quot;);
+        &#125;
+        sb.append(&#39;]&#39;);
+        return sb.toString();
+    &#125;
+...
+</code></pre>
+<blockquote>
+<p>代码清单：单链表<code>toString()</code>方法实现</p>
+</blockquote>
+<h1 id="双向链表（Double-Linked-List）"><a href="#双向链表（Double-Linked-List）" class="headerlink" title="双向链表（Double Linked List）"></a>双向链表（Double Linked List）</h1><p>双向链表（Double Linked List）可以做到双向遍历（头节点 &lt;–&gt; 尾节点），因为双向链表的节点（DLNode）包含数据域和两个指针域（前驱与后继）。</p>
+<p>我们来定义出双向链表中节点（DLNode）数据结构，使用泛型类提高节点存储数据的灵活性。节点数据结构包含<strong>构造方法</strong>，三个私有变量：<strong>数据域和两枚指针域</strong>，及其<strong>对应的<code>Getter/Setter</code>方法</strong>。</p>
+<pre><code class="java">public class DLNode&lt;E&gt; &#123;
+    private E elem;
+    private DLNode&lt;E&gt; prev;
+    private DLNode&lt;E&gt; next;
+    public DLNode(E elem, DLNode&lt;E&gt; prev, DLNode&lt;E&gt; next) &#123;
+        this.elem = elem;
+        this.prev = prev;
+        this.next = next;
+    &#125;
+    public DLNode() &#123;
+        this(null, null, null);
+    &#125;
+    public void setElem(E elem) &#123;
+        this.elem = elem;
+    &#125;
+    public void setPrev(DLNode&lt;E&gt; prev) &#123;
+        this.prev = prev;
+    &#125;
+    public void setNext(DLNode&lt;E&gt; next) &#123;
+        this.next = next;
+    &#125;
+    public E getElem() &#123;
+        return this.elem;
+    &#125;
+    public DLNode&lt;E&gt; getPrev() &#123;
+        return this.prev;
+    &#125;
+    public DLNode&lt;E&gt; getNext() &#123;
+        return this.next;
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>代码清单：双向链表节点（DLNode）</p>
+</blockquote>
+<p>我们考虑双向链表数据结构：<strong>双向链表包含一枚头节点<code>head</code>与一枚尾节点<code>tail</code>，头尾结点均不存储数据，而是指向实际存储数据的节点；头节点前驱节点为<code>null</code>，尾节点后继节点为<code>null</code>。</strong></p>
+<p>双向链表的初始化过程为：<strong>构造头尾节点，并将头尾节点相连。</strong></p>
+<p>双向链表的优势在于：<strong>支持双向遍历，「头插法」和「尾插法」的算法复杂度均为$O(1)$，而单链表「尾插法」的算法复杂度为$O(n)$。</strong></p>
+<p>以下 Java 代码给出双向链表<code>DoubleLinkedList</code>完整实现。</p>
+<pre><code class="java">import java.lang.IndexOutOfBoundsException;
+import java.util.NoSuchElementException;
+import DLNode;
+public class DoubleLinkedList&lt;E&gt; &#123;
+    /**
+     * 链表头节点
+     */
+    private DLNode&lt;E&gt; head;
+    /**
+     * 链表尾节点
+     */
+    private DLNode&lt;E&gt; tail;
+    /**
+     * 构造方法：创建空链表
+     * @param void
+     */
+    public DoubleLinkedList() &#123;
+        this.head = new DLNode&lt;E&gt;();
+        this.tail = new DLNode&lt;E&gt;();
+        head.setNext(tail);
+        tail.setPrev(head);
+    &#125;
+    public static void main(String[] args) &#123;
+        // ...
+    &#125;
+    /**
+     * 向双向链表指定索引位置插入一个新元素。
+     * @param index
+     * @param element
+     * @return Previous element
+     * @throws IndexOutOfBoundsException
+     */
+    public E insert(int index, E element)
+    throws IndexOutOfBoundsException &#123;
+        if (index &lt; 0 || index &gt; size()) &#123;
+            throw new IndexOutOfBoundsException();
+        &#125;
+        DLNode&lt;E&gt; current = head;
+        while (index &gt;= 0) &#123;
+            current = current.getNext();
+            --index;
+        &#125;
+        DLNode&lt;E&gt; node = new DLNode&lt;E&gt;(element, null, null);
+        node.setNext(current);
+        node.setPrev(current.getPrev());
+        current.getPrev().setNext(node);
+        current.setPrev(node);;
+        return current.getNext() == null ? null : current.getElem();
+    &#125;
+    /**
+     * 移除双向链表指定元素，
+     * 操作成功返回&#123;@code true&#125;，不存在目标元素则返回&#123;@code false&#125;。
+     * @param element
+     * @return Boolean
+     */
+    public boolean remove(E element) &#123;
+        int index = indexOf(element);
+        return index == -1 ?
+        false : element.equals(remove(index));
+    &#125;
+    /**
+     * 移除双向链表指定索引下标元素。
+     * @param index
+     * @return Removed element
+     * @throws IndexOutOfBoundsException
+     */
+    public E remove(int index) throws IndexOutOfBoundsException &#123;
+        if (index &lt; 0 || index &gt;= size()) &#123;
+            throw new IndexOutOfBoundsException();
+        &#125;
+        /* Input: 1 */
+        /* head &lt;--&gt; elem(1) &lt;--&gt; elem(2) &lt;--&gt; elem(3) &lt;--&gt; tail */
+        DLNode&lt;E&gt; node = head.getNext();
+        while (index &gt; 0) &#123;
+            node = node.getNext();
+            --index;
+        &#125;
+        node.getPrev().setNext(node.getNext());
+        node.getNext().setPrev(node.getPrev());
+        node.setPrev(null);
+        node.setNext(null);
+        return node.getElem();
+    &#125;
+    /**
+     * 为双向链表指定索引位置的元素设新值。
+     * @param index
+     * @param element
+     * @return Previous element in the index.
+     * @throws IndexOutOfBoundsException
+     */
+    public E set(int index, E element) throws IndexOutOfBoundsException &#123;
+        if (index &lt; 0 || index &gt;= size()) &#123;
+            throw new IndexOutOfBoundsException();
+        &#125;
+        DLNode&lt;E&gt; node = head.getNext();
+        while (index &gt; 0) &#123;
+            node = node.getNext();
+            --index;
+        &#125;
+        E oldElem = node.getElem();
+        node.setElem(element);
+        return oldElem;
+    &#125;
+    /**
+     * 获取双向链表指定索引位置的元素。
+     * @param index
+     * @return element
+     * @throws IndexOutOfBoundsException
+     */
+    public E get(int index) throws IndexOutOfBoundsException &#123;
+        if (index &lt; 0 || index &gt;= size()) &#123;
+            throw new IndexOutOfBoundsException();
+        &#125;
+        DLNode&lt;E&gt; node = head.getNext();
+        while (index &gt; 0) &#123;
+            node = node.getNext();
+            --index;
+        &#125;
+        return node.getElem();
+    &#125;
+    /**
+     * 返回指定元素所在双向链表的索引位置。
+     * @param element
+     * @return The index of element in &#123;@code DoubleLinkedList&#125;,
+     * return &#123;@code -1&#125; if element does not found.
+     */
+    public int indexOf(E element) &#123;
+        int index = 0;
+        for (DLNode&lt;E&gt; current = head.getNext();
+            current.getNext() != null;
+            current = current.getNext()) &#123;
+                if (element.equals(current.getElem())) &#123;
+                    return index;
+                &#125;
+                ++index;
+        &#125;
+        return -1;
+    &#125;
+    /**
+     * 检查双向链表中是否包含目标元素，
+     * 元素相等使用 &#123;@code o.equals(obj)&#125; 判断。
+     * @param element
+     * @return Boolean
+     */
+    public boolean contains(E element) &#123;
+        for (DLNode&lt;E&gt; current = head.getNext();
+            current.getNext() != null;
+            current = current.getNext()) &#123;
+            if (element.equals(current.getElem())) &#123;
+                return true;
+            &#125;
+        &#125;
+        return false;
+    &#125;
+    /**
+     * 移除并返回双向链表尾部最后一个元素。
+     * @param void
+     * @return Last element of this &#123;@code DoubleLinkedList&#125;.
+     * @throws NoSuchElementException
+     */
+    public E removeLast() throws NoSuchElementException &#123;
+        if (isEmpty()) &#123;
+            throw new NoSuchElementException();
+        &#125;
+        DLNode&lt;E&gt; node = tail.getPrev();
+        node.getPrev().setNext(tail);
+        tail.setPrev(node.getPrev());
+        node.setPrev(null);
+        node.setNext(null);
+        return node.getElem();
+    &#125;
+    /**
+     * 移除并返回双向链表头部第一个元素。
+     * @param void
+     * @return First element of this &#123;@code DoubleLinkedList&#125;.
+     * @throws NoSuchElementException
+     */
+    public E removeFirst() throws NoSuchElementException &#123;
+        if (isEmpty()) &#123;
+            throw new NoSuchElementException();
+        &#125;
+        DLNode&lt;E&gt; node = head.getNext();
+        node.getNext().setPrev(head);
+        head.setNext(node.getNext());
+        node.setPrev(null);
+        node.setNext(null);
+        return node.getElem();
+    &#125;
+    /**
+     * 向双向链表头部添加一个新元素。
+     * @param element
+     * @return void
+     */
+    public void addFirst(E element) &#123;
+        DLNode&lt;E&gt; node = new DLNode&lt;E&gt;(element, null, null);
+        node.setPrev(head);
+        node.setNext(
+            head.getNext()
+        );
+        head.setNext(node);
+        head.getNext().setPrev(node);
+    &#125;
+    /**
+     * 向双端链表尾部添加一个新元素。
+     * @param element
+     * @return void
+     */
+    public void addLast(E element) &#123;
+        DLNode&lt;E&gt; node = new DLNode&lt;E&gt;(element, null, null);
+        node.setPrev(tail.getPrev());
+        node.setNext(tail);
+        tail.getPrev().setNext(node);
+        tail.setPrev(node);
+    &#125;
+    /**
+     * 取得双向链表头部第一个元素，链表为空则抛出异常。
+     * @param void
+     * @return First element of &#123;@code DoubleLinkedList&#125;.
+     * @throws NoSuchElementException
+     */
+    public E getFirst() throws NoSuchElementException &#123;
+        if (isEmpty()) &#123;
+            throw new NoSuchElementException();
+        &#125;
+        return head.getNext().getElem();
+    &#125;
+    /**
+     * 取得双向链表尾部最后一个元素，链表为空则抛出异常。
+     * @param void
+     * @return Last element of &#123;@code DoubleLinkedList&#125;.
+     * @throws NoSuchElementException
+     */
+    public E getLast() throws NoSuchElementException &#123;
+        if (isEmpty()) &#123;
+            throw new NoSuchElementException();
+        &#125;
+        return tail.getPrev().getElem();
+    &#125;
+    /**
+     * 计算双向链表存储元素数量。
+     * @param void
+     * @return Size of &#123;@code DoubleLinkedList&#125;.
+     */
+    public int size() &#123;
+        int cnt = 0;
+        for (DLNode&lt;E&gt; n = head.getNext();
+            n.getNext() != null;
+            n = n.getNext()) &#123;
+            ++cnt;
+        &#125;
+        return cnt;
+    &#125;
+    /**
+     * 检查双向链表是否为空。
+     * @param void
+     * @return Boolean &#123;@code true&#125; or &#123;@code false&#125;.
+     */
+    public boolean isEmpty() &#123;
+        return this.size() &gt; 0 ? false : true;
+    &#125;
+    /**
+     * 清空双向链表。
+     * @param void
+     * @return void
+     */
+    public void clear() &#123;
+        while (head.getNext() != null) &#123;
+            DLNode&lt;E&gt; current = head;
+            head = head.getNext();
+            current.setElem(null);
+            current.setPrev(null);
+            current.setNext(null);
+        &#125;
+        head = new DLNode&lt;E&gt;();
+        tail = new DLNode&lt;E&gt;();
+        head.setNext(tail);
+        tail.setPrev(head);
+    &#125;
+    /**
+     * 返回双向链表字符串形式。
+     * @param void
+     * @return void
+     */
+    @Override
+    public String toString() &#123;
+        StringBuilder sb = new StringBuilder();
+        sb.append(&#39;[&#39;);
+        for (DLNode&lt;E&gt; current = head.getNext();
+            current.getNext() != null;
+            current = current.getNext()) &#123;
+                sb.append(current.getElem().toString());
+                sb.append(&quot;, &quot;);
+        &#125;
+        sb.append(&#39;]&#39;);
+        return sb.toString();
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>代码清单：双单链表<code>DoubleLinkedList</code></p>
+</blockquote>
+<h1 id="链表测试（Linked-List-Test）"><a href="#链表测试（Linked-List-Test）" class="headerlink" title="链表测试（Linked List Test）"></a>链表测试（Linked List Test）</h1><p>我们来写个链表单元测试程序，检测链表能否正常工作。</p>
+<pre><code class="java">import SingleLinkedList;
+import DoubleLinkedList;
+public class LinkedListTest &#123;
+    public static void main(String[] args) &#123;
+        System.out.println(&quot;[INFO]: Test DoubleLinkedList() ...&quot;);
+        DoubleLinkedList&lt;String&gt; aList = new DoubleLinkedList&lt;String&gt;();
+        for (int i = 0; i &lt; 10; ++i) &#123;
+            aList.addLast(String.valueOf(i));
+        &#125;
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.size(): &quot; +
+            aList.size()
+        );
+        System.out.println(
+            &quot;aList.contains(\&quot;2\&quot;): &quot; +
+            aList.contains(&quot;2&quot;)
+        );
+        System.out.println(
+            &quot;aList.contains(\&quot;10\&quot;): &quot; +
+            aList.contains(&quot;10&quot;)
+        );
+        System.out.println(
+            &quot;aList.addFirst(\&quot;Java\&quot;)&quot;
+        );
+        System.out.println(
+            &quot;aList.addLast(\&quot;Python\&quot;)&quot;
+        );
+        aList.addFirst(&quot;Java&quot;);
+        aList.addLast(&quot;Python&quot;);
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.remove(1): &quot; +
+            aList.remove(1)
+        );
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.remove(\&quot;8\&quot;): &quot; +
+            aList.remove(&quot;8&quot;)
+        );
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.get(0): &quot; +
+            aList.get(0)
+        );
+        System.out.println(
+            &quot;aList.set(1, \&quot;JavaScript\&quot;): &quot; +
+            aList.set(1, &quot;JavaScript&quot;)
+        );
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.indexOf(\&quot;Python\&quot;): &quot; +
+            aList.indexOf(&quot;Python&quot;)
+        );
+        System.out.println(
+            &quot;aList.indexOf(\&quot;C++\&quot;): &quot; +
+            aList.indexOf(&quot;C++&quot;)
+        );
+        System.out.println(
+            &quot;aList.insert(1, \&quot;Golang\&quot;): &quot; +
+            aList.insert(1, &quot;Golang&quot;)
+        );
+        System.out.println(aList);
+        System.out.println(
+            &quot;aList.clear()&quot;
+        );
+        aList.clear();
+        System.out.println(aList);
+    &#125;
+&#125;
+</code></pre>
+<blockquote>
+<p>代码清单：链表单元测试（Unit Test）</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><p>Wikipedia: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Linked_list">https://en.wikipedia.org/wiki/Linked_list</a></p>
+</li>
+<li><p>Introduction to Java Programming: Fundamental Data Structures and Algorithms: <a target="_blank" rel="noopener" href="https://courses.edx.org/courses/course-v1:UC3Mx+IT.1.3x+1T2019/course/">https://courses.edx.org/courses/course-v1:UC3Mx+IT.1.3x+1T2019/course/</a></p>
+</li>
+<li><p>Fundamental Data Structures and Algorithms: <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av52559737">https://www.bilibili.com/video/av52559737</a></p>
+</li>
+</ul>
+
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/05/18/java-data-structure-and-algorithm-stack/" data-toggle="tooltip" data-placement="top" title="Java 数据结构与算法 - 栈">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/05/14/LeetCode-704-Binary-Search/" data-toggle="tooltip" data-placement="top" title="LeetCode - 704. 二分查找">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- No hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Data Structure" title="Data Structure">Data Structure</a>
+                        
+                          <a class="tag" href="/tags/#Algorithm" title="Algorithm">Algorithm</a>
+                        
+                          <a class="tag" href="/tags/#LinkedList" title="LinkedList">LinkedList</a>
+                        
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                <hr>
+                <!--
+                
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+                
+                -->
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+</body>
+</html>

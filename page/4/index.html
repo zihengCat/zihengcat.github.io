@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/page/4/">
+    <title>
+        
+          zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/home-bg-d.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>ziheng&#39;s Blog</h1>
+                    <span class="subheading">zihengCat is here!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+<!-- USE SIDEBAR -->
+  <!-- Post Container -->
+    <div class="
+         col-lg-8 col-lg-offset-1
+         col-md-8 col-md-offset-1
+         col-sm-12
+         col-xs-12
+         post-container">
+    <!-- Main Content -->
+
+<div class="post-preview">
+
+    <a href="/2019/07/14/java-tutorial-for-language-adavanced-create-thread/">
+        <h2 class="post-title">
+            Java 高级教程系列 - 线程创建
+        </h2>
+        <h3 class="post-subtitle">
+            Java Tutorial for Language Adavanced - Create Thread
+        </h3>
+        <div class="post-content-preview">
+            Java 创建多线程（Multithreading）Java 并发编程以多线程（Multithreading）为基础。Java 屏蔽了不同操作系统之间多线程 API 的差异，抽象出一套统一的多线程编程范式，为程序员减轻多线程开发的难度。
+在 Java 中，线程被抽象为了Thread类，一枚Thread类实例即对应一枚操作系统线程（1：1）。Java 线程创建有如下几种方式：
+
+继承Threa......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-07-14
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/07/06/vscode-practical-tips-appearance-zoom/">
+        <h2 class="post-title">
+            VS Code 实用技巧 - 界面缩放
+        </h2>
+        <h3 class="post-subtitle">
+            VS Code Practical Tips - Appearance Zoom
+        </h3>
+        <div class="post-content-preview">
+            前言今天使用 VS Code 时，偶然误触到了某个快捷键，导致 VS Code 界面整体都放大了一号…
+搜索相关情况之后，原来这是 VS Code 自带的界面缩放功能。
+VS Code 界面缩放我们可以整体放大、缩小 VS Code 用户界面（User Appearance）。
+功能选项卡：View -&gt; Appearance -&gt; Zoom In / Out
+功能快捷键：
+
+界......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-07-06
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/12/understanding-and-practicing-docker-entrypoint-cmd/">
+        <h2 class="post-title">
+            Docker ENTRYPOINT & CMD 理解与实践
+        </h2>
+        <h3 class="post-subtitle">
+            Understanding and Practicing Docker ENTRYPOINT & CMD
+        </h3>
+        <div class="post-content-preview">
+            前言Docker 指令CMD与ENTRYPOINT用于配置容器启动时的运行命令，通常会写在Dockerfile中。本文讲解CMD与ENTRYPOINT这两条指令的异同点，并通过一个实例指导你如何在Dockerfile中使用它们。
+Docker ENTRYPOINT 指令ENTRYPOINT指令的语义为**”容器入口点”**，该指令用于设置容器首次启动时需要执行的命令（Command）及其参数......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-06-12
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/21/leetcode-125-valid-palindrome/">
+        <h2 class="post-title">
+            LeetCode - 125. 判断回文串
+        </h2>
+        <h3 class="post-subtitle">
+            LeetCode - 125. Valid Palindrome
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录 LeetCode - 125. 判断回文串（Valid Palindrome） 问题。
+问题描述给出一枚字符串，判断其是否为回文字符串，只考虑字符串中的字母与数字字符，并忽略字母大小写。
+注意：为了符合题意，我们定义空字符串&quot;&quot;也属于回文串。
+Input: &quot;A man, a plan, a canal: Panama&quot;
+Output: ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-05-21
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/20/leetcode-448-find-all-numbers-disappeared-in-an-array/">
+        <h2 class="post-title">
+            LeetCode - 448. 寻找数组中消失的数
+        </h2>
+        <h3 class="post-subtitle">
+            LeetCode - 448. Find All Numbers Disappeared in an Array
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录 LeetCode - 448. 寻找数组中消失的数（Find All Numbers Disappeared in an Array） 问题。
+问题描述输入一个整型数组：1 ≤ a[i] ≤ n（n为数组长度），数组中某些元素出现了两次，其他元素则出现一次。
+请你寻找在[1, n]范围内，该数组中没有出现的数，将这些消失的数以新数组形式返回。
+Input: [4, 3, 2, ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-05-20
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/18/java-data-structure-and-algorithm-stack/">
+        <h2 class="post-title">
+            Java 数据结构与算法 - 栈
+        </h2>
+        <h3 class="post-subtitle">
+            Java Data Structure and Algorithm - Stack
+        </h3>
+        <div class="post-content-preview">
+            栈（Stack）数据结构概览栈（英语：Stack）是一种后进先出（LIFO，Last In First Out）的线性数据结构，在计算机科学中被广为运用。栈只允许在线性表的一端（栈顶，英语：Top）添加和移除数据，遵循后进先出的运行规律。
+栈数据结构通常使用一维数组或链表来实现，栈包含两种基本操作：入栈（压栈，Push），出栈（弹栈，Pop）。
+
+入栈：将元素压入栈顶，栈顶指针前移
+
+出栈：......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-05-18
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/15/java-data-structure-and-algorithm-linked-list/">
+        <h2 class="post-title">
+            Java 数据结构与算法 - 链表
+        </h2>
+        <h3 class="post-subtitle">
+            Java Data Structure and Algorithm - Linked List
+        </h3>
+        <div class="post-content-preview">
+            链表（Linked List）数据结构概览链表（Linked List）是线性表的一种（线性表包含顺序表与链表），通过指针将一系列位于不连续的内存空间中的元素连接起来，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理，但也失去了快速随机存取的优点，同时增大了内存开销（存储指针域）。
+链表数据结构由一连串节点（Node）组成，每个节点包含数据域（Data Fields）和一或两个用来......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-05-15
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/14/LeetCode-704-Binary-Search/">
+        <h2 class="post-title">
+            LeetCode - 704. 二分查找
+        </h2>
+        <h3 class="post-subtitle">
+            LeetCode - 704. Binary Search
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录 LeetCode - 704. 二分查找 问题。
+问题描述输入一个已排序（升序）的、拥有n个元素的整型数组nums与一个目标数target，请你实现一个函数，在整型数组中搜索目标数。如果该数存在，返回其在数组中的索引下标，不存在则返回-1。
+Input: nums = [-1,0,3,5,9,12], target = 9
+Output: 4
+Explanation: 9 ex......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-05-14
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/13/LeetCode-049-Group-Anagrams/">
+        <h2 class="post-title">
+            LeetCode - 049. 相同字母异序词归类
+        </h2>
+        <h3 class="post-subtitle">
+            LeetCode - 049. Group Anagrams
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录 LeetCode - 049. 相同字母异序词归类 问题。
+问题描述输入一个字符串数组，请你将数组中的字符串按相同字母异序词归类并输出。
+Input: [&quot;eat&quot;, &quot;tea&quot;, &quot;tan&quot;, &quot;ate&quot;, &quot;nat&quot;, &quot;bat&quot;]
+Output:
+[
+ ......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-05-13
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/12/understanding-multithreading-technology/">
+        <h2 class="post-title">
+            了解「多线程」技术
+        </h2>
+        <h3 class="post-subtitle">
+            Understanding Multithreading Technology
+        </h3>
+        <div class="post-content-preview">
+            前言本文是「多线程」技术入门篇，对进程、线程、纤程、并发、并行、线程安全、竞态条件等概念进行介绍，讨论多线程技术的实现原理、使用中可能遇到的问题，以及如何正确处理问题。
+随着计算机硬件（Computer Hardware）和操作系统（Operating System）的进步，现代计算机能够同时执行多个任务，使程序执行速度更快，程序响应时间更短。
+在软件开发中使用并发既诱人又困难，需要了解计算......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2019-05-12
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/page/3/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/page/5/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+    </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                            <a href="/tags/#Java" title="Java" rel="32">Java</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="/img/avatar.png" />
+                        
+
+                        
+                            <p>Hi, this is zihengCat, a student live in Hangzhou, China. Learning coding now, SDE I.</p>
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                                <li>
+                                    <a target="_blank"  href="https://github.com/zihengcat">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Friends Blog -->
+                <!--
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+                -->
+            </div>
+        
+    </div>
+</div>
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+</body>
+</html>

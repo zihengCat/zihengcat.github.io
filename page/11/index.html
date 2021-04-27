@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/page/11/">
+    <title>
+        
+          zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Page Header -->
+<header class="intro-header" style="background-image: url('/img/home-bg-d.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1>ziheng&#39;s Blog</h1>
+                    <span class="subheading">zihengCat is here!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        
+<!-- USE SIDEBAR -->
+  <!-- Post Container -->
+    <div class="
+         col-lg-8 col-lg-offset-1
+         col-md-8 col-md-offset-1
+         col-sm-12
+         col-xs-12
+         post-container">
+    <!-- Main Content -->
+
+<div class="post-preview">
+
+    <a href="/2018/03/28/编程学习线性代数04-向量数量积与夹角/">
+        <h2 class="post-title">
+            编程学习线性代数04 - 向量数量积与夹角
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文讲解向量的数量积与向量夹角，并通过编程实现。
+向量数量积两个向量的数量积（英语: Inner Products）在几何上可以表示为两向量的模长乘以两向量之间夹角的余弦值。向量数量积是一个标量。向量数量积的几何定义可以帮助我们寻找两向量之间的夹角，这个夹角我们一般指：将两向量移至共起点后，取较小的角度。
+
+
+图1: 向量数量积的几何意义
+
+
+$$
+
+\overrightarrow{v}......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-28
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/27/编程学习线性代数03-向量长度与单位向量/">
+        <h2 class="post-title">
+            编程学习线性代数03 - 向量长度与单位向量
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文讲解向量长度与单位向量的求法，并通过编程实现。
+向量长度向量的两个基本属性是大小与方向，向量长度（英语: Magnitude，也叫向量的模长）便是向量的大小，它是一个标量。我们可以这样理解，向量长度就是向量起点至终点的距离（两点间的距离）。想要计算向量长度，我们需要用到勾股定理。
+
+$$
+\lVert \overrightarrow{v} \rVert =
+\sqrt{
+{v_{x}......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-27
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/26/编程学习线性代数02-向量加减与数乘/">
+        <h2 class="post-title">
+            编程学习线性代数02 - 向量加减与数乘
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文讲解向量的加减与数乘，并通过编程实现它们。
+向量加减向量加法：两个向量首尾相接，由起点指向终点的新向量（三角形法则）。或将两个向量平移至共起点，作平行四边形，取对角线（平行四边形法则）。向量减法：向量减法可以看作是则可以看成是一个向量加上一个大小相等，方向相反的向量（反向量），按向量加法进行运算。向量加减满足交换律与结合律。
+
+
+向量运算三角形法则
+
+
+
+向量运算平行四边形法则
+
+使......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-26
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/25/编程学习线性代数01-向量及其表示/">
+        <h2 class="post-title">
+            编程学习线性代数01 - 向量及其表示
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文讲解向量的基本概念及其表示方法，并通过编程实现向量数据结构。
+向量的基本概念向量（英语：vector，也称矢量）是数学、物理学和工程学等多个学科中的基本概念，指一个同时具有大小和方向几何对象。数学上，一般只考虑向量的大小与方向，不考虑向量起点（自由向量）。如果两个向量大小相等，方向相同，我们就说这两个向量是相等的。
+向量的表示方法数学上，常用一条有向线段来表示向量，可以标明向量的起点......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-25
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/24/Hexo博客添加MathJax支持/">
+        <h2 class="post-title">
+            Hexo博客添加MathJax支持
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            测试When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
+
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+
+
+
+$$
+f(x) = \int_{-\infty}^\infty
+    \hat f(\xi)\,e^{2 \pi i \xi x}
+    \,......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-24
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/09/sort-algorithms-insertion-sort/">
+        <h2 class="post-title">
+            排序算法 - 插入排序
+        </h2>
+        <h3 class="post-subtitle">
+            Sort Algorithms - Insertion Sort
+        </h3>
+        <div class="post-content-preview">
+            前言本文介绍排序算法 - 插入排序（Insertion Sort）。
+插入排序（Insertion Sort）插入排序（Insertion Sort）是常用的排序算法之一。该排序算法的核心思想是：构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。
+插入排序与我们在手中排序扑克牌的过程类似。
+
+桌上的扑克牌：[5, 2, 4, 6, 1, 3]
+
+拿起第一张牌：[5......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-09
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/08/sort-algorithms-selection-sort/">
+        <h2 class="post-title">
+            排序算法 - 选择排序
+        </h2>
+        <h3 class="post-subtitle">
+            Sort Algorithms - Selection Sort
+        </h3>
+        <div class="post-content-preview">
+            前言本文介绍排序算法 - 选择排序（Selection Sort）。
+选择排序（Selection Sort）选择排序是一种简单直观的排序算法，该排序算法的核心思想是：在未排序序列中寻找最大（小）的元素，置换到序列起始位置，依次迭代。
+
+
+
+迭代轮数
+数组元素
+
+
+
+0
+[ 2, 1, 5, 6 ]
+
+
+1
+[ 6, 1, 5, 2 ]
+
+
+2
+[ 6, 5, 1, 2 ]
+
+
+3
+[ 6,......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-08
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/07/LeetCode-069-sqrt/">
+        <h2 class="post-title">
+            LeetCode - 069. 求平方根（Sqrt）
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言本文记录LeetCode - 069. 求平方根（Sqrt）问题。
+问题描述请你手动编程实现sqrt()函数：输入一个整型数，求该整数的平方根。
+
+注：给出的整型数保证大于0。
+
+输入：4
+输出：2
+
+
+注：样例1
+
+输入：8
+输出：2
+解释：8 的平方根为 2.82842... 取其整数部分。
+
+
+注：样例2
+
+问题解答平方根函数sqrt()是最常用的数学函数之一，在这个问题中，需要我......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-07
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/06/sort-algorithms-bubble-sort/">
+        <h2 class="post-title">
+            排序算法 - 冒泡排序
+        </h2>
+        <h3 class="post-subtitle">
+            Sort Algorithms - Bubble Sort
+        </h3>
+        <div class="post-content-preview">
+            前言本文介绍排序算法 - 冒泡排序（Bubble Sort）。
+冒泡排序（Bubble Sort）冒泡排序是常用的排序算法之一，该排序算法的核心思想是：将数组中最大/最小的值冒泡浮到数组尾部，依次迭代。
+/**
+ * 冒泡排序（Bubble Sort）
+ * 参数: 待排序数组, 数组长度
+ * 返回: 无
+ */
+void bubbleSort(int* array, int length......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-06
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/05/Hexo博客添加highlight-js代码高亮/">
+        <h2 class="post-title">
+            Hexo博客添加highlight.js代码高亮
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            前言技术类个人博客总是绕不开一个重要的需求：漂亮显示代码。美观的代码显示能为博客文章添彩不少。本文介绍在如何在Hexo博客中利用highlight.js库实现美观的代码高亮显示效果。
+highlight.js简介highlight.js是一枚 JavaScript 写成的代码高亮库。
+
+支持176门语言与79种样式
+自动语言侦测
+支持多语言代码高亮
+Node.js可用
+支持自定义标签
+方便与......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2018-03-05
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+<ul class="pager">
+    
+        <li class="previous">
+            <a href="/page/10/">&larr; Newer Posts</a>
+        </li>
+    
+    
+        <li class="next">
+            <a href="/page/12/">Older Posts &rarr;</a>
+        </li>
+    
+</ul>
+
+
+
+    </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                            
+                            <a href="/tags/#Java" title="Java" rel="32">Java</a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <div class="short-about">
+
+                        
+                            <img src="/img/avatar.png" />
+                        
+
+                        
+                            <p>Hi, this is zihengCat, a student live in Hangzhou, China. Learning coding now, SDE I.</p>
+                        
+
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            
+                            
+                            
+
+                            
+
+                            
+
+                            
+                                <li>
+                                    <a target="_blank"  href="https://github.com/zihengcat">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            
+
+                            
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Friends Blog -->
+                <!--
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+                -->
+            </div>
+        
+    </div>
+</div>
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+</body>
+</html>

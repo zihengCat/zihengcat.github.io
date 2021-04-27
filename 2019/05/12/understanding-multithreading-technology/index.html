@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/2019/05/12/understanding-multithreading-technology/">
+    <title>
+        
+          了解「多线程」技术 - zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-d.png');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Multithreading" title="Multithreading">Multithreading</a>
+                        
+                    </div>
+                    <h1>了解「多线程」技术</h1>
+                    <h2 class="subheading">Understanding Multithreading Technology</h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2019-05-12
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是「多线程」技术入门篇，对<strong>进程、线程、纤程、并发、并行、线程安全、竞态条件</strong>等概念进行介绍，讨论多线程技术的实现原理、使用中可能遇到的问题，以及如何正确处理问题。</p>
+<p>随着计算机硬件（Computer Hardware）和操作系统（Operating System）的进步，现代计算机能够同时执行多个任务，使程序执行速度更快，程序响应时间更短。</p>
+<p>在软件开发中使用并发既诱人又困难，需要了解计算机底层的工作原理。我们从操作系统中线程的基本概念入手，介绍线程背后的魔法。</p>
+<h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><p>现代主流操作系统都支持同时运行多个程序，比如：我们可以一边使用浏览器浏览网页，一边用播放器听歌。运行中的浏览器程序和播放器程序都是<strong>进程</strong>，操作系统提供了一套机制充分利用底层硬件保证多个进程同时运行，无论具体采用的是哪种技术，最终都会让你感觉这些程序是在同时运行的。</p>
+<p>在操作系统中同时执行多任务，进程不是唯一选择。每个进程都能在其内部并发执行子任务，进程内部的子任务也被称为<strong>线程</strong>。可以把线程看成一个进程切片，进程启动时，至少会启动至少一个线程，称为<strong>主线程</strong>，接下来，根据程序或开发者的需要可以启动新线程或终止线程。多线程即在一个进程中运行多个线程，例如：播放器会运行多个线程，一个线程显示界面（通常是主线程），另一个线程播放音乐。</p>
+<p>可以把操作系统看成进程的容器，而进程又是线程的容器。</p>
+<p><img src="./os-process-thread.png" alt="os-process-thread"></p>
+<blockquote>
+<p>图：操作系统、进程、线程关系图</p>
+</blockquote>
+<h1 id="进程与线程的区别"><a href="#进程与线程的区别" class="headerlink" title="进程与线程的区别"></a>进程与线程的区别</h1><p>操作系统为每枚进程分配一块独立的内存空间，<strong>默认情况下，一枚进程的内存不会与其他进程共享</strong>，例如：浏览器不能访问播放器的内存，反之亦然。 同一程序启动的多个实例也是如此：启动两个浏览器，操作系统会把每个实例看作一个新进程，分别为其分配一块独立的内存。多个进程之间默认是无法共享数据的，除非使用进程间通信（IPC）技术。</p>
+<p>与进程不同，<strong>线程能够共享父进程的内存空间</strong>。 例如：在播放器中，音乐播放线程可以访问界面线程的数据，反之亦然。线程之间数据共享会更加容易。另外，线程占用资源更少，创建切换速度更快，这就是为什么线程也被称为轻量级进程。</p>
+<p>如果没有多线程技术，则需要将这些任务作为进程运行，通过操作系统同步，使用 IPC 通信，这会非常烦琐，而且由于进程比线程更“重”，程序的执行速度也会变得更慢。</p>
+<h1 id="绿色线程（Green-Thread）"><a href="#绿色线程（Green-Thread）" class="headerlink" title="绿色线程（Green Thread）"></a>绿色线程（Green Thread）</h1><p>到目前为止，线程都由操作系统管理，必须经由操作系统才能启动/调度/销毁线程。不过，并非所有平台都支持本地线程（如：早期的Solaris OS），Java 提出了绿色线程（Green Thread）的概念，“绿色线程“运行在用户空间，通过第三方库或虚拟机进行调度。</p>
+<p>绿色线程（Green Thread）也称为纤程（Fibers），它在用户空间实现了多任务的协同处理，并不通过操作系统内核。纤程无法被操作系统内核代理，拥有自己的栈空间，纤程执行上下文的切换只发生于用户空间，并不通过操作系统内核进行调度。每一个纤程都有一个父级线程，线程又从属于一个进程，<strong>纤程又被称为“轻量级线程”</strong>。纤程的优点是创建速度快、管理效率高，因为完全绕过了操作系统，但纤程也有缺点。</p>
+<p>今天的 Java 不使用纤程，而是使用本地线程。一些其他编程语言，比如 <code>Golang</code>、<code>Haskell</code>、<code>Rust</code>等实现了类似纤程的机制以取代本地线程。</p>
+<h1 id="多线程的作用"><a href="#多线程的作用" class="headerlink" title="多线程的作用"></a>多线程的作用</h1><p>为什么进程中需要使用多线程？正如前文提到的，<strong>并行化</strong>可以加快程序处理速度。举个例子：在视频编辑器里渲染一部电影，编辑器会把渲染工作分配给多个线程，每个线程只处理其中一部分，假设一个线程需要处理1小时，那么两个线程只需要处理30分钟，四个线程缩短到15分钟。</p>
+<p>真的这么简单？还需要考虑以下三点：</p>
+<ul>
+<li><p>不是所有程序都要使用多线程。如果程序本身顺序执行或者频繁等待用户输入，这种情况下多线程就无法发挥作用。</p>
+</li>
+<li><p>仅仅增加线程并不会让程序跑得更快，每个子任务都需要经过仔细设计和考虑。</p>
+</li>
+<li><p>并不能保证并行，一切都依赖于底层硬件。</p>
+</li>
+</ul>
+<p>最后一点是很关键的一点，如果计算机底层硬件不支持同时执行多个任务，操作系统会努力让它们看起来像同时执行（稍后会对此进行介绍）。</p>
+<p>现在，让我们暂时把<strong>并发（Concurrency）</strong>理解为：多任务看起来同时执行的样子；<strong>并行（Parallelism）</strong>理解为：多任务是真正的在同时执行。</p>
+<h1 id="并发（Concurrency）与并行（Parallelism）"><a href="#并发（Concurrency）与并行（Parallelism）" class="headerlink" title="并发（Concurrency）与并行（Parallelism）"></a>并发（Concurrency）与并行（Parallelism）</h1><p>CPU 是程序真正执行的地方，它由几个部分组成，其中最主要的部分被称为核心（Core），<strong>一个 CPU 核心同一时刻只能执行一个操作</strong>。这是一个非常明显的缺陷，因此，操作系统（OS）设计了一系列机制使得单核设备上也可以支持多任务（多进程、多线程）。其中最重要的技术称为<strong>抢占式多任务处理</strong>。</p>
+<p>抢占式多任务处理是指：中断当前任务并切换到另一个任务，稍后再恢复到前一个任务执行。如果 CPU 只有一个核心，那么操作系统会将这个核心的计算能力分配给多个进程或线程，它们会在循环中一个接一个地执行。这种设计造成一种同时在执行多个任务的错觉，<strong>满足了并发，但不是真正的并行</strong>，因其并没有真正在同时运行多个任务。</p>
+<p>现代 CPU 早已经不止一个核心，同一时刻每个核心都可以独立执行一个操作，这意味着，对于多核心 CPU，能够真正做到并行（Parallelism）。</p>
+<p>现代操作系统能够支持多核 CPU：检测 CPU 核心数，为每个核心分配进程或线程。进线程可以分配到任意核心上执行，这个过程对正在运行的程序而言是完全透明的，不仅如此，仍然可以使用抢占式多任务机制，这样一来，系统可以运行的进线程，实际远超过物理硬件的核心数。</p>
+<p><strong>单核虽然无法做到真正的并行，但多线程编程仍是有意义的。</strong>当进程包含了多个线程时，由于抢占式多任务机制，即使其中某个线程执行缓慢或任务阻塞，也可以保持程序正常运行。</p>
+<p>举个例子：运行的桌面程序从磁盘读取数据，读磁盘这一过程非常缓慢，如果程序只有一个线程，那么整个程序都会卡住无法响应直至磁盘读取结束，因为所有计算资源都分配给了唯一的线程，浪费在等待磁盘 IO 上了。</p>
+<p>使用多线程技术重新设计这个程序：线程 A 访问磁盘，与此同时线程 B 负责主界面。当线程 A 由于读取磁盘进入等待时，线程 B 仍然可以保持界面作出响应，这里存在两个线程，操作系统可以在它们之间来回切换，而不会在阻塞的线程上卡住。</p>
+<h1 id="数据竞争（Data-Race）与竞态条件（Race-Condition）"><a href="#数据竞争（Data-Race）与竞态条件（Race-Condition）" class="headerlink" title="数据竞争（Data Race）与竞态条件（Race Condition）"></a>数据竞争（Data Race）与竞态条件（Race Condition）</h1><p>正如我们知道的那样，线程可以共享父进程的内存空间，这使得进程中的多个线程可以很方便地交换数据。多个线程从同一块内存读取数据没有任何问题，但是当某个线程执行写入操作而其它线程正在读取时，就会出现问题。</p>
+<ul>
+<li><p>数据竞争：读线程正在读取内存，而写线程还没有完成写入操作，这时会读取到不完整的数据。</p>
+</li>
+<li><p>竞态条件：多个线程按照不可预知的顺序执行操作，而实际的要求应该按照指定顺序执行。读线程应该只在写线程完成写入操作后再读取数据。</p>
+</li>
+</ul>
+<h2 id="数据竞争（Data-Race）原因"><a href="#数据竞争（Data-Race）原因" class="headerlink" title="数据竞争（Data Race）原因"></a>数据竞争（Data Race）原因</h2><p>我们知道，一枚 CPU 核心同一时刻只能执行一条机器指令，指令因其不可分割性被称为<strong>原子操作</strong>，即：不能拆分成更小的操作。</p>
+<blockquote>
+<p>注：希腊单词 <em>atom</em> （ἄτομος; atomos），表示不可切分。</p>
+</blockquote>
+<p>不可分割性让原子操作天然具备线程安全：当一个线程写入共享数据操作具有原子性时，其他线程在写入操作完成之前无法读取数据；反之，当一个线程读取共享数据操作具有原子性时，一定能够读到某个时刻的完整数据，不会发生数据竞争。</p>
+<p>坏消息是，程序中绝大多数的操作并不是原子操作，即使如<code>x = 1</code>这样简单的赋值语句，在硬件上也可能由多条机器指令组成，赋值语句本身并不是线程安全的。</p>
+<h2 id="竞态条件（Race-Condition）原因"><a href="#竞态条件（Race-Condition）原因" class="headerlink" title="竞态条件（Race Condition）原因"></a>竞态条件（Race Condition）原因</h2><p>抢占式多任务机制使得：<strong>操作系统能完全控掌控线程管理，按照调度算法启动、暂停、终止线程，而程序员无法控制线程执行时间或执行顺序。</strong>实际上，并不能保证下面这段简单的代码按照指定顺序执行。</p>
+<pre><code class="java">writer_thread.start()
+reader_thread.start()
+</code></pre>
+<blockquote>
+<p>代码清单：<code>Java</code>启动多线程</p>
+</blockquote>
+<p>多运行几次就能注意到：有时写线程先启动，有时读线程先启动。线程行为具有不确定性：每次运行结果都会改变，无法预测。调试带有竞态条件的程序非常烦琐，不能以可控的方式复现问题。</p>
+<h1 id="并发控制与线程安全"><a href="#并发控制与线程安全" class="headerlink" title="并发控制与线程安全"></a>并发控制与线程安全</h1><p>数据竞争和竞态条件都是并发编程中时常出现的问题。并发控制是一种多线程并发的艺术，操作系统与编程语言为此提供了一系列解决方案，其中最重要的几项：</p>
+<ul>
+<li><p><strong>同步</strong>：确保同一时刻仅有一枚线程在使用资源。将代码的特定部分作上标记，这样多个并发线程就不会同时执行这段代码，也不会让共享数据变得混乱。</p>
+</li>
+<li><p><strong>原子操作</strong>：借助操作系统提供特殊指令，将非原子操作（如：赋值操作）转化为原子操作。</p>
+</li>
+<li><p><strong>不可变数据</strong>： 当共享数据被标记为不可变时，只允许线程从中读取数据，而不允许线程改变数据内容，解决了竞态条件的根本问题。</p>
+</li>
+</ul>
+<p>一段代码如果声称自己<strong>线程安全</strong>，那么应该做到：<strong>在多线程调用时，没有数据竞争，并且不会触发竞态条件。</strong>你可能会注意到，一些开发库声称自己是线程安全的，如果你正在编写多线程代码，那么就需要确保所有第三方库都能够跨线程使用而且不会引起并发问题。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>The Java™ Tutorials(Concurrency): <a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html">https://docs.oracle.com/javase/tutorial/essential/concurrency/index.html</a></li>
+</ul>
+
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/05/13/LeetCode-049-Group-Anagrams/" data-toggle="tooltip" data-placement="top" title="LeetCode - 049. 相同字母异序词归类">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/05/07/java-tutorial-for-language-adavanced-map-interface-and-implementations/" data-toggle="tooltip" data-placement="top" title="Java 高级教程系列 - Map 接口及其实现">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- No hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                          <a class="tag" href="/tags/#Multithreading" title="Multithreading">Multithreading</a>
+                        
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                <hr>
+                <!--
+                
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+                
+                -->
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+</body>
+</html>

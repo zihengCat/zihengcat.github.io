@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/2018/03/28/编程学习线性代数04-向量数量积与夹角/">
+    <title>
+        
+          编程学习线性代数04 - 向量数量积与夹角 - zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-d.png');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                    <h1>编程学习线性代数04 - 向量数量积与夹角</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2018-03-28
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解向量的数量积与向量夹角，并通过编程实现。</p>
+<h1 id="向量数量积"><a href="#向量数量积" class="headerlink" title="向量数量积"></a>向量数量积</h1><p>两个向量的数量积（英语: Inner Products）在几何上可以表示为<strong>两向量的模长乘以两向量之间夹角的余弦值</strong>。向量数量积是一个<strong>标量</strong>。向量数量积的几何定义可以帮助我们寻找两向量之间的夹角，这个夹角我们一般指：将两向量移至共起点后，取较小的角度。</p>
+<p><img src="./vector-inner-products.svg" alt="vector-inner-products"></p>
+<blockquote>
+<p>图1: 向量数量积的几何意义</p>
+</blockquote>
+
+$$
+
+\overrightarrow{v} \cdot \overrightarrow{w} =
+\lVert \overrightarrow{v} \rVert
+\cdot
+\lVert \overrightarrow{w} \rVert
+\cdot
+\cos(\theta)
+$$
+$$
+\begin{align}
+\theta
+&=
+\arccos(
+\frac{ \overrightarrow{v} \cdot \overrightarrow{w} }
+     { \lVert \overrightarrow{v} \rVert   \cdot
+       \lVert \overrightarrow{w} \rVert
+})
+\\ &=
+\arccos(
+\frac{ 1 }
+{ \lVert \overrightarrow{v} \rVert }
+\overrightarrow{v}
+\cdot
+\frac{ 1 }
+{ \lVert \overrightarrow{w} \rVert }
+\overrightarrow{w}
+)
+\end{align}
+$$
+
+
+<p>向量数量积的几何定义虽然直观明了，但是不好计算，我们再看看向量数量积的代数定义。向量数量积的代数定义指出：<strong>两个向量的数量积是两向量各对应维度数值乘积的累加和</strong>。这可以帮助我们快速计算出数量积的结果。</p>
+
+$$
+\begin{align}
+
+\overrightarrow{a} \cdot \overrightarrow{b}
+&=
+\sum_{i=1}^{n}a_i \cdot b_i \\
+&=
+a_{1} \cdot b_{1} +
+a_{2} \cdot b_{2} +
+...               +
+a_{n} \cdot b_{n}
+
+\end{align}
+$$
+$$
+\overrightarrow{v}
+\begin{bmatrix}
+    a_{1} \\
+    a_{2} \\
+    ...   \\
+    a_{n}
+\end{bmatrix}
+\cdot
+\overrightarrow{w}
+\begin{bmatrix}
+    b_{1} \\
+    b_{2} \\
+    ...   \\
+    b_{n}
+\end{bmatrix}
+=
+a_{1} \cdot b_{1} +
+a_{2} \cdot b_{2} +
+...               +
+a_{n} \cdot b_{n}
+
+$$
+
+
+<p>向量数量积的代数定义可以帮助我们快速计算出结果。下面我们来看看向量数量积的几个运算规律。</p>
+
+$$
+\overrightarrow{v} \cdot \overrightarrow{w}
+=
+\overrightarrow{w} \cdot \overrightarrow{v}
+\\
+(k \cdot \overrightarrow{v}) \cdot \overrightarrow{w}
+=
+\overrightarrow{v} \cdot (k \cdot \overrightarrow{w})
+\\
+c \cdot (\overrightarrow{v} + \overrightarrow{w})
+=
+c \cdot \overrightarrow{v}  + c \cdot \overrightarrow{w}
+$$
+
+
+<h1 id="向量的方向余弦"><a href="#向量的方向余弦" class="headerlink" title="向量的方向余弦"></a>向量的方向余弦</h1><p>这里我们补充一个方向预弦的概念。在三维直角坐标系中，向量与XYZ三个坐标轴形成的夹角称为<strong>方向角</strong>，该向量与坐标轴形成的余弦值被称为<strong>方向余弦</strong>。方向余弦的求法: <strong>向量各个维度坐标值除以向量模长</strong>。<br>还有一点，**向量方向余弦的平方和为$1$**。</p>
+
+$$
+\overrightarrow{v} =
+\begin{bmatrix}
+v_{x} \\
+v_{y} \\
+v_{z}
+\end{bmatrix}
+$$
+$$
+\cos(\alpha) =
+\frac
+{ v_{x}}
+{\Vert \overrightarrow{v} \Vert}
+\ 
+\cos(\beta) =
+\frac
+{ v_{y}}
+{\Vert \overrightarrow{v} \Vert}
+\ 
+\cos(\gamma) =
+\frac
+{ v_{z}}
+{\Vert \overrightarrow{v} \Vert}
+$$
+$$
+\cos^{2}(\alpha) +
+\cos^{2}(\beta) +
+\cos^{2}(\gamma)
+= 1
+$$
+
+
+<h1 id="向量数量积与向量夹角的关系"><a href="#向量数量积与向量夹角的关系" class="headerlink" title="向量数量积与向量夹角的关系"></a>向量数量积与向量夹角的关系</h1><p>我们知道，$\cos(x)$函数的值域是$[-1, 1]$，再结合向量数量积的几何定义，我们就可以得到著名的<strong>柯西-施瓦茨不等式</strong>。该不等式在数学各领域都有非常广泛的应用。</p>
+
+$$
+\overrightarrow{v} \cdot \overrightarrow{w} =
+\lVert \overrightarrow{v} \rVert
+\cdot
+\lVert \overrightarrow{w} \rVert
+\cdot
+\cos(\theta) ,
+\cos(\theta) \in \lbrack -1, 1 \rbrack
+$$
+
+$$
+-
+\lVert \overrightarrow{v} \rVert \cdot
+\lVert \overrightarrow{w} \rVert
+\leq
+\overrightarrow{v} \cdot \overrightarrow{w}
+\leq
+\lVert \overrightarrow{v} \rVert \cdot
+\lVert \overrightarrow{w} \rVert
+\\
+\Updownarrow
+\\
+\vert
+\overrightarrow{v} \cdot \overrightarrow{w}
+\vert
+\leq
+\lVert \overrightarrow{v} \rVert \cdot
+\lVert \overrightarrow{w} \rVert
+
+$$
+
+
+<p>接下来，我们结合向量数量积的几何定义来考虑一下向量夹角与向量位置关系。我们设两个向量都不是零向量（数量积存在）。</p>
+
+$$
+\overrightarrow{v} \cdot \overrightarrow{w} =
+\lVert \overrightarrow{v} \rVert
+\cdot
+\lVert \overrightarrow{w} \rVert
+\cdot
+\cos(\theta) \\
+\cos(\theta) \in \lbrack -1, 1 \rbrack ,
+\overrightarrow{v} \not= \overrightarrow{0} ,
+\overrightarrow{w} \not= \overrightarrow{0}
+$$
+
+
+
+<table>
+<thead>
+<tr>
+<th align="center">向量数量积关系</th>
+<th align="center">$\boldsymbol{\cos(\theta)}$</th>
+<th align="center">$\boldsymbol{\theta}$</th>
+<th align="center">向量位置关系</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"> $
+\overrightarrow{v} \cdot \overrightarrow{w} =
+\lVert \overrightarrow{v} \rVert
+\cdot
+\lVert \overrightarrow{w} \rVert
+$</td>
+<td align="center">$1$</td>
+<td align="center">$0$</td>
+<td align="center">平行</td>
+</tr>
+<tr>
+<td align="center"> $
+\overrightarrow{v} \cdot \overrightarrow{w} =
+-
+\lVert \overrightarrow{v} \rVert
+\cdot
+\lVert \overrightarrow{w} \rVert
+$</td>
+<td align="center">$-1$</td>
+<td align="center">$\pi$</td>
+<td align="center">相反</td>
+</tr>
+<tr>
+<td align="center"> $
+\overrightarrow{v} \cdot \overrightarrow{w} =
+0
+$</td>
+<td align="center">$0$</td>
+<td align="center">$\pi \over 2$</td>
+<td align="center">正交</td>
+</tr>
+<tr>
+<td align="center"> $
+\overrightarrow{v} \cdot \overrightarrow{v} =
+{\lVert \overrightarrow{v} \rVert}^{2}
+$</td>
+<td align="center">$1$</td>
+<td align="center">$0$</td>
+<td align="center">相同</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>表1: 向量数量积与向量夹角、向量位置关系</p>
+</blockquote>
+<h1 id="向量数量积的代码实现"><a href="#向量数量积的代码实现" class="headerlink" title="向量数量积的代码实现"></a>向量数量积的代码实现</h1><p>在了解向量数量积的概念后，我们考虑它的代码实现。<br>根据向量数量积的代数定义，我们可以很容易的实现一个求向量数量积的方法。取出两个向量对应维度的数值，相乘求和即可。</p>
+<pre><code>...
+    def dot(self, v):
+        # 列表生成式
+        return sum([ x * y for (x, y) in zip(self.coordinates, v.coordinates)])
+...
+</code></pre>
+<blockquote>
+<p>代码清单: 向量数量积的代码实现（Python）</p>
+</blockquote>
+<h1 id="向量夹角的代码实现"><a href="#向量夹角的代码实现" class="headerlink" title="向量夹角的代码实现"></a>向量夹角的代码实现</h1><p>接下来我们考虑向量夹角的代码实现。<br>根据向量数量积的代数定义，我们也可以容易得实现求向量夹角的方法。两向量点乘除以两向量模长乘积，再取反余弦即可。<br>这里我们还可以额外添加一个弧度转角度的功能。</p>
+<pre><code>...
+    def angle_with(self, v, in_degrees = False):
+        try:
+            angle_in_radians = math.acos((self.dot(v)) /
+                                         (self.magnitude() * v.magnitude()))
+            if in_degrees:
+                return angle_in_radians * 180.0 / math.pi
+            else:
+                return angle_in_radians
+        except:
+            print(&quot;Something error&quot;)
+            return None
+...
+</code></pre>
+<blockquote>
+<p>代码清单: 向量夹角的代码实现（Python）</p>
+</blockquote>
+<h1 id="相关测试代码"><a href="#相关测试代码" class="headerlink" title="相关测试代码"></a>相关测试代码</h1><p>我们来写一些测试代码，看看我们新添加的方法是否可用。</p>
+<pre><code>def vector_dot_angle_test():
+    v = Vector([0, 0, 1])
+    w = Vector([0, 1, 0]
+    print(v.dot(w))
+    print(v.angle_with(w, True))
+    print(&quot;-------------------&quot;)
+    v = Vector([1, 1, 1])
+    w = Vector([10, 10, 10])
+    print(v.dot(w))
+    print(v.angle_with(w))
+    print(&quot;-------------------&quot;)
+    v = Vector([2, 0])
+    w = Vector([0, 8])
+    print(v.dot(w))
+    print(v.angle_with(w, True))
+    print(&quot;-------------------&quot;)
+    v = Vector([1, 0])
+    w = Vector([-1, 0])
+    print(v.dot(w))
+    print(v.angle_with(w, True))
+</code></pre>
+<blockquote>
+<p>代码清单: 向量数量积与夹角相关测试代码</p>
+</blockquote>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>同济高等数学（第7版）下册, P14 - P17</li>
+</ul>
+
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/03/29/编程学习线性代数05-向量向量积与混合积/" data-toggle="tooltip" data-placement="top" title="编程学习线性代数05 - 向量向量积与混合积">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/03/27/编程学习线性代数03-向量长度与单位向量/" data-toggle="tooltip" data-placement="top" title="编程学习线性代数03 - 向量长度与单位向量">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- No hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                <hr>
+                <!--
+                
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+                
+                -->
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+</body>
+</html>

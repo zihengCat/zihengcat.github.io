@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/05/19/C学习笔记-编译预处理指令/">
+    <title>
+        
+          C学习笔记-编译预处理指令 - zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-d.png');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#C" title="C">C</a>
+                        
+                    </div>
+                    <h1>C学习笔记-编译预处理指令</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-05-19
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本篇讲解C语言中的编译预处理指令。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>C代码的编译过程大致需要经过如下几个阶段:</p>
+<pre><code>源代码 --&gt; 编译预处理 --&gt; 编译 --&gt; 汇编 --&gt; 链接 --&gt; 可执行文件
+</code></pre>
+<p>其中，编译预处理是第一阶段，由编译预处理器完成。<br>C语言在设计之初，并没有考虑设计机制满足如下需求:</p>
+<ul>
+<li>包含外部文件至源代码</li>
+<li>定义宏</li>
+<li>根据条件编译代码</li>
+</ul>
+<p>为了满足这些需求，诞生了编译预处理指令。编译预处理指令是为了补足C的不足，如今，编译预处理指令已经成为了C不可或缺的一部分。<br>编译预处理过程一般由编译预处理器完成，如今的C编译器一般都集成了编译预处理器。<br>编译预处理器读入程序员写的源代码文件，检查编译预处理指令，对源代码进行<strong>文本级</strong>的替换，同时，对源文件中<strong>多余空白符</strong>的删减和<strong>注释</strong>的删除，也是在编译预处理阶段完成的。<br>编译预处理指令是以<code>#</code>号开头的代码行。#号必须是该行除了任何空白字符外的第一个字符。#后跟随指令关键字，在关键字和#号之间允许存在任意个数的空白符。整行语句构成了一条完整的编译预处理指令。</p>
+<h1 id="文件包含-include"><a href="#文件包含-include" class="headerlink" title="文件包含(#include)"></a>文件包含(#include)</h1><p><code>#include</code>编译预处理指令可以方便的将外部文件包含进源代码。<br>注意，文件包含指令只是简单的<strong>复制粘贴</strong>而已，将目标文件中的所有内容复制粘贴到源文件<code>#include</code>所在行。<code>#include</code>指令不是将某某库引入，只是简单的复制粘贴。<code>#include</code>也不只是可以包含<code>.h</code>头文件，它可以包含<strong>任意</strong>外部文件。<br><code>#include</code>预处理指令是支持<strong>嵌套</strong>的，也就是说，我们可以在被包含的文件中继续使用<code>#include</code>包含其他的文件，标准C预处理器至少支持8重嵌套包含。</p>
+<h2 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h2><p>在C中，头文件<code>header file</code>的使用是非常普遍的。所谓头文件，就是一般放在源代码开头位置的文件。C严格区分声明<code>declaration</code>与定义<code>definition</code>。</p>
+<ul>
+<li>全局函数声明</li>
+<li>外部变量声明(extern)</li>
+<li>自定义数据结构(枚举, 结构体)</li>
+</ul>
+<p>一般来说，我们将上述<strong>声明</strong>内容放入头文件，并在需要用到的时候使用<code>#include</code>预处理指令将它们包含进来。<br>在源代码中包含头文件一般有两种形式:</p>
+<pre><code>#include &lt;header.h&gt;
+#include &quot;header.h&quot;
+</code></pre>
+<p>一种是使用尖括号<code>&lt;...&gt;</code>，一种是使用双引号<code>&quot;...&quot;</code>  。它们的区别是，使用尖括号包含，编译预处理器会去<strong>编译器默认头文件目录</strong>中搜寻目标文件；使用双引号包含，编译预处理器会先在<strong>当前目录源代码目录</strong>中搜寻目标文件，如果找不到，再去系统头文件目录中搜寻。</p>
+<p>头文件包含可以使用路径，绝对路径或相对路径:</p>
+<pre><code>#include &lt;sys/header.h&gt;          /* 包含系统头文件目录下某头文件 */
+#include &quot;./header/header.h&quot;     /* 包含当前目录下header目录中的某头文件 */
+</code></pre>
+<p>使用两种形式的包含指令，可以让程序员们明确的分清，使用的是系统头文件，还是自己写的头文件。可以使预处理器工作得更加高效。</p>
+<h2 id="标准头文件结构"><a href="#标准头文件结构" class="headerlink" title="标准头文件结构"></a>标准头文件结构</h2><p>由于<code>#include</code> 包含替换不检查在被包含文件中是否已经包含了某个文件，不阻止对某文件的多次包含。重复包含头文件，在编译阶段有可能出现重复定义<code>type redefination</code>的错误。<br>所以，我们需要有某种机制来避免文件重复包含的问题: <strong>标准头文件结构</strong></p>
+<pre><code>#ifndef _HEADER_H_
+#define _HEADER_H_
+/* ... */  //头文件内容
+#end if
+</code></pre>
+<p>上述代码表示，如果没有定义*_HEADER_H_*这个宏的话，就定义这个宏，并包含相应头文件内容。如果已经定义了(说明已经包含过了)，就不会包含头文件内容啦。<br>宏名前后加下划线，并带上H，是为了避免重复。<br>使用标准头文件结构可以避免文件重复包含的问题，我们在写代码时要注意使用它。</p>
+<h1 id="宏定义"><a href="#宏定义" class="headerlink" title="宏定义"></a>宏定义</h1><blockquote>
+<p>宏<code>macro</code>: 根据一系列预定义的规则替换文本    </p>
+</blockquote>
+<p>通俗的讲，宏就是一段简单的文本可以扩展出大量的代码。<br>宏名的定义规则与C标识符的定义规则是相同的。一般我们习惯将宏名<strong>全部大写</strong>，这样可以醒目的辨识出这是一个宏。</p>
+<h2 id="宏定义指令-define"><a href="#宏定义指令-define" class="headerlink" title="宏定义指令(#define)"></a>宏定义指令(#define)</h2><p>使用宏定义指令<code>#define</code>可以定义一个宏:</p>
+<pre><code>#define MACRO   /* 定义宏MACRO */
+</code></pre>
+<p>虽然这看起来没啥用，只是告诉预处理器我定义了这样一个宏。但是有时候，这是很有用的，比如用在<strong>标准头文件结构</strong>中。</p>
+<p>使用宏定义指令<code>#undef</code>可以取消定义一个宏:</p>
+<pre><code>...
+#undef MACRO    /* 取消定义宏 MACRO */
+</code></pre>
+<p>使用<code>#undef</code>可以取消定义一个宏，一个宏的作用域范围是从<code>#define</code>定义开始至<code>#undef</code>定义结束之间的代码段。如果没有<code>#undef</code>，那么一个宏的作用范围就是从它定义开始至该源文件结束。</p>
+<h2 id="宏替换-define"><a href="#宏替换-define" class="headerlink" title="宏替换(#define)"></a>宏替换(#define)</h2><p>宏定义<code>#define</code>定义一个标识符。预处理过程会把源代码中出现的宏标识符替换成宏定义时的值。宏最常见的用法是<strong>定义常量</strong>。</p>
+<pre><code>#define PI        3.14       /* 定义宏PI 值为3.14      */
+#define MAX_NUM   128        /* 定义宏MAX_NUM 值为128  */
+#define STR       &quot;string&quot;   /* 定义宏STR 值为&quot;string&quot; */
+...
+int array[MAX_NUM];    /* MAX_NUM被替换成128 */
+...
+printf(&quot;MAX_NUM&quot;);     /* 不会进行宏替换 */
+...
+</code></pre>
+<p>使用宏定义常量非常简单，<code>#define</code>指令 + 空白符(不包括换行符) + 替换值。<br>使用宏定义常量有诸多好处:</p>
+<ul>
+<li>程序少些幻数(<em>magic number</em>)</li>
+<li>一处更改，处处更改</li>
+<li>货真价实的常量(<em>const</em>是变量)</li>
+</ul>
+<p>需要注意的是，宏替换只是文本级别的替换，想成<em>find</em>与<em>replace</em>是很合适的。许多初学者容易在这里犯糊涂。此外，在字符串中，宏替换是不会发生的，如上面的<code>printf</code>语句。</p>
+<h2 id="带参数的宏-define函数"><a href="#带参数的宏-define函数" class="headerlink" title="带参数的宏(#define函数)"></a>带参数的宏(#define函数)</h2><p>我们也可以定义出带参数的宏:</p>
+<pre><code>#define SQUARE(x)   ((x)*(x))
+...
+int num = 10;
+int sq_num = SQUARE(num);
+/* 宏展开后变成:
+   int sq_num = ((num)*(num)); */
+...
+</code></pre>
+<p>这种带参数的宏看着与函数非常相似，但带参数宏与C函数还是有很大区别的：</p>
+<ul>
+<li>带参数宏只是将代码粘贴替换到指定位置，不存在函数堆栈开辟与参数返回的过程</li>
+<li>宏不进行参数类型检查(只是文本替换嘛，参数类型检查是编译时做的)</li>
+<li>宏函数数很不安全</li>
+</ul>
+<p>为了避免参数宏展开后出现各种奇葩的问题，前辈们建议我们: <strong>如果要使用宏函数，请把函数参数，还有整个函数体，都用括号括起。</strong><br>但是啊，即使是这样，宏函数还是很不安全的…</p>
+<pre><code>#define SQUARE(x)   ((x)*(x))
+...
+int num = 10;
+int sq_num = SQUARE(num++);    /* undefined */
+
+char *s = SQUARE(&quot;hello&quot;);     /* error */
+...
+</code></pre>
+<p>上面的代码，宏展开之后，编译就过不了啦。<br>还有一点需要注意的地方，宏替换文本的末尾，不应该加分号<code>;</code>。这并不是说不能加个分号，只是,每条C语句的结束要以分号标识, 如果在宏定义末尾加分号，宏展开之后就会有两个分号，编译会报错…所以我们习惯不在宏定义中加分号，这样宏展开后可以构成符合标准的C语句。</p>
+<h2 id="字符串化操作符"><a href="#字符串化操作符" class="headerlink" title="字符串化操作符(#)"></a>字符串化操作符(#)</h2><p>在带参数的宏中，使用<code>#</code>符号可以字符串化宏参数。<br>例如，如果我们想打印出<strong>变量名</strong>，可以怎么做？似乎不容易做到吧。<br>使用字符串化操作符就可以很方便的做到。</p>
+<pre><code>#include &lt;stdio.h&gt;
+#define PRT(x)  \
+        printf(#x)  /* 将参数x字符串化 */
+int main(void)&#123;
+    int var_name = 0;
+    PRT(var_name);  /* 宏展开后变成 printf(&quot;var_name&quot;); */
+    return 0;
+&#125;
+</code></pre>
+<p>如果参数本身带有双引号<code>&quot;</code>，宏替换过程中会自动转义引号。<br>如果参数带空白符，宏替换会忽略掉空白符。</p>
+<h1 id="标记粘连操作符"><a href="#标记粘连操作符" class="headerlink" title="标记粘连操作符(##)"></a>标记粘连操作符(##)</h1><p>标记粘连操作符<code>##</code>可以将两个宏标记粘连成一个。</p>
+<pre><code>#include &lt;stdio.h&gt;
+#define FUNC_STR(name, str)\
+        func##name(str)
+
+void func1(char* s);    /* do some things */
+void func2(char* s);    /* do other things */
+int main(void)&#123;
+    char *s = &quot;hello&quot;;
+    FUNC_STR(1, s);     /* 宏展开后变成 func1(s); */
+    FUNC_STR(2, s);     /* 宏展开后变成 func2(s); */
+    return 0;
+&#125;
+</code></pre>
+<p><code>##</code>操作符还可以用来生成函数，非常强大哦。</p>
+<h1 id="条件编译-if"><a href="#条件编译-if" class="headerlink" title="条件编译(#if)"></a>条件编译(#if)</h1><p>条件编译宏指令的产生主要是为了解决根据条件编译代码的问题。程序员可以通过定义宏来决定在编译过程中对源代码有选择的进行处理。通俗的说，就是编译器能不能看到某些代码。条件编译指令将决定那些代码会被编译，而哪些不会被编译的。编译条件就是宏表达式的值。</p>
+<pre><code>#if &lt;expression&gt;
+/* ... */
+#elif &lt;expression&gt;
+/* ... */
+#else 
+/* ... */
+#endif
+</code></pre>
+<p>其中，<code>&lt;expression&gt;</code>是可以一个<strong>常量表达式</strong>或是一个<strong>标识符</strong>。根据表达式的值true, flase, 预处理器保留相应的代码段，清除其他代码段，最终编译器看到的代码文件不会被删除掉的代码段。</p>
+<p>求值规则:</p>
+<ul>
+<li>常量表达式(标准C常量表达式)<ul>
+<li>0为false，其余为true</li>
+</ul>
+</li>
+<li>标识符(标准宏标识符)<ul>
+<li>依据defined()求值</li>
+<li>其余均为0</li>
+</ul>
+</li>
+</ul>
+<p>这里有个依据defined()求值，其实就是判断这个宏有没有定义过。</p>
+<pre><code>#if defined(A)
+/* ... */
+#else
+/* ... */
+#endif
+</code></pre>
+<p>上述代码，如果宏A被定义过，保留if下的代码段，如果没有被定义过，保留else下的代码段。<br>还有一种更加简洁明了的写法: <code>#ifdef</code>, 以及<code>#ifndef</code>, 我们在标准头文件结构中已经见过它们啦。</p>
+<ul>
+<li>#if <expression></li>
+<li>#elif <expression></li>
+<li>#ifdef <identifier></li>
+<li>#ifndef <identifier></li>
+<li>#endif</li>
+</ul>
+<p>需要注意的是，条件编译<code>#if</code>指令结束不要忘记加上<code>#endif</code>哦。</p>
+<h1 id="预定义宏"><a href="#预定义宏" class="headerlink" title="预定义宏"></a>预定义宏</h1><p>ANSI C标准定义了许多预定义宏。我们可以在编程中使用这些宏，但是不应该修改这些预定义宏。</p>
+<table>
+<thead>
+<tr>
+<th align="center">预定义宏</th>
+<th align="left">功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">__DATE__</td>
+<td align="left">当前日期，一个以 “MMM DD YYYY” 格式表示的字符常量。</td>
+</tr>
+<tr>
+<td align="center">__TIME__</td>
+<td align="left">当前时间，一个以 “HH:MM:SS” 格式表示的字符常量。</td>
+</tr>
+<tr>
+<td align="center">__FILE__</td>
+<td align="left">当前文件名，一个字符串常量。</td>
+</tr>
+<tr>
+<td align="center">__LINE__</td>
+<td align="left">当前代码行号，一个十进制常量。</td>
+</tr>
+<tr>
+<td align="center">__STDC__</td>
+<td align="left">当前编译器以ANSI C标准编译时，整型值为1</td>
+</tr>
+</tbody></table>
+<pre><code>#include &lt;stdio.h&gt;
+
+int main(void)&#123;
+
+    printf(&quot;File :%s\n&quot;, __FILE__ );
+    printf(&quot;Date :%s\n&quot;, __DATE__ );
+    printf(&quot;Time :%s\n&quot;, __TIME__ );
+    printf(&quot;Line :%d\n&quot;, __LINE__ );
+    printf(&quot;ANSI :%d\n&quot;, __STDC__ );
+
+    return 0;
+&#125;
+</code></pre>
+<p>编译执行，结果为:</p>
+<pre><code>File :test.c
+Date :Jun  9 2017
+Time :20:53:42
+Line :8
+ANSI :1
+</code></pre>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ul>
+<li>C标准文档: <a target="_blank" rel="noopener" href="http://en.cppreference.com/w/c/preprocessor">http://en.cppreference.com/w/c/preprocessor</a></li>
+<li>MSDN编译预处理: <a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/79yewefw.aspx">https://msdn.microsoft.com/en-us/library/79yewefw.aspx</a></li>
+</ul>
+<h1 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h1><ul>
+<li>2017-05-19 –&gt; 完成[初稿]</li>
+<li>2017-06-09 –&gt; 增添[预定义宏]</li>
+<li>2017-06-13 –&gt; 增添[#, ##内容]</li>
+</ul>
+
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/05/20/苹果系统.DS_Store文件的产生与清理/" data-toggle="tooltip" data-placement="top" title="苹果系统.DS_Store文件的产生与清理">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/05/14/building-a-personal-blog-using-gitHub-pages-and-hexo/" data-toggle="tooltip" data-placement="top" title="使用 GitHub Pages + Hexo 搭建个人小站">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- No hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#C" title="C">C</a>
+                        
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                <hr>
+                <!--
+                
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+                
+                -->
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+</body>
+</html>

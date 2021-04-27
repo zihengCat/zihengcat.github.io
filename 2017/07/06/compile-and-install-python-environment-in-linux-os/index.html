@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/2017/07/06/compile-and-install-python-environment-in-linux-os/">
+    <title>
+        
+          Linux 下搭建 Python 环境（编译安装） - zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-d.png');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                    <h1>Linux 下搭建 Python 环境（编译安装）</h1>
+                    <h2 class="subheading">Compile and Install Python Environment in Linux OS</h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2017-07-06
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在 Linux 操作系统（OS）下编译安装 Python 环境。</p>
+<p>在 <em>CentOS 7 Linux</em> 中，操作系统（OS）默认没有安装<code>Python3</code>，<code>yum</code>源中提供的<code>Python3</code>软件包也并非最新版本。系统自带一枚旧版本<code>Python 2</code>（Python 2.7.5）为一些系统组件提供支持，不宜随意更动，不然会出现各种各样的 Bugs（如：<code>yum</code>无法正常使用…）。</p>
+<p>手动编译安装最新版本 Python ，是 Linux 下搭建 Python 环境的最佳选择。</p>
+<h1 id="Step-1-编译环境"><a href="#Step-1-编译环境" class="headerlink" title="Step 1 - 编译环境"></a>Step 1 - 编译环境</h1><p>首先，我们需要在本机安装「基础编译工具链」，这是编译 Python 源码所必需的。</p>
+<pre><code class="bash">$ sudo yum install gcc make
+...
+</code></pre>
+<blockquote>
+<p>代码清单：安装「基础编译工具」</p>
+</blockquote>
+<p>本机安装好<code>gcc</code>、<code>make</code>基础编译工具，用来编译 Python 源码（Python 语言的官方实现是 <em>CPython</em> ）。</p>
+<h1 id="Step-2-获取源码"><a href="#Step-2-获取源码" class="headerlink" title="Step 2 - 获取源码"></a>Step 2 - 获取源码</h1><p>前往 Python 官方网站，获取最新 Python3 「源码包」。注意，要下载源码包<code>source tarball</code>。</p>
+<blockquote>
+<p>Python 官方网址：<a target="_blank" rel="noopener" href="https://www.python.org/">https://www.python.org</a></p>
+</blockquote>
+<pre><code class="bash">$ curl -O https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tar.xz
+</code></pre>
+<blockquote>
+<p>代码清单：获取<code>Python</code>源码包</p>
+</blockquote>
+<p>解压缩，解包，<code>*.tar.xz</code>压缩包需要分两步解压，<code>*.tar.gz</code>则可以使用<code>tar -xvz -f</code>一步到位。</p>
+<pre><code class="bash">$ xz -d ./Python-3.6.1.tar.xz
+$ tar -xv -f ./Python-3.6.1.tar
+</code></pre>
+<blockquote>
+<p>代码清单：解压缩<code>Python</code>源码包</p>
+</blockquote>
+<p>亦或者，我们也可以直接克隆 GitHub 上<code>cpython</code>代码仓库至本地。</p>
+<pre><code class="bash"># 克隆`cpython`源码仓库
+$ git clone https://github.com/python/cpython.git
+# 进入`cpython`源码目录
+$ cd cpython
+# 查看`cpython`版本号
+$ git tag
+# 检出适合`cpython`版本
+$ git checkout &lt;tag_version&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：使用<code>git</code>获取 Python 源代码</p>
+</blockquote>
+<h1 id="Step-3-安装依赖"><a href="#Step-3-安装依赖" class="headerlink" title="Step 3 - 安装依赖"></a>Step 3 - 安装依赖</h1><p><code>cd</code>进入<code>Python</code>源码目录，我们可以先浏览一下<code>README.rst</code>文件，该文档指导我们编译安装 Python 的具体步骤。</p>
+<p>在编译安装之前，我们需要先安装一些 Python 依赖包，这是<code>README</code>上没有提到的（但是会在<code>./configure</code>检查依赖项时告知）。为了省去后续查找安装依赖的麻烦，这里把 Python 所需要的依赖包全部列出。</p>
+<table>
+<thead>
+<tr>
+<th align="left">依赖库</th>
+<th align="left">RedHat</th>
+<th align="left">Debian</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ZLib</td>
+<td align="left"><code>zlib-devel</code></td>
+<td align="left"><code>zlib1g-dev</code></td>
+</tr>
+<tr>
+<td align="left">BZip2</td>
+<td align="left"><code>bzip2-devel</code></td>
+<td align="left"><code>libbz2-dev</code></td>
+</tr>
+<tr>
+<td align="left">LZMA</td>
+<td align="left"><code>xz-devel</code></td>
+<td align="left"><code>liblzma-dev</code></td>
+</tr>
+<tr>
+<td align="left">UUID</td>
+<td align="left"><code>uuid-devel</code></td>
+<td align="left"><code>uuid-dev</code></td>
+</tr>
+<tr>
+<td align="left">OpenSSL</td>
+<td align="left"><code>openssl-devel</code></td>
+<td align="left"><code>libssl-dev</code></td>
+</tr>
+<tr>
+<td align="left">RaedLine</td>
+<td align="left"><code>readline-devel</code></td>
+<td align="left"><code>libreadline-dev</code></td>
+</tr>
+<tr>
+<td align="left">NCurses</td>
+<td align="left"><code>ncurses-devel</code></td>
+<td align="left"><code>libncursesw5-dev</code></td>
+</tr>
+<tr>
+<td align="left">SQLite</td>
+<td align="left"><code>sqlite-devel</code></td>
+<td align="left"><code>libsqlite3-dev</code></td>
+</tr>
+<tr>
+<td align="left">FFI</td>
+<td align="left"><code>libffi-devel</code></td>
+<td align="left"><code>libffi-dev</code></td>
+</tr>
+<tr>
+<td align="left">GDBM</td>
+<td align="left"><code>gdbm-devel</code></td>
+<td align="left"><code>libgdbm-dev</code></td>
+</tr>
+<tr>
+<td align="left">Tcl/Tk</td>
+<td align="left"><code>tk-devel</code></td>
+<td align="left"><code>tk-dev</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>表：Linux 系统下<code>Python</code>依赖库表</p>
+</blockquote>
+<pre><code class="bash">#/bin/bash
+# --------------------------
+PYTHON_DEPS=&quot;zlib-devel \
+             bzip2-devel \
+             xz-devel \
+             uuid-devel \
+             libuuid-devel \
+             openssl-devel \
+             readline-devel \
+             ncurses-devel \
+             sqlite-devel \
+             libffi-devel \
+             gdbm-devel \
+             tcl-devel \
+             tk-devel&quot;
+# --------------------------
+for i in $&#123;PYTHON_DEPS&#125;
+do
+    sudo yum -y install $&#123;i&#125;
+done
+# --------------------------
+echo $&#123;?&#125;
+</code></pre>
+<blockquote>
+<p>代码清单：RedHat Linux 下安装 Python 依赖库自动化脚本</p>
+</blockquote>
+<p>手写一支<code>shell</code>脚本，把依赖包全部装好。对于<code>Debian</code>系的系统，可以使用<code>apt</code>命令安装相应的依赖包。</p>
+<h1 id="Step-4-编译安装"><a href="#Step-4-编译安装" class="headerlink" title="Step 4 - 编译安装"></a>Step 4 - 编译安装</h1><p>依赖包都安装好之后，接下来，我们就按照<code>README</code>的指引，编译安装<code>Python</code>。请确保在 Python 源代码目录下执行以下操作：</p>
+<pre><code class="bash">$ ./configure --prefix=/usr/local/python_3.6.1 --enable-optimizations
+</code></pre>
+<blockquote>
+<p>代码清单：<code>configure</code>编译配置选项</p>
+</blockquote>
+<p>此命令会检查当前系统的编译环境，软件依赖性等等，如果没有问题的话，会成功生成<code>Makefile</code>。</p>
+<p>这里我们添加了两个编译选项，更多编译选项可以参看：<code>./configure --help</code>。</p>
+<table>
+<thead>
+<tr>
+<th align="left">编译选项</th>
+<th align="left">解释说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>--prefix</code></td>
+<td align="left">自定义安装路径，默认在<code>/usr/local</code>，个人习惯单独指定安装路径，这样管理起来比较方便。</td>
+</tr>
+<tr>
+<td align="left"><code>--enable-optimizations</code></td>
+<td align="left">开启编译优化选项，增加编译时间，换取性能提升，这是非常值得的。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>表：自定义编译选项表</p>
+</blockquote>
+<pre><code class="bash">$ make
+...
+$ sudo make install
+...
+</code></pre>
+<blockquote>
+<p>代码清单：<code>make</code>编译安装</p>
+</blockquote>
+<p>运行<code>make</code>编译安装，编译时间取决于机器性能。如果是虚拟机环境，建议把虚拟机性能调高一些。</p>
+<p>如果使用<code>--prefix</code>编译选项自定义了安装目录，安装完成后不要忘记了将安装路径加入<code>PATH</code>环境变量中，并将 Python 软链接到<code>/usr/bin/</code>目录下。</p>
+<pre><code class="bash">$ echo &#39;export PATH=$&#123;PATH&#125;:&lt;path/to/python/bin&gt;&#39; &gt;&gt; ~/.bashrc
+</code></pre>
+<blockquote>
+<p>代码清单：加入<code>Python</code>至系统<code>PATH</code>路径</p>
+</blockquote>
+<h1 id="Step-5-检验安装"><a href="#Step-5-检验安装" class="headerlink" title="Step 5 - 检验安装"></a>Step 5 - 检验安装</h1><p>命令行下直接执行 Python 指令，如果编译、安装、配置都没有问题，会正常进入 Python 交互式环境。</p>
+<pre><code class="bash">$ python3
+Python 3.6.1 (default, Jul  6 2017, 15:12:56)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-11)] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;
+</code></pre>
+<blockquote>
+<p>代码清单：检验<code>Python</code>安装</p>
+</blockquote>
+<p>至此，最新版 Python 已经安装完成，我们可以愉快地使用 Python 写程序啦。</p>
+<!-- EOF -->
+
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/07/09/Linux下搭建LaTeX学习环境/" data-toggle="tooltip" data-placement="top" title="Linux下搭建LaTeX学习环境">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/07/05/Vim学习笔记-粘贴模式/" data-toggle="tooltip" data-placement="top" title="Vim学习笔记-粘贴模式">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- No hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                <hr>
+                <!--
+                
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+                
+                -->
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+</body>
+</html>
