@@ -171,7 +171,7 @@
                  col-lg-8 col-lg-offset-2
                  col-md-10 col-md-offset-1
                  post-container">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文讲解在 UNIX-like (Linux) 操作系统下编译安装 Python 环境。</p>
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文主要讲解在 Linux 系统下编译安装 Python 环境，其他 UNIX-like 也同样适用。</p>
 <p>在 <em>CentOS 7 Linux</em> 中，默认情况下系统默认不安装 Python 3，而<code>yum</code>源中提供的<code>python3</code>软件包也并非最新版本。系统自带了一枚旧版本 Python 2 为一些系统组件提供支持，不应随意更动，不然会出现各种各样的问题（如：<code>yum</code>无法正常使用…）。</p>
 <p>因此，手动编译安装最新版本 Python 成为 Linux 下搭建 Python 环境的绝佳选择。</p>
 <h1 id="Step-1-准备编译环境"><a href="#Step-1-准备编译环境" class="headerlink" title="Step 1 - 准备编译环境"></a>Step 1 - 准备编译环境</h1><p>首先，我们需要在本机安装「基础编译工具链」，Python 语言的官方实现<code>cpython</code>使用 C 语言写成，我们需要<code>gcc</code>、<code>make</code>等基础编译工具用以编译 Python 源代码。</p>
