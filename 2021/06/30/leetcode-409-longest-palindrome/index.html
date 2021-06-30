@@ -177,7 +177,7 @@
 <pre><code class="plain">输入：s = &quot;abccccdd&quot;
 输出：7
 解释：
-其中一枚最大可构建的回文串是&quot;dccaccd&quot;，最大可构建回文串的长度为 7 。
+其中一枚最大可构建的回文串是&quot;dccaccd&quot;，最大可构建回文串的长度为7。
 </code></pre>
 <blockquote>
 <p>示例 1</p>
@@ -201,7 +201,14 @@
 <li><p>字符串<code>s</code>仅包含英文大小写字符。</p>
 </li>
 </ul>
-<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>…</p>
+<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>考虑回文串的特点，两枚相同的字符可配对出一对回文串，单个字符也可独立成为一枚回文串。解题思路即寻找字符串中有多少对可配对的回文串，最后配无可配，即得到了最大可构建的回文串，遵照题目要求返回最大回文串长度。</p>
+<p>遍历字符串，使用一枚哈希表记录下等待配对的字符，发现配对成功，将配对成功的字符从哈希表中移除，遍历完成就找全了所有可配对的回文串。</p>
+<p>时间复杂度：$O(n)$<br>空间复杂度：$O(n)$</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><p>…</p>
+<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><p>…</p>
+<h3 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h3><p>…</p>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><p>…</p>
+<h3 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h3><p>…</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode 409. Longest Palindrome: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-palindrome/">https://leetcode.com/problems/longest-palindrome/</a></li>
 </ul>
