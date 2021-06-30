@@ -188,9 +188,12 @@
 <p>注：示例 2</p>
 </blockquote>
 <p>注意：可以假定输入字符串仅包含英文小写字符。</p>
-<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>字符串问题，寻找字符串中第一个不重复字符。很容易想到的思路是：<strong>对于字符串中的每一个字符，再次遍历字符串判断该字符是否重复，无重复则返回字符索引下标</strong>。</p>
+<h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><p>字符串问题，寻找字符串中第一个不重复字符。很容易想到的解题思路是：对于字符串中的每一个字符，再次遍历字符串判断该字符是否重复，无重复则返回字符索引下标。</p>
 <pre><code class="java">public class Solution &#123;
     public int firstUniqChar(String s) &#123;
+        if (s == null || s.length() == 0) &#123;
+            return -1;
+        &#125;
         char[] arr = s.toCharArray();
         for (int i = 0; i &lt; arr.length; ++i) &#123;
             if (findCharacter(arr[i], arr, i + 1, arr.length - 1) == -1 &amp;&amp;
@@ -214,13 +217,16 @@
 <blockquote>
 <p>代码片段：寻找字符串首个唯一字符 - 暴力法</p>
 </blockquote>
-<p>但是，遍历两遍字符串的算法效率不高：$O(n^2)$。</p>
-<p>另一种实现思路是：**引入「有序哈希表」，存储字符串中每个字符的出现次数，只需遍历字符串一遍，即可得到结果，算法复杂度为：$O(n + m)$**。</p>
+<p>但是，多次遍历字符串的暴力算法效率不高：$O(n^2)$。</p>
+<p>另一种实现思路是：引入「有序哈希表」，存储字符串中每个字符的出现次数，只需遍历字符串一遍，即可得到结果。算法复杂度为：$O(n + m)$。</p>
 <pre><code class="java">import java.util.Map;
 import java.util.LinkedHashMap;
 
 public class Solution &#123;
     public int firstUniqChar(String s) &#123;
+        if (s == null || s.length() == 0) &#123;
+            return -1;
+        &#125;
         Map&lt;Character, Integer&gt; map = new LinkedHashMap&lt;Character, Integer&gt;();
         char[] arr = s.toCharArray();
         for (int i = 0; i &lt; arr.length; ++i) &#123;
