@@ -238,7 +238,38 @@ public:
 <blockquote>
 <p>代码片段：C++</p>
 </blockquote>
-<h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><p>…</p>
+<pre><code class="java">import java.util.Set;
+import java.util.HashSet;
+
+class Solution &#123;
+    public int longestPalindrome(String s) &#123;
+        if (s == null || s.length() == 0) &#123;
+            return 0;
+        &#125;
+        int cnt = 0;
+        Set&lt;Character&gt; hSet = new HashSet&lt;&gt;();
+        char c = 0;
+        int n = s.length();
+        for (int i = 0; i &lt; n; i++) &#123;
+            c = s.charAt(i);
+            if (hSet.contains(c)) &#123;
+                hSet.remove(c);
+                cnt++;
+            &#125; else &#123;
+                hSet.add(c);
+            &#125;
+        &#125;
+        return hSet.size() &gt; 0
+            ? 2 * cnt + 1
+            : 2 * cnt;
+    &#125;
+&#125;
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码片段：Java</p>
+</blockquote>
+<p>…</p>
 <h3 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h3><p>…</p>
 <h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><p>…</p>
 <h3 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h3><p>…</p>
