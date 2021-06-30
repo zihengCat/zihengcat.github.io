@@ -312,6 +312,27 @@ class Solution &#123;
 <blockquote>
 <p>代码片段：TypeScript</p>
 </blockquote>
+<pre><code class="python">from typing import Set
+
+class Solution:
+    def longestPalindrome(self, s: str) -&gt; int:
+        cnt: int = 0
+        hset: Set[str] = set()
+        for c in s:
+            if c in hset:
+                hset.remove(c)
+                cnt += 1
+            else:
+                hset.add(c)
+        n: int = cnt * 2
+        if len(hset) &gt; 0:
+           n += 1
+        return n
+# EOF
+</code></pre>
+<blockquote>
+<p>代码片段：Python</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode 409. Longest Palindrome: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-palindrome/">https://leetcode.com/problems/longest-palindrome/</a></li>
 </ul>
