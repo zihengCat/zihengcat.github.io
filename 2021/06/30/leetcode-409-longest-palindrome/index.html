@@ -203,8 +203,41 @@
 </ul>
 <h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>考虑回文串的特点，两枚相同的字符可配对出一对回文串，单个字符也可独立成为一枚回文串。解题思路即寻找字符串中有多少对可配对的回文串，最后配无可配，即得到了最大可构建的回文串，遵照题目要求返回最大回文串长度。</p>
 <p>遍历字符串，使用一枚哈希表记录下等待配对的字符，发现配对成功，将配对成功的字符从哈希表中移除，遍历完成就找全了所有可配对的回文串。</p>
-<p>时间复杂度：$O(n)$<br>空间复杂度：$O(n)$</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><p>…</p>
+<ul>
+<li>时间复杂度：$O(n)$</li>
+<li>空间复杂度：$O(n)$</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="cpp">#include &lt;string&gt;
+#include &lt;unordered_set&gt;
+
+using namespace std;
+
+class Solution &#123;
+public:
+    int longestPalindrome(string s) &#123;
+        int cnt = 0;
+        unordered_set&lt;char&gt; hset;
+        unordered_set&lt;char&gt;::iterator iter;
+        int n = s.size();
+        for (int i = 0; i &lt; n; i++) &#123;
+            iter = hset.find(s[i]);
+            if (iter != hset.end()) &#123;
+                hset.erase(iter);
+                cnt++;
+            &#125; else &#123;
+                hset.insert(s[i]);
+            &#125;
+        &#125;
+        return hset.size() &gt; 0
+            ? cnt * 2 + 1
+            : cnt * 2;
+    &#125;
+&#125;;
+/* EOF */
+</code></pre>
+<blockquote>
+<p>代码片段：C++</p>
+</blockquote>
 <h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><p>…</p>
 <h3 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h3><p>…</p>
 <h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><p>…</p>
