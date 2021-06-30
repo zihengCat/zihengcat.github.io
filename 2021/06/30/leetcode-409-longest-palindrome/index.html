@@ -291,8 +291,27 @@ class Solution &#123;
 <blockquote>
 <p>代码片段：Go</p>
 </blockquote>
-<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><p>…</p>
-<h3 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h3><p>…</p>
+<pre><code class="typescript">function longestPalindrome(s: string): number &#123;
+    let cnt: number = 0;
+    let hset: Set&lt;string&gt; = new Set&lt;string&gt;();
+    let c: string = &quot;&quot;;
+    for (let i: number = 0; i &lt; s.length; i++) &#123;
+        c = s.charAt(i);
+        if (hset.has(c)) &#123;
+            hset.delete(c);
+            cnt++;
+        &#125; else &#123;
+            hset.add(c);
+        &#125;
+    &#125;
+    return hset.size &gt; 0
+        ? cnt * 2 + 1
+        : cnt * 2;
+&#125;;
+</code></pre>
+<blockquote>
+<p>代码片段：TypeScript</p>
+</blockquote>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
 <li>LeetCode 409. Longest Palindrome: <a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-palindrome/">https://leetcode.com/problems/longest-palindrome/</a></li>
 </ul>
