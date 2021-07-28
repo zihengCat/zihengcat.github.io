@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ziheng&#39;s Blog">
+    <meta name="keyword" content="blog">
+    <meta name="google-site-verification" content="k8kEwQr5uL4wgMXhsZcUzGeY-tvr8yd23gMfzGcxqrE" />
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="canonical" href="https://zihengcat.github.io/2021/07/28/day-trader-beginner-retrospective-2021-07-27/">
+    <title>
+        
+          萌新 DT 复盘笔记 - 2021.07.27 - zihengCat
+        
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.css">
+
+
+    <!-- Font-Awesome Fonts -->
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                ziheng&#39;s Blog
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/about/">
+                                About
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/tags/">
+                                Tags
+                            </a>
+                        </li>
+                        
+                    
+                        
+                        <li>
+                            <a href="/archives/">
+                                Archives
+                            </a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px";
+                }
+            },400)
+        } else {
+        // OPEN
+            $collapse.style.height = "auto";
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        position: relative;
+        background-image: url('/img/home-bg-d.png');
+    }
+
+</style>
+<header class="intro-header" >
+<!-- Header Image Mask -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Trade" title="Trade">Trade</a>
+                        
+                    </div>
+                    <h1>萌新 DT 复盘笔记 - 2021.07.27</h1>
+                    <h2 class="subheading">Day Trader Beginner&#39;s Retrospective - 2021.07.27</h2>
+                    <span class="meta">
+                        Posted by zihengCat on
+                        2021-07-28
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+<!-- Post Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 post-container">
+                <h1 id="开篇碎碎念"><a href="#开篇碎碎念" class="headerlink" title="开篇碎碎念"></a>开篇碎碎念</h1><p>以滴滴被被七部门联合入驻调查、《双减》文件靴子落地这两起事件为导火索，引发了全球投资者对中概股市场价值和中国政策环境的深深忧虑，情绪反映到股价上：滴滴股价腰斩，中概教育股跌穿，中概股整体几日连跌。在市场情绪稳定之前，中概股们的表现恐怕都不会太乐观。</p>
+<h1 id="大市行情"><a href="#大市行情" class="headerlink" title="大市行情"></a>大市行情</h1><p>2021年7月27日，七月最后一周的周二，美股录得六个交易日以来的首次下跌，道琼斯工业指数跌<code>0.24%</code> ，纳斯达克综合指数跌<code>1.21%</code>，标准普尔500指数跌<code>0.47%</code>。</p>
+<p>美科技股领跌，大型科技股普遍下跌，电动汽车股跌幅较大，中概股普遍下跌，中概教育股触底反弹。</p>
+<h1 id="今日复盘"><a href="#今日复盘" class="headerlink" title="今日复盘"></a>今日复盘</h1><p>今日开仓：</p>
+<ul>
+<li>特斯拉（NASDAQ: TSLA）</li>
+<li>好未来（NYSE: TAL）</li>
+<li>蘑菇街（NYSE: MOGU）</li>
+<li>Intrusion Inc.（NASDAQ: INTZ）</li>
+</ul>
+<p><strong>特斯拉（NASDAQ: TSLA）</strong></p>
+<p>特斯拉于周一盘后公布其2021Q2财报，营收与净利润均创下新高，但因芯片与电池供应链面料挑战，电动车生产量受到限制。</p>
+<p>特斯拉财报亮眼，我今日原打算做多特斯拉。盘前特斯拉情绪已起，但是开盘后股价闪崩，转灯快速下跌。这里我犯下了一个致命的错误，没有做到<strong>坚决止损</strong>止出，而是逆势加了一波仓，加到 6 成仓位，负担极重。后续，特斯拉跌破 640 点位，心态有点崩溃。最终在破 630 位置时止损退出，亏损 3 个点。</p>
+<p><strong>好未来（NYSE: TAL）</strong></p>
+<p>今日中概教育股逆市大涨，有些意外。我在好未来涨 22% 至 4.9 位置时选择 1 成仓位做空进入，当时个人判断为触顶回落，卖空后发现走势不如预期，拉涨情绪仍然热烈。止损退出，困损 0.5 个点。</p>
+<p><strong>蘑菇街（NYSE: MOGU）</strong><br><strong>Intrusion Inc.（NASDAQ: INTZ）</strong></p>
+<p>这两只股票都是今日庄股，资金盘小，庄家拉升，换手率奇高。采取玩毛票的思路：逢高做空，逢低做多，快进快出，小仓位，上下小波段来回套利。收获颇丰，盈利 10 个点左右。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>今日总体盈利虽为正，但今日交易极其失败。</p>
+<p>对于特斯拉股票的交易，趋势判断失误，在价格跌破支撑位后没有做到<strong>及时止损</strong>，不仅如此，还逆势加仓，陷入了极其被动的局面，心态方面也无法稳定住，后续再止损退出时，亏损已经非常大了。</p>
+<p>特斯拉的交易失利，直接影响了个人心态。在后续做庄股套利时，仓位开得比预想的大，存在赌徒翻盘心理，盈利走正后才减小仓位。</p>
+<p>坚决止损！坚决止损！坚决止损！</p>
+<!-- EOF -->
+
+                <hr>
+<!--
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/06/30/leetcode-409-longest-palindrome/" data-toggle="tooltip" data-placement="top" title="LeetCode - 409. 最大可构建的回文串">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+-->
+            </div>
+<!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+<!-- Sidebar Container -->
+            <div class="
+                 col-lg-8 col-lg-offset-2
+                 col-md-10 col-md-offset-1
+                 sidebar-container">
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- No hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Trade" title="Trade">Trade</a>
+                        
+                    </div>
+                </section>
+                
+                <!-- Friends Blog -->
+                <hr>
+                <!--
+                
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                </ul>
+                
+                -->
+            </div>
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js => Doc: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async('https://cdnjs.cloudflare.com/ajax/libs/anchor-js/1.3.0/anchor.min.js',
+    function() {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+<!--
+            
+              <li>
+                <a target="_blank"  href="https://github.com/zihengcat">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            
+
+            
+-->
+        </ul>
+        <p class="copyright text-muted">
+            Copyright &copy;
+            ziheng&#39;s Blog
+            2021
+            <br>
+            Theme by Hux
+<!--
+            <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+            </span>
+-->
+            <span> | </span>
+            Ported by Kaijun
+            <span> | </span>
+            Modified by zihengCat
+<!--
+          <iframe
+           style="margin-left: 2px; margin-bottom:-5px;"
+           frameborder="0" scrolling="0" width="91px" height="20px"
+           src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+          </iframe>
+-->
+          </br>
+          <span id="busuanzi_container_site_pv">
+            本站访问量<span id="busuanzi_value_site_pv"></span>次 |
+          </span>
+          <span id="busuanzi_container_site_uv">
+            本站访客数<span id="busuanzi_value_site_uv"></span>人 |
+          </span>
+          <span id="busuanzi_container_page_pv">
+            本文阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- BuSuanzi.js -->
+<script type="text/javascript" async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<!-- Highlight.js -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<script type="text/javascript" async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$', '$'] ],
+            skipTags: ['code', 'script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+</script>
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+<!-- Async Load Function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) {
+          o.addEventListener(
+              'load',
+              function (e) {
+                  c(null, e);
+              },
+              false
+          );
+      }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jQuery.tagCloud.js -->
+<script type="text/javascript">
+/*!
+ * jquery.tagcloud.js
+ * A Simple Tag Cloud Plugin for JQuery
+ *
+ * https://github.com/addywaddy/jquery.tagcloud.js
+ * created by Adam Groves
+ */
+(function($) {
+
+  /*global jQuery*/
+  "use strict";
+
+  var compareWeights = function(a, b)
+  {
+    return a - b;
+  };
+
+  // Converts HEX to an RGB array
+  var toRGB = function(code) {
+    if (code.length === 4) {
+      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+    }
+    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
+    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
+  };
+
+  // Converts an RGB array to hex
+  var toHex = function(ary) {
+    return "#" + jQuery.map(ary, function(i) {
+      var hex =  i.toString(16);
+      hex = (hex.length === 1) ? "0" + hex : hex;
+      return hex;
+    }).join("");
+  };
+
+  var colorIncrement = function(color, range) {
+    return jQuery.map(toRGB(color.end), function(n, i) {
+      return (n - toRGB(color.start)[i])/range;
+    });
+  };
+
+  var tagColor = function(color, increment, weighting) {
+    var rgb = jQuery.map(toRGB(color.start), function(n, i) {
+      var ref = Math.round(n + (increment[i] * weighting));
+      if (ref > 255) {
+        ref = 255;
+      } else {
+        if (ref < 0) {
+          ref = 0;
+        }
+      }
+      return ref;
+    });
+    return toHex(rgb);
+  };
+
+  $.fn.tagcloud = function(options) {
+
+    var opts = $.extend({}, $.fn.tagcloud.defaults, options);
+    var tagWeights = this.map(function(){
+      return $(this).attr("rel");
+    });
+    tagWeights = jQuery.makeArray(tagWeights).sort(compareWeights);
+    var lowest = tagWeights[0];
+    var highest = tagWeights.pop();
+    var range = highest - lowest;
+    if(range === 0) {range = 1;}
+    // Sizes
+    var fontIncr, colorIncr;
+    if (opts.size) {
+      fontIncr = (opts.size.end - opts.size.start)/range;
+    }
+    // Colors
+    if (opts.color) {
+      colorIncr = colorIncrement (opts.color, range);
+    }
+    return this.each(function() {
+      var weighting = $(this).attr("rel") - lowest;
+      if (opts.size) {
+        $(this).css({"font-size": opts.size.start + (weighting * fontIncr) + opts.size.unit});
+      }
+      if (opts.color) {
+        // change color to background-color
+        $(this).css({"backgroundColor": tagColor(opts.color, colorIncr, weighting)});
+      }
+    });
+  };
+
+  $.fn.tagcloud.defaults = {
+    size: {start: 14, end: 18, unit: "pt"}
+  };
+})(jQuery);
+
+if($('#tag_cloud').length !== 0) {
+    $.fn.tagcloud.defaults = {
+        // size: { start: 1, end: 1, unit: 'em' },
+        color: { start: '#bbbbee', end: '#0085a1' },
+    };
+    $('#tag_cloud a').tagcloud();
+}
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js",
+    function(){
+        var $nav = document.querySelector("nav");
+        if($nav) {
+            FastClick.attach($nav);
+        }
+    })
+</script>
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        // init
+        var _containerSelector = 'div.post-container';
+        var P = $(_containerSelector),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        // clean
+        $(selector).html('')
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+	async("https://cdnjs.cloudflare.com/ajax/libs/jquery-one-page-nav/3.0.0/jquery.nav.min.js",
+    function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "deactive",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+</body>
+</html>
