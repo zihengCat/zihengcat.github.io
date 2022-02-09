@@ -70,16 +70,16 @@
                     
                         
                         <li>
-                            <a href="/archives/">
-                                Archives
+                            <a href="/about/">
+                                About
                             </a>
                         </li>
                         
                     
                         
                         <li>
-                            <a href="/about/">
-                                About
+                            <a href="/archives/">
+                                Archives
                             </a>
                         </li>
                         
@@ -153,6 +153,33 @@
          col-xs-12
          post-container">
     <!-- Main Content -->
+
+<div class="post-preview">
+
+    <a href="/2017/08/16/git-practical-tips-amend-commit/">
+        <h2 class="post-title">
+            Git 实用技巧 - 覆写上次提交
+        </h2>
+        <h3 class="post-subtitle">
+            Git Practical Tips - Amend Commit
+        </h3>
+        <div class="post-content-preview">
+            前言在日常使用 Git 版本控制工具的时候，我们有时会遇到需要修改上次commit提交信息的情况，例如：修改上次提交信息中的错误内容，或者想为上次提交加入些新内容等等。
+Git 覆写上次提交（amend）我们可以使用git commit命令的amend选项来覆写上次提交。
+$ git commit --amend
+
+
+代码清单：使用--amend选项覆写上次提交
+
+执行此命令后，git会自动......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zihengCat on
+        2017-08-16
+    </p>
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -366,27 +393,6 @@ Ctrl + z传统方式: 使用shell的任务管理功能 job control，Ctrl + z将
     <p class="post-meta">
         Posted by zihengCat on
         2017-07-26
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/07/25/centos-using-yum-autoremove-packages/">
-        <h2 class="post-title">
-            CentOS 系统使用 yum 干净卸载软件包
-        </h2>
-        <h3 class="post-subtitle">
-            CentOS Using yum autoremove Packages
-        </h3>
-        <div class="post-content-preview">
-            前言本文记录在CentOS Linux系统下如何使用yum命令干净卸载软件包（即: 连同该软件包的相关依赖包一并移除）。
-使用yum干净移除软件包对于大部分使用红帽系（RedHat）Linux系统的用户而言，我们习惯使用yum命令安装或卸载软件包。当我们使用yum install命令安装一枚软件包时，yum会将该软件包连同其所有依赖包一并安装到本机。但当我们使用yum remove命令卸载一......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zihengCat on
-        2017-07-25
     </p>
 </div>
 <hr>
@@ -632,7 +638,7 @@ Ctrl + z传统方式: 使用shell的任务管理功能 job control，Ctrl + z将
         <p class="copyright text-muted">
             Copyright &copy;
             ziheng&#39;s Blog
-            2021
+            2022
             <br>
             Theme by Hux
 <!--
