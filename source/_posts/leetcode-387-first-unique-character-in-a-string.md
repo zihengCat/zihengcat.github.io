@@ -3,7 +3,7 @@ title: LeetCode - 387. 寻找字符串首个唯一字符
 subtitle: LeetCode - 387. First Unique Character in a String
 catalog: true
 date: 2019-09-09
-tags: ["LeetCode", "Data Structure", "String"]
+tags: ["LeetCode", "Data Structure", "String", "Hash Table"]
 ---
 
 # 前言
@@ -26,15 +26,18 @@ tags: ["LeetCode", "Data Structure", "String"]
 ```
 > 注：示例 2
 
-注意，可以假定输入字符串仅包含英文小写字符。
+注意：可以假定输入字符串仅包含英文小写字符。
 
 # 问题解答
 
-字符串问题，寻找字符串中第一个不重复字符。很容易想到的思路是：**对于字符串中的每一个字符，再次遍历字符串判断该字符是否重复，无重复则返回字符索引下标**。
+字符串问题，寻找字符串中第一个不重复字符。很容易想到的解题思路是：对于字符串中的每一个字符，再次遍历字符串判断该字符是否重复，无重复则返回字符索引下标。
 
 ```java
 public class Solution {
     public int firstUniqChar(String s) {
+        if (s == null || s.length() == 0) {
+            return -1;
+        }
         char[] arr = s.toCharArray();
         for (int i = 0; i < arr.length; ++i) {
             if (findCharacter(arr[i], arr, i + 1, arr.length - 1) == -1 &&
@@ -55,17 +58,27 @@ public class Solution {
 }
 /* EOF */
 ```
-> 代码清单：寻找字符串首个唯一字符（`Java`实现）
+> 代码片段：寻找字符串首个唯一字符 - 暴力法
 
-但是，遍历两遍字符串的算法效率不高：$O(n^2)$。
+但是，多次遍历字符串的暴力算法效率不高：
 
-另一种实现思路是：**引入「有序哈希表」，存储字符串中每个字符的出现次数，只需遍历字符串一遍，即可得到结果，算法复杂度为：$O(n + m)$**。
+- 时间复杂度：$O(n^2)$
+- 空间复杂度：$O(1)$
+
+另一种实现思路是：引入「有序哈希表」，存储字符串中每个字符的出现次数，只需遍历字符串一遍构建起哈希表，再查表即可得到结果。
+
+- 时间复杂度：$O(n)$
+- 空间复杂度：$O(n)$
 
 ```java
 import java.util.Map;
 import java.util.LinkedHashMap;
+
 public class Solution {
     public int firstUniqChar(String s) {
+        if (s == null || s.length() == 0) {
+            return -1;
+        }
         Map<Character, Integer> map = new LinkedHashMap<Character, Integer>();
         char[] arr = s.toCharArray();
         for (int i = 0; i < arr.length; ++i) {
@@ -83,10 +96,11 @@ public class Solution {
 }
 /* EOF */
 ```
-> 代码清单：寻找字符串首个唯一字符（`Java`实现）
+> 代码片段：寻找字符串首个唯一字符 - 哈希表法
 
 # 参考资料
 
-- 「LeetCode（First Unique Character in a String）」：https://leetcode.com/problems/first-unique-character-in-a-string/
+- LeetCode 387. First Unique Character in a String: https://leetcode.com/problems/first-unique-character-in-a-string/
 
 <!-- EOF -->
+

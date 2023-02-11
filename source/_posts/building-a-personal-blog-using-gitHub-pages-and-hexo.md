@@ -3,18 +3,18 @@ title: 使用 GitHub Pages + Hexo 搭建个人小站
 subtitle: Building a Personal Blog Using GitHub Pages and Hexo
 catalog: true
 date: 2017-05-14
-tags: ["GitHub", "Node.js", "Hexo"]
+tags: ["Node.js", "Hexo", "GitHub"]
 ---
 
 # 前言
 
 此篇文章将指导你使用`GitHub Pages`与`Hexo`搭建个人独立博客。
 
-![Blog-Hexo](./blog-hexo.png)
+![Blog-Hexo][Blog-Hexo]
 
 ## 为什么选择 GitHub Pages + Hexo
 
-如今，自媒体行业繁荣，人人都可以在互联网上表达自己的观点与想法。能写东西的地方非常之多（例如：微信公众号、今日头条、知乎专栏...），这些大平台往往可以提供足够的流量与曝光率，那么我们还要选择 GitHub Pages + Hexo 手动搭建个人博客写作平台呢？
+如今，自媒体行业繁荣，人人都可以在互联网上表达自己的观点与想法。能写东西的地方非常之多（例如：微信公众号、今日头条、知乎专栏...），这些大平台往往可以提供足够的流量与曝光，那么我们还要选择 GitHub Pages + Hexo 手动搭建个人博客写作平台呢？
 
 基于我个人的一些理解，总结了以下几点。
 
@@ -64,6 +64,8 @@ $ npm --version
 
 # 安装 Hexo 博客框架
 
+![Hexo-Framework][Hexo-Framework]
+
 > A fast, simple & powerful blog framework, powered by Node.js.
 
 Hexo 是一个快速、简洁且高效的博客框架，使用`Node.js`写成，支持 Markdown 格式。Hexo 博客框架的安装过程非常简便。使用一条`npm`命令即可安装。
@@ -72,7 +74,7 @@ Hexo 是一个快速、简洁且高效的博客框架，使用`Node.js`写成，
 $ npm install hexo-cli -g
 ...
 ```
-> 注：> 使用 NPM 包管理器全局安装 Hexo 命令行工具
+> 注：使用 NPM 包管理器全局安装 Hexo 框架命令行工具
 
 安装完成后，执行命令检视，如果正确打印出 Hexo 软件版本号，则说明安装成功。
 
@@ -133,56 +135,75 @@ $ hexo server
 
 # GitHub Pages
 
+![GitHub-Pages][GitHub-Pages]
+
 > Websites for you and your projects.
 
 GitHub Pages 是 GitHub 为广大开发者们提供的一个**静态站点托管服务**。
 
-- GitHub 为每个GitHub Pages 仓库项目提供 1GB 仓库容量, 超过会有限制
+- GitHub 为每个 GitHub Pages 仓库项目提供 1GB 仓库容量（超过会有限制）。
 
-- 每月 100GB 的带宽流量和 10 万次请求
+- 每月 100GB 带宽流量与 10 万次请求。
 
-- 开发者项目与展示站点紧密相关
+- 开发者项目与展示站点紧密相关。
 
-GitHub Pages 官方教程写得简单明了，直接参看操作即可。需要注意的是，GitHub Pages 只托管静态网站，不支持动态性。
+GitHub Pages 官方教程写得简单明了，直接参看操作即可。
 
-为了节省资源，如果博客配有大量高清图片资源，推荐使用 CDN 图床。
+需要注意的是，GitHub Pages 只能托管静态网站，不支持动态 Web 。
+
+为了节省资源，如果个人博客配有大量高清图片资源，建议使用 CDN 图床。
 
 > GitHub Pages 官方教程：https://pages.github.com/
 
-## 发布静态博客到 GitHub Pages
+## 发布个人博客到 GitHub Pages
 
-目前，我们已经在 GitHub 上建立了自己的 GitHub Pages 仓库：`yourname.github.io`，也在本地跑起了我们的 Hexo 静态博客站：`http://localhost:4000/`。最后一个步骤，便是将本地的博客站点托管到 GitHub Pages 上。由于 GitHub Pages 不支持动态网站，我们需要生成**静态网页文件**再上传到 GitHub 中。Hexo 提供了快捷指令可以轻松完成这项任务。
+我们已经在 GitHub 上建立了自己域名的 GitHub Pages 仓库：`yourname.github.io`，也在本地跑起了我们的 Hexo 静态博客站：`http://localhost:4000/`。最后一个步骤，便是将本地的博客站点托管到 GitHub Pages 上。
 
-```
+由于 GitHub Pages 不支持动态网站，我们需要生成**静态网页文件**再上传到 GitHub 中，Hexo 框架提供了快捷指令可以轻松完成这项任务。
+
+```bash
 $ hexo generate
+...
 ```
+> 注：Hexo 生成静态文件
 
-以上命令生成了静态网页文件，放置在`public`目录下。
+执行上述命令，Hexo 将 Markdown 文件编译生成静态网页文件，放置在`public`目录下。将该目录下的静态网页文件推送至 GitHub Pages 仓库（即：`yourname.github.io`），提交推送即可。
 
-```
+```bash
 $ git remote add origin <your-github-pages-repo>
 $ git add --all
 $ git commit
 $ git push origin master
 ```
-将`public`下的静态网页文件移置GitHub Pages的仓库中，提交推送就OK啦。
-```
-$ hexo generate --deploy
-```
-使用这个命令就可以将生成静态网页文件与提交到GitHub这两步结合起来，比较方便，前提是要先在配置文件中写好GitHub的相关信息。
+> 注：Git 推送静态网页文件
 
-稍等片刻，访问`https://yourname.github.io`，我们的个人博客搭建完成啦。
+我们可以在 Hexo 配置文件中指定相应的部署选项，再安装`hexo-deployer-git`插件，让 Hexo 根据配置自动推送部署，非常方便。更多配置选项，可以参看官方文档。
+
+```yaml
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: https://github.com/path/to/your/github.io
+  branch: master
+```
+> 注：添加`_config.yml`部署配置
+
+```bash
+$ npm install hexo-deployer-git --save
+...
+```
+> 注：安装`hexo-deployer-git`插件
+
+推送后，稍等片刻，等待 GitHub 部署完成，访问`https://yourname.github.io`域名，就可以看到我们搭好的个人博客了。
 
 # 备份建议
 
-毫无疑问，博客的博文资料是最珍贵的，框架可以换，但博文资料我们需要采用某些措施妥善的备份起来。
-子恒喵给大家的建议是，使用**GitHub备份博文资料**。
-由于我们上传到GitHub Pages 仓库上的是借助Hexo生成器生成的静态网页文件，我们不希望备份它们，这对日后博客内容的移植，修改造成不便。
-我们需要将本地的Markdown文件备份下来，这才是我们需要做的。
-Hexo本地目录下`source`文件夹存放着我们写的博文内容，我们只需要使用GitHub将这些内容备份起来。
-这里子恒喵使用了`Git branch`分支功能来保存博文资料，没有新建出一个仓库。
+毫无疑问，个人博客中的文章资料最为珍贵，主题、框架都可以更换，文章资料应该被妥善备份起来。既然已经应用了 Git Workflow，使用**GitHub 备份博文资料**是个不错的选择。
 
-```
+我的备份方案选择：在同仓库下新建一枚分支保存博客文章资料，令`master`分支存放静态网页文件，`source`备份分支存放博客源文件，Git 分支功能在这个场景下非常合适。
+
+```bash
 $ git clone <your-remote-github-repo.git>
 $ cd <folder>
 $ git branch source
@@ -193,18 +214,24 @@ $ git add --all
 $ git commit
 $ git push origin source
 ```
-虽然Git branch分支功能并不是为备份数据而生的，但是在这个特殊场景下，利用分支功能却非常合适。`master`分支存放静态网页文件，`source`分支存放Markdown文件。备份工作完满完成。
-
+> 注：Git 备份博客文章资料
 
 # 参考资料
 
-- GitHub Pages 简介: https://help.github.com/articles/what-is-github-pages/
+- GitHub Pages 简介：https://help.github.com/articles/what-is-github-pages/
 
-- Git 官方网站:      https://git-scm.com/
+- Git 官方网站：https://git-scm.com/
 
-- Node.js 官方网站: https://nodejs.org/
+- Node.js 官方网站：https://nodejs.org/
 
-- Hexo 官方网站:     https://hexo.io/
+- Hexo 官方网站：https://hexo.io/
+
+<!-- Images Begin -->
+
+[Blog-Hexo]:      ./blog-hexo.png
+[Hexo-Framework]: ./hexo-framework.jpeg
+[GitHub-Pages]:   ./github-pages.jpeg
+
+<!-- Images End -->
 
 <!-- EOF -->
-

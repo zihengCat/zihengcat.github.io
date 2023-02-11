@@ -2,7 +2,9 @@
 ## Docs:   https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
+# ----
 # Site
+# ----
 
 title: ziheng's Blog
 subtitle: zihengCat is here!
@@ -10,7 +12,9 @@ author: zihengCat
 language: zh-CN
 timezone: Asia/Shanghai
 
+# ---
 # URL
+# ---
 
 ## If your site is put in a subdirectory,
 ## set url as 'http://yoursite.com/child' and root as '/child/'
@@ -20,7 +24,9 @@ root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
+# --------------------
 # Custom Setting Start
+# --------------------
 
 ## Site settings
 
@@ -59,7 +65,7 @@ mathjaxjs: true
 
 # whether or not using Sidebar.
 sidebar: true
-sidebar-about-description: "Hi, this is zihengCat, a student live in Hangzhou, China. Learning coding now, SDE I."
+sidebar-about-description: "Junior SDE / Day Trader / Open Source Enthusiast / Life Long Learner"
 
 # use absolute URL, seeing it's used in both `/` and `/about/`
 sidebar-avatar: img/avatar.png
@@ -161,7 +167,8 @@ theme: zihengblog
 
 deploy:
   type: git
-  repo: https://github.com/zihengcat/zihengcat.github.io
+  # repo: https://github.com/zihengcat/zihengcat.github.io
+  repo: git@github.com:zihengCat/zihengcat.github.io.git
   branch: master
 
 # EOF
